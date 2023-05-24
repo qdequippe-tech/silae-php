@@ -23,22 +23,22 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=8.1",
-        "jane-php/open-api-runtime": "7.x-dev",
-        "nyholm/psr7": "^1.8@dev"
+        "jane-php/open-api-runtime": "^7.5"
     },
     "config": {
         "allow-plugins": {
             "php-http/discovery": true
         }
     },
-    "require-dev": {
-        "rector/rector": "^0.16.0",
-        "jane-php/open-api-2": "7.x-dev",
-        "friendsofphp/php-cs-fixer": "dev-master"
-    },
     "extra": {
         "symfony": {
             "allow-contrib": "true"
         }
+    },
+    "require-dev": {
+        "jane-php/open-api-2": "^7.5",
+        "nyholm/psr7": "^1.8",
+        "friendsofphp/php-cs-fixer": "^3.17",
+        "rector/rector": "^0.16.0"
     }
 }
