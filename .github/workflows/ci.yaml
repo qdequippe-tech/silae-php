@@ -1,0 +1,19 @@
+name: CI
+
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+
+jobs:
+    check-cs:
+        name: Coding Style
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: PHP-CS-Fixer
+              uses: docker://oskarstark/php-cs-fixer-ga
+              with:
+                  args: --config=.php-cs-fixer.php --diff --dry-run

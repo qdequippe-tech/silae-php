@@ -1,0 +1,44 @@
+{
+    "name": "qdequippe-tech/silae-php",
+    "description": "Silae REST API PHP SDK",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "QdequippeTech\\Silae\\Api\\": "generated/",
+            "QdequippeTech\\Silae\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "QdequippeTech\\Silae\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Quentin Dequippe",
+            "email": "quentin@dequippe.tech"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.1",
+        "jane-php/open-api-runtime": "7.x-dev",
+        "nyholm/psr7": "^1.8@dev"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "require-dev": {
+        "rector/rector": "^0.16.0",
+        "jane-php/open-api-2": "7.x-dev",
+        "friendsofphp/php-cs-fixer": "dev-master"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": "true"
+        }
+    }
+}
