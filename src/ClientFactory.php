@@ -13,15 +13,8 @@ final class ClientFactory
     public static function create(
         string $clientId,
         string $clientSecret,
-    ): Client
-    {
-        $authenticationRegistry = new AuthenticationRegistry([new OAuth2AuthenticationPlugin([
-            'clientId' => $clientId,
-            'clientSecret' => $clientSecret,
-            'urlAuthorize' => '',
-            'urlAccessToken' => 'https://payroll-api-auth.silae.fr/oauth2/v2.0/token',
-            'urlResourceOwnerDetails' => '',
-        ])]);
+    ): Client {
+        $authenticationRegistry = new AuthenticationRegistry([new OAuth2AuthenticationPlugin($clientId, $clientSecret)]);
 
         return Client::create(null, [$authenticationRegistry]);
     }
