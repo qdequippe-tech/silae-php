@@ -9,8 +9,8 @@ class SalariesDUE extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint i
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(\QdequippeTech\Silae\Api\Model\SalariesDUERequest $request, array $headerParameters = [])
     {

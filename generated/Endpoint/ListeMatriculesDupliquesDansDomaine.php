@@ -9,8 +9,8 @@ class ListeMatriculesDupliquesDansDomaine extends \QdequippeTech\Silae\Api\Runti
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(array $headerParameters = [])
     {

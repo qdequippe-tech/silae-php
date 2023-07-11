@@ -9,8 +9,8 @@ class ListeNumerosDossiers extends \QdequippeTech\Silae\Api\Runtime\Client\BaseE
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(array $headerParameters = [])
     {

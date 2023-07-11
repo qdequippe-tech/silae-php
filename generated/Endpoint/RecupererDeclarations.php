@@ -9,8 +9,8 @@ class RecupererDeclarations extends \QdequippeTech\Silae\Api\Runtime\Client\Base
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(\QdequippeTech\Silae\Api\Model\DossierPeriodeRequest $request, array $headerParameters = [])
     {

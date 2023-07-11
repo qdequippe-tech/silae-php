@@ -9,8 +9,8 @@ class ListeEtablissementsDossierPaie extends \QdequippeTech\Silae\Api\Runtime\Cl
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(\QdequippeTech\Silae\Api\Model\DossierRequest $request, array $headerParameters = [])
     {

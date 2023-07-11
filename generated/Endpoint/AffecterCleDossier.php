@@ -9,8 +9,8 @@ class AffecterCleDossier extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEnd
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(\QdequippeTech\Silae\Api\Model\AffecterCleDossierRequest $request, array $headerParameters = [])
     {

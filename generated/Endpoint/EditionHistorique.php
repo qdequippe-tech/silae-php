@@ -9,8 +9,8 @@ class EditionHistorique extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndp
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(\QdequippeTech\Silae\Api\Model\EditionHistoriqueRequest $request, array $headerParameters = [])
     {

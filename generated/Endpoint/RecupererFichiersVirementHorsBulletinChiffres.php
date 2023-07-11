@@ -9,8 +9,8 @@ class RecupererFichiersVirementHorsBulletinChiffres extends \QdequippeTech\Silae
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(\QdequippeTech\Silae\Api\Model\RecupererFichiersVirementHorsBulletinChiffresRequest $request, array $headerParameters = [])
     {

@@ -9,8 +9,8 @@ class CreationDossierParImportFichierDSN extends \QdequippeTech\Silae\Api\Runtim
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(\QdequippeTech\Silae\Api\Model\CreationDossierParImportFichierDSNRequest $request, array $headerParameters = [])
     {
