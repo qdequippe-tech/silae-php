@@ -9,8 +9,8 @@ class AcquisitionQuestionnaireSalarieCCNAvecTexte extends \QdequippeTech\Silae\A
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(\QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest $request, array $headerParameters = [])
     {

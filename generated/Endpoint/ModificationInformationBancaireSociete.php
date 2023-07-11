@@ -9,8 +9,8 @@ class ModificationInformationBancaireSociete extends \QdequippeTech\Silae\Api\Ru
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(\QdequippeTech\Silae\Api\Model\ModificationInformationBancaireSocieteRequest $request, array $headerParameters = [])
     {

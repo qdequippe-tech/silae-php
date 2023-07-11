@@ -9,13 +9,13 @@ class Domaines extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint impl
     /**
      * @param array $queryParameters {
      *
-     *     @var int $idEntite
-     * }
+     * @var int $idEntite
+     *          }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(array $queryParameters = [], array $headerParameters = [])
     {

@@ -9,8 +9,8 @@ class SalarieReinitialiserSaisies extends \QdequippeTech\Silae\Api\Runtime\Clien
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(\QdequippeTech\Silae\Api\Model\SalarieReinitialiserSaisiesRequest $request, array $headerParameters = [])
     {

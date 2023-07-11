@@ -9,13 +9,13 @@ class StatutRecupererImageAsynchrone extends \QdequippeTech\Silae\Api\Runtime\Cl
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(array $queryParameters = [], array $headerParameters = [])
     {

@@ -8,8 +8,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieSupprimerAbsenceRequest $request
      * @param array                                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -28,8 +28,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieAjouterAbsenceRequest $request
      * @param array                                                       $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -48,8 +48,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieModifierAbsenceRequest $request
      * @param array                                                        $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -68,8 +68,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieAbsencesRequest $request
      * @param array                                                 $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -88,8 +88,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieAjouterHeuresRequest $request
      * @param array                                                      $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -108,8 +108,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieAjouterHeuresSurEmploiRequest $request
      * @param array                                                               $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -128,8 +128,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieAjouterActiviteJournaliereRequest $request
      * @param array                                                                   $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -148,8 +148,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieAjouterActiviteJournaliereSurEmploiRequest $request
      * @param array                                                                            $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -168,8 +168,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieAjouterHeuresNativesRequest $request
      * @param array                                                             $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -188,8 +188,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieAjouterHeuresNativesSurEmploiRequest $request
      * @param array                                                                      $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -208,8 +208,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieReinitialiserSaisiesRequest $request
      * @param array                                                             $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -228,8 +228,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AffectationDossierPaieRequest $request
      * @param array                                                        $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -248,8 +248,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierRequest $request
      * @param array                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -268,8 +268,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AdministrationCollaborateurLectureRequest $request
      * @param array                                                                    $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -288,8 +288,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AdministrationCollaborateurLectureParIdentifiantRequest $request
      * @param array                                                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -308,8 +308,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AdministrationCollaborateurEnregistrementRequest $request
      * @param array                                                                           $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -328,8 +328,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationDroitsFonctionnelsProductionPaieRequest $request
      * @param array                                                                              $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -348,8 +348,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\LectureCompteCollaborateurRequest $request
      * @param array                                                            $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -368,8 +368,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\CreationCompteCollaborateurRequest $request
      * @param array                                                             $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -388,8 +388,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AffecterCleDossierRequest $request
      * @param array                                                    $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -408,8 +408,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\GererEtatDossierPaieRequest $request
      * @param array                                                      $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -428,8 +428,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\GererEtatRobotDePaieRequest $request
      * @param array                                                      $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -448,8 +448,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\GererCycleDePaieRequest $request
      * @param array                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -467,13 +467,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var int $idEntite
-     * }
+     * @var int $idEntite
+     *          }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -491,8 +491,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -510,13 +510,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $domNomBase
-     * }
+     * @var string $domNomBase
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -535,8 +535,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRequest $request
      * @param array                                                       $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -555,8 +555,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRequest $request
      * @param array                                                       $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -574,13 +574,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -599,8 +599,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDetailRequest $request
      * @param array                                                             $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -619,8 +619,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursRequest $request
      * @param array                                                                   $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -639,8 +639,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEntreesSortiesRequest $request
      * @param array                                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -659,8 +659,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRequest $request
      * @param array                                                       $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -678,13 +678,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -703,8 +703,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\BureautiquePaieNombreDocumentsCreesRequest $request
      * @param array                                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -723,8 +723,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiRequest $request
      * @param array                                                              $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -742,8 +742,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -762,8 +762,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierRequest $request
      * @param array                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -782,8 +782,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AjoutSousCategorieAxeAnalytiqueRequest $request
      * @param array                                                                 $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -802,8 +802,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\LectureAxesAnalytiquesSalariesRequest $request
      * @param array                                                                $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -822,8 +822,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieEmploiClassificationMetierRequest $request
      * @param array                                                                   $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -842,8 +842,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ClassificationMetierCompleteRequest $request
      * @param array                                                              $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -862,8 +862,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AjouteCompteRenduEdiRequest $request
      * @param array                                                      $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -882,8 +882,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AjouteCompteRenduEdi94Request $request
      * @param array                                                        $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -902,8 +902,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\CreationEmetteurDSNRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -922,8 +922,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNRequest $request
      * @param array                                                           $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -942,8 +942,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ImportXmlParametrageOrganismeDSNRequest $request
      * @param array                                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -962,8 +962,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\InitialisationAncienNumeroContratDSNRequest $request
      * @param array                                                                      $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -982,8 +982,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ActivationDSNRequest $request
      * @param array                                               $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1002,8 +1002,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ValideCleDossierRequest $request
      * @param array                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1022,8 +1022,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\CreationUtilisateurClientPaieRequest $request
      * @param array                                                               $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1042,8 +1042,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierRequest $request
      * @param array                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1062,8 +1062,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireContratComplementaireRequest $request
      * @param array                                                                               $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1082,8 +1082,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ControlerBulletinsPeriodeRequest $request
      * @param array                                                           $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1102,8 +1102,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\CreationDossierPaieRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1122,8 +1122,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ImportFichierDSNRequest $request
      * @param array                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1142,8 +1142,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\CreationDossierParImportFichierDSNRequest $request
      * @param array                                                                    $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1162,8 +1162,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieInitialiserCumulsRequest $request
      * @param array                                                          $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1182,8 +1182,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRequest $request
      * @param array                                                $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1202,8 +1202,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRequest $request
      * @param array                                                $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1221,13 +1221,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1246,8 +1246,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1266,8 +1266,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\EcrituresComptables2Request $request
      * @param array                                                      $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1286,8 +1286,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\EcrituresComptables3Request $request
      * @param array                                                      $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1306,8 +1306,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\EcrituresComptables3Request $request
      * @param array                                                      $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1325,13 +1325,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1350,8 +1350,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1370,8 +1370,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRequest $request
      * @param array                                                $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1390,8 +1390,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRequest $request
      * @param array                                                $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1409,13 +1409,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1434,8 +1434,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1454,8 +1454,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1473,13 +1473,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1498,8 +1498,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1518,8 +1518,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1537,13 +1537,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1562,8 +1562,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1582,8 +1582,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1601,13 +1601,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1626,8 +1626,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1646,8 +1646,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1665,13 +1665,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1690,8 +1690,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1710,8 +1710,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1729,13 +1729,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1754,8 +1754,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1774,8 +1774,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1793,13 +1793,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1818,8 +1818,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1838,8 +1838,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1857,13 +1857,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1882,8 +1882,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1902,8 +1902,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1921,13 +1921,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1946,8 +1946,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\GenerationFichierTRRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1966,8 +1966,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\EditionHistoriqueRequest $request
      * @param array                                                   $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1986,8 +1986,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\EditionHistoriqueRequest $request
      * @param array                                                   $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2005,13 +2005,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2030,8 +2030,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieAjouterPrimeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2050,8 +2050,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieAjouterPrimeSurEmploiRequest $request
      * @param array                                                              $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2070,8 +2070,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieAjouterElementVariableRequest $request
      * @param array                                                               $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2090,8 +2090,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieAjouterElementVariableSurEmploiRequest $request
      * @param array                                                                        $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2110,8 +2110,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieAjouterAcompteRequest $request
      * @param array                                                       $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2130,8 +2130,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalariesConfirmerSaisiesRequest $request
      * @param array                                                          $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2150,8 +2150,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalariesConfirmerSaisiesRequest $request
      * @param array                                                          $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2169,13 +2169,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2194,8 +2194,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\EtatDeclarationsRequest $request
      * @param array                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2214,8 +2214,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierRequest $request
      * @param array                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2234,8 +2234,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\EtablissementsAExclureCVAERequest $request
      * @param array                                                            $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2254,8 +2254,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\MiseAJourFicheSocieteRequest $request
      * @param array                                                       $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2274,8 +2274,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\MiseAJourFicheEtablissementRequest $request
      * @param array                                                             $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2294,8 +2294,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationEffectifSocieteRequest $request
      * @param array                                                             $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2314,8 +2314,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationCCNSocieteRequest $request
      * @param array                                                        $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2334,8 +2334,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationEffortConstructionRequest $request
      * @param array                                                                $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2354,8 +2354,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationFNALRequest $request
      * @param array                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2374,8 +2374,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationInformationBancaireSocieteRequest $request
      * @param array                                                                        $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2394,8 +2394,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationTaxeTransportRequest $request
      * @param array                                                           $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2414,8 +2414,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageEtablissementRequest $request
      * @param array                                                                            $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2434,8 +2434,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteRequest $request
      * @param array                                                                      $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2454,8 +2454,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationEffectifEtablissementRequest $request
      * @param array                                                                   $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2474,8 +2474,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationQuestionnaireCCNEtablissementRequest $request
      * @param array                                                                           $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2494,8 +2494,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationGrilleHoraireEtablissementRequest $request
      * @param array                                                                        $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2514,8 +2514,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierRequest $request
      * @param array                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2534,8 +2534,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierRequest $request
      * @param array                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2554,8 +2554,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierRequest $request
      * @param array                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2574,8 +2574,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierRequest $request
      * @param array                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2594,8 +2594,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierRequest $request
      * @param array                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2614,8 +2614,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\LectureTaxeTransportRequest $request
      * @param array                                                      $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2634,8 +2634,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteRequest $request
      * @param array                                                                 $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2654,8 +2654,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageEtablissementRequest $request
      * @param array                                                                       $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2674,8 +2674,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\LectureEffectifEtablissementRequest $request
      * @param array                                                              $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2694,8 +2694,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest $request
      * @param array                                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2714,8 +2714,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest $request
      * @param array                                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2734,8 +2734,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieDUERequest $request
      * @param array                                            $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2754,8 +2754,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieDUERequest $request
      * @param array                                            $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2773,13 +2773,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2798,8 +2798,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalariesDUERequest $request
      * @param array                                             $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2818,8 +2818,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\RechercheCCNRequest $request
      * @param array                                              $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2838,8 +2838,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\RechercheCCNParCodeRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2858,8 +2858,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieBulletinEnteteRequest $request
      * @param array                                                       $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2878,8 +2878,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieBulletinLignesRequest $request
      * @param array                                                       $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2898,8 +2898,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieBulletinLignesSelonFiltresRequest $request
      * @param array                                                                   $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2918,8 +2918,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieBulletinDetailsRequest $request
      * @param array                                                        $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2938,8 +2938,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieBulletinCumulsRequest $request
      * @param array                                                       $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2958,8 +2958,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalariesStockVarRequest $request
      * @param array                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2978,8 +2978,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierPeriodeRequest $request
      * @param array                                                $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2998,8 +2998,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AcquisitionContenuPartielDSNRequest $request
      * @param array                                                              $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3018,8 +3018,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\RechercheDeclarationEvenementielleRequest $request
      * @param array                                                                    $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3038,8 +3038,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest $request
      * @param array                                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3058,8 +3058,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\LectureInformationsPaieRequest $request
      * @param array                                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3078,8 +3078,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalariesBulletinsRequest $request
      * @param array                                                   $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3098,8 +3098,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalariesBulletinsRequest $request
      * @param array                                                   $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3117,13 +3117,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3142,8 +3142,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ListeSalariesRequest $request
      * @param array                                               $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3162,8 +3162,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ListeSalariesExternesRequest $request
      * @param array                                                       $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3182,8 +3182,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SalarieSalaireDeBaseRequest $request
      * @param array                                                      $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3202,8 +3202,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest $request
      * @param array                                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3222,8 +3222,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest $request
      * @param array                                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3241,13 +3241,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3266,8 +3266,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierMatriculeRequest $request
      * @param array                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3286,8 +3286,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierMatriculeRequest $request
      * @param array                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3306,8 +3306,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierMatriculeRequest $request
      * @param array                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3326,8 +3326,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierMatriculeRequest $request
      * @param array                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3345,8 +3345,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3365,8 +3365,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ListeDossiersRequest $request
      * @param array                                               $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3384,8 +3384,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3404,8 +3404,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierRequest $request
      * @param array                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3424,8 +3424,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\MatriculeSalarieRequest $request
      * @param array                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3444,8 +3444,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesRequest $request
      * @param array                                                          $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3463,8 +3463,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3483,8 +3483,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierMatriculeRequest $request
      * @param array                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3503,8 +3503,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ExtraListeManifestationsRequest $request
      * @param array                                                          $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3523,8 +3523,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ExtraCreationManifestationRequest $request
      * @param array                                                            $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3543,8 +3543,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ExtraSalarieAcquisitionVacationsRequest $request
      * @param array                                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3563,8 +3563,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ExtraSalarieAjouterVacationsRequest $request
      * @param array                                                              $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3583,8 +3583,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ExtraSalarieReinitialiserVacationsRequest $request
      * @param array                                                                    $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3603,8 +3603,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ExtraSalarieCalculerBulletinRequest $request
      * @param array                                                              $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3623,8 +3623,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SpectacleListeRequest $request
      * @param array                                                $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3643,8 +3643,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SpectacleCreationRequest $request
      * @param array                                                   $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3663,8 +3663,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SpectacleSalarieAcquisitionAffectationsRequest $request
      * @param array                                                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3683,8 +3683,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SpectacleSalarieAjouterAffectationsRequest $request
      * @param array                                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3703,8 +3703,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsRequest $request
      * @param array                                                                           $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3723,8 +3723,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SpectacleSalarieCalculerBulletinRequest $request
      * @param array                                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3743,8 +3743,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SpectacleSalarieCalculerBulletinRequest $request
      * @param array                                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3762,13 +3762,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3787,8 +3787,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\CreationOrganismeRequest $request
      * @param array                                                   $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3807,8 +3807,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\RecupererFichiersVirementRequest $request
      * @param array                                                           $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3827,8 +3827,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\RecupererFichiersVirementChiffresRequest $request
      * @param array                                                                   $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3847,8 +3847,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\RecupererFichiersVirementHorsBulletinRequest $request
      * @param array                                                                       $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3867,8 +3867,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\RecupererFichiersVirementHorsBulletinChiffresRequest $request
      * @param array                                                                               $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3887,8 +3887,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest $request
      * @param array                                                             $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3907,8 +3907,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest $request
      * @param array                                                             $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3927,8 +3927,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest $request
      * @param array                                                             $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3947,8 +3947,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest $request
      * @param array                                                             $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3967,8 +3967,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\RecupererImageRequest $request
      * @param array                                                $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -3987,8 +3987,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\RecupererImageRequest $request
      * @param array                                                $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4006,13 +4006,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4031,8 +4031,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\RecupererDuplicatasBulletinsRequest $request
      * @param array                                                              $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4051,8 +4051,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\RecupererDuplicatasBulletinsRequest $request
      * @param array                                                              $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4070,13 +4070,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4095,8 +4095,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\CreationSalarieEmploisRequest $request
      * @param array                                                        $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4115,8 +4115,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\CreationSalarieEmploisRequest $request
      * @param array                                                        $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4134,13 +4134,13 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
     /**
      * @param array $queryParameters {
      *
-     *     @var string $guidTache
-     * }
+     * @var string $guidTache
+     *             }
      *
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4159,8 +4159,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ListeSalarieEmploisRequest $request
      * @param array                                                     $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4179,8 +4179,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest $request
      * @param array                                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4199,8 +4199,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest $request
      * @param array                                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4219,8 +4219,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest $request
      * @param array                                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4239,8 +4239,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationChampSalarieRequest $request
      * @param array                                                          $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4259,8 +4259,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationPersonnesLieesRequest $request
      * @param array                                                            $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4279,8 +4279,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationHandicapRequest $request
      * @param array                                                      $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4299,8 +4299,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationSalarieProtegeRequest $request
      * @param array                                                            $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4319,8 +4319,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationSaisieArretRequest $request
      * @param array                                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4339,8 +4339,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationQuestionnaireContratComplementaireRequest $request
      * @param array                                                                                $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4359,8 +4359,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\ModificationGrilleHoraireSalarieRequest $request
      * @param array                                                                  $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4379,8 +4379,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\SiteGenereMotDePasseAlternatifRequest $request
      * @param array                                                                $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -4399,8 +4399,8 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      * @param \QdequippeTech\Silae\Api\Model\DossierRequest $request
      * @param array                                         $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *

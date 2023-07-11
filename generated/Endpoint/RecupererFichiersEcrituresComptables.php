@@ -9,8 +9,8 @@ class RecupererFichiersEcrituresComptables extends \QdequippeTech\Silae\Api\Runt
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(\QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest $request, array $headerParameters = [])
     {

@@ -9,8 +9,8 @@ class SalarieAjouterPrime extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEn
     /**
      * @param array $headerParameters {
      *
-     *     @var string $Ocp-Apim-Subscription-Key
-     * }
+     * @var string $Ocp-Apim-Subscription-Key
+     *             }
      */
     public function __construct(\QdequippeTech\Silae\Api\Model\SalarieAjouterPrimeRequest $request, array $headerParameters = [])
     {
