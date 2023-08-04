@@ -27,7 +27,7 @@ class StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponseNormalizer impl
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'QdequippeTech\\Silae\\Api\\Model\\StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse' === $data::class;
+        return \is_object($data) && $data instanceof StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse;
     }
 
     /**

@@ -27,7 +27,7 @@ class SalarieAcompteNormalizer implements DenormalizerInterface, NormalizerInter
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'QdequippeTech\\Silae\\Api\\Model\\SalarieAcompte' === $data::class;
+        return \is_object($data) && $data instanceof SalarieAcompte;
     }
 
     /**

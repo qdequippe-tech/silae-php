@@ -27,7 +27,7 @@ class ModificationChampValeursTypeesNormalizer implements DenormalizerInterface,
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'QdequippeTech\\Silae\\Api\\Model\\ModificationChampValeursTypees' === $data::class;
+        return \is_object($data) && $data instanceof ModificationChampValeursTypees;
     }
 
     /**

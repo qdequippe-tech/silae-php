@@ -27,7 +27,7 @@ class QCCNNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'QdequippeTech\\Silae\\Api\\Model\\QCCN' === $data::class;
+        return \is_object($data) && $data instanceof QCCN;
     }
 
     /**

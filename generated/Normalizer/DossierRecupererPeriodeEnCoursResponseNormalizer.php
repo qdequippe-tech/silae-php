@@ -27,7 +27,7 @@ class DossierRecupererPeriodeEnCoursResponseNormalizer implements DenormalizerIn
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'QdequippeTech\\Silae\\Api\\Model\\DossierRecupererPeriodeEnCoursResponse' === $data::class;
+        return \is_object($data) && $data instanceof DossierRecupererPeriodeEnCoursResponse;
     }
 
     /**

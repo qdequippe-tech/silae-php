@@ -22,9 +22,19 @@ final class OAuth2AuthenticationPlugin implements AuthenticationPlugin
     public function __construct(
         private readonly string $clientId,
         private readonly string $clientSecret,
+        ClientInterface $httpClient = null,
+        RequestFactoryInterface $requestFactory = null,
     ) {
-        $this->httpClient = Psr18ClientDiscovery::find();
-        $this->requestFactory = Psr17FactoryDiscovery::findRequestFactory();
+        if (null === $httpClient) {
+            $httpClient = Psr18ClientDiscovery::find();
+        }
+
+        if (null === $requestFactory) {
+            $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
+        }
+
+        $this->httpClient = $httpClient;
+        $this->requestFactory = $requestFactory;
     }
 
     /**

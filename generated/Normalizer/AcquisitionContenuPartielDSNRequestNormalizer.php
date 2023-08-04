@@ -27,7 +27,7 @@ class AcquisitionContenuPartielDSNRequestNormalizer implements DenormalizerInter
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'QdequippeTech\\Silae\\Api\\Model\\AcquisitionContenuPartielDSNRequest' === $data::class;
+        return \is_object($data) && $data instanceof AcquisitionContenuPartielDSNRequest;
     }
 
     /**

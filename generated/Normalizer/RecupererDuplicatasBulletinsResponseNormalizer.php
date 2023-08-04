@@ -27,7 +27,7 @@ class RecupererDuplicatasBulletinsResponseNormalizer implements DenormalizerInte
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'QdequippeTech\\Silae\\Api\\Model\\RecupererDuplicatasBulletinsResponse' === $data::class;
+        return \is_object($data) && $data instanceof RecupererDuplicatasBulletinsResponse;
     }
 
     /**

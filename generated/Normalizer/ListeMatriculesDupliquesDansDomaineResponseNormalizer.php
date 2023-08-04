@@ -27,7 +27,7 @@ class ListeMatriculesDupliquesDansDomaineResponseNormalizer implements Denormali
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'QdequippeTech\\Silae\\Api\\Model\\ListeMatriculesDupliquesDansDomaineResponse' === $data::class;
+        return \is_object($data) && $data instanceof ListeMatriculesDupliquesDansDomaineResponse;
     }
 
     /**

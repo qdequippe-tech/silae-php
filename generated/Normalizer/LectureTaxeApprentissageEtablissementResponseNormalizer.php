@@ -27,7 +27,7 @@ class LectureTaxeApprentissageEtablissementResponseNormalizer implements Denorma
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'QdequippeTech\\Silae\\Api\\Model\\LectureTaxeApprentissageEtablissementResponse' === $data::class;
+        return \is_object($data) && $data instanceof LectureTaxeApprentissageEtablissementResponse;
     }
 
     /**

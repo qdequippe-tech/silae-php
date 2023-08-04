@@ -27,7 +27,7 @@ class SpectacleSalarieAffectationsNormalizer implements DenormalizerInterface, N
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'QdequippeTech\\Silae\\Api\\Model\\SpectacleSalarieAffectations' === $data::class;
+        return \is_object($data) && $data instanceof SpectacleSalarieAffectations;
     }
 
     /**

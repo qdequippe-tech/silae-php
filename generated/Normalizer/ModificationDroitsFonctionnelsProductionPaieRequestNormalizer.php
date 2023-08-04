@@ -27,7 +27,7 @@ class ModificationDroitsFonctionnelsProductionPaieRequestNormalizer implements D
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'QdequippeTech\\Silae\\Api\\Model\\ModificationDroitsFonctionnelsProductionPaieRequest' === $data::class;
+        return \is_object($data) && $data instanceof ModificationDroitsFonctionnelsProductionPaieRequest;
     }
 
     /**

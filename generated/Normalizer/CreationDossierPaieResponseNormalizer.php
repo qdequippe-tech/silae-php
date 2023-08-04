@@ -27,7 +27,7 @@ class CreationDossierPaieResponseNormalizer implements DenormalizerInterface, No
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'QdequippeTech\\Silae\\Api\\Model\\CreationDossierPaieResponse' === $data::class;
+        return \is_object($data) && $data instanceof CreationDossierPaieResponse;
     }
 
     /**

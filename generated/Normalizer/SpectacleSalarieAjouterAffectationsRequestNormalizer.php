@@ -27,7 +27,7 @@ class SpectacleSalarieAjouterAffectationsRequestNormalizer implements Denormaliz
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'QdequippeTech\\Silae\\Api\\Model\\SpectacleSalarieAjouterAffectationsRequest' === $data::class;
+        return \is_object($data) && $data instanceof SpectacleSalarieAjouterAffectationsRequest;
     }
 
     /**
