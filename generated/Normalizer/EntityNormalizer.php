@@ -56,12 +56,12 @@ class EntityNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $object->setName(null);
         }
         if (\array_key_exists('validityEndDate', $data) && null !== $data['validityEndDate']) {
-            $object->setValidityEndDate(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['validityEndDate']));
+            $object->setValidityEndDate(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['validityEndDate']));
         } elseif (\array_key_exists('validityEndDate', $data) && null === $data['validityEndDate']) {
             $object->setValidityEndDate(null);
         }
         if (\array_key_exists('validityStartDate', $data) && null !== $data['validityStartDate']) {
-            $object->setValidityStartDate(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['validityStartDate']));
+            $object->setValidityStartDate(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['validityStartDate']));
         } elseif (\array_key_exists('validityStartDate', $data) && null === $data['validityStartDate']) {
             $object->setValidityStartDate(null);
         }
@@ -84,10 +84,10 @@ class EntityNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $data['name'] = $object->getName();
         }
         if ($object->isInitialized('validityEndDate') && null !== $object->getValidityEndDate()) {
-            $data['validityEndDate'] = $object->getValidityEndDate()->format('Y-m-d\\TH:i:sP');
+            $data['validityEndDate'] = $object->getValidityEndDate()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('validityStartDate') && null !== $object->getValidityStartDate()) {
-            $data['validityStartDate'] = $object->getValidityStartDate()->format('Y-m-d\\TH:i:sP');
+            $data['validityStartDate'] = $object->getValidityStartDate()->format('Y-m-d\\TH:i:s');
         }
 
         return $data;

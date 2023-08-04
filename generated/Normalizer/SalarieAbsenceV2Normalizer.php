@@ -70,12 +70,12 @@ class SalarieAbsenceV2Normalizer implements DenormalizerInterface, NormalizerInt
             return $object;
         }
         if (\array_key_exists('dateDebutAbsence', $data) && null !== $data['dateDebutAbsence']) {
-            $object->setDateDebutAbsence(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateDebutAbsence']));
+            $object->setDateDebutAbsence(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateDebutAbsence']));
         } elseif (\array_key_exists('dateDebutAbsence', $data) && null === $data['dateDebutAbsence']) {
             $object->setDateDebutAbsence(null);
         }
         if (\array_key_exists('dateFinAbsence', $data) && null !== $data['dateFinAbsence']) {
-            $object->setDateFinAbsence(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateFinAbsence']));
+            $object->setDateFinAbsence(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateFinAbsence']));
         } elseif (\array_key_exists('dateFinAbsence', $data) && null === $data['dateFinAbsence']) {
             $object->setDateFinAbsence(null);
         }
@@ -177,10 +177,10 @@ class SalarieAbsenceV2Normalizer implements DenormalizerInterface, NormalizerInt
     {
         $data = [];
         if ($object->isInitialized('dateDebutAbsence') && null !== $object->getDateDebutAbsence()) {
-            $data['dateDebutAbsence'] = $object->getDateDebutAbsence()->format('Y-m-d\\TH:i:sP');
+            $data['dateDebutAbsence'] = $object->getDateDebutAbsence()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('dateFinAbsence') && null !== $object->getDateFinAbsence()) {
-            $data['dateFinAbsence'] = $object->getDateFinAbsence()->format('Y-m-d\\TH:i:sP');
+            $data['dateFinAbsence'] = $object->getDateFinAbsence()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('codeAbsence') && null !== $object->getCodeAbsence()) {
             $data['codeAbsence'] = $object->getCodeAbsence();

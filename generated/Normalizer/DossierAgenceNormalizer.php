@@ -66,7 +66,7 @@ class DossierAgenceNormalizer implements DenormalizerInterface, NormalizerInterf
             $object->setGroupe(null);
         }
         if (\array_key_exists('dateCreation', $data) && null !== $data['dateCreation']) {
-            $object->setDateCreation(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateCreation']));
+            $object->setDateCreation(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateCreation']));
         } elseif (\array_key_exists('dateCreation', $data) && null === $data['dateCreation']) {
             $object->setDateCreation(null);
         }
@@ -100,7 +100,7 @@ class DossierAgenceNormalizer implements DenormalizerInterface, NormalizerInterf
             $data['groupe'] = $object->getGroupe();
         }
         if ($object->isInitialized('dateCreation') && null !== $object->getDateCreation()) {
-            $data['dateCreation'] = $object->getDateCreation()->format('Y-m-d\\TH:i:sP');
+            $data['dateCreation'] = $object->getDateCreation()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('dossierInterne') && null !== $object->getDossierInterne()) {
             $data['dossierInterne'] = $object->getDossierInterne();

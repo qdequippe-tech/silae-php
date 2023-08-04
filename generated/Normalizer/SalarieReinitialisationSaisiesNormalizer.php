@@ -46,7 +46,7 @@ class SalarieReinitialisationSaisiesNormalizer implements DenormalizerInterface,
             return $object;
         }
         if (\array_key_exists('periodeReinitialisation', $data) && null !== $data['periodeReinitialisation']) {
-            $object->setPeriodeReinitialisation(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeReinitialisation']));
+            $object->setPeriodeReinitialisation(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeReinitialisation']));
         } elseif (\array_key_exists('periodeReinitialisation', $data) && null === $data['periodeReinitialisation']) {
             $object->setPeriodeReinitialisation(null);
         }
@@ -78,7 +78,7 @@ class SalarieReinitialisationSaisiesNormalizer implements DenormalizerInterface,
     {
         $data = [];
         if ($object->isInitialized('periodeReinitialisation') && null !== $object->getPeriodeReinitialisation()) {
-            $data['periodeReinitialisation'] = $object->getPeriodeReinitialisation()->format('Y-m-d\\TH:i:sP');
+            $data['periodeReinitialisation'] = $object->getPeriodeReinitialisation()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('reinitialiserHeures') && null !== $object->getReinitialiserHeures()) {
             $data['reinitialiserHeures'] = $object->getReinitialiserHeures();

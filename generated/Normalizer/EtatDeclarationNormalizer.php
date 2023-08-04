@@ -51,7 +51,7 @@ class EtatDeclarationNormalizer implements DenormalizerInterface, NormalizerInte
             $object->setNumeroADS(null);
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
-            $object->setDate(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['date']));
+            $object->setDate(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['date']));
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
         }
@@ -105,7 +105,7 @@ class EtatDeclarationNormalizer implements DenormalizerInterface, NormalizerInte
             $data['numeroADS'] = $object->getNumeroADS();
         }
         if ($object->isInitialized('date') && null !== $object->getDate()) {
-            $data['date'] = $object->getDate()->format('Y-m-d\\TH:i:sP');
+            $data['date'] = $object->getDate()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('typeDeclaration') && null !== $object->getTypeDeclaration()) {
             $data['typeDeclaration'] = $object->getTypeDeclaration();

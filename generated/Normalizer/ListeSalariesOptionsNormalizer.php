@@ -46,12 +46,12 @@ class ListeSalariesOptionsNormalizer implements DenormalizerInterface, Normalize
             return $object;
         }
         if (\array_key_exists('optionActifSurPeriode', $data) && null !== $data['optionActifSurPeriode']) {
-            $object->setOptionActifSurPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['optionActifSurPeriode']));
+            $object->setOptionActifSurPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['optionActifSurPeriode']));
         } elseif (\array_key_exists('optionActifSurPeriode', $data) && null === $data['optionActifSurPeriode']) {
             $object->setOptionActifSurPeriode(null);
         }
         if (\array_key_exists('optionActifALaDate', $data) && null !== $data['optionActifALaDate']) {
-            $object->setOptionActifALaDate(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['optionActifALaDate']));
+            $object->setOptionActifALaDate(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['optionActifALaDate']));
         } elseif (\array_key_exists('optionActifALaDate', $data) && null === $data['optionActifALaDate']) {
             $object->setOptionActifALaDate(null);
         }
@@ -68,10 +68,10 @@ class ListeSalariesOptionsNormalizer implements DenormalizerInterface, Normalize
     {
         $data = [];
         if ($object->isInitialized('optionActifSurPeriode') && null !== $object->getOptionActifSurPeriode()) {
-            $data['optionActifSurPeriode'] = $object->getOptionActifSurPeriode()->format('Y-m-d\\TH:i:sP');
+            $data['optionActifSurPeriode'] = $object->getOptionActifSurPeriode()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('optionActifALaDate') && null !== $object->getOptionActifALaDate()) {
-            $data['optionActifALaDate'] = $object->getOptionActifALaDate()->format('Y-m-d\\TH:i:sP');
+            $data['optionActifALaDate'] = $object->getOptionActifALaDate()->format('Y-m-d\\TH:i:s');
         }
 
         return $data;

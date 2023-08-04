@@ -49,7 +49,7 @@ class SalarieElementVariableNormalizer implements DenormalizerInterface, Normali
             return $object;
         }
         if (\array_key_exists('periodeElementVariable', $data) && null !== $data['periodeElementVariable']) {
-            $object->setPeriodeElementVariable(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeElementVariable']));
+            $object->setPeriodeElementVariable(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeElementVariable']));
         } elseif (\array_key_exists('periodeElementVariable', $data) && null === $data['periodeElementVariable']) {
             $object->setPeriodeElementVariable(null);
         }
@@ -81,7 +81,7 @@ class SalarieElementVariableNormalizer implements DenormalizerInterface, Normali
     {
         $data = [];
         if ($object->isInitialized('periodeElementVariable') && null !== $object->getPeriodeElementVariable()) {
-            $data['periodeElementVariable'] = $object->getPeriodeElementVariable()->format('Y-m-d\\TH:i:sP');
+            $data['periodeElementVariable'] = $object->getPeriodeElementVariable()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('codeElementVariable') && null !== $object->getCodeElementVariable()) {
             $data['codeElementVariable'] = $object->getCodeElementVariable();

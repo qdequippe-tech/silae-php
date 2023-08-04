@@ -51,12 +51,12 @@ class CreationDossierParImportFichierDSNRequestNormalizer implements Denormalize
             $object->setDsnEnByteArray(null);
         }
         if (\array_key_exists('periodeMin', $data) && null !== $data['periodeMin']) {
-            $object->setPeriodeMin(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeMin']));
+            $object->setPeriodeMin(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeMin']));
         } elseif (\array_key_exists('periodeMin', $data) && null === $data['periodeMin']) {
             $object->setPeriodeMin(null);
         }
         if (\array_key_exists('periodeMax', $data) && null !== $data['periodeMax']) {
-            $object->setPeriodeMax(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeMax']));
+            $object->setPeriodeMax(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeMax']));
         } elseif (\array_key_exists('periodeMax', $data) && null === $data['periodeMax']) {
             $object->setPeriodeMax(null);
         }
@@ -86,10 +86,10 @@ class CreationDossierParImportFichierDSNRequestNormalizer implements Denormalize
             $data['dsnEnByteArray'] = $object->getDsnEnByteArray();
         }
         if ($object->isInitialized('periodeMin') && null !== $object->getPeriodeMin()) {
-            $data['periodeMin'] = $object->getPeriodeMin()->format('Y-m-d\\TH:i:sP');
+            $data['periodeMin'] = $object->getPeriodeMin()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('periodeMax') && null !== $object->getPeriodeMax()) {
-            $data['periodeMax'] = $object->getPeriodeMax()->format('Y-m-d\\TH:i:sP');
+            $data['periodeMax'] = $object->getPeriodeMax()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('dernierFichier') && null !== $object->getDernierFichier()) {
             $data['dernierFichier'] = $object->getDernierFichier();

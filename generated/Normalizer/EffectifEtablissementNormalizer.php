@@ -49,7 +49,7 @@ class EffectifEtablissementNormalizer implements DenormalizerInterface, Normaliz
             return $object;
         }
         if (\array_key_exists('annee', $data) && null !== $data['annee']) {
-            $object->setAnnee(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['annee']));
+            $object->setAnnee(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['annee']));
         } elseif (\array_key_exists('annee', $data) && null === $data['annee']) {
             $object->setAnnee(null);
         }
@@ -71,7 +71,7 @@ class EffectifEtablissementNormalizer implements DenormalizerInterface, Normaliz
     {
         $data = [];
         if ($object->isInitialized('annee') && null !== $object->getAnnee()) {
-            $data['annee'] = $object->getAnnee()->format('Y-m-d\\TH:i:sP');
+            $data['annee'] = $object->getAnnee()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('effectifCT') && null !== $object->getEffectifCT()) {
             $data['effectifCT'] = $object->getEffectifCT();

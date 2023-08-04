@@ -74,7 +74,7 @@ class ModificationChampValeursTypeesNormalizer implements DenormalizerInterface,
             $object->setValeurSTRING(null);
         }
         if (\array_key_exists('valeurDATETIME', $data) && null !== $data['valeurDATETIME']) {
-            $object->setValeurDATETIME(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['valeurDATETIME']));
+            $object->setValeurDATETIME(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['valeurDATETIME']));
         } elseif (\array_key_exists('valeurDATETIME', $data) && null === $data['valeurDATETIME']) {
             $object->setValeurDATETIME(null);
         }
@@ -116,7 +116,7 @@ class ModificationChampValeursTypeesNormalizer implements DenormalizerInterface,
             $data['valeurSTRING'] = $object->getValeurSTRING();
         }
         if ($object->isInitialized('valeurDATETIME') && null !== $object->getValeurDATETIME()) {
-            $data['valeurDATETIME'] = $object->getValeurDATETIME()->format('Y-m-d\\TH:i:sP');
+            $data['valeurDATETIME'] = $object->getValeurDATETIME()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('valeurBYTE') && null !== $object->getValeurBYTE()) {
             $data['valeurBYTE'] = $object->getValeurBYTE();

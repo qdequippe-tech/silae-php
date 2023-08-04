@@ -49,7 +49,7 @@ class SalarieAcompteNormalizer implements DenormalizerInterface, NormalizerInter
             return $object;
         }
         if (\array_key_exists('dateAcompte', $data) && null !== $data['dateAcompte']) {
-            $object->setDateAcompte(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateAcompte']));
+            $object->setDateAcompte(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateAcompte']));
         } elseif (\array_key_exists('dateAcompte', $data) && null === $data['dateAcompte']) {
             $object->setDateAcompte(null);
         }
@@ -76,7 +76,7 @@ class SalarieAcompteNormalizer implements DenormalizerInterface, NormalizerInter
     {
         $data = [];
         if ($object->isInitialized('dateAcompte') && null !== $object->getDateAcompte()) {
-            $data['dateAcompte'] = $object->getDateAcompte()->format('Y-m-d\\TH:i:sP');
+            $data['dateAcompte'] = $object->getDateAcompte()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('jourNonSignificatif') && null !== $object->getJourNonSignificatif()) {
             $data['jourNonSignificatif'] = $object->getJourNonSignificatif();

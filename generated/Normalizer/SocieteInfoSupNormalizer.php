@@ -144,7 +144,7 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setBCLIDFPTepaDebut(null);
         }
         if (\array_key_exists('clI_DFPTepaDebut', $data) && null !== $data['clI_DFPTepaDebut']) {
-            $object->setClIDFPTepaDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['clI_DFPTepaDebut']));
+            $object->setClIDFPTepaDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['clI_DFPTepaDebut']));
         } elseif (\array_key_exists('clI_DFPTepaDebut', $data) && null === $data['clI_DFPTepaDebut']) {
             $object->setClIDFPTepaDebut(null);
         }
@@ -154,7 +154,7 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setBCLIDtDebChangePaieDecalee(null);
         }
         if (\array_key_exists('clI_DtDebChangePaieDecalee', $data) && null !== $data['clI_DtDebChangePaieDecalee']) {
-            $object->setClIDtDebChangePaieDecalee(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['clI_DtDebChangePaieDecalee']));
+            $object->setClIDtDebChangePaieDecalee(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['clI_DtDebChangePaieDecalee']));
         } elseif (\array_key_exists('clI_DtDebChangePaieDecalee', $data) && null === $data['clI_DtDebChangePaieDecalee']) {
             $object->setClIDtDebChangePaieDecalee(null);
         }
@@ -164,7 +164,7 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setBCLIDtDebExerciceComptable(null);
         }
         if (\array_key_exists('clI_DtDebExerciceComptable', $data) && null !== $data['clI_DtDebExerciceComptable']) {
-            $object->setClIDtDebExerciceComptable(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['clI_DtDebExerciceComptable']));
+            $object->setClIDtDebExerciceComptable(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['clI_DtDebExerciceComptable']));
         } elseif (\array_key_exists('clI_DtDebExerciceComptable', $data) && null === $data['clI_DtDebExerciceComptable']) {
             $object->setClIDtDebExerciceComptable(null);
         }
@@ -174,7 +174,7 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setBCLIDtFinExerciceComptable(null);
         }
         if (\array_key_exists('clI_DtFinExerciceComptable', $data) && null !== $data['clI_DtFinExerciceComptable']) {
-            $object->setClIDtFinExerciceComptable(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['clI_DtFinExerciceComptable']));
+            $object->setClIDtFinExerciceComptable(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['clI_DtFinExerciceComptable']));
         } elseif (\array_key_exists('clI_DtFinExerciceComptable', $data) && null === $data['clI_DtFinExerciceComptable']) {
             $object->setClIDtFinExerciceComptable(null);
         }
@@ -254,7 +254,7 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setBCLIFormaProfTrancheAnnee(null);
         }
         if (\array_key_exists('clI_FormaProfTrancheAnnee', $data) && null !== $data['clI_FormaProfTrancheAnnee']) {
-            $object->setClIFormaProfTrancheAnnee(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['clI_FormaProfTrancheAnnee']));
+            $object->setClIFormaProfTrancheAnnee(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['clI_FormaProfTrancheAnnee']));
         } elseif (\array_key_exists('clI_FormaProfTrancheAnnee', $data) && null === $data['clI_FormaProfTrancheAnnee']) {
             $object->setClIFormaProfTrancheAnnee(null);
         }
@@ -264,7 +264,7 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setBCLIFormaProfTrancheAnnee2(null);
         }
         if (\array_key_exists('clI_FormaProfTrancheAnnee2', $data) && null !== $data['clI_FormaProfTrancheAnnee2']) {
-            $object->setClIFormaProfTrancheAnnee2(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['clI_FormaProfTrancheAnnee2']));
+            $object->setClIFormaProfTrancheAnnee2(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['clI_FormaProfTrancheAnnee2']));
         } elseif (\array_key_exists('clI_FormaProfTrancheAnnee2', $data) && null === $data['clI_FormaProfTrancheAnnee2']) {
             $object->setClIFormaProfTrancheAnnee2(null);
         }
@@ -274,7 +274,7 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setBCLIFormaProfTrancheAnnee3(null);
         }
         if (\array_key_exists('clI_FormaProfTrancheAnnee3', $data) && null !== $data['clI_FormaProfTrancheAnnee3']) {
-            $object->setClIFormaProfTrancheAnnee3(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['clI_FormaProfTrancheAnnee3']));
+            $object->setClIFormaProfTrancheAnnee3(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['clI_FormaProfTrancheAnnee3']));
         } elseif (\array_key_exists('clI_FormaProfTrancheAnnee3', $data) && null === $data['clI_FormaProfTrancheAnnee3']) {
             $object->setClIFormaProfTrancheAnnee3(null);
         }
@@ -284,7 +284,7 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setBCLIFormaProfTrancheAnnee4(null);
         }
         if (\array_key_exists('clI_FormaProfTrancheAnnee4', $data) && null !== $data['clI_FormaProfTrancheAnnee4']) {
-            $object->setClIFormaProfTrancheAnnee4(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['clI_FormaProfTrancheAnnee4']));
+            $object->setClIFormaProfTrancheAnnee4(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['clI_FormaProfTrancheAnnee4']));
         } elseif (\array_key_exists('clI_FormaProfTrancheAnnee4', $data) && null === $data['clI_FormaProfTrancheAnnee4']) {
             $object->setClIFormaProfTrancheAnnee4(null);
         }
@@ -454,7 +454,7 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setBCLIMontagePaiePeriodeDebut(null);
         }
         if (\array_key_exists('clI_MontagePaiePeriodeDebut', $data) && null !== $data['clI_MontagePaiePeriodeDebut']) {
-            $object->setClIMontagePaiePeriodeDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['clI_MontagePaiePeriodeDebut']));
+            $object->setClIMontagePaiePeriodeDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['clI_MontagePaiePeriodeDebut']));
         } elseif (\array_key_exists('clI_MontagePaiePeriodeDebut', $data) && null === $data['clI_MontagePaiePeriodeDebut']) {
             $object->setClIMontagePaiePeriodeDebut(null);
         }
@@ -524,7 +524,7 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setBCLIReductionFillon19Debut(null);
         }
         if (\array_key_exists('clI_ReductionFillon19Debut', $data) && null !== $data['clI_ReductionFillon19Debut']) {
-            $object->setClIReductionFillon19Debut(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['clI_ReductionFillon19Debut']));
+            $object->setClIReductionFillon19Debut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['clI_ReductionFillon19Debut']));
         } elseif (\array_key_exists('clI_ReductionFillon19Debut', $data) && null === $data['clI_ReductionFillon19Debut']) {
             $object->setClIReductionFillon19Debut(null);
         }
@@ -698,25 +698,25 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $data['bCLI_DFPTepaDebut'] = $object->getBCLIDFPTepaDebut();
         }
         if ($object->isInitialized('clIDFPTepaDebut') && null !== $object->getClIDFPTepaDebut()) {
-            $data['clI_DFPTepaDebut'] = $object->getClIDFPTepaDebut()->format('Y-m-d\\TH:i:sP');
+            $data['clI_DFPTepaDebut'] = $object->getClIDFPTepaDebut()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bCLIDtDebChangePaieDecalee') && null !== $object->getBCLIDtDebChangePaieDecalee()) {
             $data['bCLI_DtDebChangePaieDecalee'] = $object->getBCLIDtDebChangePaieDecalee();
         }
         if ($object->isInitialized('clIDtDebChangePaieDecalee') && null !== $object->getClIDtDebChangePaieDecalee()) {
-            $data['clI_DtDebChangePaieDecalee'] = $object->getClIDtDebChangePaieDecalee()->format('Y-m-d\\TH:i:sP');
+            $data['clI_DtDebChangePaieDecalee'] = $object->getClIDtDebChangePaieDecalee()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bCLIDtDebExerciceComptable') && null !== $object->getBCLIDtDebExerciceComptable()) {
             $data['bCLI_DtDebExerciceComptable'] = $object->getBCLIDtDebExerciceComptable();
         }
         if ($object->isInitialized('clIDtDebExerciceComptable') && null !== $object->getClIDtDebExerciceComptable()) {
-            $data['clI_DtDebExerciceComptable'] = $object->getClIDtDebExerciceComptable()->format('Y-m-d\\TH:i:sP');
+            $data['clI_DtDebExerciceComptable'] = $object->getClIDtDebExerciceComptable()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bCLIDtFinExerciceComptable') && null !== $object->getBCLIDtFinExerciceComptable()) {
             $data['bCLI_DtFinExerciceComptable'] = $object->getBCLIDtFinExerciceComptable();
         }
         if ($object->isInitialized('clIDtFinExerciceComptable') && null !== $object->getClIDtFinExerciceComptable()) {
-            $data['clI_DtFinExerciceComptable'] = $object->getClIDtFinExerciceComptable()->format('Y-m-d\\TH:i:sP');
+            $data['clI_DtFinExerciceComptable'] = $object->getClIDtFinExerciceComptable()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bCLIEmployeurCivilite') && null !== $object->getBCLIEmployeurCivilite()) {
             $data['bCLI_EmployeurCivilite'] = $object->getBCLIEmployeurCivilite();
@@ -764,25 +764,25 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $data['bCLI_FormaProfTrancheAnnee'] = $object->getBCLIFormaProfTrancheAnnee();
         }
         if ($object->isInitialized('clIFormaProfTrancheAnnee') && null !== $object->getClIFormaProfTrancheAnnee()) {
-            $data['clI_FormaProfTrancheAnnee'] = $object->getClIFormaProfTrancheAnnee()->format('Y-m-d\\TH:i:sP');
+            $data['clI_FormaProfTrancheAnnee'] = $object->getClIFormaProfTrancheAnnee()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bCLIFormaProfTrancheAnnee2') && null !== $object->getBCLIFormaProfTrancheAnnee2()) {
             $data['bCLI_FormaProfTrancheAnnee2'] = $object->getBCLIFormaProfTrancheAnnee2();
         }
         if ($object->isInitialized('clIFormaProfTrancheAnnee2') && null !== $object->getClIFormaProfTrancheAnnee2()) {
-            $data['clI_FormaProfTrancheAnnee2'] = $object->getClIFormaProfTrancheAnnee2()->format('Y-m-d\\TH:i:sP');
+            $data['clI_FormaProfTrancheAnnee2'] = $object->getClIFormaProfTrancheAnnee2()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bCLIFormaProfTrancheAnnee3') && null !== $object->getBCLIFormaProfTrancheAnnee3()) {
             $data['bCLI_FormaProfTrancheAnnee3'] = $object->getBCLIFormaProfTrancheAnnee3();
         }
         if ($object->isInitialized('clIFormaProfTrancheAnnee3') && null !== $object->getClIFormaProfTrancheAnnee3()) {
-            $data['clI_FormaProfTrancheAnnee3'] = $object->getClIFormaProfTrancheAnnee3()->format('Y-m-d\\TH:i:sP');
+            $data['clI_FormaProfTrancheAnnee3'] = $object->getClIFormaProfTrancheAnnee3()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bCLIFormaProfTrancheAnnee4') && null !== $object->getBCLIFormaProfTrancheAnnee4()) {
             $data['bCLI_FormaProfTrancheAnnee4'] = $object->getBCLIFormaProfTrancheAnnee4();
         }
         if ($object->isInitialized('clIFormaProfTrancheAnnee4') && null !== $object->getClIFormaProfTrancheAnnee4()) {
-            $data['clI_FormaProfTrancheAnnee4'] = $object->getClIFormaProfTrancheAnnee4()->format('Y-m-d\\TH:i:sP');
+            $data['clI_FormaProfTrancheAnnee4'] = $object->getClIFormaProfTrancheAnnee4()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bCLIGestionCPExclEnJours') && null !== $object->getBCLIGestionCPExclEnJours()) {
             $data['bCLI_GestionCPExclEnJours'] = $object->getBCLIGestionCPExclEnJours();
@@ -884,7 +884,7 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $data['bCLI_MontagePaiePeriodeDebut'] = $object->getBCLIMontagePaiePeriodeDebut();
         }
         if ($object->isInitialized('clIMontagePaiePeriodeDebut') && null !== $object->getClIMontagePaiePeriodeDebut()) {
-            $data['clI_MontagePaiePeriodeDebut'] = $object->getClIMontagePaiePeriodeDebut()->format('Y-m-d\\TH:i:sP');
+            $data['clI_MontagePaiePeriodeDebut'] = $object->getClIMontagePaiePeriodeDebut()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bCLIPaieDecalee') && null !== $object->getBCLIPaieDecalee()) {
             $data['bCLI_PaieDecalee'] = $object->getBCLIPaieDecalee();
@@ -926,7 +926,7 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $data['bCLI_ReductionFillon19Debut'] = $object->getBCLIReductionFillon19Debut();
         }
         if ($object->isInitialized('clIReductionFillon19Debut') && null !== $object->getClIReductionFillon19Debut()) {
-            $data['clI_ReductionFillon19Debut'] = $object->getClIReductionFillon19Debut()->format('Y-m-d\\TH:i:sP');
+            $data['clI_ReductionFillon19Debut'] = $object->getClIReductionFillon19Debut()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bCLISepaModeComptabilisation') && null !== $object->getBCLISepaModeComptabilisation()) {
             $data['bCLI_SepaModeComptabilisation'] = $object->getBCLISepaModeComptabilisation();

@@ -46,7 +46,7 @@ class LectureAxesAnalytiquesSalariesRequestNormalizer implements DenormalizerInt
             return $object;
         }
         if (\array_key_exists('periode', $data) && null !== $data['periode']) {
-            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periode']));
+            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periode']));
         } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
             $object->setPeriode(null);
         }
@@ -68,7 +68,7 @@ class LectureAxesAnalytiquesSalariesRequestNormalizer implements DenormalizerInt
     {
         $data = [];
         if ($object->isInitialized('periode') && null !== $object->getPeriode()) {
-            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:sP');
+            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:s');
         }
         $data['numeroDossier'] = $object->getNumeroDossier();
 

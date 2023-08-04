@@ -56,7 +56,7 @@ class DossierNormalizer implements DenormalizerInterface, NormalizerInterface, D
             $object->setNumeroDossierModele(null);
         }
         if (\array_key_exists('dateDebutMontage', $data) && null !== $data['dateDebutMontage']) {
-            $object->setDateDebutMontage(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateDebutMontage']));
+            $object->setDateDebutMontage(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateDebutMontage']));
         } elseif (\array_key_exists('dateDebutMontage', $data) && null === $data['dateDebutMontage']) {
             $object->setDateDebutMontage(null);
         }
@@ -128,7 +128,7 @@ class DossierNormalizer implements DenormalizerInterface, NormalizerInterface, D
             $data['numeroDossierModele'] = $object->getNumeroDossierModele();
         }
         if ($object->isInitialized('dateDebutMontage') && null !== $object->getDateDebutMontage()) {
-            $data['dateDebutMontage'] = $object->getDateDebutMontage()->format('Y-m-d\\TH:i:sP');
+            $data['dateDebutMontage'] = $object->getDateDebutMontage()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('codeAgence') && null !== $object->getCodeAgence()) {
             $data['codeAgence'] = $object->getCodeAgence();

@@ -67,17 +67,17 @@ class HandicapNormalizer implements DenormalizerInterface, NormalizerInterface, 
             $object->setCdapHCarteInvalidite(null);
         }
         if (\array_key_exists('cdapH_DateDebut', $data) && null !== $data['cdapH_DateDebut']) {
-            $object->setCdapHDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['cdapH_DateDebut']));
+            $object->setCdapHDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['cdapH_DateDebut']));
         } elseif (\array_key_exists('cdapH_DateDebut', $data) && null === $data['cdapH_DateDebut']) {
             $object->setCdapHDateDebut(null);
         }
         if (\array_key_exists('cdapH_DateFin', $data) && null !== $data['cdapH_DateFin']) {
-            $object->setCdapHDateFin(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['cdapH_DateFin']));
+            $object->setCdapHDateFin(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['cdapH_DateFin']));
         } elseif (\array_key_exists('cdapH_DateFin', $data) && null === $data['cdapH_DateFin']) {
             $object->setCdapHDateFin(null);
         }
         if (\array_key_exists('cdapH_DtDepotRenouvellement', $data) && null !== $data['cdapH_DtDepotRenouvellement']) {
-            $object->setCdapHDtDepotRenouvellement(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['cdapH_DtDepotRenouvellement']));
+            $object->setCdapHDtDepotRenouvellement(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['cdapH_DtDepotRenouvellement']));
         } elseif (\array_key_exists('cdapH_DtDepotRenouvellement', $data) && null === $data['cdapH_DtDepotRenouvellement']) {
             $object->setCdapHDtDepotRenouvellement(null);
         }
@@ -92,7 +92,7 @@ class HandicapNormalizer implements DenormalizerInterface, NormalizerInterface, 
             $object->setAccidentNature(null);
         }
         if (\array_key_exists('accident_DateDebut', $data) && null !== $data['accident_DateDebut']) {
-            $object->setAccidentDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['accident_DateDebut']));
+            $object->setAccidentDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['accident_DateDebut']));
         } elseif (\array_key_exists('accident_DateDebut', $data) && null === $data['accident_DateDebut']) {
             $object->setAccidentDateDebut(null);
         }
@@ -112,7 +112,7 @@ class HandicapNormalizer implements DenormalizerInterface, NormalizerInterface, 
             $object->setAutreCategorie(null);
         }
         if (\array_key_exists('autre_DateDebut', $data) && null !== $data['autre_DateDebut']) {
-            $object->setAutreDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['autre_DateDebut']));
+            $object->setAutreDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['autre_DateDebut']));
         } elseif (\array_key_exists('autre_DateDebut', $data) && null === $data['autre_DateDebut']) {
             $object->setAutreDateDebut(null);
         }
@@ -138,13 +138,13 @@ class HandicapNormalizer implements DenormalizerInterface, NormalizerInterface, 
             $data['cdapH_CarteInvalidite'] = $object->getCdapHCarteInvalidite();
         }
         if ($object->isInitialized('cdapHDateDebut') && null !== $object->getCdapHDateDebut()) {
-            $data['cdapH_DateDebut'] = $object->getCdapHDateDebut()->format('Y-m-d\\TH:i:sP');
+            $data['cdapH_DateDebut'] = $object->getCdapHDateDebut()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('cdapHDateFin') && null !== $object->getCdapHDateFin()) {
-            $data['cdapH_DateFin'] = $object->getCdapHDateFin()->format('Y-m-d\\TH:i:sP');
+            $data['cdapH_DateFin'] = $object->getCdapHDateFin()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('cdapHDtDepotRenouvellement') && null !== $object->getCdapHDtDepotRenouvellement()) {
-            $data['cdapH_DtDepotRenouvellement'] = $object->getCdapHDtDepotRenouvellement()->format('Y-m-d\\TH:i:sP');
+            $data['cdapH_DtDepotRenouvellement'] = $object->getCdapHDtDepotRenouvellement()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('cdapHTauxIncapacite') && null !== $object->getCdapHTauxIncapacite()) {
             $data['cdapH_TauxIncapacite'] = $object->getCdapHTauxIncapacite();
@@ -153,7 +153,7 @@ class HandicapNormalizer implements DenormalizerInterface, NormalizerInterface, 
             $data['accident_Nature'] = $object->getAccidentNature();
         }
         if ($object->isInitialized('accidentDateDebut') && null !== $object->getAccidentDateDebut()) {
-            $data['accident_DateDebut'] = $object->getAccidentDateDebut()->format('Y-m-d\\TH:i:sP');
+            $data['accident_DateDebut'] = $object->getAccidentDateDebut()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('accidentTauxIPP') && null !== $object->getAccidentTauxIPP()) {
             $data['accident_TauxIPP'] = $object->getAccidentTauxIPP();
@@ -165,7 +165,7 @@ class HandicapNormalizer implements DenormalizerInterface, NormalizerInterface, 
             $data['autre_Categorie'] = $object->getAutreCategorie();
         }
         if ($object->isInitialized('autreDateDebut') && null !== $object->getAutreDateDebut()) {
-            $data['autre_DateDebut'] = $object->getAutreDateDebut()->format('Y-m-d\\TH:i:sP');
+            $data['autre_DateDebut'] = $object->getAutreDateDebut()->format('Y-m-d\\TH:i:s');
         }
 
         return $data;

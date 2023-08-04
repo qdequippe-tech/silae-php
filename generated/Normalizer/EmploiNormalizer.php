@@ -101,12 +101,12 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $object->setNomInterneEtablissement(null);
         }
         if (\array_key_exists('dateDebut', $data) && null !== $data['dateDebut']) {
-            $object->setDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateDebut']));
+            $object->setDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateDebut']));
         } elseif (\array_key_exists('dateDebut', $data) && null === $data['dateDebut']) {
             $object->setDateDebut(null);
         }
         if (\array_key_exists('dateFin', $data) && null !== $data['dateFin']) {
-            $object->setDateFin(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateFin']));
+            $object->setDateFin(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateFin']));
         } elseif (\array_key_exists('dateFin', $data) && null === $data['dateFin']) {
             $object->setDateFin(null);
         }
@@ -517,7 +517,7 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $object->setBExonerationCode(null);
         }
         if (\array_key_exists('exonerationDebut', $data) && null !== $data['exonerationDebut']) {
-            $object->setExonerationDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['exonerationDebut']));
+            $object->setExonerationDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['exonerationDebut']));
         } elseif (\array_key_exists('exonerationDebut', $data) && null === $data['exonerationDebut']) {
             $object->setExonerationDebut(null);
         }
@@ -527,7 +527,7 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $object->setBExonerationDebut(null);
         }
         if (\array_key_exists('exonerationFin', $data) && null !== $data['exonerationFin']) {
-            $object->setExonerationFin(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['exonerationFin']));
+            $object->setExonerationFin(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['exonerationFin']));
         } elseif (\array_key_exists('exonerationFin', $data) && null === $data['exonerationFin']) {
             $object->setExonerationFin(null);
         }
@@ -624,10 +624,10 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $data['nomInterneEtablissement'] = $object->getNomInterneEtablissement();
         }
         if ($object->isInitialized('dateDebut') && null !== $object->getDateDebut()) {
-            $data['dateDebut'] = $object->getDateDebut()->format('Y-m-d\\TH:i:sP');
+            $data['dateDebut'] = $object->getDateDebut()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('dateFin') && null !== $object->getDateFin()) {
-            $data['dateFin'] = $object->getDateFin()->format('Y-m-d\\TH:i:sP');
+            $data['dateFin'] = $object->getDateFin()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('codeConventionCollective') && null !== $object->getCodeConventionCollective()) {
             $data['codeConventionCollective'] = $object->getCodeConventionCollective();
@@ -880,13 +880,13 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $data['bExonerationCode'] = $object->getBExonerationCode();
         }
         if ($object->isInitialized('exonerationDebut') && null !== $object->getExonerationDebut()) {
-            $data['exonerationDebut'] = $object->getExonerationDebut()->format('Y-m-d\\TH:i:sP');
+            $data['exonerationDebut'] = $object->getExonerationDebut()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bExonerationDebut') && null !== $object->getBExonerationDebut()) {
             $data['bExonerationDebut'] = $object->getBExonerationDebut();
         }
         if ($object->isInitialized('exonerationFin') && null !== $object->getExonerationFin()) {
-            $data['exonerationFin'] = $object->getExonerationFin()->format('Y-m-d\\TH:i:sP');
+            $data['exonerationFin'] = $object->getExonerationFin()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bExonerationFin') && null !== $object->getBExonerationFin()) {
             $data['bExonerationFin'] = $object->getBExonerationFin();

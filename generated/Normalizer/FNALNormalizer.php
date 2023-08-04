@@ -69,7 +69,7 @@ class FNALNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $object->setAssujettissement(null);
         }
         if (\array_key_exists('anneeN', $data) && null !== $data['anneeN']) {
-            $object->setAnneeN(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['anneeN']));
+            $object->setAnneeN(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['anneeN']));
         } elseif (\array_key_exists('anneeN', $data) && null === $data['anneeN']) {
             $object->setAnneeN(null);
         }
@@ -119,7 +119,7 @@ class FNALNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $data['assujettissement'] = $object->getAssujettissement();
         }
         if ($object->isInitialized('anneeN') && null !== $object->getAnneeN()) {
-            $data['anneeN'] = $object->getAnneeN()->format('Y-m-d\\TH:i:sP');
+            $data['anneeN'] = $object->getAnneeN()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('pourcentageAnneeN') && null !== $object->getPourcentageAnneeN()) {
             $data['pourcentageAnneeN'] = $object->getPourcentageAnneeN();

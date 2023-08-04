@@ -51,17 +51,17 @@ class ActivationDSNNormalizer implements DenormalizerInterface, NormalizerInterf
             $object->setNumeroDossier(null);
         }
         if (\array_key_exists('periodeDemarrageDsnMensuelle', $data) && null !== $data['periodeDemarrageDsnMensuelle']) {
-            $object->setPeriodeDemarrageDsnMensuelle(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeDemarrageDsnMensuelle']));
+            $object->setPeriodeDemarrageDsnMensuelle(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeDemarrageDsnMensuelle']));
         } elseif (\array_key_exists('periodeDemarrageDsnMensuelle', $data) && null === $data['periodeDemarrageDsnMensuelle']) {
             $object->setPeriodeDemarrageDsnMensuelle(null);
         }
         if (\array_key_exists('periodeDemarrageDsnArretDeTravail', $data) && null !== $data['periodeDemarrageDsnArretDeTravail']) {
-            $object->setPeriodeDemarrageDsnArretDeTravail(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeDemarrageDsnArretDeTravail']));
+            $object->setPeriodeDemarrageDsnArretDeTravail(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeDemarrageDsnArretDeTravail']));
         } elseif (\array_key_exists('periodeDemarrageDsnArretDeTravail', $data) && null === $data['periodeDemarrageDsnArretDeTravail']) {
             $object->setPeriodeDemarrageDsnArretDeTravail(null);
         }
         if (\array_key_exists('periodeDemarrageDsnFinDeContrat', $data) && null !== $data['periodeDemarrageDsnFinDeContrat']) {
-            $object->setPeriodeDemarrageDsnFinDeContrat(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeDemarrageDsnFinDeContrat']));
+            $object->setPeriodeDemarrageDsnFinDeContrat(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeDemarrageDsnFinDeContrat']));
         } elseif (\array_key_exists('periodeDemarrageDsnFinDeContrat', $data) && null === $data['periodeDemarrageDsnFinDeContrat']) {
             $object->setPeriodeDemarrageDsnFinDeContrat(null);
         }
@@ -81,13 +81,13 @@ class ActivationDSNNormalizer implements DenormalizerInterface, NormalizerInterf
             $data['numeroDossier'] = $object->getNumeroDossier();
         }
         if ($object->isInitialized('periodeDemarrageDsnMensuelle') && null !== $object->getPeriodeDemarrageDsnMensuelle()) {
-            $data['periodeDemarrageDsnMensuelle'] = $object->getPeriodeDemarrageDsnMensuelle()->format('Y-m-d\\TH:i:sP');
+            $data['periodeDemarrageDsnMensuelle'] = $object->getPeriodeDemarrageDsnMensuelle()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('periodeDemarrageDsnArretDeTravail') && null !== $object->getPeriodeDemarrageDsnArretDeTravail()) {
-            $data['periodeDemarrageDsnArretDeTravail'] = $object->getPeriodeDemarrageDsnArretDeTravail()->format('Y-m-d\\TH:i:sP');
+            $data['periodeDemarrageDsnArretDeTravail'] = $object->getPeriodeDemarrageDsnArretDeTravail()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('periodeDemarrageDsnFinDeContrat') && null !== $object->getPeriodeDemarrageDsnFinDeContrat()) {
-            $data['periodeDemarrageDsnFinDeContrat'] = $object->getPeriodeDemarrageDsnFinDeContrat()->format('Y-m-d\\TH:i:sP');
+            $data['periodeDemarrageDsnFinDeContrat'] = $object->getPeriodeDemarrageDsnFinDeContrat()->format('Y-m-d\\TH:i:s');
         }
 
         return $data;

@@ -46,7 +46,7 @@ class EtatDeclarationRetourNormalizer implements DenormalizerInterface, Normaliz
             return $object;
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
-            $object->setDate(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['date']));
+            $object->setDate(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['date']));
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
         }
@@ -73,7 +73,7 @@ class EtatDeclarationRetourNormalizer implements DenormalizerInterface, Normaliz
     {
         $data = [];
         if ($object->isInitialized('date') && null !== $object->getDate()) {
-            $data['date'] = $object->getDate()->format('Y-m-d\\TH:i:sP');
+            $data['date'] = $object->getDate()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('nature') && null !== $object->getNature()) {
             $data['nature'] = $object->getNature();

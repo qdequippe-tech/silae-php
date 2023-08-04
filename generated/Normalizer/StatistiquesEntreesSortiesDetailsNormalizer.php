@@ -46,7 +46,7 @@ class StatistiquesEntreesSortiesDetailsNormalizer implements DenormalizerInterfa
             return $object;
         }
         if (\array_key_exists('periode', $data) && null !== $data['periode']) {
-            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periode']));
+            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periode']));
         } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
             $object->setPeriode(null);
         }
@@ -118,7 +118,7 @@ class StatistiquesEntreesSortiesDetailsNormalizer implements DenormalizerInterfa
     {
         $data = [];
         if ($object->isInitialized('periode') && null !== $object->getPeriode()) {
-            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:sP');
+            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('entreesCDINouveauSalarie') && null !== $object->getEntreesCDINouveauSalarie()) {
             $data['entreesCDI_NouveauSalarie'] = $object->getEntreesCDINouveauSalarie();

@@ -61,7 +61,7 @@ class RequeteSalarieBulletinDetailsNormalizer implements DenormalizerInterface, 
             $object->setIdentifiantEmploi(null);
         }
         if (\array_key_exists('periode', $data) && null !== $data['periode']) {
-            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periode']));
+            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periode']));
         } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
             $object->setPeriode(null);
         }
@@ -87,7 +87,7 @@ class RequeteSalarieBulletinDetailsNormalizer implements DenormalizerInterface, 
             $data['identifiantEmploi'] = $object->getIdentifiantEmploi();
         }
         if ($object->isInitialized('periode') && null !== $object->getPeriode()) {
-            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:sP');
+            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:s');
         }
 
         return $data;

@@ -316,7 +316,7 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
             $object->setBETAExoJEIDateDebut(null);
         }
         if (\array_key_exists('etA_ExoJEIDateDebut', $data) && null !== $data['etA_ExoJEIDateDebut']) {
-            $object->setEtAExoJEIDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['etA_ExoJEIDateDebut']));
+            $object->setEtAExoJEIDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['etA_ExoJEIDateDebut']));
         } elseif (\array_key_exists('etA_ExoJEIDateDebut', $data) && null === $data['etA_ExoJEIDateDebut']) {
             $object->setEtAExoJEIDateDebut(null);
         }
@@ -606,7 +606,7 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
             $object->setBETAPeriodeRegulTauxAT1(null);
         }
         if (\array_key_exists('etA_PeriodeRegulTauxAT_1', $data) && null !== $data['etA_PeriodeRegulTauxAT_1']) {
-            $object->setEtAPeriodeRegulTauxAT1(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['etA_PeriodeRegulTauxAT_1']));
+            $object->setEtAPeriodeRegulTauxAT1(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['etA_PeriodeRegulTauxAT_1']));
         } elseif (\array_key_exists('etA_PeriodeRegulTauxAT_1', $data) && null === $data['etA_PeriodeRegulTauxAT_1']) {
             $object->setEtAPeriodeRegulTauxAT1(null);
         }
@@ -616,7 +616,7 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
             $object->setBETAPeriodeRegulTauxAT2(null);
         }
         if (\array_key_exists('etA_PeriodeRegulTauxAT_2', $data) && null !== $data['etA_PeriodeRegulTauxAT_2']) {
-            $object->setEtAPeriodeRegulTauxAT2(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['etA_PeriodeRegulTauxAT_2']));
+            $object->setEtAPeriodeRegulTauxAT2(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['etA_PeriodeRegulTauxAT_2']));
         } elseif (\array_key_exists('etA_PeriodeRegulTauxAT_2', $data) && null === $data['etA_PeriodeRegulTauxAT_2']) {
             $object->setEtAPeriodeRegulTauxAT2(null);
         }
@@ -626,7 +626,7 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
             $object->setBETAPeriodeRegulTauxAT3(null);
         }
         if (\array_key_exists('etA_PeriodeRegulTauxAT_3', $data) && null !== $data['etA_PeriodeRegulTauxAT_3']) {
-            $object->setEtAPeriodeRegulTauxAT3(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['etA_PeriodeRegulTauxAT_3']));
+            $object->setEtAPeriodeRegulTauxAT3(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['etA_PeriodeRegulTauxAT_3']));
         } elseif (\array_key_exists('etA_PeriodeRegulTauxAT_3', $data) && null === $data['etA_PeriodeRegulTauxAT_3']) {
             $object->setEtAPeriodeRegulTauxAT3(null);
         }
@@ -636,7 +636,7 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
             $object->setBETAPeriodeRegulTauxAT4(null);
         }
         if (\array_key_exists('etA_PeriodeRegulTauxAT_4', $data) && null !== $data['etA_PeriodeRegulTauxAT_4']) {
-            $object->setEtAPeriodeRegulTauxAT4(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['etA_PeriodeRegulTauxAT_4']));
+            $object->setEtAPeriodeRegulTauxAT4(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['etA_PeriodeRegulTauxAT_4']));
         } elseif (\array_key_exists('etA_PeriodeRegulTauxAT_4', $data) && null === $data['etA_PeriodeRegulTauxAT_4']) {
             $object->setEtAPeriodeRegulTauxAT4(null);
         }
@@ -646,7 +646,7 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
             $object->setBETAPeriodeRegulTauxAT5(null);
         }
         if (\array_key_exists('etA_PeriodeRegulTauxAT_5', $data) && null !== $data['etA_PeriodeRegulTauxAT_5']) {
-            $object->setEtAPeriodeRegulTauxAT5(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['etA_PeriodeRegulTauxAT_5']));
+            $object->setEtAPeriodeRegulTauxAT5(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['etA_PeriodeRegulTauxAT_5']));
         } elseif (\array_key_exists('etA_PeriodeRegulTauxAT_5', $data) && null === $data['etA_PeriodeRegulTauxAT_5']) {
             $object->setEtAPeriodeRegulTauxAT5(null);
         }
@@ -656,7 +656,7 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
             $object->setBETAPeriodeRegulTauxAT6(null);
         }
         if (\array_key_exists('etA_PeriodeRegulTauxAT_6', $data) && null !== $data['etA_PeriodeRegulTauxAT_6']) {
-            $object->setEtAPeriodeRegulTauxAT6(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['etA_PeriodeRegulTauxAT_6']));
+            $object->setEtAPeriodeRegulTauxAT6(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['etA_PeriodeRegulTauxAT_6']));
         } elseif (\array_key_exists('etA_PeriodeRegulTauxAT_6', $data) && null === $data['etA_PeriodeRegulTauxAT_6']) {
             $object->setEtAPeriodeRegulTauxAT6(null);
         }
@@ -666,7 +666,7 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
             $object->setBETAPeriodeRegulTauxAT7(null);
         }
         if (\array_key_exists('etA_PeriodeRegulTauxAT_7', $data) && null !== $data['etA_PeriodeRegulTauxAT_7']) {
-            $object->setEtAPeriodeRegulTauxAT7(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['etA_PeriodeRegulTauxAT_7']));
+            $object->setEtAPeriodeRegulTauxAT7(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['etA_PeriodeRegulTauxAT_7']));
         } elseif (\array_key_exists('etA_PeriodeRegulTauxAT_7', $data) && null === $data['etA_PeriodeRegulTauxAT_7']) {
             $object->setEtAPeriodeRegulTauxAT7(null);
         }
@@ -1316,7 +1316,7 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
             $object->setBINTDateDeces(null);
         }
         if (\array_key_exists('inT_DateDeces', $data) && null !== $data['inT_DateDeces']) {
-            $object->setInTDateDeces(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['inT_DateDeces']));
+            $object->setInTDateDeces(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['inT_DateDeces']));
         } elseif (\array_key_exists('inT_DateDeces', $data) && null === $data['inT_DateDeces']) {
             $object->setInTDateDeces(null);
         }
@@ -1326,7 +1326,7 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
             $object->setBINTDateNaissance(null);
         }
         if (\array_key_exists('inT_DateNaissance', $data) && null !== $data['inT_DateNaissance']) {
-            $object->setInTDateNaissance(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['inT_DateNaissance']));
+            $object->setInTDateNaissance(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['inT_DateNaissance']));
         } elseif (\array_key_exists('inT_DateNaissance', $data) && null === $data['inT_DateNaissance']) {
             $object->setInTDateNaissance(null);
         }
@@ -1648,7 +1648,7 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
             $data['bETA_ExoJEIDateDebut'] = $object->getBETAExoJEIDateDebut();
         }
         if ($object->isInitialized('etAExoJEIDateDebut') && null !== $object->getEtAExoJEIDateDebut()) {
-            $data['etA_ExoJEIDateDebut'] = $object->getEtAExoJEIDateDebut()->format('Y-m-d\\TH:i:sP');
+            $data['etA_ExoJEIDateDebut'] = $object->getEtAExoJEIDateDebut()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bETAForceDroitCICE') && null !== $object->getBETAForceDroitCICE()) {
             $data['bETA_ForceDroitCICE'] = $object->getBETAForceDroitCICE();
@@ -1822,43 +1822,43 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
             $data['bETA_PeriodeRegulTauxAT_1'] = $object->getBETAPeriodeRegulTauxAT1();
         }
         if ($object->isInitialized('etAPeriodeRegulTauxAT1') && null !== $object->getEtAPeriodeRegulTauxAT1()) {
-            $data['etA_PeriodeRegulTauxAT_1'] = $object->getEtAPeriodeRegulTauxAT1()->format('Y-m-d\\TH:i:sP');
+            $data['etA_PeriodeRegulTauxAT_1'] = $object->getEtAPeriodeRegulTauxAT1()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bETAPeriodeRegulTauxAT2') && null !== $object->getBETAPeriodeRegulTauxAT2()) {
             $data['bETA_PeriodeRegulTauxAT_2'] = $object->getBETAPeriodeRegulTauxAT2();
         }
         if ($object->isInitialized('etAPeriodeRegulTauxAT2') && null !== $object->getEtAPeriodeRegulTauxAT2()) {
-            $data['etA_PeriodeRegulTauxAT_2'] = $object->getEtAPeriodeRegulTauxAT2()->format('Y-m-d\\TH:i:sP');
+            $data['etA_PeriodeRegulTauxAT_2'] = $object->getEtAPeriodeRegulTauxAT2()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bETAPeriodeRegulTauxAT3') && null !== $object->getBETAPeriodeRegulTauxAT3()) {
             $data['bETA_PeriodeRegulTauxAT_3'] = $object->getBETAPeriodeRegulTauxAT3();
         }
         if ($object->isInitialized('etAPeriodeRegulTauxAT3') && null !== $object->getEtAPeriodeRegulTauxAT3()) {
-            $data['etA_PeriodeRegulTauxAT_3'] = $object->getEtAPeriodeRegulTauxAT3()->format('Y-m-d\\TH:i:sP');
+            $data['etA_PeriodeRegulTauxAT_3'] = $object->getEtAPeriodeRegulTauxAT3()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bETAPeriodeRegulTauxAT4') && null !== $object->getBETAPeriodeRegulTauxAT4()) {
             $data['bETA_PeriodeRegulTauxAT_4'] = $object->getBETAPeriodeRegulTauxAT4();
         }
         if ($object->isInitialized('etAPeriodeRegulTauxAT4') && null !== $object->getEtAPeriodeRegulTauxAT4()) {
-            $data['etA_PeriodeRegulTauxAT_4'] = $object->getEtAPeriodeRegulTauxAT4()->format('Y-m-d\\TH:i:sP');
+            $data['etA_PeriodeRegulTauxAT_4'] = $object->getEtAPeriodeRegulTauxAT4()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bETAPeriodeRegulTauxAT5') && null !== $object->getBETAPeriodeRegulTauxAT5()) {
             $data['bETA_PeriodeRegulTauxAT_5'] = $object->getBETAPeriodeRegulTauxAT5();
         }
         if ($object->isInitialized('etAPeriodeRegulTauxAT5') && null !== $object->getEtAPeriodeRegulTauxAT5()) {
-            $data['etA_PeriodeRegulTauxAT_5'] = $object->getEtAPeriodeRegulTauxAT5()->format('Y-m-d\\TH:i:sP');
+            $data['etA_PeriodeRegulTauxAT_5'] = $object->getEtAPeriodeRegulTauxAT5()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bETAPeriodeRegulTauxAT6') && null !== $object->getBETAPeriodeRegulTauxAT6()) {
             $data['bETA_PeriodeRegulTauxAT_6'] = $object->getBETAPeriodeRegulTauxAT6();
         }
         if ($object->isInitialized('etAPeriodeRegulTauxAT6') && null !== $object->getEtAPeriodeRegulTauxAT6()) {
-            $data['etA_PeriodeRegulTauxAT_6'] = $object->getEtAPeriodeRegulTauxAT6()->format('Y-m-d\\TH:i:sP');
+            $data['etA_PeriodeRegulTauxAT_6'] = $object->getEtAPeriodeRegulTauxAT6()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bETAPeriodeRegulTauxAT7') && null !== $object->getBETAPeriodeRegulTauxAT7()) {
             $data['bETA_PeriodeRegulTauxAT_7'] = $object->getBETAPeriodeRegulTauxAT7();
         }
         if ($object->isInitialized('etAPeriodeRegulTauxAT7') && null !== $object->getEtAPeriodeRegulTauxAT7()) {
-            $data['etA_PeriodeRegulTauxAT_7'] = $object->getEtAPeriodeRegulTauxAT7()->format('Y-m-d\\TH:i:sP');
+            $data['etA_PeriodeRegulTauxAT_7'] = $object->getEtAPeriodeRegulTauxAT7()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bETAPersonneAContacterMel') && null !== $object->getBETAPersonneAContacterMel()) {
             $data['bETA_PersonneAContacterMel'] = $object->getBETAPersonneAContacterMel();
@@ -2248,13 +2248,13 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
             $data['bINT_DateDeces'] = $object->getBINTDateDeces();
         }
         if ($object->isInitialized('inTDateDeces') && null !== $object->getInTDateDeces()) {
-            $data['inT_DateDeces'] = $object->getInTDateDeces()->format('Y-m-d\\TH:i:sP');
+            $data['inT_DateDeces'] = $object->getInTDateDeces()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bINTDateNaissance') && null !== $object->getBINTDateNaissance()) {
             $data['bINT_DateNaissance'] = $object->getBINTDateNaissance();
         }
         if ($object->isInitialized('inTDateNaissance') && null !== $object->getInTDateNaissance()) {
-            $data['inT_DateNaissance'] = $object->getInTDateNaissance()->format('Y-m-d\\TH:i:sP');
+            $data['inT_DateNaissance'] = $object->getInTDateNaissance()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bINTEnseigne') && null !== $object->getBINTEnseigne()) {
             $data['bINT_Enseigne'] = $object->getBINTEnseigne();

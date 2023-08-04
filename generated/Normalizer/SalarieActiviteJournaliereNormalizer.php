@@ -67,7 +67,7 @@ class SalarieActiviteJournaliereNormalizer implements DenormalizerInterface, Nor
             return $object;
         }
         if (\array_key_exists('jour', $data) && null !== $data['jour']) {
-            $object->setJour(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['jour']));
+            $object->setJour(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['jour']));
         } elseif (\array_key_exists('jour', $data) && null === $data['jour']) {
             $object->setJour(null);
         }
@@ -124,7 +124,7 @@ class SalarieActiviteJournaliereNormalizer implements DenormalizerInterface, Nor
     {
         $data = [];
         if ($object->isInitialized('jour') && null !== $object->getJour()) {
-            $data['jour'] = $object->getJour()->format('Y-m-d\\TH:i:sP');
+            $data['jour'] = $object->getJour()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('nombreHeures') && null !== $object->getNombreHeures()) {
             $data['nombreHeures'] = $object->getNombreHeures();

@@ -46,7 +46,7 @@ class SalarieActiviteJournalierePeriodeNormalizer implements DenormalizerInterfa
             return $object;
         }
         if (\array_key_exists('periodeActivite', $data) && null !== $data['periodeActivite']) {
-            $object->setPeriodeActivite(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeActivite']));
+            $object->setPeriodeActivite(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeActivite']));
         } elseif (\array_key_exists('periodeActivite', $data) && null === $data['periodeActivite']) {
             $object->setPeriodeActivite(null);
         }
@@ -72,7 +72,7 @@ class SalarieActiviteJournalierePeriodeNormalizer implements DenormalizerInterfa
     {
         $data = [];
         if ($object->isInitialized('periodeActivite') && null !== $object->getPeriodeActivite()) {
-            $data['periodeActivite'] = $object->getPeriodeActivite()->format('Y-m-d\\TH:i:sP');
+            $data['periodeActivite'] = $object->getPeriodeActivite()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('calendrier') && null !== $object->getCalendrier()) {
             $values = [];
