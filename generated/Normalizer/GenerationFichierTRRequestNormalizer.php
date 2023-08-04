@@ -51,7 +51,7 @@ class GenerationFichierTRRequestNormalizer implements DenormalizerInterface, Nor
             $object->setCodeFonction(null);
         }
         if (\array_key_exists('periode', $data) && null !== $data['periode']) {
-            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periode']));
+            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periode']));
         } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
             $object->setPeriode(null);
         }
@@ -76,7 +76,7 @@ class GenerationFichierTRRequestNormalizer implements DenormalizerInterface, Nor
             $data['codeFonction'] = $object->getCodeFonction();
         }
         if ($object->isInitialized('periode') && null !== $object->getPeriode()) {
-            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:sP');
+            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:s');
         }
         $data['numeroDossier'] = $object->getNumeroDossier();
 

@@ -55,7 +55,7 @@ class RequeteSalariesDUENormalizer implements DenormalizerInterface, NormalizerI
             $object->setMatriculesSalaries(null);
         }
         if (\array_key_exists('dateMinEmploi', $data) && null !== $data['dateMinEmploi']) {
-            $object->setDateMinEmploi(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateMinEmploi']));
+            $object->setDateMinEmploi(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateMinEmploi']));
         } elseif (\array_key_exists('dateMinEmploi', $data) && null === $data['dateMinEmploi']) {
             $object->setDateMinEmploi(null);
         }
@@ -79,7 +79,7 @@ class RequeteSalariesDUENormalizer implements DenormalizerInterface, NormalizerI
             $data['matriculesSalaries'] = $values;
         }
         if ($object->isInitialized('dateMinEmploi') && null !== $object->getDateMinEmploi()) {
-            $data['dateMinEmploi'] = $object->getDateMinEmploi()->format('Y-m-d\\TH:i:sP');
+            $data['dateMinEmploi'] = $object->getDateMinEmploi()->format('Y-m-d\\TH:i:s');
         }
 
         return $data;

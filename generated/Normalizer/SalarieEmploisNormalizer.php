@@ -151,7 +151,7 @@ class SalarieEmploisNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setBSituationFamiliale(null);
         }
         if (\array_key_exists('dateNaissance', $data) && null !== $data['dateNaissance']) {
-            $object->setDateNaissance(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateNaissance']));
+            $object->setDateNaissance(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateNaissance']));
         } elseif (\array_key_exists('dateNaissance', $data) && null === $data['dateNaissance']) {
             $object->setDateNaissance(null);
         }
@@ -241,7 +241,7 @@ class SalarieEmploisNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setBTitreSejourNumeroOrdre(null);
         }
         if (\array_key_exists('titreSejourDebut', $data) && null !== $data['titreSejourDebut']) {
-            $object->setTitreSejourDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['titreSejourDebut']));
+            $object->setTitreSejourDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['titreSejourDebut']));
         } elseif (\array_key_exists('titreSejourDebut', $data) && null === $data['titreSejourDebut']) {
             $object->setTitreSejourDebut(null);
         }
@@ -251,7 +251,7 @@ class SalarieEmploisNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setBTitreSejourDebut(null);
         }
         if (\array_key_exists('titreSejourFin', $data) && null !== $data['titreSejourFin']) {
-            $object->setTitreSejourFin(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['titreSejourFin']));
+            $object->setTitreSejourFin(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['titreSejourFin']));
         } elseif (\array_key_exists('titreSejourFin', $data) && null === $data['titreSejourFin']) {
             $object->setTitreSejourFin(null);
         }
@@ -585,7 +585,7 @@ class SalarieEmploisNormalizer implements DenormalizerInterface, NormalizerInter
             $data['bSituationFamiliale'] = $object->getBSituationFamiliale();
         }
         if ($object->isInitialized('dateNaissance') && null !== $object->getDateNaissance()) {
-            $data['dateNaissance'] = $object->getDateNaissance()->format('Y-m-d\\TH:i:sP');
+            $data['dateNaissance'] = $object->getDateNaissance()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bDateNaissance') && null !== $object->getBDateNaissance()) {
             $data['bDateNaissance'] = $object->getBDateNaissance();
@@ -639,13 +639,13 @@ class SalarieEmploisNormalizer implements DenormalizerInterface, NormalizerInter
             $data['bTitreSejourNumeroOrdre'] = $object->getBTitreSejourNumeroOrdre();
         }
         if ($object->isInitialized('titreSejourDebut') && null !== $object->getTitreSejourDebut()) {
-            $data['titreSejourDebut'] = $object->getTitreSejourDebut()->format('Y-m-d\\TH:i:sP');
+            $data['titreSejourDebut'] = $object->getTitreSejourDebut()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bTitreSejourDebut') && null !== $object->getBTitreSejourDebut()) {
             $data['bTitreSejourDebut'] = $object->getBTitreSejourDebut();
         }
         if ($object->isInitialized('titreSejourFin') && null !== $object->getTitreSejourFin()) {
-            $data['titreSejourFin'] = $object->getTitreSejourFin()->format('Y-m-d\\TH:i:sP');
+            $data['titreSejourFin'] = $object->getTitreSejourFin()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bTitreSejourFin') && null !== $object->getBTitreSejourFin()) {
             $data['bTitreSejourFin'] = $object->getBTitreSejourFin();

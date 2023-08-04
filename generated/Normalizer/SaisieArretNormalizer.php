@@ -62,7 +62,7 @@ class SaisieArretNormalizer implements DenormalizerInterface, NormalizerInterfac
             $object->setDemandeur(null);
         }
         if (\array_key_exists('dateDemande', $data) && null !== $data['dateDemande']) {
-            $object->setDateDemande(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateDemande']));
+            $object->setDateDemande(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateDemande']));
         } elseif (\array_key_exists('dateDemande', $data) && null === $data['dateDemande']) {
             $object->setDateDemande(null);
         }
@@ -72,7 +72,7 @@ class SaisieArretNormalizer implements DenormalizerInterface, NormalizerInterfac
             $object->setMontantCreance(null);
         }
         if (\array_key_exists('dateDebutPrelevement', $data) && null !== $data['dateDebutPrelevement']) {
-            $object->setDateDebutPrelevement(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateDebutPrelevement']));
+            $object->setDateDebutPrelevement(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateDebutPrelevement']));
         } elseif (\array_key_exists('dateDebutPrelevement', $data) && null === $data['dateDebutPrelevement']) {
             $object->setDateDebutPrelevement(null);
         }
@@ -115,13 +115,13 @@ class SaisieArretNormalizer implements DenormalizerInterface, NormalizerInterfac
             $data['demandeur'] = $object->getDemandeur();
         }
         if ($object->isInitialized('dateDemande') && null !== $object->getDateDemande()) {
-            $data['dateDemande'] = $object->getDateDemande()->format('Y-m-d\\TH:i:sP');
+            $data['dateDemande'] = $object->getDateDemande()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('montantCreance') && null !== $object->getMontantCreance()) {
             $data['montantCreance'] = $object->getMontantCreance();
         }
         if ($object->isInitialized('dateDebutPrelevement') && null !== $object->getDateDebutPrelevement()) {
-            $data['dateDebutPrelevement'] = $object->getDateDebutPrelevement()->format('Y-m-d\\TH:i:sP');
+            $data['dateDebutPrelevement'] = $object->getDateDebutPrelevement()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('type') && null !== $object->getType()) {
             $data['type'] = $object->getType();

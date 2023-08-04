@@ -71,12 +71,12 @@ class ConfigurationAccesApiNormalizer implements DenormalizerInterface, Normaliz
             $object->setStatutConfiguration(null);
         }
         if (\array_key_exists('dateCreation', $data) && null !== $data['dateCreation']) {
-            $object->setDateCreation(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateCreation']));
+            $object->setDateCreation(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateCreation']));
         } elseif (\array_key_exists('dateCreation', $data) && null === $data['dateCreation']) {
             $object->setDateCreation(null);
         }
         if (\array_key_exists('dateModification', $data) && null !== $data['dateModification']) {
-            $object->setDateModification(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateModification']));
+            $object->setDateModification(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateModification']));
         } elseif (\array_key_exists('dateModification', $data) && null === $data['dateModification']) {
             $object->setDateModification(null);
         }
@@ -117,10 +117,10 @@ class ConfigurationAccesApiNormalizer implements DenormalizerInterface, Normaliz
             $data['statutConfiguration'] = $object->getStatutConfiguration();
         }
         if ($object->isInitialized('dateCreation') && null !== $object->getDateCreation()) {
-            $data['dateCreation'] = $object->getDateCreation()->format('Y-m-d\\TH:i:sP');
+            $data['dateCreation'] = $object->getDateCreation()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('dateModification') && null !== $object->getDateModification()) {
-            $data['dateModification'] = $object->getDateModification()->format('Y-m-d\\TH:i:sP');
+            $data['dateModification'] = $object->getDateModification()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('dossiers') && null !== $object->getDossiers()) {
             $values = [];

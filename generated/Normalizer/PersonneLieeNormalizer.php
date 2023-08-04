@@ -61,7 +61,7 @@ class PersonneLieeNormalizer implements DenormalizerInterface, NormalizerInterfa
             $object->setTypeLien(null);
         }
         if (\array_key_exists('dateNaissance', $data) && null !== $data['dateNaissance']) {
-            $object->setDateNaissance(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateNaissance']));
+            $object->setDateNaissance(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateNaissance']));
         } elseif (\array_key_exists('dateNaissance', $data) && null === $data['dateNaissance']) {
             $object->setDateNaissance(null);
         }
@@ -102,7 +102,7 @@ class PersonneLieeNormalizer implements DenormalizerInterface, NormalizerInterfa
             $data['typeLien'] = $object->getTypeLien();
         }
         if ($object->isInitialized('dateNaissance') && null !== $object->getDateNaissance()) {
-            $data['dateNaissance'] = $object->getDateNaissance()->format('Y-m-d\\TH:i:sP');
+            $data['dateNaissance'] = $object->getDateNaissance()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('numeroSS') && null !== $object->getNumeroSS()) {
             $data['numeroSS'] = $object->getNumeroSS();

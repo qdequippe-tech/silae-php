@@ -58,12 +58,12 @@ class SalarieElementCarriereNormalizer implements DenormalizerInterface, Normali
             return $object;
         }
         if (\array_key_exists('dateDebut', $data) && null !== $data['dateDebut']) {
-            $object->setDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateDebut']));
+            $object->setDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateDebut']));
         } elseif (\array_key_exists('dateDebut', $data) && null === $data['dateDebut']) {
             $object->setDateDebut(null);
         }
         if (\array_key_exists('dateFin', $data) && null !== $data['dateFin']) {
-            $object->setDateFin(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateFin']));
+            $object->setDateFin(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateFin']));
         } elseif (\array_key_exists('dateFin', $data) && null === $data['dateFin']) {
             $object->setDateFin(null);
         }
@@ -143,12 +143,12 @@ class SalarieElementCarriereNormalizer implements DenormalizerInterface, Normali
             $object->setSalaireDeBaseETP(null);
         }
         if (\array_key_exists('dateReelleDebutEmploi', $data) && null !== $data['dateReelleDebutEmploi']) {
-            $object->setDateReelleDebutEmploi(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateReelleDebutEmploi']));
+            $object->setDateReelleDebutEmploi(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateReelleDebutEmploi']));
         } elseif (\array_key_exists('dateReelleDebutEmploi', $data) && null === $data['dateReelleDebutEmploi']) {
             $object->setDateReelleDebutEmploi(null);
         }
         if (\array_key_exists('dateReelleFinEmploi', $data) && null !== $data['dateReelleFinEmploi']) {
-            $object->setDateReelleFinEmploi(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateReelleFinEmploi']));
+            $object->setDateReelleFinEmploi(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateReelleFinEmploi']));
         } elseif (\array_key_exists('dateReelleFinEmploi', $data) && null === $data['dateReelleFinEmploi']) {
             $object->setDateReelleFinEmploi(null);
         }
@@ -165,10 +165,10 @@ class SalarieElementCarriereNormalizer implements DenormalizerInterface, Normali
     {
         $data = [];
         if ($object->isInitialized('dateDebut') && null !== $object->getDateDebut()) {
-            $data['dateDebut'] = $object->getDateDebut()->format('Y-m-d\\TH:i:sP');
+            $data['dateDebut'] = $object->getDateDebut()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('dateFin') && null !== $object->getDateFin()) {
-            $data['dateFin'] = $object->getDateFin()->format('Y-m-d\\TH:i:sP');
+            $data['dateFin'] = $object->getDateFin()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('libelleEmploi') && null !== $object->getLibelleEmploi()) {
             $data['libelleEmploi'] = $object->getLibelleEmploi();
@@ -216,10 +216,10 @@ class SalarieElementCarriereNormalizer implements DenormalizerInterface, Normali
             $data['salaireDeBaseETP'] = $object->getSalaireDeBaseETP();
         }
         if ($object->isInitialized('dateReelleDebutEmploi') && null !== $object->getDateReelleDebutEmploi()) {
-            $data['dateReelleDebutEmploi'] = $object->getDateReelleDebutEmploi()->format('Y-m-d\\TH:i:sP');
+            $data['dateReelleDebutEmploi'] = $object->getDateReelleDebutEmploi()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('dateReelleFinEmploi') && null !== $object->getDateReelleFinEmploi()) {
-            $data['dateReelleFinEmploi'] = $object->getDateReelleFinEmploi()->format('Y-m-d\\TH:i:sP');
+            $data['dateReelleFinEmploi'] = $object->getDateReelleFinEmploi()->format('Y-m-d\\TH:i:s');
         }
 
         return $data;

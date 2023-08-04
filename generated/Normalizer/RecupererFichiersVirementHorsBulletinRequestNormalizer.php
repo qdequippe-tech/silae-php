@@ -60,12 +60,12 @@ class RecupererFichiersVirementHorsBulletinRequestNormalizer implements Denormal
             $object->setMatriculeSalaries(null);
         }
         if (\array_key_exists('periodeDebut', $data) && null !== $data['periodeDebut']) {
-            $object->setPeriodeDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeDebut']));
+            $object->setPeriodeDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeDebut']));
         } elseif (\array_key_exists('periodeDebut', $data) && null === $data['periodeDebut']) {
             $object->setPeriodeDebut(null);
         }
         if (\array_key_exists('periodeFin', $data) && null !== $data['periodeFin']) {
-            $object->setPeriodeFin(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeFin']));
+            $object->setPeriodeFin(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeFin']));
         } elseif (\array_key_exists('periodeFin', $data) && null === $data['periodeFin']) {
             $object->setPeriodeFin(null);
         }
@@ -97,10 +97,10 @@ class RecupererFichiersVirementHorsBulletinRequestNormalizer implements Denormal
             $data['matriculeSalaries'] = $values;
         }
         if ($object->isInitialized('periodeDebut') && null !== $object->getPeriodeDebut()) {
-            $data['periodeDebut'] = $object->getPeriodeDebut()->format('Y-m-d\\TH:i:sP');
+            $data['periodeDebut'] = $object->getPeriodeDebut()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('periodeFin') && null !== $object->getPeriodeFin()) {
-            $data['periodeFin'] = $object->getPeriodeFin()->format('Y-m-d\\TH:i:sP');
+            $data['periodeFin'] = $object->getPeriodeFin()->format('Y-m-d\\TH:i:s');
         }
         $data['numeroDossier'] = $object->getNumeroDossier();
 

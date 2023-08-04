@@ -55,7 +55,7 @@ class EffectifSocieteNormalizer implements DenormalizerInterface, NormalizerInte
             return $object;
         }
         if (\array_key_exists('annee', $data) && null !== $data['annee']) {
-            $object->setAnnee(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['annee']));
+            $object->setAnnee(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['annee']));
         } elseif (\array_key_exists('annee', $data) && null === $data['annee']) {
             $object->setAnnee(null);
         }
@@ -87,7 +87,7 @@ class EffectifSocieteNormalizer implements DenormalizerInterface, NormalizerInte
     {
         $data = [];
         if ($object->isInitialized('annee') && null !== $object->getAnnee()) {
-            $data['annee'] = $object->getAnnee()->format('Y-m-d\\TH:i:sP');
+            $data['annee'] = $object->getAnnee()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('effectif1GlobalURSSAF') && null !== $object->getEffectif1GlobalURSSAF()) {
             $data['effectif1_GlobalURSSAF'] = $object->getEffectif1GlobalURSSAF();

@@ -46,7 +46,7 @@ class StatistiquesProductionNormalizer implements DenormalizerInterface, Normali
             return $object;
         }
         if (\array_key_exists('periode', $data) && null !== $data['periode']) {
-            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periode']));
+            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periode']));
         } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
             $object->setPeriode(null);
         }
@@ -103,7 +103,7 @@ class StatistiquesProductionNormalizer implements DenormalizerInterface, Normali
     {
         $data = [];
         if ($object->isInitialized('periode') && null !== $object->getPeriode()) {
-            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:sP');
+            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('nbBulletinsOriginaux') && null !== $object->getNbBulletinsOriginaux()) {
             $data['nbBulletinsOriginaux'] = $object->getNbBulletinsOriginaux();

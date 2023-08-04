@@ -46,7 +46,7 @@ class DossierRecupererPeriodeEnCoursResponseNormalizer implements DenormalizerIn
             return $object;
         }
         if (\array_key_exists('periodeEnCours', $data) && null !== $data['periodeEnCours']) {
-            $object->setPeriodeEnCours(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeEnCours']));
+            $object->setPeriodeEnCours(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeEnCours']));
         } elseif (\array_key_exists('periodeEnCours', $data) && null === $data['periodeEnCours']) {
             $object->setPeriodeEnCours(null);
         }
@@ -63,7 +63,7 @@ class DossierRecupererPeriodeEnCoursResponseNormalizer implements DenormalizerIn
     {
         $data = [];
         if ($object->isInitialized('periodeEnCours') && null !== $object->getPeriodeEnCours()) {
-            $data['periodeEnCours'] = $object->getPeriodeEnCours()->format('Y-m-d\\TH:i:sP');
+            $data['periodeEnCours'] = $object->getPeriodeEnCours()->format('Y-m-d\\TH:i:s');
         }
 
         return $data;

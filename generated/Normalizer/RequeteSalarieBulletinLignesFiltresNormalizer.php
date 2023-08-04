@@ -81,12 +81,12 @@ class RequeteSalarieBulletinLignesFiltresNormalizer implements DenormalizerInter
             $object->setMarque2(null);
         }
         if (\array_key_exists('marqueDtDeb', $data) && null !== $data['marqueDtDeb']) {
-            $object->setMarqueDtDeb(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['marqueDtDeb']));
+            $object->setMarqueDtDeb(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['marqueDtDeb']));
         } elseif (\array_key_exists('marqueDtDeb', $data) && null === $data['marqueDtDeb']) {
             $object->setMarqueDtDeb(null);
         }
         if (\array_key_exists('marqueDtFin', $data) && null !== $data['marqueDtFin']) {
-            $object->setMarqueDtFin(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['marqueDtFin']));
+            $object->setMarqueDtFin(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['marqueDtFin']));
         } elseif (\array_key_exists('marqueDtFin', $data) && null === $data['marqueDtFin']) {
             $object->setMarqueDtFin(null);
         }
@@ -144,10 +144,10 @@ class RequeteSalarieBulletinLignesFiltresNormalizer implements DenormalizerInter
             $data['marque2'] = $object->getMarque2();
         }
         if ($object->isInitialized('marqueDtDeb') && null !== $object->getMarqueDtDeb()) {
-            $data['marqueDtDeb'] = $object->getMarqueDtDeb()->format('Y-m-d\\TH:i:sP');
+            $data['marqueDtDeb'] = $object->getMarqueDtDeb()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('marqueDtFin') && null !== $object->getMarqueDtFin()) {
-            $data['marqueDtFin'] = $object->getMarqueDtFin()->format('Y-m-d\\TH:i:sP');
+            $data['marqueDtFin'] = $object->getMarqueDtFin()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('compte4') && null !== $object->getCompte4()) {
             $data['compte4'] = $object->getCompte4();

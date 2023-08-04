@@ -46,7 +46,7 @@ class SalariesConfirmerSaisiesNormalizer implements DenormalizerInterface, Norma
             return $object;
         }
         if (\array_key_exists('periodeConfirmation', $data) && null !== $data['periodeConfirmation']) {
-            $object->setPeriodeConfirmation(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeConfirmation']));
+            $object->setPeriodeConfirmation(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeConfirmation']));
         } elseif (\array_key_exists('periodeConfirmation', $data) && null === $data['periodeConfirmation']) {
             $object->setPeriodeConfirmation(null);
         }
@@ -73,7 +73,7 @@ class SalariesConfirmerSaisiesNormalizer implements DenormalizerInterface, Norma
     {
         $data = [];
         if ($object->isInitialized('periodeConfirmation') && null !== $object->getPeriodeConfirmation()) {
-            $data['periodeConfirmation'] = $object->getPeriodeConfirmation()->format('Y-m-d\\TH:i:sP');
+            $data['periodeConfirmation'] = $object->getPeriodeConfirmation()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('confirmerHeures') && null !== $object->getConfirmerHeures()) {
             $data['confirmerHeures'] = $object->getConfirmerHeures();

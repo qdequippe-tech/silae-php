@@ -71,7 +71,7 @@ class InitialisationAncienNumeroContratDSNNormalizer implements DenormalizerInte
             $object->setSiretDOrigine(null);
         }
         if (\array_key_exists('periodeDeclaration', $data) && null !== $data['periodeDeclaration']) {
-            $object->setPeriodeDeclaration(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeDeclaration']));
+            $object->setPeriodeDeclaration(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeDeclaration']));
         } elseif (\array_key_exists('periodeDeclaration', $data) && null === $data['periodeDeclaration']) {
             $object->setPeriodeDeclaration(null);
         }
@@ -103,7 +103,7 @@ class InitialisationAncienNumeroContratDSNNormalizer implements DenormalizerInte
             $data['siretDOrigine'] = $object->getSiretDOrigine();
         }
         if ($object->isInitialized('periodeDeclaration') && null !== $object->getPeriodeDeclaration()) {
-            $data['periodeDeclaration'] = $object->getPeriodeDeclaration()->format('Y-m-d\\TH:i:sP');
+            $data['periodeDeclaration'] = $object->getPeriodeDeclaration()->format('Y-m-d\\TH:i:s');
         }
 
         return $data;

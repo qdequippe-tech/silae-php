@@ -88,7 +88,7 @@ class SalarieBulletinEnteteResultNormalizer implements DenormalizerInterface, No
             $object->setBulletinOriginal(null);
         }
         if (\array_key_exists('periode', $data) && null !== $data['periode']) {
-            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periode']));
+            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periode']));
         } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
             $object->setPeriode(null);
         }
@@ -169,7 +169,7 @@ class SalarieBulletinEnteteResultNormalizer implements DenormalizerInterface, No
             $data['bulletinOriginal'] = $object->getBulletinOriginal();
         }
         if ($object->isInitialized('periode') && null !== $object->getPeriode()) {
-            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:sP');
+            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('intituleEmploi') && null !== $object->getIntituleEmploi()) {
             $data['intituleEmploi'] = $object->getIntituleEmploi();

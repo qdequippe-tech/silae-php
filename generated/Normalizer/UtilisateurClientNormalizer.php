@@ -66,12 +66,12 @@ class UtilisateurClientNormalizer implements DenormalizerInterface, NormalizerIn
             $object->setIdentifiant(null);
         }
         if (\array_key_exists('debutValidite', $data) && null !== $data['debutValidite']) {
-            $object->setDebutValidite(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['debutValidite']));
+            $object->setDebutValidite(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['debutValidite']));
         } elseif (\array_key_exists('debutValidite', $data) && null === $data['debutValidite']) {
             $object->setDebutValidite(null);
         }
         if (\array_key_exists('finValidite', $data) && null !== $data['finValidite']) {
-            $object->setFinValidite(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['finValidite']));
+            $object->setFinValidite(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['finValidite']));
         } elseif (\array_key_exists('finValidite', $data) && null === $data['finValidite']) {
             $object->setFinValidite(null);
         }
@@ -125,10 +125,10 @@ class UtilisateurClientNormalizer implements DenormalizerInterface, NormalizerIn
             $data['identifiant'] = $object->getIdentifiant();
         }
         if ($object->isInitialized('debutValidite') && null !== $object->getDebutValidite()) {
-            $data['debutValidite'] = $object->getDebutValidite()->format('Y-m-d\\TH:i:sP');
+            $data['debutValidite'] = $object->getDebutValidite()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('finValidite') && null !== $object->getFinValidite()) {
-            $data['finValidite'] = $object->getFinValidite()->format('Y-m-d\\TH:i:sP');
+            $data['finValidite'] = $object->getFinValidite()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('accesComplet') && null !== $object->getAccesComplet()) {
             $data['accesComplet'] = $object->getAccesComplet();

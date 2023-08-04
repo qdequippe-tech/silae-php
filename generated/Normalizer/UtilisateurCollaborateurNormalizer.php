@@ -196,12 +196,12 @@ class UtilisateurCollaborateurNormalizer implements DenormalizerInterface, Norma
             $object->setMotDePasse(null);
         }
         if (\array_key_exists('debutValidite', $data) && null !== $data['debutValidite']) {
-            $object->setDebutValidite(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['debutValidite']));
+            $object->setDebutValidite(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['debutValidite']));
         } elseif (\array_key_exists('debutValidite', $data) && null === $data['debutValidite']) {
             $object->setDebutValidite(null);
         }
         if (\array_key_exists('finValidite', $data) && null !== $data['finValidite']) {
-            $object->setFinValidite(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['finValidite']));
+            $object->setFinValidite(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['finValidite']));
         } elseif (\array_key_exists('finValidite', $data) && null === $data['finValidite']) {
             $object->setFinValidite(null);
         }
@@ -211,7 +211,7 @@ class UtilisateurCollaborateurNormalizer implements DenormalizerInterface, Norma
             $object->setBDateEntree(null);
         }
         if (\array_key_exists('dateEntree', $data) && null !== $data['dateEntree']) {
-            $object->setDateEntree(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateEntree']));
+            $object->setDateEntree(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateEntree']));
         } elseif (\array_key_exists('dateEntree', $data) && null === $data['dateEntree']) {
             $object->setDateEntree(null);
         }
@@ -221,7 +221,7 @@ class UtilisateurCollaborateurNormalizer implements DenormalizerInterface, Norma
             $object->setBDateSortie(null);
         }
         if (\array_key_exists('dateSortie', $data) && null !== $data['dateSortie']) {
-            $object->setDateSortie(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateSortie']));
+            $object->setDateSortie(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateSortie']));
         } elseif (\array_key_exists('dateSortie', $data) && null === $data['dateSortie']) {
             $object->setDateSortie(null);
         }
@@ -408,22 +408,22 @@ class UtilisateurCollaborateurNormalizer implements DenormalizerInterface, Norma
             $data['motDePasse'] = $object->getMotDePasse();
         }
         if ($object->isInitialized('debutValidite') && null !== $object->getDebutValidite()) {
-            $data['debutValidite'] = $object->getDebutValidite()->format('Y-m-d\\TH:i:sP');
+            $data['debutValidite'] = $object->getDebutValidite()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('finValidite') && null !== $object->getFinValidite()) {
-            $data['finValidite'] = $object->getFinValidite()->format('Y-m-d\\TH:i:sP');
+            $data['finValidite'] = $object->getFinValidite()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bDateEntree') && null !== $object->getBDateEntree()) {
             $data['bDateEntree'] = $object->getBDateEntree();
         }
         if ($object->isInitialized('dateEntree') && null !== $object->getDateEntree()) {
-            $data['dateEntree'] = $object->getDateEntree()->format('Y-m-d\\TH:i:sP');
+            $data['dateEntree'] = $object->getDateEntree()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('bDateSortie') && null !== $object->getBDateSortie()) {
             $data['bDateSortie'] = $object->getBDateSortie();
         }
         if ($object->isInitialized('dateSortie') && null !== $object->getDateSortie()) {
-            $data['dateSortie'] = $object->getDateSortie()->format('Y-m-d\\TH:i:sP');
+            $data['dateSortie'] = $object->getDateSortie()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('ongletProduction') && null !== $object->getOngletProduction()) {
             $data['onglet_Production'] = $object->getOngletProduction();

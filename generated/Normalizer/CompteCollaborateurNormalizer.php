@@ -116,12 +116,12 @@ class CompteCollaborateurNormalizer implements DenormalizerInterface, Normalizer
             $object->setTelephoneDomicile(null);
         }
         if (\array_key_exists('dateDebutValidite', $data) && null !== $data['dateDebutValidite']) {
-            $object->setDateDebutValidite(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateDebutValidite']));
+            $object->setDateDebutValidite(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateDebutValidite']));
         } elseif (\array_key_exists('dateDebutValidite', $data) && null === $data['dateDebutValidite']) {
             $object->setDateDebutValidite(null);
         }
         if (\array_key_exists('dateFinValidite', $data) && null !== $data['dateFinValidite']) {
-            $object->setDateFinValidite(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateFinValidite']));
+            $object->setDateFinValidite(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateFinValidite']));
         } elseif (\array_key_exists('dateFinValidite', $data) && null === $data['dateFinValidite']) {
             $object->setDateFinValidite(null);
         }
@@ -224,10 +224,10 @@ class CompteCollaborateurNormalizer implements DenormalizerInterface, Normalizer
             $data['telephoneDomicile'] = $object->getTelephoneDomicile();
         }
         if ($object->isInitialized('dateDebutValidite') && null !== $object->getDateDebutValidite()) {
-            $data['dateDebutValidite'] = $object->getDateDebutValidite()->format('Y-m-d\\TH:i:sP');
+            $data['dateDebutValidite'] = $object->getDateDebutValidite()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('dateFinValidite') && null !== $object->getDateFinValidite()) {
-            $data['dateFinValidite'] = $object->getDateFinValidite()->format('Y-m-d\\TH:i:sP');
+            $data['dateFinValidite'] = $object->getDateFinValidite()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('roles') && null !== $object->getRoles()) {
             $data['roles'] = $this->normalizer->normalize($object->getRoles(), 'json', $context);

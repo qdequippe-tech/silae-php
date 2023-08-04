@@ -46,7 +46,7 @@ class SpectacleListeRequestNormalizer implements DenormalizerInterface, Normaliz
             return $object;
         }
         if (\array_key_exists('dateDebutMin', $data) && null !== $data['dateDebutMin']) {
-            $object->setDateDebutMin(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateDebutMin']));
+            $object->setDateDebutMin(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateDebutMin']));
         } elseif (\array_key_exists('dateDebutMin', $data) && null === $data['dateDebutMin']) {
             $object->setDateDebutMin(null);
         }
@@ -68,7 +68,7 @@ class SpectacleListeRequestNormalizer implements DenormalizerInterface, Normaliz
     {
         $data = [];
         if ($object->isInitialized('dateDebutMin') && null !== $object->getDateDebutMin()) {
-            $data['dateDebutMin'] = $object->getDateDebutMin()->format('Y-m-d\\TH:i:sP');
+            $data['dateDebutMin'] = $object->getDateDebutMin()->format('Y-m-d\\TH:i:s');
         }
         $data['numeroDossier'] = $object->getNumeroDossier();
 

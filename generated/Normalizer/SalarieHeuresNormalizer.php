@@ -49,7 +49,7 @@ class SalarieHeuresNormalizer implements DenormalizerInterface, NormalizerInterf
             return $object;
         }
         if (\array_key_exists('periodeHeures', $data) && null !== $data['periodeHeures']) {
-            $object->setPeriodeHeures(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeHeures']));
+            $object->setPeriodeHeures(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeHeures']));
         } elseif (\array_key_exists('periodeHeures', $data) && null === $data['periodeHeures']) {
             $object->setPeriodeHeures(null);
         }
@@ -81,7 +81,7 @@ class SalarieHeuresNormalizer implements DenormalizerInterface, NormalizerInterf
     {
         $data = [];
         if ($object->isInitialized('periodeHeures') && null !== $object->getPeriodeHeures()) {
-            $data['periodeHeures'] = $object->getPeriodeHeures()->format('Y-m-d\\TH:i:sP');
+            $data['periodeHeures'] = $object->getPeriodeHeures()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('codeHeures') && null !== $object->getCodeHeures()) {
             $data['codeHeures'] = $object->getCodeHeures();

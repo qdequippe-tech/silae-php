@@ -46,7 +46,7 @@ class SalarieRecupererPeriodeDernierBulletinCalculeResponseNormalizer implements
             return $object;
         }
         if (\array_key_exists('periodeDernierBulletinCalcule', $data) && null !== $data['periodeDernierBulletinCalcule']) {
-            $object->setPeriodeDernierBulletinCalcule(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodeDernierBulletinCalcule']));
+            $object->setPeriodeDernierBulletinCalcule(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodeDernierBulletinCalcule']));
         } elseif (\array_key_exists('periodeDernierBulletinCalcule', $data) && null === $data['periodeDernierBulletinCalcule']) {
             $object->setPeriodeDernierBulletinCalcule(null);
         }
@@ -63,7 +63,7 @@ class SalarieRecupererPeriodeDernierBulletinCalculeResponseNormalizer implements
     {
         $data = [];
         if ($object->isInitialized('periodeDernierBulletinCalcule') && null !== $object->getPeriodeDernierBulletinCalcule()) {
-            $data['periodeDernierBulletinCalcule'] = $object->getPeriodeDernierBulletinCalcule()->format('Y-m-d\\TH:i:sP');
+            $data['periodeDernierBulletinCalcule'] = $object->getPeriodeDernierBulletinCalcule()->format('Y-m-d\\TH:i:s');
         }
 
         return $data;

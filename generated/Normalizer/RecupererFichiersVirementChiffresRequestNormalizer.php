@@ -51,7 +51,7 @@ class RecupererFichiersVirementChiffresRequestNormalizer implements Denormalizer
             $object->setProprietesChiffrement(null);
         }
         if (\array_key_exists('dateValeur', $data) && null !== $data['dateValeur']) {
-            $object->setDateValeur(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateValeur']));
+            $object->setDateValeur(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateValeur']));
         } elseif (\array_key_exists('dateValeur', $data) && null === $data['dateValeur']) {
             $object->setDateValeur(null);
         }
@@ -70,7 +70,7 @@ class RecupererFichiersVirementChiffresRequestNormalizer implements Denormalizer
             $object->setMatriculeSalaries(null);
         }
         if (\array_key_exists('periode', $data) && null !== $data['periode']) {
-            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periode']));
+            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periode']));
         } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
             $object->setPeriode(null);
         }
@@ -95,7 +95,7 @@ class RecupererFichiersVirementChiffresRequestNormalizer implements Denormalizer
             $data['proprietesChiffrement'] = $this->normalizer->normalize($object->getProprietesChiffrement(), 'json', $context);
         }
         if ($object->isInitialized('dateValeur') && null !== $object->getDateValeur()) {
-            $data['dateValeur'] = $object->getDateValeur()->format('Y-m-d\\TH:i:sP');
+            $data['dateValeur'] = $object->getDateValeur()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('libelleVirement') && null !== $object->getLibelleVirement()) {
             $data['libelleVirement'] = $object->getLibelleVirement();
@@ -108,7 +108,7 @@ class RecupererFichiersVirementChiffresRequestNormalizer implements Denormalizer
             $data['matriculeSalaries'] = $values;
         }
         if ($object->isInitialized('periode') && null !== $object->getPeriode()) {
-            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:sP');
+            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:s');
         }
         $data['numeroDossier'] = $object->getNumeroDossier();
 

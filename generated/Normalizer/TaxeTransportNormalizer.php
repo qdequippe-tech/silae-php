@@ -49,7 +49,7 @@ class TaxeTransportNormalizer implements DenormalizerInterface, NormalizerInterf
             return $object;
         }
         if (\array_key_exists('moisDebut', $data) && null !== $data['moisDebut']) {
-            $object->setMoisDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['moisDebut']));
+            $object->setMoisDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['moisDebut']));
         } elseif (\array_key_exists('moisDebut', $data) && null === $data['moisDebut']) {
             $object->setMoisDebut(null);
         }
@@ -71,7 +71,7 @@ class TaxeTransportNormalizer implements DenormalizerInterface, NormalizerInterf
     {
         $data = [];
         if ($object->isInitialized('moisDebut') && null !== $object->getMoisDebut()) {
-            $data['moisDebut'] = $object->getMoisDebut()->format('Y-m-d\\TH:i:sP');
+            $data['moisDebut'] = $object->getMoisDebut()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('pourcentageAbattement') && null !== $object->getPourcentageAbattement()) {
             $data['pourcentageAbattement'] = $object->getPourcentageAbattement();

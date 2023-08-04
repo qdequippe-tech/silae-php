@@ -56,7 +56,7 @@ class ModificationTaxeApprentissageEtablissementRequestNormalizer implements Den
             $object->setEtablissementDiffereSociete(null);
         }
         if (\array_key_exists('anneeMillesime', $data) && null !== $data['anneeMillesime']) {
-            $object->setAnneeMillesime(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['anneeMillesime']));
+            $object->setAnneeMillesime(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['anneeMillesime']));
         } elseif (\array_key_exists('anneeMillesime', $data) && null === $data['anneeMillesime']) {
             $object->setAnneeMillesime(null);
         }
@@ -101,7 +101,7 @@ class ModificationTaxeApprentissageEtablissementRequestNormalizer implements Den
         if ($object->isInitialized('etablissementDiffereSociete') && null !== $object->getEtablissementDiffereSociete()) {
             $data['etablissementDiffereSociete'] = $object->getEtablissementDiffereSociete();
         }
-        $data['anneeMillesime'] = $object->getAnneeMillesime()->format('Y-m-d\\TH:i:sP');
+        $data['anneeMillesime'] = $object->getAnneeMillesime()->format('Y-m-d\\TH:i:s');
         if ($object->isInitialized('soumisTaxeApprentissage') && null !== $object->getSoumisTaxeApprentissage()) {
             $data['soumisTaxeApprentissage'] = $object->getSoumisTaxeApprentissage();
         }

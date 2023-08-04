@@ -49,7 +49,7 @@ class SalariePrimeNormalizer implements DenormalizerInterface, NormalizerInterfa
             return $object;
         }
         if (\array_key_exists('periodePrime', $data) && null !== $data['periodePrime']) {
-            $object->setPeriodePrime(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periodePrime']));
+            $object->setPeriodePrime(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periodePrime']));
         } elseif (\array_key_exists('periodePrime', $data) && null === $data['periodePrime']) {
             $object->setPeriodePrime(null);
         }
@@ -96,7 +96,7 @@ class SalariePrimeNormalizer implements DenormalizerInterface, NormalizerInterfa
     {
         $data = [];
         if ($object->isInitialized('periodePrime') && null !== $object->getPeriodePrime()) {
-            $data['periodePrime'] = $object->getPeriodePrime()->format('Y-m-d\\TH:i:sP');
+            $data['periodePrime'] = $object->getPeriodePrime()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('codePrime') && null !== $object->getCodePrime()) {
             $data['codePrime'] = $object->getCodePrime();

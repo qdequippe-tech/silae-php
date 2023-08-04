@@ -76,12 +76,12 @@ class DeclarationEvenementielleNormalizer implements DenormalizerInterface, Norm
             $object->setNomSalarie(null);
         }
         if (\array_key_exists('dateDebut', $data) && null !== $data['dateDebut']) {
-            $object->setDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateDebut']));
+            $object->setDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateDebut']));
         } elseif (\array_key_exists('dateDebut', $data) && null === $data['dateDebut']) {
             $object->setDateDebut(null);
         }
         if (\array_key_exists('dateFin', $data) && null !== $data['dateFin']) {
-            $object->setDateFin(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateFin']));
+            $object->setDateFin(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateFin']));
         } elseif (\array_key_exists('dateFin', $data) && null === $data['dateFin']) {
             $object->setDateFin(null);
         }
@@ -126,10 +126,10 @@ class DeclarationEvenementielleNormalizer implements DenormalizerInterface, Norm
             $data['nomSalarie'] = $object->getNomSalarie();
         }
         if ($object->isInitialized('dateDebut') && null !== $object->getDateDebut()) {
-            $data['dateDebut'] = $object->getDateDebut()->format('Y-m-d\\TH:i:sP');
+            $data['dateDebut'] = $object->getDateDebut()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('dateFin') && null !== $object->getDateFin()) {
-            $data['dateFin'] = $object->getDateFin()->format('Y-m-d\\TH:i:sP');
+            $data['dateFin'] = $object->getDateFin()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('codeAbsence') && null !== $object->getCodeAbsence()) {
             $data['codeAbsence'] = $object->getCodeAbsence();

@@ -56,12 +56,12 @@ class SalarieDUENormalizer implements DenormalizerInterface, NormalizerInterface
             $object->setNomInterneEtablissement(null);
         }
         if (\array_key_exists('dateEmbauche', $data) && null !== $data['dateEmbauche']) {
-            $object->setDateEmbauche(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateEmbauche']));
+            $object->setDateEmbauche(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateEmbauche']));
         } elseif (\array_key_exists('dateEmbauche', $data) && null === $data['dateEmbauche']) {
             $object->setDateEmbauche(null);
         }
         if (\array_key_exists('dateFinContrat', $data) && null !== $data['dateFinContrat']) {
-            $object->setDateFinContrat(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['dateFinContrat']));
+            $object->setDateFinContrat(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateFinContrat']));
         } elseif (\array_key_exists('dateFinContrat', $data) && null === $data['dateFinContrat']) {
             $object->setDateFinContrat(null);
         }
@@ -89,10 +89,10 @@ class SalarieDUENormalizer implements DenormalizerInterface, NormalizerInterface
             $data['nomInterneEtablissement'] = $object->getNomInterneEtablissement();
         }
         if ($object->isInitialized('dateEmbauche') && null !== $object->getDateEmbauche()) {
-            $data['dateEmbauche'] = $object->getDateEmbauche()->format('Y-m-d\\TH:i:sP');
+            $data['dateEmbauche'] = $object->getDateEmbauche()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('dateFinContrat') && null !== $object->getDateFinContrat()) {
-            $data['dateFinContrat'] = $object->getDateFinContrat()->format('Y-m-d\\TH:i:sP');
+            $data['dateFinContrat'] = $object->getDateFinContrat()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('typeContrat') && null !== $object->getTypeContrat()) {
             $data['typeContrat'] = $object->getTypeContrat();

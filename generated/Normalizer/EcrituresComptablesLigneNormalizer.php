@@ -52,7 +52,7 @@ class EcrituresComptablesLigneNormalizer implements DenormalizerInterface, Norma
             return $object;
         }
         if (\array_key_exists('periode', $data) && null !== $data['periode']) {
-            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['periode']));
+            $object->setPeriode(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['periode']));
         } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
             $object->setPeriode(null);
         }
@@ -99,7 +99,7 @@ class EcrituresComptablesLigneNormalizer implements DenormalizerInterface, Norma
     {
         $data = [];
         if ($object->isInitialized('periode') && null !== $object->getPeriode()) {
-            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:sP');
+            $data['periode'] = $object->getPeriode()->format('Y-m-d\\TH:i:s');
         }
         if ($object->isInitialized('compte') && null !== $object->getCompte()) {
             $data['compte'] = $object->getCompte();
