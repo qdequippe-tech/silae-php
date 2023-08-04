@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursRequest;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursResponse;
-use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursBadRequestException;
-use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class AnalyseProductionPaieUtilisateurs extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

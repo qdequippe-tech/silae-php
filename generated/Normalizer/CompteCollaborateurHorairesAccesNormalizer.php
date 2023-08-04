@@ -2,8 +2,8 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
-use QdequippeTech\Silae\Api\Model\CompteCollaborateurHorairesAcces;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use QdequippeTech\Silae\Api\Model\CompteCollaborateurHorairesAcces;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;

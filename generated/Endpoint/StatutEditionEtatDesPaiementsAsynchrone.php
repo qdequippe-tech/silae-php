@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\StatutEditionEtatDesPaiementsAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionEtatDesPaiementsAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionEtatDesPaiementsAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\StatutAsynchroneDocumentResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\StatutAsynchroneDocumentResponse;
-use QdequippeTech\Silae\Api\Exception\StatutEditionEtatDesPaiementsAsynchroneBadRequestException;
-use QdequippeTech\Silae\Api\Exception\StatutEditionEtatDesPaiementsAsynchroneUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\StatutEditionEtatDesPaiementsAsynchroneInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class StatutEditionEtatDesPaiementsAsynchrone extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

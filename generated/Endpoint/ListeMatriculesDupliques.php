@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesRequest;
+use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesResponse;
-use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ListeMatriculesDupliques extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\CreationDossierPaieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\CreationDossierPaieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\CreationDossierPaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\CreationDossierPaieRequest;
+use QdequippeTech\Silae\Api\Model\CreationDossierPaieResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\CreationDossierPaieRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\CreationDossierPaieResponse;
-use QdequippeTech\Silae\Api\Exception\CreationDossierPaieBadRequestException;
-use QdequippeTech\Silae\Api\Exception\CreationDossierPaieUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\CreationDossierPaieInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class CreationDossierPaie extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

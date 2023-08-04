@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\AjoutSousCategorieAxeAnalytiqueBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AjoutSousCategorieAxeAnalytiqueInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AjoutSousCategorieAxeAnalytiqueUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\AjoutSousCategorieAxeAnalytiqueRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\AjoutSousCategorieAxeAnalytiqueRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\AjoutSousCategorieAxeAnalytiqueBadRequestException;
-use QdequippeTech\Silae\Api\Exception\AjoutSousCategorieAxeAnalytiqueUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\AjoutSousCategorieAxeAnalytiqueInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class AjoutSousCategorieAxeAnalytique extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

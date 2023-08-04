@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\LectureAxesAnalytiquesSalariesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureAxesAnalytiquesSalariesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureAxesAnalytiquesSalariesUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\LectureAxesAnalytiquesSalariesRequest;
+use QdequippeTech\Silae\Api\Model\LectureAxesAnalytiquesSalariesResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\LectureAxesAnalytiquesSalariesRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\LectureAxesAnalytiquesSalariesResponse;
-use QdequippeTech\Silae\Api\Exception\LectureAxesAnalytiquesSalariesBadRequestException;
-use QdequippeTech\Silae\Api\Exception\LectureAxesAnalytiquesSalariesUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\LectureAxesAnalytiquesSalariesInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class LectureAxesAnalytiquesSalaries extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

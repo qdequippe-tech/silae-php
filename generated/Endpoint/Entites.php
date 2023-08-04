@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\EntitesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EntitesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EntitesUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\Entity;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\Entity;
-use QdequippeTech\Silae\Api\Exception\EntitesBadRequestException;
-use QdequippeTech\Silae\Api\Exception\EntitesUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\EntitesInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class Entites extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

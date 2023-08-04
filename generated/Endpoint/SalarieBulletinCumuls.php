@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\SalarieBulletinCumulsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieBulletinCumulsInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieBulletinCumulsUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinCumulsRequest;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinCumulsResult;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\SalarieBulletinCumulsRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\SalarieBulletinCumulsResult;
-use QdequippeTech\Silae\Api\Exception\SalarieBulletinCumulsBadRequestException;
-use QdequippeTech\Silae\Api\Exception\SalarieBulletinCumulsUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\SalarieBulletinCumulsInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class SalarieBulletinCumuls extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

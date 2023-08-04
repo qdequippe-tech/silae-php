@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ListeModulesActifsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ListeModulesActifsInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ListeModulesActifsUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ListeModulesActifsResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\ListeModulesActifsResponse;
-use QdequippeTech\Silae\Api\Exception\ListeModulesActifsBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ListeModulesActifsUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ListeModulesActifsInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ListeModulesActifs extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

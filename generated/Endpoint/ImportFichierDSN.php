@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ImportFichierDSNBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ImportFichierDSNInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ImportFichierDSNUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ImportFichierDSNRequest;
+use QdequippeTech\Silae\Api\Model\RetourImportDSN;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ImportFichierDSNRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\RetourImportDSN;
-use QdequippeTech\Silae\Api\Exception\ImportFichierDSNBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ImportFichierDSNUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ImportFichierDSNInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ImportFichierDSN extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

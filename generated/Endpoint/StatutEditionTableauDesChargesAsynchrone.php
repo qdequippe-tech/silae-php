@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\StatutEditionTableauDesChargesAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionTableauDesChargesAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionTableauDesChargesAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\StatutAsynchroneDocumentResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\StatutAsynchroneDocumentResponse;
-use QdequippeTech\Silae\Api\Exception\StatutEditionTableauDesChargesAsynchroneBadRequestException;
-use QdequippeTech\Silae\Api\Exception\StatutEditionTableauDesChargesAsynchroneUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\StatutEditionTableauDesChargesAsynchroneInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class StatutEditionTableauDesChargesAsynchrone extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

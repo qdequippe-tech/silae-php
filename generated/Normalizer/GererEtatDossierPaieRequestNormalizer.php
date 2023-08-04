@@ -2,8 +2,8 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
-use QdequippeTech\Silae\Api\Model\GererEtatDossierPaieRequest;
 use Jane\Component\JsonSchemaRuntime\Reference;
+use QdequippeTech\Silae\Api\Model\GererEtatDossierPaieRequest;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;

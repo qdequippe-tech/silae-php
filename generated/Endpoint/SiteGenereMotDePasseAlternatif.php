@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\SiteGenereMotDePasseAlternatifBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SiteGenereMotDePasseAlternatifInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SiteGenereMotDePasseAlternatifUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\SiteGenereMotDePasseAlternatifRequest;
+use QdequippeTech\Silae\Api\Model\SiteGenereMotDePasseAlternatifResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\SiteGenereMotDePasseAlternatifRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\SiteGenereMotDePasseAlternatifResponse;
-use QdequippeTech\Silae\Api\Exception\SiteGenereMotDePasseAlternatifBadRequestException;
-use QdequippeTech\Silae\Api\Exception\SiteGenereMotDePasseAlternatifUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\SiteGenereMotDePasseAlternatifInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class SiteGenereMotDePasseAlternatif extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

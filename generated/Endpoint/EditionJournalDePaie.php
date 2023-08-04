@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\EditionJournalDePaieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionJournalDePaieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EditionJournalDePaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
+use QdequippeTech\Silae\Api\Model\EditionJournalDePaieResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\EditionJournalDePaieResponse;
-use QdequippeTech\Silae\Api\Exception\EditionJournalDePaieBadRequestException;
-use QdequippeTech\Silae\Api\Exception\EditionJournalDePaieUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\EditionJournalDePaieInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class EditionJournalDePaie extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

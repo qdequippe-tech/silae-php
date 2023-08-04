@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\StatutSoldeReposAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutSoldeReposAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutSoldeReposAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\StatutSoldeReposResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\StatutSoldeReposResponse;
-use QdequippeTech\Silae\Api\Exception\StatutSoldeReposAsynchroneBadRequestException;
-use QdequippeTech\Silae\Api\Exception\StatutSoldeReposAsynchroneUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\StatutSoldeReposAsynchroneInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class StatutSoldeReposAsynchrone extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

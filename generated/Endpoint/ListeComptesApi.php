@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ListeComptesApiBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ListeComptesApiInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ListeComptesApiUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ListeComptesApiResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\ListeComptesApiResponse;
-use QdequippeTech\Silae\Api\Exception\ListeComptesApiBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ListeComptesApiUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ListeComptesApiInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ListeComptesApi extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

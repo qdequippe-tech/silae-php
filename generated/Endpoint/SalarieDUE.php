@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\SalarieDUEBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieDUEInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieDUEUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\SalarieDUERequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\SalarieDUERequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\SalarieDUEBadRequestException;
-use QdequippeTech\Silae\Api\Exception\SalarieDUEUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\SalarieDUEInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class SalarieDUE extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

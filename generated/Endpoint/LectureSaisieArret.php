@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\LectureSaisieArretBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureSaisieArretInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureSaisieArretUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\DossierMatriculeRequest;
+use QdequippeTech\Silae\Api\Model\LectureSaisieArretResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\DossierMatriculeRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\LectureSaisieArretResponse;
-use QdequippeTech\Silae\Api\Exception\LectureSaisieArretBadRequestException;
-use QdequippeTech\Silae\Api\Exception\LectureSaisieArretUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\LectureSaisieArretInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class LectureSaisieArret extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

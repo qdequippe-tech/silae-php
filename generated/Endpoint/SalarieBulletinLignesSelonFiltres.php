@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\SalarieBulletinLignesSelonFiltresBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieBulletinLignesSelonFiltresInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieBulletinLignesSelonFiltresUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinLignesResult;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinLignesSelonFiltresRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\SalarieBulletinLignesSelonFiltresRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\SalarieBulletinLignesResult;
-use QdequippeTech\Silae\Api\Exception\SalarieBulletinLignesSelonFiltresBadRequestException;
-use QdequippeTech\Silae\Api\Exception\SalarieBulletinLignesSelonFiltresUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\SalarieBulletinLignesSelonFiltresInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class SalarieBulletinLignesSelonFiltres extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

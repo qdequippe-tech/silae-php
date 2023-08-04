@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\CreationUtilisateurClientPaieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\CreationUtilisateurClientPaieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\CreationUtilisateurClientPaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\CreationUtilisateurClientPaieRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\CreationUtilisateurClientPaieRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\CreationUtilisateurClientPaieBadRequestException;
-use QdequippeTech\Silae\Api\Exception\CreationUtilisateurClientPaieUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\CreationUtilisateurClientPaieInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class CreationUtilisateurClientPaie extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

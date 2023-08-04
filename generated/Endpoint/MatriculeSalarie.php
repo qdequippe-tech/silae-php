@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\MatriculeSalarieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\MatriculeSalarieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\MatriculeSalarieUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\MatriculeSalarieRequest;
+use QdequippeTech\Silae\Api\Model\MatriculeSalarieResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\MatriculeSalarieRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\MatriculeSalarieResponse;
-use QdequippeTech\Silae\Api\Exception\MatriculeSalarieBadRequestException;
-use QdequippeTech\Silae\Api\Exception\MatriculeSalarieUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\MatriculeSalarieInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class MatriculeSalarie extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

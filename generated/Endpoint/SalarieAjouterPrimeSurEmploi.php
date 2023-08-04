@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\SalarieAjouterPrimeSurEmploiBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieAjouterPrimeSurEmploiInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieAjouterPrimeSurEmploiUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\SalarieAjouterPrimeSurEmploiRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\SalarieAjouterPrimeSurEmploiRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\SalarieAjouterPrimeSurEmploiBadRequestException;
-use QdequippeTech\Silae\Api\Exception\SalarieAjouterPrimeSurEmploiUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\SalarieAjouterPrimeSurEmploiInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class SalarieAjouterPrimeSurEmploi extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

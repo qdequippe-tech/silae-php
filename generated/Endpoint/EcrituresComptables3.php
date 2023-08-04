@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptables3BadRequestException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptables3InternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptables3UnauthorizedException;
+use QdequippeTech\Silae\Api\Model\EcrituresComptables;
+use QdequippeTech\Silae\Api\Model\EcrituresComptables3Request;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\EcrituresComptables3Request;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\EcrituresComptables;
-use QdequippeTech\Silae\Api\Exception\EcrituresComptables3BadRequestException;
-use QdequippeTech\Silae\Api\Exception\EcrituresComptables3UnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\EcrituresComptables3InternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class EcrituresComptables3 extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

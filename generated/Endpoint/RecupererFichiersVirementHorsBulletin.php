@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinBadRequestException;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementHorsBulletinRequest;
+use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementHorsBulletinRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementResponse;
-use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinBadRequestException;
-use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class RecupererFichiersVirementHorsBulletin extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

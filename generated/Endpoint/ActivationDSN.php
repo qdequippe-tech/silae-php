@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ActivationDSNBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ActivationDSNInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ActivationDSNUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ActivationDSNRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ActivationDSNRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\ActivationDSNBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ActivationDSNUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ActivationDSNInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ActivationDSN extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

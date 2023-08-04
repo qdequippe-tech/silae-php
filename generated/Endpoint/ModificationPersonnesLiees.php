@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ModificationPersonnesLieesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ModificationPersonnesLieesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ModificationPersonnesLieesUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ModificationPersonnesLieesRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ModificationPersonnesLieesRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\ModificationPersonnesLieesBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ModificationPersonnesLieesUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ModificationPersonnesLieesInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ModificationPersonnesLiees extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

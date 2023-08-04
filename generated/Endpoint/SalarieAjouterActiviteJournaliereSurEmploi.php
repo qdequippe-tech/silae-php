@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\SalarieAjouterActiviteJournaliereSurEmploiBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieAjouterActiviteJournaliereSurEmploiInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieAjouterActiviteJournaliereSurEmploiUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\SalarieAjouterActiviteJournaliereSurEmploiRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\SalarieAjouterActiviteJournaliereSurEmploiRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\SalarieAjouterActiviteJournaliereSurEmploiBadRequestException;
-use QdequippeTech\Silae\Api\Exception\SalarieAjouterActiviteJournaliereSurEmploiUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\SalarieAjouterActiviteJournaliereSurEmploiInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class SalarieAjouterActiviteJournaliereSurEmploi extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

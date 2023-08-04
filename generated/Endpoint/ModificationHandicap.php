@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ModificationHandicapBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ModificationHandicapInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ModificationHandicapUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ModificationHandicapRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ModificationHandicapRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\ModificationHandicapBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ModificationHandicapUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ModificationHandicapInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ModificationHandicap extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

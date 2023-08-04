@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
+use QdequippeTech\Silae\Api\Model\RecupererFichiersEcrituresComptablesResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\RecupererFichiersEcrituresComptablesResponse;
-use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesBadRequestException;
-use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class RecupererFichiersEcrituresComptables extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ListeDossiersAgenceBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ListeDossiersAgenceInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ListeDossiersAgenceUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ListeDossiersAgenceRequest;
+use QdequippeTech\Silae\Api\Model\ListeDossiersAgenceResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ListeDossiersAgenceRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\ListeDossiersAgenceResponse;
-use QdequippeTech\Silae\Api\Exception\ListeDossiersAgenceBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ListeDossiersAgenceUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ListeDossiersAgenceInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ListeDossiersAgence extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\LecturePersonnesLieesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LecturePersonnesLieesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LecturePersonnesLieesUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\DossierMatriculeRequest;
+use QdequippeTech\Silae\Api\Model\LecturePersonnesLieesResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\DossierMatriculeRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\LecturePersonnesLieesResponse;
-use QdequippeTech\Silae\Api\Exception\LecturePersonnesLieesBadRequestException;
-use QdequippeTech\Silae\Api\Exception\LecturePersonnesLieesUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\LecturePersonnesLieesInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class LecturePersonnesLiees extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

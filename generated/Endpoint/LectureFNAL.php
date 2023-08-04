@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\LectureFNALBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureFNALInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureFNALUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\DossierRequest;
+use QdequippeTech\Silae\Api\Model\FNAL;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\DossierRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\FNAL;
-use QdequippeTech\Silae\Api\Exception\LectureFNALBadRequestException;
-use QdequippeTech\Silae\Api\Exception\LectureFNALUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\LectureFNALInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class LectureFNAL extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

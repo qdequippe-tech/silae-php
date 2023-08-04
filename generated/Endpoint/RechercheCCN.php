@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\RechercheCCNBadRequestException;
+use QdequippeTech\Silae\Api\Exception\RechercheCCNInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\RechercheCCNUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\RechercheCCNRequest;
+use QdequippeTech\Silae\Api\Model\RechercheCCNResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\RechercheCCNRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\RechercheCCNResponse;
-use QdequippeTech\Silae\Api\Exception\RechercheCCNBadRequestException;
-use QdequippeTech\Silae\Api\Exception\RechercheCCNUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\RechercheCCNInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class RechercheCCN extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

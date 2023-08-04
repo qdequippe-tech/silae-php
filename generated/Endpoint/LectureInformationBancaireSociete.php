@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\LectureInformationBancaireSocieteBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureInformationBancaireSocieteInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureInformationBancaireSocieteUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\DossierRequest;
+use QdequippeTech\Silae\Api\Model\LectureInformationBancaireSocieteResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\DossierRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\LectureInformationBancaireSocieteResponse;
-use QdequippeTech\Silae\Api\Exception\LectureInformationBancaireSocieteBadRequestException;
-use QdequippeTech\Silae\Api\Exception\LectureInformationBancaireSocieteUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\LectureInformationBancaireSocieteInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class LectureInformationBancaireSociete extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

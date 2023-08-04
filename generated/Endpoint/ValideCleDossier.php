@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ValideCleDossierBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ValideCleDossierInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ValideCleDossierUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ValideCleDossierRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ValideCleDossierRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\ValideCleDossierBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ValideCleDossierUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ValideCleDossierInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ValideCleDossier extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

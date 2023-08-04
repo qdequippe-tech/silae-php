@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\EditionHistoriqueBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionHistoriqueInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EditionHistoriqueUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\EditionHistoriqueRequest;
+use QdequippeTech\Silae\Api\Model\EditionHistoriqueResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\EditionHistoriqueRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\EditionHistoriqueResponse;
-use QdequippeTech\Silae\Api\Exception\EditionHistoriqueBadRequestException;
-use QdequippeTech\Silae\Api\Exception\EditionHistoriqueUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\EditionHistoriqueInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class EditionHistorique extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

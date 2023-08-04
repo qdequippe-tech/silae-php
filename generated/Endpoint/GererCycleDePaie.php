@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\GererCycleDePaieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\GererCycleDePaieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\GererCycleDePaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\GererCycleDePaieRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\GererCycleDePaieRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\GererCycleDePaieBadRequestException;
-use QdequippeTech\Silae\Api\Exception\GererCycleDePaieUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\GererCycleDePaieInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class GererCycleDePaie extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageSocieteBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageSocieteInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageSocieteUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteRequest;
+use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteResponse;
-use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageSocieteBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageSocieteUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageSocieteInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ModificationTaxeApprentissageSociete extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

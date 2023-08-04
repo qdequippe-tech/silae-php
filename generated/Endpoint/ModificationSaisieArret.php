@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ModificationSaisieArretBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ModificationSaisieArretInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ModificationSaisieArretUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ModificationSaisieArretRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ModificationSaisieArretRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\ModificationSaisieArretBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ModificationSaisieArretUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ModificationSaisieArretInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ModificationSaisieArret extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

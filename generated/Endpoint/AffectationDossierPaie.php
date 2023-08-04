@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\AffectationDossierPaieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AffectationDossierPaieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AffectationDossierPaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\AffectationDossierPaieRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\AffectationDossierPaieRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\AffectationDossierPaieBadRequestException;
-use QdequippeTech\Silae\Api\Exception\AffectationDossierPaieUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\AffectationDossierPaieInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class AffectationDossierPaie extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

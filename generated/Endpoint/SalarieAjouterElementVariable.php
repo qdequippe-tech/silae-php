@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\SalarieAjouterElementVariableBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieAjouterElementVariableInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieAjouterElementVariableUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\SalarieAjouterElementVariableRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\SalarieAjouterElementVariableRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\SalarieAjouterElementVariableBadRequestException;
-use QdequippeTech\Silae\Api\Exception\SalarieAjouterElementVariableUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\SalarieAjouterElementVariableInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class SalarieAjouterElementVariable extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsRequest;
+use QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsResponse;
-use QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsBadRequestException;
-use QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class SpectacleSalarieReinitialiserAffectations extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

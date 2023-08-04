@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\EditionEtatDesPaiementsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionEtatDesPaiementsInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EditionEtatDesPaiementsUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
+use QdequippeTech\Silae\Api\Model\EditionEtatDesPaiementsResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\EditionEtatDesPaiementsResponse;
-use QdequippeTech\Silae\Api\Exception\EditionEtatDesPaiementsBadRequestException;
-use QdequippeTech\Silae\Api\Exception\EditionEtatDesPaiementsUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\EditionEtatDesPaiementsInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class EditionEtatDesPaiements extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

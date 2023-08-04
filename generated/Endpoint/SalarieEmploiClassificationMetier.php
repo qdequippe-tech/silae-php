@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\SalarieEmploiClassificationMetierBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieEmploiClassificationMetierInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieEmploiClassificationMetierUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\EmploiClassificationMetier;
+use QdequippeTech\Silae\Api\Model\SalarieEmploiClassificationMetierRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\SalarieEmploiClassificationMetierRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\EmploiClassificationMetier;
-use QdequippeTech\Silae\Api\Exception\SalarieEmploiClassificationMetierBadRequestException;
-use QdequippeTech\Silae\Api\Exception\SalarieEmploiClassificationMetierUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\SalarieEmploiClassificationMetierInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class SalarieEmploiClassificationMetier extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

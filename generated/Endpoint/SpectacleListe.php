@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\SpectacleListeBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SpectacleListeInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SpectacleListeUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\SpectacleListeRequest;
+use QdequippeTech\Silae\Api\Model\SpectacleListeResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\SpectacleListeRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\SpectacleListeResponse;
-use QdequippeTech\Silae\Api\Exception\SpectacleListeBadRequestException;
-use QdequippeTech\Silae\Api\Exception\SpectacleListeUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\SpectacleListeInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class SpectacleListe extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

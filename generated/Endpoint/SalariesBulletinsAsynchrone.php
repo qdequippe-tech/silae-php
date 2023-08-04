@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\SalariesBulletinsAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalariesBulletinsAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalariesBulletinsAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\SalariesBulletinsRequest;
+use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\SalariesBulletinsRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
-use QdequippeTech\Silae\Api\Exception\SalariesBulletinsAsynchroneBadRequestException;
-use QdequippeTech\Silae\Api\Exception\SalariesBulletinsAsynchroneUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\SalariesBulletinsAsynchroneInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class SalariesBulletinsAsynchrone extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\SalarieDUEAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieDUEAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieDUEAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\SalarieDUERequest;
+use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\SalarieDUERequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
-use QdequippeTech\Silae\Api\Exception\SalarieDUEAsynchroneBadRequestException;
-use QdequippeTech\Silae\Api\Exception\SalarieDUEAsynchroneUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\SalarieDUEAsynchroneInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class SalarieDUEAsynchrone extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\SalarieModifierAbsenceRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\SalarieModifierAbsenceRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceBadRequestException;
-use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class SalarieModifierAbsence extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

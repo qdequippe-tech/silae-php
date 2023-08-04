@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementBadRequestException;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementRequest;
+use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementResponse;
-use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementBadRequestException;
-use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class RecupererFichiersVirement extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

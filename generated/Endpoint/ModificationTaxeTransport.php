@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ModificationTaxeTransportBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ModificationTaxeTransportInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ModificationTaxeTransportUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ModificationTaxeTransportRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ModificationTaxeTransportRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\ModificationTaxeTransportBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ModificationTaxeTransportUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ModificationTaxeTransportInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ModificationTaxeTransport extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\DossierPeriodeRequest;
+use QdequippeTech\Silae\Api\Model\RecupererDeclarationsResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\DossierPeriodeRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\RecupererDeclarationsResponse;
-use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsBadRequestException;
-use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class RecupererDeclarations extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAjouterAffectationsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAjouterAffectationsInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAjouterAffectationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\SpectacleSalarieAjouterAffectationsRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\SpectacleSalarieAjouterAffectationsRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAjouterAffectationsBadRequestException;
-use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAjouterAffectationsUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAjouterAffectationsInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class SpectacleSalarieAjouterAffectations extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

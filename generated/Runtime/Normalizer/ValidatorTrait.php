@@ -2,8 +2,8 @@
 
 namespace QdequippeTech\Silae\Api\Runtime\Normalizer;
 
-use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Validation;
 
 trait ValidatorTrait
 {

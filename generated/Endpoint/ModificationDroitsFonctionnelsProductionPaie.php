@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ModificationDroitsFonctionnelsProductionPaieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ModificationDroitsFonctionnelsProductionPaieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ModificationDroitsFonctionnelsProductionPaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ModificationDroitsFonctionnelsProductionPaieRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ModificationDroitsFonctionnelsProductionPaieRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\ModificationDroitsFonctionnelsProductionPaieBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ModificationDroitsFonctionnelsProductionPaieUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ModificationDroitsFonctionnelsProductionPaieInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ModificationDroitsFonctionnelsProductionPaie extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

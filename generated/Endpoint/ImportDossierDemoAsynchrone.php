@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ImportDossierDemoAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ImportDossierDemoAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ImportDossierDemoAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ImportDossierDemoRequest;
+use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ImportDossierDemoRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
-use QdequippeTech\Silae\Api\Exception\ImportDossierDemoAsynchroneBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ImportDossierDemoAsynchroneUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ImportDossierDemoAsynchroneInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ImportDossierDemoAsynchrone extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

@@ -2,8 +2,9 @@
 
 namespace QdequippeTech\Silae\Api\Exception;
 
-use QdequippeTech\Silae\Api\Model\ApiErrors;
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
+
 class EditionTableauDesChargesInternalServerErrorException extends InternalServerErrorException
 {
     /**

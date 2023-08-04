@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\DossierRequest;
+use QdequippeTech\Silae\Api\Model\ListeUtilisateursDossierPaieResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\DossierRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\ListeUtilisateursDossierPaieResponse;
-use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ListeUtilisateursDossierPaie extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

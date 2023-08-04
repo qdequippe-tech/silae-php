@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ModificationInformationBancaireSocieteBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ModificationInformationBancaireSocieteInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ModificationInformationBancaireSocieteUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ModificationInformationBancaireSocieteRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ModificationInformationBancaireSocieteRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\ModificationInformationBancaireSocieteBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ModificationInformationBancaireSocieteUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ModificationInformationBancaireSocieteInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ModificationInformationBancaireSociete extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

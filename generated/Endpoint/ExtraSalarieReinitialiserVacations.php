@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ExtraSalarieReinitialiserVacationsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ExtraSalarieReinitialiserVacationsInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ExtraSalarieReinitialiserVacationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ExtraSalarieReinitialiserVacationsRequest;
+use QdequippeTech\Silae\Api\Model\ExtraSalarieReinitialiserVacationsResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ExtraSalarieReinitialiserVacationsRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\ExtraSalarieReinitialiserVacationsResponse;
-use QdequippeTech\Silae\Api\Exception\ExtraSalarieReinitialiserVacationsBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ExtraSalarieReinitialiserVacationsUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ExtraSalarieReinitialiserVacationsInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ExtraSalarieReinitialiserVacations extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

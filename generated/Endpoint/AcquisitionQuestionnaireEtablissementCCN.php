@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireEtablissementCCNBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireEtablissementCCNInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireEtablissementCCNUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest;
+use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNResponse;
-use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireEtablissementCCNBadRequestException;
-use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireEtablissementCCNUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireEtablissementCCNInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class AcquisitionQuestionnaireEtablissementCCN extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

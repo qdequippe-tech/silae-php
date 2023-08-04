@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteRequest;
+use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteResponse;
-use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteBadRequestException;
-use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class LectureTaxeApprentissageSociete extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireContratComplementaireSalarieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireContratComplementaireSalarieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireContratComplementaireSalarieUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ModificationQuestionnaireContratComplementaireRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ModificationQuestionnaireContratComplementaireRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireContratComplementaireSalarieBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireContratComplementaireSalarieUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireContratComplementaireSalarieInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ModificationQuestionnaireContratComplementaireSalarie extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

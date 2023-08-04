@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\ModificationGrilleHoraireSalarieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ModificationGrilleHoraireSalarieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ModificationGrilleHoraireSalarieUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ModificationGrilleHoraireSalarieRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\ModificationGrilleHoraireSalarieRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\ModificationGrilleHoraireSalarieBadRequestException;
-use QdequippeTech\Silae\Api\Exception\ModificationGrilleHoraireSalarieUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\ModificationGrilleHoraireSalarieInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class ModificationGrilleHoraireSalarie extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

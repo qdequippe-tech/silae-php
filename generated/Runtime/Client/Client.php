@@ -77,7 +77,7 @@ abstract class Client
         foreach ($endpoint->getHeaders($bodyHeaders) as $name => $value) {
             $request = $request->withHeader($name, $value);
         }
-        if ($endpoint->getAuthenticationScopes() !== []) {
+        if ([] !== $endpoint->getAuthenticationScopes()) {
             $scopes = $endpoint->getAuthenticationScopes();
             $request = $request->withHeader(AuthenticationRegistry::SCOPES_HEADER, $scopes);
         }

@@ -2,16 +2,17 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\InitialisationAncienNumeroContratDSNBadRequestException;
+use QdequippeTech\Silae\Api\Exception\InitialisationAncienNumeroContratDSNInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\InitialisationAncienNumeroContratDSNUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\InitialisationAncienNumeroContratDSNRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\InitialisationAncienNumeroContratDSNRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Exception\InitialisationAncienNumeroContratDSNBadRequestException;
-use QdequippeTech\Silae\Api\Exception\InitialisationAncienNumeroContratDSNUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\InitialisationAncienNumeroContratDSNInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class InitialisationAncienNumeroContratDSN extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

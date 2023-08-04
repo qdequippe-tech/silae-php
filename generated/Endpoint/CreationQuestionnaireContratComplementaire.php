@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\CreationQuestionnaireContratComplementaireBadRequestException;
+use QdequippeTech\Silae\Api\Exception\CreationQuestionnaireContratComplementaireInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\CreationQuestionnaireContratComplementaireUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\CreationQuestionnaireContratComplementaireRequest;
+use QdequippeTech\Silae\Api\Model\QuestionnaireContratComplementaire;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\CreationQuestionnaireContratComplementaireRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\QuestionnaireContratComplementaire;
-use QdequippeTech\Silae\Api\Exception\CreationQuestionnaireContratComplementaireBadRequestException;
-use QdequippeTech\Silae\Api\Exception\CreationQuestionnaireContratComplementaireUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\CreationQuestionnaireContratComplementaireInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class CreationQuestionnaireContratComplementaire extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

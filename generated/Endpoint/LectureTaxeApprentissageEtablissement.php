@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageEtablissementBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageEtablissementInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageEtablissementUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageEtablissementRequest;
+use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageEtablissementResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageEtablissementRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageEtablissementResponse;
-use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageEtablissementBadRequestException;
-use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageEtablissementUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageEtablissementInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class LectureTaxeApprentissageEtablissement extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

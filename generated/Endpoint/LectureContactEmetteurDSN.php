@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNRequest;
+use QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNResponse;
-use QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNBadRequestException;
-use QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class LectureContactEmetteurDSN extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

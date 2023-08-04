@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\LectureTaxeTransportBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureTaxeTransportInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureTaxeTransportUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\LectureTaxeTransportRequest;
+use QdequippeTech\Silae\Api\Model\LectureTaxeTransportResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\LectureTaxeTransportRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\LectureTaxeTransportResponse;
-use QdequippeTech\Silae\Api\Exception\LectureTaxeTransportBadRequestException;
-use QdequippeTech\Silae\Api\Exception\LectureTaxeTransportUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\LectureTaxeTransportInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class LectureTaxeTransport extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;

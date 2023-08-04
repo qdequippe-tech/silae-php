@@ -2,17 +2,18 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\RechercheCCNParCodeBadRequestException;
+use QdequippeTech\Silae\Api\Exception\RechercheCCNParCodeInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\RechercheCCNParCodeUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\CCN;
+use QdequippeTech\Silae\Api\Model\RechercheCCNParCodeRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
-use QdequippeTech\Silae\Api\Model\RechercheCCNParCodeRequest;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use QdequippeTech\Silae\Api\Model\CCN;
-use QdequippeTech\Silae\Api\Exception\RechercheCCNParCodeBadRequestException;
-use QdequippeTech\Silae\Api\Exception\RechercheCCNParCodeUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\RechercheCCNParCodeInternalServerErrorException;
-use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 class RechercheCCNParCode extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;
