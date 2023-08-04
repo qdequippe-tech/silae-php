@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\QCCN;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class QCCNNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\QCCN();
+        $object = new QCCN();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -114,5 +115,10 @@ class QCCNNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\QCCN' => false];
     }
 }

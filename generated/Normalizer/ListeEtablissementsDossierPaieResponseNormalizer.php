@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\ListeEtablissementsDossierPaieResponse;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class ListeEtablissementsDossierPaieResponseNormalizer implements DenormalizerIn
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\ListeEtablissementsDossierPaieResponse();
+        $object = new ListeEtablissementsDossierPaieResponse();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -74,5 +75,10 @@ class ListeEtablissementsDossierPaieResponseNormalizer implements DenormalizerIn
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\ListeEtablissementsDossierPaieResponse' => false];
     }
 }

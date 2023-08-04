@@ -2,17 +2,29 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class LectureEffectifEtablissement extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\LectureEffectifEtablissementRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\LectureEffectifEtablissementResponse;
+use QdequippeTech\Silae\Api\Exception\LectureEffectifEtablissementBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureEffectifEtablissementUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\LectureEffectifEtablissementInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class LectureEffectifEtablissement extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\LectureEffectifEtablissementRequest $request, array $headerParameters = [])
+    public function __construct(LectureEffectifEtablissementRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +40,7 @@ class LectureEffectifEtablissement extends \QdequippeTech\Silae\Api\Runtime\Clie
         return '/v1/FicheSociete/LectureEffectifEtablissement';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,25 +50,26 @@ class LectureEffectifEtablissement extends \QdequippeTech\Silae\Api\Runtime\Clie
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\LectureEffectifEtablissementResponse|null
+     * @return LectureEffectifEtablissementResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\LectureEffectifEtablissementBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\LectureEffectifEtablissementUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\LectureEffectifEtablissementInternalServerErrorException
+     * @throws LectureEffectifEtablissementBadRequestException
+     * @throws LectureEffectifEtablissementUnauthorizedException
+     * @throws LectureEffectifEtablissementInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +77,13 @@ class LectureEffectifEtablissement extends \QdequippeTech\Silae\Api\Runtime\Clie
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\LectureEffectifEtablissementResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\LectureEffectifEtablissementBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureEffectifEtablissementBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\LectureEffectifEtablissementUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureEffectifEtablissementUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\LectureEffectifEtablissementInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureEffectifEtablissementInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\DossierTache;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class DossierTacheNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\DossierTache();
+        $object = new DossierTache();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -199,6 +200,16 @@ class DossierTacheNormalizer implements DenormalizerInterface, NormalizerInterfa
         } elseif (\array_key_exists('supprimerTache', $data) && null === $data['supprimerTache']) {
             $object->setSupprimerTache(null);
         }
+        if (\array_key_exists('nomServeur', $data) && null !== $data['nomServeur']) {
+            $object->setNomServeur($data['nomServeur']);
+        } elseif (\array_key_exists('nomServeur', $data) && null === $data['nomServeur']) {
+            $object->setNomServeur(null);
+        }
+        if (\array_key_exists('nomRepertoire', $data) && null !== $data['nomRepertoire']) {
+            $object->setNomRepertoire($data['nomRepertoire']);
+        } elseif (\array_key_exists('nomRepertoire', $data) && null === $data['nomRepertoire']) {
+            $object->setNomRepertoire(null);
+        }
 
         return $object;
     }
@@ -304,7 +315,18 @@ class DossierTacheNormalizer implements DenormalizerInterface, NormalizerInterfa
         if ($object->isInitialized('supprimerTache') && null !== $object->getSupprimerTache()) {
             $data['supprimerTache'] = $object->getSupprimerTache();
         }
+        if ($object->isInitialized('nomServeur') && null !== $object->getNomServeur()) {
+            $data['nomServeur'] = $object->getNomServeur();
+        }
+        if ($object->isInitialized('nomRepertoire') && null !== $object->getNomRepertoire()) {
+            $data['nomRepertoire'] = $object->getNomRepertoire();
+        }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\DossierTache' => false];
     }
 }

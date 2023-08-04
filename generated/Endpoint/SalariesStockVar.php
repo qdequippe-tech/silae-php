@@ -2,17 +2,29 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class SalariesStockVar extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\SalariesStockVarRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\SalariesStockVarResponse;
+use QdequippeTech\Silae\Api\Exception\SalariesStockVarBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalariesStockVarUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\SalariesStockVarInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class SalariesStockVar extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\SalariesStockVarRequest $request, array $headerParameters = [])
+    public function __construct(SalariesStockVarRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +40,7 @@ class SalariesStockVar extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpo
         return '/v1/InfosBulletins/SalariesStockVar';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,25 +50,26 @@ class SalariesStockVar extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpo
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\SalariesStockVarResponse|null
+     * @return SalariesStockVarResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\SalariesStockVarBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\SalariesStockVarUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\SalariesStockVarInternalServerErrorException
+     * @throws SalariesStockVarBadRequestException
+     * @throws SalariesStockVarUnauthorizedException
+     * @throws SalariesStockVarInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +77,13 @@ class SalariesStockVar extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpo
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\SalariesStockVarResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SalariesStockVarBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalariesStockVarBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SalariesStockVarUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalariesStockVarUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SalariesStockVarInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalariesStockVarInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

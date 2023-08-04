@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\SousCategoriesEnPC;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class SousCategoriesEnPCNormalizer implements DenormalizerInterface, NormalizerI
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\SousCategoriesEnPC();
+        $object = new SousCategoriesEnPC();
         if (\array_key_exists('pc', $data) && \is_int($data['pc'])) {
             $data['pc'] = (float) $data['pc'];
         }
@@ -77,5 +78,10 @@ class SousCategoriesEnPCNormalizer implements DenormalizerInterface, NormalizerI
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\SousCategoriesEnPC' => false];
     }
 }

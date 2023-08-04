@@ -2,14 +2,25 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class ListeModulesActifs extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\ListeModulesActifsResponse;
+use QdequippeTech\Silae\Api\Exception\ListeModulesActifsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ListeModulesActifsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\ListeModulesActifsInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class ListeModulesActifs extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
     public function __construct(array $headerParameters = [])
@@ -27,7 +38,7 @@ class ListeModulesActifs extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEnd
         return '/v1/AnalyseProduction/ListeModulesActifs';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
@@ -37,25 +48,26 @@ class ListeModulesActifs extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEnd
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\ListeModulesActifsResponse|null
+     * @return ListeModulesActifsResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\ListeModulesActifsBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\ListeModulesActifsUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\ListeModulesActifsInternalServerErrorException
+     * @throws ListeModulesActifsBadRequestException
+     * @throws ListeModulesActifsUnauthorizedException
+     * @throws ListeModulesActifsInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -63,13 +75,13 @@ class ListeModulesActifs extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEnd
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ListeModulesActifsResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\ListeModulesActifsBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ListeModulesActifsBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\ListeModulesActifsUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ListeModulesActifsUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\ListeModulesActifsInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ListeModulesActifsInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

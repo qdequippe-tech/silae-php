@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\GenerationFichierTRRequest;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class GenerationFichierTRRequestNormalizer implements DenormalizerInterface, Nor
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\GenerationFichierTRRequest();
+        $object = new GenerationFichierTRRequest();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -80,5 +81,10 @@ class GenerationFichierTRRequestNormalizer implements DenormalizerInterface, Nor
         $data['numeroDossier'] = $object->getNumeroDossier();
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\GenerationFichierTRRequest' => false];
     }
 }

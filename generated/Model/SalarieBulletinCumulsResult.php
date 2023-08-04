@@ -41,6 +41,10 @@ class SalarieBulletinCumulsResult
      * @var float|null
      */
     protected $netAPayer;
+    /**
+     * @var float|null
+     */
+    protected $impotSurLeRevenuPreleveALaSource;
 
     public function getSalaireDeBase(): ?float
     {
@@ -129,6 +133,19 @@ class SalarieBulletinCumulsResult
     {
         $this->initialized['netAPayer'] = true;
         $this->netAPayer = $netAPayer;
+
+        return $this;
+    }
+
+    public function getImpotSurLeRevenuPreleveALaSource(): ?float
+    {
+        return $this->impotSurLeRevenuPreleveALaSource;
+    }
+
+    public function setImpotSurLeRevenuPreleveALaSource(?float $impotSurLeRevenuPreleveALaSource): self
+    {
+        $this->initialized['impotSurLeRevenuPreleveALaSource'] = true;
+        $this->impotSurLeRevenuPreleveALaSource = $impotSurLeRevenuPreleveALaSource;
 
         return $this;
     }

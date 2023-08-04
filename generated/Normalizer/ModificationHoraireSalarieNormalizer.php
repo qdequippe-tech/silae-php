@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\ModificationHoraireSalarie;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class ModificationHoraireSalarieNormalizer implements DenormalizerInterface, Nor
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\ModificationHoraireSalarie();
+        $object = new ModificationHoraireSalarie();
         if (\array_key_exists('totalMensuelHeuresNormales', $data) && \is_int($data['totalMensuelHeuresNormales'])) {
             $data['totalMensuelHeuresNormales'] = (float) $data['totalMensuelHeuresNormales'];
         }
@@ -413,5 +414,10 @@ class ModificationHoraireSalarieNormalizer implements DenormalizerInterface, Nor
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\ModificationHoraireSalarie' => false];
     }
 }

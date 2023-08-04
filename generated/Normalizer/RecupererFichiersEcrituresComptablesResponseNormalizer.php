@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\RecupererFichiersEcrituresComptablesResponse;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class RecupererFichiersEcrituresComptablesResponseNormalizer implements Denormal
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\RecupererFichiersEcrituresComptablesResponse();
+        $object = new RecupererFichiersEcrituresComptablesResponse();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -74,5 +75,10 @@ class RecupererFichiersEcrituresComptablesResponseNormalizer implements Denormal
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\RecupererFichiersEcrituresComptablesResponse' => false];
     }
 }

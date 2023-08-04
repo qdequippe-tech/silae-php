@@ -2,9 +2,19 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class StatutSalarieDUEAsynchrone extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\StatutSalariesDUEAsynchroneResponse;
+use QdequippeTech\Silae\Api\Exception\StatutSalarieDUEAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutSalarieDUEAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutSalarieDUEAsynchroneInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class StatutSalarieDUEAsynchrone extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $queryParameters {
@@ -15,6 +25,7 @@ class StatutSalarieDUEAsynchrone extends \QdequippeTech\Silae\Api\Runtime\Client
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
     public function __construct(array $queryParameters = [], array $headerParameters = [])
@@ -33,7 +44,7 @@ class StatutSalarieDUEAsynchrone extends \QdequippeTech\Silae\Api\Runtime\Client
         return '/v1/GenerationEnvoiDUE/StatutSalarieDUEAsynchrone';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
@@ -43,7 +54,7 @@ class StatutSalarieDUEAsynchrone extends \QdequippeTech\Silae\Api\Runtime\Client
         return ['Accept' => ['application/json']];
     }
 
-    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['guidTache']);
@@ -54,25 +65,26 @@ class StatutSalarieDUEAsynchrone extends \QdequippeTech\Silae\Api\Runtime\Client
         return $optionsResolver;
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\StatutSalariesDUEAsynchroneResponse|null
+     * @return StatutSalariesDUEAsynchroneResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\StatutSalarieDUEAsynchroneBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\StatutSalarieDUEAsynchroneUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\StatutSalarieDUEAsynchroneInternalServerErrorException
+     * @throws StatutSalarieDUEAsynchroneBadRequestException
+     * @throws StatutSalarieDUEAsynchroneUnauthorizedException
+     * @throws StatutSalarieDUEAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -83,13 +95,13 @@ class StatutSalarieDUEAsynchrone extends \QdequippeTech\Silae\Api\Runtime\Client
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\StatutSalariesDUEAsynchroneResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\StatutSalarieDUEAsynchroneBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutSalarieDUEAsynchroneBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\StatutSalarieDUEAsynchroneUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutSalarieDUEAsynchroneUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\StatutSalarieDUEAsynchroneInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutSalarieDUEAsynchroneInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

@@ -2,17 +2,28 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class SalarieModifierAbsence extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\SalarieModifierAbsenceRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class SalarieModifierAbsence extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\SalarieModifierAbsenceRequest $request, array $headerParameters = [])
+    public function __construct(SalarieModifierAbsenceRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +39,7 @@ class SalarieModifierAbsence extends \QdequippeTech\Silae\Api\Runtime\Client\Bas
         return '/v1/Absences/SalarieModifierAbsence';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,23 +49,24 @@ class SalarieModifierAbsence extends \QdequippeTech\Silae\Api\Runtime\Client\Bas
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @throws \QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceInternalServerErrorException
+     * @throws SalarieModifierAbsenceBadRequestException
+     * @throws SalarieModifierAbsenceUnauthorizedException
+     * @throws SalarieModifierAbsenceInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -62,13 +74,13 @@ class SalarieModifierAbsence extends \QdequippeTech\Silae\Api\Runtime\Client\Bas
             return null;
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalarieModifierAbsenceBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalarieModifierAbsenceUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalarieModifierAbsenceInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

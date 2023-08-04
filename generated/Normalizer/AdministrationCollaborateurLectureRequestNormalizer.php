@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\AdministrationCollaborateurLectureRequest;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class AdministrationCollaborateurLectureRequestNormalizer implements Denormalize
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\AdministrationCollaborateurLectureRequest();
+        $object = new AdministrationCollaborateurLectureRequest();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -66,5 +67,10 @@ class AdministrationCollaborateurLectureRequestNormalizer implements Denormalize
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\AdministrationCollaborateurLectureRequest' => false];
     }
 }

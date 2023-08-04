@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\SalarieAbsence;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class SalarieAbsenceNormalizer implements DenormalizerInterface, NormalizerInter
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\SalarieAbsence();
+        $object = new SalarieAbsence();
         if (\array_key_exists('dureeEnHeuresSiJourUnique', $data) && \is_int($data['dureeEnHeuresSiJourUnique'])) {
             $data['dureeEnHeuresSiJourUnique'] = (float) $data['dureeEnHeuresSiJourUnique'];
         }
@@ -215,5 +216,10 @@ class SalarieAbsenceNormalizer implements DenormalizerInterface, NormalizerInter
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\SalarieAbsence' => false];
     }
 }

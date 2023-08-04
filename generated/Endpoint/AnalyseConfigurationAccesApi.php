@@ -2,17 +2,29 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class AnalyseConfigurationAccesApi extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiResponse;
+use QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class AnalyseConfigurationAccesApi extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiRequest $request, array $headerParameters = [])
+    public function __construct(AnalyseConfigurationAccesApiRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -25,10 +37,10 @@ class AnalyseConfigurationAccesApi extends \QdequippeTech\Silae\Api\Runtime\Clie
 
     public function getUri(): string
     {
-        return '/v1/AnalyseProduction/AnalyseConfigurationAccesApi';
+        return '/v1/AdministrationAPI/AnalyseConfigurationAccesApi';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,25 +50,26 @@ class AnalyseConfigurationAccesApi extends \QdequippeTech\Silae\Api\Runtime\Clie
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiResponse|null
+     * @return AnalyseConfigurationAccesApiResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiInternalServerErrorException
+     * @throws AnalyseConfigurationAccesApiBadRequestException
+     * @throws AnalyseConfigurationAccesApiUnauthorizedException
+     * @throws AnalyseConfigurationAccesApiInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +77,13 @@ class AnalyseConfigurationAccesApi extends \QdequippeTech\Silae\Api\Runtime\Clie
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\AnalyseConfigurationAccesApiResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AnalyseConfigurationAccesApiBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AnalyseConfigurationAccesApiUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AnalyseConfigurationAccesApiInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

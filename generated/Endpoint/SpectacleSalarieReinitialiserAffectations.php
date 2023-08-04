@@ -2,17 +2,29 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class SpectacleSalarieReinitialiserAffectations extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsResponse;
+use QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class SpectacleSalarieReinitialiserAffectations extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsRequest $request, array $headerParameters = [])
+    public function __construct(SpectacleSalarieReinitialiserAffectationsRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +40,7 @@ class SpectacleSalarieReinitialiserAffectations extends \QdequippeTech\Silae\Api
         return '/v1/ModuleSpectacle/SpectacleSalarieReinitialiserAffectations';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,25 +50,26 @@ class SpectacleSalarieReinitialiserAffectations extends \QdequippeTech\Silae\Api
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsResponse|null
+     * @return SpectacleSalarieReinitialiserAffectationsResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsInternalServerErrorException
+     * @throws SpectacleSalarieReinitialiserAffectationsBadRequestException
+     * @throws SpectacleSalarieReinitialiserAffectationsUnauthorizedException
+     * @throws SpectacleSalarieReinitialiserAffectationsInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +77,13 @@ class SpectacleSalarieReinitialiserAffectations extends \QdequippeTech\Silae\Api
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\SpectacleSalarieReinitialiserAffectationsResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SpectacleSalarieReinitialiserAffectationsBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SpectacleSalarieReinitialiserAffectationsUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SpectacleSalarieReinitialiserAffectationsInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

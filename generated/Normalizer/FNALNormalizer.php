@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\FNAL;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class FNALNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\FNAL();
+        $object = new FNAL();
         if (\array_key_exists('pourcentageAnneeN', $data) && \is_int($data['pourcentageAnneeN'])) {
             $data['pourcentageAnneeN'] = (float) $data['pourcentageAnneeN'];
         }
@@ -140,5 +141,10 @@ class FNALNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\FNAL' => false];
     }
 }

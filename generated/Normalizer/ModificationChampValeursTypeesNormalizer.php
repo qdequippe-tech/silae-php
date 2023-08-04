@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\ModificationChampValeursTypees;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class ModificationChampValeursTypeesNormalizer implements DenormalizerInterface,
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\ModificationChampValeursTypees();
+        $object = new ModificationChampValeursTypees();
         if (\array_key_exists('valeurDOUBLE', $data) && \is_int($data['valeurDOUBLE'])) {
             $data['valeurDOUBLE'] = (float) $data['valeurDOUBLE'];
         }
@@ -125,5 +126,10 @@ class ModificationChampValeursTypeesNormalizer implements DenormalizerInterface,
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\ModificationChampValeursTypees' => false];
     }
 }

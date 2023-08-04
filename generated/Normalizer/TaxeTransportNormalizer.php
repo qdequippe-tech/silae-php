@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\TaxeTransport;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class TaxeTransportNormalizer implements DenormalizerInterface, NormalizerInterf
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\TaxeTransport();
+        $object = new TaxeTransport();
         if (\array_key_exists('pourcentageAbattement', $data) && \is_int($data['pourcentageAbattement'])) {
             $data['pourcentageAbattement'] = (float) $data['pourcentageAbattement'];
         }
@@ -77,5 +78,10 @@ class TaxeTransportNormalizer implements DenormalizerInterface, NormalizerInterf
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\TaxeTransport' => false];
     }
 }

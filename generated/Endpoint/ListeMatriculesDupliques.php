@@ -2,17 +2,29 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class ListeMatriculesDupliques extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesResponse;
+use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class ListeMatriculesDupliques extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesRequest $request, array $headerParameters = [])
+    public function __construct(ListeMatriculesDupliquesRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +40,7 @@ class ListeMatriculesDupliques extends \QdequippeTech\Silae\Api\Runtime\Client\B
         return '/v1/InfosTechniquesDossiers/ListeMatriculesDupliques';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,25 +50,26 @@ class ListeMatriculesDupliques extends \QdequippeTech\Silae\Api\Runtime\Client\B
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesResponse|null
+     * @return ListeMatriculesDupliquesResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesInternalServerErrorException
+     * @throws ListeMatriculesDupliquesBadRequestException
+     * @throws ListeMatriculesDupliquesUnauthorizedException
+     * @throws ListeMatriculesDupliquesInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +77,13 @@ class ListeMatriculesDupliques extends \QdequippeTech\Silae\Api\Runtime\Client\B
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ListeMatriculesDupliquesResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ListeMatriculesDupliquesBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ListeMatriculesDupliquesUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ListeMatriculesDupliquesInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

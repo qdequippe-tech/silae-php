@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\SalarieElementCarriere;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class SalarieElementCarriereNormalizer implements DenormalizerInterface, Normali
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\SalarieElementCarriere();
+        $object = new SalarieElementCarriere();
         if (\array_key_exists('heuresContractuelles', $data) && \is_int($data['heuresContractuelles'])) {
             $data['heuresContractuelles'] = (float) $data['heuresContractuelles'];
         }
@@ -222,5 +223,10 @@ class SalarieElementCarriereNormalizer implements DenormalizerInterface, Normali
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\SalarieElementCarriere' => false];
     }
 }

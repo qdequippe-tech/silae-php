@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class AcquisitionQuestionnaireCCNRequestNormalizer implements DenormalizerInterf
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest();
+        $object = new AcquisitionQuestionnaireCCNRequest();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -82,5 +83,10 @@ class AcquisitionQuestionnaireCCNRequestNormalizer implements DenormalizerInterf
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\AcquisitionQuestionnaireCCNRequest' => false];
     }
 }

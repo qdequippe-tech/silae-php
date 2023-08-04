@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\SpectacleSalarieAffectation;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class SpectacleSalarieAffectationNormalizer implements DenormalizerInterface, No
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\SpectacleSalarieAffectation();
+        $object = new SpectacleSalarieAffectation();
         if (\array_key_exists('tauxHoraire', $data) && \is_int($data['tauxHoraire'])) {
             $data['tauxHoraire'] = (float) $data['tauxHoraire'];
         }
@@ -540,5 +541,10 @@ class SpectacleSalarieAffectationNormalizer implements DenormalizerInterface, No
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\SpectacleSalarieAffectation' => false];
     }
 }

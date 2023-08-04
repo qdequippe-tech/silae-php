@@ -2,9 +2,19 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class StatutEditionDetailDesCotisationsAsynchrone extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\StatutAsynchroneDocumentResponse;
+use QdequippeTech\Silae\Api\Exception\StatutEditionDetailDesCotisationsAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionDetailDesCotisationsAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionDetailDesCotisationsAsynchroneInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class StatutEditionDetailDesCotisationsAsynchrone extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $queryParameters {
@@ -15,6 +25,7 @@ class StatutEditionDetailDesCotisationsAsynchrone extends \QdequippeTech\Silae\A
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
     public function __construct(array $queryParameters = [], array $headerParameters = [])
@@ -33,7 +44,7 @@ class StatutEditionDetailDesCotisationsAsynchrone extends \QdequippeTech\Silae\A
         return '/v1/EditionEtatsPaie/StatutEditionDetailDesCotisationsAsynchrone';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
@@ -43,7 +54,7 @@ class StatutEditionDetailDesCotisationsAsynchrone extends \QdequippeTech\Silae\A
         return ['Accept' => ['application/json']];
     }
 
-    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['guidTache']);
@@ -54,25 +65,26 @@ class StatutEditionDetailDesCotisationsAsynchrone extends \QdequippeTech\Silae\A
         return $optionsResolver;
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\StatutAsynchroneDocumentResponse|null
+     * @return StatutAsynchroneDocumentResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\StatutEditionDetailDesCotisationsAsynchroneBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\StatutEditionDetailDesCotisationsAsynchroneUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\StatutEditionDetailDesCotisationsAsynchroneInternalServerErrorException
+     * @throws StatutEditionDetailDesCotisationsAsynchroneBadRequestException
+     * @throws StatutEditionDetailDesCotisationsAsynchroneUnauthorizedException
+     * @throws StatutEditionDetailDesCotisationsAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -83,13 +95,13 @@ class StatutEditionDetailDesCotisationsAsynchrone extends \QdequippeTech\Silae\A
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\StatutAsynchroneDocumentResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\StatutEditionDetailDesCotisationsAsynchroneBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutEditionDetailDesCotisationsAsynchroneBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\StatutEditionDetailDesCotisationsAsynchroneUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutEditionDetailDesCotisationsAsynchroneUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\StatutEditionDetailDesCotisationsAsynchroneInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutEditionDetailDesCotisationsAsynchroneInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

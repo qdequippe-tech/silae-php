@@ -2,17 +2,29 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class RecupererFichiersVirementHorsBulletinChiffres extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementHorsBulletinChiffresRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementResponse;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinChiffresBadRequestException;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinChiffresUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinChiffresInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class RecupererFichiersVirementHorsBulletinChiffres extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\RecupererFichiersVirementHorsBulletinChiffresRequest $request, array $headerParameters = [])
+    public function __construct(RecupererFichiersVirementHorsBulletinChiffresRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +40,7 @@ class RecupererFichiersVirementHorsBulletinChiffres extends \QdequippeTech\Silae
         return '/v1/Paiements/RecupererFichiersVirementHorsBulletinChiffres';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,25 +50,26 @@ class RecupererFichiersVirementHorsBulletinChiffres extends \QdequippeTech\Silae
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\RecupererFichiersVirementResponse|null
+     * @return RecupererFichiersVirementResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinChiffresBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinChiffresUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinChiffresInternalServerErrorException
+     * @throws RecupererFichiersVirementHorsBulletinChiffresBadRequestException
+     * @throws RecupererFichiersVirementHorsBulletinChiffresUnauthorizedException
+     * @throws RecupererFichiersVirementHorsBulletinChiffresInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +77,13 @@ class RecupererFichiersVirementHorsBulletinChiffres extends \QdequippeTech\Silae
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\RecupererFichiersVirementResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinChiffresBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererFichiersVirementHorsBulletinChiffresBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinChiffresUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererFichiersVirementHorsBulletinChiffresUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinChiffresInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererFichiersVirementHorsBulletinChiffresInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

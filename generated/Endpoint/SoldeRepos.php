@@ -2,17 +2,28 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class SoldeRepos extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\DossierPeriodeRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Exception\SoldeReposBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SoldeReposUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\SoldeReposInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class SoldeRepos extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\DossierPeriodeRequest $request, array $headerParameters = [])
+    public function __construct(DossierPeriodeRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +39,7 @@ class SoldeRepos extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint im
         return '/v1/EditionEtatsPaie/SoldeRepos';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,13 +49,14 @@ class SoldeRepos extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint im
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
@@ -52,11 +64,11 @@ class SoldeRepos extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint im
     /**
      * @return \QdequippeTech\Silae\Api\Model\SoldeRepos|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\SoldeReposBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\SoldeReposUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\SoldeReposInternalServerErrorException
+     * @throws SoldeReposBadRequestException
+     * @throws SoldeReposUnauthorizedException
+     * @throws SoldeReposInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +76,13 @@ class SoldeRepos extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint im
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\SoldeRepos', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SoldeReposBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SoldeReposBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SoldeReposUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SoldeReposUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SoldeReposInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SoldeReposInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

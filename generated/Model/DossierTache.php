@@ -137,6 +137,14 @@ class DossierTache
      * @var bool|null
      */
     protected $supprimerTache;
+    /**
+     * @var string|null
+     */
+    protected $nomServeur;
+    /**
+     * @var string|null
+     */
+    protected $nomRepertoire;
 
     public function getNature(): ?int
     {
@@ -537,6 +545,32 @@ class DossierTache
     {
         $this->initialized['supprimerTache'] = true;
         $this->supprimerTache = $supprimerTache;
+
+        return $this;
+    }
+
+    public function getNomServeur(): ?string
+    {
+        return $this->nomServeur;
+    }
+
+    public function setNomServeur(?string $nomServeur): self
+    {
+        $this->initialized['nomServeur'] = true;
+        $this->nomServeur = $nomServeur;
+
+        return $this;
+    }
+
+    public function getNomRepertoire(): ?string
+    {
+        return $this->nomRepertoire;
+    }
+
+    public function setNomRepertoire(?string $nomRepertoire): self
+    {
+        $this->initialized['nomRepertoire'] = true;
+        $this->nomRepertoire = $nomRepertoire;
 
         return $this;
     }

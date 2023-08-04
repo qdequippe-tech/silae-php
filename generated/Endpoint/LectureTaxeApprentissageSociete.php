@@ -2,17 +2,29 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class LectureTaxeApprentissageSociete extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteResponse;
+use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class LectureTaxeApprentissageSociete extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteRequest $request, array $headerParameters = [])
+    public function __construct(LectureTaxeApprentissageSocieteRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +40,7 @@ class LectureTaxeApprentissageSociete extends \QdequippeTech\Silae\Api\Runtime\C
         return '/v1/FicheSociete/LectureTaxeApprentissageSociete';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,25 +50,26 @@ class LectureTaxeApprentissageSociete extends \QdequippeTech\Silae\Api\Runtime\C
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteResponse|null
+     * @return LectureTaxeApprentissageSocieteResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteInternalServerErrorException
+     * @throws LectureTaxeApprentissageSocieteBadRequestException
+     * @throws LectureTaxeApprentissageSocieteUnauthorizedException
+     * @throws LectureTaxeApprentissageSocieteInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +77,13 @@ class LectureTaxeApprentissageSociete extends \QdequippeTech\Silae\Api\Runtime\C
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\LectureTaxeApprentissageSocieteResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureTaxeApprentissageSocieteBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureTaxeApprentissageSocieteUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureTaxeApprentissageSocieteInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

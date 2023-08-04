@@ -2,17 +2,29 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class AcquisitionQuestionnaireSalarieCCN extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNResponse;
+use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireSalarieCCNBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireSalarieCCNUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireSalarieCCNInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class AcquisitionQuestionnaireSalarieCCN extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest $request, array $headerParameters = [])
+    public function __construct(AcquisitionQuestionnaireCCNRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +40,7 @@ class AcquisitionQuestionnaireSalarieCCN extends \QdequippeTech\Silae\Api\Runtim
         return '/v1/QuestionnaireCCN/AcquisitionQuestionnaireSalarieCCN';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,25 +50,26 @@ class AcquisitionQuestionnaireSalarieCCN extends \QdequippeTech\Silae\Api\Runtim
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNResponse|null
+     * @return AcquisitionQuestionnaireCCNResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireSalarieCCNBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireSalarieCCNUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireSalarieCCNInternalServerErrorException
+     * @throws AcquisitionQuestionnaireSalarieCCNBadRequestException
+     * @throws AcquisitionQuestionnaireSalarieCCNUnauthorizedException
+     * @throws AcquisitionQuestionnaireSalarieCCNInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +77,13 @@ class AcquisitionQuestionnaireSalarieCCN extends \QdequippeTech\Silae\Api\Runtim
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\AcquisitionQuestionnaireCCNResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireSalarieCCNBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AcquisitionQuestionnaireSalarieCCNBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireSalarieCCNUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AcquisitionQuestionnaireSalarieCCNUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireSalarieCCNInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AcquisitionQuestionnaireSalarieCCNInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

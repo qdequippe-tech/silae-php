@@ -621,6 +621,170 @@
         }
       }
     },
+    "/v1/AdminAgences/ListeAgences": {
+      "get": {
+        "tags": [
+          "AdminAgences"
+        ],
+        "summary": "ListeAgences",
+        "operationId": "ListeAgences",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ListeAgencesResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/AdminAgences/ListeDossiersAgence": {
+      "post": {
+        "tags": [
+          "AdminAgences"
+        ],
+        "summary": "ListeDossiersAgence",
+        "operationId": "ListeDossiersAgence",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListeDossiersAgenceRequest"
+            }
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ListeDossiersAgenceResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/AdminAgences/LectureFicheAgence": {
+      "post": {
+        "tags": [
+          "AdminAgences"
+        ],
+        "summary": "LectureFicheAgence",
+        "operationId": "LectureFicheAgence",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LectureFicheAgenceRequest"
+            }
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AgenceDetail"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
     "/v1/AdminCollaborateurs/AffectationDossierPaie": {
       "post": {
         "tags": [
@@ -1274,6 +1438,336 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/AdminDossier/ListeDossiersDemoSilae": {
+      "get": {
+        "tags": [
+          "AdminDossier"
+        ],
+        "summary": "ListeDossiersDemoSilae",
+        "operationId": "ListeDossiersDemoSilae",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ListeDossiersDemoSilaeResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/AdminDossier/ImportDossierDemoAsynchrone": {
+      "post": {
+        "tags": [
+          "AdminDossier"
+        ],
+        "summary": "ImportDossierDemoAsynchrone",
+        "operationId": "ImportDossierDemoAsynchrone",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ImportDossierDemoRequest"
+            }
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/TraitementAsynchroneResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/AdminDossier/StatutImportDossierDemoAsynchrone": {
+      "get": {
+        "tags": [
+          "AdminDossier"
+        ],
+        "summary": "StatutImportDossierDemoAsynchrone",
+        "operationId": "StatutImportDossierDemoAsynchrone",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "guidTache",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StatutAsynchroneResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/StatutAsynchroneResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/AdministrationAPI/AnalyseConfigurationAccesApi": {
+      "post": {
+        "tags": [
+          "AdministrationAPI"
+        ],
+        "summary": "AnalyseConfigurationAccesApi",
+        "operationId": "AnalyseConfigurationAccesApi",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AnalyseConfigurationAccesApiRequest"
+            }
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AnalyseConfigurationAccesApiResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/AdministrationAPI/CreationConfigurationAccesApi": {
+      "post": {
+        "tags": [
+          "AdministrationAPI"
+        ],
+        "summary": "CreationConfigurationAccesApi",
+        "operationId": "CreationConfigurationAccesApi",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreationConfigurationAccesApiRequest"
+            }
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CreationConfigurationAccesApi"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/AdministrationAPI/ListeComptesApi": {
+      "get": {
+        "tags": [
+          "AdministrationAPI"
+        ],
+        "summary": "ListeComptesApi",
+        "operationId": "ListeComptesApi",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ListeComptesApiResponse"
+            }
           },
           "400": {
             "description": "BadRequest",
@@ -1965,64 +2459,6 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/BureautiquePaieNombreDocumentsCreesResponse"
-            }
-          },
-          "400": {
-            "description": "BadRequest",
-            "schema": {
-              "$ref": "#/definitions/ApiErrors"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/ApiErrors"
-            }
-          },
-          "500": {
-            "description": "InternalServerError",
-            "schema": {
-              "$ref": "#/definitions/ApiErrors"
-            }
-          }
-        }
-      }
-    },
-    "/v1/AnalyseProduction/AnalyseConfigurationAccesApi": {
-      "post": {
-        "tags": [
-          "AnalyseProduction"
-        ],
-        "summary": "AnalyseConfigurationAccesApi",
-        "operationId": "AnalyseConfigurationAccesApi",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "request",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/AnalyseConfigurationAccesApiRequest"
-            }
-          },
-          {
-            "name": "Ocp-Apim-Subscription-Key",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "default": "{{subscriptionKey}}"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/AnalyseConfigurationAccesApiResponse"
             }
           },
           "400": {
@@ -2978,6 +3414,64 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/AcquisitionQuestionnaireContratComplementaireResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/ContratComplementaire/CreationQuestionnaireContratComplementaire": {
+      "post": {
+        "tags": [
+          "ContratComplementaire"
+        ],
+        "summary": "CreationQuestionnaireContratComplementaire",
+        "operationId": "CreationQuestionnaireContratComplementaire",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreationQuestionnaireContratComplementaireRequest"
+            }
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/QuestionnaireContratComplementaire"
             }
           },
           "400": {
@@ -12147,13 +12641,71 @@
         }
       }
     },
-    "/v1/SalarieEmplois/ModificationQuestionnaireContratComplementaire": {
+    "/v1/SalarieEmplois/LectureQuestionnaireContratComplementaireSalarie": {
       "post": {
         "tags": [
           "SalarieEmplois"
         ],
-        "summary": "ModificationQuestionnaireContratComplementaire",
-        "operationId": "ModificationQuestionnaireContratComplementaire",
+        "summary": "LectureQuestionnaireContratComplementaireSalarie",
+        "operationId": "LectureQuestionnaireContratComplementaireSalarie",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LectureQuestionnaireContratComplementaireRequest"
+            }
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LectureQuestionnaireContratComplementaireResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/SalarieEmplois/ModificationQuestionnaireContratComplementaireSalarie": {
+      "post": {
+        "tags": [
+          "SalarieEmplois"
+        ],
+        "summary": "ModificationQuestionnaireContratComplementaireSalarie",
+        "operationId": "ModificationQuestionnaireContratComplementaireSalarie",
         "consumes": [
           "application/json"
         ],
@@ -12940,6 +13492,134 @@
         }
       }
     },
+    "ListeAgencesResponse": {
+      "type": "object",
+      "properties": {
+        "agences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Agence"
+          }
+        }
+      }
+    },
+    "Agence": {
+      "type": "object",
+      "properties": {
+        "codeAgence": {
+          "type": "string"
+        },
+        "raisonSociale": {
+          "type": "string"
+        },
+        "siret": {
+          "type": "string"
+        },
+        "codePostal": {
+          "type": "string"
+        },
+        "nomVille": {
+          "type": "string"
+        }
+      }
+    },
+    "ListeDossiersAgenceRequest": {
+      "type": "object",
+      "properties": {
+        "codeAgence": {
+          "type": "string"
+        },
+        "typeDossiers": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ListeDossiersAgenceResponse": {
+      "type": "object",
+      "properties": {
+        "dossiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DossierAgence"
+          }
+        }
+      }
+    },
+    "DossierAgence": {
+      "type": "object",
+      "properties": {
+        "numeroDossier": {
+          "type": "string",
+          "example": "{{numeroDossier}}"
+        },
+        "raisonSociale": {
+          "type": "string"
+        },
+        "siret": {
+          "type": "string"
+        },
+        "groupe": {
+          "type": "string"
+        },
+        "dateCreation": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "dossierInterne": {
+          "type": "boolean"
+        }
+      }
+    },
+    "LectureFicheAgenceRequest": {
+      "type": "object",
+      "properties": {
+        "codeAgence": {
+          "type": "string"
+        }
+      }
+    },
+    "AgenceDetail": {
+      "type": "object",
+      "properties": {
+        "telBureau": {
+          "type": "string"
+        },
+        "mel": {
+          "type": "string"
+        },
+        "affectationExpediteurCollab": {
+          "type": "string"
+        },
+        "ediMethode": {
+          "type": "string"
+        },
+        "ediJdcLogin": {
+          "type": "string"
+        },
+        "ediAspOneLogin": {
+          "type": "string"
+        },
+        "ediAutreLogin": {
+          "type": "string"
+        },
+        "codeAgence": {
+          "type": "string"
+        },
+        "raisonSociale": {
+          "type": "string"
+        },
+        "siret": {
+          "type": "string"
+        },
+        "codePostal": {
+          "type": "string"
+        },
+        "nomVille": {
+          "type": "string"
+        }
+      }
+    },
     "AffectationDossierPaieRequest": {
       "required": [
         "numeroDossier"
@@ -13558,10 +14238,28 @@
         "parametragePaieConfigurationAPI": {
           "type": "string"
         },
+        "parametragePaieGenerationFichiersVirements": {
+          "type": "string"
+        },
         "administrationConnexionAuthentificationExterne": {
           "type": "string"
         },
         "administrationConnexionPersonnalisationEcranConnexion": {
+          "type": "string"
+        },
+        "administrationPilotageActivite": {
+          "type": "string"
+        },
+        "administrationPilotageActiviteHistoriqueConnexions": {
+          "type": "string"
+        },
+        "administrationPilotageActiviteHistoriqueModifications": {
+          "type": "string"
+        },
+        "administrationConfigurationExport": {
+          "type": "string"
+        },
+        "productionLienSilaeHub": {
           "type": "string"
         }
       }
@@ -13759,6 +14457,246 @@
         },
         "supprimerTache": {
           "type": "boolean"
+        },
+        "nomServeur": {
+          "type": "string"
+        },
+        "nomRepertoire": {
+          "type": "string"
+        }
+      }
+    },
+    "ListeDossiersDemoSilaeResponse": {
+      "type": "object",
+      "properties": {
+        "modeles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DossierDemoSilae"
+          }
+        }
+      }
+    },
+    "DossierDemoSilae": {
+      "type": "object",
+      "properties": {
+        "tokenDossierDemo": {
+          "type": "string"
+        },
+        "nomDossier": {
+          "type": "string"
+        }
+      }
+    },
+    "ImportDossierDemoRequest": {
+      "type": "object",
+      "properties": {
+        "tokenDossierDemo": {
+          "type": "string"
+        },
+        "nouveauNumeroDossier": {
+          "type": "string"
+        },
+        "changerAffectations": {
+          "type": "boolean"
+        },
+        "affectations": {
+          "$ref": "#/definitions/AffectationsDossier"
+        }
+      }
+    },
+    "AffectationsDossier": {
+      "type": "object",
+      "properties": {
+        "codeAgence": {
+          "type": "string"
+        },
+        "rG1": {
+          "type": "string"
+        },
+        "rG2": {
+          "type": "string"
+        },
+        "rG3": {
+          "type": "string"
+        },
+        "rG4": {
+          "type": "string"
+        },
+        "rG5": {
+          "type": "string"
+        },
+        "rG6": {
+          "type": "string"
+        },
+        "rG7": {
+          "type": "string"
+        },
+        "rG8": {
+          "type": "string"
+        },
+        "rG9": {
+          "type": "string"
+        }
+      }
+    },
+    "TraitementAsynchroneResponse": {
+      "type": "object",
+      "properties": {
+        "guidTache": {
+          "type": "string"
+        }
+      }
+    },
+    "StatutAsynchroneResponse": {
+      "type": "object",
+      "properties": {
+        "statut": {
+          "type": "string"
+        },
+        "messageErreur": {
+          "type": "string"
+        },
+        "progression": {
+          "format": "double",
+          "type": "number"
+        },
+        "dureeExecution": {
+          "type": "string"
+        }
+      }
+    },
+    "AnalyseConfigurationAccesApiRequest": {
+      "type": "object",
+      "properties": {
+        "nomCompteAPI": {
+          "type": "string"
+        },
+        "identifiantUtilisateurSilae": {
+          "type": "string"
+        },
+        "numeroDossier": {
+          "type": "string",
+          "example": "{{numeroDossier}}"
+        },
+        "statutConfiguration": {
+          "type": "string"
+        }
+      }
+    },
+    "AnalyseConfigurationAccesApiResponse": {
+      "type": "object",
+      "properties": {
+        "statistiques": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConfigurationAccesApi"
+          }
+        }
+      }
+    },
+    "ConfigurationAccesApi": {
+      "type": "object",
+      "properties": {
+        "nomCompteAPI": {
+          "type": "string"
+        },
+        "identifiantUtilisateurSilae": {
+          "type": "string"
+        },
+        "idConfiguration": {
+          "type": "string"
+        },
+        "niveauAcces": {
+          "type": "string"
+        },
+        "statutConfiguration": {
+          "type": "string"
+        },
+        "dateCreation": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "dateModification": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "dossiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConfigurationAccesApiDossier"
+          }
+        }
+      }
+    },
+    "ConfigurationAccesApiDossier": {
+      "type": "object",
+      "properties": {
+        "numeroDossier": {
+          "type": "string",
+          "example": "{{numeroDossier}}"
+        },
+        "raisonSociale": {
+          "type": "string"
+        },
+        "agence": {
+          "type": "string"
+        },
+        "groupe": {
+          "type": "string"
+        }
+      }
+    },
+    "CreationConfigurationAccesApiRequest": {
+      "type": "object",
+      "properties": {
+        "configuration": {
+          "$ref": "#/definitions/CreationConfigurationAccesApi"
+        }
+      }
+    },
+    "CreationConfigurationAccesApi": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "type": "string"
+        },
+        "identifiantUtilisateurSilae": {
+          "type": "string"
+        },
+        "idConfiguration": {
+          "type": "string"
+        },
+        "niveauAcces": {
+          "type": "string"
+        },
+        "dossiers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ListeComptesApiResponse": {
+      "type": "object",
+      "properties": {
+        "comptes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CompteApi"
+          }
+        }
+      }
+    },
+    "CompteApi": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "type": "string"
+        },
+        "nomCompteAPI": {
+          "type": "string"
         }
       }
     },
@@ -13948,14 +14886,6 @@
         "effectif3112": {
           "format": "int32",
           "type": "integer"
-        }
-      }
-    },
-    "TraitementAsynchroneResponse": {
-      "type": "object",
-      "properties": {
-        "guidTache": {
-          "type": "string"
         }
       }
     },
@@ -14238,87 +15168,6 @@
         "nbDocumentsCrees": {
           "format": "int32",
           "type": "integer"
-        }
-      }
-    },
-    "AnalyseConfigurationAccesApiRequest": {
-      "type": "object",
-      "properties": {
-        "nomCompteAPI": {
-          "type": "string"
-        },
-        "identifiantUtilisateurSilae": {
-          "type": "string"
-        },
-        "numeroDossier": {
-          "type": "string",
-          "example": "{{numeroDossier}}"
-        },
-        "statutConfiguration": {
-          "type": "string"
-        }
-      }
-    },
-    "AnalyseConfigurationAccesApiResponse": {
-      "type": "object",
-      "properties": {
-        "statistiques": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ConfigurationAccesApi"
-          }
-        }
-      }
-    },
-    "ConfigurationAccesApi": {
-      "type": "object",
-      "properties": {
-        "nomCompteAPI": {
-          "type": "string"
-        },
-        "identifiantUtilisateurSilae": {
-          "type": "string"
-        },
-        "idConfiguration": {
-          "type": "string"
-        },
-        "niveauAcces": {
-          "type": "string"
-        },
-        "statutConfiguration": {
-          "type": "string"
-        },
-        "dateCreation": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "dateModification": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "dossiers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ConfigurationAccesApiDossier"
-          }
-        }
-      }
-    },
-    "ConfigurationAccesApiDossier": {
-      "type": "object",
-      "properties": {
-        "numeroDossier": {
-          "type": "string",
-          "example": "{{numeroDossier}}"
-        },
-        "raisonSociale": {
-          "type": "string"
-        },
-        "agence": {
-          "type": "string"
-        },
-        "groupe": {
-          "type": "string"
         }
       }
     },
@@ -14964,12 +15813,12 @@
         "qContratComplementaire": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/QContratComplementaire"
+            "$ref": "#/definitions/QuestionnaireContratComplementaire"
           }
         }
       }
     },
-    "QContratComplementaire": {
+    "QuestionnaireContratComplementaire": {
       "type": "object",
       "properties": {
         "code": {
@@ -14981,12 +15830,23 @@
         "listeChoix": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/LibelleValeur"
+            "$ref": "#/definitions/LibelleValeurComplete"
           }
+        },
+        "codeLibelleCotisation": {
+          "type": "string"
+        },
+        "selectionSalarie": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "action": {
+          "format": "int32",
+          "type": "integer"
         }
       }
     },
-    "LibelleValeur": {
+    "LibelleValeurComplete": {
       "type": "object",
       "properties": {
         "libelle": {
@@ -14995,6 +15855,24 @@
         "valeur": {
           "format": "int32",
           "type": "integer"
+        },
+        "reference": {
+          "type": "string"
+        }
+      }
+    },
+    "CreationQuestionnaireContratComplementaireRequest": {
+      "required": [
+        "numeroDossier"
+      ],
+      "type": "object",
+      "properties": {
+        "questionnaireContratComplementaire": {
+          "$ref": "#/definitions/QuestionnaireContratComplementaire"
+        },
+        "numeroDossier": {
+          "type": "string",
+          "example": "{{numeroDossier}}"
         }
       }
     },
@@ -19075,6 +19953,10 @@
         "netAPayer": {
           "format": "double",
           "type": "number"
+        },
+        "impotSurLeRevenuPreleveALaSource": {
+          "format": "double",
+          "type": "number"
         }
       }
     },
@@ -20751,24 +21633,6 @@
         }
       }
     },
-    "StatutAsynchroneResponse": {
-      "type": "object",
-      "properties": {
-        "statut": {
-          "type": "string"
-        },
-        "messageErreur": {
-          "type": "string"
-        },
-        "progression": {
-          "format": "double",
-          "type": "number"
-        },
-        "dureeExecution": {
-          "type": "string"
-        }
-      }
-    },
     "CreationOrganismeRequest": {
       "required": [
         "numeroDossier"
@@ -21063,6 +21927,18 @@
           "items": {
             "$ref": "#/definitions/LibelleValeur"
           }
+        }
+      }
+    },
+    "LibelleValeur": {
+      "type": "object",
+      "properties": {
+        "libelle": {
+          "type": "string"
+        },
+        "valeur": {
+          "format": "int32",
+          "type": "integer"
         }
       }
     },
@@ -22101,6 +22977,53 @@
         "numeroDossier": {
           "type": "string",
           "example": "{{numeroDossier}}"
+        }
+      }
+    },
+    "LectureQuestionnaireContratComplementaireRequest": {
+      "required": [
+        "matriculeSalarie",
+        "numeroDossier"
+      ],
+      "type": "object",
+      "properties": {
+        "identifiantEmploi": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "matriculeSalarie": {
+          "type": "string",
+          "example": "{{matriculeSalarie}}"
+        },
+        "numeroDossier": {
+          "type": "string",
+          "example": "{{numeroDossier}}"
+        }
+      }
+    },
+    "LectureQuestionnaireContratComplementaireResponse": {
+      "type": "object",
+      "properties": {
+        "reponseQCComp": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LectureChampLibelle"
+          }
+        }
+      }
+    },
+    "LectureChampLibelle": {
+      "type": "object",
+      "properties": {
+        "nomChamp": {
+          "type": "string"
+        },
+        "valeurByte": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "libelle": {
+          "type": "string"
         }
       }
     },

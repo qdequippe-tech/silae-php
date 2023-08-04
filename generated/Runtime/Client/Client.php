@@ -59,7 +59,7 @@ abstract class Client
     {
         [$bodyHeaders, $body] = $endpoint->getBody($this->serializer, $this->streamFactory);
         $queryString = $endpoint->getQueryString();
-        $uriGlue = !str_contains($endpoint->getUri(), '?') ? '?' : '&';
+        $uriGlue = str_contains($endpoint->getUri(), '?') ? '&' : '?';
         $uri = '' !== $queryString ? $endpoint->getUri().$uriGlue.$queryString : $endpoint->getUri();
         $request = $this->requestFactory->createRequest($endpoint->getMethod(), $uri);
         if ($body) {
@@ -77,11 +77,8 @@ abstract class Client
         foreach ($endpoint->getHeaders($bodyHeaders) as $name => $value) {
             $request = $request->withHeader($name, $value);
         }
-        if (\count($endpoint->getAuthenticationScopes()) > 0) {
-            $scopes = [];
-            foreach ($endpoint->getAuthenticationScopes() as $scope) {
-                $scopes[] = $scope;
-            }
+        if ($endpoint->getAuthenticationScopes() !== []) {
+            $scopes = $endpoint->getAuthenticationScopes();
             $request = $request->withHeader(AuthenticationRegistry::SCOPES_HEADER, $scopes);
         }
 

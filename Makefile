@@ -1,13 +1,21 @@
+tools/php-cs-fixer/vendor/composer/installed.php: tools/php-cs-fixer/composer.lock
+	composer install --working-dir=./tools/php-cs-fixer
+
 vendor/composer/installed.php: composer.lock
 	composer install
 
 vendor: vendor/composer/installed.php
 
-cs: vendor ## Fix code style
-	./vendor/bin/php-cs-fixer fix
+tools-vendor: tools/php-cs-fixer/vendor/composer/installed.php
 
-rector: vendor ## Run Rector
+cs: tools-vendor ## Fix code style
+	./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix
+
+rectify: vendor ## Run Rector
 	./vendor/bin/rector
+
+rector: vendor ## Run Rector (dry run)
+	./vendor/bin/rector --dry-run
 
 jane: vendor ## Generate the SDK
 	./vendor/bin/jane-openapi generate --config-file=.jane-openapi.php

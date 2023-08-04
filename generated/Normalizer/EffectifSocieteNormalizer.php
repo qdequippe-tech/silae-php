@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\EffectifSociete;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class EffectifSocieteNormalizer implements DenormalizerInterface, NormalizerInte
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\EffectifSociete();
+        $object = new EffectifSociete();
         if (\array_key_exists('effectif1_GlobalURSSAF', $data) && \is_int($data['effectif1_GlobalURSSAF'])) {
             $data['effectif1_GlobalURSSAF'] = (float) $data['effectif1_GlobalURSSAF'];
         }
@@ -99,5 +100,10 @@ class EffectifSocieteNormalizer implements DenormalizerInterface, NormalizerInte
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\EffectifSociete' => false];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageEtablissementRequest;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class LectureTaxeApprentissageEtablissementRequestNormalizer implements Denormal
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageEtablissementRequest();
+        $object = new LectureTaxeApprentissageEtablissementRequest();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -72,5 +73,10 @@ class LectureTaxeApprentissageEtablissementRequestNormalizer implements Denormal
         $data['numeroDossier'] = $object->getNumeroDossier();
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\LectureTaxeApprentissageEtablissementRequest' => false];
     }
 }

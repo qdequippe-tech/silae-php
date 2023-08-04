@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\DeclarationEvenementielle;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class DeclarationEvenementielleNormalizer implements DenormalizerInterface, Norm
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\DeclarationEvenementielle();
+        $object = new DeclarationEvenementielle();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -138,5 +139,10 @@ class DeclarationEvenementielleNormalizer implements DenormalizerInterface, Norm
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\DeclarationEvenementielle' => false];
     }
 }

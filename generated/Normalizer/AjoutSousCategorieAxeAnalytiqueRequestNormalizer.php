@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\AjoutSousCategorieAxeAnalytiqueRequest;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class AjoutSousCategorieAxeAnalytiqueRequestNormalizer implements DenormalizerIn
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\AjoutSousCategorieAxeAnalytiqueRequest();
+        $object = new AjoutSousCategorieAxeAnalytiqueRequest();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -80,5 +81,10 @@ class AjoutSousCategorieAxeAnalytiqueRequestNormalizer implements DenormalizerIn
         $data['numeroDossier'] = $object->getNumeroDossier();
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\AjoutSousCategorieAxeAnalytiqueRequest' => false];
     }
 }

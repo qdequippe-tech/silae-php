@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\Handicap;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class HandicapNormalizer implements DenormalizerInterface, NormalizerInterface, 
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\Handicap();
+        $object = new Handicap();
         if (\array_key_exists('cdapH_TauxIncapacite', $data) && \is_int($data['cdapH_TauxIncapacite'])) {
             $data['cdapH_TauxIncapacite'] = (float) $data['cdapH_TauxIncapacite'];
         }
@@ -168,5 +169,10 @@ class HandicapNormalizer implements DenormalizerInterface, NormalizerInterface, 
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\Handicap' => false];
     }
 }

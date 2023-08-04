@@ -2,17 +2,29 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class LectureContactEmetteurDSN extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNResponse;
+use QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class LectureContactEmetteurDSN extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNRequest $request, array $headerParameters = [])
+    public function __construct(LectureContactEmetteurDSNRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +40,7 @@ class LectureContactEmetteurDSN extends \QdequippeTech\Silae\Api\Runtime\Client\
         return '/v1/ConfigurationDSN/LectureContactEmetteurDSN';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,25 +50,26 @@ class LectureContactEmetteurDSN extends \QdequippeTech\Silae\Api\Runtime\Client\
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNResponse|null
+     * @return LectureContactEmetteurDSNResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNInternalServerErrorException
+     * @throws LectureContactEmetteurDSNBadRequestException
+     * @throws LectureContactEmetteurDSNUnauthorizedException
+     * @throws LectureContactEmetteurDSNInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +77,13 @@ class LectureContactEmetteurDSN extends \QdequippeTech\Silae\Api\Runtime\Client\
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\LectureContactEmetteurDSNResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureContactEmetteurDSNBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureContactEmetteurDSNUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureContactEmetteurDSNInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

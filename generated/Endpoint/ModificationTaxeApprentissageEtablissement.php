@@ -2,17 +2,29 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class ModificationTaxeApprentissageEtablissement extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageEtablissementRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageEtablissementResponse;
+use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageEtablissementBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageEtablissementUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageEtablissementInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class ModificationTaxeApprentissageEtablissement extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageEtablissementRequest $request, array $headerParameters = [])
+    public function __construct(ModificationTaxeApprentissageEtablissementRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +40,7 @@ class ModificationTaxeApprentissageEtablissement extends \QdequippeTech\Silae\Ap
         return '/v1/FicheSociete/ModificationTaxeApprentissageEtablissement';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,25 +50,26 @@ class ModificationTaxeApprentissageEtablissement extends \QdequippeTech\Silae\Ap
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageEtablissementResponse|null
+     * @return ModificationTaxeApprentissageEtablissementResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageEtablissementBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageEtablissementUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageEtablissementInternalServerErrorException
+     * @throws ModificationTaxeApprentissageEtablissementBadRequestException
+     * @throws ModificationTaxeApprentissageEtablissementUnauthorizedException
+     * @throws ModificationTaxeApprentissageEtablissementInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +77,13 @@ class ModificationTaxeApprentissageEtablissement extends \QdequippeTech\Silae\Ap
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ModificationTaxeApprentissageEtablissementResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageEtablissementBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ModificationTaxeApprentissageEtablissementBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageEtablissementUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ModificationTaxeApprentissageEtablissementUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageEtablissementInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ModificationTaxeApprentissageEtablissementInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

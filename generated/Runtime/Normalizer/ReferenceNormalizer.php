@@ -9,10 +9,7 @@ class ReferenceNormalizer implements NormalizerInterface
 {
     public function normalize($object, $format = null, array $context = [])
     {
-        $ref = [];
-        $ref['$ref'] = (string) $object->getReferenceUri();
-
-        return $ref;
+        return ['$ref' => (string) $object->getReferenceUri()];
     }
 
     public function supportsNormalization($data, $format = null): bool

@@ -2,17 +2,29 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class SpectacleSalarieAcquisitionAffectations extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\SpectacleSalarieAcquisitionAffectationsRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\SpectacleSalarieAffectations;
+use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAcquisitionAffectationsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAcquisitionAffectationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAcquisitionAffectationsInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class SpectacleSalarieAcquisitionAffectations extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\SpectacleSalarieAcquisitionAffectationsRequest $request, array $headerParameters = [])
+    public function __construct(SpectacleSalarieAcquisitionAffectationsRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +40,7 @@ class SpectacleSalarieAcquisitionAffectations extends \QdequippeTech\Silae\Api\R
         return '/v1/ModuleSpectacle/SpectacleSalarieAcquisitionAffectations';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,25 +50,26 @@ class SpectacleSalarieAcquisitionAffectations extends \QdequippeTech\Silae\Api\R
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\SpectacleSalarieAffectations|null
+     * @return SpectacleSalarieAffectations|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\SpectacleSalarieAcquisitionAffectationsBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\SpectacleSalarieAcquisitionAffectationsUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\SpectacleSalarieAcquisitionAffectationsInternalServerErrorException
+     * @throws SpectacleSalarieAcquisitionAffectationsBadRequestException
+     * @throws SpectacleSalarieAcquisitionAffectationsUnauthorizedException
+     * @throws SpectacleSalarieAcquisitionAffectationsInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +77,13 @@ class SpectacleSalarieAcquisitionAffectations extends \QdequippeTech\Silae\Api\R
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\SpectacleSalarieAffectations', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SpectacleSalarieAcquisitionAffectationsBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SpectacleSalarieAcquisitionAffectationsBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SpectacleSalarieAcquisitionAffectationsUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SpectacleSalarieAcquisitionAffectationsUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SpectacleSalarieAcquisitionAffectationsInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SpectacleSalarieAcquisitionAffectationsInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

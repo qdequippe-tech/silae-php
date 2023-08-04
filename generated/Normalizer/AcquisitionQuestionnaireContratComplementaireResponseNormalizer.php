@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireContratComplementaireResponse;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,14 +41,14 @@ class AcquisitionQuestionnaireContratComplementaireResponseNormalizer implements
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireContratComplementaireResponse();
+        $object = new AcquisitionQuestionnaireContratComplementaireResponse();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
         if (\array_key_exists('qContratComplementaire', $data) && null !== $data['qContratComplementaire']) {
             $values = [];
             foreach ($data['qContratComplementaire'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'QdequippeTech\\Silae\\Api\\Model\\QContratComplementaire', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'QdequippeTech\\Silae\\Api\\Model\\QuestionnaireContratComplementaire', 'json', $context);
             }
             $object->setQContratComplementaire($values);
         } elseif (\array_key_exists('qContratComplementaire', $data) && null === $data['qContratComplementaire']) {
@@ -74,5 +75,10 @@ class AcquisitionQuestionnaireContratComplementaireResponseNormalizer implements
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\AcquisitionQuestionnaireContratComplementaireResponse' => false];
     }
 }

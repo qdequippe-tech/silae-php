@@ -2,17 +2,29 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class AdministrationCollaborateurLecture extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\AdministrationCollaborateurLectureRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\UtilisateurCollaborateur;
+use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class AdministrationCollaborateurLecture extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\AdministrationCollaborateurLectureRequest $request, array $headerParameters = [])
+    public function __construct(AdministrationCollaborateurLectureRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +40,7 @@ class AdministrationCollaborateurLecture extends \QdequippeTech\Silae\Api\Runtim
         return '/v1/AdminCollaborateurs/AdministrationCollaborateurLecture';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,25 +50,26 @@ class AdministrationCollaborateurLecture extends \QdequippeTech\Silae\Api\Runtim
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\UtilisateurCollaborateur|null
+     * @return UtilisateurCollaborateur|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureInternalServerErrorException
+     * @throws AdministrationCollaborateurLectureBadRequestException
+     * @throws AdministrationCollaborateurLectureUnauthorizedException
+     * @throws AdministrationCollaborateurLectureInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +77,13 @@ class AdministrationCollaborateurLecture extends \QdequippeTech\Silae\Api\Runtim
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\UtilisateurCollaborateur', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AdministrationCollaborateurLectureBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AdministrationCollaborateurLectureUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AdministrationCollaborateurLectureInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

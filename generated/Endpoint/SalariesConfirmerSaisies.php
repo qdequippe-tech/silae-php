@@ -2,17 +2,29 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class SalariesConfirmerSaisies extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\SalariesConfirmerSaisiesRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\SalariesConfirmerSaisiesResponse;
+use QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class SalariesConfirmerSaisies extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\SalariesConfirmerSaisiesRequest $request, array $headerParameters = [])
+    public function __construct(SalariesConfirmerSaisiesRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +40,7 @@ class SalariesConfirmerSaisies extends \QdequippeTech\Silae\Api\Runtime\Client\B
         return '/v1/ElementsVariables/SalariesConfirmerSaisies';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,25 +50,26 @@ class SalariesConfirmerSaisies extends \QdequippeTech\Silae\Api\Runtime\Client\B
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\SalariesConfirmerSaisiesResponse|null
+     * @return SalariesConfirmerSaisiesResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesInternalServerErrorException
+     * @throws SalariesConfirmerSaisiesBadRequestException
+     * @throws SalariesConfirmerSaisiesUnauthorizedException
+     * @throws SalariesConfirmerSaisiesInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +77,13 @@ class SalariesConfirmerSaisies extends \QdequippeTech\Silae\Api\Runtime\Client\B
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\SalariesConfirmerSaisiesResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalariesConfirmerSaisiesBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalariesConfirmerSaisiesUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalariesConfirmerSaisiesInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

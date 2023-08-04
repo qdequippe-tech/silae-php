@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\StatutSalariesConfirmerSaisiesResponse;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class StatutSalariesConfirmerSaisiesResponseNormalizer implements DenormalizerIn
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\StatutSalariesConfirmerSaisiesResponse();
+        $object = new StatutSalariesConfirmerSaisiesResponse();
         if (\array_key_exists('progression', $data) && \is_int($data['progression'])) {
             $data['progression'] = (float) $data['progression'];
         }
@@ -109,5 +110,10 @@ class StatutSalariesConfirmerSaisiesResponseNormalizer implements DenormalizerIn
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\StatutSalariesConfirmerSaisiesResponse' => false];
     }
 }

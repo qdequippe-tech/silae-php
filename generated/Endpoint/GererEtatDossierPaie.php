@@ -2,17 +2,28 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class GererEtatDossierPaie extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\GererEtatDossierPaieRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Exception\GererEtatDossierPaieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\GererEtatDossierPaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\GererEtatDossierPaieInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class GererEtatDossierPaie extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\GererEtatDossierPaieRequest $request, array $headerParameters = [])
+    public function __construct(GererEtatDossierPaieRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +39,7 @@ class GererEtatDossierPaie extends \QdequippeTech\Silae\Api\Runtime\Client\BaseE
         return '/v1/AdminDossier/GererEtatDossierPaie';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,23 +49,24 @@ class GererEtatDossierPaie extends \QdequippeTech\Silae\Api\Runtime\Client\BaseE
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @throws \QdequippeTech\Silae\Api\Exception\GererEtatDossierPaieBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\GererEtatDossierPaieUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\GererEtatDossierPaieInternalServerErrorException
+     * @throws GererEtatDossierPaieBadRequestException
+     * @throws GererEtatDossierPaieUnauthorizedException
+     * @throws GererEtatDossierPaieInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -62,13 +74,13 @@ class GererEtatDossierPaie extends \QdequippeTech\Silae\Api\Runtime\Client\BaseE
             return null;
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\GererEtatDossierPaieBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new GererEtatDossierPaieBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\GererEtatDossierPaieUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new GererEtatDossierPaieUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\GererEtatDossierPaieInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new GererEtatDossierPaieInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

@@ -232,11 +232,35 @@ class CompteCollaborateurDroitsUtilisateur
     /**
      * @var string|null
      */
+    protected $parametragePaieGenerationFichiersVirements;
+    /**
+     * @var string|null
+     */
     protected $administrationConnexionAuthentificationExterne;
     /**
      * @var string|null
      */
     protected $administrationConnexionPersonnalisationEcranConnexion;
+    /**
+     * @var string|null
+     */
+    protected $administrationPilotageActivite;
+    /**
+     * @var string|null
+     */
+    protected $administrationPilotageActiviteHistoriqueConnexions;
+    /**
+     * @var string|null
+     */
+    protected $administrationPilotageActiviteHistoriqueModifications;
+    /**
+     * @var string|null
+     */
+    protected $administrationConfigurationExport;
+    /**
+     * @var string|null
+     */
+    protected $productionLienSilaeHub;
 
     public function getPaieRelationClientGestionPortailCP(): ?string
     {
@@ -940,6 +964,19 @@ class CompteCollaborateurDroitsUtilisateur
         return $this;
     }
 
+    public function getParametragePaieGenerationFichiersVirements(): ?string
+    {
+        return $this->parametragePaieGenerationFichiersVirements;
+    }
+
+    public function setParametragePaieGenerationFichiersVirements(?string $parametragePaieGenerationFichiersVirements): self
+    {
+        $this->initialized['parametragePaieGenerationFichiersVirements'] = true;
+        $this->parametragePaieGenerationFichiersVirements = $parametragePaieGenerationFichiersVirements;
+
+        return $this;
+    }
+
     public function getAdministrationConnexionAuthentificationExterne(): ?string
     {
         return $this->administrationConnexionAuthentificationExterne;
@@ -962,6 +999,71 @@ class CompteCollaborateurDroitsUtilisateur
     {
         $this->initialized['administrationConnexionPersonnalisationEcranConnexion'] = true;
         $this->administrationConnexionPersonnalisationEcranConnexion = $administrationConnexionPersonnalisationEcranConnexion;
+
+        return $this;
+    }
+
+    public function getAdministrationPilotageActivite(): ?string
+    {
+        return $this->administrationPilotageActivite;
+    }
+
+    public function setAdministrationPilotageActivite(?string $administrationPilotageActivite): self
+    {
+        $this->initialized['administrationPilotageActivite'] = true;
+        $this->administrationPilotageActivite = $administrationPilotageActivite;
+
+        return $this;
+    }
+
+    public function getAdministrationPilotageActiviteHistoriqueConnexions(): ?string
+    {
+        return $this->administrationPilotageActiviteHistoriqueConnexions;
+    }
+
+    public function setAdministrationPilotageActiviteHistoriqueConnexions(?string $administrationPilotageActiviteHistoriqueConnexions): self
+    {
+        $this->initialized['administrationPilotageActiviteHistoriqueConnexions'] = true;
+        $this->administrationPilotageActiviteHistoriqueConnexions = $administrationPilotageActiviteHistoriqueConnexions;
+
+        return $this;
+    }
+
+    public function getAdministrationPilotageActiviteHistoriqueModifications(): ?string
+    {
+        return $this->administrationPilotageActiviteHistoriqueModifications;
+    }
+
+    public function setAdministrationPilotageActiviteHistoriqueModifications(?string $administrationPilotageActiviteHistoriqueModifications): self
+    {
+        $this->initialized['administrationPilotageActiviteHistoriqueModifications'] = true;
+        $this->administrationPilotageActiviteHistoriqueModifications = $administrationPilotageActiviteHistoriqueModifications;
+
+        return $this;
+    }
+
+    public function getAdministrationConfigurationExport(): ?string
+    {
+        return $this->administrationConfigurationExport;
+    }
+
+    public function setAdministrationConfigurationExport(?string $administrationConfigurationExport): self
+    {
+        $this->initialized['administrationConfigurationExport'] = true;
+        $this->administrationConfigurationExport = $administrationConfigurationExport;
+
+        return $this;
+    }
+
+    public function getProductionLienSilaeHub(): ?string
+    {
+        return $this->productionLienSilaeHub;
+    }
+
+    public function setProductionLienSilaeHub(?string $productionLienSilaeHub): self
+    {
+        $this->initialized['productionLienSilaeHub'] = true;
+        $this->productionLienSilaeHub = $productionLienSilaeHub;
 
         return $this;
     }

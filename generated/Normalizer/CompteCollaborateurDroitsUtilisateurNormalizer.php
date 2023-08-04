@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\CompteCollaborateurDroitsUtilisateur;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class CompteCollaborateurDroitsUtilisateurNormalizer implements DenormalizerInte
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\CompteCollaborateurDroitsUtilisateur();
+        $object = new CompteCollaborateurDroitsUtilisateur();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -314,6 +315,11 @@ class CompteCollaborateurDroitsUtilisateurNormalizer implements DenormalizerInte
         } elseif (\array_key_exists('parametragePaieConfigurationAPI', $data) && null === $data['parametragePaieConfigurationAPI']) {
             $object->setParametragePaieConfigurationAPI(null);
         }
+        if (\array_key_exists('parametragePaieGenerationFichiersVirements', $data) && null !== $data['parametragePaieGenerationFichiersVirements']) {
+            $object->setParametragePaieGenerationFichiersVirements($data['parametragePaieGenerationFichiersVirements']);
+        } elseif (\array_key_exists('parametragePaieGenerationFichiersVirements', $data) && null === $data['parametragePaieGenerationFichiersVirements']) {
+            $object->setParametragePaieGenerationFichiersVirements(null);
+        }
         if (\array_key_exists('administrationConnexionAuthentificationExterne', $data) && null !== $data['administrationConnexionAuthentificationExterne']) {
             $object->setAdministrationConnexionAuthentificationExterne($data['administrationConnexionAuthentificationExterne']);
         } elseif (\array_key_exists('administrationConnexionAuthentificationExterne', $data) && null === $data['administrationConnexionAuthentificationExterne']) {
@@ -323,6 +329,31 @@ class CompteCollaborateurDroitsUtilisateurNormalizer implements DenormalizerInte
             $object->setAdministrationConnexionPersonnalisationEcranConnexion($data['administrationConnexionPersonnalisationEcranConnexion']);
         } elseif (\array_key_exists('administrationConnexionPersonnalisationEcranConnexion', $data) && null === $data['administrationConnexionPersonnalisationEcranConnexion']) {
             $object->setAdministrationConnexionPersonnalisationEcranConnexion(null);
+        }
+        if (\array_key_exists('administrationPilotageActivite', $data) && null !== $data['administrationPilotageActivite']) {
+            $object->setAdministrationPilotageActivite($data['administrationPilotageActivite']);
+        } elseif (\array_key_exists('administrationPilotageActivite', $data) && null === $data['administrationPilotageActivite']) {
+            $object->setAdministrationPilotageActivite(null);
+        }
+        if (\array_key_exists('administrationPilotageActiviteHistoriqueConnexions', $data) && null !== $data['administrationPilotageActiviteHistoriqueConnexions']) {
+            $object->setAdministrationPilotageActiviteHistoriqueConnexions($data['administrationPilotageActiviteHistoriqueConnexions']);
+        } elseif (\array_key_exists('administrationPilotageActiviteHistoriqueConnexions', $data) && null === $data['administrationPilotageActiviteHistoriqueConnexions']) {
+            $object->setAdministrationPilotageActiviteHistoriqueConnexions(null);
+        }
+        if (\array_key_exists('administrationPilotageActiviteHistoriqueModifications', $data) && null !== $data['administrationPilotageActiviteHistoriqueModifications']) {
+            $object->setAdministrationPilotageActiviteHistoriqueModifications($data['administrationPilotageActiviteHistoriqueModifications']);
+        } elseif (\array_key_exists('administrationPilotageActiviteHistoriqueModifications', $data) && null === $data['administrationPilotageActiviteHistoriqueModifications']) {
+            $object->setAdministrationPilotageActiviteHistoriqueModifications(null);
+        }
+        if (\array_key_exists('administrationConfigurationExport', $data) && null !== $data['administrationConfigurationExport']) {
+            $object->setAdministrationConfigurationExport($data['administrationConfigurationExport']);
+        } elseif (\array_key_exists('administrationConfigurationExport', $data) && null === $data['administrationConfigurationExport']) {
+            $object->setAdministrationConfigurationExport(null);
+        }
+        if (\array_key_exists('productionLienSilaeHub', $data) && null !== $data['productionLienSilaeHub']) {
+            $object->setProductionLienSilaeHub($data['productionLienSilaeHub']);
+        } elseif (\array_key_exists('productionLienSilaeHub', $data) && null === $data['productionLienSilaeHub']) {
+            $object->setProductionLienSilaeHub(null);
         }
 
         return $object;
@@ -498,13 +529,36 @@ class CompteCollaborateurDroitsUtilisateurNormalizer implements DenormalizerInte
         if ($object->isInitialized('parametragePaieConfigurationAPI') && null !== $object->getParametragePaieConfigurationAPI()) {
             $data['parametragePaieConfigurationAPI'] = $object->getParametragePaieConfigurationAPI();
         }
+        if ($object->isInitialized('parametragePaieGenerationFichiersVirements') && null !== $object->getParametragePaieGenerationFichiersVirements()) {
+            $data['parametragePaieGenerationFichiersVirements'] = $object->getParametragePaieGenerationFichiersVirements();
+        }
         if ($object->isInitialized('administrationConnexionAuthentificationExterne') && null !== $object->getAdministrationConnexionAuthentificationExterne()) {
             $data['administrationConnexionAuthentificationExterne'] = $object->getAdministrationConnexionAuthentificationExterne();
         }
         if ($object->isInitialized('administrationConnexionPersonnalisationEcranConnexion') && null !== $object->getAdministrationConnexionPersonnalisationEcranConnexion()) {
             $data['administrationConnexionPersonnalisationEcranConnexion'] = $object->getAdministrationConnexionPersonnalisationEcranConnexion();
         }
+        if ($object->isInitialized('administrationPilotageActivite') && null !== $object->getAdministrationPilotageActivite()) {
+            $data['administrationPilotageActivite'] = $object->getAdministrationPilotageActivite();
+        }
+        if ($object->isInitialized('administrationPilotageActiviteHistoriqueConnexions') && null !== $object->getAdministrationPilotageActiviteHistoriqueConnexions()) {
+            $data['administrationPilotageActiviteHistoriqueConnexions'] = $object->getAdministrationPilotageActiviteHistoriqueConnexions();
+        }
+        if ($object->isInitialized('administrationPilotageActiviteHistoriqueModifications') && null !== $object->getAdministrationPilotageActiviteHistoriqueModifications()) {
+            $data['administrationPilotageActiviteHistoriqueModifications'] = $object->getAdministrationPilotageActiviteHistoriqueModifications();
+        }
+        if ($object->isInitialized('administrationConfigurationExport') && null !== $object->getAdministrationConfigurationExport()) {
+            $data['administrationConfigurationExport'] = $object->getAdministrationConfigurationExport();
+        }
+        if ($object->isInitialized('productionLienSilaeHub') && null !== $object->getProductionLienSilaeHub()) {
+            $data['productionLienSilaeHub'] = $object->getProductionLienSilaeHub();
+        }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\CompteCollaborateurDroitsUtilisateur' => false];
     }
 }

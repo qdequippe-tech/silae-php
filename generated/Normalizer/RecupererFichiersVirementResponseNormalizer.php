@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementResponse;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class RecupererFichiersVirementResponseNormalizer implements DenormalizerInterfa
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\RecupererFichiersVirementResponse();
+        $object = new RecupererFichiersVirementResponse();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -82,5 +83,10 @@ class RecupererFichiersVirementResponseNormalizer implements DenormalizerInterfa
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\RecupererFichiersVirementResponse' => false];
     }
 }

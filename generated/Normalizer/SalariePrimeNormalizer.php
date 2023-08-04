@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\SalariePrime;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class SalariePrimeNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\SalariePrime();
+        $object = new SalariePrime();
         if (\array_key_exists('montantPrime', $data) && \is_int($data['montantPrime'])) {
             $data['montantPrime'] = (float) $data['montantPrime'];
         }
@@ -117,5 +118,10 @@ class SalariePrimeNormalizer implements DenormalizerInterface, NormalizerInterfa
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\SalariePrime' => false];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\StatutRecupererImageAsynchroneResponse;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class StatutRecupererImageAsynchroneResponseNormalizer implements DenormalizerIn
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\StatutRecupererImageAsynchroneResponse();
+        $object = new StatutRecupererImageAsynchroneResponse();
         if (\array_key_exists('progression', $data) && \is_int($data['progression'])) {
             $data['progression'] = (float) $data['progression'];
         }
@@ -125,5 +126,10 @@ class StatutRecupererImageAsynchroneResponseNormalizer implements DenormalizerIn
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\StatutRecupererImageAsynchroneResponse' => false];
     }
 }

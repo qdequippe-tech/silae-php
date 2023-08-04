@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\SalarieBulletinEnteteResult;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class SalarieBulletinEnteteResultNormalizer implements DenormalizerInterface, No
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\SalarieBulletinEnteteResult();
+        $object = new SalarieBulletinEnteteResult();
         if (\array_key_exists('brut', $data) && \is_int($data['brut'])) {
             $data['brut'] = (float) $data['brut'];
         }
@@ -205,5 +206,10 @@ class SalarieBulletinEnteteResultNormalizer implements DenormalizerInterface, No
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\SalarieBulletinEnteteResult' => false];
     }
 }

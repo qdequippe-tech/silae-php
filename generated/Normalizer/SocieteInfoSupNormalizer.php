@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\SocieteInfoSup;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\SocieteInfoSup();
+        $object = new SocieteInfoSup();
         if (\array_key_exists('clI_MethodeSuiviCPAcqMois', $data) && \is_int($data['clI_MethodeSuiviCPAcqMois'])) {
             $data['clI_MethodeSuiviCPAcqMois'] = (float) $data['clI_MethodeSuiviCPAcqMois'];
         }
@@ -989,5 +990,10 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\SocieteInfoSup' => false];
     }
 }

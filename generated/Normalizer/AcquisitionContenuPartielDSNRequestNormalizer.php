@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\AcquisitionContenuPartielDSNRequest;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class AcquisitionContenuPartielDSNRequestNormalizer implements DenormalizerInter
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\AcquisitionContenuPartielDSNRequest();
+        $object = new AcquisitionContenuPartielDSNRequest();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -120,5 +121,10 @@ class AcquisitionContenuPartielDSNRequestNormalizer implements DenormalizerInter
         $data['numeroDossier'] = $object->getNumeroDossier();
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\AcquisitionContenuPartielDSNRequest' => false];
     }
 }

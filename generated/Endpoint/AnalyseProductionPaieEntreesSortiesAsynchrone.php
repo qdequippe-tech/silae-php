@@ -2,17 +2,29 @@
 
 namespace QdequippeTech\Silae\Api\Endpoint;
 
-class AnalyseProductionPaieEntreesSortiesAsynchrone extends \QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint implements \QdequippeTech\Silae\Api\Runtime\Client\Endpoint
+use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
+use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRequest;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException;
+use Psr\Http\Message\ResponseInterface;
+class AnalyseProductionPaieEntreesSortiesAsynchrone extends BaseEndpoint implements Endpoint
 {
-    use \QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * @param array $headerParameters {
      *
      * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
      *             }
      */
-    public function __construct(\QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRequest $request, array $headerParameters = [])
+    public function __construct(AnalyseProductionPaieRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -28,7 +40,7 @@ class AnalyseProductionPaieEntreesSortiesAsynchrone extends \QdequippeTech\Silae
         return '/v1/AnalyseProduction/AnalyseProductionPaieEntreesSortiesAsynchrone';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return $this->getSerializedBody($serializer);
     }
@@ -38,25 +50,26 @@ class AnalyseProductionPaieEntreesSortiesAsynchrone extends \QdequippeTech\Silae
         return ['Accept' => ['application/json']];
     }
 
-    protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key']);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
+        $optionsResolver->addAllowedTypes('dossiers', ['string']);
 
         return $optionsResolver;
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse|null
+     * @return TraitementAsynchroneResponse|null
      *
-     * @throws \QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException
-     * @throws \QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException
-     * @throws \QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException
+     * @throws AnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException
+     * @throws AnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException
+     * @throws AnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
@@ -64,13 +77,13 @@ class AnalyseProductionPaieEntreesSortiesAsynchrone extends \QdequippeTech\Silae
             return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\TraitementAsynchroneResponse', 'json');
         }
         if (400 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (401 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
         if (500 === $status) {
-            throw new \QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
         }
     }
 

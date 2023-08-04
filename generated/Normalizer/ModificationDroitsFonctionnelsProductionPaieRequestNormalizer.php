@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\ModificationDroitsFonctionnelsProductionPaieRequest;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class ModificationDroitsFonctionnelsProductionPaieRequestNormalizer implements D
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\ModificationDroitsFonctionnelsProductionPaieRequest();
+        $object = new ModificationDroitsFonctionnelsProductionPaieRequest();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -74,5 +75,10 @@ class ModificationDroitsFonctionnelsProductionPaieRequestNormalizer implements D
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\ModificationDroitsFonctionnelsProductionPaieRequest' => false];
     }
 }

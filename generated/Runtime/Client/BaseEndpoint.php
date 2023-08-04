@@ -9,6 +9,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 abstract class BaseEndpoint implements Endpoint
 {
+    public $formParameters;
     protected $queryParameters = [];
     protected $headerParameters = [];
     protected $body;

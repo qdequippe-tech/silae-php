@@ -2,30 +2,32 @@
 
 namespace QdequippeTech\Silae\Api\Exception;
 
+use QdequippeTech\Silae\Api\Model\ApiErrors;
+use Psr\Http\Message\ResponseInterface;
 class LectureHandicapBadRequestException extends BadRequestException
 {
     /**
-     * @var \QdequippeTech\Silae\Api\Model\ApiErrors
+     * @var ApiErrors
      */
     private $apiErrors;
     /**
-     * @var \Psr\Http\Message\ResponseInterface
+     * @var ResponseInterface
      */
     private $response;
 
-    public function __construct(\QdequippeTech\Silae\Api\Model\ApiErrors $apiErrors, \Psr\Http\Message\ResponseInterface $response)
+    public function __construct(ApiErrors $apiErrors, ResponseInterface $response)
     {
         parent::__construct('BadRequest');
         $this->apiErrors = $apiErrors;
         $this->response = $response;
     }
 
-    public function getApiErrors(): \QdequippeTech\Silae\Api\Model\ApiErrors
+    public function getApiErrors(): ApiErrors
     {
         return $this->apiErrors;
     }
 
-    public function getResponse(): \Psr\Http\Message\ResponseInterface
+    public function getResponse(): ResponseInterface
     {
         return $this->response;
     }

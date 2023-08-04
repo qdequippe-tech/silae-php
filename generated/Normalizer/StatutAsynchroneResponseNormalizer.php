@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\StatutAsynchroneResponse;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class StatutAsynchroneResponseNormalizer implements DenormalizerInterface, Norma
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\StatutAsynchroneResponse();
+        $object = new StatutAsynchroneResponse();
         if (\array_key_exists('progression', $data) && \is_int($data['progression'])) {
             $data['progression'] = (float) $data['progression'];
         }
@@ -93,5 +94,10 @@ class StatutAsynchroneResponseNormalizer implements DenormalizerInterface, Norma
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\StatutAsynchroneResponse' => false];
     }
 }

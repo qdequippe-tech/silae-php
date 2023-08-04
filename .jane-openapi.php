@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 return [
-    'openapi-file' => __DIR__ . '/Silae_Paie_Rest_API_2023-05-12_Partenaires.json',
+    'openapi-file' => __DIR__ . '/silae-paie-rest-api.json',
     'namespace' => 'QdequippeTech\Silae\Api',
     'directory' => __DIR__ . '/generated/',
     'strict' => false,

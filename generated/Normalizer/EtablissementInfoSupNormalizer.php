@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\EtablissementInfoSup;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\EtablissementInfoSup();
+        $object = new EtablissementInfoSup();
         if (\array_key_exists('etA_AcquisitionHeuresDIF', $data) && \is_int($data['etA_AcquisitionHeuresDIF'])) {
             $data['etA_AcquisitionHeuresDIF'] = (float) $data['etA_AcquisitionHeuresDIF'];
         }
@@ -2359,5 +2360,10 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\EtablissementInfoSup' => false];
     }
 }

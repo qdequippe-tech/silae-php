@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\ModificationInformationBancaireSocieteRequest;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class ModificationInformationBancaireSocieteRequestNormalizer implements Denorma
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\ModificationInformationBancaireSocieteRequest();
+        $object = new ModificationInformationBancaireSocieteRequest();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -88,5 +89,10 @@ class ModificationInformationBancaireSocieteRequestNormalizer implements Denorma
         $data['numeroDossier'] = $object->getNumeroDossier();
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\ModificationInformationBancaireSocieteRequest' => false];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\Emploi;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\Emploi();
+        $object = new Emploi();
         if (\array_key_exists('pctAbattement', $data) && \is_int($data['pctAbattement'])) {
             $data['pctAbattement'] = (float) $data['pctAbattement'];
         }
@@ -928,5 +929,10 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\Emploi' => false];
     }
 }

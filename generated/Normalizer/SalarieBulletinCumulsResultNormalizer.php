@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\SalarieBulletinCumulsResult;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class SalarieBulletinCumulsResultNormalizer implements DenormalizerInterface, No
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\SalarieBulletinCumulsResult();
+        $object = new SalarieBulletinCumulsResult();
         if (\array_key_exists('salaireDeBase', $data) && \is_int($data['salaireDeBase'])) {
             $data['salaireDeBase'] = (float) $data['salaireDeBase'];
         }
@@ -61,6 +62,9 @@ class SalarieBulletinCumulsResultNormalizer implements DenormalizerInterface, No
         }
         if (\array_key_exists('netAPayer', $data) && \is_int($data['netAPayer'])) {
             $data['netAPayer'] = (float) $data['netAPayer'];
+        }
+        if (\array_key_exists('impotSurLeRevenuPreleveALaSource', $data) && \is_int($data['impotSurLeRevenuPreleveALaSource'])) {
+            $data['impotSurLeRevenuPreleveALaSource'] = (float) $data['impotSurLeRevenuPreleveALaSource'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -100,6 +104,11 @@ class SalarieBulletinCumulsResultNormalizer implements DenormalizerInterface, No
         } elseif (\array_key_exists('netAPayer', $data) && null === $data['netAPayer']) {
             $object->setNetAPayer(null);
         }
+        if (\array_key_exists('impotSurLeRevenuPreleveALaSource', $data) && null !== $data['impotSurLeRevenuPreleveALaSource']) {
+            $object->setImpotSurLeRevenuPreleveALaSource($data['impotSurLeRevenuPreleveALaSource']);
+        } elseif (\array_key_exists('impotSurLeRevenuPreleveALaSource', $data) && null === $data['impotSurLeRevenuPreleveALaSource']) {
+            $object->setImpotSurLeRevenuPreleveALaSource(null);
+        }
 
         return $object;
     }
@@ -133,7 +142,15 @@ class SalarieBulletinCumulsResultNormalizer implements DenormalizerInterface, No
         if ($object->isInitialized('netAPayer') && null !== $object->getNetAPayer()) {
             $data['netAPayer'] = $object->getNetAPayer();
         }
+        if ($object->isInitialized('impotSurLeRevenuPreleveALaSource') && null !== $object->getImpotSurLeRevenuPreleveALaSource()) {
+            $data['impotSurLeRevenuPreleveALaSource'] = $object->getImpotSurLeRevenuPreleveALaSource();
+        }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\SalarieBulletinCumulsResult' => false];
     }
 }

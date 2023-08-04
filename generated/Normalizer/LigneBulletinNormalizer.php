@@ -2,6 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Normalizer;
 
+use QdequippeTech\Silae\Api\Model\LigneBulletin;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -40,7 +41,7 @@ class LigneBulletinNormalizer implements DenormalizerInterface, NormalizerInterf
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \QdequippeTech\Silae\Api\Model\LigneBulletin();
+        $object = new LigneBulletin();
         if (\array_key_exists('baseSalariale', $data) && \is_int($data['baseSalariale'])) {
             $data['baseSalariale'] = (float) $data['baseSalariale'];
         }
@@ -148,5 +149,10 @@ class LigneBulletinNormalizer implements DenormalizerInterface, NormalizerInterf
         }
 
         return $data;
+    }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['QdequippeTech\\Silae\\Api\\Model\\LigneBulletin' => false];
     }
 }
