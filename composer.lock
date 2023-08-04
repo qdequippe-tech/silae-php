@@ -1585,16 +1585,16 @@
         },
         {
             "name": "jane-php/json-schema",
-            "version": "v7.5.2",
+            "version": "v7.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/janephp/json-schema.git",
-                "reference": "3389c0fbce6f8e73a2522b2a219f86bdea80c9f5"
+                "reference": "fc485e6fe1edfd905b80a0591f11a30af4bbeb3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/janephp/json-schema/zipball/3389c0fbce6f8e73a2522b2a219f86bdea80c9f5",
-                "reference": "3389c0fbce6f8e73a2522b2a219f86bdea80c9f5",
+                "url": "https://api.github.com/repos/janephp/json-schema/zipball/fc485e6fe1edfd905b80a0591f11a30af4bbeb3e",
+                "reference": "fc485e6fe1edfd905b80a0591f11a30af4bbeb3e",
                 "shasum": ""
             },
             "require": {
@@ -1655,22 +1655,22 @@
             ],
             "description": "Generate a serializable / deserializable object model given a json schema",
             "support": {
-                "source": "https://github.com/janephp/json-schema/tree/v7.5.2"
+                "source": "https://github.com/janephp/json-schema/tree/v7.5.3"
             },
-            "time": "2023-07-10T09:18:08+00:00"
+            "time": "2023-08-04T08:41:58+00:00"
         },
         {
             "name": "jane-php/open-api-2",
-            "version": "v7.5.2",
+            "version": "v7.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/janephp/open-api-2.git",
-                "reference": "693ae2acd27f49077bf7c4f8da57856c0e0ba731"
+                "reference": "5d5096ed4bc9beb2216dd10bf234970df948ef07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/janephp/open-api-2/zipball/693ae2acd27f49077bf7c4f8da57856c0e0ba731",
-                "reference": "693ae2acd27f49077bf7c4f8da57856c0e0ba731",
+                "url": "https://api.github.com/repos/janephp/open-api-2/zipball/5d5096ed4bc9beb2216dd10bf234970df948ef07",
+                "reference": "5d5096ed4bc9beb2216dd10bf234970df948ef07",
                 "shasum": ""
             },
             "require": {
@@ -1728,13 +1728,13 @@
                 "swagger"
             ],
             "support": {
-                "source": "https://github.com/janephp/open-api-2/tree/v7.5.2"
+                "source": "https://github.com/janephp/open-api-2/tree/v7.5.3"
             },
-            "time": "2023-07-10T09:18:08+00:00"
+            "time": "2023-08-04T08:41:58+00:00"
         },
         {
             "name": "jane-php/open-api-common",
-            "version": "v7.5.2",
+            "version": "v7.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/janephp/open-api-common.git",
@@ -1796,7 +1796,7 @@
                 "utility"
             ],
             "support": {
-                "source": "https://github.com/janephp/open-api-common/tree/v7.5.2"
+                "source": "https://github.com/janephp/open-api-common/tree/v7.5.3"
             },
             "time": "2023-03-09T16:50:42+00:00"
         },
@@ -2112,16 +2112,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v6.3.0",
+            "version": "v6.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "8788808b07cf0bdd6e4b7fdd23d8ddb1470c83b7"
+                "reference": "aa5d64ad3f63f2e48964fc81ee45cb318a723898"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/8788808b07cf0bdd6e4b7fdd23d8ddb1470c83b7",
-                "reference": "8788808b07cf0bdd6e4b7fdd23d8ddb1470c83b7",
+                "url": "https://api.github.com/repos/symfony/console/zipball/aa5d64ad3f63f2e48964fc81ee45cb318a723898",
+                "reference": "aa5d64ad3f63f2e48964fc81ee45cb318a723898",
                 "shasum": ""
             },
             "require": {
@@ -2182,7 +2182,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v6.3.0"
+                "source": "https://github.com/symfony/console/tree/v6.3.2"
             },
             "funding": [
                 {
@@ -2198,7 +2198,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-29T12:49:39+00:00"
+            "time": "2023-07-19T20:17:28+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -2672,16 +2672,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v6.3.0",
+            "version": "v6.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "f2e190ee75ff0f5eced645ec0be5c66fac81f51f"
+                "reference": "53d1a83225002635bca3482fcbf963001313fb68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/f2e190ee75ff0f5eced645ec0be5c66fac81f51f",
-                "reference": "f2e190ee75ff0f5eced645ec0be5c66fac81f51f",
+                "url": "https://api.github.com/repos/symfony/string/zipball/53d1a83225002635bca3482fcbf963001313fb68",
+                "reference": "53d1a83225002635bca3482fcbf963001313fb68",
                 "shasum": ""
             },
             "require": {
@@ -2738,7 +2738,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v6.3.0"
+                "source": "https://github.com/symfony/string/tree/v6.3.2"
             },
             "funding": [
                 {
@@ -2754,7 +2754,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-03-21T21:06:29+00:00"
+            "time": "2023-07-05T08:41:27+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -2836,16 +2836,16 @@
         },
         {
             "name": "symfony/validator",
-            "version": "v6.3.1",
+            "version": "v6.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
-                "reference": "1b71f43c62ee867ab08195ba6039a1bc3e6654dc"
+                "reference": "b0c4ecf17d39eee1edfecc92299a03b9f5d5220b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/validator/zipball/1b71f43c62ee867ab08195ba6039a1bc3e6654dc",
-                "reference": "1b71f43c62ee867ab08195ba6039a1bc3e6654dc",
+                "url": "https://api.github.com/repos/symfony/validator/zipball/b0c4ecf17d39eee1edfecc92299a03b9f5d5220b",
+                "reference": "b0c4ecf17d39eee1edfecc92299a03b9f5d5220b",
                 "shasum": ""
             },
             "require": {
@@ -2912,7 +2912,7 @@
             "description": "Provides tools to validate values",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/validator/tree/v6.3.1"
+                "source": "https://github.com/symfony/validator/tree/v6.3.2"
             },
             "funding": [
                 {
@@ -2928,24 +2928,25 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-06-21T12:08:28+00:00"
+            "time": "2023-07-26T17:39:03+00:00"
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v6.3.1",
+            "version": "v6.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "c81268d6960ddb47af17391a27d222bd58cf0515"
+                "reference": "77fb4f2927f6991a9843633925d111147449ee7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/c81268d6960ddb47af17391a27d222bd58cf0515",
-                "reference": "c81268d6960ddb47af17391a27d222bd58cf0515",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/77fb4f2927f6991a9843633925d111147449ee7a",
+                "reference": "77fb4f2927f6991a9843633925d111147449ee7a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
+                "symfony/deprecation-contracts": "^2.5|^3",
                 "symfony/polyfill-mbstring": "~1.0"
             },
             "conflict": {
@@ -2954,6 +2955,7 @@
             "require-dev": {
                 "ext-iconv": "*",
                 "symfony/console": "^5.4|^6.0",
+                "symfony/http-kernel": "^5.4|^6.0",
                 "symfony/process": "^5.4|^6.0",
                 "symfony/uid": "^5.4|^6.0",
                 "twig/twig": "^2.13|^3.0.4"
@@ -2994,7 +2996,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v6.3.1"
+                "source": "https://github.com/symfony/var-dumper/tree/v6.3.3"
             },
             "funding": [
                 {
@@ -3010,7 +3012,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-06-21T12:08:28+00:00"
+            "time": "2023-07-31T07:08:24+00:00"
         }
     ],
     "aliases": [],
