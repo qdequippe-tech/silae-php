@@ -23,6 +23,7 @@ class LectureAxesAnalytiques extends BaseEndpoint implements Endpoint
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      */
     public function __construct(DossierRequest $request, array $headerParameters = [])
@@ -54,11 +55,12 @@ class LectureAxesAnalytiques extends BaseEndpoint implements Endpoint
     protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
-        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers', 'Authorization']);
+        $optionsResolver->setRequired(['Authorization']);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
         $optionsResolver->addAllowedTypes('dossiers', ['string']);
+        $optionsResolver->addAllowedTypes('Authorization', ['string']);
 
         return $optionsResolver;
     }

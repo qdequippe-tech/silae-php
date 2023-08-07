@@ -1185,6 +1185,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1205,6 +1206,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1225,6 +1227,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1245,6 +1248,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1265,6 +1269,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1285,6 +1290,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1305,6 +1311,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1325,6 +1332,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1345,6 +1353,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1365,6 +1374,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1385,6 +1395,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1405,6 +1416,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1425,6 +1437,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1445,6 +1458,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1465,6 +1479,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1485,6 +1500,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1505,6 +1521,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1525,6 +1542,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1545,6 +1563,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1565,6 +1584,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1585,6 +1605,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1605,6 +1626,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1625,6 +1647,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1645,6 +1668,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1665,6 +1689,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1685,6 +1710,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1705,6 +1731,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1725,6 +1752,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1750,6 +1778,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1770,6 +1799,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1790,6 +1820,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1810,6 +1841,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1835,6 +1867,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1855,6 +1888,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1880,6 +1914,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1900,6 +1935,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1920,6 +1956,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1945,6 +1982,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1965,6 +2003,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1985,6 +2024,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2005,6 +2045,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2025,6 +2066,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2050,6 +2092,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2070,6 +2113,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2090,6 +2134,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2110,6 +2155,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2130,6 +2176,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2150,6 +2197,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2170,6 +2218,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2190,6 +2239,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2210,6 +2260,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2230,6 +2281,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2250,6 +2302,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2270,6 +2323,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2290,6 +2344,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2310,6 +2365,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2330,6 +2386,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2350,6 +2407,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2370,6 +2428,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2390,6 +2449,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2410,6 +2470,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2430,6 +2491,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2450,6 +2512,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2470,6 +2533,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2490,6 +2554,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2510,6 +2575,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2530,6 +2596,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2550,6 +2617,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2570,6 +2638,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2595,6 +2664,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2615,6 +2685,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2635,6 +2706,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2655,6 +2727,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2675,6 +2748,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2700,6 +2774,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2720,6 +2795,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2740,6 +2816,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2760,6 +2837,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2785,6 +2863,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2805,6 +2884,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2825,6 +2905,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2850,6 +2931,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2870,6 +2952,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2890,6 +2973,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2915,6 +2999,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2935,6 +3020,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2955,6 +3041,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2980,6 +3067,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3000,6 +3088,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3020,6 +3109,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3045,6 +3135,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3065,6 +3156,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3085,6 +3177,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3110,6 +3203,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3130,6 +3224,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3150,6 +3245,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3175,6 +3271,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3195,6 +3292,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3215,6 +3313,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3240,6 +3339,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3260,6 +3360,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3280,6 +3381,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3305,6 +3407,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3325,6 +3428,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3345,6 +3449,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3365,6 +3470,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3390,6 +3496,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3410,6 +3517,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3430,6 +3538,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3450,6 +3559,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3470,6 +3580,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3490,6 +3601,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3510,6 +3622,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3530,6 +3643,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3555,6 +3669,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3575,6 +3690,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3595,6 +3711,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3615,6 +3732,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3635,6 +3753,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3655,6 +3774,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3675,6 +3795,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3695,6 +3816,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3715,6 +3837,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3735,6 +3858,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3755,6 +3879,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3775,6 +3900,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3795,6 +3921,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3815,6 +3942,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3835,6 +3963,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3855,6 +3984,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3875,6 +4005,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3895,6 +4026,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3915,6 +4047,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3935,6 +4068,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3955,6 +4089,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3975,6 +4110,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -3995,6 +4131,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4015,6 +4152,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4035,6 +4173,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4055,6 +4194,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4075,6 +4215,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4095,6 +4236,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4115,6 +4257,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4135,6 +4278,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4160,6 +4304,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4180,6 +4325,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4200,6 +4346,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4220,6 +4367,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4240,6 +4388,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4260,6 +4409,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4280,6 +4430,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4300,6 +4451,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4320,6 +4472,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4340,6 +4493,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4360,6 +4514,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4380,6 +4535,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4400,6 +4556,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4420,6 +4577,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4440,6 +4598,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4460,6 +4619,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4480,6 +4640,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4505,6 +4666,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4525,6 +4687,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4545,6 +4708,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4565,6 +4729,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4585,6 +4750,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4605,6 +4771,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4630,6 +4797,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4650,6 +4818,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4670,6 +4839,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4690,6 +4860,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4710,6 +4881,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4730,6 +4902,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4750,6 +4923,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4770,6 +4944,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4790,6 +4965,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4810,6 +4986,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4830,6 +5007,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4850,6 +5028,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4870,6 +5049,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4890,6 +5070,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4910,6 +5091,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4930,6 +5112,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4950,6 +5133,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4970,6 +5154,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -4990,6 +5175,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5010,6 +5196,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5030,6 +5217,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5050,6 +5238,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5070,6 +5259,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5090,6 +5280,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5110,6 +5301,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5130,6 +5322,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5155,6 +5348,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5175,6 +5369,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5195,6 +5390,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5215,6 +5411,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5235,6 +5432,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5255,6 +5453,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5275,6 +5474,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5295,6 +5495,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5315,6 +5516,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5335,6 +5537,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5355,6 +5558,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5375,6 +5579,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5400,6 +5605,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5420,6 +5626,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5440,6 +5647,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5465,6 +5673,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5485,6 +5694,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5505,6 +5715,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5530,6 +5741,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5550,6 +5762,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5570,6 +5783,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5590,6 +5804,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5610,6 +5825,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5630,6 +5846,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5650,6 +5867,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5670,6 +5888,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5690,6 +5909,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5710,6 +5930,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5730,6 +5951,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5750,6 +5972,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5770,6 +5993,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5790,6 +6014,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -5810,6 +6035,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
