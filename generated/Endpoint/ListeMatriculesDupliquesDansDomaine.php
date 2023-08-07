@@ -22,6 +22,7 @@ class ListeMatriculesDupliquesDansDomaine extends BaseEndpoint implements Endpoi
      *
      * @var string $Ocp-Apim-Subscription-Key
      * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
      *             }
      */
     public function __construct(array $headerParameters = [])
@@ -52,11 +53,12 @@ class ListeMatriculesDupliquesDansDomaine extends BaseEndpoint implements Endpoi
     protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers']);
-        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefined(['Ocp-Apim-Subscription-Key', 'dossiers', 'Authorization']);
+        $optionsResolver->setRequired(['Authorization']);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Ocp-Apim-Subscription-Key', ['string']);
         $optionsResolver->addAllowedTypes('dossiers', ['string']);
+        $optionsResolver->addAllowedTypes('Authorization', ['string']);
 
         return $optionsResolver;
     }

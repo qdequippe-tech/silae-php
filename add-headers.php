@@ -16,6 +16,15 @@ foreach ($openAPISpec['paths'] as $key => &$path) {
             'type' => 'string',
             'default' => '{{dossiers}}',
         ];
+
+        $operation['parameters'][] = [
+            'name' => 'Authorization',
+            'in' => 'header',
+            'required' => true,
+            'type' => 'string',
+            'description' => 'Authorization de type Bearer.',
+            'x-example' => 'Bearer {{access_token}}',
+        ];
     }
 }
 
