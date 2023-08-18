@@ -32,6 +32,8 @@ class SalarieAbsenceV2Normalizer implements DenormalizerInterface, NormalizerInt
 
     /**
      * @param mixed|null $format
+     * @param mixed      $data
+     * @param mixed      $class
      */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
@@ -170,6 +172,7 @@ class SalarieAbsenceV2Normalizer implements DenormalizerInterface, NormalizerInt
 
     /**
      * @param mixed|null $format
+     * @param mixed      $object
      *
      * @return array|string|int|float|bool|\ArrayObject|null
      */
