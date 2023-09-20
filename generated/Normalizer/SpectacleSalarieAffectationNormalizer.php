@@ -32,8 +32,6 @@ class SpectacleSalarieAffectationNormalizer implements DenormalizerInterface, No
 
     /**
      * @param mixed|null $format
-     * @param mixed      $data
-     * @param mixed      $class
      */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
@@ -379,7 +377,6 @@ class SpectacleSalarieAffectationNormalizer implements DenormalizerInterface, No
 
     /**
      * @param mixed|null $format
-     * @param mixed      $object
      *
      * @return array|string|int|float|bool|\ArrayObject|null
      */

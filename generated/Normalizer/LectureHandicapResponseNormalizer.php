@@ -32,8 +32,6 @@ class LectureHandicapResponseNormalizer implements DenormalizerInterface, Normal
 
     /**
      * @param mixed|null $format
-     * @param mixed      $data
-     * @param mixed      $class
      */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
@@ -67,7 +65,6 @@ class LectureHandicapResponseNormalizer implements DenormalizerInterface, Normal
 
     /**
      * @param mixed|null $format
-     * @param mixed      $object
      *
      * @return array|string|int|float|bool|\ArrayObject|null
      */
