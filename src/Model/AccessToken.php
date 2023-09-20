@@ -13,8 +13,7 @@ final class AccessToken implements \Stringable
         public readonly int $expiresIn,
         public readonly int $expiresOn,
         public readonly string $resource,
-    ) {
-    }
+    ) {}
 
     public function __toString(): string
     {
