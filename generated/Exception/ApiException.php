@@ -2,4 +2,6 @@
 
 namespace QdequippeTech\Silae\Api\Exception;
 
-interface ApiException extends \Throwable {}
+interface ApiException extends \Throwable
+{
+}
