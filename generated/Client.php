@@ -1178,7 +1178,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
+class Client extends Runtime\Client\Client
 {
     /**
      * @param array $headerParameters {
@@ -1833,7 +1833,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      */
     public function creationConfigurationAccesApi(CreationConfigurationAccesApiRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \QdequippeTech\Silae\Api\Endpoint\CreationConfigurationAccesApi($request, $headerParameters), $fetch);
+        return $this->executeEndpoint(new Endpoint\CreationConfigurationAccesApi($request, $headerParameters), $fetch);
     }
 
     /**
@@ -2698,7 +2698,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      */
     public function ecrituresComptables(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \QdequippeTech\Silae\Api\Endpoint\EcrituresComptables($request, $headerParameters), $fetch);
+        return $this->executeEndpoint(new Endpoint\EcrituresComptables($request, $headerParameters), $fetch);
     }
 
     /**
@@ -2829,7 +2829,7 @@ class Client extends \QdequippeTech\Silae\Api\Runtime\Client\Client
      */
     public function soldeRepos(DossierPeriodeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \QdequippeTech\Silae\Api\Endpoint\SoldeRepos($request, $headerParameters), $fetch);
+        return $this->executeEndpoint(new Endpoint\SoldeRepos($request, $headerParameters), $fetch);
     }
 
     /**
