@@ -26,7 +26,7 @@ composer require qdequippe-tech/silae-php
 ## Usage
 
 ```php
-$client = new \QdequippeTech\Silae\ClientFactory::create();
+$client = \QdequippeTech\Silae\ClientFactory::create();
 
 $request = new \QdequippeTech\Silae\Api\Model\ListeDossiersRequest();
 $request->setTypeDossiers(1);
