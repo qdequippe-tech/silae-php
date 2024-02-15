@@ -8,6 +8,9 @@ vendor: vendor/composer/installed.php
 
 tools-vendor: tools/php-cs-fixer/vendor/composer/installed.php
 
+cs_check: tools-vendor ## Check code style
+	./tools/php-cs-fixer/vendor/bin/php-cs-fixer check
+
 cs: tools-vendor ## Fix code style
 	./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix
 
