@@ -72,7 +72,7 @@ class ImportFichierDSN extends BaseEndpoint implements Endpoint
      * @throws ImportFichierDSNUnauthorizedException
      * @throws ImportFichierDSNInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

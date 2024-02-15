@@ -72,7 +72,7 @@ class SalarieRecupererPeriodeDernierBulletinCalcule extends BaseEndpoint impleme
      * @throws SalarieRecupererPeriodeDernierBulletinCalculeUnauthorizedException
      * @throws SalarieRecupererPeriodeDernierBulletinCalculeInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

@@ -72,7 +72,7 @@ class LectureTaxeTransport extends BaseEndpoint implements Endpoint
      * @throws LectureTaxeTransportUnauthorizedException
      * @throws LectureTaxeTransportInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

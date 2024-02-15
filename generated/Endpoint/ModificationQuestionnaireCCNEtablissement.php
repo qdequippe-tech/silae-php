@@ -69,7 +69,7 @@ class ModificationQuestionnaireCCNEtablissement extends BaseEndpoint implements 
      * @throws ModificationQuestionnaireCCNEtablissementUnauthorizedException
      * @throws ModificationQuestionnaireCCNEtablissementInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

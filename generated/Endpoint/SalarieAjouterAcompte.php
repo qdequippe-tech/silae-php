@@ -69,7 +69,7 @@ class SalarieAjouterAcompte extends BaseEndpoint implements Endpoint
      * @throws SalarieAjouterAcompteUnauthorizedException
      * @throws SalarieAjouterAcompteInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

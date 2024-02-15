@@ -123,7 +123,7 @@ class AcquisitionContenuPartielDSNRequestNormalizer implements DenormalizerInter
         return $data;
     }
 
-    public function getSupportedTypes(string $format = null): array
+    public function getSupportedTypes(?string $format = null): array
     {
         return ['QdequippeTech\\Silae\\Api\\Model\\AcquisitionContenuPartielDSNRequest' => false];
     }

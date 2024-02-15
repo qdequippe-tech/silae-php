@@ -87,7 +87,7 @@ class StatutAnalyseProductionPaieEntreesSortiesAsynchrone extends BaseEndpoint i
      * @throws StatutAnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException
      * @throws StatutAnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

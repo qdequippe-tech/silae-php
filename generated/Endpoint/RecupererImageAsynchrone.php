@@ -72,7 +72,7 @@ class RecupererImageAsynchrone extends BaseEndpoint implements Endpoint
      * @throws RecupererImageAsynchroneUnauthorizedException
      * @throws RecupererImageAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

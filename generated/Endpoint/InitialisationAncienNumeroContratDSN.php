@@ -69,7 +69,7 @@ class InitialisationAncienNumeroContratDSN extends BaseEndpoint implements Endpo
      * @throws InitialisationAncienNumeroContratDSNUnauthorizedException
      * @throws InitialisationAncienNumeroContratDSNInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

@@ -87,7 +87,7 @@ class StatutRecupererDuplicatasBulletinsAsynchrone extends BaseEndpoint implemen
      * @throws StatutRecupererDuplicatasBulletinsAsynchroneUnauthorizedException
      * @throws StatutRecupererDuplicatasBulletinsAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

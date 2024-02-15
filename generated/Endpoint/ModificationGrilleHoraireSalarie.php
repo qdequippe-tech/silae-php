@@ -69,7 +69,7 @@ class ModificationGrilleHoraireSalarie extends BaseEndpoint implements Endpoint
      * @throws ModificationGrilleHoraireSalarieUnauthorizedException
      * @throws ModificationGrilleHoraireSalarieInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

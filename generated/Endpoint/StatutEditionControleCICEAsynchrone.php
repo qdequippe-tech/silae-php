@@ -87,7 +87,7 @@ class StatutEditionControleCICEAsynchrone extends BaseEndpoint implements Endpoi
      * @throws StatutEditionControleCICEAsynchroneUnauthorizedException
      * @throws StatutEditionControleCICEAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

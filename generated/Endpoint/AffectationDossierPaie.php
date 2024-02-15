@@ -69,7 +69,7 @@ class AffectationDossierPaie extends BaseEndpoint implements Endpoint
      * @throws AffectationDossierPaieUnauthorizedException
      * @throws AffectationDossierPaieInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

@@ -87,7 +87,7 @@ class StatutEditionCoutsSalariauxAsynchrone extends BaseEndpoint implements Endp
      * @throws StatutEditionCoutsSalariauxAsynchroneUnauthorizedException
      * @throws StatutEditionCoutsSalariauxAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

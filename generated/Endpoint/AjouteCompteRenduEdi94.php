@@ -72,7 +72,7 @@ class AjouteCompteRenduEdi94 extends BaseEndpoint implements Endpoint
      * @throws AjouteCompteRenduEdi94UnauthorizedException
      * @throws AjouteCompteRenduEdi94InternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

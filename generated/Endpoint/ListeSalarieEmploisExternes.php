@@ -72,7 +72,7 @@ class ListeSalarieEmploisExternes extends BaseEndpoint implements Endpoint
      * @throws ListeSalarieEmploisExternesUnauthorizedException
      * @throws ListeSalarieEmploisExternesInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

@@ -72,7 +72,7 @@ class CreationSalarieEmploisAsynchrone extends BaseEndpoint implements Endpoint
      * @throws CreationSalarieEmploisAsynchroneUnauthorizedException
      * @throws CreationSalarieEmploisAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

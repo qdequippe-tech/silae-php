@@ -72,7 +72,7 @@ class RecupererFichiersVirementHorsBulletin extends BaseEndpoint implements Endp
      * @throws RecupererFichiersVirementHorsBulletinUnauthorizedException
      * @throws RecupererFichiersVirementHorsBulletinInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

@@ -165,7 +165,7 @@ class DossierNormalizer implements DenormalizerInterface, NormalizerInterface, D
         return $data;
     }
 
-    public function getSupportedTypes(string $format = null): array
+    public function getSupportedTypes(?string $format = null): array
     {
         return ['QdequippeTech\\Silae\\Api\\Model\\Dossier' => false];
     }

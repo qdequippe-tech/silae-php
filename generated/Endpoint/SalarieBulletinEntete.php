@@ -72,7 +72,7 @@ class SalarieBulletinEntete extends BaseEndpoint implements Endpoint
      * @throws SalarieBulletinEnteteUnauthorizedException
      * @throws SalarieBulletinEnteteInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

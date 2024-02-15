@@ -64,7 +64,7 @@ class LectureTaxeApprentissageSocieteRequestNormalizer implements DenormalizerIn
         return ['numeroDossier' => $object->getNumeroDossier()];
     }
 
-    public function getSupportedTypes(string $format = null): array
+    public function getSupportedTypes(?string $format = null): array
     {
         return ['QdequippeTech\\Silae\\Api\\Model\\LectureTaxeApprentissageSocieteRequest' => false];
     }

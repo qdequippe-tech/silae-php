@@ -87,7 +87,7 @@ class StatutSalarieSyntheseCarriereAsynchrone extends BaseEndpoint implements En
      * @throws StatutSalarieSyntheseCarriereAsynchroneUnauthorizedException
      * @throws StatutSalarieSyntheseCarriereAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

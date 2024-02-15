@@ -93,7 +93,7 @@ class SoldeReposNormalizer implements DenormalizerInterface, NormalizerInterface
         return $data;
     }
 
-    public function getSupportedTypes(string $format = null): array
+    public function getSupportedTypes(?string $format = null): array
     {
         return ['QdequippeTech\\Silae\\Api\\Model\\SoldeRepos' => false];
     }

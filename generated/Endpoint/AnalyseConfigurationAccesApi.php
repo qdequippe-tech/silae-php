@@ -72,7 +72,7 @@ class AnalyseConfigurationAccesApi extends BaseEndpoint implements Endpoint
      * @throws AnalyseConfigurationAccesApiUnauthorizedException
      * @throws AnalyseConfigurationAccesApiInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

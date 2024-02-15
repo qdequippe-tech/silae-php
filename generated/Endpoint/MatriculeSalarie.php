@@ -72,7 +72,7 @@ class MatriculeSalarie extends BaseEndpoint implements Endpoint
      * @throws MatriculeSalarieUnauthorizedException
      * @throws MatriculeSalarieInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

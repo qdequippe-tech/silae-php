@@ -72,7 +72,7 @@ class RecupererFichiersEcrituresComptables extends BaseEndpoint implements Endpo
      * @throws RecupererFichiersEcrituresComptablesUnauthorizedException
      * @throws RecupererFichiersEcrituresComptablesInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

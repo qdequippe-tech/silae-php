@@ -72,7 +72,7 @@ class EditionHistorique extends BaseEndpoint implements Endpoint
      * @throws EditionHistoriqueUnauthorizedException
      * @throws EditionHistoriqueInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

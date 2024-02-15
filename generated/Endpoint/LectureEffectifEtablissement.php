@@ -72,7 +72,7 @@ class LectureEffectifEtablissement extends BaseEndpoint implements Endpoint
      * @throws LectureEffectifEtablissementUnauthorizedException
      * @throws LectureEffectifEtablissementInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

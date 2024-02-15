@@ -71,7 +71,7 @@ class EcrituresComptables extends BaseEndpoint implements Endpoint
      * @throws EcrituresComptablesUnauthorizedException
      * @throws EcrituresComptablesInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

@@ -78,7 +78,7 @@ class ApiErrorsNormalizer implements DenormalizerInterface, NormalizerInterface,
         return [];
     }
 
-    public function getSupportedTypes(string $format = null): array
+    public function getSupportedTypes(?string $format = null): array
     {
         return ['QdequippeTech\\Silae\\Api\\Model\\ApiErrors' => false];
     }

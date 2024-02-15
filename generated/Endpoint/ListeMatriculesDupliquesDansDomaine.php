@@ -70,7 +70,7 @@ class ListeMatriculesDupliquesDansDomaine extends BaseEndpoint implements Endpoi
      * @throws ListeMatriculesDupliquesDansDomaineUnauthorizedException
      * @throws ListeMatriculesDupliquesDansDomaineInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

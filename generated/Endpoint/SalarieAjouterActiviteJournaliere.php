@@ -69,7 +69,7 @@ class SalarieAjouterActiviteJournaliere extends BaseEndpoint implements Endpoint
      * @throws SalarieAjouterActiviteJournaliereUnauthorizedException
      * @throws SalarieAjouterActiviteJournaliereInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

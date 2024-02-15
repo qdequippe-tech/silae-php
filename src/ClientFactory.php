@@ -8,7 +8,7 @@ use Psr\Http\Client\ClientInterface;
 
 final class ClientFactory
 {
-    public static function create(ClientInterface $httpClient = null): Client
+    public static function create(?ClientInterface $httpClient = null): Client
     {
         return Client::create($httpClient);
     }

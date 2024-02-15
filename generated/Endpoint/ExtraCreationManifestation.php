@@ -69,7 +69,7 @@ class ExtraCreationManifestation extends BaseEndpoint implements Endpoint
      * @throws ExtraCreationManifestationUnauthorizedException
      * @throws ExtraCreationManifestationInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

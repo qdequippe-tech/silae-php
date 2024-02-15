@@ -128,7 +128,7 @@ class StatutRecupererImageAsynchroneResponseNormalizer implements DenormalizerIn
         return $data;
     }
 
-    public function getSupportedTypes(string $format = null): array
+    public function getSupportedTypes(?string $format = null): array
     {
         return ['QdequippeTech\\Silae\\Api\\Model\\StatutRecupererImageAsynchroneResponse' => false];
     }

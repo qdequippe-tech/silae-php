@@ -69,7 +69,7 @@ class SalarieSupprimerAbsence extends BaseEndpoint implements Endpoint
      * @throws SalarieSupprimerAbsenceUnauthorizedException
      * @throws SalarieSupprimerAbsenceInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
