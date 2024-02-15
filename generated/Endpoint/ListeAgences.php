@@ -70,7 +70,7 @@ class ListeAgences extends BaseEndpoint implements Endpoint
      * @throws ListeAgencesUnauthorizedException
      * @throws ListeAgencesInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

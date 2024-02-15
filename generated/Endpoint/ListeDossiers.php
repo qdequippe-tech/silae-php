@@ -72,7 +72,7 @@ class ListeDossiers extends BaseEndpoint implements Endpoint
      * @throws ListeDossiersUnauthorizedException
      * @throws ListeDossiersInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

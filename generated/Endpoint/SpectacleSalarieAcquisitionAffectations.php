@@ -72,7 +72,7 @@ class SpectacleSalarieAcquisitionAffectations extends BaseEndpoint implements En
      * @throws SpectacleSalarieAcquisitionAffectationsUnauthorizedException
      * @throws SpectacleSalarieAcquisitionAffectationsInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

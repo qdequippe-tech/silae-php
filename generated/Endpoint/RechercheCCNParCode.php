@@ -72,7 +72,7 @@ class RechercheCCNParCode extends BaseEndpoint implements Endpoint
      * @throws RechercheCCNParCodeUnauthorizedException
      * @throws RechercheCCNParCodeInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

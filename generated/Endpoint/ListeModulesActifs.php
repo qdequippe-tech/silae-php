@@ -70,7 +70,7 @@ class ListeModulesActifs extends BaseEndpoint implements Endpoint
      * @throws ListeModulesActifsUnauthorizedException
      * @throws ListeModulesActifsInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

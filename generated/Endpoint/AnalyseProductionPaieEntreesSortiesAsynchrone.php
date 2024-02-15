@@ -72,7 +72,7 @@ class AnalyseProductionPaieEntreesSortiesAsynchrone extends BaseEndpoint impleme
      * @throws AnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException
      * @throws AnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

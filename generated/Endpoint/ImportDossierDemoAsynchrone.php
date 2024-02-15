@@ -72,7 +72,7 @@ class ImportDossierDemoAsynchrone extends BaseEndpoint implements Endpoint
      * @throws ImportDossierDemoAsynchroneUnauthorizedException
      * @throws ImportDossierDemoAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

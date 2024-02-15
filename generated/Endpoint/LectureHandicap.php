@@ -72,7 +72,7 @@ class LectureHandicap extends BaseEndpoint implements Endpoint
      * @throws LectureHandicapUnauthorizedException
      * @throws LectureHandicapInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

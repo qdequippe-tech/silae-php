@@ -83,7 +83,7 @@ class EtatDeclarationsRequestNormalizer implements DenormalizerInterface, Normal
         return $data;
     }
 
-    public function getSupportedTypes(string $format = null): array
+    public function getSupportedTypes(?string $format = null): array
     {
         return ['QdequippeTech\\Silae\\Api\\Model\\EtatDeclarationsRequest' => false];
     }

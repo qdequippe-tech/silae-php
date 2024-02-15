@@ -72,7 +72,7 @@ class LectureTaxeApprentissageEtablissement extends BaseEndpoint implements Endp
      * @throws LectureTaxeApprentissageEtablissementUnauthorizedException
      * @throws LectureTaxeApprentissageEtablissementInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

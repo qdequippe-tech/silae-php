@@ -69,7 +69,7 @@ class ModificationHandicap extends BaseEndpoint implements Endpoint
      * @throws ModificationHandicapUnauthorizedException
      * @throws ModificationHandicapInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

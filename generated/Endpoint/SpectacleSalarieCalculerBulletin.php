@@ -69,7 +69,7 @@ class SpectacleSalarieCalculerBulletin extends BaseEndpoint implements Endpoint
      * @throws SpectacleSalarieCalculerBulletinUnauthorizedException
      * @throws SpectacleSalarieCalculerBulletinInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

@@ -71,7 +71,7 @@ class CreationConfigurationAccesApi extends BaseEndpoint implements Endpoint
      * @throws CreationConfigurationAccesApiUnauthorizedException
      * @throws CreationConfigurationAccesApiInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

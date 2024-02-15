@@ -69,7 +69,7 @@ class GererEtatDossierPaie extends BaseEndpoint implements Endpoint
      * @throws GererEtatDossierPaieUnauthorizedException
      * @throws GererEtatDossierPaieInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

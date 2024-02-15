@@ -72,7 +72,7 @@ class ClassificationMetierComplete extends BaseEndpoint implements Endpoint
      * @throws ClassificationMetierCompleteUnauthorizedException
      * @throws ClassificationMetierCompleteInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

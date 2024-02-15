@@ -69,7 +69,7 @@ class ModificationCCNSociete extends BaseEndpoint implements Endpoint
      * @throws ModificationCCNSocieteUnauthorizedException
      * @throws ModificationCCNSocieteInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

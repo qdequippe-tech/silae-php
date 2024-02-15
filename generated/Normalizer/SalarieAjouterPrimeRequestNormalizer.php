@@ -81,7 +81,7 @@ class SalarieAjouterPrimeRequestNormalizer implements DenormalizerInterface, Nor
         return $data;
     }
 
-    public function getSupportedTypes(string $format = null): array
+    public function getSupportedTypes(?string $format = null): array
     {
         return ['QdequippeTech\\Silae\\Api\\Model\\SalarieAjouterPrimeRequest' => false];
     }

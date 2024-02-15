@@ -72,7 +72,7 @@ class ImportXmlParametrageOrganismeDSN extends BaseEndpoint implements Endpoint
      * @throws ImportXmlParametrageOrganismeDSNUnauthorizedException
      * @throws ImportXmlParametrageOrganismeDSNInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

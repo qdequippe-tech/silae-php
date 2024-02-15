@@ -87,7 +87,7 @@ class StatutEditionJournalDePaieAsynchrone extends BaseEndpoint implements Endpo
      * @throws StatutEditionJournalDePaieAsynchroneUnauthorizedException
      * @throws StatutEditionJournalDePaieAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

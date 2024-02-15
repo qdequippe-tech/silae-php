@@ -87,7 +87,7 @@ class StatutSalariesConfirmerSaisiesAsynchrone extends BaseEndpoint implements E
      * @throws StatutSalariesConfirmerSaisiesAsynchroneUnauthorizedException
      * @throws StatutSalariesConfirmerSaisiesAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

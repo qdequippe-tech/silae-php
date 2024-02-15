@@ -72,7 +72,7 @@ class RechercheDeclarationEvenementielle extends BaseEndpoint implements Endpoin
      * @throws RechercheDeclarationEvenementielleUnauthorizedException
      * @throws RechercheDeclarationEvenementielleInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

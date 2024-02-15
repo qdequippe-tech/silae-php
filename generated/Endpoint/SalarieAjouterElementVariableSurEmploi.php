@@ -69,7 +69,7 @@ class SalarieAjouterElementVariableSurEmploi extends BaseEndpoint implements End
      * @throws SalarieAjouterElementVariableSurEmploiUnauthorizedException
      * @throws SalarieAjouterElementVariableSurEmploiInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

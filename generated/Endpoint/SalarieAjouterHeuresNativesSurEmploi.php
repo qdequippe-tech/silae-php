@@ -69,7 +69,7 @@ class SalarieAjouterHeuresNativesSurEmploi extends BaseEndpoint implements Endpo
      * @throws SalarieAjouterHeuresNativesSurEmploiUnauthorizedException
      * @throws SalarieAjouterHeuresNativesSurEmploiInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

@@ -87,7 +87,7 @@ class StatutRecupererDeclarationsAsynchrone extends BaseEndpoint implements Endp
      * @throws StatutRecupererDeclarationsAsynchroneUnauthorizedException
      * @throws StatutRecupererDeclarationsAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

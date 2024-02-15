@@ -72,7 +72,7 @@ class SpectacleSalarieCalculerBulletinAsynchrone extends BaseEndpoint implements
      * @throws SpectacleSalarieCalculerBulletinAsynchroneUnauthorizedException
      * @throws SpectacleSalarieCalculerBulletinAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

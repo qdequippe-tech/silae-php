@@ -87,7 +87,7 @@ class StatutImportDossierDemoAsynchrone extends BaseEndpoint implements Endpoint
      * @throws StatutImportDossierDemoAsynchroneUnauthorizedException
      * @throws StatutImportDossierDemoAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

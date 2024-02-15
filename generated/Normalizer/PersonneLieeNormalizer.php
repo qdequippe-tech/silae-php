@@ -117,7 +117,7 @@ class PersonneLieeNormalizer implements DenormalizerInterface, NormalizerInterfa
         return $data;
     }
 
-    public function getSupportedTypes(string $format = null): array
+    public function getSupportedTypes(?string $format = null): array
     {
         return ['QdequippeTech\\Silae\\Api\\Model\\PersonneLiee' => false];
     }

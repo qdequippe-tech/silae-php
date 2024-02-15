@@ -72,7 +72,7 @@ class SalarieDUEAsynchrone extends BaseEndpoint implements Endpoint
      * @throws SalarieDUEAsynchroneUnauthorizedException
      * @throws SalarieDUEAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

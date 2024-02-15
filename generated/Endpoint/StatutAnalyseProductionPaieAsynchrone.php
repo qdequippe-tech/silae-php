@@ -87,7 +87,7 @@ class StatutAnalyseProductionPaieAsynchrone extends BaseEndpoint implements Endp
      * @throws StatutAnalyseProductionPaieAsynchroneUnauthorizedException
      * @throws StatutAnalyseProductionPaieAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

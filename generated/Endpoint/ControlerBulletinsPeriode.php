@@ -72,7 +72,7 @@ class ControlerBulletinsPeriode extends BaseEndpoint implements Endpoint
      * @throws ControlerBulletinsPeriodeUnauthorizedException
      * @throws ControlerBulletinsPeriodeInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

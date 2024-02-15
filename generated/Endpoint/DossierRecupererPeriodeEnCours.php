@@ -72,7 +72,7 @@ class DossierRecupererPeriodeEnCours extends BaseEndpoint implements Endpoint
      * @throws DossierRecupererPeriodeEnCoursUnauthorizedException
      * @throws DossierRecupererPeriodeEnCoursInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

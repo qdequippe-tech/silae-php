@@ -120,7 +120,7 @@ class SalariePrimeNormalizer implements DenormalizerInterface, NormalizerInterfa
         return $data;
     }
 
-    public function getSupportedTypes(string $format = null): array
+    public function getSupportedTypes(?string $format = null): array
     {
         return ['QdequippeTech\\Silae\\Api\\Model\\SalariePrime' => false];
     }

@@ -87,7 +87,7 @@ class StatutEditionEtatDesPaiementsAsynchrone extends BaseEndpoint implements En
      * @throws StatutEditionEtatDesPaiementsAsynchroneUnauthorizedException
      * @throws StatutEditionEtatDesPaiementsAsynchroneInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

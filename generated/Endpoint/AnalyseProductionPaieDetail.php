@@ -72,7 +72,7 @@ class AnalyseProductionPaieDetail extends BaseEndpoint implements Endpoint
      * @throws AnalyseProductionPaieDetailUnauthorizedException
      * @throws AnalyseProductionPaieDetailInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

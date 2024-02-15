@@ -72,7 +72,7 @@ class RecupererFichiersVirementHorsBulletinChiffres extends BaseEndpoint impleme
      * @throws RecupererFichiersVirementHorsBulletinChiffresUnauthorizedException
      * @throws RecupererFichiersVirementHorsBulletinChiffresInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

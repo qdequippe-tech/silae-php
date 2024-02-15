@@ -77,7 +77,7 @@ class ModificationDroitsFonctionnelsProductionPaieRequestNormalizer implements D
         return $data;
     }
 
-    public function getSupportedTypes(string $format = null): array
+    public function getSupportedTypes(?string $format = null): array
     {
         return ['QdequippeTech\\Silae\\Api\\Model\\ModificationDroitsFonctionnelsProductionPaieRequest' => false];
     }

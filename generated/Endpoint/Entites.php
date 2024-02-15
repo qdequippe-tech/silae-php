@@ -70,7 +70,7 @@ class Entites extends BaseEndpoint implements Endpoint
      * @throws EntitesUnauthorizedException
      * @throws EntitesInternalServerErrorException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
