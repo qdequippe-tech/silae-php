@@ -13,13 +13,14 @@ class ListeModulesActifsResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var ModulesActifsParDossier[]|null
+     * @var list<ModulesActifsParDossier>|null
      */
     protected $listeDossiers;
 
     /**
-     * @return ModulesActifsParDossier[]|null
+     * @return list<ModulesActifsParDossier>|null
      */
     public function getListeDossiers(): ?array
     {
@@ -27,7 +28,7 @@ class ListeModulesActifsResponse
     }
 
     /**
-     * @param ModulesActifsParDossier[]|null $listeDossiers
+     * @param list<ModulesActifsParDossier>|null $listeDossiers
      */
     public function setListeDossiers(?array $listeDossiers): self
     {

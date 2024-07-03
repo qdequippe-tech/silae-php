@@ -13,26 +13,32 @@ class Domain
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $id;
+
     /**
      * @var int|null
      */
     protected $internalId;
+
     /**
      * @var string|null
      */
     protected $groupName;
+
     /**
      * @var string|null
      */
     protected $name;
+
     /**
      * @var \DateTime|null
      */
     protected $validityStartDate;
+
     /**
      * @var \DateTime|null
      */

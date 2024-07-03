@@ -13,18 +13,22 @@ class ActivationDSN
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeDemarrageDsnMensuelle;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeDemarrageDsnArretDeTravail;
+
     /**
      * @var \DateTime|null
      */

@@ -8,6 +8,7 @@ use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDetailInternalServerE
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDetailUnauthorizedException;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDetailRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDetailResponse;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
@@ -47,7 +48,7 @@ class AnalyseProductionPaieDetail extends BaseEndpoint implements Endpoint
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class AnalyseProductionPaieDetail extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\AnalyseProductionPaieDetailResponse', 'json');
+            return $serializer->deserialize($body, AnalyseProductionPaieDetailResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new AnalyseProductionPaieDetailBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AnalyseProductionPaieDetailBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new AnalyseProductionPaieDetailUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AnalyseProductionPaieDetailUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new AnalyseProductionPaieDetailInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AnalyseProductionPaieDetailInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

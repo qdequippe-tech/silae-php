@@ -13,16 +13,19 @@ class StatistiquesEntreesSorties
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
+
     /**
      * @var string|null
      */
     protected $codeAgence;
+
     /**
-     * @var StatistiquesEntreesSortiesDetails[]|null
+     * @var list<StatistiquesEntreesSortiesDetails>|null
      */
     protected $statistiquesEntreesSortiesDetails;
 
@@ -53,7 +56,7 @@ class StatistiquesEntreesSorties
     }
 
     /**
-     * @return StatistiquesEntreesSortiesDetails[]|null
+     * @return list<StatistiquesEntreesSortiesDetails>|null
      */
     public function getStatistiquesEntreesSortiesDetails(): ?array
     {
@@ -61,7 +64,7 @@ class StatistiquesEntreesSorties
     }
 
     /**
-     * @param StatistiquesEntreesSortiesDetails[]|null $statistiquesEntreesSortiesDetails
+     * @param list<StatistiquesEntreesSortiesDetails>|null $statistiquesEntreesSortiesDetails
      */
     public function setStatistiquesEntreesSortiesDetails(?array $statistiquesEntreesSortiesDetails): self
     {

@@ -13,29 +13,34 @@ class StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var StatistiquesEntreesSorties[]|null
+     * @var list<StatistiquesEntreesSorties>|null
      */
     protected $statistiquesEntreesSorties;
+
     /**
      * @var string|null
      */
     protected $statut;
+
     /**
      * @var string|null
      */
     protected $messageErreur;
+
     /**
      * @var float|null
      */
     protected $progression;
+
     /**
      * @var string|null
      */
     protected $dureeExecution;
 
     /**
-     * @return StatistiquesEntreesSorties[]|null
+     * @return list<StatistiquesEntreesSorties>|null
      */
     public function getStatistiquesEntreesSorties(): ?array
     {
@@ -43,7 +48,7 @@ class StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse
     }
 
     /**
-     * @param StatistiquesEntreesSorties[]|null $statistiquesEntreesSorties
+     * @param list<StatistiquesEntreesSorties>|null $statistiquesEntreesSorties
      */
     public function setStatistiquesEntreesSorties(?array $statistiquesEntreesSorties): self
     {

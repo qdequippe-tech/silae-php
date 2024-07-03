@@ -13,13 +13,14 @@ class ListeComptesApiResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var CompteApi[]|null
+     * @var list<CompteApi>|null
      */
     protected $comptes;
 
     /**
-     * @return CompteApi[]|null
+     * @return list<CompteApi>|null
      */
     public function getComptes(): ?array
     {
@@ -27,7 +28,7 @@ class ListeComptesApiResponse
     }
 
     /**
-     * @param CompteApi[]|null $comptes
+     * @param list<CompteApi>|null $comptes
      */
     public function setComptes(?array $comptes): self
     {

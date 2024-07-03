@@ -13,62 +13,77 @@ class SalarieBulletinEnteteResult
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
      * @var bool|null
      */
     protected $bulletinOriginal;
+
     /**
      * @var \DateTime|null
      */
     protected $periode;
+
     /**
      * @var string|null
      */
     protected $intituleEmploi;
+
     /**
      * @var string|null
      */
     protected $codeContratTravail;
+
     /**
      * @var float|null
      */
     protected $brut;
+
     /**
      * @var float|null
      */
     protected $netAPayer;
+
     /**
      * @var float|null
      */
     protected $cumulRetenuesSD;
+
     /**
      * @var float|null
      */
     protected $cumulRetenuesSND;
+
     /**
      * @var float|null
      */
     protected $cumulRetenuesP;
+
     /**
      * @var float|null
      */
     protected $supplementCoutGlobal;
+
     /**
      * @var float|null
      */
     protected $netImposable;
+
     /**
      * @var float|null
      */
     protected $heuresNormales;
+
     /**
      * @var float|null
      */

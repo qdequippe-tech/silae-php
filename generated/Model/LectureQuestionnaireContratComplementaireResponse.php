@@ -13,13 +13,14 @@ class LectureQuestionnaireContratComplementaireResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var LectureChampLibelle[]|null
+     * @var list<LectureChampLibelle>|null
      */
     protected $reponseQCComp;
 
     /**
-     * @return LectureChampLibelle[]|null
+     * @return list<LectureChampLibelle>|null
      */
     public function getReponseQCComp(): ?array
     {
@@ -27,7 +28,7 @@ class LectureQuestionnaireContratComplementaireResponse
     }
 
     /**
-     * @param LectureChampLibelle[]|null $reponseQCComp
+     * @param list<LectureChampLibelle>|null $reponseQCComp
      */
     public function setReponseQCComp(?array $reponseQCComp): self
     {

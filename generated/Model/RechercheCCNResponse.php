@@ -13,13 +13,14 @@ class RechercheCCNResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var CCN[]|null
+     * @var list<CCN>|null
      */
     protected $ccn;
 
     /**
-     * @return CCN[]|null
+     * @return list<CCN>|null
      */
     public function getCcn(): ?array
     {
@@ -27,7 +28,7 @@ class RechercheCCNResponse
     }
 
     /**
-     * @param CCN[]|null $ccn
+     * @param list<CCN>|null $ccn
      */
     public function setCcn(?array $ccn): self
     {

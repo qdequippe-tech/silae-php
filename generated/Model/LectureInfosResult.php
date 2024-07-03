@@ -13,10 +13,12 @@ class LectureInfosResult
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $champ;
+
     /**
      * @var mixed|null
      */
@@ -40,7 +42,7 @@ class LectureInfosResult
         return $this->valeur;
     }
 
-    public function setValeur($valeur): self
+    public function setValeur(mixed $valeur): self
     {
         $this->initialized['valeur'] = true;
         $this->valeur = $valeur;

@@ -13,18 +13,22 @@ class EcrituresComptables2Request
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $avecLibelleParDefautDesEcritures;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeFin;
+
     /**
      * @var string|null
      */

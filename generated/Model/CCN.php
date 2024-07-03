@@ -13,26 +13,32 @@ class CCN
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $codeCCN;
+
     /**
      * @var string|null
      */
     protected $libelleCCN;
+
     /**
      * @var string|null
      */
     protected $codeIDCC;
+
     /**
      * @var string|null
      */
     protected $libelleIDCC;
+
     /**
      * @var string|null
      */
     protected $codeJO;
+
     /**
      * @var string|null
      */

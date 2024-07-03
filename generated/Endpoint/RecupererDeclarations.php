@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRequest;
 use QdequippeTech\Silae\Api\Model\RecupererDeclarationsResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class RecupererDeclarations extends BaseEndpoint implements Endpoint
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class RecupererDeclarations extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\RecupererDeclarationsResponse', 'json');
+            return $serializer->deserialize($body, RecupererDeclarationsResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new RecupererDeclarationsBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererDeclarationsBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new RecupererDeclarationsUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererDeclarationsUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new RecupererDeclarationsInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererDeclarationsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

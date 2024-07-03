@@ -13,14 +13,17 @@ class SalarieInitialiserCumulsRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var SalarieCumuls|null
      */
     protected $salarieCumuls;
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var string|null
      */

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\StatutImportDossierDemoAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutImportDossierDemoAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutImportDossierDemoAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\StatutAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -51,7 +52,7 @@ class StatutImportDossierDemoAsynchrone extends BaseEndpoint implements Endpoint
         return [[], null];
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -92,20 +93,26 @@ class StatutImportDossierDemoAsynchrone extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\StatutAsynchroneResponse', 'json');
+            return $serializer->deserialize($body, StatutAsynchroneResponse::class, 'json');
         }
+
         if (202 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\StatutAsynchroneResponse', 'json');
+            return $serializer->deserialize($body, StatutAsynchroneResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new StatutImportDossierDemoAsynchroneBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutImportDossierDemoAsynchroneBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new StatutImportDossierDemoAsynchroneUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutImportDossierDemoAsynchroneUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new StatutImportDossierDemoAsynchroneInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutImportDossierDemoAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

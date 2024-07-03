@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\InitialisationAncienNumeroContratDSNBadRequestException;
 use QdequippeTech\Silae\Api\Exception\InitialisationAncienNumeroContratDSNInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\InitialisationAncienNumeroContratDSNUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\InitialisationAncienNumeroContratDSNRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -46,7 +47,7 @@ class InitialisationAncienNumeroContratDSN extends BaseEndpoint implements Endpo
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -76,15 +77,20 @@ class InitialisationAncienNumeroContratDSN extends BaseEndpoint implements Endpo
         if (200 === $status) {
             return null;
         }
+
         if (400 === $status) {
-            throw new InitialisationAncienNumeroContratDSNBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new InitialisationAncienNumeroContratDSNBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new InitialisationAncienNumeroContratDSNUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new InitialisationAncienNumeroContratDSNUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new InitialisationAncienNumeroContratDSNInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new InitialisationAncienNumeroContratDSNInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

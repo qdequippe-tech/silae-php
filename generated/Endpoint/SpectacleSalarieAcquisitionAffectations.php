@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAcquisitionAffectationsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAcquisitionAffectationsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAcquisitionAffectationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieAcquisitionAffectationsRequest;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieAffectations;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class SpectacleSalarieAcquisitionAffectations extends BaseEndpoint implements En
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class SpectacleSalarieAcquisitionAffectations extends BaseEndpoint implements En
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\SpectacleSalarieAffectations', 'json');
+            return $serializer->deserialize($body, SpectacleSalarieAffectations::class, 'json');
         }
+
         if (400 === $status) {
-            throw new SpectacleSalarieAcquisitionAffectationsBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SpectacleSalarieAcquisitionAffectationsBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new SpectacleSalarieAcquisitionAffectationsUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SpectacleSalarieAcquisitionAffectationsUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new SpectacleSalarieAcquisitionAffectationsInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SpectacleSalarieAcquisitionAffectationsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

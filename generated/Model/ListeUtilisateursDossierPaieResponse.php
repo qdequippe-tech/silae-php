@@ -13,13 +13,14 @@ class ListeUtilisateursDossierPaieResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $listeUtilisateursDossierPaie;
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getListeUtilisateursDossierPaie(): ?array
     {
@@ -27,7 +28,7 @@ class ListeUtilisateursDossierPaieResponse
     }
 
     /**
-     * @param string[]|null $listeUtilisateursDossierPaie
+     * @param list<string>|null $listeUtilisateursDossierPaie
      */
     public function setListeUtilisateursDossierPaie(?array $listeUtilisateursDossierPaie): self
     {

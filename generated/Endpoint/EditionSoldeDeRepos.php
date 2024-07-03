@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\EditionSoldeDeReposBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EditionSoldeDeReposInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EditionSoldeDeReposUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
 use QdequippeTech\Silae\Api\Model\EditionSoldeDeReposResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class EditionSoldeDeRepos extends BaseEndpoint implements Endpoint
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class EditionSoldeDeRepos extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\EditionSoldeDeReposResponse', 'json');
+            return $serializer->deserialize($body, EditionSoldeDeReposResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new EditionSoldeDeReposBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new EditionSoldeDeReposBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new EditionSoldeDeReposUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new EditionSoldeDeReposUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new EditionSoldeDeReposInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new EditionSoldeDeReposInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

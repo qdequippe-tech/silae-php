@@ -13,6 +13,7 @@ class CreationEmetteurDSNRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var EmetteurDSN|null
      */

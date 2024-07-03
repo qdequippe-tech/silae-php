@@ -13,13 +13,14 @@ class ListeMatriculesDupliquesDansDomaineResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var CoupleDossierMatricule[]|null
+     * @var list<CoupleDossierMatricule>|null
      */
     protected $listeCoupleDossierMatricule;
 
     /**
-     * @return CoupleDossierMatricule[]|null
+     * @return list<CoupleDossierMatricule>|null
      */
     public function getListeCoupleDossierMatricule(): ?array
     {
@@ -27,7 +28,7 @@ class ListeMatriculesDupliquesDansDomaineResponse
     }
 
     /**
-     * @param CoupleDossierMatricule[]|null $listeCoupleDossierMatricule
+     * @param list<CoupleDossierMatricule>|null $listeCoupleDossierMatricule
      */
     public function setListeCoupleDossierMatricule(?array $listeCoupleDossierMatricule): self
     {

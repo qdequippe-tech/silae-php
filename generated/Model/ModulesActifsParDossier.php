@@ -13,12 +13,14 @@ class ModulesActifsParDossier
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
+
     /**
-     * @var ModuleActifParDossier[]|null
+     * @var list<ModuleActifParDossier>|null
      */
     protected $modules;
 
@@ -36,7 +38,7 @@ class ModulesActifsParDossier
     }
 
     /**
-     * @return ModuleActifParDossier[]|null
+     * @return list<ModuleActifParDossier>|null
      */
     public function getModules(): ?array
     {
@@ -44,7 +46,7 @@ class ModulesActifsParDossier
     }
 
     /**
-     * @param ModuleActifParDossier[]|null $modules
+     * @param list<ModuleActifParDossier>|null $modules
      */
     public function setModules(?array $modules): self
     {

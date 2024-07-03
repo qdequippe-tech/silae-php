@@ -13,14 +13,17 @@ class ModificationTaxeTransportRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissement;
+
     /**
-     * @var TaxeTransport[]|null
+     * @var list<TaxeTransport>|null
      */
     protected $taxeTransport;
+
     /**
      * @var string|null
      */
@@ -40,7 +43,7 @@ class ModificationTaxeTransportRequest
     }
 
     /**
-     * @return TaxeTransport[]|null
+     * @return list<TaxeTransport>|null
      */
     public function getTaxeTransport(): ?array
     {
@@ -48,7 +51,7 @@ class ModificationTaxeTransportRequest
     }
 
     /**
-     * @param TaxeTransport[]|null $taxeTransport
+     * @param list<TaxeTransport>|null $taxeTransport
      */
     public function setTaxeTransport(?array $taxeTransport): self
     {

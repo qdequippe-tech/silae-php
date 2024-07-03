@@ -13,14 +13,17 @@ class SalarieAjouterHeuresNativesRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var SalarieHeures|null
      */
     protected $heures;
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var string|null
      */

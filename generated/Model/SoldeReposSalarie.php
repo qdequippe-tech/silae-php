@@ -13,194 +13,242 @@ class SoldeReposSalarie
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $matricule;
+
     /**
      * @var string|null
      */
     protected $nomAffiche;
+
     /**
      * @var float|null
      */
     protected $cpN1Acquis;
+
     /**
      * @var float|null
      */
     protected $cpN1Pris;
+
     /**
      * @var float|null
      */
     protected $cpN1Solde;
+
     /**
      * @var float|null
      */
     protected $cpN1Provision;
+
     /**
      * @var float|null
      */
     protected $cpnAcquis;
+
     /**
      * @var float|null
      */
     protected $cpnPris;
+
     /**
      * @var float|null
      */
     protected $cpnSolde;
+
     /**
      * @var float|null
      */
     protected $cpnProvision;
+
     /**
      * @var float|null
      */
     protected $cpProvision;
+
     /**
      * @var float|null
      */
     protected $cpTauxChargesPatronales;
+
     /**
      * @var float|null
      */
     protected $cpMontantChargesPatronales;
+
     /**
      * @var float|null
      */
     protected $cpTotalProvision;
+
     /**
      * @var float|null
      */
     protected $rttAcquis;
+
     /**
      * @var float|null
      */
     protected $rttPris;
+
     /**
      * @var float|null
      */
     protected $rttSolde;
+
     /**
      * @var float|null
      */
     protected $rttProvision;
+
     /**
      * @var float|null
      */
     protected $rttMontantChargesPatronales;
+
     /**
      * @var float|null
      */
     protected $rttTotalProvision;
+
     /**
      * @var float|null
      */
     protected $cpSupAcquis;
+
     /**
      * @var float|null
      */
     protected $cpSupPris;
+
     /**
      * @var float|null
      */
     protected $cpSupSolde;
+
     /**
      * @var float|null
      */
     protected $cpSupProvision;
+
     /**
      * @var float|null
      */
     protected $cpSupMontantChargesPatronales;
+
     /**
      * @var float|null
      */
     protected $cpSupTotalProvision;
+
     /**
      * @var float|null
      */
     protected $cpSup2Acquis;
+
     /**
      * @var float|null
      */
     protected $cpSup2Pris;
+
     /**
      * @var float|null
      */
     protected $cpSup2Solde;
+
     /**
      * @var float|null
      */
     protected $cpSup2Provision;
+
     /**
      * @var float|null
      */
     protected $cpSup2MontantChargesPatronales;
+
     /**
      * @var float|null
      */
     protected $cpSup2TotalProvision;
+
     /**
      * @var float|null
      */
     protected $rcrAcquis;
+
     /**
      * @var float|null
      */
     protected $rcrPris;
+
     /**
      * @var float|null
      */
     protected $rcrSolde;
+
     /**
      * @var float|null
      */
     protected $rcrProvision;
+
     /**
      * @var float|null
      */
     protected $rccAcquis;
+
     /**
      * @var float|null
      */
     protected $rccPris;
+
     /**
      * @var float|null
      */
     protected $rccSolde;
+
     /**
      * @var float|null
      */
     protected $rccProvision;
+
     /**
      * @var float|null
      */
     protected $rcoAcquis;
+
     /**
      * @var float|null
      */
     protected $rcoPris;
+
     /**
      * @var float|null
      */
     protected $rcoSolde;
+
     /**
      * @var float|null
      */
     protected $rcoProvision;
+
     /**
      * @var float|null
      */
     protected $rcAcquis;
+
     /**
      * @var float|null
      */
     protected $rcPris;
+
     /**
      * @var float|null
      */
     protected $rcSolde;
+
     /**
      * @var float|null
      */

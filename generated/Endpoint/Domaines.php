@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\DomainesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\DomainesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\DomainesUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\Domain;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -51,7 +52,7 @@ class Domaines extends BaseEndpoint implements Endpoint
         return [[], null];
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -92,17 +93,22 @@ class Domaines extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\Domain[]', 'json');
+            return $serializer->deserialize($body, 'QdequippeTech\Silae\Api\Model\Domain[]', 'json');
         }
+
         if (400 === $status) {
-            throw new DomainesBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new DomainesBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new DomainesUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new DomainesUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new DomainesInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new DomainesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

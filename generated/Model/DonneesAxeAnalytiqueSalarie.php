@@ -13,16 +13,19 @@ class DonneesAxeAnalytiqueSalarie
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $titreCategorie;
+
     /**
      * @var string|null
      */
     protected $sousCategorieParDefaut;
+
     /**
-     * @var SousCategoriesEnPC[]|null
+     * @var list<SousCategoriesEnPC>|null
      */
     protected $sousCategoriesEnPC;
 
@@ -53,7 +56,7 @@ class DonneesAxeAnalytiqueSalarie
     }
 
     /**
-     * @return SousCategoriesEnPC[]|null
+     * @return list<SousCategoriesEnPC>|null
      */
     public function getSousCategoriesEnPC(): ?array
     {
@@ -61,7 +64,7 @@ class DonneesAxeAnalytiqueSalarie
     }
 
     /**
-     * @param SousCategoriesEnPC[]|null $sousCategoriesEnPC
+     * @param list<SousCategoriesEnPC>|null $sousCategoriesEnPC
      */
     public function setSousCategoriesEnPC(?array $sousCategoriesEnPC): self
     {

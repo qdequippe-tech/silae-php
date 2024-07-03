@@ -13,13 +13,14 @@ class LectureInformationsPaieResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var LectureInfosResult[]|null
+     * @var list<LectureInfosResult>|null
      */
     protected $reponsesInfosPaie;
 
     /**
-     * @return LectureInfosResult[]|null
+     * @return list<LectureInfosResult>|null
      */
     public function getReponsesInfosPaie(): ?array
     {
@@ -27,7 +28,7 @@ class LectureInformationsPaieResponse
     }
 
     /**
-     * @param LectureInfosResult[]|null $reponsesInfosPaie
+     * @param list<LectureInfosResult>|null $reponsesInfosPaie
      */
     public function setReponsesInfosPaie(?array $reponsesInfosPaie): self
     {

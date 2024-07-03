@@ -13,38 +13,47 @@ class SaisieArret
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $reference;
+
     /**
      * @var string|null
      */
     protected $demandeur;
+
     /**
      * @var \DateTime|null
      */
     protected $dateDemande;
+
     /**
      * @var float|null
      */
     protected $montantCreance;
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebutPrelevement;
+
     /**
      * @var int|null
      */
     protected $type;
+
     /**
      * @var int|null
      */
     protected $priorite;
+
     /**
      * @var string|null
      */
     protected $libelleBulletin;
+
     /**
      * @var float|null
      */

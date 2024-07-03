@@ -13,17 +13,19 @@ class BilanMatricules
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $matriculesInclus;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $matriculesExclus;
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getMatriculesInclus(): ?array
     {
@@ -31,7 +33,7 @@ class BilanMatricules
     }
 
     /**
-     * @param string[]|null $matriculesInclus
+     * @param list<string>|null $matriculesInclus
      */
     public function setMatriculesInclus(?array $matriculesInclus): self
     {
@@ -42,7 +44,7 @@ class BilanMatricules
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getMatriculesExclus(): ?array
     {
@@ -50,7 +52,7 @@ class BilanMatricules
     }
 
     /**
-     * @param string[]|null $matriculesExclus
+     * @param list<string>|null $matriculesExclus
      */
     public function setMatriculesExclus(?array $matriculesExclus): self
     {

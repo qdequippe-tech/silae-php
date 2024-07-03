@@ -13,18 +13,22 @@ class ProprietesDossier
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $numero;
+
     /**
      * @var string|null
      */
     protected $raisonSociale;
+
     /**
      * @var string|null
      */
     protected $siret;
+
     /**
      * @var string|null
      */

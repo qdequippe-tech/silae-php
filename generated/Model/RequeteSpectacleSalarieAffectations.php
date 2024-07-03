@@ -13,22 +13,27 @@ class RequeteSpectacleSalarieAffectations
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
      * @var bool|null
      */
     protected $verifierDisponibiliteEmploi;
+
     /**
      * @var \DateTime|null
      */
     protected $periode;
+
     /**
      * @var string|null
      */

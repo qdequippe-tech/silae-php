@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierRequest;
 use QdequippeTech\Silae\Api\Model\ListeUtilisateursDossierPaieResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class ListeUtilisateursDossierPaie extends BaseEndpoint implements Endpoint
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class ListeUtilisateursDossierPaie extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ListeUtilisateursDossierPaieResponse', 'json');
+            return $serializer->deserialize($body, ListeUtilisateursDossierPaieResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new ListeUtilisateursDossierPaieBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ListeUtilisateursDossierPaieBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new ListeUtilisateursDossierPaieUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ListeUtilisateursDossierPaieUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new ListeUtilisateursDossierPaieInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ListeUtilisateursDossierPaieInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

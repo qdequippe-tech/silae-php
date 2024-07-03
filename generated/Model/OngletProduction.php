@@ -13,46 +13,57 @@ class OngletProduction
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomOnglet;
+
     /**
      * @var bool|null
      */
     protected $aSupprimer;
+
     /**
      * @var int|null
      */
     protected $ordre;
+
     /**
      * @var string|null
      */
     protected $nouveauNomOnglet;
+
     /**
      * @var bool|null
      */
     protected $paramPaieGestion;
+
     /**
      * @var bool|null
      */
     protected $paramPaieLiaisonClient;
+
     /**
      * @var bool|null
      */
     protected $paramPaieComplet;
+
     /**
      * @var bool|null
      */
     protected $paramPaieSimplifie;
+
     /**
      * @var bool|null
      */
     protected $afficherLaListe;
+
     /**
      * @var bool|null
      */
     protected $restreindreLaListe;
+
     /**
      * @var string|null
      */

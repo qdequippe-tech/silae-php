@@ -13,16 +13,19 @@ class SalarieBulletinResult
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $identifiantBulletin;
+
     /**
      * @var SalarieBulletinEnteteSimpleResult|null
      */
     protected $entete;
+
     /**
-     * @var LigneBulletin[]|null
+     * @var list<LigneBulletin>|null
      */
     protected $lignesBulletin;
 
@@ -53,7 +56,7 @@ class SalarieBulletinResult
     }
 
     /**
-     * @return LigneBulletin[]|null
+     * @return list<LigneBulletin>|null
      */
     public function getLignesBulletin(): ?array
     {
@@ -61,7 +64,7 @@ class SalarieBulletinResult
     }
 
     /**
-     * @param LigneBulletin[]|null $lignesBulletin
+     * @param list<LigneBulletin>|null $lignesBulletin
      */
     public function setLignesBulletin(?array $lignesBulletin): self
     {

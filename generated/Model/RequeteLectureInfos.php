@@ -13,28 +13,34 @@ class RequeteLectureInfos
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $tableInformations;
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissement;
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $champs;
 
@@ -104,7 +110,7 @@ class RequeteLectureInfos
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getChamps(): ?array
     {
@@ -112,7 +118,7 @@ class RequeteLectureInfos
     }
 
     /**
-     * @param string[]|null $champs
+     * @param list<string>|null $champs
      */
     public function setChamps(?array $champs): self
     {

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageSocieteBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageSocieteInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageSocieteUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteRequest;
 use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class ModificationTaxeApprentissageSociete extends BaseEndpoint implements Endpo
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class ModificationTaxeApprentissageSociete extends BaseEndpoint implements Endpo
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ModificationTaxeApprentissageSocieteResponse', 'json');
+            return $serializer->deserialize($body, ModificationTaxeApprentissageSocieteResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new ModificationTaxeApprentissageSocieteBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ModificationTaxeApprentissageSocieteBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new ModificationTaxeApprentissageSocieteUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ModificationTaxeApprentissageSocieteUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new ModificationTaxeApprentissageSocieteInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ModificationTaxeApprentissageSocieteInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

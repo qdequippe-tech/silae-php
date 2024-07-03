@@ -13,13 +13,14 @@ class RecupererFichiersEcrituresComptablesResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var EcrituresComptablesFichier[]|null
+     * @var list<EcrituresComptablesFichier>|null
      */
     protected $fichiers;
 
     /**
-     * @return EcrituresComptablesFichier[]|null
+     * @return list<EcrituresComptablesFichier>|null
      */
     public function getFichiers(): ?array
     {
@@ -27,7 +28,7 @@ class RecupererFichiersEcrituresComptablesResponse
     }
 
     /**
-     * @param EcrituresComptablesFichier[]|null $fichiers
+     * @param list<EcrituresComptablesFichier>|null $fichiers
      */
     public function setFichiers(?array $fichiers): self
     {

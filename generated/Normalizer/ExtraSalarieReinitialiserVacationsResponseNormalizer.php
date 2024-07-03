@@ -6,6 +6,7 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ExtraSalarieReinitialiserVacationsResponse;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -13,64 +14,126 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class ExtraSalarieReinitialiserVacationsResponseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
-{
-    use CheckArray;
-    use DenormalizerAwareTrait;
-    use NormalizerAwareTrait;
-    use ValidatorTrait;
-
-    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
+if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
+    class ExtraSalarieReinitialiserVacationsResponseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
-        return 'QdequippeTech\\Silae\\Api\\Model\\ExtraSalarieReinitialiserVacationsResponse' === $type;
-    }
+        use CheckArray;
+        use DenormalizerAwareTrait;
+        use NormalizerAwareTrait;
+        use ValidatorTrait;
 
-    public function supportsNormalization($data, $format = null, array $context = []): bool
-    {
-        return \is_object($data) && $data instanceof ExtraSalarieReinitialiserVacationsResponse;
-    }
-
-    /**
-     * @param mixed|null $format
-     */
-    public function denormalize($data, $class, $format = null, array $context = [])
-    {
-        if (isset($data['$ref'])) {
-            return new Reference($data['$ref'], $context['document-origin']);
+        public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
+        {
+            return ExtraSalarieReinitialiserVacationsResponse::class === $type;
         }
-        if (isset($data['$recursiveRef'])) {
-            return new Reference($data['$recursiveRef'], $context['document-origin']);
+
+        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
+        {
+            return $data instanceof ExtraSalarieReinitialiserVacationsResponse;
         }
-        $object = new ExtraSalarieReinitialiserVacationsResponse();
-        if (null === $data || false === \is_array($data)) {
+
+        public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+        {
+            if (isset($data['$ref'])) {
+                return new Reference($data['$ref'], $context['document-origin']);
+            }
+
+            if (isset($data['$recursiveRef'])) {
+                return new Reference($data['$recursiveRef'], $context['document-origin']);
+            }
+
+            $object = new ExtraSalarieReinitialiserVacationsResponse();
+            if (null === $data || false === \is_array($data)) {
+                return $object;
+            }
+
+            if (\array_key_exists('vacationsReinitialisees', $data) && null !== $data['vacationsReinitialisees']) {
+                $object->setVacationsReinitialisees($data['vacationsReinitialisees']);
+            } elseif (\array_key_exists('vacationsReinitialisees', $data) && null === $data['vacationsReinitialisees']) {
+                $object->setVacationsReinitialisees(null);
+            }
+
             return $object;
         }
-        if (\array_key_exists('vacationsReinitialisees', $data) && null !== $data['vacationsReinitialisees']) {
-            $object->setVacationsReinitialisees($data['vacationsReinitialisees']);
-        } elseif (\array_key_exists('vacationsReinitialisees', $data) && null === $data['vacationsReinitialisees']) {
-            $object->setVacationsReinitialisees(null);
+
+        public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+        {
+            $data = [];
+            if ($object->isInitialized('vacationsReinitialisees') && null !== $object->getVacationsReinitialisees()) {
+                $data['vacationsReinitialisees'] = $object->getVacationsReinitialisees();
+            }
+
+            return $data;
         }
 
-        return $object;
+        public function getSupportedTypes(?string $format = null): array
+        {
+            return [ExtraSalarieReinitialiserVacationsResponse::class => false];
+        }
     }
-
-    /**
-     * @param mixed|null $format
-     *
-     * @return array|string|int|float|bool|\ArrayObject|null
-     */
-    public function normalize($object, $format = null, array $context = [])
+} else {
+    class ExtraSalarieReinitialiserVacationsResponseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
-        $data = [];
-        if ($object->isInitialized('vacationsReinitialisees') && null !== $object->getVacationsReinitialisees()) {
-            $data['vacationsReinitialisees'] = $object->getVacationsReinitialisees();
+        use CheckArray;
+        use DenormalizerAwareTrait;
+        use NormalizerAwareTrait;
+        use ValidatorTrait;
+
+        public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
+        {
+            return ExtraSalarieReinitialiserVacationsResponse::class === $type;
         }
 
-        return $data;
-    }
+        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
+        {
+            return $data instanceof ExtraSalarieReinitialiserVacationsResponse;
+        }
 
-    public function getSupportedTypes(?string $format = null): array
-    {
-        return ['QdequippeTech\\Silae\\Api\\Model\\ExtraSalarieReinitialiserVacationsResponse' => false];
+        /**
+         * @param mixed|null $format
+         */
+        public function denormalize($data, $type, $format = null, array $context = [])
+        {
+            if (isset($data['$ref'])) {
+                return new Reference($data['$ref'], $context['document-origin']);
+            }
+
+            if (isset($data['$recursiveRef'])) {
+                return new Reference($data['$recursiveRef'], $context['document-origin']);
+            }
+
+            $object = new ExtraSalarieReinitialiserVacationsResponse();
+            if (null === $data || false === \is_array($data)) {
+                return $object;
+            }
+
+            if (\array_key_exists('vacationsReinitialisees', $data) && null !== $data['vacationsReinitialisees']) {
+                $object->setVacationsReinitialisees($data['vacationsReinitialisees']);
+            } elseif (\array_key_exists('vacationsReinitialisees', $data) && null === $data['vacationsReinitialisees']) {
+                $object->setVacationsReinitialisees(null);
+            }
+
+            return $object;
+        }
+
+        /**
+         * @param mixed|null $format
+         *
+         * @return array|string|int|float|bool|\ArrayObject|null
+         */
+        public function normalize($object, $format = null, array $context = [])
+        {
+            $data = [];
+            if ($object->isInitialized('vacationsReinitialisees') && null !== $object->getVacationsReinitialisees()) {
+                $data['vacationsReinitialisees'] = $object->getVacationsReinitialisees();
+            }
+
+            return $data;
+        }
+
+        public function getSupportedTypes(?string $format = null): array
+        {
+            return [ExtraSalarieReinitialiserVacationsResponse::class => false];
+        }
     }
 }

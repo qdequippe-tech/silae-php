@@ -13,22 +13,27 @@ class EcrituresComptables3Request
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $avecLibelleParDefautDesEcritures;
+
     /**
      * @var bool|null
      */
     protected $avecToutesLesRepartitionsAnalytiques;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeFin;
+
     /**
      * @var string|null
      */

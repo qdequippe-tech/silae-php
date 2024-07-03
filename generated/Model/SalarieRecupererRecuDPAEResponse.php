@@ -13,13 +13,14 @@ class SalarieRecupererRecuDPAEResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var RecupererRecuDPAEResult[]|null
+     * @var list<RecupererRecuDPAEResult>|null
      */
     protected $recusDPAEParEmploi;
 
     /**
-     * @return RecupererRecuDPAEResult[]|null
+     * @return list<RecupererRecuDPAEResult>|null
      */
     public function getRecusDPAEParEmploi(): ?array
     {
@@ -27,7 +28,7 @@ class SalarieRecupererRecuDPAEResponse
     }
 
     /**
-     * @param RecupererRecuDPAEResult[]|null $recusDPAEParEmploi
+     * @param list<RecupererRecuDPAEResult>|null $recusDPAEParEmploi
      */
     public function setRecusDPAEParEmploi(?array $recusDPAEParEmploi): self
     {

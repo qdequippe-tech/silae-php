@@ -13,58 +13,72 @@ class EmploiClassificationMetier
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $codeClassificationMetier;
+
     /**
      * @var string|null
      */
     protected $clMLibelle;
+
     /**
      * @var string|null
      */
     protected $clMCodeConventionCollective;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $clMCodesCSP;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $clMCodesStatutProfessionnel;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $clMCodesStatutCategoriel;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $clMCodesStatutCategorielAgircArrco;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $clMCodesCPNDUC;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $clMCoefficients1;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $clMCoefficients2;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $clMCoefficients3;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $clMCoefficients4;
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebut;
+
     /**
      * @var \DateTime|null
      */
@@ -110,7 +124,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getClMCodesCSP(): ?array
     {
@@ -118,7 +132,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @param string[]|null $clMCodesCSP
+     * @param list<string>|null $clMCodesCSP
      */
     public function setClMCodesCSP(?array $clMCodesCSP): self
     {
@@ -129,7 +143,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getClMCodesStatutProfessionnel(): ?array
     {
@@ -137,7 +151,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @param string[]|null $clMCodesStatutProfessionnel
+     * @param list<string>|null $clMCodesStatutProfessionnel
      */
     public function setClMCodesStatutProfessionnel(?array $clMCodesStatutProfessionnel): self
     {
@@ -148,7 +162,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getClMCodesStatutCategoriel(): ?array
     {
@@ -156,7 +170,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @param string[]|null $clMCodesStatutCategoriel
+     * @param list<string>|null $clMCodesStatutCategoriel
      */
     public function setClMCodesStatutCategoriel(?array $clMCodesStatutCategoriel): self
     {
@@ -167,7 +181,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getClMCodesStatutCategorielAgircArrco(): ?array
     {
@@ -175,7 +189,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @param string[]|null $clMCodesStatutCategorielAgircArrco
+     * @param list<string>|null $clMCodesStatutCategorielAgircArrco
      */
     public function setClMCodesStatutCategorielAgircArrco(?array $clMCodesStatutCategorielAgircArrco): self
     {
@@ -186,7 +200,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getClMCodesCPNDUC(): ?array
     {
@@ -194,7 +208,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @param string[]|null $clMCodesCPNDUC
+     * @param list<string>|null $clMCodesCPNDUC
      */
     public function setClMCodesCPNDUC(?array $clMCodesCPNDUC): self
     {
@@ -205,7 +219,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getClMCoefficients1(): ?array
     {
@@ -213,7 +227,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @param string[]|null $clMCoefficients1
+     * @param list<string>|null $clMCoefficients1
      */
     public function setClMCoefficients1(?array $clMCoefficients1): self
     {
@@ -224,7 +238,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getClMCoefficients2(): ?array
     {
@@ -232,7 +246,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @param string[]|null $clMCoefficients2
+     * @param list<string>|null $clMCoefficients2
      */
     public function setClMCoefficients2(?array $clMCoefficients2): self
     {
@@ -243,7 +257,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getClMCoefficients3(): ?array
     {
@@ -251,7 +265,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @param string[]|null $clMCoefficients3
+     * @param list<string>|null $clMCoefficients3
      */
     public function setClMCoefficients3(?array $clMCoefficients3): self
     {
@@ -262,7 +276,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getClMCoefficients4(): ?array
     {
@@ -270,7 +284,7 @@ class EmploiClassificationMetier
     }
 
     /**
-     * @param string[]|null $clMCoefficients4
+     * @param list<string>|null $clMCoefficients4
      */
     public function setClMCoefficients4(?array $clMCoefficients4): self
     {

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalariesConfirmerSaisiesRequest;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class SalariesConfirmerSaisiesAsynchrone extends BaseEndpoint implements Endpoin
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class SalariesConfirmerSaisiesAsynchrone extends BaseEndpoint implements Endpoin
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (202 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\TraitementAsynchroneResponse', 'json');
+            return $serializer->deserialize($body, TraitementAsynchroneResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new SalariesConfirmerSaisiesAsynchroneBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalariesConfirmerSaisiesAsynchroneBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new SalariesConfirmerSaisiesAsynchroneUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalariesConfirmerSaisiesAsynchroneUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new SalariesConfirmerSaisiesAsynchroneInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalariesConfirmerSaisiesAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

@@ -13,18 +13,22 @@ class ModificationHandicapRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $salarieHandicape;
+
     /**
-     * @var Handicap[]|null
+     * @var list<Handicap>|null
      */
     protected $handicap;
+
     /**
      * @var string|null
      */
     protected $matricule;
+
     /**
      * @var string|null
      */
@@ -44,7 +48,7 @@ class ModificationHandicapRequest
     }
 
     /**
-     * @return Handicap[]|null
+     * @return list<Handicap>|null
      */
     public function getHandicap(): ?array
     {
@@ -52,7 +56,7 @@ class ModificationHandicapRequest
     }
 
     /**
-     * @param Handicap[]|null $handicap
+     * @param list<Handicap>|null $handicap
      */
     public function setHandicap(?array $handicap): self
     {

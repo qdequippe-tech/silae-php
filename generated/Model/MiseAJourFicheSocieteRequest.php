@@ -13,10 +13,12 @@ class MiseAJourFicheSocieteRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var SocieteInfoSup|null
      */
     protected $societeInfoSup;
+
     /**
      * @var string|null
      */

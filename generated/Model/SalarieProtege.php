@@ -13,14 +13,17 @@ class SalarieProtege
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $dateFin;
+
     /**
      * @var string|null
      */

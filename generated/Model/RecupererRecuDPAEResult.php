@@ -13,10 +13,12 @@ class RecupererRecuDPAEResult
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $idEmploi;
+
     /**
      * @var string|null
      */

@@ -13,102 +13,127 @@ class SalarieCumuls
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $cpModifierCumuls;
+
     /**
      * @var float|null
      */
     protected $cpAcquisParReportN1;
+
     /**
      * @var float|null
      */
     protected $cpAcquisParAncienneteN1;
+
     /**
      * @var float|null
      */
     protected $cpAcquisParFractionnementN1;
+
     /**
      * @var float|null
      */
     protected $cpTotalAcquisN1;
+
     /**
      * @var float|null
      */
     protected $cpTotalPrisN1;
+
     /**
      * @var float|null
      */
     protected $cpProvisionAcquiseParReportN1;
+
     /**
      * @var float|null
      */
     protected $cpTotalProvisionAcquiseN1;
+
     /**
      * @var float|null
      */
     protected $cpTotalProvisionConsommeeN1;
+
     /**
      * @var float|null
      */
     protected $cpTotalAcquisN;
+
     /**
      * @var float|null
      */
     protected $cpTotalPrisN;
+
     /**
      * @var float|null
      */
     protected $cpTotalProvisionAcquiseN;
+
     /**
      * @var float|null
      */
     protected $cpTotalProvisionConsommeeN;
+
     /**
      * @var bool|null
      */
     protected $rttModifierCumuls;
+
     /**
      * @var float|null
      */
     protected $rttJoursAcquis;
+
     /**
      * @var float|null
      */
     protected $rttJoursPris;
+
     /**
      * @var bool|null
      */
     protected $rcrModifierCumuls;
+
     /**
      * @var float|null
      */
     protected $rcrHeuresAcquises;
+
     /**
      * @var float|null
      */
     protected $rcrHeuresPrises;
+
     /**
      * @var bool|null
      */
     protected $rccModifierCumuls;
+
     /**
      * @var float|null
      */
     protected $rccHeuresAcquises;
+
     /**
      * @var float|null
      */
     protected $rccHeuresPrises;
+
     /**
      * @var bool|null
      */
     protected $rcoModifierCumuls;
+
     /**
      * @var float|null
      */
     protected $rcoHeuresAcquises;
+
     /**
      * @var float|null
      */

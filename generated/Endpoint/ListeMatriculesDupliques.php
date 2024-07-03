@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesRequest;
 use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class ListeMatriculesDupliques extends BaseEndpoint implements Endpoint
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class ListeMatriculesDupliques extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ListeMatriculesDupliquesResponse', 'json');
+            return $serializer->deserialize($body, ListeMatriculesDupliquesResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new ListeMatriculesDupliquesBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ListeMatriculesDupliquesBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new ListeMatriculesDupliquesUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ListeMatriculesDupliquesUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new ListeMatriculesDupliquesInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ListeMatriculesDupliquesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

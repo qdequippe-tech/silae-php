@@ -13,22 +13,27 @@ class Agence
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $codeAgence;
+
     /**
      * @var string|null
      */
     protected $raisonSociale;
+
     /**
      * @var string|null
      */
     protected $siret;
+
     /**
      * @var string|null
      */
     protected $codePostal;
+
     /**
      * @var string|null
      */

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\CreationDossierParImportFichierDSNBadRequestException;
 use QdequippeTech\Silae\Api\Exception\CreationDossierParImportFichierDSNInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\CreationDossierParImportFichierDSNUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\CreationDossierParImportFichierDSNRequest;
 use QdequippeTech\Silae\Api\Model\RetourImportDSN;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class CreationDossierParImportFichierDSN extends BaseEndpoint implements Endpoin
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class CreationDossierParImportFichierDSN extends BaseEndpoint implements Endpoin
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\RetourImportDSN', 'json');
+            return $serializer->deserialize($body, RetourImportDSN::class, 'json');
         }
+
         if (400 === $status) {
-            throw new CreationDossierParImportFichierDSNBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new CreationDossierParImportFichierDSNBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new CreationDossierParImportFichierDSNUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new CreationDossierParImportFichierDSNUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new CreationDossierParImportFichierDSNInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new CreationDossierParImportFichierDSNInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

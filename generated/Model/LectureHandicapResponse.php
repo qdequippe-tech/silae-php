@@ -13,12 +13,14 @@ class LectureHandicapResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $salarieHandicape;
+
     /**
-     * @var Handicap[]|null
+     * @var list<Handicap>|null
      */
     protected $handicap;
 
@@ -36,7 +38,7 @@ class LectureHandicapResponse
     }
 
     /**
-     * @return Handicap[]|null
+     * @return list<Handicap>|null
      */
     public function getHandicap(): ?array
     {
@@ -44,7 +46,7 @@ class LectureHandicapResponse
     }
 
     /**
-     * @param Handicap[]|null $handicap
+     * @param list<Handicap>|null $handicap
      */
     public function setHandicap(?array $handicap): self
     {

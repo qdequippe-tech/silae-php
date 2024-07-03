@@ -13,18 +13,22 @@ class SalarieReinitialiserSaisiesRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
      * @var SalarieReinitialisationSaisies|null
      */
     protected $reinitialisationSaisies;
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var string|null
      */

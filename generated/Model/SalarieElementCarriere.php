@@ -13,78 +13,97 @@ class SalarieElementCarriere
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $dateFin;
+
     /**
      * @var string|null
      */
     protected $libelleEmploi;
+
     /**
      * @var bool|null
      */
     protected $estCadre;
+
     /**
      * @var string|null
      */
     protected $typeContrat;
+
     /**
      * @var float|null
      */
     protected $heuresContractuelles;
+
     /**
      * @var float|null
      */
     protected $salaireDeBase;
+
     /**
      * @var string|null
      */
     protected $coeff1;
+
     /**
      * @var string|null
      */
     protected $libelleCoeff1;
+
     /**
      * @var string|null
      */
     protected $coeff2;
+
     /**
      * @var string|null
      */
     protected $libelleCoeff2;
+
     /**
      * @var string|null
      */
     protected $coeff3;
+
     /**
      * @var string|null
      */
     protected $libelleCoeff3;
+
     /**
      * @var string|null
      */
     protected $coeff4;
+
     /**
      * @var string|null
      */
     protected $libelleCoeff4;
+
     /**
      * @var float|null
      */
     protected $tauxHeuresNormales;
+
     /**
      * @var float|null
      */
     protected $salaireDeBaseETP;
+
     /**
      * @var \DateTime|null
      */
     protected $dateReelleDebutEmploi;
+
     /**
      * @var \DateTime|null
      */

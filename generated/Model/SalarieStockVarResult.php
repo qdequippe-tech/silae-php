@@ -13,16 +13,19 @@ class SalarieStockVarResult
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $codesStockVar;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $valeursStockVar;
 
@@ -40,7 +43,7 @@ class SalarieStockVarResult
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getCodesStockVar(): ?array
     {
@@ -48,7 +51,7 @@ class SalarieStockVarResult
     }
 
     /**
-     * @param string[]|null $codesStockVar
+     * @param list<string>|null $codesStockVar
      */
     public function setCodesStockVar(?array $codesStockVar): self
     {
@@ -59,7 +62,7 @@ class SalarieStockVarResult
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getValeursStockVar(): ?array
     {
@@ -67,7 +70,7 @@ class SalarieStockVarResult
     }
 
     /**
-     * @param float[]|null $valeursStockVar
+     * @param list<float>|null $valeursStockVar
      */
     public function setValeursStockVar(?array $valeursStockVar): self
     {

@@ -13,14 +13,17 @@ class EtatDeclarationRetour
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $date;
+
     /**
      * @var string|null
      */
     protected $nature;
+
     /**
      * @var string|null
      */

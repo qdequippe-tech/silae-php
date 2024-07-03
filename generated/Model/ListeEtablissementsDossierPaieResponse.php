@@ -13,13 +13,14 @@ class ListeEtablissementsDossierPaieResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var InformationsEtablissement[]|null
+     * @var list<InformationsEtablissement>|null
      */
     protected $informationsEtablissements;
 
     /**
-     * @return InformationsEtablissement[]|null
+     * @return list<InformationsEtablissement>|null
      */
     public function getInformationsEtablissements(): ?array
     {
@@ -27,7 +28,7 @@ class ListeEtablissementsDossierPaieResponse
     }
 
     /**
-     * @param InformationsEtablissement[]|null $informationsEtablissements
+     * @param list<InformationsEtablissement>|null $informationsEtablissements
      */
     public function setInformationsEtablissements(?array $informationsEtablissements): self
     {

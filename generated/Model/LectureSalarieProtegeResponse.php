@@ -13,13 +13,14 @@ class LectureSalarieProtegeResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var SalarieProtege[]|null
+     * @var list<SalarieProtege>|null
      */
     protected $salarieProtege;
 
     /**
-     * @return SalarieProtege[]|null
+     * @return list<SalarieProtege>|null
      */
     public function getSalarieProtege(): ?array
     {
@@ -27,7 +28,7 @@ class LectureSalarieProtegeResponse
     }
 
     /**
-     * @param SalarieProtege[]|null $salarieProtege
+     * @param list<SalarieProtege>|null $salarieProtege
      */
     public function setSalarieProtege(?array $salarieProtege): self
     {

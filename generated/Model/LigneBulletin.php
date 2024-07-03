@@ -13,38 +13,47 @@ class LigneBulletin
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $codeLibelle;
+
     /**
      * @var string|null
      */
     protected $libelle;
+
     /**
      * @var float|null
      */
     protected $baseSalariale;
+
     /**
      * @var float|null
      */
     protected $tauxOuMontantSalarial;
+
     /**
      * @var float|null
      */
     protected $resultatSalarial;
+
     /**
      * @var float|null
      */
     protected $basePatronale;
+
     /**
      * @var float|null
      */
     protected $tauxOuMontantPatronal;
+
     /**
      * @var float|null
      */
     protected $resultatPatronal;
+
     /**
      * @var string|null
      */

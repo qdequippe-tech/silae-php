@@ -13,26 +13,32 @@ class RecupererFichiersVirementHorsBulletinChiffresRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var ProprietesChiffrement|null
      */
     protected $proprietesChiffrement;
+
     /**
      * @var string|null
      */
     protected $libelleVirement;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $matriculeSalaries;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeFin;
+
     /**
      * @var string|null
      */
@@ -65,7 +71,7 @@ class RecupererFichiersVirementHorsBulletinChiffresRequest
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getMatriculeSalaries(): ?array
     {
@@ -73,7 +79,7 @@ class RecupererFichiersVirementHorsBulletinChiffresRequest
     }
 
     /**
-     * @param string[]|null $matriculeSalaries
+     * @param list<string>|null $matriculeSalaries
      */
     public function setMatriculeSalaries(?array $matriculeSalaries): self
     {

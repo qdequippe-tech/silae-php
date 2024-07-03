@@ -13,17 +13,19 @@ class LectureAxesAnalytiquesSalariesResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var AxesAnalytiqueSalarie[]|null
+     * @var list<AxesAnalytiqueSalarie>|null
      */
     protected $axesAnalytiqueSalarie;
+
     /**
      * @var \DateTime|null
      */
     protected $periode;
 
     /**
-     * @return AxesAnalytiqueSalarie[]|null
+     * @return list<AxesAnalytiqueSalarie>|null
      */
     public function getAxesAnalytiqueSalarie(): ?array
     {
@@ -31,7 +33,7 @@ class LectureAxesAnalytiquesSalariesResponse
     }
 
     /**
-     * @param AxesAnalytiqueSalarie[]|null $axesAnalytiqueSalarie
+     * @param list<AxesAnalytiqueSalarie>|null $axesAnalytiqueSalarie
      */
     public function setAxesAnalytiqueSalarie(?array $axesAnalytiqueSalarie): self
     {

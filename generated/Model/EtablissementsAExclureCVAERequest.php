@@ -13,21 +13,24 @@ class EtablissementsAExclureCVAERequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $nomsInterneEtablissements;
+
     /**
      * @var bool|null
      */
     protected $exclure;
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getNomsInterneEtablissements(): ?array
     {
@@ -35,7 +38,7 @@ class EtablissementsAExclureCVAERequest
     }
 
     /**
-     * @param string[]|null $nomsInterneEtablissements
+     * @param list<string>|null $nomsInterneEtablissements
      */
     public function setNomsInterneEtablissements(?array $nomsInterneEtablissements): self
     {

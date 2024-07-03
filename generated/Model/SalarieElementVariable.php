@@ -13,18 +13,22 @@ class SalarieElementVariable
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $periodeElementVariable;
+
     /**
      * @var string|null
      */
     protected $codeElementVariable;
+
     /**
      * @var float|null
      */
     protected $montantElementVariable;
+
     /**
      * @var string|null
      */

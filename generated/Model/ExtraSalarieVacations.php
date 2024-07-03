@@ -13,24 +13,29 @@ class ExtraSalarieVacations
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
      * @var \DateTime|null
      */
     protected $periode;
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissement;
+
     /**
-     * @var ExtraSalarieVacation[]|null
+     * @var list<ExtraSalarieVacation>|null
      */
     protected $vacations;
 
@@ -87,7 +92,7 @@ class ExtraSalarieVacations
     }
 
     /**
-     * @return ExtraSalarieVacation[]|null
+     * @return list<ExtraSalarieVacation>|null
      */
     public function getVacations(): ?array
     {
@@ -95,7 +100,7 @@ class ExtraSalarieVacations
     }
 
     /**
-     * @param ExtraSalarieVacation[]|null $vacations
+     * @param list<ExtraSalarieVacation>|null $vacations
      */
     public function setVacations(?array $vacations): self
     {

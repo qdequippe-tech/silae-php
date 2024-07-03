@@ -13,10 +13,12 @@ class ModificationEffortConstructionRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var EffortConstruction|null
      */
     protected $effortConstruction;
+
     /**
      * @var string|null
      */

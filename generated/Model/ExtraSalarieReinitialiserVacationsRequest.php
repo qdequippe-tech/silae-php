@@ -13,14 +13,17 @@ class ExtraSalarieReinitialiserVacationsRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $categorie;
+
     /**
      * @var RequeteExtraSalarieVacations|null
      */
     protected $requeteExtraSalarieVacations;
+
     /**
      * @var string|null
      */

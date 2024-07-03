@@ -13,6 +13,7 @@ class LectureInformationsPaieRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var RequeteLectureInfos|null
      */

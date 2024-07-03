@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ModificationEffectifEtablissementBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ModificationEffectifEtablissementInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ModificationEffectifEtablissementUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ModificationEffectifEtablissementRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -46,7 +47,7 @@ class ModificationEffectifEtablissement extends BaseEndpoint implements Endpoint
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -76,15 +77,20 @@ class ModificationEffectifEtablissement extends BaseEndpoint implements Endpoint
         if (200 === $status) {
             return null;
         }
+
         if (400 === $status) {
-            throw new ModificationEffectifEtablissementBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ModificationEffectifEtablissementBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new ModificationEffectifEtablissementUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ModificationEffectifEtablissementUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new ModificationEffectifEtablissementInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ModificationEffectifEtablissementInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

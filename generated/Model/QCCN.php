@@ -13,28 +13,34 @@ class QCCN
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $libelleQuestion;
+
     /**
      * @var string|null
      */
     protected $nomChamp;
+
     /**
      * @var string|null
      */
     protected $typeChamp;
+
     /**
      * @var int|null
      */
     protected $nombreEntier;
+
     /**
      * @var int|null
      */
     protected $nombreDecimale;
+
     /**
-     * @var LibelleValeur[]|null
+     * @var list<LibelleValeur>|null
      */
     protected $listeChoix;
 
@@ -104,7 +110,7 @@ class QCCN
     }
 
     /**
-     * @return LibelleValeur[]|null
+     * @return list<LibelleValeur>|null
      */
     public function getListeChoix(): ?array
     {
@@ -112,7 +118,7 @@ class QCCN
     }
 
     /**
-     * @param LibelleValeur[]|null $listeChoix
+     * @param list<LibelleValeur>|null $listeChoix
      */
     public function setListeChoix(?array $listeChoix): self
     {

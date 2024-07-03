@@ -13,10 +13,12 @@ class EffectifEtablissement
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $annee;
+
     /**
      * @var float|null
      */

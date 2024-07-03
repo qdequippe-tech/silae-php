@@ -6056,20 +6056,23 @@ class Client extends Runtime\Client\Client
         if (null === $httpClient) {
             $httpClient = Psr18ClientDiscovery::find();
             $plugins = [];
-            $uri = Psr17FactoryDiscovery::findUrlFactory()->createUri('https://payroll-api.silae.fr/payroll');
+            $uri = Psr17FactoryDiscovery::findUriFactory()->createUri('https://payroll-api.silae.fr/payroll');
             $plugins[] = new AddHostPlugin($uri);
             $plugins[] = new AddPathPlugin($uri);
             if ([] !== $additionalPlugins) {
                 $plugins = array_merge($plugins, $additionalPlugins);
             }
+
             $httpClient = new PluginClient($httpClient, $plugins);
         }
+
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
         $streamFactory = Psr17FactoryDiscovery::findStreamFactory();
         $normalizers = [new ArrayDenormalizer(), new JaneObjectNormalizer()];
         if ([] !== $additionalNormalizers) {
             $normalizers = array_merge($normalizers, $additionalNormalizers);
         }
+
         $serializer = new Serializer($normalizers, [new JsonEncoder(new JsonEncode(), new JsonDecode(['json_decode_associative' => true]))]);
 
         return new static($httpClient, $requestFactory, $serializer, $streamFactory);

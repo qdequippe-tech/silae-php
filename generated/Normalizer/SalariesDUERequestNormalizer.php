@@ -3,9 +3,11 @@
 namespace QdequippeTech\Silae\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
+use QdequippeTech\Silae\Api\Model\RequeteSalariesDUE;
 use QdequippeTech\Silae\Api\Model\SalariesDUERequest;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -13,70 +15,142 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class SalariesDUERequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
-{
-    use CheckArray;
-    use DenormalizerAwareTrait;
-    use NormalizerAwareTrait;
-    use ValidatorTrait;
-
-    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
+if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
+    class SalariesDUERequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
-        return 'QdequippeTech\\Silae\\Api\\Model\\SalariesDUERequest' === $type;
-    }
+        use CheckArray;
+        use DenormalizerAwareTrait;
+        use NormalizerAwareTrait;
+        use ValidatorTrait;
 
-    public function supportsNormalization($data, $format = null, array $context = []): bool
-    {
-        return \is_object($data) && $data instanceof SalariesDUERequest;
-    }
-
-    /**
-     * @param mixed|null $format
-     */
-    public function denormalize($data, $class, $format = null, array $context = [])
-    {
-        if (isset($data['$ref'])) {
-            return new Reference($data['$ref'], $context['document-origin']);
+        public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
+        {
+            return SalariesDUERequest::class === $type;
         }
-        if (isset($data['$recursiveRef'])) {
-            return new Reference($data['$recursiveRef'], $context['document-origin']);
+
+        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
+        {
+            return $data instanceof SalariesDUERequest;
         }
-        $object = new SalariesDUERequest();
-        if (null === $data || false === \is_array($data)) {
+
+        public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+        {
+            if (isset($data['$ref'])) {
+                return new Reference($data['$ref'], $context['document-origin']);
+            }
+
+            if (isset($data['$recursiveRef'])) {
+                return new Reference($data['$recursiveRef'], $context['document-origin']);
+            }
+
+            $object = new SalariesDUERequest();
+            if (null === $data || false === \is_array($data)) {
+                return $object;
+            }
+
+            if (\array_key_exists('requeteSalariesDUE', $data) && null !== $data['requeteSalariesDUE']) {
+                $object->setRequeteSalariesDUE($this->denormalizer->denormalize($data['requeteSalariesDUE'], RequeteSalariesDUE::class, 'json', $context));
+            } elseif (\array_key_exists('requeteSalariesDUE', $data) && null === $data['requeteSalariesDUE']) {
+                $object->setRequeteSalariesDUE(null);
+            }
+
+            if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
+                $object->setNumeroDossier($data['numeroDossier']);
+            } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
+                $object->setNumeroDossier(null);
+            }
+
             return $object;
         }
-        if (\array_key_exists('requeteSalariesDUE', $data) && null !== $data['requeteSalariesDUE']) {
-            $object->setRequeteSalariesDUE($this->denormalizer->denormalize($data['requeteSalariesDUE'], 'QdequippeTech\\Silae\\Api\\Model\\RequeteSalariesDUE', 'json', $context));
-        } elseif (\array_key_exists('requeteSalariesDUE', $data) && null === $data['requeteSalariesDUE']) {
-            $object->setRequeteSalariesDUE(null);
-        }
-        if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
-            $object->setNumeroDossier($data['numeroDossier']);
-        } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
-            $object->setNumeroDossier(null);
+
+        public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+        {
+            $data = [];
+            if ($object->isInitialized('requeteSalariesDUE') && null !== $object->getRequeteSalariesDUE()) {
+                $data['requeteSalariesDUE'] = $this->normalizer->normalize($object->getRequeteSalariesDUE(), 'json', $context);
+            }
+
+            $data['numeroDossier'] = $object->getNumeroDossier();
+
+            return $data;
         }
 
-        return $object;
+        public function getSupportedTypes(?string $format = null): array
+        {
+            return [SalariesDUERequest::class => false];
+        }
     }
-
-    /**
-     * @param mixed|null $format
-     *
-     * @return array|string|int|float|bool|\ArrayObject|null
-     */
-    public function normalize($object, $format = null, array $context = [])
+} else {
+    class SalariesDUERequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
-        $data = [];
-        if ($object->isInitialized('requeteSalariesDUE') && null !== $object->getRequeteSalariesDUE()) {
-            $data['requeteSalariesDUE'] = $this->normalizer->normalize($object->getRequeteSalariesDUE(), 'json', $context);
+        use CheckArray;
+        use DenormalizerAwareTrait;
+        use NormalizerAwareTrait;
+        use ValidatorTrait;
+
+        public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
+        {
+            return SalariesDUERequest::class === $type;
         }
-        $data['numeroDossier'] = $object->getNumeroDossier();
 
-        return $data;
-    }
+        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
+        {
+            return $data instanceof SalariesDUERequest;
+        }
 
-    public function getSupportedTypes(?string $format = null): array
-    {
-        return ['QdequippeTech\\Silae\\Api\\Model\\SalariesDUERequest' => false];
+        /**
+         * @param mixed|null $format
+         */
+        public function denormalize($data, $type, $format = null, array $context = [])
+        {
+            if (isset($data['$ref'])) {
+                return new Reference($data['$ref'], $context['document-origin']);
+            }
+
+            if (isset($data['$recursiveRef'])) {
+                return new Reference($data['$recursiveRef'], $context['document-origin']);
+            }
+
+            $object = new SalariesDUERequest();
+            if (null === $data || false === \is_array($data)) {
+                return $object;
+            }
+
+            if (\array_key_exists('requeteSalariesDUE', $data) && null !== $data['requeteSalariesDUE']) {
+                $object->setRequeteSalariesDUE($this->denormalizer->denormalize($data['requeteSalariesDUE'], RequeteSalariesDUE::class, 'json', $context));
+            } elseif (\array_key_exists('requeteSalariesDUE', $data) && null === $data['requeteSalariesDUE']) {
+                $object->setRequeteSalariesDUE(null);
+            }
+
+            if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
+                $object->setNumeroDossier($data['numeroDossier']);
+            } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
+                $object->setNumeroDossier(null);
+            }
+
+            return $object;
+        }
+
+        /**
+         * @param mixed|null $format
+         *
+         * @return array|string|int|float|bool|\ArrayObject|null
+         */
+        public function normalize($object, $format = null, array $context = [])
+        {
+            $data = [];
+            if ($object->isInitialized('requeteSalariesDUE') && null !== $object->getRequeteSalariesDUE()) {
+                $data['requeteSalariesDUE'] = $this->normalizer->normalize($object->getRequeteSalariesDUE(), 'json', $context);
+            }
+
+            $data['numeroDossier'] = $object->getNumeroDossier();
+
+            return $data;
+        }
+
+        public function getSupportedTypes(?string $format = null): array
+        {
+            return [SalariesDUERequest::class => false];
+        }
     }
 }

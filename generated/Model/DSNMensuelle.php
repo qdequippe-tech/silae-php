@@ -13,18 +13,22 @@ class DSNMensuelle
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $etablissement;
+
     /**
      * @var string|null
      */
     protected $codeOrganisme;
+
     /**
      * @var string|null
      */
     protected $numeroAffiliation;
+
     /**
      * @var int|null
      */

@@ -13,14 +13,17 @@ class AjoutSousCategorieAxeAnalytiqueRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomAxe;
+
     /**
      * @var string|null
      */
     protected $nomSousCategorie;
+
     /**
      * @var string|null
      */

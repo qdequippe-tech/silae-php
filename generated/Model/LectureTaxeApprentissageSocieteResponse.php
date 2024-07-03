@@ -13,13 +13,14 @@ class LectureTaxeApprentissageSocieteResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var TaxeApprentissage[]|null
+     * @var list<TaxeApprentissage>|null
      */
     protected $taxeApprentissage;
 
     /**
-     * @return TaxeApprentissage[]|null
+     * @return list<TaxeApprentissage>|null
      */
     public function getTaxeApprentissage(): ?array
     {
@@ -27,7 +28,7 @@ class LectureTaxeApprentissageSocieteResponse
     }
 
     /**
-     * @param TaxeApprentissage[]|null $taxeApprentissage
+     * @param list<TaxeApprentissage>|null $taxeApprentissage
      */
     public function setTaxeApprentissage(?array $taxeApprentissage): self
     {

@@ -13,14 +13,17 @@ class RechercheDeclarationEvenementielleRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $etatDeclaration;
+
     /**
      * @var \DateTime|null
      */
     protected $periode;
+
     /**
      * @var string|null
      */

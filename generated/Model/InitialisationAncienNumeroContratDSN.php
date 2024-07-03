@@ -13,26 +13,32 @@ class InitialisationAncienNumeroContratDSN
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
      * @var string|null
      */
     protected $numeroContratDSN;
+
     /**
      * @var string|null
      */
     protected $siretDOrigine;
+
     /**
      * @var \DateTime|null
      */

@@ -13,10 +13,12 @@ class SpectacleListeRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebutMin;
+
     /**
      * @var string|null
      */

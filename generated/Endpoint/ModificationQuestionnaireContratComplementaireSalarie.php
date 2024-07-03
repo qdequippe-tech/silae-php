@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireContratComplementaireSalarieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireContratComplementaireSalarieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireContratComplementaireSalarieUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ModificationQuestionnaireContratComplementaireRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -46,7 +47,7 @@ class ModificationQuestionnaireContratComplementaireSalarie extends BaseEndpoint
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -76,15 +77,20 @@ class ModificationQuestionnaireContratComplementaireSalarie extends BaseEndpoint
         if (200 === $status) {
             return null;
         }
+
         if (400 === $status) {
-            throw new ModificationQuestionnaireContratComplementaireSalarieBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ModificationQuestionnaireContratComplementaireSalarieBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new ModificationQuestionnaireContratComplementaireSalarieUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ModificationQuestionnaireContratComplementaireSalarieUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new ModificationQuestionnaireContratComplementaireSalarieInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ModificationQuestionnaireContratComplementaireSalarieInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

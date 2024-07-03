@@ -13,22 +13,27 @@ class CreationDossierParImportFichierDSNRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $dsnEnByteArray;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeMin;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeMax;
+
     /**
      * @var bool|null
      */
     protected $dernierFichier;
+
     /**
      * @var string|null
      */

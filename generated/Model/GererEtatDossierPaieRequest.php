@@ -13,10 +13,12 @@ class GererEtatDossierPaieRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $desactiver;
+
     /**
      * @var string|null
      */

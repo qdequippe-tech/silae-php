@@ -13,26 +13,32 @@ class QuestionnaireContratComplementaire
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $code;
+
     /**
      * @var string|null
      */
     protected $libelle;
+
     /**
-     * @var LibelleValeurComplete[]|null
+     * @var list<LibelleValeurComplete>|null
      */
     protected $listeChoix;
+
     /**
      * @var string|null
      */
     protected $codeLibelleCotisation;
+
     /**
      * @var int|null
      */
     protected $selectionSalarie;
+
     /**
      * @var int|null
      */
@@ -65,7 +71,7 @@ class QuestionnaireContratComplementaire
     }
 
     /**
-     * @return LibelleValeurComplete[]|null
+     * @return list<LibelleValeurComplete>|null
      */
     public function getListeChoix(): ?array
     {
@@ -73,7 +79,7 @@ class QuestionnaireContratComplementaire
     }
 
     /**
-     * @param LibelleValeurComplete[]|null $listeChoix
+     * @param list<LibelleValeurComplete>|null $listeChoix
      */
     public function setListeChoix(?array $listeChoix): self
     {

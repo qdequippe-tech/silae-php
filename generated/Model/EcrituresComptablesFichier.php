@@ -13,10 +13,12 @@ class EcrituresComptablesFichier
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomFichier;
+
     /**
      * @var string|null
      */

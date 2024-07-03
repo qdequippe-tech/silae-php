@@ -13,12 +13,14 @@ class RecupererFichiersVirementResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var BilanMatricules|null
      */
     protected $bilanMatricules;
+
     /**
-     * @var RecupererFichierVirementResult[]|null
+     * @var list<RecupererFichierVirementResult>|null
      */
     protected $fichiersVirements;
 
@@ -36,7 +38,7 @@ class RecupererFichiersVirementResponse
     }
 
     /**
-     * @return RecupererFichierVirementResult[]|null
+     * @return list<RecupererFichierVirementResult>|null
      */
     public function getFichiersVirements(): ?array
     {
@@ -44,7 +46,7 @@ class RecupererFichiersVirementResponse
     }
 
     /**
-     * @param RecupererFichierVirementResult[]|null $fichiersVirements
+     * @param list<RecupererFichierVirementResult>|null $fichiersVirements
      */
     public function setFichiersVirements(?array $fichiersVirements): self
     {

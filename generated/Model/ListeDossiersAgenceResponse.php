@@ -13,13 +13,14 @@ class ListeDossiersAgenceResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var DossierAgence[]|null
+     * @var list<DossierAgence>|null
      */
     protected $dossiers;
 
     /**
-     * @return DossierAgence[]|null
+     * @return list<DossierAgence>|null
      */
     public function getDossiers(): ?array
     {
@@ -27,7 +28,7 @@ class ListeDossiersAgenceResponse
     }
 
     /**
-     * @param DossierAgence[]|null $dossiers
+     * @param list<DossierAgence>|null $dossiers
      */
     public function setDossiers(?array $dossiers): self
     {

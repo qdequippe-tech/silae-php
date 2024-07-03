@@ -13,10 +13,12 @@ class SpectacleSalarieAjouterAffectationsRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var SpectacleSalarieAffectations|null
      */
     protected $structSpectacleSalarieAffectations;
+
     /**
      * @var string|null
      */

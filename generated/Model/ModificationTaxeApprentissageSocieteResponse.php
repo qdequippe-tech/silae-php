@@ -13,6 +13,7 @@ class ModificationTaxeApprentissageSocieteResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var TaxeApprentissage|null
      */

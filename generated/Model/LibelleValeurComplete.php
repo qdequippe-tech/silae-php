@@ -13,14 +13,17 @@ class LibelleValeurComplete
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $libelle;
+
     /**
      * @var int|null
      */
     protected $valeur;
+
     /**
      * @var string|null
      */

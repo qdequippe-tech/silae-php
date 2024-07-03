@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\RecupererDuplicatasBulletinsAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RecupererDuplicatasBulletinsAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RecupererDuplicatasBulletinsAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\RecupererDuplicatasBulletinsRequest;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class RecupererDuplicatasBulletinsAsynchrone extends BaseEndpoint implements End
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class RecupererDuplicatasBulletinsAsynchrone extends BaseEndpoint implements End
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (202 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\TraitementAsynchroneResponse', 'json');
+            return $serializer->deserialize($body, TraitementAsynchroneResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new RecupererDuplicatasBulletinsAsynchroneBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererDuplicatasBulletinsAsynchroneBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new RecupererDuplicatasBulletinsAsynchroneUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererDuplicatasBulletinsAsynchroneUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new RecupererDuplicatasBulletinsAsynchroneInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererDuplicatasBulletinsAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

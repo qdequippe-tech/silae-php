@@ -13,25 +13,29 @@ class RecupererDuplicatasBulletinsRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $filtreMatricules;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeFin;
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getFiltreMatricules(): ?array
     {
@@ -39,7 +43,7 @@ class RecupererDuplicatasBulletinsRequest
     }
 
     /**
-     * @param string[]|null $filtreMatricules
+     * @param list<string>|null $filtreMatricules
      */
     public function setFiltreMatricules(?array $filtreMatricules): self
     {

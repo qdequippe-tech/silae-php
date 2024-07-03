@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\StatutRecupererImageAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutRecupererImageAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutRecupererImageAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\StatutRecupererImageAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -51,7 +52,7 @@ class StatutRecupererImageAsynchrone extends BaseEndpoint implements Endpoint
         return [[], null];
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -92,20 +93,26 @@ class StatutRecupererImageAsynchrone extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\StatutRecupererImageAsynchroneResponse', 'json');
+            return $serializer->deserialize($body, StatutRecupererImageAsynchroneResponse::class, 'json');
         }
+
         if (202 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\StatutRecupererImageAsynchroneResponse', 'json');
+            return $serializer->deserialize($body, StatutRecupererImageAsynchroneResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new StatutRecupererImageAsynchroneBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutRecupererImageAsynchroneBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new StatutRecupererImageAsynchroneUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutRecupererImageAsynchroneUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new StatutRecupererImageAsynchroneInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutRecupererImageAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

@@ -13,29 +13,34 @@ class StatutAnalyseProductionPaieAsynchroneResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var Statistiques[]|null
+     * @var list<Statistiques>|null
      */
     protected $statistiques;
+
     /**
      * @var string|null
      */
     protected $statut;
+
     /**
      * @var string|null
      */
     protected $messageErreur;
+
     /**
      * @var float|null
      */
     protected $progression;
+
     /**
      * @var string|null
      */
     protected $dureeExecution;
 
     /**
-     * @return Statistiques[]|null
+     * @return list<Statistiques>|null
      */
     public function getStatistiques(): ?array
     {
@@ -43,7 +48,7 @@ class StatutAnalyseProductionPaieAsynchroneResponse
     }
 
     /**
-     * @param Statistiques[]|null $statistiques
+     * @param list<Statistiques>|null $statistiques
      */
     public function setStatistiques(?array $statistiques): self
     {

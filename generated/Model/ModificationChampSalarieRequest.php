@@ -13,18 +13,22 @@ class ModificationChampSalarieRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
-     * @var ModificationChampValeursTypees[]|null
+     * @var list<ModificationChampValeursTypees>|null
      */
     protected $listeChamps;
+
     /**
      * @var string|null
      */
     protected $matricule;
+
     /**
      * @var string|null
      */
@@ -44,7 +48,7 @@ class ModificationChampSalarieRequest
     }
 
     /**
-     * @return ModificationChampValeursTypees[]|null
+     * @return list<ModificationChampValeursTypees>|null
      */
     public function getListeChamps(): ?array
     {
@@ -52,7 +56,7 @@ class ModificationChampSalarieRequest
     }
 
     /**
-     * @param ModificationChampValeursTypees[]|null $listeChamps
+     * @param list<ModificationChampValeursTypees>|null $listeChamps
      */
     public function setListeChamps(?array $listeChamps): self
     {

@@ -13,406 +13,507 @@ class Emploi
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
      * @var int|null
      */
     protected $identifiantEmploiModele;
+
     /**
      * @var bool|null
      */
     protected $envoiDUEEdi;
+
     /**
      * @var bool|null
      */
     protected $envoiDUEEdiSansCreerEmploi;
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissement;
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $dateFin;
+
     /**
      * @var string|null
      */
     protected $codeConventionCollective;
+
     /**
      * @var bool|null
      */
     protected $bCodeConventionCollective;
+
     /**
      * @var string|null
      */
     protected $codeClassificationMetier;
+
     /**
      * @var bool|null
      */
     protected $bCodeClassificationMetier;
+
     /**
      * @var string|null
      */
     protected $intituleEmploi;
+
     /**
      * @var bool|null
      */
     protected $bIntituleEmploi;
+
     /**
      * @var string|null
      */
     protected $codeContratTravail;
+
     /**
      * @var bool|null
      */
     protected $bCodeContratTravail;
+
     /**
      * @var string|null
      */
     protected $motifCDD;
+
     /**
      * @var bool|null
      */
     protected $bMotifCDD;
+
     /**
      * @var int|null
      */
     protected $dureeInitialeCDD;
+
     /**
      * @var bool|null
      */
     protected $bDureeInitialeCDD;
+
     /**
      * @var string|null
      */
     protected $motifDebutEmploi;
+
     /**
      * @var bool|null
      */
     protected $bMotifDebutEmploi;
+
     /**
      * @var string|null
      */
     protected $motifFinEmploi;
+
     /**
      * @var bool|null
      */
     protected $bMotifFinEmploi;
+
     /**
      * @var string|null
      */
     protected $codeCaracteristiqueActivite;
+
     /**
      * @var bool|null
      */
     protected $bCodeCaracteristiqueActivite;
+
     /**
      * @var string|null
      */
     protected $codeStatutProfessionnel;
+
     /**
      * @var bool|null
      */
     protected $bCodeStatutProfessionnel;
+
     /**
      * @var string|null
      */
     protected $codeStatutCategoriel;
+
     /**
      * @var bool|null
      */
     protected $bCodeStatutCategoriel;
+
     /**
      * @var string|null
      */
     protected $codeStatutCategorielAgircArrco;
+
     /**
      * @var bool|null
      */
     protected $bCodeStatutCategorielAgircArrco;
+
     /**
      * @var string|null
      */
     protected $coefficient1;
+
     /**
      * @var bool|null
      */
     protected $bCoefficient1;
+
     /**
      * @var string|null
      */
     protected $coefficient2;
+
     /**
      * @var bool|null
      */
     protected $bCoefficient2;
+
     /**
      * @var string|null
      */
     protected $coefficient3;
+
     /**
      * @var bool|null
      */
     protected $bCoefficient3;
+
     /**
      * @var string|null
      */
     protected $coefficient4;
+
     /**
      * @var bool|null
      */
     protected $bCoefficient4;
+
     /**
      * @var string|null
      */
     protected $codeCSP;
+
     /**
      * @var bool|null
      */
     protected $bCodeCSP;
+
     /**
      * @var string|null
      */
     protected $codeCPNDUC;
+
     /**
      * @var bool|null
      */
     protected $bCodeCPNDUC;
+
     /**
      * @var string|null
      */
     protected $spectacleCodeEmploi;
+
     /**
      * @var bool|null
      */
     protected $bSpectacleCodeEmploi;
+
     /**
      * @var string|null
      */
     protected $spectacleNumeroConges;
+
     /**
      * @var bool|null
      */
     protected $bSpectacleNumeroConges;
+
     /**
      * @var float|null
      */
     protected $pctAbattement;
+
     /**
      * @var bool|null
      */
     protected $bPctAbattement;
+
     /**
      * @var bool|null
      */
     protected $salaireDeBaseEstHoraire;
+
     /**
      * @var bool|null
      */
     protected $bSalaireDeBaseEstHoraire;
+
     /**
      * @var string|null
      */
     protected $salaireDeBase;
+
     /**
      * @var bool|null
      */
     protected $bSalaireDeBase;
+
     /**
      * @var float|null
      */
     protected $salaireNetGaranti;
+
     /**
      * @var bool|null
      */
     protected $bSalaireNetGaranti;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $nbHeuresTravaillees;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $nbHeuresDeNuitTravaillees;
+
     /**
      * @var bool|null
      */
     protected $bNbHeuresTravaillees;
+
     /**
      * @var float|null
      */
     protected $nbHeuresMensuellesNormales;
+
     /**
      * @var bool|null
      */
     protected $bNbHeuresMensuellesNormales;
+
     /**
      * @var float|null
      */
     protected $nbHeuresMensuellesMajorees;
+
     /**
      * @var bool|null
      */
     protected $bNbHeuresMensuellesMajorees;
+
     /**
      * @var float|null
      */
     protected $pctHeuresMensuellesMajorees;
+
     /**
      * @var bool|null
      */
     protected $bPctHeuresMensuellesMajorees;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $nbHeuresMensuellesLibres;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $codesHeuresMensuellesLibres;
+
     /**
      * @var bool|null
      */
     protected $bHeuresMensuellesLibres;
+
     /**
      * @var bool|null
      */
     protected $confirmationObligatoireDesHeures;
+
     /**
      * @var bool|null
      */
     protected $bConfirmationObligatoireDesHeures;
+
     /**
      * @var bool|null
      */
     protected $activerCalculKilometrique;
+
     /**
      * @var bool|null
      */
     protected $bActiverCalculKilometrique;
+
     /**
      * @var int|null
      */
     protected $typeDeVehicule;
+
     /**
      * @var bool|null
      */
     protected $bTypeDeVehicule;
+
     /**
      * @var int|null
      */
     protected $trancheKilometrique;
+
     /**
      * @var bool|null
      */
     protected $bTrancheKilometrique;
+
     /**
      * @var float|null
      */
     protected $prixDuKilometre;
+
     /**
      * @var bool|null
      */
     protected $bPrixDuKilometre;
+
     /**
      * @var bool|null
      */
     protected $activerActiviteJournaliere;
+
     /**
      * @var bool|null
      */
     protected $bActiverActiviteJournaliere;
+
     /**
      * @var int|null
      */
     protected $decoupageActiviteJournaliere;
+
     /**
      * @var bool|null
      */
     protected $bDecoupageActiviteJournaliere;
+
     /**
      * @var int|null
      */
     protected $modeSaisieActiviteJournaliere;
+
     /**
      * @var bool|null
      */
     protected $bModeSaisieActiviteJournaliere;
+
     /**
      * @var string|null
      */
     protected $exonerationCode;
+
     /**
      * @var bool|null
      */
     protected $bExonerationCode;
+
     /**
      * @var \DateTime|null
      */
     protected $exonerationDebut;
+
     /**
      * @var bool|null
      */
     protected $bExonerationDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $exonerationFin;
+
     /**
      * @var bool|null
      */
     protected $bExonerationFin;
+
     /**
      * @var float|null
      */
     protected $exonerationTaux;
+
     /**
      * @var bool|null
      */
     protected $bExonerationTaux;
+
     /**
      * @var string|null
      */
     protected $titreTransportCode;
+
     /**
      * @var bool|null
      */
     protected $bTitreTransportCode;
+
     /**
      * @var float|null
      */
     protected $titreTransportRemboursement;
+
     /**
      * @var bool|null
      */
     protected $bTitreTransportRemboursement;
+
     /**
      * @var float|null
      */
     protected $autreTitreTransportMontant;
+
     /**
      * @var bool|null
      */
     protected $bAutreTitreTransportMontant;
+
     /**
      * @var float|null
      */
     protected $autreTitreTransportRemboursement;
+
     /**
      * @var bool|null
      */
     protected $bAutreTitreTransportRemboursement;
+
     /**
      * @var int|null
      */
     protected $ticketRestaurant;
+
     /**
      * @var bool|null
      */
@@ -1134,7 +1235,7 @@ class Emploi
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getNbHeuresTravaillees(): ?array
     {
@@ -1142,7 +1243,7 @@ class Emploi
     }
 
     /**
-     * @param float[]|null $nbHeuresTravaillees
+     * @param list<float>|null $nbHeuresTravaillees
      */
     public function setNbHeuresTravaillees(?array $nbHeuresTravaillees): self
     {
@@ -1153,7 +1254,7 @@ class Emploi
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getNbHeuresDeNuitTravaillees(): ?array
     {
@@ -1161,7 +1262,7 @@ class Emploi
     }
 
     /**
-     * @param float[]|null $nbHeuresDeNuitTravaillees
+     * @param list<float>|null $nbHeuresDeNuitTravaillees
      */
     public function setNbHeuresDeNuitTravaillees(?array $nbHeuresDeNuitTravaillees): self
     {
@@ -1263,7 +1364,7 @@ class Emploi
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getNbHeuresMensuellesLibres(): ?array
     {
@@ -1271,7 +1372,7 @@ class Emploi
     }
 
     /**
-     * @param float[]|null $nbHeuresMensuellesLibres
+     * @param list<float>|null $nbHeuresMensuellesLibres
      */
     public function setNbHeuresMensuellesLibres(?array $nbHeuresMensuellesLibres): self
     {
@@ -1282,7 +1383,7 @@ class Emploi
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getCodesHeuresMensuellesLibres(): ?array
     {
@@ -1290,7 +1391,7 @@ class Emploi
     }
 
     /**
-     * @param string[]|null $codesHeuresMensuellesLibres
+     * @param list<string>|null $codesHeuresMensuellesLibres
      */
     public function setCodesHeuresMensuellesLibres(?array $codesHeuresMensuellesLibres): self
     {

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementHorsBulletinRequest;
 use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class RecupererFichiersVirementHorsBulletin extends BaseEndpoint implements Endp
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class RecupererFichiersVirementHorsBulletin extends BaseEndpoint implements Endp
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\RecupererFichiersVirementResponse', 'json');
+            return $serializer->deserialize($body, RecupererFichiersVirementResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new RecupererFichiersVirementHorsBulletinBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererFichiersVirementHorsBulletinBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new RecupererFichiersVirementHorsBulletinUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererFichiersVirementHorsBulletinUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new RecupererFichiersVirementHorsBulletinInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererFichiersVirementHorsBulletinInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

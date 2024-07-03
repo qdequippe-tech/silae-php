@@ -13,6 +13,7 @@ class CreationConfigurationAccesApiRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var CreationConfigurationAccesApi|null
      */

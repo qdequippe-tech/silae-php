@@ -13,14 +13,17 @@ class DossierPeriodeRangeRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $periodeDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeFin;
+
     /**
      * @var string|null
      */

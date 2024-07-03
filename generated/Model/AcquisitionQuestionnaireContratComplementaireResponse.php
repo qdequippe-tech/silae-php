@@ -13,13 +13,14 @@ class AcquisitionQuestionnaireContratComplementaireResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var QuestionnaireContratComplementaire[]|null
+     * @var list<QuestionnaireContratComplementaire>|null
      */
     protected $qContratComplementaire;
 
     /**
-     * @return QuestionnaireContratComplementaire[]|null
+     * @return list<QuestionnaireContratComplementaire>|null
      */
     public function getQContratComplementaire(): ?array
     {
@@ -27,7 +28,7 @@ class AcquisitionQuestionnaireContratComplementaireResponse
     }
 
     /**
-     * @param QuestionnaireContratComplementaire[]|null $qContratComplementaire
+     * @param list<QuestionnaireContratComplementaire>|null $qContratComplementaire
      */
     public function setQContratComplementaire(?array $qContratComplementaire): self
     {

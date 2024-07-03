@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
 use QdequippeTech\Silae\Api\Model\RecupererFichiersEcrituresComptablesResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class RecupererFichiersEcrituresComptables extends BaseEndpoint implements Endpo
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class RecupererFichiersEcrituresComptables extends BaseEndpoint implements Endpo
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\RecupererFichiersEcrituresComptablesResponse', 'json');
+            return $serializer->deserialize($body, RecupererFichiersEcrituresComptablesResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new RecupererFichiersEcrituresComptablesBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererFichiersEcrituresComptablesBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new RecupererFichiersEcrituresComptablesUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererFichiersEcrituresComptablesUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new RecupererFichiersEcrituresComptablesInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RecupererFichiersEcrituresComptablesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

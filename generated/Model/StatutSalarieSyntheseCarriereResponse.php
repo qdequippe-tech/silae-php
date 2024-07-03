@@ -13,29 +13,34 @@ class StatutSalarieSyntheseCarriereResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var SalarieElementCarriere[]|null
+     * @var list<SalarieElementCarriere>|null
      */
     protected $syntheseCarriere;
+
     /**
      * @var string|null
      */
     protected $statut;
+
     /**
      * @var string|null
      */
     protected $messageErreur;
+
     /**
      * @var float|null
      */
     protected $progression;
+
     /**
      * @var string|null
      */
     protected $dureeExecution;
 
     /**
-     * @return SalarieElementCarriere[]|null
+     * @return list<SalarieElementCarriere>|null
      */
     public function getSyntheseCarriere(): ?array
     {
@@ -43,7 +48,7 @@ class StatutSalarieSyntheseCarriereResponse
     }
 
     /**
-     * @param SalarieElementCarriere[]|null $syntheseCarriere
+     * @param list<SalarieElementCarriere>|null $syntheseCarriere
      */
     public function setSyntheseCarriere(?array $syntheseCarriere): self
     {

@@ -13,10 +13,12 @@ class SpectacleCreationRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var Spectacle|null
      */
     protected $structSpectacle;
+
     /**
      * @var string|null
      */

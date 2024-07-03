@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\StatutCreationSalarieEmploisAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutCreationSalarieEmploisAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutCreationSalarieEmploisAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\StatutCreationSalarieEmploisAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -51,7 +52,7 @@ class StatutCreationSalarieEmploisAsynchrone extends BaseEndpoint implements End
         return [[], null];
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -92,20 +93,26 @@ class StatutCreationSalarieEmploisAsynchrone extends BaseEndpoint implements End
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\StatutCreationSalarieEmploisAsynchroneResponse', 'json');
+            return $serializer->deserialize($body, StatutCreationSalarieEmploisAsynchroneResponse::class, 'json');
         }
+
         if (202 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\StatutCreationSalarieEmploisAsynchroneResponse', 'json');
+            return $serializer->deserialize($body, StatutCreationSalarieEmploisAsynchroneResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new StatutCreationSalarieEmploisAsynchroneBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutCreationSalarieEmploisAsynchroneBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new StatutCreationSalarieEmploisAsynchroneUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutCreationSalarieEmploisAsynchroneUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new StatutCreationSalarieEmploisAsynchroneInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new StatutCreationSalarieEmploisAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

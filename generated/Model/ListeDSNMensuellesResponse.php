@@ -13,13 +13,14 @@ class ListeDSNMensuellesResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var DSNMensuelle[]|null
+     * @var list<DSNMensuelle>|null
      */
     protected $listeDSNMensuelles;
 
     /**
-     * @return DSNMensuelle[]|null
+     * @return list<DSNMensuelle>|null
      */
     public function getListeDSNMensuelles(): ?array
     {
@@ -27,7 +28,7 @@ class ListeDSNMensuellesResponse
     }
 
     /**
-     * @param DSNMensuelle[]|null $listeDSNMensuelles
+     * @param list<DSNMensuelle>|null $listeDSNMensuelles
      */
     public function setListeDSNMensuelles(?array $listeDSNMensuelles): self
     {

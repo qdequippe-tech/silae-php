@@ -13,210 +13,262 @@ class UtilisateurCollaborateur
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $codeCollaborateur;
+
     /**
      * @var bool|null
      */
     protected $bCivilite;
+
     /**
      * @var int|null
      */
     protected $civilite;
+
     /**
      * @var string|null
      */
     protected $nomNaissance;
+
     /**
      * @var string|null
      */
     protected $nomMarital;
+
     /**
      * @var string|null
      */
     protected $nomUsuel;
+
     /**
      * @var string|null
      */
     protected $prenom;
+
     /**
      * @var bool|null
      */
     protected $bTelPortable;
+
     /**
      * @var string|null
      */
     protected $telPortable;
+
     /**
      * @var bool|null
      */
     protected $bTelBureau;
+
     /**
      * @var string|null
      */
     protected $telBureau;
+
     /**
      * @var bool|null
      */
     protected $bTelDomicile;
+
     /**
      * @var string|null
      */
     protected $telDomicile;
+
     /**
      * @var bool|null
      */
     protected $bMail;
+
     /**
      * @var string|null
      */
     protected $mail;
+
     /**
      * @var bool|null
      */
     protected $bCodeAgence;
+
     /**
      * @var string|null
      */
     protected $codeAgence;
+
     /**
      * @var bool|null
      */
     protected $bAffectations;
+
     /**
      * @var bool|null
      */
     protected $affectation1;
+
     /**
      * @var bool|null
      */
     protected $affectation2;
+
     /**
      * @var bool|null
      */
     protected $affectation3;
+
     /**
      * @var bool|null
      */
     protected $affectation4;
+
     /**
      * @var bool|null
      */
     protected $affectation5;
+
     /**
      * @var bool|null
      */
     protected $affectation6;
+
     /**
      * @var bool|null
      */
     protected $affectation7;
+
     /**
      * @var bool|null
      */
     protected $affectation8;
+
     /**
      * @var bool|null
      */
     protected $affectation9;
+
     /**
      * @var string|null
      */
     protected $identifiant;
+
     /**
      * @var string|null
      */
     protected $ancienMotDePasse;
+
     /**
      * @var string|null
      */
     protected $motDePasse;
+
     /**
      * @var \DateTime|null
      */
     protected $debutValidite;
+
     /**
      * @var \DateTime|null
      */
     protected $finValidite;
+
     /**
      * @var bool|null
      */
     protected $bDateEntree;
+
     /**
      * @var \DateTime|null
      */
     protected $dateEntree;
+
     /**
      * @var bool|null
      */
     protected $bDateSortie;
+
     /**
      * @var \DateTime|null
      */
     protected $dateSortie;
+
     /**
      * @var bool|null
      */
     protected $ongletProduction;
+
     /**
      * @var bool|null
      */
     protected $ongletGestionInterne;
+
     /**
      * @var bool|null
      */
     protected $ongletGestionInterneSimplifiee;
+
     /**
      * @var bool|null
      */
     protected $ongletGestionDesIdentifiants;
+
     /**
      * @var bool|null
      */
     protected $ongletParametragePaie;
+
     /**
      * @var bool|null
      */
     protected $ongletParametrageCompta;
+
     /**
      * @var bool|null
      */
     protected $ongletRobotDePaie;
+
     /**
      * @var bool|null
      */
     protected $ongletOutils;
+
     /**
      * @var bool|null
      */
     protected $ongletAnalyseActivitePaie;
+
     /**
      * @var bool|null
      */
     protected $ongletAnalyseActiviteCompta;
+
     /**
      * @var bool|null
      */
     protected $restrictionPaieFicheSocieteEtatDossier;
+
     /**
      * @var int|null
      */
     protected $niveauConfidentialiteSalarie;
+
     /**
      * @var bool|null
      */
     protected $droitsLimitesPaie;
+
     /**
      * @var bool|null
      */
     protected $droitsLimitesCompta;
+
     /**
      * @var string|null
      */
     protected $listesCollaborateursDroits;
+
     /**
      * @var string|null
      */

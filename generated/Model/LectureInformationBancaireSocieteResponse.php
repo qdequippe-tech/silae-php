@@ -13,12 +13,14 @@ class LectureInformationBancaireSocieteResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $sepaModeComptabilisation;
+
     /**
-     * @var InformationBancaireSociete[]|null
+     * @var list<InformationBancaireSociete>|null
      */
     protected $informationBancaireSociete;
 
@@ -36,7 +38,7 @@ class LectureInformationBancaireSocieteResponse
     }
 
     /**
-     * @return InformationBancaireSociete[]|null
+     * @return list<InformationBancaireSociete>|null
      */
     public function getInformationBancaireSociete(): ?array
     {
@@ -44,7 +46,7 @@ class LectureInformationBancaireSocieteResponse
     }
 
     /**
-     * @param InformationBancaireSociete[]|null $informationBancaireSociete
+     * @param list<InformationBancaireSociete>|null $informationBancaireSociete
      */
     public function setInformationBancaireSociete(?array $informationBancaireSociete): self
     {

@@ -13,13 +13,14 @@ class SpectacleListeResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var Spectacle[]|null
+     * @var list<Spectacle>|null
      */
     protected $spectacles;
 
     /**
-     * @return Spectacle[]|null
+     * @return list<Spectacle>|null
      */
     public function getSpectacles(): ?array
     {
@@ -27,7 +28,7 @@ class SpectacleListeResponse
     }
 
     /**
-     * @param Spectacle[]|null $spectacles
+     * @param list<Spectacle>|null $spectacles
      */
     public function setSpectacles(?array $spectacles): self
     {

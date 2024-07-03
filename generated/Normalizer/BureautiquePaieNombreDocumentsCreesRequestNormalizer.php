@@ -6,6 +6,7 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\BureautiquePaieNombreDocumentsCreesRequest;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -13,80 +14,166 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class BureautiquePaieNombreDocumentsCreesRequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
-{
-    use CheckArray;
-    use DenormalizerAwareTrait;
-    use NormalizerAwareTrait;
-    use ValidatorTrait;
-
-    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
+if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
+    class BureautiquePaieNombreDocumentsCreesRequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
-        return 'QdequippeTech\\Silae\\Api\\Model\\BureautiquePaieNombreDocumentsCreesRequest' === $type;
-    }
+        use CheckArray;
+        use DenormalizerAwareTrait;
+        use NormalizerAwareTrait;
+        use ValidatorTrait;
 
-    public function supportsNormalization($data, $format = null, array $context = []): bool
-    {
-        return \is_object($data) && $data instanceof BureautiquePaieNombreDocumentsCreesRequest;
-    }
-
-    /**
-     * @param mixed|null $format
-     */
-    public function denormalize($data, $class, $format = null, array $context = [])
-    {
-        if (isset($data['$ref'])) {
-            return new Reference($data['$ref'], $context['document-origin']);
+        public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
+        {
+            return BureautiquePaieNombreDocumentsCreesRequest::class === $type;
         }
-        if (isset($data['$recursiveRef'])) {
-            return new Reference($data['$recursiveRef'], $context['document-origin']);
+
+        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
+        {
+            return $data instanceof BureautiquePaieNombreDocumentsCreesRequest;
         }
-        $object = new BureautiquePaieNombreDocumentsCreesRequest();
-        if (null === $data || false === \is_array($data)) {
+
+        public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+        {
+            if (isset($data['$ref'])) {
+                return new Reference($data['$ref'], $context['document-origin']);
+            }
+
+            if (isset($data['$recursiveRef'])) {
+                return new Reference($data['$recursiveRef'], $context['document-origin']);
+            }
+
+            $object = new BureautiquePaieNombreDocumentsCreesRequest();
+            if (null === $data || false === \is_array($data)) {
+                return $object;
+            }
+
+            if (\array_key_exists('nomDocument', $data) && null !== $data['nomDocument']) {
+                $object->setNomDocument($data['nomDocument']);
+            } elseif (\array_key_exists('nomDocument', $data) && null === $data['nomDocument']) {
+                $object->setNomDocument(null);
+            }
+
+            if (\array_key_exists('dateDebut', $data) && null !== $data['dateDebut']) {
+                $object->setDateDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebut']));
+            } elseif (\array_key_exists('dateDebut', $data) && null === $data['dateDebut']) {
+                $object->setDateDebut(null);
+            }
+
+            if (\array_key_exists('dateFin', $data) && null !== $data['dateFin']) {
+                $object->setDateFin(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFin']));
+            } elseif (\array_key_exists('dateFin', $data) && null === $data['dateFin']) {
+                $object->setDateFin(null);
+            }
+
             return $object;
         }
-        if (\array_key_exists('nomDocument', $data) && null !== $data['nomDocument']) {
-            $object->setNomDocument($data['nomDocument']);
-        } elseif (\array_key_exists('nomDocument', $data) && null === $data['nomDocument']) {
-            $object->setNomDocument(null);
-        }
-        if (\array_key_exists('dateDebut', $data) && null !== $data['dateDebut']) {
-            $object->setDateDebut(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateDebut']));
-        } elseif (\array_key_exists('dateDebut', $data) && null === $data['dateDebut']) {
-            $object->setDateDebut(null);
-        }
-        if (\array_key_exists('dateFin', $data) && null !== $data['dateFin']) {
-            $object->setDateFin(\DateTime::createFromFormat('Y-m-d\\TH:i:s', $data['dateFin']));
-        } elseif (\array_key_exists('dateFin', $data) && null === $data['dateFin']) {
-            $object->setDateFin(null);
+
+        public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+        {
+            $data = [];
+            if ($object->isInitialized('nomDocument') && null !== $object->getNomDocument()) {
+                $data['nomDocument'] = $object->getNomDocument();
+            }
+
+            if ($object->isInitialized('dateDebut') && null !== $object->getDateDebut()) {
+                $data['dateDebut'] = $object->getDateDebut()->format('Y-m-d\TH:i:s');
+            }
+
+            if ($object->isInitialized('dateFin') && null !== $object->getDateFin()) {
+                $data['dateFin'] = $object->getDateFin()->format('Y-m-d\TH:i:s');
+            }
+
+            return $data;
         }
 
-        return $object;
+        public function getSupportedTypes(?string $format = null): array
+        {
+            return [BureautiquePaieNombreDocumentsCreesRequest::class => false];
+        }
     }
-
-    /**
-     * @param mixed|null $format
-     *
-     * @return array|string|int|float|bool|\ArrayObject|null
-     */
-    public function normalize($object, $format = null, array $context = [])
+} else {
+    class BureautiquePaieNombreDocumentsCreesRequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
-        $data = [];
-        if ($object->isInitialized('nomDocument') && null !== $object->getNomDocument()) {
-            $data['nomDocument'] = $object->getNomDocument();
-        }
-        if ($object->isInitialized('dateDebut') && null !== $object->getDateDebut()) {
-            $data['dateDebut'] = $object->getDateDebut()->format('Y-m-d\\TH:i:s');
-        }
-        if ($object->isInitialized('dateFin') && null !== $object->getDateFin()) {
-            $data['dateFin'] = $object->getDateFin()->format('Y-m-d\\TH:i:s');
+        use CheckArray;
+        use DenormalizerAwareTrait;
+        use NormalizerAwareTrait;
+        use ValidatorTrait;
+
+        public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
+        {
+            return BureautiquePaieNombreDocumentsCreesRequest::class === $type;
         }
 
-        return $data;
-    }
+        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
+        {
+            return $data instanceof BureautiquePaieNombreDocumentsCreesRequest;
+        }
 
-    public function getSupportedTypes(?string $format = null): array
-    {
-        return ['QdequippeTech\\Silae\\Api\\Model\\BureautiquePaieNombreDocumentsCreesRequest' => false];
+        /**
+         * @param mixed|null $format
+         */
+        public function denormalize($data, $type, $format = null, array $context = [])
+        {
+            if (isset($data['$ref'])) {
+                return new Reference($data['$ref'], $context['document-origin']);
+            }
+
+            if (isset($data['$recursiveRef'])) {
+                return new Reference($data['$recursiveRef'], $context['document-origin']);
+            }
+
+            $object = new BureautiquePaieNombreDocumentsCreesRequest();
+            if (null === $data || false === \is_array($data)) {
+                return $object;
+            }
+
+            if (\array_key_exists('nomDocument', $data) && null !== $data['nomDocument']) {
+                $object->setNomDocument($data['nomDocument']);
+            } elseif (\array_key_exists('nomDocument', $data) && null === $data['nomDocument']) {
+                $object->setNomDocument(null);
+            }
+
+            if (\array_key_exists('dateDebut', $data) && null !== $data['dateDebut']) {
+                $object->setDateDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebut']));
+            } elseif (\array_key_exists('dateDebut', $data) && null === $data['dateDebut']) {
+                $object->setDateDebut(null);
+            }
+
+            if (\array_key_exists('dateFin', $data) && null !== $data['dateFin']) {
+                $object->setDateFin(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFin']));
+            } elseif (\array_key_exists('dateFin', $data) && null === $data['dateFin']) {
+                $object->setDateFin(null);
+            }
+
+            return $object;
+        }
+
+        /**
+         * @param mixed|null $format
+         *
+         * @return array|string|int|float|bool|\ArrayObject|null
+         */
+        public function normalize($object, $format = null, array $context = [])
+        {
+            $data = [];
+            if ($object->isInitialized('nomDocument') && null !== $object->getNomDocument()) {
+                $data['nomDocument'] = $object->getNomDocument();
+            }
+
+            if ($object->isInitialized('dateDebut') && null !== $object->getDateDebut()) {
+                $data['dateDebut'] = $object->getDateDebut()->format('Y-m-d\TH:i:s');
+            }
+
+            if ($object->isInitialized('dateFin') && null !== $object->getDateFin()) {
+                $data['dateFin'] = $object->getDateFin()->format('Y-m-d\TH:i:s');
+            }
+
+            return $data;
+        }
+
+        public function getSupportedTypes(?string $format = null): array
+        {
+            return [BureautiquePaieNombreDocumentsCreesRequest::class => false];
+        }
     }
 }

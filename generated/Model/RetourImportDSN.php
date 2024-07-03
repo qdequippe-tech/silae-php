@@ -13,50 +13,62 @@ class RetourImportDSN
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $existenceErreur;
+
     /**
      * @var bool|null
      */
     protected $importDansDossier;
+
     /**
      * @var bool|null
      */
     protected $importDansDomaine;
+
     /**
      * @var bool|null
      */
     protected $importDansEtablissement;
+
     /**
      * @var bool|null
      */
     protected $dsnMensuelleExistante;
+
     /**
      * @var string|null
      */
     protected $erreurAnalyse;
+
     /**
      * @var bool|null
      */
     protected $erreurImport;
+
     /**
      * @var bool|null
      */
     protected $erreurBlocanteImport;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $compteRendu;
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissementPricipal;
+
     /**
      * @var string|null
      */
@@ -167,7 +179,7 @@ class RetourImportDSN
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getCompteRendu(): ?array
     {
@@ -175,7 +187,7 @@ class RetourImportDSN
     }
 
     /**
-     * @param string[]|null $compteRendu
+     * @param list<string>|null $compteRendu
      */
     public function setCompteRendu(?array $compteRendu): self
     {

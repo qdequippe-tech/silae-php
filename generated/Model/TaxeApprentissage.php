@@ -13,22 +13,27 @@ class TaxeApprentissage
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $anneeMillesime;
+
     /**
      * @var bool|null
      */
     protected $soumisTaxeApprentissage;
+
     /**
      * @var string|null
      */
     protected $motifNonAssujettissement;
+
     /**
      * @var string|null
      */
     protected $operateurCompetences;
+
     /**
      * @var bool|null
      */

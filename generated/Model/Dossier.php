@@ -13,52 +13,64 @@ class Dossier
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
+
     /**
      * @var string|null
      */
     protected $numeroDossierModele;
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebutMontage;
+
     /**
      * @var string|null
      */
     protected $codeAgence;
+
     /**
      * @var int|null
      */
     protected $longueurMatricule;
+
     /**
      * @var int|null
      */
     protected $employeurCivilite;
+
     /**
      * @var string|null
      */
     protected $employeurNom;
+
     /**
      * @var string|null
      */
     protected $employeurPrenom;
+
     /**
      * @var int|null
      */
     protected $employeurQualite;
+
     /**
      * @var string|null
      */
     protected $employeurQualiteAutre;
+
     /**
      * @var string|null
      */
     protected $groupe;
+
     /**
-     * @var Etablissement[]|null
+     * @var list<Etablissement>|null
      */
     protected $etablissements;
 
@@ -206,7 +218,7 @@ class Dossier
     }
 
     /**
-     * @return Etablissement[]|null
+     * @return list<Etablissement>|null
      */
     public function getEtablissements(): ?array
     {
@@ -214,7 +226,7 @@ class Dossier
     }
 
     /**
-     * @param Etablissement[]|null $etablissements
+     * @param list<Etablissement>|null $etablissements
      */
     public function setEtablissements(?array $etablissements): self
     {

@@ -13,30 +13,37 @@ class EcrituresComptablesLigne
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $periode;
+
     /**
      * @var string|null
      */
     protected $compte;
+
     /**
      * @var string|null
      */
     protected $libelle;
+
     /**
      * @var string|null
      */
     protected $sens;
+
     /**
      * @var int|null
      */
     protected $indexRepartition;
+
     /**
      * @var float|null
      */
     protected $valeur;
+
     /**
      * @var float|null
      */

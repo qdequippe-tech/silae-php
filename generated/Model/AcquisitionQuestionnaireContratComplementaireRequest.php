@@ -13,10 +13,12 @@ class AcquisitionQuestionnaireContratComplementaireRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $codeStatutCategoriel;
+
     /**
      * @var string|null
      */

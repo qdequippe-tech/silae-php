@@ -13,18 +13,22 @@ class SalarieHeures
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $periodeHeures;
+
     /**
      * @var string|null
      */
     protected $codeHeures;
+
     /**
      * @var float|null
      */
     protected $nombreHeures;
+
     /**
      * @var bool|null
      */

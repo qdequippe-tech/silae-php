@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAjouterAffectationsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAjouterAffectationsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAjouterAffectationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieAjouterAffectationsRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -46,7 +47,7 @@ class SpectacleSalarieAjouterAffectations extends BaseEndpoint implements Endpoi
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -76,15 +77,20 @@ class SpectacleSalarieAjouterAffectations extends BaseEndpoint implements Endpoi
         if (200 === $status) {
             return null;
         }
+
         if (400 === $status) {
-            throw new SpectacleSalarieAjouterAffectationsBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SpectacleSalarieAjouterAffectationsBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new SpectacleSalarieAjouterAffectationsUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SpectacleSalarieAjouterAffectationsUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new SpectacleSalarieAjouterAffectationsInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SpectacleSalarieAjouterAffectationsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

@@ -13,13 +13,14 @@ class SalariesBulletinsResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var SalarieBulletinsResult[]|null
+     * @var list<SalarieBulletinsResult>|null
      */
     protected $salariesBulletins;
 
     /**
-     * @return SalarieBulletinsResult[]|null
+     * @return list<SalarieBulletinsResult>|null
      */
     public function getSalariesBulletins(): ?array
     {
@@ -27,7 +28,7 @@ class SalariesBulletinsResponse
     }
 
     /**
-     * @param SalarieBulletinsResult[]|null $salariesBulletins
+     * @param list<SalarieBulletinsResult>|null $salariesBulletins
      */
     public function setSalariesBulletins(?array $salariesBulletins): self
     {

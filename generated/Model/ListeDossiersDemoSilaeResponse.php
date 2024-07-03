@@ -13,13 +13,14 @@ class ListeDossiersDemoSilaeResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var DossierDemoSilae[]|null
+     * @var list<DossierDemoSilae>|null
      */
     protected $modeles;
 
     /**
-     * @return DossierDemoSilae[]|null
+     * @return list<DossierDemoSilae>|null
      */
     public function getModeles(): ?array
     {
@@ -27,7 +28,7 @@ class ListeDossiersDemoSilaeResponse
     }
 
     /**
-     * @param DossierDemoSilae[]|null $modeles
+     * @param list<DossierDemoSilae>|null $modeles
      */
     public function setModeles(?array $modeles): self
     {

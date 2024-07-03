@@ -13,10 +13,12 @@ class CreationUtilisateurClientPaieRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var UtilisateurClient|null
      */
     protected $utilisateurClient;
+
     /**
      * @var string|null
      */

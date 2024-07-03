@@ -13,14 +13,17 @@ class RecupererImageResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $image;
+
     /**
-     * @var ImageAnnexe[]|null
+     * @var list<ImageAnnexe>|null
      */
     protected $imagesAnnexes;
+
     /**
      * @var string|null
      */
@@ -40,7 +43,7 @@ class RecupererImageResponse
     }
 
     /**
-     * @return ImageAnnexe[]|null
+     * @return list<ImageAnnexe>|null
      */
     public function getImagesAnnexes(): ?array
     {
@@ -48,7 +51,7 @@ class RecupererImageResponse
     }
 
     /**
-     * @param ImageAnnexe[]|null $imagesAnnexes
+     * @param list<ImageAnnexe>|null $imagesAnnexes
      */
     public function setImagesAnnexes(?array $imagesAnnexes): self
     {

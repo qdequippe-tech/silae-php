@@ -13,30 +13,37 @@ class PersonneLiee
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $prenom;
+
     /**
      * @var string|null
      */
     protected $nomUsuel;
+
     /**
      * @var int|null
      */
     protected $typeLien;
+
     /**
      * @var \DateTime|null
      */
     protected $dateNaissance;
+
     /**
      * @var string|null
      */
     protected $numeroSS;
+
     /**
      * @var int|null
      */
     protected $sexe;
+
     /**
      * @var bool|null
      */

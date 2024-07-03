@@ -13,54 +13,67 @@ class RequeteSalarieBulletinLignesFiltres
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $codeLibelle;
+
     /**
      * @var string|null
      */
     protected $libelle;
+
     /**
      * @var string|null
      */
     protected $codeDucs;
+
     /**
      * @var int|null
      */
     protected $zone;
+
     /**
      * @var string|null
      */
     protected $marqueInterne;
+
     /**
      * @var string|null
      */
     protected $marque1;
+
     /**
      * @var string|null
      */
     protected $marque2;
+
     /**
      * @var \DateTime|null
      */
     protected $marqueDtDeb;
+
     /**
      * @var \DateTime|null
      */
     protected $marqueDtFin;
+
     /**
      * @var string|null
      */
     protected $compte4;
+
     /**
      * @var string|null
      */
     protected $compte6;
+
     /**
      * @var bool|null
      */
     protected $exclureLignesNeutres;
+
     /**
      * @var bool|null
      */

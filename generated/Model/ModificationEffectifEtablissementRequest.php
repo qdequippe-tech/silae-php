@@ -13,14 +13,17 @@ class ModificationEffectifEtablissementRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissement;
+
     /**
-     * @var EffectifEtablissement[]|null
+     * @var list<EffectifEtablissement>|null
      */
     protected $effectifEtablissement;
+
     /**
      * @var string|null
      */
@@ -40,7 +43,7 @@ class ModificationEffectifEtablissementRequest
     }
 
     /**
-     * @return EffectifEtablissement[]|null
+     * @return list<EffectifEtablissement>|null
      */
     public function getEffectifEtablissement(): ?array
     {
@@ -48,7 +51,7 @@ class ModificationEffectifEtablissementRequest
     }
 
     /**
-     * @param EffectifEtablissement[]|null $effectifEtablissement
+     * @param list<EffectifEtablissement>|null $effectifEtablissement
      */
     public function setEffectifEtablissement(?array $effectifEtablissement): self
     {

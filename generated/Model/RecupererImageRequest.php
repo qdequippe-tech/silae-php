@@ -13,10 +13,12 @@ class RecupererImageRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $natureImage;
+
     /**
      * @var int|null
      */

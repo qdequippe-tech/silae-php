@@ -13,42 +13,52 @@ class CompteCollaborateurDroits
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $administration;
+
     /**
      * @var bool|null
      */
     protected $administrationCollaborateur;
+
     /**
      * @var bool|null
      */
     protected $analyseActivitePaie;
+
     /**
      * @var CompteCollaborateurDroitsUtilisateur|null
      */
     protected $droitsUtilisateur;
+
     /**
      * @var bool|null
      */
     protected $gestionInterne;
+
     /**
      * @var bool|null
      */
     protected $gestionInterneSimplifiee;
+
     /**
      * @var bool|null
      */
     protected $outils;
+
     /**
      * @var bool|null
      */
     protected $parametragePaie;
+
     /**
      * @var bool|null
      */
     protected $production;
+
     /**
      * @var bool|null
      */

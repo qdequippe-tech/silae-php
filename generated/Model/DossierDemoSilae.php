@@ -13,10 +13,12 @@ class DossierDemoSilae
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $tokenDossierDemo;
+
     /**
      * @var string|null
      */

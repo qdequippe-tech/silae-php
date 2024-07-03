@@ -13,34 +13,42 @@ class SalarieSalaireDeBaseResult
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
      * @var float|null
      */
     protected $salaireDeBase;
+
     /**
      * @var float|null
      */
     protected $salaireDeBaseHeuresNormales;
+
     /**
      * @var float|null
      */
     protected $salaireDeBaseHeuresMajorees;
+
     /**
      * @var float|null
      */
     protected $salaireDeBaseHLibre1;
+
     /**
      * @var float|null
      */
     protected $salaireDeBaseHLibre2;
+
     /**
      * @var float|null
      */

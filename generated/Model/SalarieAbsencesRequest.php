@@ -13,10 +13,12 @@ class SalarieAbsencesRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var RequeteSalarieAbsences|null
      */
     protected $requeteSalarieAbsences;
+
     /**
      * @var string|null
      */

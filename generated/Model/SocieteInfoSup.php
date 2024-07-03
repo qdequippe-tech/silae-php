@@ -13,466 +13,582 @@ class SocieteInfoSup
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $bCLIAffilieCCP;
+
     /**
      * @var bool|null
      */
     protected $clIAffilieCCP;
+
     /**
      * @var bool|null
      */
     protected $bCLIBaseCalculAnciennete;
+
     /**
      * @var int|null
      */
     protected $clIBaseCalculAnciennete;
+
     /**
      * @var bool|null
      */
     protected $bCLICalcAutoESInactif;
+
     /**
      * @var bool|null
      */
     protected $clICalcAutoESInactif;
+
     /**
      * @var bool|null
      */
     protected $bCLICalcAutoIJSSInactif;
+
     /**
      * @var bool|null
      */
     protected $clICalcAutoIJSSInactif;
+
     /**
      * @var bool|null
      */
     protected $bCLICalcAutoMaintienInactif;
+
     /**
      * @var bool|null
      */
     protected $clICalcAutoMaintienInactif;
+
     /**
      * @var bool|null
      */
     protected $bCLICalcAutoRegulInactif;
+
     /**
      * @var bool|null
      */
     protected $clICalcAutoRegulInactif;
+
     /**
      * @var bool|null
      */
     protected $bCLIChaineFabricationDateLimiteAbsences;
+
     /**
      * @var string|null
      */
     protected $clIChaineFabricationDateLimiteAbsences;
+
     /**
      * @var bool|null
      */
     protected $bCLIConfSalActive;
+
     /**
      * @var bool|null
      */
     protected $clIConfSalActive;
+
     /**
      * @var bool|null
      */
     protected $bCLIDFPTepa;
+
     /**
      * @var bool|null
      */
     protected $clIDFPTepa;
+
     /**
      * @var bool|null
      */
     protected $bCLIDFPTepaDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $clIDFPTepaDebut;
+
     /**
      * @var bool|null
      */
     protected $bCLIDtDebChangePaieDecalee;
+
     /**
      * @var \DateTime|null
      */
     protected $clIDtDebChangePaieDecalee;
+
     /**
      * @var bool|null
      */
     protected $bCLIDtDebExerciceComptable;
+
     /**
      * @var \DateTime|null
      */
     protected $clIDtDebExerciceComptable;
+
     /**
      * @var bool|null
      */
     protected $bCLIDtFinExerciceComptable;
+
     /**
      * @var \DateTime|null
      */
     protected $clIDtFinExerciceComptable;
+
     /**
      * @var bool|null
      */
     protected $bCLIEmployeurCivilite;
+
     /**
      * @var int|null
      */
     protected $clIEmployeurCivilite;
+
     /**
      * @var bool|null
      */
     protected $bCLIEmployeurNom;
+
     /**
      * @var string|null
      */
     protected $clIEmployeurNom;
+
     /**
      * @var bool|null
      */
     protected $bCLIEmployeurPrenom;
+
     /**
      * @var string|null
      */
     protected $clIEmployeurPrenom;
+
     /**
      * @var bool|null
      */
     protected $bCLIEmployeurQualite;
+
     /**
      * @var int|null
      */
     protected $clIEmployeurQualite;
+
     /**
      * @var bool|null
      */
     protected $bCLIEmployeurQualiteAutre;
+
     /**
      * @var string|null
      */
     protected $clIEmployeurQualiteAutre;
+
     /**
      * @var bool|null
      */
     protected $bCLIEtatDossierPaie;
+
     /**
      * @var int|null
      */
     protected $clIEtatDossierPaie;
+
     /**
      * @var bool|null
      */
     protected $bCLIFormaProfTranche;
+
     /**
      * @var int|null
      */
     protected $clIFormaProfTranche;
+
     /**
      * @var bool|null
      */
     protected $bCLIFormaProfTrancheAnnee;
+
     /**
      * @var \DateTime|null
      */
     protected $clIFormaProfTrancheAnnee;
+
     /**
      * @var bool|null
      */
     protected $bCLIFormaProfTrancheAnnee2;
+
     /**
      * @var \DateTime|null
      */
     protected $clIFormaProfTrancheAnnee2;
+
     /**
      * @var bool|null
      */
     protected $bCLIFormaProfTrancheAnnee3;
+
     /**
      * @var \DateTime|null
      */
     protected $clIFormaProfTrancheAnnee3;
+
     /**
      * @var bool|null
      */
     protected $bCLIFormaProfTrancheAnnee4;
+
     /**
      * @var \DateTime|null
      */
     protected $clIFormaProfTrancheAnnee4;
+
     /**
      * @var bool|null
      */
     protected $bCLIGestionCPExclEnJours;
+
     /**
      * @var bool|null
      */
     protected $clIGestionCPExclEnJours;
+
     /**
      * @var bool|null
      */
     protected $bCLIJourVersementSalaires;
+
     /**
      * @var int|null
      */
     protected $clIJourVersementSalaires;
+
     /**
      * @var bool|null
      */
     protected $bCLIListesTriSalaries;
+
     /**
      * @var int|null
      */
     protected $clIListesTriSalaries;
+
     /**
      * @var bool|null
      */
     protected $bCLIMatriculeAuto;
+
     /**
      * @var bool|null
      */
     protected $clIMatriculeAuto;
+
     /**
      * @var bool|null
      */
     protected $bCLIMatriculeLongueur;
+
     /**
      * @var int|null
      */
     protected $clIMatriculeLongueur;
+
     /**
      * @var bool|null
      */
     protected $bCLIMethodeArbitrage;
+
     /**
      * @var int|null
      */
     protected $clIMethodeArbitrage;
+
     /**
      * @var bool|null
      */
     protected $bCLIMethodeCalculMaintien;
+
     /**
      * @var int|null
      */
     protected $clIMethodeCalculMaintien;
+
     /**
      * @var bool|null
      */
     protected $bCLIMethodeCalculMaintienNbM;
+
     /**
      * @var int|null
      */
     protected $clIMethodeCalculMaintienNbM;
+
     /**
      * @var bool|null
      */
     protected $bCLIMethodeRetenueCP;
+
     /**
      * @var int|null
      */
     protected $clIMethodeRetenueCP;
+
     /**
      * @var bool|null
      */
     protected $bCLIMethodesSuiviAbsencesDansEta;
+
     /**
      * @var bool|null
      */
     protected $clIMethodesSuiviAbsencesDansEta;
+
     /**
      * @var bool|null
      */
     protected $bCLIMethodeSuiviAbsences;
+
     /**
      * @var int|null
      */
     protected $clIMethodeSuiviAbsences;
+
     /**
      * @var bool|null
      */
     protected $bCLIMethodeSuiviAbsencesDeductionHM;
+
     /**
      * @var int|null
      */
     protected $clIMethodeSuiviAbsencesDeductionHM;
+
     /**
      * @var bool|null
      */
     protected $bCLIMethodeSuiviAbsencesJC;
+
     /**
      * @var int|null
      */
     protected $clIMethodeSuiviAbsencesJC;
+
     /**
      * @var bool|null
      */
     protected $bCLIMethodeSuiviCP;
+
     /**
      * @var int|null
      */
     protected $clIMethodeSuiviCP;
+
     /**
      * @var bool|null
      */
     protected $bCLIMethodeSuiviCPAcqMois;
+
     /**
      * @var float|null
      */
     protected $clIMethodeSuiviCPAcqMois;
+
     /**
      * @var bool|null
      */
     protected $bCLIModuleCTCDActif;
+
     /**
      * @var bool|null
      */
     protected $clIModuleCTCDActif;
+
     /**
      * @var bool|null
      */
     protected $bCLIMontagePaiePeriodeDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $clIMontagePaiePeriodeDebut;
+
     /**
      * @var bool|null
      */
     protected $bCLIPaieDecalee;
+
     /**
      * @var bool|null
      */
     protected $clIPaieDecalee;
+
     /**
      * @var bool|null
      */
     protected $bCLIPersonneAContacterMel;
+
     /**
      * @var string|null
      */
     protected $clIPersonneAContacterMel;
+
     /**
      * @var bool|null
      */
     protected $bCLIPersonneAContacterNom;
+
     /**
      * @var string|null
      */
     protected $clIPersonneAContacterNom;
+
     /**
      * @var bool|null
      */
     protected $bCLIPersonneAContacterPrenom;
+
     /**
      * @var string|null
      */
     protected $clIPersonneAContacterPrenom;
+
     /**
      * @var bool|null
      */
     protected $bCLIPersonneAContacterTel;
+
     /**
      * @var string|null
      */
     protected $clIPersonneAContacterTel;
+
     /**
      * @var bool|null
      */
     protected $bCLIReductionFillon19;
+
     /**
      * @var bool|null
      */
     protected $clIReductionFillon19;
+
     /**
      * @var bool|null
      */
     protected $bCLIReductionFillon19Debut;
+
     /**
      * @var \DateTime|null
      */
     protected $clIReductionFillon19Debut;
+
     /**
      * @var bool|null
      */
     protected $bCLISepaModeComptabilisation;
+
     /**
      * @var int|null
      */
     protected $clISepaModeComptabilisation;
+
     /**
      * @var bool|null
      */
     protected $bCLISortieAppliJourVersementSalaires;
+
     /**
      * @var bool|null
      */
     protected $clISortieAppliJourVersementSalaires;
+
     /**
      * @var bool|null
      */
     protected $bCLISortieAppliModeReglementNormal;
+
     /**
      * @var bool|null
      */
     protected $clISortieAppliModeReglementNormal;
+
     /**
      * @var bool|null
      */
     protected $bCLISousMethodeSuiviAbsences;
+
     /**
      * @var int|null
      */
     protected $clISousMethodeSuiviAbsences;
+
     /**
      * @var bool|null
      */
     protected $bCLISousMethodeSuiviAbsencesFJ;
+
     /**
      * @var int|null
      */
     protected $clISousMethodeSuiviAbsencesFJ;
+
     /**
      * @var bool|null
      */
     protected $bCLISubrogation;
+
     /**
      * @var bool|null
      */
     protected $clISubrogation;
+
     /**
      * @var bool|null
      */
     protected $bCLISubrogationVersEtaPrincipal;
+
     /**
      * @var bool|null
      */
     protected $clISubrogationVersEtaPrincipal;
+
     /**
      * @var bool|null
      */
     protected $bCLITassageAbsencesJours;
+
     /**
      * @var int|null
      */
     protected $clITassageAbsencesJours;
+
     /**
      * @var bool|null
      */
     protected $bCLITaxeApprentissagePayeeCCP;
+
     /**
      * @var bool|null
      */
     protected $clITaxeApprentissagePayeeCCP;
+
     /**
      * @var bool|null
      */
     protected $bCLITaxeCotPPrev;
+
     /**
      * @var bool|null
      */

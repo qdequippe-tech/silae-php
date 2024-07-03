@@ -13,18 +13,22 @@ class ModificationQuestionnaireCCNEtablissementRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissement;
+
     /**
      * @var string|null
      */
     protected $codeCCN;
+
     /**
-     * @var ModificationChampValeursTypees[]|null
+     * @var list<ModificationChampValeursTypees>|null
      */
     protected $listeChamps;
+
     /**
      * @var string|null
      */
@@ -57,7 +61,7 @@ class ModificationQuestionnaireCCNEtablissementRequest
     }
 
     /**
-     * @return ModificationChampValeursTypees[]|null
+     * @return list<ModificationChampValeursTypees>|null
      */
     public function getListeChamps(): ?array
     {
@@ -65,7 +69,7 @@ class ModificationQuestionnaireCCNEtablissementRequest
     }
 
     /**
-     * @param ModificationChampValeursTypees[]|null $listeChamps
+     * @param list<ModificationChampValeursTypees>|null $listeChamps
      */
     public function setListeChamps(?array $listeChamps): self
     {

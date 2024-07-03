@@ -13,12 +13,14 @@ class InformationsDossier
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $conventionsCollectives;
 
@@ -36,7 +38,7 @@ class InformationsDossier
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getConventionsCollectives(): ?array
     {
@@ -44,7 +46,7 @@ class InformationsDossier
     }
 
     /**
-     * @param string[]|null $conventionsCollectives
+     * @param list<string>|null $conventionsCollectives
      */
     public function setConventionsCollectives(?array $conventionsCollectives): self
     {

@@ -13,138 +13,172 @@ class ModificationHoraireSalarie
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $bNomGrilleHoraire;
+
     /**
      * @var string|null
      */
     protected $nomGrilleHoraire;
+
     /**
      * @var bool|null
      */
     protected $bHeuresTravaillees;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $heuresTravaillees;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $heuresDeNuit;
+
     /**
      * @var bool|null
      */
     protected $bHeuresPayees;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $heuresPayeesNormales;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $heuresPayeesMajorees;
+
     /**
      * @var bool|null
      */
     protected $bHeuresLibres1;
+
     /**
      * @var string|null
      */
     protected $codeHeuresLibres1;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $heuresLibres1;
+
     /**
      * @var bool|null
      */
     protected $bHeuresLibres2;
+
     /**
      * @var string|null
      */
     protected $codeHeuresLibres2;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $heuresLibres2;
+
     /**
      * @var bool|null
      */
     protected $bHeuresLibres3;
+
     /**
      * @var string|null
      */
     protected $codeHeuresLibres3;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $heuresLibres3;
+
     /**
      * @var bool|null
      */
     protected $bTotalMensuelHeuresNormales;
+
     /**
      * @var float|null
      */
     protected $totalMensuelHeuresNormales;
+
     /**
      * @var bool|null
      */
     protected $bTotalMensuelHeuresMajorees;
+
     /**
      * @var float|null
      */
     protected $totalMensuelHeuresMajorees;
+
     /**
      * @var float|null
      */
     protected $pourcentageHeuresMajorees;
+
     /**
      * @var bool|null
      */
     protected $bTotalMensuelHeuresLibres1;
+
     /**
      * @var float|null
      */
     protected $totalMensuelHeuresLibres1;
+
     /**
      * @var bool|null
      */
     protected $bTotalMensuelHeuresLibres2;
+
     /**
      * @var float|null
      */
     protected $totalMensuelHeuresLibres2;
+
     /**
      * @var bool|null
      */
     protected $bTotalMensuelHeuresLibres3;
+
     /**
      * @var float|null
      */
     protected $totalMensuelHeuresLibres3;
+
     /**
      * @var bool|null
      */
     protected $bTauxHeuresLibres1;
+
     /**
      * @var float|null
      */
     protected $tauxHeuresLibres1;
+
     /**
      * @var bool|null
      */
     protected $bTauxHeuresLibres2;
+
     /**
      * @var float|null
      */
     protected $tauxHeuresLibres2;
+
     /**
      * @var bool|null
      */
     protected $bTauxHeuresLibres3;
+
     /**
      * @var float|null
      */
@@ -190,7 +224,7 @@ class ModificationHoraireSalarie
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getHeuresTravaillees(): ?array
     {
@@ -198,7 +232,7 @@ class ModificationHoraireSalarie
     }
 
     /**
-     * @param float[]|null $heuresTravaillees
+     * @param list<float>|null $heuresTravaillees
      */
     public function setHeuresTravaillees(?array $heuresTravaillees): self
     {
@@ -209,7 +243,7 @@ class ModificationHoraireSalarie
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getHeuresDeNuit(): ?array
     {
@@ -217,7 +251,7 @@ class ModificationHoraireSalarie
     }
 
     /**
-     * @param float[]|null $heuresDeNuit
+     * @param list<float>|null $heuresDeNuit
      */
     public function setHeuresDeNuit(?array $heuresDeNuit): self
     {
@@ -241,7 +275,7 @@ class ModificationHoraireSalarie
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getHeuresPayeesNormales(): ?array
     {
@@ -249,7 +283,7 @@ class ModificationHoraireSalarie
     }
 
     /**
-     * @param float[]|null $heuresPayeesNormales
+     * @param list<float>|null $heuresPayeesNormales
      */
     public function setHeuresPayeesNormales(?array $heuresPayeesNormales): self
     {
@@ -260,7 +294,7 @@ class ModificationHoraireSalarie
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getHeuresPayeesMajorees(): ?array
     {
@@ -268,7 +302,7 @@ class ModificationHoraireSalarie
     }
 
     /**
-     * @param float[]|null $heuresPayeesMajorees
+     * @param list<float>|null $heuresPayeesMajorees
      */
     public function setHeuresPayeesMajorees(?array $heuresPayeesMajorees): self
     {
@@ -305,7 +339,7 @@ class ModificationHoraireSalarie
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getHeuresLibres1(): ?array
     {
@@ -313,7 +347,7 @@ class ModificationHoraireSalarie
     }
 
     /**
-     * @param float[]|null $heuresLibres1
+     * @param list<float>|null $heuresLibres1
      */
     public function setHeuresLibres1(?array $heuresLibres1): self
     {
@@ -350,7 +384,7 @@ class ModificationHoraireSalarie
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getHeuresLibres2(): ?array
     {
@@ -358,7 +392,7 @@ class ModificationHoraireSalarie
     }
 
     /**
-     * @param float[]|null $heuresLibres2
+     * @param list<float>|null $heuresLibres2
      */
     public function setHeuresLibres2(?array $heuresLibres2): self
     {
@@ -395,7 +429,7 @@ class ModificationHoraireSalarie
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getHeuresLibres3(): ?array
     {
@@ -403,7 +437,7 @@ class ModificationHoraireSalarie
     }
 
     /**
-     * @param float[]|null $heuresLibres3
+     * @param list<float>|null $heuresLibres3
      */
     public function setHeuresLibres3(?array $heuresLibres3): self
     {

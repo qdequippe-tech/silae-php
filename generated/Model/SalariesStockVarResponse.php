@@ -13,13 +13,14 @@ class SalariesStockVarResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var SalarieStockVarResult[]|null
+     * @var list<SalarieStockVarResult>|null
      */
     protected $salariesStockVar;
 
     /**
-     * @return SalarieStockVarResult[]|null
+     * @return list<SalarieStockVarResult>|null
      */
     public function getSalariesStockVar(): ?array
     {
@@ -27,7 +28,7 @@ class SalariesStockVarResponse
     }
 
     /**
-     * @param SalarieStockVarResult[]|null $salariesStockVar
+     * @param list<SalarieStockVarResult>|null $salariesStockVar
      */
     public function setSalariesStockVar(?array $salariesStockVar): self
     {

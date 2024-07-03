@@ -13,10 +13,12 @@ class CreationQuestionnaireContratComplementaireRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var QuestionnaireContratComplementaire|null
      */
     protected $questionnaireContratComplementaire;
+
     /**
      * @var string|null
      */

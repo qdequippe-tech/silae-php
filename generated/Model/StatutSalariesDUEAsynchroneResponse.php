@@ -13,22 +13,27 @@ class StatutSalariesDUEAsynchroneResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $nbDUEEnvoyees;
+
     /**
      * @var string|null
      */
     protected $statut;
+
     /**
      * @var string|null
      */
     protected $messageErreur;
+
     /**
      * @var float|null
      */
     protected $progression;
+
     /**
      * @var string|null
      */

@@ -13,13 +13,14 @@ class AnalyseProductionPaieResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var Statistiques[]|null
+     * @var list<Statistiques>|null
      */
     protected $statistiques;
 
     /**
-     * @return Statistiques[]|null
+     * @return list<Statistiques>|null
      */
     public function getStatistiques(): ?array
     {
@@ -27,7 +28,7 @@ class AnalyseProductionPaieResponse
     }
 
     /**
-     * @param Statistiques[]|null $statistiques
+     * @param list<Statistiques>|null $statistiques
      */
     public function setStatistiques(?array $statistiques): self
     {

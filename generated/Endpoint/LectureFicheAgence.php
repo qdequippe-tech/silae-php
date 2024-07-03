@@ -7,6 +7,7 @@ use QdequippeTech\Silae\Api\Exception\LectureFicheAgenceBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureFicheAgenceInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureFicheAgenceUnauthorizedException;
 use QdequippeTech\Silae\Api\Model\AgenceDetail;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\LectureFicheAgenceRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -47,7 +48,7 @@ class LectureFicheAgence extends BaseEndpoint implements Endpoint
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class LectureFicheAgence extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\AgenceDetail', 'json');
+            return $serializer->deserialize($body, AgenceDetail::class, 'json');
         }
+
         if (400 === $status) {
-            throw new LectureFicheAgenceBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureFicheAgenceBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new LectureFicheAgenceUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureFicheAgenceUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new LectureFicheAgenceInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureFicheAgenceInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

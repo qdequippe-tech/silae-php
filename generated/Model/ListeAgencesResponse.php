@@ -13,13 +13,14 @@ class ListeAgencesResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var Agence[]|null
+     * @var list<Agence>|null
      */
     protected $agences;
 
     /**
-     * @return Agence[]|null
+     * @return list<Agence>|null
      */
     public function getAgences(): ?array
     {
@@ -27,7 +28,7 @@ class ListeAgencesResponse
     }
 
     /**
-     * @param Agence[]|null $agences
+     * @param list<Agence>|null $agences
      */
     public function setAgences(?array $agences): self
     {

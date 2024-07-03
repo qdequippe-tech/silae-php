@@ -13,66 +13,82 @@ class EmetteurDSN
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
+
     /**
      * @var int|null
      */
     protected $civilite;
+
     /**
      * @var string|null
      */
     protected $nom;
+
     /**
      * @var string|null
      */
     protected $prenom;
+
     /**
      * @var string|null
      */
     protected $siret;
+
     /**
      * @var int|null
      */
     protected $affectation;
+
     /**
      * @var string|null
      */
     protected $mail;
+
     /**
      * @var string|null
      */
     protected $telephone;
+
     /**
      * @var int|null
      */
     protected $choixAdresse;
+
     /**
      * @var string|null
      */
     protected $codeAgence;
+
     /**
      * @var string|null
      */
     protected $raisonSociale;
+
     /**
      * @var string|null
      */
     protected $numVoie;
+
     /**
      * @var string|null
      */
     protected $btqc;
+
     /**
      * @var string|null
      */
     protected $nomVoie;
+
     /**
      * @var string|null
      */
     protected $codePostal;
+
     /**
      * @var string|null
      */

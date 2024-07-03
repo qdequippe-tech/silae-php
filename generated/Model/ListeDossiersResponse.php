@@ -13,13 +13,14 @@ class ListeDossiersResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var ProprietesDossier[]|null
+     * @var list<ProprietesDossier>|null
      */
     protected $listeDossiers;
 
     /**
-     * @return ProprietesDossier[]|null
+     * @return list<ProprietesDossier>|null
      */
     public function getListeDossiers(): ?array
     {
@@ -27,7 +28,7 @@ class ListeDossiersResponse
     }
 
     /**
-     * @param ProprietesDossier[]|null $listeDossiers
+     * @param list<ProprietesDossier>|null $listeDossiers
      */
     public function setListeDossiers(?array $listeDossiers): self
     {

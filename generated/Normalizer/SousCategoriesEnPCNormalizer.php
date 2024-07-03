@@ -6,6 +6,7 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SousCategoriesEnPC;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -13,75 +14,154 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class SousCategoriesEnPCNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
-{
-    use CheckArray;
-    use DenormalizerAwareTrait;
-    use NormalizerAwareTrait;
-    use ValidatorTrait;
-
-    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
+if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
+    class SousCategoriesEnPCNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
-        return 'QdequippeTech\\Silae\\Api\\Model\\SousCategoriesEnPC' === $type;
-    }
+        use CheckArray;
+        use DenormalizerAwareTrait;
+        use NormalizerAwareTrait;
+        use ValidatorTrait;
 
-    public function supportsNormalization($data, $format = null, array $context = []): bool
-    {
-        return \is_object($data) && $data instanceof SousCategoriesEnPC;
-    }
+        public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
+        {
+            return SousCategoriesEnPC::class === $type;
+        }
 
-    /**
-     * @param mixed|null $format
-     */
-    public function denormalize($data, $class, $format = null, array $context = [])
-    {
-        if (isset($data['$ref'])) {
-            return new Reference($data['$ref'], $context['document-origin']);
+        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
+        {
+            return $data instanceof SousCategoriesEnPC;
         }
-        if (isset($data['$recursiveRef'])) {
-            return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new SousCategoriesEnPC();
-        if (\array_key_exists('pc', $data) && \is_int($data['pc'])) {
-            $data['pc'] = (float) $data['pc'];
-        }
-        if (null === $data || false === \is_array($data)) {
+
+        public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+        {
+            if (isset($data['$ref'])) {
+                return new Reference($data['$ref'], $context['document-origin']);
+            }
+
+            if (isset($data['$recursiveRef'])) {
+                return new Reference($data['$recursiveRef'], $context['document-origin']);
+            }
+
+            $object = new SousCategoriesEnPC();
+            if (\array_key_exists('pc', $data) && \is_int($data['pc'])) {
+                $data['pc'] = (float) $data['pc'];
+            }
+
+            if (null === $data || false === \is_array($data)) {
+                return $object;
+            }
+
+            if (\array_key_exists('sousCategorie', $data) && null !== $data['sousCategorie']) {
+                $object->setSousCategorie($data['sousCategorie']);
+            } elseif (\array_key_exists('sousCategorie', $data) && null === $data['sousCategorie']) {
+                $object->setSousCategorie(null);
+            }
+
+            if (\array_key_exists('pc', $data) && null !== $data['pc']) {
+                $object->setPc($data['pc']);
+            } elseif (\array_key_exists('pc', $data) && null === $data['pc']) {
+                $object->setPc(null);
+            }
+
             return $object;
         }
-        if (\array_key_exists('sousCategorie', $data) && null !== $data['sousCategorie']) {
-            $object->setSousCategorie($data['sousCategorie']);
-        } elseif (\array_key_exists('sousCategorie', $data) && null === $data['sousCategorie']) {
-            $object->setSousCategorie(null);
-        }
-        if (\array_key_exists('pc', $data) && null !== $data['pc']) {
-            $object->setPc($data['pc']);
-        } elseif (\array_key_exists('pc', $data) && null === $data['pc']) {
-            $object->setPc(null);
+
+        public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+        {
+            $data = [];
+            if ($object->isInitialized('sousCategorie') && null !== $object->getSousCategorie()) {
+                $data['sousCategorie'] = $object->getSousCategorie();
+            }
+
+            if ($object->isInitialized('pc') && null !== $object->getPc()) {
+                $data['pc'] = $object->getPc();
+            }
+
+            return $data;
         }
 
-        return $object;
+        public function getSupportedTypes(?string $format = null): array
+        {
+            return [SousCategoriesEnPC::class => false];
+        }
     }
-
-    /**
-     * @param mixed|null $format
-     *
-     * @return array|string|int|float|bool|\ArrayObject|null
-     */
-    public function normalize($object, $format = null, array $context = [])
+} else {
+    class SousCategoriesEnPCNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
-        $data = [];
-        if ($object->isInitialized('sousCategorie') && null !== $object->getSousCategorie()) {
-            $data['sousCategorie'] = $object->getSousCategorie();
-        }
-        if ($object->isInitialized('pc') && null !== $object->getPc()) {
-            $data['pc'] = $object->getPc();
+        use CheckArray;
+        use DenormalizerAwareTrait;
+        use NormalizerAwareTrait;
+        use ValidatorTrait;
+
+        public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
+        {
+            return SousCategoriesEnPC::class === $type;
         }
 
-        return $data;
-    }
+        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
+        {
+            return $data instanceof SousCategoriesEnPC;
+        }
 
-    public function getSupportedTypes(?string $format = null): array
-    {
-        return ['QdequippeTech\\Silae\\Api\\Model\\SousCategoriesEnPC' => false];
+        /**
+         * @param mixed|null $format
+         */
+        public function denormalize($data, $type, $format = null, array $context = [])
+        {
+            if (isset($data['$ref'])) {
+                return new Reference($data['$ref'], $context['document-origin']);
+            }
+
+            if (isset($data['$recursiveRef'])) {
+                return new Reference($data['$recursiveRef'], $context['document-origin']);
+            }
+
+            $object = new SousCategoriesEnPC();
+            if (\array_key_exists('pc', $data) && \is_int($data['pc'])) {
+                $data['pc'] = (float) $data['pc'];
+            }
+
+            if (null === $data || false === \is_array($data)) {
+                return $object;
+            }
+
+            if (\array_key_exists('sousCategorie', $data) && null !== $data['sousCategorie']) {
+                $object->setSousCategorie($data['sousCategorie']);
+            } elseif (\array_key_exists('sousCategorie', $data) && null === $data['sousCategorie']) {
+                $object->setSousCategorie(null);
+            }
+
+            if (\array_key_exists('pc', $data) && null !== $data['pc']) {
+                $object->setPc($data['pc']);
+            } elseif (\array_key_exists('pc', $data) && null === $data['pc']) {
+                $object->setPc(null);
+            }
+
+            return $object;
+        }
+
+        /**
+         * @param mixed|null $format
+         *
+         * @return array|string|int|float|bool|\ArrayObject|null
+         */
+        public function normalize($object, $format = null, array $context = [])
+        {
+            $data = [];
+            if ($object->isInitialized('sousCategorie') && null !== $object->getSousCategorie()) {
+                $data['sousCategorie'] = $object->getSousCategorie();
+            }
+
+            if ($object->isInitialized('pc') && null !== $object->getPc()) {
+                $data['pc'] = $object->getPc();
+            }
+
+            return $data;
+        }
+
+        public function getSupportedTypes(?string $format = null): array
+        {
+            return [SousCategoriesEnPC::class => false];
+        }
     }
 }

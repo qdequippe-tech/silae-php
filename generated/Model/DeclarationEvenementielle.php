@@ -13,42 +13,52 @@ class DeclarationEvenementielle
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $typeDeclaration;
+
     /**
      * @var int|null
      */
     protected $etatDeclaration;
+
     /**
      * @var int|null
      */
     protected $etatEnvoi;
+
     /**
      * @var string|null
      */
     protected $libelleEtat;
+
     /**
      * @var string|null
      */
     protected $matricule;
+
     /**
      * @var string|null
      */
     protected $nomSalarie;
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $dateFin;
+
     /**
      * @var string|null
      */
     protected $codeAbsence;
+
     /**
      * @var string|null
      */

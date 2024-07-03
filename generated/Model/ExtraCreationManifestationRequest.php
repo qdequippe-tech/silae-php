@@ -13,14 +13,17 @@ class ExtraCreationManifestationRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $categorie;
+
     /**
      * @var ExtraManifestation|null
      */
     protected $structManifestation;
+
     /**
      * @var string|null
      */

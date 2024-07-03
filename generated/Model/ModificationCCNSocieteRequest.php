@@ -13,14 +13,17 @@ class ModificationCCNSocieteRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $pasDeCCSiege;
+
     /**
-     * @var CCNSociete[]|null
+     * @var list<CCNSociete>|null
      */
     protected $ccnSociete;
+
     /**
      * @var string|null
      */
@@ -40,7 +43,7 @@ class ModificationCCNSocieteRequest
     }
 
     /**
-     * @return CCNSociete[]|null
+     * @return list<CCNSociete>|null
      */
     public function getCcnSociete(): ?array
     {
@@ -48,7 +51,7 @@ class ModificationCCNSocieteRequest
     }
 
     /**
-     * @param CCNSociete[]|null $ccnSociete
+     * @param list<CCNSociete>|null $ccnSociete
      */
     public function setCcnSociete(?array $ccnSociete): self
     {

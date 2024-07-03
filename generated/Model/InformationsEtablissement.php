@@ -13,14 +13,17 @@ class InformationsEtablissement
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomInterne;
+
     /**
      * @var string|null
      */
     protected $siret;
+
     /**
      * @var bool|null
      */

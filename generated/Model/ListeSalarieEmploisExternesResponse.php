@@ -13,13 +13,14 @@ class ListeSalarieEmploisExternesResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var SalarieEmploiExterneInformations[]|null
+     * @var list<SalarieEmploiExterneInformations>|null
      */
     protected $listeSalarieEmploisExternes;
 
     /**
-     * @return SalarieEmploiExterneInformations[]|null
+     * @return list<SalarieEmploiExterneInformations>|null
      */
     public function getListeSalarieEmploisExternes(): ?array
     {
@@ -27,7 +28,7 @@ class ListeSalarieEmploisExternesResponse
     }
 
     /**
-     * @param SalarieEmploiExterneInformations[]|null $listeSalarieEmploisExternes
+     * @param list<SalarieEmploiExterneInformations>|null $listeSalarieEmploisExternes
      */
     public function setListeSalarieEmploisExternes(?array $listeSalarieEmploisExternes): self
     {

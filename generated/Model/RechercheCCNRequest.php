@@ -13,6 +13,7 @@ class RechercheCCNRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var CritereRechercheCCN|null
      */

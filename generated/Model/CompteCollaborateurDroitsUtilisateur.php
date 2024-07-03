@@ -13,250 +13,312 @@ class CompteCollaborateurDroitsUtilisateur
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $paieRelationClientGestionPortailCP;
+
     /**
      * @var string|null
      */
     protected $paieRelationClientContact;
+
     /**
      * @var string|null
      */
     protected $paieRelationClientTachesARealiser;
+
     /**
      * @var string|null
      */
     protected $paieParametrageMtPartMtPartApplicablesAuDossier;
+
     /**
      * @var string|null
      */
     protected $paieCotisationsTauxApplicablesAuDossier;
+
     /**
      * @var string|null
      */
     protected $paieRelationClientCycleDePaie;
+
     /**
      * @var string|null
      */
     protected $paieRelationClientAutomatisationDesDeclarations;
+
     /**
      * @var string|null
      */
     protected $paieRelationClientEditionsGroupees;
+
     /**
      * @var string|null
      */
     protected $paieRelationClientFicheSocieteEtatDossier;
+
     /**
      * @var string|null
      */
     protected $paieParametrageLiaisonComptable;
+
     /**
      * @var string|null
      */
     protected $paieRelationClientArchivageDossier;
+
     /**
      * @var string|null
      */
     protected $paieParametrageCotisationsComplementLibelles;
+
     /**
      * @var string|null
      */
     protected $paieParametrageCotisationsTaux;
+
     /**
      * @var string|null
      */
     protected $paieParametrageCotisationsTauxAT;
+
     /**
      * @var string|null
      */
     protected $paieParametragePrimesProfils;
+
     /**
      * @var string|null
      */
     protected $paiePrimesCaracteristiques;
+
     /**
      * @var string|null
      */
     protected $paieParametrageHeuresHeures;
+
     /**
      * @var string|null
      */
     protected $paieParametrageHeuresComplementLibelles;
+
     /**
      * @var string|null
      */
     protected $paieParametrageMtPartMtPart;
+
     /**
      * @var string|null
      */
     protected $paieParametrageVariablesASaisir;
+
     /**
      * @var string|null
      */
     protected $paieParametrageContratsComplementaires;
+
     /**
      * @var string|null
      */
     protected $paieParametrageMethodes;
+
     /**
      * @var string|null
      */
     protected $paieGestionImputationsAnalytiques;
+
     /**
      * @var string|null
      */
     protected $paieGestionAnalytiqueEnPourcentage;
+
     /**
      * @var string|null
      */
     protected $analyseActiviteSpecificites;
+
     /**
      * @var string|null
      */
     protected $analyseActiviteProductionCollaborateur;
+
     /**
      * @var string|null
      */
     protected $analyseActiviteProductionUtilisateur;
+
     /**
      * @var string|null
      */
     protected $analyseActiviteProduction;
+
     /**
      * @var string|null
      */
     protected $analyseActiviteBulletins;
+
     /**
      * @var string|null
      */
     protected $analyseActiviteDossiers;
+
     /**
      * @var string|null
      */
     protected $analyseActiviteRelationClient;
+
     /**
      * @var string|null
      */
     protected $analyseActiviteDADSU;
+
     /**
      * @var string|null
      */
     protected $analyseActiviteDSN;
+
     /**
      * @var string|null
      */
     protected $analyseActiviteInfosClients;
+
     /**
      * @var string|null
      */
     protected $analyseActiviteListeOrganismesDSN;
+
     /**
      * @var string|null
      */
     protected $analyseActiviteRecherches;
+
     /**
      * @var string|null
      */
     protected $generalAccesFormulaireAssistance;
+
     /**
      * @var string|null
      */
     protected $gestionInterneParametrages;
+
     /**
      * @var string|null
      */
     protected $gestionInterneParametragesClients;
+
     /**
      * @var string|null
      */
     protected $gestionInterneParametragesClientsMenuSupprimer;
+
     /**
      * @var string|null
      */
     protected $gestionInterneParametragesCollaborateurs;
+
     /**
      * @var string|null
      */
     protected $gestionInterneParametragesClientsConfigurationAPIFichiersVirement;
+
     /**
      * @var string|null
      */
     protected $gestionInterneParametragesCollaborateursGestionRoles;
+
     /**
      * @var string|null
      */
     protected $gestionInterneParametragesAgences;
+
     /**
      * @var string|null
      */
     protected $gestionInterneParametragesParamClesAcces;
+
     /**
      * @var string|null
      */
     protected $gestionInterneParametragesAffectationCollaborateurs;
+
     /**
      * @var string|null
      */
     protected $gestionInterneAnalyseProduction;
+
     /**
      * @var string|null
      */
     protected $gestionInterneAnalyseProductionSynthetique;
+
     /**
      * @var string|null
      */
     protected $gestionInterneAnalyseProductionDetaille;
+
     /**
      * @var string|null
      */
     protected $gestionInterneAnalyseProductionN4DS;
+
     /**
      * @var string|null
      */
     protected $gestionInterneInfosClients;
+
     /**
      * @var string|null
      */
     protected $gestionInterneInfosClientsInfosClients;
+
     /**
      * @var string|null
      */
     protected $gestionInterneInfosClientsInfosBancaires;
+
     /**
      * @var string|null
      */
     protected $parametragePaieConfigurationAPI;
+
     /**
      * @var string|null
      */
     protected $parametragePaieGenerationFichiersVirements;
+
     /**
      * @var string|null
      */
     protected $administrationConnexionAuthentificationExterne;
+
     /**
      * @var string|null
      */
     protected $administrationConnexionPersonnalisationEcranConnexion;
+
     /**
      * @var string|null
      */
     protected $administrationPilotageActivite;
+
     /**
      * @var string|null
      */
     protected $administrationPilotageActiviteHistoriqueConnexions;
+
     /**
      * @var string|null
      */
     protected $administrationPilotageActiviteHistoriqueModifications;
+
     /**
      * @var string|null
      */
     protected $administrationConfigurationExport;
+
     /**
      * @var string|null
      */

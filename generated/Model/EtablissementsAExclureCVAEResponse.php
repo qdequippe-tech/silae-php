@@ -13,13 +13,14 @@ class EtablissementsAExclureCVAEResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $etablissementsTraites;
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getEtablissementsTraites(): ?array
     {
@@ -27,7 +28,7 @@ class EtablissementsAExclureCVAEResponse
     }
 
     /**
-     * @param string[]|null $etablissementsTraites
+     * @param list<string>|null $etablissementsTraites
      */
     public function setEtablissementsTraites(?array $etablissementsTraites): self
     {

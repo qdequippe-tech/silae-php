@@ -13,10 +13,12 @@ class SalarieBulletinEnteteRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var RequeteSalarieBulletinEntete|null
      */
     protected $requeteSalarieBulletinEntete;
+
     /**
      * @var string|null
      */

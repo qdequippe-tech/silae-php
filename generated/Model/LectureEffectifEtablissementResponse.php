@@ -13,13 +13,14 @@ class LectureEffectifEtablissementResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var EffectifEtablissement[]|null
+     * @var list<EffectifEtablissement>|null
      */
     protected $effectifEtablissement;
 
     /**
-     * @return EffectifEtablissement[]|null
+     * @return list<EffectifEtablissement>|null
      */
     public function getEffectifEtablissement(): ?array
     {
@@ -27,7 +28,7 @@ class LectureEffectifEtablissementResponse
     }
 
     /**
-     * @param EffectifEtablissement[]|null $effectifEtablissement
+     * @param list<EffectifEtablissement>|null $effectifEtablissement
      */
     public function setEffectifEtablissement(?array $effectifEtablissement): self
     {

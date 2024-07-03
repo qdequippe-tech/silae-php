@@ -13,24 +13,29 @@ class CreationConfigurationAccesApi
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $clientId;
+
     /**
      * @var string|null
      */
     protected $identifiantUtilisateurSilae;
+
     /**
      * @var string|null
      */
     protected $idConfiguration;
+
     /**
      * @var string|null
      */
     protected $niveauAcces;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $dossiers;
 
@@ -87,7 +92,7 @@ class CreationConfigurationAccesApi
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getDossiers(): ?array
     {
@@ -95,7 +100,7 @@ class CreationConfigurationAccesApi
     }
 
     /**
-     * @param string[]|null $dossiers
+     * @param list<string>|null $dossiers
      */
     public function setDossiers(?array $dossiers): self
     {

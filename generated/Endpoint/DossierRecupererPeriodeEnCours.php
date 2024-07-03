@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\DossierRecupererPeriodeEnCoursBadRequestException;
 use QdequippeTech\Silae\Api\Exception\DossierRecupererPeriodeEnCoursInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\DossierRecupererPeriodeEnCoursUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierRecupererPeriodeEnCoursResponse;
 use QdequippeTech\Silae\Api\Model\DossierRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class DossierRecupererPeriodeEnCours extends BaseEndpoint implements Endpoint
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class DossierRecupererPeriodeEnCours extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\DossierRecupererPeriodeEnCoursResponse', 'json');
+            return $serializer->deserialize($body, DossierRecupererPeriodeEnCoursResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new DossierRecupererPeriodeEnCoursBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new DossierRecupererPeriodeEnCoursBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new DossierRecupererPeriodeEnCoursUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new DossierRecupererPeriodeEnCoursUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new DossierRecupererPeriodeEnCoursInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new DossierRecupererPeriodeEnCoursInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array
