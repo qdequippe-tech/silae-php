@@ -13,13 +13,14 @@ class ListeMatriculesDupliquesResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $matriculesDupliques;
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getMatriculesDupliques(): ?array
     {
@@ -27,7 +28,7 @@ class ListeMatriculesDupliquesResponse
     }
 
     /**
-     * @param string[]|null $matriculesDupliques
+     * @param list<string>|null $matriculesDupliques
      */
     public function setMatriculesDupliques(?array $matriculesDupliques): self
     {

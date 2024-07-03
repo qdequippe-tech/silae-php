@@ -13,13 +13,14 @@ class EtatDeclarationsResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var EtatDeclaration[]|null
+     * @var list<EtatDeclaration>|null
      */
     protected $etatDeclarations;
 
     /**
-     * @return EtatDeclaration[]|null
+     * @return list<EtatDeclaration>|null
      */
     public function getEtatDeclarations(): ?array
     {
@@ -27,7 +28,7 @@ class EtatDeclarationsResponse
     }
 
     /**
-     * @param EtatDeclaration[]|null $etatDeclarations
+     * @param list<EtatDeclaration>|null $etatDeclarations
      */
     public function setEtatDeclarations(?array $etatDeclarations): self
     {

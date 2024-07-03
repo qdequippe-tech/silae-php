@@ -13,18 +13,22 @@ class EffectifSociete
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $annee;
+
     /**
      * @var float|null
      */
     protected $effectif1GlobalURSSAF;
+
     /**
      * @var float|null
      */
     protected $effectif2MoyenURSAFF;
+
     /**
      * @var float|null
      */

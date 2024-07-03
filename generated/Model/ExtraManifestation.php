@@ -13,38 +13,47 @@ class ExtraManifestation
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissement;
+
     /**
      * @var string|null
      */
     protected $axeAnalytique;
+
     /**
      * @var string|null
      */
     protected $valeurAxeAnalytique;
+
     /**
      * @var string|null
      */
     protected $axeAnalytique2;
+
     /**
      * @var string|null
      */
     protected $valeurAxeAnalytique2;
+
     /**
      * @var string|null
      */
     protected $referenceExterneManifestation;
+
     /**
      * @var string|null
      */
     protected $intituleManifestation;
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebut;
+
     /**
      * @var \DateTime|null
      */

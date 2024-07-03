@@ -13,13 +13,14 @@ class LectureAxesAnalytiquesResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var AxeAnalytique[]|null
+     * @var list<AxeAnalytique>|null
      */
     protected $axesAnalytiques;
 
     /**
-     * @return AxeAnalytique[]|null
+     * @return list<AxeAnalytique>|null
      */
     public function getAxesAnalytiques(): ?array
     {
@@ -27,7 +28,7 @@ class LectureAxesAnalytiquesResponse
     }
 
     /**
-     * @param AxeAnalytique[]|null $axesAnalytiques
+     * @param list<AxeAnalytique>|null $axesAnalytiques
      */
     public function setAxesAnalytiques(?array $axesAnalytiques): self
     {

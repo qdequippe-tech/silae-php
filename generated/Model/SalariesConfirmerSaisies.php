@@ -13,14 +13,17 @@ class SalariesConfirmerSaisies
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $periodeConfirmation;
+
     /**
      * @var bool|null
      */
     protected $confirmerHeures;
+
     /**
      * @var bool|null
      */

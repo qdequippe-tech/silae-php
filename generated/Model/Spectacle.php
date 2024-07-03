@@ -13,50 +13,62 @@ class Spectacle
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissement;
+
     /**
      * @var string|null
      */
     protected $axeAnalytique;
+
     /**
      * @var string|null
      */
     protected $valeurAxeAnalytique;
+
     /**
      * @var string|null
      */
     protected $axeAnalytique2;
+
     /**
      * @var string|null
      */
     protected $valeurAxeAnalytique2;
+
     /**
      * @var string|null
      */
     protected $axeAnalytique3;
+
     /**
      * @var string|null
      */
     protected $valeurAxeAnalytique3;
+
     /**
      * @var string|null
      */
     protected $referenceExterneSpectacle;
+
     /**
      * @var string|null
      */
     protected $numeroObjet;
+
     /**
      * @var string|null
      */
     protected $intituleSpectacle;
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebut;
+
     /**
      * @var \DateTime|null
      */

@@ -13,13 +13,14 @@ class ListeVariablesASaisirResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var VariableASaisir[]|null
+     * @var list<VariableASaisir>|null
      */
     protected $listeVariablesASaisir;
 
     /**
-     * @return VariableASaisir[]|null
+     * @return list<VariableASaisir>|null
      */
     public function getListeVariablesASaisir(): ?array
     {
@@ -27,7 +28,7 @@ class ListeVariablesASaisirResponse
     }
 
     /**
-     * @param VariableASaisir[]|null $listeVariablesASaisir
+     * @param list<VariableASaisir>|null $listeVariablesASaisir
      */
     public function setListeVariablesASaisir(?array $listeVariablesASaisir): self
     {

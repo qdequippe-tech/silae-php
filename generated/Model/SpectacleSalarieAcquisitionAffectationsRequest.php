@@ -13,10 +13,12 @@ class SpectacleSalarieAcquisitionAffectationsRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var RequeteSpectacleSalarieAffectations|null
      */
     protected $requeteSpectacleSalarieAffectations;
+
     /**
      * @var string|null
      */

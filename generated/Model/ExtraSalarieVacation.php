@@ -13,64 +13,79 @@ class ExtraSalarieVacation
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $dateFin;
+
     /**
      * @var string|null
      */
     protected $referenceExterneManifestation;
+
     /**
      * @var int|null
      */
     protected $hEmbauche;
+
     /**
      * @var int|null
      */
     protected $mEmbauche;
+
     /**
      * @var bool|null
      */
     protected $docsFinContrat;
+
     /**
      * @var float|null
      */
     protected $tauxHoraire;
+
     /**
      * @var float|null
      */
     protected $nbH;
+
     /**
      * @var bool|null
      */
     protected $montantNet;
+
     /**
      * @var bool|null
      */
     protected $montantCoutGlobal;
+
     /**
      * @var float|null
      */
     protected $nbJours;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $hLibresCodes;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $hLibresValeurs;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $variablesCodes;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $variablesValeurs;
 
@@ -218,7 +233,7 @@ class ExtraSalarieVacation
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getHLibresCodes(): ?array
     {
@@ -226,7 +241,7 @@ class ExtraSalarieVacation
     }
 
     /**
-     * @param string[]|null $hLibresCodes
+     * @param list<string>|null $hLibresCodes
      */
     public function setHLibresCodes(?array $hLibresCodes): self
     {
@@ -237,7 +252,7 @@ class ExtraSalarieVacation
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getHLibresValeurs(): ?array
     {
@@ -245,7 +260,7 @@ class ExtraSalarieVacation
     }
 
     /**
-     * @param float[]|null $hLibresValeurs
+     * @param list<float>|null $hLibresValeurs
      */
     public function setHLibresValeurs(?array $hLibresValeurs): self
     {
@@ -256,7 +271,7 @@ class ExtraSalarieVacation
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getVariablesCodes(): ?array
     {
@@ -264,7 +279,7 @@ class ExtraSalarieVacation
     }
 
     /**
-     * @param string[]|null $variablesCodes
+     * @param list<string>|null $variablesCodes
      */
     public function setVariablesCodes(?array $variablesCodes): self
     {
@@ -275,7 +290,7 @@ class ExtraSalarieVacation
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getVariablesValeurs(): ?array
     {
@@ -283,7 +298,7 @@ class ExtraSalarieVacation
     }
 
     /**
-     * @param float[]|null $variablesValeurs
+     * @param list<float>|null $variablesValeurs
      */
     public function setVariablesValeurs(?array $variablesValeurs): self
     {

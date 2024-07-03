@@ -13,25 +13,29 @@ class CritereRechercheCCN
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $listeCodesNAF;
+
     /**
      * @var string|null
      */
     protected $codeIDCC;
+
     /**
      * @var string|null
      */
     protected $codeJO;
+
     /**
      * @var string|null
      */
     protected $texteLibre;
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getListeCodesNAF(): ?array
     {
@@ -39,7 +43,7 @@ class CritereRechercheCCN
     }
 
     /**
-     * @param string[]|null $listeCodesNAF
+     * @param list<string>|null $listeCodesNAF
      */
     public function setListeCodesNAF(?array $listeCodesNAF): self
     {

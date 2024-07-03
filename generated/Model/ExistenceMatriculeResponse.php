@@ -13,6 +13,7 @@ class ExistenceMatriculeResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */

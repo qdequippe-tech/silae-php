@@ -13,34 +13,42 @@ class FNAL
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $assujettissement;
+
     /**
      * @var \DateTime|null
      */
     protected $anneeN;
+
     /**
      * @var float|null
      */
     protected $pourcentageAnneeN;
+
     /**
      * @var float|null
      */
     protected $pourcentageAnneeNPlus1;
+
     /**
      * @var float|null
      */
     protected $pourcentageAnneeNPlus2;
+
     /**
      * @var float|null
      */
     protected $pourcentageAnneeNPlus3;
+
     /**
      * @var float|null
      */
     protected $pourcentageAnneeNPlus4;
+
     /**
      * @var float|null
      */

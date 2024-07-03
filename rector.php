@@ -6,26 +6,25 @@ use Rector\CodeQuality\Rector\Identical\FlipTypeControlToUseExclusiveTypeRector;
 use Rector\CodeQuality\Rector\Identical\SimplifyBoolIdenticalTrueRector;
 use Rector\Config\RectorConfig;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
-use Rector\Set\ValueObject\SetList;
 
-return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->paths([
-        __DIR__.'/generated',
+return RectorConfig::configure()
+    ->withPaths([
         __DIR__.'/src',
-    ]);
-
-    $rectorConfig->sets([
-        SetList::DEAD_CODE,
-        SetList::CODE_QUALITY,
-    ]);
-
-    $rectorConfig->importNames();
-    $rectorConfig->importShortClasses(false);
-    $rectorConfig->parallel();
-
-    $rectorConfig->skip([
+        __DIR__.'/generated',
+        __DIR__.'/tests',
+    ])
+    ->withPreparedSets(
+        deadCode: true,
+        codeQuality: true,
+        codingStyle: true,
+        typeDeclarations: true,
+        earlyReturn: true,
+    )
+    ->withPhpSets(php83: true)
+    ->withImportNames(importShortClasses: false, removeUnusedImports: true)
+    ->withSkip([
         ClosureToArrowFunctionRector::class,
         FlipTypeControlToUseExclusiveTypeRector::class,
         SimplifyBoolIdenticalTrueRector::class,
-    ]);
-};
+    ])
+;

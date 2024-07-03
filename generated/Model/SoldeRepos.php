@@ -13,16 +13,19 @@ class SoldeRepos
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
+
     /**
      * @var \DateTime|null
      */
     protected $periode;
+
     /**
-     * @var SoldeReposSalarie[]|null
+     * @var list<SoldeReposSalarie>|null
      */
     protected $soldeReposSalaries;
 
@@ -53,7 +56,7 @@ class SoldeRepos
     }
 
     /**
-     * @return SoldeReposSalarie[]|null
+     * @return list<SoldeReposSalarie>|null
      */
     public function getSoldeReposSalaries(): ?array
     {
@@ -61,7 +64,7 @@ class SoldeRepos
     }
 
     /**
-     * @param SoldeReposSalarie[]|null $soldeReposSalaries
+     * @param list<SoldeReposSalarie>|null $soldeReposSalaries
      */
     public function setSoldeReposSalaries(?array $soldeReposSalaries): self
     {

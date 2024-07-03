@@ -13,17 +13,19 @@ class AffectationDossierPaieRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $affectation;
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getAffectation(): ?array
     {
@@ -31,7 +33,7 @@ class AffectationDossierPaieRequest
     }
 
     /**
-     * @param string[]|null $affectation
+     * @param list<string>|null $affectation
      */
     public function setAffectation(?array $affectation): self
     {

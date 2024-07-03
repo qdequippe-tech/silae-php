@@ -13,42 +13,52 @@ class AffectationsDossier
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $codeAgence;
+
     /**
      * @var string|null
      */
     protected $rG1;
+
     /**
      * @var string|null
      */
     protected $rG2;
+
     /**
      * @var string|null
      */
     protected $rG3;
+
     /**
      * @var string|null
      */
     protected $rG4;
+
     /**
      * @var string|null
      */
     protected $rG5;
+
     /**
      * @var string|null
      */
     protected $rG6;
+
     /**
      * @var string|null
      */
     protected $rG7;
+
     /**
      * @var string|null
      */
     protected $rG8;
+
     /**
      * @var string|null
      */

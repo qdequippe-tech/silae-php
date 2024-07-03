@@ -8,6 +8,7 @@ use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireEtablissementCCNAv
 use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireEtablissementCCNAvecTexteUnauthorizedException;
 use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest;
 use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNResponse;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
@@ -47,7 +48,7 @@ class AcquisitionQuestionnaireEtablissementCCNAvecTexte extends BaseEndpoint imp
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class AcquisitionQuestionnaireEtablissementCCNAvecTexte extends BaseEndpoint imp
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\AcquisitionQuestionnaireCCNResponse', 'json');
+            return $serializer->deserialize($body, AcquisitionQuestionnaireCCNResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new AcquisitionQuestionnaireEtablissementCCNAvecTexteBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AcquisitionQuestionnaireEtablissementCCNAvecTexteBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new AcquisitionQuestionnaireEtablissementCCNAvecTexteUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AcquisitionQuestionnaireEtablissementCCNAvecTexteUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new AcquisitionQuestionnaireEtablissementCCNAvecTexteInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AcquisitionQuestionnaireEtablissementCCNAvecTexteInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

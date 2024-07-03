@@ -13,18 +13,22 @@ class ModificationQuestionnaireContratComplementaireRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
-     * @var ModificationChampByte[]|null
+     * @var list<ModificationChampByte>|null
      */
     protected $reponseQCComp;
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var string|null
      */
@@ -44,7 +48,7 @@ class ModificationQuestionnaireContratComplementaireRequest
     }
 
     /**
-     * @return ModificationChampByte[]|null
+     * @return list<ModificationChampByte>|null
      */
     public function getReponseQCComp(): ?array
     {
@@ -52,7 +56,7 @@ class ModificationQuestionnaireContratComplementaireRequest
     }
 
     /**
-     * @param ModificationChampByte[]|null $reponseQCComp
+     * @param list<ModificationChampByte>|null $reponseQCComp
      */
     public function setReponseQCComp(?array $reponseQCComp): self
     {

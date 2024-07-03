@@ -13,26 +13,32 @@ class CCNSociete
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $codeCCN;
+
     /**
      * @var string|null
      */
     protected $idcc;
+
     /**
      * @var string|null
      */
     protected $codeJO;
+
     /**
      * @var bool|null
      */
     protected $forceApplicationExtension;
+
     /**
      * @var string|null
      */
     protected $syndicat;
+
     /**
      * @var bool|null
      */

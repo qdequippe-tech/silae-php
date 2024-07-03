@@ -13,20 +13,24 @@ class RequeteSalariesStockVar
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeFin;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $codesStockVar;
 
@@ -70,7 +74,7 @@ class RequeteSalariesStockVar
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getCodesStockVar(): ?array
     {
@@ -78,7 +82,7 @@ class RequeteSalariesStockVar
     }
 
     /**
-     * @param string[]|null $codesStockVar
+     * @param list<string>|null $codesStockVar
      */
     public function setCodesStockVar(?array $codesStockVar): self
     {

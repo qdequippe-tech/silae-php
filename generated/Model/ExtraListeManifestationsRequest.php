@@ -13,14 +13,17 @@ class ExtraListeManifestationsRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $categorie;
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebutMin;
+
     /**
      * @var string|null
      */

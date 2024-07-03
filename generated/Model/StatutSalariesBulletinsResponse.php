@@ -13,29 +13,34 @@ class StatutSalariesBulletinsResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var SalarieBulletinsResult[]|null
+     * @var list<SalarieBulletinsResult>|null
      */
     protected $salariesBulletins;
+
     /**
      * @var string|null
      */
     protected $statut;
+
     /**
      * @var string|null
      */
     protected $messageErreur;
+
     /**
      * @var float|null
      */
     protected $progression;
+
     /**
      * @var string|null
      */
     protected $dureeExecution;
 
     /**
-     * @return SalarieBulletinsResult[]|null
+     * @return list<SalarieBulletinsResult>|null
      */
     public function getSalariesBulletins(): ?array
     {
@@ -43,7 +48,7 @@ class StatutSalariesBulletinsResponse
     }
 
     /**
-     * @param SalarieBulletinsResult[]|null $salariesBulletins
+     * @param list<SalarieBulletinsResult>|null $salariesBulletins
      */
     public function setSalariesBulletins(?array $salariesBulletins): self
     {

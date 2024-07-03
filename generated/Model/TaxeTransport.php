@@ -13,10 +13,12 @@ class TaxeTransport
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $moisDebut;
+
     /**
      * @var float|null
      */

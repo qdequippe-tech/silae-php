@@ -13,14 +13,17 @@ class SalarieBulletinLignesSelonFiltresRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var RequeteSalarieBulletinLignes|null
      */
     protected $requeteSalarieBulletinLignes;
+
     /**
      * @var RequeteSalarieBulletinLignesFiltres|null
      */
     protected $requeteSalarieBulletinLignesFiltres;
+
     /**
      * @var string|null
      */

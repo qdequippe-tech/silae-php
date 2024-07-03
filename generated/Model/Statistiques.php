@@ -13,20 +13,24 @@ class Statistiques
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
+
     /**
      * @var string|null
      */
     protected $codeAgence;
+
     /**
-     * @var StatistiquesProduction[]|null
+     * @var list<StatistiquesProduction>|null
      */
     protected $statistiquesProduction;
+
     /**
-     * @var StatistiquesDADS[]|null
+     * @var list<StatistiquesDADS>|null
      */
     protected $statistiquesDADS;
 
@@ -57,7 +61,7 @@ class Statistiques
     }
 
     /**
-     * @return StatistiquesProduction[]|null
+     * @return list<StatistiquesProduction>|null
      */
     public function getStatistiquesProduction(): ?array
     {
@@ -65,7 +69,7 @@ class Statistiques
     }
 
     /**
-     * @param StatistiquesProduction[]|null $statistiquesProduction
+     * @param list<StatistiquesProduction>|null $statistiquesProduction
      */
     public function setStatistiquesProduction(?array $statistiquesProduction): self
     {
@@ -76,7 +80,7 @@ class Statistiques
     }
 
     /**
-     * @return StatistiquesDADS[]|null
+     * @return list<StatistiquesDADS>|null
      */
     public function getStatistiquesDADS(): ?array
     {
@@ -84,7 +88,7 @@ class Statistiques
     }
 
     /**
-     * @param StatistiquesDADS[]|null $statistiquesDADS
+     * @param list<StatistiquesDADS>|null $statistiquesDADS
      */
     public function setStatistiquesDADS(?array $statistiquesDADS): self
     {

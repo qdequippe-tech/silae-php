@@ -13,28 +13,34 @@ class SalarieBulletinDetailsResult
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
      * @var \DateTime|null
      */
     protected $periode;
+
     /**
      * @var string|null
      */
     protected $intituleEmploi;
+
     /**
      * @var string|null
      */
     protected $codeContratTravail;
+
     /**
-     * @var SalarieBulletinResult[]|null
+     * @var list<SalarieBulletinResult>|null
      */
     protected $bulletins;
 
@@ -104,7 +110,7 @@ class SalarieBulletinDetailsResult
     }
 
     /**
-     * @return SalarieBulletinResult[]|null
+     * @return list<SalarieBulletinResult>|null
      */
     public function getBulletins(): ?array
     {
@@ -112,7 +118,7 @@ class SalarieBulletinDetailsResult
     }
 
     /**
-     * @param SalarieBulletinResult[]|null $bulletins
+     * @param list<SalarieBulletinResult>|null $bulletins
      */
     public function setBulletins(?array $bulletins): self
     {

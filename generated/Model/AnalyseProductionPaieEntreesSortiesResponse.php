@@ -13,13 +13,14 @@ class AnalyseProductionPaieEntreesSortiesResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var StatistiquesEntreesSorties[]|null
+     * @var list<StatistiquesEntreesSorties>|null
      */
     protected $statistiquesEntreesSorties;
 
     /**
-     * @return StatistiquesEntreesSorties[]|null
+     * @return list<StatistiquesEntreesSorties>|null
      */
     public function getStatistiquesEntreesSorties(): ?array
     {
@@ -27,7 +28,7 @@ class AnalyseProductionPaieEntreesSortiesResponse
     }
 
     /**
-     * @param StatistiquesEntreesSorties[]|null $statistiquesEntreesSorties
+     * @param list<StatistiquesEntreesSorties>|null $statistiquesEntreesSorties
      */
     public function setStatistiquesEntreesSorties(?array $statistiquesEntreesSorties): self
     {

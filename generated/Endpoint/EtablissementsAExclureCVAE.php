@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\EtablissementsAExclureCVAEBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EtablissementsAExclureCVAEInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EtablissementsAExclureCVAEUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\EtablissementsAExclureCVAERequest;
 use QdequippeTech\Silae\Api\Model\EtablissementsAExclureCVAEResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class EtablissementsAExclureCVAE extends BaseEndpoint implements Endpoint
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class EtablissementsAExclureCVAE extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\EtablissementsAExclureCVAEResponse', 'json');
+            return $serializer->deserialize($body, EtablissementsAExclureCVAEResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new EtablissementsAExclureCVAEBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new EtablissementsAExclureCVAEBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new EtablissementsAExclureCVAEUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new EtablissementsAExclureCVAEUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new EtablissementsAExclureCVAEInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new EtablissementsAExclureCVAEInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

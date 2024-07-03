@@ -13,54 +13,67 @@ class Handicap
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $cdapHRQTH;
+
     /**
      * @var bool|null
      */
     protected $cdapHAAH;
+
     /**
      * @var bool|null
      */
     protected $cdapHCarteInvalidite;
+
     /**
      * @var \DateTime|null
      */
     protected $cdapHDateDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $cdapHDateFin;
+
     /**
      * @var \DateTime|null
      */
     protected $cdapHDtDepotRenouvellement;
+
     /**
      * @var float|null
      */
     protected $cdapHTauxIncapacite;
+
     /**
      * @var int|null
      */
     protected $accidentNature;
+
     /**
      * @var \DateTime|null
      */
     protected $accidentDateDebut;
+
     /**
      * @var float|null
      */
     protected $accidentTauxIPP;
+
     /**
      * @var int|null
      */
     protected $accidentCategoriePension;
+
     /**
      * @var int|null
      */
     protected $autreCategorie;
+
     /**
      * @var \DateTime|null
      */

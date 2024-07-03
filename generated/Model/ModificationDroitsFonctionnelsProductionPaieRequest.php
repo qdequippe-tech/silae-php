@@ -13,10 +13,12 @@ class ModificationDroitsFonctionnelsProductionPaieRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $loginUtilisateur;
+
     /**
      * @var OngletProduction|null
      */

@@ -13,13 +13,14 @@ class LectureSaisieArretResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var SaisieArret[]|null
+     * @var list<SaisieArret>|null
      */
     protected $saisieArrets;
 
     /**
-     * @return SaisieArret[]|null
+     * @return list<SaisieArret>|null
      */
     public function getSaisieArrets(): ?array
     {
@@ -27,7 +28,7 @@ class LectureSaisieArretResponse
     }
 
     /**
-     * @param SaisieArret[]|null $saisieArrets
+     * @param list<SaisieArret>|null $saisieArrets
      */
     public function setSaisieArrets(?array $saisieArrets): self
     {

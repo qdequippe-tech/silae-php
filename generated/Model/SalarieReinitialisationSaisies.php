@@ -13,18 +13,22 @@ class SalarieReinitialisationSaisies
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $periodeReinitialisation;
+
     /**
      * @var bool|null
      */
     protected $reinitialiserHeures;
+
     /**
      * @var bool|null
      */
     protected $reinitialiserPrimes;
+
     /**
      * @var bool|null
      */

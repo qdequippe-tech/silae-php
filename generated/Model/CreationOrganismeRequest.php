@@ -13,10 +13,12 @@ class CreationOrganismeRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var Organisme|null
      */
     protected $organisme;
+
     /**
      * @var string|null
      */

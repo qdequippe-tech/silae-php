@@ -13,6 +13,7 @@ class ActivationDSNRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var ActivationDSN|null
      */

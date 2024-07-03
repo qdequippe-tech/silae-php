@@ -13,18 +13,22 @@ class SalarieAjouterPrimeSurEmploiRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
      * @var SalariePrime|null
      */
     protected $prime;
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var string|null
      */

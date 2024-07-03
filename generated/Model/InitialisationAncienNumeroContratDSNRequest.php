@@ -13,6 +13,7 @@ class InitialisationAncienNumeroContratDSNRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var InitialisationAncienNumeroContratDSN|null
      */

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ExtraSalarieReinitialiserVacationsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ExtraSalarieReinitialiserVacationsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ExtraSalarieReinitialiserVacationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ExtraSalarieReinitialiserVacationsRequest;
 use QdequippeTech\Silae\Api\Model\ExtraSalarieReinitialiserVacationsResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class ExtraSalarieReinitialiserVacations extends BaseEndpoint implements Endpoin
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class ExtraSalarieReinitialiserVacations extends BaseEndpoint implements Endpoin
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ExtraSalarieReinitialiserVacationsResponse', 'json');
+            return $serializer->deserialize($body, ExtraSalarieReinitialiserVacationsResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new ExtraSalarieReinitialiserVacationsBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ExtraSalarieReinitialiserVacationsBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new ExtraSalarieReinitialiserVacationsUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ExtraSalarieReinitialiserVacationsUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new ExtraSalarieReinitialiserVacationsInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ExtraSalarieReinitialiserVacationsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

@@ -13,13 +13,14 @@ class SalarieSyntheseCarriereResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var SalarieElementCarriere[]|null
+     * @var list<SalarieElementCarriere>|null
      */
     protected $syntheseCarriere;
 
     /**
-     * @return SalarieElementCarriere[]|null
+     * @return list<SalarieElementCarriere>|null
      */
     public function getSyntheseCarriere(): ?array
     {
@@ -27,7 +28,7 @@ class SalarieSyntheseCarriereResponse
     }
 
     /**
-     * @param SalarieElementCarriere[]|null $syntheseCarriere
+     * @param list<SalarieElementCarriere>|null $syntheseCarriere
      */
     public function setSyntheseCarriere(?array $syntheseCarriere): self
     {

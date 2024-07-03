@@ -13,13 +13,14 @@ class BureautiquePaieNombreDocumentsCreesResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var StatistiquesBureautique[]|null
+     * @var list<StatistiquesBureautique>|null
      */
     protected $statistiquesBureautique;
 
     /**
-     * @return StatistiquesBureautique[]|null
+     * @return list<StatistiquesBureautique>|null
      */
     public function getStatistiquesBureautique(): ?array
     {
@@ -27,7 +28,7 @@ class BureautiquePaieNombreDocumentsCreesResponse
     }
 
     /**
-     * @param StatistiquesBureautique[]|null $statistiquesBureautique
+     * @param list<StatistiquesBureautique>|null $statistiquesBureautique
      */
     public function setStatistiquesBureautique(?array $statistiquesBureautique): self
     {

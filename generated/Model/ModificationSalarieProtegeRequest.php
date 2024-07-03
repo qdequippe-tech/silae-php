@@ -13,21 +13,24 @@ class ModificationSalarieProtegeRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var SalarieProtege[]|null
+     * @var list<SalarieProtege>|null
      */
     protected $salarieProtege;
+
     /**
      * @var string|null
      */
     protected $matricule;
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
 
     /**
-     * @return SalarieProtege[]|null
+     * @return list<SalarieProtege>|null
      */
     public function getSalarieProtege(): ?array
     {
@@ -35,7 +38,7 @@ class ModificationSalarieProtegeRequest
     }
 
     /**
-     * @param SalarieProtege[]|null $salarieProtege
+     * @param list<SalarieProtege>|null $salarieProtege
      */
     public function setSalarieProtege(?array $salarieProtege): self
     {

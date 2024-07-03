@@ -13,98 +13,122 @@ class CompteCollaborateur
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $identifiant;
+
     /**
      * @var string|null
      */
     protected $codeCollaborateur;
+
     /**
      * @var string|null
      */
     protected $accesDroitsFonctionnels;
+
     /**
      * @var string|null
      */
     protected $accesDroitsFonctionnelsMode;
+
     /**
      * @var int|null
      */
     protected $civilite;
+
     /**
      * @var string|null
      */
     protected $nomNaissance;
+
     /**
      * @var string|null
      */
     protected $nomMarital;
+
     /**
      * @var string|null
      */
     protected $nomUsuel;
+
     /**
      * @var string|null
      */
     protected $prenom;
+
     /**
      * @var bool|null
      */
     protected $droitsLimitesEnPaie;
+
     /**
      * @var string|null
      */
     protected $email;
+
     /**
      * @var string|null
      */
     protected $telephonePortable;
+
     /**
      * @var string|null
      */
     protected $telephoneBureau;
+
     /**
      * @var string|null
      */
     protected $telephoneDomicile;
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebutValidite;
+
     /**
      * @var \DateTime|null
      */
     protected $dateFinValidite;
+
     /**
      * @var CompteCollaborateurRoles|null
      */
     protected $roles;
+
     /**
      * @var string|null
      */
     protected $requeteAccesDossiers;
+
     /**
      * @var int|null
      */
     protected $niveauConfidentialite;
+
     /**
      * @var CompteCollaborateurDroits|null
      */
     protected $droits;
+
     /**
      * @var string|null
      */
     protected $codeAgence;
+
     /**
      * @var CompteCollaborateurHorairesAcces|null
      */
     protected $horairesAcces;
+
     /**
-     * @var int[]|null
+     * @var list<int>|null
      */
     protected $affectations;
+
     /**
      * @var string|null
      */
@@ -397,7 +421,7 @@ class CompteCollaborateur
     }
 
     /**
-     * @return int[]|null
+     * @return list<int>|null
      */
     public function getAffectations(): ?array
     {
@@ -405,7 +429,7 @@ class CompteCollaborateur
     }
 
     /**
-     * @param int[]|null $affectations
+     * @param list<int>|null $affectations
      */
     public function setAffectations(?array $affectations): self
     {

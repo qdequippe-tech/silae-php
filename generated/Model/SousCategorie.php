@@ -13,10 +13,12 @@ class SousCategorie
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomSousCategorie;
+
     /**
      * @var string|null
      */

@@ -13,30 +13,37 @@ class AcquisitionContenuPartielDSNRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissement;
+
     /**
      * @var string|null
      */
     protected $codeOrganisme;
+
     /**
      * @var string|null
      */
     protected $numeroAffiliation;
+
     /**
      * @var int|null
      */
     protected $typeDSN;
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $segments;
+
     /**
      * @var \DateTime|null
      */
     protected $periode;
+
     /**
      * @var string|null
      */
@@ -95,7 +102,7 @@ class AcquisitionContenuPartielDSNRequest
     }
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getSegments(): ?array
     {
@@ -103,7 +110,7 @@ class AcquisitionContenuPartielDSNRequest
     }
 
     /**
-     * @param string[]|null $segments
+     * @param list<string>|null $segments
      */
     public function setSegments(?array $segments): self
     {

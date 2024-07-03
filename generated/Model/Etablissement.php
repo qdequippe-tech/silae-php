@@ -13,102 +13,127 @@ class Etablissement
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomInterne;
+
     /**
      * @var string|null
      */
     protected $raisonSociale;
+
     /**
      * @var string|null
      */
     protected $numVoie;
+
     /**
      * @var string|null
      */
     protected $btqc;
+
     /**
      * @var string|null
      */
     protected $nomVoie;
+
     /**
      * @var string|null
      */
     protected $complement;
+
     /**
      * @var string|null
      */
     protected $codePostal;
+
     /**
      * @var string|null
      */
     protected $nomVille;
+
     /**
      * @var string|null
      */
     protected $codeOfficielCommune;
+
     /**
      * @var string|null
      */
     protected $commune;
+
     /**
      * @var string|null
      */
     protected $siret;
+
     /**
      * @var string|null
      */
     protected $codeNaf;
+
     /**
      * @var string|null
      */
     protected $paysISO;
+
     /**
      * @var string|null
      */
     protected $nomPays;
+
     /**
      * @var string|null
      */
     protected $tel;
+
     /**
      * @var string|null
      */
     protected $fax;
+
     /**
      * @var string|null
      */
     protected $numeroAffiliationURSSAF;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $nbHeuresTravaillees;
+
     /**
-     * @var float[]|null
+     * @var list<float>|null
      */
     protected $nbHeuresDeNuitTravaillees;
+
     /**
      * @var bool|null
      */
     protected $bNbHeuresTravaillees;
+
     /**
      * @var int|null
      */
     protected $employeurCivilite;
+
     /**
      * @var string|null
      */
     protected $employeurNom;
+
     /**
      * @var string|null
      */
     protected $employeurPrenom;
+
     /**
      * @var int|null
      */
     protected $employeurQualite;
+
     /**
      * @var string|null
      */
@@ -336,7 +361,7 @@ class Etablissement
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getNbHeuresTravaillees(): ?array
     {
@@ -344,7 +369,7 @@ class Etablissement
     }
 
     /**
-     * @param float[]|null $nbHeuresTravaillees
+     * @param list<float>|null $nbHeuresTravaillees
      */
     public function setNbHeuresTravaillees(?array $nbHeuresTravaillees): self
     {
@@ -355,7 +380,7 @@ class Etablissement
     }
 
     /**
-     * @return float[]|null
+     * @return list<float>|null
      */
     public function getNbHeuresDeNuitTravaillees(): ?array
     {
@@ -363,7 +388,7 @@ class Etablissement
     }
 
     /**
-     * @param float[]|null $nbHeuresDeNuitTravaillees
+     * @param list<float>|null $nbHeuresDeNuitTravaillees
      */
     public function setNbHeuresDeNuitTravaillees(?array $nbHeuresDeNuitTravaillees): self
     {

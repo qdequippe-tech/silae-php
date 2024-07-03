@@ -13,17 +13,19 @@ class RequeteSalariesDUE
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $matriculesSalaries;
+
     /**
      * @var \DateTime|null
      */
     protected $dateMinEmploi;
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getMatriculesSalaries(): ?array
     {
@@ -31,7 +33,7 @@ class RequeteSalariesDUE
     }
 
     /**
-     * @param string[]|null $matriculesSalaries
+     * @param list<string>|null $matriculesSalaries
      */
     public function setMatriculesSalaries(?array $matriculesSalaries): self
     {

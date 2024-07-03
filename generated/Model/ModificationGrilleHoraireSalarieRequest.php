@@ -13,18 +13,22 @@ class ModificationGrilleHoraireSalarieRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
      * @var ModificationHoraireSalarie|null
      */
     protected $horaire;
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var string|null
      */

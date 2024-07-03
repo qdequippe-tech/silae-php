@@ -13,21 +13,24 @@ class ApiErrors
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var ApiError[]|null
+     * @var list<ApiError>|null
      */
     protected $errors;
+
     /**
      * @var bool|null
      */
     protected $recoverable;
+
     /**
      * @var string|null
      */
     protected $source;
 
     /**
-     * @return ApiError[]|null
+     * @return list<ApiError>|null
      */
     public function getErrors(): ?array
     {
@@ -35,7 +38,7 @@ class ApiErrors
     }
 
     /**
-     * @param ApiError[]|null $errors
+     * @param list<ApiError>|null $errors
      */
     public function setErrors(?array $errors): self
     {

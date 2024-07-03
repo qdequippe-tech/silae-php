@@ -13,20 +13,24 @@ class SalarieBulletinsResult
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var \DateTime|null
      */
     protected $periode;
+
     /**
-     * @var int[]|null
+     * @var list<int>|null
      */
     protected $arrIDPAIBULLETIN;
+
     /**
-     * @var bool[]|null
+     * @var list<bool>|null
      */
     protected $arrPresenceAttestationPoleEmploi;
 
@@ -57,7 +61,7 @@ class SalarieBulletinsResult
     }
 
     /**
-     * @return int[]|null
+     * @return list<int>|null
      */
     public function getArrIDPAIBULLETIN(): ?array
     {
@@ -65,7 +69,7 @@ class SalarieBulletinsResult
     }
 
     /**
-     * @param int[]|null $arrIDPAIBULLETIN
+     * @param list<int>|null $arrIDPAIBULLETIN
      */
     public function setArrIDPAIBULLETIN(?array $arrIDPAIBULLETIN): self
     {
@@ -76,7 +80,7 @@ class SalarieBulletinsResult
     }
 
     /**
-     * @return bool[]|null
+     * @return list<bool>|null
      */
     public function getArrPresenceAttestationPoleEmploi(): ?array
     {
@@ -84,7 +88,7 @@ class SalarieBulletinsResult
     }
 
     /**
-     * @param bool[]|null $arrPresenceAttestationPoleEmploi
+     * @param list<bool>|null $arrPresenceAttestationPoleEmploi
      */
     public function setArrPresenceAttestationPoleEmploi(?array $arrPresenceAttestationPoleEmploi): self
     {

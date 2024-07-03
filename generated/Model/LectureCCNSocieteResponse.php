@@ -13,17 +13,19 @@ class LectureCCNSocieteResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var CCNSociete[]|null
+     * @var list<CCNSociete>|null
      */
     protected $ccnSociete;
+
     /**
      * @var bool|null
      */
     protected $pasDeCCSiege;
 
     /**
-     * @return CCNSociete[]|null
+     * @return list<CCNSociete>|null
      */
     public function getCcnSociete(): ?array
     {
@@ -31,7 +33,7 @@ class LectureCCNSocieteResponse
     }
 
     /**
-     * @param CCNSociete[]|null $ccnSociete
+     * @param list<CCNSociete>|null $ccnSociete
      */
     public function setCcnSociete(?array $ccnSociete): self
     {

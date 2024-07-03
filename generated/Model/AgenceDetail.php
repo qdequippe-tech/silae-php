@@ -13,50 +13,62 @@ class AgenceDetail
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $telBureau;
+
     /**
      * @var string|null
      */
     protected $mel;
+
     /**
      * @var string|null
      */
     protected $affectationExpediteurCollab;
+
     /**
      * @var string|null
      */
     protected $ediMethode;
+
     /**
      * @var string|null
      */
     protected $ediJdcLogin;
+
     /**
      * @var string|null
      */
     protected $ediAspOneLogin;
+
     /**
      * @var string|null
      */
     protected $ediAutreLogin;
+
     /**
      * @var string|null
      */
     protected $codeAgence;
+
     /**
      * @var string|null
      */
     protected $raisonSociale;
+
     /**
      * @var string|null
      */
     protected $siret;
+
     /**
      * @var string|null
      */
     protected $codePostal;
+
     /**
      * @var string|null
      */

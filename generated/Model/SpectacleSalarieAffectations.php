@@ -13,24 +13,29 @@ class SpectacleSalarieAffectations
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
      * @var \DateTime|null
      */
     protected $periode;
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissement;
+
     /**
-     * @var SpectacleSalarieAffectation[]|null
+     * @var list<SpectacleSalarieAffectation>|null
      */
     protected $affectations;
 
@@ -87,7 +92,7 @@ class SpectacleSalarieAffectations
     }
 
     /**
-     * @return SpectacleSalarieAffectation[]|null
+     * @return list<SpectacleSalarieAffectation>|null
      */
     public function getAffectations(): ?array
     {
@@ -95,7 +100,7 @@ class SpectacleSalarieAffectations
     }
 
     /**
-     * @param SpectacleSalarieAffectation[]|null $affectations
+     * @param list<SpectacleSalarieAffectation>|null $affectations
      */
     public function setAffectations(?array $affectations): self
     {

@@ -13,30 +13,37 @@ class SalarieEmploiExterneInformations
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $dateFin;
+
     /**
      * @var string|null
      */
     protected $intituleEmploi;
+
     /**
      * @var string|null
      */
     protected $motif;
+
     /**
      * @var string|null
      */
     protected $codeSociete;
+
     /**
      * @var string|null
      */

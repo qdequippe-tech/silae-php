@@ -13,14 +13,17 @@ class SalarieAcompte
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $dateAcompte;
+
     /**
      * @var bool|null
      */
     protected $jourNonSignificatif;
+
     /**
      * @var float|null
      */

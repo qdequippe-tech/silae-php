@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ControlerBulletinsPeriodeBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ControlerBulletinsPeriodeInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ControlerBulletinsPeriodeUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ControlerBulletinsPeriodeRequest;
 use QdequippeTech\Silae\Api\Model\ControlerBulletinsPeriodeResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class ControlerBulletinsPeriode extends BaseEndpoint implements Endpoint
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class ControlerBulletinsPeriode extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ControlerBulletinsPeriodeResponse', 'json');
+            return $serializer->deserialize($body, ControlerBulletinsPeriodeResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new ControlerBulletinsPeriodeBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ControlerBulletinsPeriodeBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new ControlerBulletinsPeriodeUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ControlerBulletinsPeriodeUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new ControlerBulletinsPeriodeInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ControlerBulletinsPeriodeInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

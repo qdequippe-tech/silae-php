@@ -13,13 +13,14 @@ class AnalyseConfigurationAccesApiResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var ConfigurationAccesApi[]|null
+     * @var list<ConfigurationAccesApi>|null
      */
     protected $statistiques;
 
     /**
-     * @return ConfigurationAccesApi[]|null
+     * @return list<ConfigurationAccesApi>|null
      */
     public function getStatistiques(): ?array
     {
@@ -27,7 +28,7 @@ class AnalyseConfigurationAccesApiResponse
     }
 
     /**
-     * @param ConfigurationAccesApi[]|null $statistiques
+     * @param list<ConfigurationAccesApi>|null $statistiques
      */
     public function setStatistiques(?array $statistiques): self
     {

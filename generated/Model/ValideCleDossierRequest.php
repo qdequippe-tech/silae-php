@@ -13,10 +13,12 @@ class ValideCleDossierRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $cle;
+
     /**
      * @var string|null
      */

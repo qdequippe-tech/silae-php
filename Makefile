@@ -23,6 +23,8 @@ rector: vendor ## Run Rector (dry run)
 jane: vendor ## Generate the SDK
 	./vendor/bin/jane-openapi generate --config-file=.jane-openapi.php
 
+build: jane rectify cs
+
 .PHONY: help
 
 help: ## Display this help

@@ -13,10 +13,12 @@ class LectureTaxeApprentissageEtablissementRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissement;
+
     /**
      * @var string|null
      */

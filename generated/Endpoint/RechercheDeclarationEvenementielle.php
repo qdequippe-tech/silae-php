@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\RechercheDeclarationEvenementielleBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RechercheDeclarationEvenementielleInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RechercheDeclarationEvenementielleUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\RechercheDeclarationEvenementielleRequest;
 use QdequippeTech\Silae\Api\Model\RechercheDeclarationEvenementielleResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class RechercheDeclarationEvenementielle extends BaseEndpoint implements Endpoin
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class RechercheDeclarationEvenementielle extends BaseEndpoint implements Endpoin
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\RechercheDeclarationEvenementielleResponse', 'json');
+            return $serializer->deserialize($body, RechercheDeclarationEvenementielleResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new RechercheDeclarationEvenementielleBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RechercheDeclarationEvenementielleBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new RechercheDeclarationEvenementielleUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RechercheDeclarationEvenementielleUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new RechercheDeclarationEvenementielleInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new RechercheDeclarationEvenementielleInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

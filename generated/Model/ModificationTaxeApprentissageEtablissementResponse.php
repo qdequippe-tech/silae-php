@@ -13,10 +13,12 @@ class ModificationTaxeApprentissageEtablissementResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var TaxeApprentissage|null
      */
     protected $taxeApprentissage;
+
     /**
      * @var bool|null
      */

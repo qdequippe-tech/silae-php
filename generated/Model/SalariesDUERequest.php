@@ -13,10 +13,12 @@ class SalariesDUERequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var RequeteSalariesDUE|null
      */
     protected $requeteSalariesDUE;
+
     /**
      * @var string|null
      */

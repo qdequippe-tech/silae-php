@@ -13,13 +13,14 @@ class LectureTaxeTransportResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var TaxeTransport[]|null
+     * @var list<TaxeTransport>|null
      */
     protected $taxeTransport;
 
     /**
-     * @return TaxeTransport[]|null
+     * @return list<TaxeTransport>|null
      */
     public function getTaxeTransport(): ?array
     {
@@ -27,7 +28,7 @@ class LectureTaxeTransportResponse
     }
 
     /**
-     * @param TaxeTransport[]|null $taxeTransport
+     * @param list<TaxeTransport>|null $taxeTransport
      */
     public function setTaxeTransport(?array $taxeTransport): self
     {

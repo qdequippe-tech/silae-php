@@ -13,22 +13,27 @@ class EditionHistoriqueRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $codeEditionHistorique;
+
     /**
      * @var string|null
      */
     protected $motDePasse;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeFin;
+
     /**
      * @var string|null
      */

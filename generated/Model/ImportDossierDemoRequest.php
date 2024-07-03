@@ -13,18 +13,22 @@ class ImportDossierDemoRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $tokenDossierDemo;
+
     /**
      * @var string|null
      */
     protected $nouveauNumeroDossier;
+
     /**
      * @var bool|null
      */
     protected $changerAffectations;
+
     /**
      * @var AffectationsDossier|null
      */

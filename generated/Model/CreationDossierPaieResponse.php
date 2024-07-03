@@ -13,13 +13,14 @@ class CreationDossierPaieResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $nomsInternesEtablissements;
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getNomsInternesEtablissements(): ?array
     {
@@ -27,7 +28,7 @@ class CreationDossierPaieResponse
     }
 
     /**
-     * @param string[]|null $nomsInternesEtablissements
+     * @param list<string>|null $nomsInternesEtablissements
      */
     public function setNomsInternesEtablissements(?array $nomsInternesEtablissements): self
     {

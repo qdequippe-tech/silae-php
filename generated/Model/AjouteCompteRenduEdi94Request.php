@@ -13,38 +13,47 @@ class AjouteCompteRenduEdi94Request
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $numeroADS;
+
     /**
      * @var string|null
      */
     protected $adsacsars;
+
     /**
      * @var string|null
      */
     protected $statutDeclaration;
+
     /**
      * @var string|null
      */
     protected $statutTelepaiement;
+
     /**
      * @var string|null
      */
     protected $typeMessage;
+
     /**
      * @var string|null
      */
     protected $messageTexte;
+
     /**
      * @var string|null
      */
     protected $messageBa;
+
     /**
      * @var string|null
      */
     protected $crm94NomFichier;
+
     /**
      * @var string|null
      */

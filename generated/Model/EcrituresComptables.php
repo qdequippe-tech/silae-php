@@ -13,20 +13,24 @@ class EcrituresComptables
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $periodeFin;
+
     /**
-     * @var EcrituresComptablesLigne[]|null
+     * @var list<EcrituresComptablesLigne>|null
      */
     protected $ecritures;
 
@@ -70,7 +74,7 @@ class EcrituresComptables
     }
 
     /**
-     * @return EcrituresComptablesLigne[]|null
+     * @return list<EcrituresComptablesLigne>|null
      */
     public function getEcritures(): ?array
     {
@@ -78,7 +82,7 @@ class EcrituresComptables
     }
 
     /**
-     * @param EcrituresComptablesLigne[]|null $ecritures
+     * @param list<EcrituresComptablesLigne>|null $ecritures
      */
     public function setEcritures(?array $ecritures): self
     {

@@ -13,16 +13,19 @@ class AxesAnalytiqueSalarie
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var string|null
      */
     protected $nomAffiche;
+
     /**
-     * @var DonneesAxeAnalytiqueSalarie[]|null
+     * @var list<DonneesAxeAnalytiqueSalarie>|null
      */
     protected $affectationAnalytique;
 
@@ -53,7 +56,7 @@ class AxesAnalytiqueSalarie
     }
 
     /**
-     * @return DonneesAxeAnalytiqueSalarie[]|null
+     * @return list<DonneesAxeAnalytiqueSalarie>|null
      */
     public function getAffectationAnalytique(): ?array
     {
@@ -61,7 +64,7 @@ class AxesAnalytiqueSalarie
     }
 
     /**
-     * @param DonneesAxeAnalytiqueSalarie[]|null $affectationAnalytique
+     * @param list<DonneesAxeAnalytiqueSalarie>|null $affectationAnalytique
      */
     public function setAffectationAnalytique(?array $affectationAnalytique): self
     {

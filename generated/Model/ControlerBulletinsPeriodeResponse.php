@@ -13,6 +13,7 @@ class ControlerBulletinsPeriodeResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */

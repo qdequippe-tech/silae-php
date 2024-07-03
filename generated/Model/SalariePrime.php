@@ -13,30 +13,37 @@ class SalariePrime
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $periodePrime;
+
     /**
      * @var string|null
      */
     protected $codePrime;
+
     /**
      * @var float|null
      */
     protected $montantPrime;
+
     /**
      * @var string|null
      */
     protected $valeurChainePrime;
+
     /**
      * @var bool|null
      */
     protected $primeNette;
+
     /**
      * @var string|null
      */
     protected $intituleBulletin;
+
     /**
      * @var string|null
      */

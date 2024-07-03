@@ -13,36 +13,44 @@ class EtatDeclaration
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $numeroADS;
+
     /**
      * @var \DateTime|null
      */
     protected $date;
+
     /**
      * @var string|null
      */
     protected $typeDeclaration;
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissement;
+
     /**
      * @var string|null
      */
     protected $destinataire;
+
     /**
      * @var bool|null
      */
     protected $obsolete;
+
     /**
      * @var bool|null
      */
     protected $test;
+
     /**
-     * @var EtatDeclarationRetour[]|null
+     * @var list<EtatDeclarationRetour>|null
      */
     protected $retour;
 
@@ -138,7 +146,7 @@ class EtatDeclaration
     }
 
     /**
-     * @return EtatDeclarationRetour[]|null
+     * @return list<EtatDeclarationRetour>|null
      */
     public function getRetour(): ?array
     {
@@ -146,7 +154,7 @@ class EtatDeclaration
     }
 
     /**
-     * @param EtatDeclarationRetour[]|null $retour
+     * @param list<EtatDeclarationRetour>|null $retour
      */
     public function setRetour(?array $retour): self
     {

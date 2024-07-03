@@ -13,134 +13,167 @@ class DossierTache
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $nature;
+
     /**
      * @var int|null
      */
     protected $jour;
+
     /**
      * @var int|null
      */
     protected $heure;
+
     /**
      * @var int|null
      */
     protected $minute;
+
     /**
      * @var string|null
      */
     protected $destinataire;
+
     /**
      * @var bool|null
      */
     protected $aFaireParLeClient;
+
     /**
      * @var bool|null
      */
     protected $optionBool1;
+
     /**
      * @var bool|null
      */
     protected $optionBool2;
+
     /**
      * @var bool|null
      */
     protected $optionBool3;
+
     /**
      * @var string|null
      */
     protected $optionString1;
+
     /**
      * @var int|null
      */
     protected $rappel1Jour;
+
     /**
      * @var int|null
      */
     protected $rappel1Heure;
+
     /**
      * @var int|null
      */
     protected $rappel1Minute;
+
     /**
      * @var string|null
      */
     protected $rappel1Destinataire;
+
     /**
      * @var int|null
      */
     protected $rappel2Jour;
+
     /**
      * @var int|null
      */
     protected $rappel2Heure;
+
     /**
      * @var int|null
      */
     protected $rappel2Minute;
+
     /**
      * @var string|null
      */
     protected $rappel2Destinataire;
+
     /**
      * @var int|null
      */
     protected $rappel3Jour;
+
     /**
      * @var int|null
      */
     protected $rappel3Heure;
+
     /**
      * @var int|null
      */
     protected $rappel3Minute;
+
     /**
      * @var string|null
      */
     protected $rappel3Destinataire;
+
     /**
      * @var int|null
      */
     protected $rappel4Jour;
+
     /**
      * @var int|null
      */
     protected $rappel4Heure;
+
     /**
      * @var int|null
      */
     protected $rappel4Minute;
+
     /**
      * @var string|null
      */
     protected $rappel4Destinataire;
+
     /**
      * @var int|null
      */
     protected $rappel5Jour;
+
     /**
      * @var int|null
      */
     protected $rappel5Heure;
+
     /**
      * @var int|null
      */
     protected $rappel5Minute;
+
     /**
      * @var string|null
      */
     protected $rappel5Destinataire;
+
     /**
      * @var bool|null
      */
     protected $supprimerTache;
+
     /**
      * @var string|null
      */
     protected $nomServeur;
+
     /**
      * @var string|null
      */

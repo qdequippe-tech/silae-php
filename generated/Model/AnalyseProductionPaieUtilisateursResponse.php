@@ -13,13 +13,14 @@ class AnalyseProductionPaieUtilisateursResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var StatistiquesUtilisateurs[]|null
+     * @var list<StatistiquesUtilisateurs>|null
      */
     protected $statistiquesUtilisateurs;
 
     /**
-     * @return StatistiquesUtilisateurs[]|null
+     * @return list<StatistiquesUtilisateurs>|null
      */
     public function getStatistiquesUtilisateurs(): ?array
     {
@@ -27,7 +28,7 @@ class AnalyseProductionPaieUtilisateursResponse
     }
 
     /**
-     * @param StatistiquesUtilisateurs[]|null $statistiquesUtilisateurs
+     * @param list<StatistiquesUtilisateurs>|null $statistiquesUtilisateurs
      */
     public function setStatistiquesUtilisateurs(?array $statistiquesUtilisateurs): self
     {

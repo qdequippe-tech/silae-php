@@ -13,372 +13,464 @@ class SalarieEmplois
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var string|null
      */
     protected $numeroSecuriteSociale;
+
     /**
      * @var string|null
      */
     protected $matriculeSalarieModele;
+
     /**
      * @var string|null
      */
     protected $numeroDossierSalarieModele;
+
     /**
      * @var bool|null
      */
     protected $copieIntegraleSalarieModele;
+
     /**
      * @var bool|null
      */
     protected $calculerElementsNaissance;
+
     /**
      * @var bool|null
      */
     protected $calculerCommune;
+
     /**
      * @var string|null
      */
     protected $matriculeInterne;
+
     /**
      * @var bool|null
      */
     protected $bMatriculeInterne;
+
     /**
      * @var string|null
      */
     protected $nomNaissance;
+
     /**
      * @var bool|null
      */
     protected $bNomNaissance;
+
     /**
      * @var string|null
      */
     protected $nomMarital;
+
     /**
      * @var bool|null
      */
     protected $bNomMarital;
+
     /**
      * @var string|null
      */
     protected $nomUsuel;
+
     /**
      * @var bool|null
      */
     protected $bNomUsuel;
+
     /**
      * @var string|null
      */
     protected $prenom;
+
     /**
      * @var bool|null
      */
     protected $bPrenom;
+
     /**
      * @var int|null
      */
     protected $civilite;
+
     /**
      * @var bool|null
      */
     protected $bCivilite;
+
     /**
      * @var int|null
      */
     protected $situationFamiliale;
+
     /**
      * @var bool|null
      */
     protected $bSituationFamiliale;
+
     /**
      * @var \DateTime|null
      */
     protected $dateNaissance;
+
     /**
      * @var bool|null
      */
     protected $bDateNaissance;
+
     /**
      * @var string|null
      */
     protected $departementNaissance;
+
     /**
      * @var bool|null
      */
     protected $bDepartementNaissance;
+
     /**
      * @var string|null
      */
     protected $communeNaissance;
+
     /**
      * @var bool|null
      */
     protected $bCommuneNaissance;
+
     /**
      * @var string|null
      */
     protected $codePaysNaissance;
+
     /**
      * @var bool|null
      */
     protected $bCodePaysNaissance;
+
     /**
      * @var string|null
      */
     protected $paysNaissance;
+
     /**
      * @var bool|null
      */
     protected $bPaysNaissance;
+
     /**
      * @var string|null
      */
     protected $codePaysNationalite;
+
     /**
      * @var bool|null
      */
     protected $bCodePaysNationalite;
+
     /**
      * @var string|null
      */
     protected $paysNationalite;
+
     /**
      * @var bool|null
      */
     protected $bPaysNationalite;
+
     /**
      * @var int|null
      */
     protected $titreSejourType;
+
     /**
      * @var bool|null
      */
     protected $bTitreSejourType;
+
     /**
      * @var string|null
      */
     protected $titreSejourNumeroOrdre;
+
     /**
      * @var bool|null
      */
     protected $bTitreSejourNumeroOrdre;
+
     /**
      * @var \DateTime|null
      */
     protected $titreSejourDebut;
+
     /**
      * @var bool|null
      */
     protected $bTitreSejourDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $titreSejourFin;
+
     /**
      * @var bool|null
      */
     protected $bTitreSejourFin;
+
     /**
      * @var string|null
      */
     protected $numVoie;
+
     /**
      * @var bool|null
      */
     protected $bNumVoie;
+
     /**
      * @var string|null
      */
     protected $btqc;
+
     /**
      * @var bool|null
      */
     protected $bBTQC;
+
     /**
      * @var string|null
      */
     protected $nomVoie;
+
     /**
      * @var bool|null
      */
     protected $bNomVoie;
+
     /**
      * @var string|null
      */
     protected $complement;
+
     /**
      * @var bool|null
      */
     protected $bComplement;
+
     /**
      * @var string|null
      */
     protected $codePostal;
+
     /**
      * @var bool|null
      */
     protected $bCodePostal;
+
     /**
      * @var string|null
      */
     protected $nomVille;
+
     /**
      * @var bool|null
      */
     protected $bNomVille;
+
     /**
      * @var string|null
      */
     protected $codeOfficielCommune;
+
     /**
      * @var bool|null
      */
     protected $bCodeOfficielCommune;
+
     /**
      * @var string|null
      */
     protected $commune;
+
     /**
      * @var bool|null
      */
     protected $bCommune;
+
     /**
      * @var string|null
      */
     protected $codePays;
+
     /**
      * @var bool|null
      */
     protected $bCodePays;
+
     /**
      * @var string|null
      */
     protected $pays;
+
     /**
      * @var bool|null
      */
     protected $bPays;
+
     /**
      * @var bool|null
      */
     protected $domicilieFiscalementHorsFrance;
+
     /**
      * @var bool|null
      */
     protected $bDomicilieFiscalementHorsFrance;
+
     /**
      * @var string|null
      */
     protected $telDomicile;
+
     /**
      * @var bool|null
      */
     protected $bTelDomicile;
+
     /**
      * @var string|null
      */
     protected $telPortable;
+
     /**
      * @var bool|null
      */
     protected $bTelPortable;
+
     /**
      * @var string|null
      */
     protected $eMail;
+
     /**
      * @var bool|null
      */
     protected $bEMail;
+
     /**
      * @var string|null
      */
     protected $rib;
+
     /**
      * @var bool|null
      */
     protected $bRib;
+
     /**
      * @var string|null
      */
     protected $iBan;
+
     /**
      * @var bool|null
      */
     protected $bIBan;
+
     /**
      * @var string|null
      */
     protected $bic;
+
     /**
      * @var bool|null
      */
     protected $bBic;
+
     /**
      * @var string|null
      */
     protected $affectation1;
+
     /**
      * @var bool|null
      */
     protected $bAffectation1;
+
     /**
      * @var string|null
      */
     protected $affectation2;
+
     /**
      * @var bool|null
      */
     protected $bAffectation2;
+
     /**
      * @var string|null
      */
     protected $affectation3;
+
     /**
      * @var bool|null
      */
     protected $bAffectation3;
+
     /**
      * @var string|null
      */
     protected $affectation4;
+
     /**
      * @var bool|null
      */
     protected $bAffectation4;
+
     /**
      * @var string|null
      */
     protected $affectation5;
+
     /**
      * @var bool|null
      */
     protected $bAffectation5;
+
     /**
      * @var string|null
      */
     protected $affectation6;
+
     /**
      * @var bool|null
      */
     protected $bAffectation6;
+
     /**
      * @var string|null
      */
     protected $affectation7;
+
     /**
      * @var bool|null
      */
     protected $bAffectation7;
+
     /**
-     * @var Emploi[]|null
+     * @var list<Emploi>|null
      */
     protected $emplois;
 
@@ -1566,7 +1658,7 @@ class SalarieEmplois
     }
 
     /**
-     * @return Emploi[]|null
+     * @return list<Emploi>|null
      */
     public function getEmplois(): ?array
     {
@@ -1574,7 +1666,7 @@ class SalarieEmplois
     }
 
     /**
-     * @param Emploi[]|null $emplois
+     * @param list<Emploi>|null $emplois
      */
     public function setEmplois(?array $emplois): self
     {

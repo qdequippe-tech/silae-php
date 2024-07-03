@@ -13,22 +13,27 @@ class StatutEcrituresComptablesAsynchroneResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var EcrituresComptables|null
      */
     protected $ecrituresComptables;
+
     /**
      * @var string|null
      */
     protected $statut;
+
     /**
      * @var string|null
      */
     protected $messageErreur;
+
     /**
      * @var float|null
      */
     protected $progression;
+
     /**
      * @var string|null
      */

@@ -13,26 +13,32 @@ class SalarieEmploiInformations
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $identifiantEmploi;
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $dateFin;
+
     /**
      * @var string|null
      */
     protected $intituleEmploi;
+
     /**
      * @var bool|null
      */
     protected $emploiArchive;
+
     /**
      * @var string|null
      */

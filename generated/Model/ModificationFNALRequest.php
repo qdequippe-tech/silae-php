@@ -13,10 +13,12 @@ class ModificationFNALRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var FNAL|null
      */
     protected $fnal;
+
     /**
      * @var string|null
      */

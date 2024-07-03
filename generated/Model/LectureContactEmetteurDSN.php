@@ -13,18 +13,22 @@ class LectureContactEmetteurDSN
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $siret;
+
     /**
      * @var string|null
      */
     protected $nom;
+
     /**
      * @var string|null
      */
     protected $prenom;
+
     /**
      * @var string|null
      */

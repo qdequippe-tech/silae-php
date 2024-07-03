@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\LectureQuestionnaireContratComplementaireSalarieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureQuestionnaireContratComplementaireSalarieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureQuestionnaireContratComplementaireSalarieUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\LectureQuestionnaireContratComplementaireRequest;
 use QdequippeTech\Silae\Api\Model\LectureQuestionnaireContratComplementaireResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class LectureQuestionnaireContratComplementaireSalarie extends BaseEndpoint impl
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class LectureQuestionnaireContratComplementaireSalarie extends BaseEndpoint impl
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\LectureQuestionnaireContratComplementaireResponse', 'json');
+            return $serializer->deserialize($body, LectureQuestionnaireContratComplementaireResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new LectureQuestionnaireContratComplementaireSalarieBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureQuestionnaireContratComplementaireSalarieBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new LectureQuestionnaireContratComplementaireSalarieUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureQuestionnaireContratComplementaireSalarieUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new LectureQuestionnaireContratComplementaireSalarieInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new LectureQuestionnaireContratComplementaireSalarieInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

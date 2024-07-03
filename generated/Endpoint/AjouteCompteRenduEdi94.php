@@ -8,6 +8,7 @@ use QdequippeTech\Silae\Api\Exception\AjouteCompteRenduEdi94InternalServerErrorE
 use QdequippeTech\Silae\Api\Exception\AjouteCompteRenduEdi94UnauthorizedException;
 use QdequippeTech\Silae\Api\Model\AjouteCompteRenduEdi94Request;
 use QdequippeTech\Silae\Api\Model\AjouteCompteRenduEdi94Response;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
@@ -47,7 +48,7 @@ class AjouteCompteRenduEdi94 extends BaseEndpoint implements Endpoint
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class AjouteCompteRenduEdi94 extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\AjouteCompteRenduEdi94Response', 'json');
+            return $serializer->deserialize($body, AjouteCompteRenduEdi94Response::class, 'json');
         }
+
         if (400 === $status) {
-            throw new AjouteCompteRenduEdi94BadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AjouteCompteRenduEdi94BadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new AjouteCompteRenduEdi94UnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AjouteCompteRenduEdi94UnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new AjouteCompteRenduEdi94InternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AjouteCompteRenduEdi94InternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

@@ -7,6 +7,7 @@ use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureBadReque
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureUnauthorizedException;
 use QdequippeTech\Silae\Api\Model\AdministrationCollaborateurLectureRequest;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\UtilisateurCollaborateur;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -47,7 +48,7 @@ class AdministrationCollaborateurLecture extends BaseEndpoint implements Endpoin
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class AdministrationCollaborateurLecture extends BaseEndpoint implements Endpoin
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\UtilisateurCollaborateur', 'json');
+            return $serializer->deserialize($body, UtilisateurCollaborateur::class, 'json');
         }
+
         if (400 === $status) {
-            throw new AdministrationCollaborateurLectureBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AdministrationCollaborateurLectureBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new AdministrationCollaborateurLectureUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AdministrationCollaborateurLectureUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new AdministrationCollaborateurLectureInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AdministrationCollaborateurLectureInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

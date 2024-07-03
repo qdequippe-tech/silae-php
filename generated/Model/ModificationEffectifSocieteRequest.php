@@ -13,17 +13,19 @@ class ModificationEffectifSocieteRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var EffectifSociete[]|null
+     * @var list<EffectifSociete>|null
      */
     protected $effectifSociete;
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
 
     /**
-     * @return EffectifSociete[]|null
+     * @return list<EffectifSociete>|null
      */
     public function getEffectifSociete(): ?array
     {
@@ -31,7 +33,7 @@ class ModificationEffectifSocieteRequest
     }
 
     /**
-     * @param EffectifSociete[]|null $effectifSociete
+     * @param list<EffectifSociete>|null $effectifSociete
      */
     public function setEffectifSociete(?array $effectifSociete): self
     {

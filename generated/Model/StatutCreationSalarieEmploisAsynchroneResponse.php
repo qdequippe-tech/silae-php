@@ -13,33 +13,39 @@ class StatutCreationSalarieEmploisAsynchroneResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var CreationSalarieEmploiResult[]|null
+     * @var list<CreationSalarieEmploiResult>|null
      */
     protected $resultatsCreationsEmplois;
+
     /**
      * @var int|null
      */
     protected $erreurNumero;
+
     /**
      * @var string|null
      */
     protected $statut;
+
     /**
      * @var string|null
      */
     protected $messageErreur;
+
     /**
      * @var float|null
      */
     protected $progression;
+
     /**
      * @var string|null
      */
     protected $dureeExecution;
 
     /**
-     * @return CreationSalarieEmploiResult[]|null
+     * @return list<CreationSalarieEmploiResult>|null
      */
     public function getResultatsCreationsEmplois(): ?array
     {
@@ -47,7 +53,7 @@ class StatutCreationSalarieEmploisAsynchroneResponse
     }
 
     /**
-     * @param CreationSalarieEmploiResult[]|null $resultatsCreationsEmplois
+     * @param list<CreationSalarieEmploiResult>|null $resultatsCreationsEmplois
      */
     public function setResultatsCreationsEmplois(?array $resultatsCreationsEmplois): self
     {

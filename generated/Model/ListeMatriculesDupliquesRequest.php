@@ -13,10 +13,12 @@ class ListeMatriculesDupliquesRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $filtreMatricule;
+
     /**
      * @var string|null
      */

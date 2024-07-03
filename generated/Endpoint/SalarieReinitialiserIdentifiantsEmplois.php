@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalarieReinitialiserIdentifiantsEmploisBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieReinitialiserIdentifiantsEmploisInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieReinitialiserIdentifiantsEmploisUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -46,7 +47,7 @@ class SalarieReinitialiserIdentifiantsEmplois extends BaseEndpoint implements En
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -76,15 +77,20 @@ class SalarieReinitialiserIdentifiantsEmplois extends BaseEndpoint implements En
         if (200 === $status) {
             return null;
         }
+
         if (400 === $status) {
-            throw new SalarieReinitialiserIdentifiantsEmploisBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalarieReinitialiserIdentifiantsEmploisBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new SalarieReinitialiserIdentifiantsEmploisUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalarieReinitialiserIdentifiantsEmploisUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new SalarieReinitialiserIdentifiantsEmploisInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalarieReinitialiserIdentifiantsEmploisInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

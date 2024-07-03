@@ -13,10 +13,12 @@ class SalarieDUERequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var SalarieDUE|null
      */
     protected $salarieDUE;
+
     /**
      * @var string|null
      */

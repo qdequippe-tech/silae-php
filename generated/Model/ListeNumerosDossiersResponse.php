@@ -13,13 +13,14 @@ class ListeNumerosDossiersResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $listeNumerosDossiers;
 
     /**
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getListeNumerosDossiers(): ?array
     {
@@ -27,7 +28,7 @@ class ListeNumerosDossiersResponse
     }
 
     /**
-     * @param string[]|null $listeNumerosDossiers
+     * @param list<string>|null $listeNumerosDossiers
      */
     public function setListeNumerosDossiers(?array $listeNumerosDossiers): self
     {

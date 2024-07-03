@@ -13,13 +13,14 @@ class ListeSalarieEmploisResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var SalarieEmploiInformations[]|null
+     * @var list<SalarieEmploiInformations>|null
      */
     protected $listeSalarieEmplois;
 
     /**
-     * @return SalarieEmploiInformations[]|null
+     * @return list<SalarieEmploiInformations>|null
      */
     public function getListeSalarieEmplois(): ?array
     {
@@ -27,7 +28,7 @@ class ListeSalarieEmploisResponse
     }
 
     /**
-     * @param SalarieEmploiInformations[]|null $listeSalarieEmplois
+     * @param list<SalarieEmploiInformations>|null $listeSalarieEmplois
      */
     public function setListeSalarieEmplois(?array $listeSalarieEmplois): self
     {

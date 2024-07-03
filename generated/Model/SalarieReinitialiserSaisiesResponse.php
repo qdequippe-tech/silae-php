@@ -13,14 +13,17 @@ class SalarieReinitialiserSaisiesResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $saisiesHeuresReinitialisees;
+
     /**
      * @var int|null
      */
     protected $saisiesPrimesReinitialisees;
+
     /**
      * @var int|null
      */

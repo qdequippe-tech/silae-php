@@ -13,30 +13,37 @@ class CompteCollaborateurRoles
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $dataProtectionOfficier;
+
     /**
      * @var bool|null
      */
     protected $dirigeant;
+
     /**
      * @var bool|null
      */
     protected $referentPoleSocial;
+
     /**
      * @var bool|null
      */
     protected $responsableCommercial;
+
     /**
      * @var bool|null
      */
     protected $responsableFacturation;
+
     /**
      * @var bool|null
      */
     protected $responsableFormation;
+
     /**
      * @var bool|null
      */

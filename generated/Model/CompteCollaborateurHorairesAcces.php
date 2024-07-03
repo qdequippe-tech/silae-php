@@ -13,17 +13,19 @@ class CompteCollaborateurHorairesAcces
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var CompteCollaborateurHoraireAccesParJour[]|null
+     * @var list<CompteCollaborateurHoraireAccesParJour>|null
      */
     protected $accesJours;
+
     /**
      * @var string|null
      */
     protected $accesJoursFeries;
 
     /**
-     * @return CompteCollaborateurHoraireAccesParJour[]|null
+     * @return list<CompteCollaborateurHoraireAccesParJour>|null
      */
     public function getAccesJours(): ?array
     {
@@ -31,7 +33,7 @@ class CompteCollaborateurHorairesAcces
     }
 
     /**
-     * @param CompteCollaborateurHoraireAccesParJour[]|null $accesJours
+     * @param list<CompteCollaborateurHoraireAccesParJour>|null $accesJours
      */
     public function setAccesJours(?array $accesJours): self
     {

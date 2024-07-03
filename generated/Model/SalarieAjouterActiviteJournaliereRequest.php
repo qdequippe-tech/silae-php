@@ -13,14 +13,17 @@ class SalarieAjouterActiviteJournaliereRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var SalarieActiviteJournalierePeriode|null
      */
     protected $activiteJournalierePeriode;
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var string|null
      */

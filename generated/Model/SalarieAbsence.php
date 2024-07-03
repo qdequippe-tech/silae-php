@@ -13,70 +13,87 @@ class SalarieAbsence
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebutAbsence;
+
     /**
      * @var \DateTime|null
      */
     protected $dateFinAbsence;
+
     /**
      * @var string|null
      */
     protected $codeAbsence;
+
     /**
      * @var float|null
      */
     protected $dureeEnHeuresSiJourUnique;
+
     /**
      * @var float|null
      */
     protected $dureeEnJoursSiJourUnique;
+
     /**
      * @var float|null
      */
     protected $valeur1;
+
     /**
      * @var bool|null
      */
     protected $bValeur1;
+
     /**
      * @var float|null
      */
     protected $valeur2;
+
     /**
      * @var bool|null
      */
     protected $bValeur2;
+
     /**
      * @var float|null
      */
     protected $valeur3;
+
     /**
      * @var bool|null
      */
     protected $bValeur3;
+
     /**
      * @var float|null
      */
     protected $valeur4;
+
     /**
      * @var bool|null
      */
     protected $bValeur4;
+
     /**
      * @var float|null
      */
     protected $valeur5;
+
     /**
      * @var bool|null
      */
     protected $bValeur5;
+
     /**
      * @var string|null
      */
     protected $commentaire;
+
     /**
      * @var bool|null
      */

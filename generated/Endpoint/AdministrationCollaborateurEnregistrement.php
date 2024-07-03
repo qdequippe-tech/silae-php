@@ -7,6 +7,7 @@ use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurEnregistrementB
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurEnregistrementInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurEnregistrementUnauthorizedException;
 use QdequippeTech\Silae\Api\Model\AdministrationCollaborateurEnregistrementRequest;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
@@ -46,7 +47,7 @@ class AdministrationCollaborateurEnregistrement extends BaseEndpoint implements 
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -76,15 +77,20 @@ class AdministrationCollaborateurEnregistrement extends BaseEndpoint implements 
         if (200 === $status) {
             return null;
         }
+
         if (400 === $status) {
-            throw new AdministrationCollaborateurEnregistrementBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AdministrationCollaborateurEnregistrementBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new AdministrationCollaborateurEnregistrementUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AdministrationCollaborateurEnregistrementUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new AdministrationCollaborateurEnregistrementInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new AdministrationCollaborateurEnregistrementInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

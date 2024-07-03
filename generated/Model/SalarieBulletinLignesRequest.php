@@ -13,10 +13,12 @@ class SalarieBulletinLignesRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var RequeteSalarieBulletinLignes|null
      */
     protected $requeteSalarieBulletinLignes;
+
     /**
      * @var string|null
      */

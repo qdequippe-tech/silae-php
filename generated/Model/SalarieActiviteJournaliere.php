@@ -13,38 +13,47 @@ class SalarieActiviteJournaliere
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $jour;
+
     /**
      * @var float|null
      */
     protected $nombreHeures;
+
     /**
      * @var float|null
      */
     protected $heureDebut1;
+
     /**
      * @var float|null
      */
     protected $heureFin1;
+
     /**
      * @var float|null
      */
     protected $heureDebut2;
+
     /**
      * @var float|null
      */
     protected $heureFin2;
+
     /**
      * @var float|null
      */
     protected $heureDebut3;
+
     /**
      * @var float|null
      */
     protected $heureFin3;
+
     /**
      * @var bool|null
      */

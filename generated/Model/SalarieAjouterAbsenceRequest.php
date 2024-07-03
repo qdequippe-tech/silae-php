@@ -13,14 +13,17 @@ class SalarieAjouterAbsenceRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var SalarieAbsenceV2|null
      */
     protected $absence;
+
     /**
      * @var string|null
      */
     protected $matriculeSalarie;
+
     /**
      * @var string|null
      */

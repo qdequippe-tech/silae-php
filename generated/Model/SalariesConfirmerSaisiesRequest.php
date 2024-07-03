@@ -13,10 +13,12 @@ class SalariesConfirmerSaisiesRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var SalariesConfirmerSaisies|null
      */
     protected $confirmationSaisies;
+
     /**
      * @var string|null
      */

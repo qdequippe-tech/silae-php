@@ -13,13 +13,14 @@ class AcquisitionQuestionnaireCCNResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var QCCN[]|null
+     * @var list<QCCN>|null
      */
     protected $qccn;
 
     /**
-     * @return QCCN[]|null
+     * @return list<QCCN>|null
      */
     public function getQccn(): ?array
     {
@@ -27,7 +28,7 @@ class AcquisitionQuestionnaireCCNResponse
     }
 
     /**
-     * @param QCCN[]|null $qccn
+     * @param list<QCCN>|null $qccn
      */
     public function setQccn(?array $qccn): self
     {

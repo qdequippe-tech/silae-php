@@ -13,18 +13,22 @@ class AjouteCompteRenduEdi94Response
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $nbSalariesPresentsXML;
+
     /**
      * @var int|null
      */
     protected $nbSalariesTrouves;
+
     /**
      * @var int|null
      */
     protected $nbTauxSalariesCrees;
+
     /**
      * @var int|null
      */

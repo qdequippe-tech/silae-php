@@ -13,10 +13,12 @@ class ListeDossiersAgenceRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $codeAgence;
+
     /**
      * @var int|null
      */

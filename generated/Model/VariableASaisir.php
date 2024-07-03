@@ -13,42 +13,52 @@ class VariableASaisir
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nom;
+
     /**
      * @var string|null
      */
     protected $famille;
+
     /**
      * @var string|null
      */
     protected $libelleLong;
+
     /**
      * @var string|null
      */
     protected $libelleCourt;
+
     /**
      * @var int|null
      */
     protected $typeVariable;
+
     /**
      * @var string|null
      */
     protected $format;
+
     /**
      * @var string|null
      */
     protected $ordre;
+
     /**
      * @var int|null
      */
     protected $indiceCouleur;
+
     /**
      * @var bool|null
      */
     protected $masquee;
+
     /**
      * @var string|null
      */

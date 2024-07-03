@@ -13,46 +13,57 @@ class UtilisateurClient
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nom;
+
     /**
      * @var string|null
      */
     protected $prenom;
+
     /**
      * @var string|null
      */
     protected $mail;
+
     /**
      * @var string|null
      */
     protected $identifiant;
+
     /**
      * @var \DateTime|null
      */
     protected $debutValidite;
+
     /**
      * @var \DateTime|null
      */
     protected $finValidite;
+
     /**
      * @var bool|null
      */
     protected $accesComplet;
+
     /**
      * @var bool|null
      */
     protected $accesCompletAvecParametrageSimplifie;
+
     /**
      * @var bool|null
      */
     protected $accesCompletAvecParametrageComplet;
+
     /**
      * @var bool|null
      */
     protected $accesCompletAccesBureautique;
+
     /**
      * @var bool|null
      */

@@ -13,12 +13,14 @@ class AxeAnalytique
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $titreCategorie;
+
     /**
-     * @var SousCategorie[]|null
+     * @var list<SousCategorie>|null
      */
     protected $sousCategorie;
 
@@ -36,7 +38,7 @@ class AxeAnalytique
     }
 
     /**
-     * @return SousCategorie[]|null
+     * @return list<SousCategorie>|null
      */
     public function getSousCategorie(): ?array
     {
@@ -44,7 +46,7 @@ class AxeAnalytique
     }
 
     /**
-     * @param SousCategorie[]|null $sousCategorie
+     * @param list<SousCategorie>|null $sousCategorie
      */
     public function setSousCategorie(?array $sousCategorie): self
     {

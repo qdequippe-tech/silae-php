@@ -13,34 +13,42 @@ class ModificationChampValeursTypees
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomChamp;
+
     /**
      * @var string|null
      */
     protected $typeValeur;
+
     /**
      * @var int|null
      */
     protected $valeurINT32;
+
     /**
      * @var float|null
      */
     protected $valeurDOUBLE;
+
     /**
      * @var string|null
      */
     protected $valeurSTRING;
+
     /**
      * @var \DateTime|null
      */
     protected $valeurDATETIME;
+
     /**
      * @var int|null
      */
     protected $valeurBYTE;
+
     /**
      * @var bool|null
      */

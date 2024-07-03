@@ -13,62 +13,77 @@ class Organisme
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $codeOrganisme;
+
     /**
      * @var string|null
      */
     protected $codeInterne;
+
     /**
      * @var string|null
      */
     protected $codeNature;
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissement;
+
     /**
      * @var string|null
      */
     protected $numeroAffiliation;
+
     /**
      * @var int|null
      */
     protected $periodicite;
+
     /**
      * @var int|null
      */
     protected $jourPaiement;
+
     /**
      * @var string|null
      */
     protected $filtreSalaries;
+
     /**
      * @var string|null
      */
     protected $filtreCodesLibelles;
+
     /**
      * @var bool|null
      */
     protected $edi;
+
     /**
      * @var int|null
      */
     protected $ediModePaiement;
+
     /**
      * @var string|null
      */
     protected $numeroRattachement;
+
     /**
      * @var string|null
      */
     protected $codePopulation;
+
     /**
      * @var string|null
      */
     protected $codeOption;
+
     /**
      * @var string|null
      */

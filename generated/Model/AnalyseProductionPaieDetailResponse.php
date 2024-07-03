@@ -13,13 +13,14 @@ class AnalyseProductionPaieDetailResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var SalarieBase[]|null
+     * @var list<SalarieBase>|null
      */
     protected $salaires;
 
     /**
-     * @return SalarieBase[]|null
+     * @return list<SalarieBase>|null
      */
     public function getSalaires(): ?array
     {
@@ -27,7 +28,7 @@ class AnalyseProductionPaieDetailResponse
     }
 
     /**
-     * @param SalarieBase[]|null $salaires
+     * @param list<SalarieBase>|null $salaires
      */
     public function setSalaires(?array $salaires): self
     {

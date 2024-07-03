@@ -13,13 +13,14 @@ class ClassificationMetierCompleteResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var EmploiClassificationMetier[]|null
+     * @var list<EmploiClassificationMetier>|null
      */
     protected $emploisClassificationsMetiers;
 
     /**
-     * @return EmploiClassificationMetier[]|null
+     * @return list<EmploiClassificationMetier>|null
      */
     public function getEmploisClassificationsMetiers(): ?array
     {
@@ -27,7 +28,7 @@ class ClassificationMetierCompleteResponse
     }
 
     /**
-     * @param EmploiClassificationMetier[]|null $emploisClassificationsMetiers
+     * @param list<EmploiClassificationMetier>|null $emploisClassificationsMetiers
      */
     public function setEmploisClassificationsMetiers(?array $emploisClassificationsMetiers): self
     {

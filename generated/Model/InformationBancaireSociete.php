@@ -13,26 +13,32 @@ class InformationBancaireSociete
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomInterneEtablissement;
+
     /**
      * @var string|null
      */
     protected $rib;
+
     /**
      * @var int|null
      */
     protected $formatFichiers;
+
     /**
      * @var string|null
      */
     protected $iban;
+
     /**
      * @var string|null
      */
     protected $bic;
+
     /**
      * @var string|null
      */

@@ -13,14 +13,17 @@ class ModificationInformationBancaireSocieteRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $sepaModeComptabilisation;
+
     /**
-     * @var InformationBancaireSociete[]|null
+     * @var list<InformationBancaireSociete>|null
      */
     protected $informationBancaireSociete;
+
     /**
      * @var string|null
      */
@@ -40,7 +43,7 @@ class ModificationInformationBancaireSocieteRequest
     }
 
     /**
-     * @return InformationBancaireSociete[]|null
+     * @return list<InformationBancaireSociete>|null
      */
     public function getInformationBancaireSociete(): ?array
     {
@@ -48,7 +51,7 @@ class ModificationInformationBancaireSocieteRequest
     }
 
     /**
-     * @param InformationBancaireSociete[]|null $informationBancaireSociete
+     * @param list<InformationBancaireSociete>|null $informationBancaireSociete
      */
     public function setInformationBancaireSociete(?array $informationBancaireSociete): self
     {

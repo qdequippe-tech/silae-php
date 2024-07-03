@@ -13,10 +13,12 @@ class SalariesStockVarRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var RequeteSalariesStockVar|null
      */
     protected $requeteSalariesStockVar;
+
     /**
      * @var string|null
      */

@@ -13,38 +13,47 @@ class StatistiquesProduction
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $periode;
+
     /**
      * @var int|null
      */
     protected $nbBulletinsOriginaux;
+
     /**
      * @var int|null
      */
     protected $nbBulletinsOriginauxACalculer;
+
     /**
      * @var int|null
      */
     protected $nbEntrees;
+
     /**
      * @var int|null
      */
     protected $nbSorties;
+
     /**
      * @var int|null
      */
     protected $nbDeclarations;
+
     /**
      * @var int|null
      */
     protected $nbDUE;
+
     /**
      * @var int|null
      */
     protected $nbAttestationsPoleEmploi;
+
     /**
      * @var int|null
      */

@@ -13,14 +13,17 @@ class ModificationGrilleHoraireEtablissementRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomEtablissement;
+
     /**
      * @var ModificationHoraireEtablissement|null
      */
     protected $horaire;
+
     /**
      * @var string|null
      */

@@ -13,12 +13,14 @@ class SalarieActiviteJournalierePeriode
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $periodeActivite;
+
     /**
-     * @var SalarieActiviteJournaliere[]|null
+     * @var list<SalarieActiviteJournaliere>|null
      */
     protected $calendrier;
 
@@ -36,7 +38,7 @@ class SalarieActiviteJournalierePeriode
     }
 
     /**
-     * @return SalarieActiviteJournaliere[]|null
+     * @return list<SalarieActiviteJournaliere>|null
      */
     public function getCalendrier(): ?array
     {
@@ -44,7 +46,7 @@ class SalarieActiviteJournalierePeriode
     }
 
     /**
-     * @param SalarieActiviteJournaliere[]|null $calendrier
+     * @param list<SalarieActiviteJournaliere>|null $calendrier
      */
     public function setCalendrier(?array $calendrier): self
     {

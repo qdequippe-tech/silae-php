@@ -29,6 +29,7 @@ final class Client extends ApiClient
         ]));
         $authenticationRequest = $this->requestFactory->createRequest('POST', $uri);
         $authenticationRequest = $authenticationRequest->withHeader('Content-Type', 'application/x-www-form-urlencoded');
+
         $response = $this->httpClient->sendRequest($authenticationRequest);
 
         if (200 === $response->getStatusCode()) {

@@ -13,18 +13,22 @@ class Agency
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $internalId;
+
     /**
      * @var bool|null
      */
     protected $isPrincipal;
+
     /**
      * @var string|null
      */
     protected $codeClientFacturation;
+
     /**
      * @var string|null
      */

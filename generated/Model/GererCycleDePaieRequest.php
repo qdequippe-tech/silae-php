@@ -13,10 +13,12 @@ class GererCycleDePaieRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var DossierTache|null
      */
     protected $dossierTache;
+
     /**
      * @var string|null
      */

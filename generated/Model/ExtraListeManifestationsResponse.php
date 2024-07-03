@@ -13,13 +13,14 @@ class ExtraListeManifestationsResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var ExtraManifestation[]|null
+     * @var list<ExtraManifestation>|null
      */
     protected $manifestations;
 
     /**
-     * @return ExtraManifestation[]|null
+     * @return list<ExtraManifestation>|null
      */
     public function getManifestations(): ?array
     {
@@ -27,7 +28,7 @@ class ExtraListeManifestationsResponse
     }
 
     /**
-     * @param ExtraManifestation[]|null $manifestations
+     * @param list<ExtraManifestation>|null $manifestations
      */
     public function setManifestations(?array $manifestations): self
     {

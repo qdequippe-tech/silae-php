@@ -13,30 +13,37 @@ class StatutRecupererImageAsynchroneResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $image;
+
     /**
-     * @var ImageAnnexe[]|null
+     * @var list<ImageAnnexe>|null
      */
     protected $imagesAnnexes;
+
     /**
      * @var string|null
      */
     protected $warning;
+
     /**
      * @var string|null
      */
     protected $statut;
+
     /**
      * @var string|null
      */
     protected $messageErreur;
+
     /**
      * @var float|null
      */
     protected $progression;
+
     /**
      * @var string|null
      */
@@ -56,7 +63,7 @@ class StatutRecupererImageAsynchroneResponse
     }
 
     /**
-     * @return ImageAnnexe[]|null
+     * @return list<ImageAnnexe>|null
      */
     public function getImagesAnnexes(): ?array
     {
@@ -64,7 +71,7 @@ class StatutRecupererImageAsynchroneResponse
     }
 
     /**
-     * @param ImageAnnexe[]|null $imagesAnnexes
+     * @param list<ImageAnnexe>|null $imagesAnnexes
      */
     public function setImagesAnnexes(?array $imagesAnnexes): self
     {

@@ -13,50 +13,62 @@ class StatistiquesEntreesSortiesDetails
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $periode;
+
     /**
      * @var int|null
      */
     protected $entreesCDINouveauSalarie;
+
     /**
      * @var int|null
      */
     protected $entreesCDDNouveauSalarie;
+
     /**
      * @var int|null
      */
     protected $entreesAutreNouveauSalarie;
+
     /**
      * @var int|null
      */
     protected $entreesCDINouvelEmploi;
+
     /**
      * @var int|null
      */
     protected $entreesCDDNouvelEmploi;
+
     /**
      * @var int|null
      */
     protected $entreesAutreNouvelEmploi;
+
     /**
      * @var int|null
      */
     protected $sortiesFinCDD;
+
     /**
      * @var int|null
      */
     protected $sortiesDemission;
+
     /**
      * @var int|null
      */
     protected $sortiesRuptureConventionnelle;
+
     /**
      * @var int|null
      */
     protected $sortiesLicenciement;
+
     /**
      * @var int|null
      */

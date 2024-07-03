@@ -13,14 +13,17 @@ class StatistiquesDADS
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $annee;
+
     /**
      * @var int|null
      */
     protected $nbSalaries;
+
     /**
      * @var int|null
      */

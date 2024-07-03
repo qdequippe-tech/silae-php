@@ -13,10 +13,12 @@ class ImportXmlParametrageOrganismeDSNResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $compteRendu;
+
     /**
      * @var string|null
      */

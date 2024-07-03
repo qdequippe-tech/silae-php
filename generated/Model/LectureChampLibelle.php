@@ -13,14 +13,17 @@ class LectureChampLibelle
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $nomChamp;
+
     /**
      * @var int|null
      */
     protected $valeurByte;
+
     /**
      * @var string|null
      */

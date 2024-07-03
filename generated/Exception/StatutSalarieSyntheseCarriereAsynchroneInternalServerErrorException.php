@@ -7,20 +7,9 @@ use QdequippeTech\Silae\Api\Model\ApiErrors;
 
 class StatutSalarieSyntheseCarriereAsynchroneInternalServerErrorException extends InternalServerErrorException
 {
-    /**
-     * @var ApiErrors
-     */
-    private $apiErrors;
-    /**
-     * @var ResponseInterface
-     */
-    private $response;
-
-    public function __construct(ApiErrors $apiErrors, ResponseInterface $response)
+    public function __construct(private readonly ApiErrors $apiErrors, private readonly ResponseInterface $response)
     {
         parent::__construct('InternalServerError');
-        $this->apiErrors = $apiErrors;
-        $this->response = $response;
     }
 
     public function getApiErrors(): ApiErrors

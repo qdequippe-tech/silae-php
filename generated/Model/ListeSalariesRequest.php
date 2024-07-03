@@ -13,10 +13,12 @@ class ListeSalariesRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var ListeSalariesOptions|null
      */
     protected $listeSalariesOptions;
+
     /**
      * @var string|null
      */

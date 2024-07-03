@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalarieRecupererPeriodeDernierBulletinCalculeBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieRecupererPeriodeDernierBulletinCalculeInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieRecupererPeriodeDernierBulletinCalculeUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest;
 use QdequippeTech\Silae\Api\Model\SalarieRecupererPeriodeDernierBulletinCalculeResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class SalarieRecupererPeriodeDernierBulletinCalcule extends BaseEndpoint impleme
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class SalarieRecupererPeriodeDernierBulletinCalcule extends BaseEndpoint impleme
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\SalarieRecupererPeriodeDernierBulletinCalculeResponse', 'json');
+            return $serializer->deserialize($body, SalarieRecupererPeriodeDernierBulletinCalculeResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new SalarieRecupererPeriodeDernierBulletinCalculeBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalarieRecupererPeriodeDernierBulletinCalculeBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new SalarieRecupererPeriodeDernierBulletinCalculeUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalarieRecupererPeriodeDernierBulletinCalculeUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new SalarieRecupererPeriodeDernierBulletinCalculeInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new SalarieRecupererPeriodeDernierBulletinCalculeInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

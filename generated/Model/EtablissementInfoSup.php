@@ -13,1130 +13,1412 @@ class EtablissementInfoSup
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var bool|null
      */
     protected $bETAAcquisitionHeuresDIF;
+
     /**
      * @var float|null
      */
     protected $etAAcquisitionHeuresDIF;
+
     /**
      * @var bool|null
      */
     protected $bETAAssimiliesCadresPrevoyanceNonCadre;
+
     /**
      * @var bool|null
      */
     protected $etAAssimiliesCadresPrevoyanceNonCadre;
+
     /**
      * @var bool|null
      */
     protected $bETABulletinEditionDIF;
+
     /**
      * @var int|null
      */
     protected $etABulletinEditionDIF;
+
     /**
      * @var bool|null
      */
     protected $bETACalcAutoIJSSInactif;
+
     /**
      * @var bool|null
      */
     protected $etACalcAutoIJSSInactif;
+
     /**
      * @var bool|null
      */
     protected $bETACalcAutoMaintienInactif;
+
     /**
      * @var bool|null
      */
     protected $etACalcAutoMaintienInactif;
+
     /**
      * @var bool|null
      */
     protected $bETACDDPaiMensIndCP;
+
     /**
      * @var bool|null
      */
     protected $etACDDPaiMensIndCP;
+
     /**
      * @var bool|null
      */
     protected $bETACDDPaiMensIndPrecarite;
+
     /**
      * @var bool|null
      */
     protected $etACDDPaiMensIndPrecarite;
+
     /**
      * @var bool|null
      */
     protected $bETAChaineFabricationDateLimiteAbsences;
+
     /**
      * @var string|null
      */
     protected $etAChaineFabricationDateLimiteAbsences;
+
     /**
      * @var bool|null
      */
     protected $bETAClotureCPArrondiInactif;
+
     /**
      * @var bool|null
      */
     protected $etAClotureCPArrondiInactif;
+
     /**
      * @var bool|null
      */
     protected $bETAClotureCPReport;
+
     /**
      * @var bool|null
      */
     protected $etAClotureCPReport;
+
     /**
      * @var bool|null
      */
     protected $bETAClotureRTTReport;
+
     /**
      * @var bool|null
      */
     protected $etAClotureRTTReport;
+
     /**
      * @var bool|null
      */
     protected $bETACodeBTAPEMSA;
+
     /**
      * @var string|null
      */
     protected $etACodeBTAPEMSA;
+
     /**
      * @var bool|null
      */
     protected $bETACodeRegion;
+
     /**
      * @var string|null
      */
     protected $etACodeRegion;
+
     /**
      * @var bool|null
      */
     protected $bETADadsInactive;
+
     /**
      * @var bool|null
      */
     protected $etADadsInactive;
+
     /**
      * @var bool|null
      */
     protected $bETADecalageActiviteJournaliere;
+
     /**
      * @var int|null
      */
     protected $etADecalageActiviteJournaliere;
+
     /**
      * @var bool|null
      */
     protected $bETADecoupageActiviteJournaliere;
+
     /**
      * @var int|null
      */
     protected $etADecoupageActiviteJournaliere;
+
     /**
      * @var bool|null
      */
     protected $bETADureeHebdo;
+
     /**
      * @var float|null
      */
     protected $etADureeHebdo;
+
     /**
      * @var bool|null
      */
     protected $bETAEmployeurCivilite;
+
     /**
      * @var int|null
      */
     protected $etAEmployeurCivilite;
+
     /**
      * @var bool|null
      */
     protected $bETAEmployeurNom;
+
     /**
      * @var string|null
      */
     protected $etAEmployeurNom;
+
     /**
      * @var bool|null
      */
     protected $bETAEmployeurPrenom;
+
     /**
      * @var string|null
      */
     protected $etAEmployeurPrenom;
+
     /**
      * @var bool|null
      */
     protected $bETAEmployeurQualite;
+
     /**
      * @var int|null
      */
     protected $etAEmployeurQualite;
+
     /**
      * @var bool|null
      */
     protected $bETAEmployeurQualiteAutre;
+
     /**
      * @var string|null
      */
     protected $etAEmployeurQualiteAutre;
+
     /**
      * @var bool|null
      */
     protected $bETAExoJEIDateDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $etAExoJEIDateDebut;
+
     /**
      * @var bool|null
      */
     protected $bETAForceDroitCICE;
+
     /**
      * @var bool|null
      */
     protected $etAForceDroitCICE;
+
     /**
      * @var bool|null
      */
     protected $bETAFractionnementCP;
+
     /**
      * @var bool|null
      */
     protected $etAFractionnementCP;
+
     /**
      * @var bool|null
      */
     protected $bETAFractionnementCPMoisCalcSpe;
+
     /**
      * @var int|null
      */
     protected $etAFractionnementCPMoisCalcSpe;
+
     /**
      * @var bool|null
      */
     protected $bETAFractionnementCPMoisDebut;
+
     /**
      * @var int|null
      */
     protected $etAFractionnementCPMoisDebut;
+
     /**
      * @var bool|null
      */
     protected $bETAFractionnementCPMoisFin;
+
     /**
      * @var int|null
      */
     protected $etAFractionnementCPMoisFin;
+
     /**
      * @var bool|null
      */
     protected $bETAFSConserverCondAnc;
+
     /**
      * @var bool|null
      */
     protected $etAFSConserverCondAnc;
+
     /**
      * @var bool|null
      */
     protected $bETAFSMethode;
+
     /**
      * @var int|null
      */
     protected $etAFSMethode;
+
     /**
      * @var bool|null
      */
     protected $bETAGestionCPExclEnJours;
+
     /**
      * @var bool|null
      */
     protected $etAGestionCPExclEnJours;
+
     /**
      * @var bool|null
      */
     protected $bETAJourDebSemActiviteJournaliere;
+
     /**
      * @var int|null
      */
     protected $etAJourDebSemActiviteJournaliere;
+
     /**
      * @var bool|null
      */
     protected $bETAJourneeSolidarite;
+
     /**
      * @var string|null
      */
     protected $etAJourneeSolidarite;
+
     /**
      * @var bool|null
      */
     protected $bETAJoursFeriesTravailles;
+
     /**
      * @var string|null
      */
     protected $etAJoursFeriesTravailles;
+
     /**
      * @var bool|null
      */
     protected $bETAMethodeArbitrage;
+
     /**
      * @var int|null
      */
     protected $etAMethodeArbitrage;
+
     /**
      * @var bool|null
      */
     protected $bETAMethodeCalculMaintien;
+
     /**
      * @var int|null
      */
     protected $etAMethodeCalculMaintien;
+
     /**
      * @var bool|null
      */
     protected $bETAMethodeCalculMaintienNbM;
+
     /**
      * @var int|null
      */
     protected $etAMethodeCalculMaintienNbM;
+
     /**
      * @var bool|null
      */
     protected $bETAMethodeRetenueCP;
+
     /**
      * @var int|null
      */
     protected $etAMethodeRetenueCP;
+
     /**
      * @var bool|null
      */
     protected $bETAMethodeSuiviAbsences;
+
     /**
      * @var int|null
      */
     protected $etAMethodeSuiviAbsences;
+
     /**
      * @var bool|null
      */
     protected $bETAMethodeSuiviAbsencesDeductionHM;
+
     /**
      * @var int|null
      */
     protected $etAMethodeSuiviAbsencesDeductionHM;
+
     /**
      * @var bool|null
      */
     protected $bETAMethodeSuiviAbsencesJC;
+
     /**
      * @var int|null
      */
     protected $etAMethodeSuiviAbsencesJC;
+
     /**
      * @var bool|null
      */
     protected $bETAMethodeSuiviCP;
+
     /**
      * @var int|null
      */
     protected $etAMethodeSuiviCP;
+
     /**
      * @var bool|null
      */
     protected $bETAMethodeSuiviCPAcqMois;
+
     /**
      * @var float|null
      */
     protected $etAMethodeSuiviCPAcqMois;
+
     /**
      * @var bool|null
      */
     protected $bETAModeSaisieActiviteJournaliere;
+
     /**
      * @var int|null
      */
     protected $etAModeSaisieActiviteJournaliere;
+
     /**
      * @var bool|null
      */
     protected $bETAMoisAcquisitionDIF;
+
     /**
      * @var int|null
      */
     protected $etAMoisAcquisitionDIF;
+
     /**
      * @var bool|null
      */
     protected $bETAMoisClotureCP;
+
     /**
      * @var int|null
      */
     protected $etAMoisClotureCP;
+
     /**
      * @var bool|null
      */
     protected $bETAMoisClotureFJ;
+
     /**
      * @var int|null
      */
     protected $etAMoisClotureFJ;
+
     /**
      * @var bool|null
      */
     protected $bETAMoisClotureRepos;
+
     /**
      * @var int|null
      */
     protected $etAMoisClotureRepos;
+
     /**
      * @var bool|null
      */
     protected $bETAMoisClotureRTT;
+
     /**
      * @var int|null
      */
     protected $etAMoisClotureRTT;
+
     /**
      * @var bool|null
      */
     protected $bETANomInterne;
+
     /**
      * @var string|null
      */
     protected $etANomInterne;
+
     /**
      * @var bool|null
      */
     protected $bETANonSoumisCVAE;
+
     /**
      * @var bool|null
      */
     protected $etANonSoumisCVAE;
+
     /**
      * @var bool|null
      */
     protected $bETAPeriodeRegulTauxAT1;
+
     /**
      * @var \DateTime|null
      */
     protected $etAPeriodeRegulTauxAT1;
+
     /**
      * @var bool|null
      */
     protected $bETAPeriodeRegulTauxAT2;
+
     /**
      * @var \DateTime|null
      */
     protected $etAPeriodeRegulTauxAT2;
+
     /**
      * @var bool|null
      */
     protected $bETAPeriodeRegulTauxAT3;
+
     /**
      * @var \DateTime|null
      */
     protected $etAPeriodeRegulTauxAT3;
+
     /**
      * @var bool|null
      */
     protected $bETAPeriodeRegulTauxAT4;
+
     /**
      * @var \DateTime|null
      */
     protected $etAPeriodeRegulTauxAT4;
+
     /**
      * @var bool|null
      */
     protected $bETAPeriodeRegulTauxAT5;
+
     /**
      * @var \DateTime|null
      */
     protected $etAPeriodeRegulTauxAT5;
+
     /**
      * @var bool|null
      */
     protected $bETAPeriodeRegulTauxAT6;
+
     /**
      * @var \DateTime|null
      */
     protected $etAPeriodeRegulTauxAT6;
+
     /**
      * @var bool|null
      */
     protected $bETAPeriodeRegulTauxAT7;
+
     /**
      * @var \DateTime|null
      */
     protected $etAPeriodeRegulTauxAT7;
+
     /**
      * @var bool|null
      */
     protected $bETAPersonneAContacterMel;
+
     /**
      * @var string|null
      */
     protected $etAPersonneAContacterMel;
+
     /**
      * @var bool|null
      */
     protected $bETAPersonneAContacterNom;
+
     /**
      * @var string|null
      */
     protected $etAPersonneAContacterNom;
+
     /**
      * @var bool|null
      */
     protected $bETAPersonneAContacterPrenom;
+
     /**
      * @var string|null
      */
     protected $etAPersonneAContacterPrenom;
+
     /**
      * @var bool|null
      */
     protected $bETAPersonneAContacterTel;
+
     /**
      * @var string|null
      */
     protected $etAPersonneAContacterTel;
+
     /**
      * @var bool|null
      */
     protected $bETAPrefixeMatriculesSalaries;
+
     /**
      * @var string|null
      */
     protected $etAPrefixeMatriculesSalaries;
+
     /**
      * @var bool|null
      */
     protected $bETARTTEnHeures;
+
     /**
      * @var float|null
      */
     protected $etARTTEnHeures;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G0100018001;
+
     /**
      * @var string|null
      */
     protected $etAS41G0100018001;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G0100018006;
+
     /**
      * @var string|null
      */
     protected $etAS41G0100018006;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000251;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000251;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000252;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000252;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000253;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000253;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000254;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000254;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000255;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000255;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000256;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000256;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000257;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000257;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000261;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000261;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000262;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000262;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000263;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000263;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000264;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000264;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000265;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000265;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000266;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000266;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000267;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000267;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000271;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000271;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000272;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000272;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000273;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000273;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000274;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000274;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000275;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000275;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000276;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000276;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000277;
+
     /**
      * @var string|null
      */
     protected $etAS41G01000277;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000281;
+
     /**
      * @var float|null
      */
     protected $etAS41G01000281;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000282;
+
     /**
      * @var float|null
      */
     protected $etAS41G01000282;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000283;
+
     /**
      * @var float|null
      */
     protected $etAS41G01000283;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000284;
+
     /**
      * @var float|null
      */
     protected $etAS41G01000284;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000285;
+
     /**
      * @var float|null
      */
     protected $etAS41G01000285;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000286;
+
     /**
      * @var float|null
      */
     protected $etAS41G01000286;
+
     /**
      * @var bool|null
      */
     protected $bETAS41G01000287;
+
     /**
      * @var float|null
      */
     protected $etAS41G01000287;
+
     /**
      * @var bool|null
      */
     protected $bETASaisieManuelleHeuresAbsences;
+
     /**
      * @var bool|null
      */
     protected $etASaisieManuelleHeuresAbsences;
+
     /**
      * @var bool|null
      */
     protected $bETASoumisTaxeAppr;
+
     /**
      * @var bool|null
      */
     protected $etASoumisTaxeAppr;
+
     /**
      * @var bool|null
      */
     protected $bETASoumisTaxeApprAvecMajoration;
+
     /**
      * @var bool|null
      */
     protected $etASoumisTaxeApprAvecMajoration;
+
     /**
      * @var bool|null
      */
     protected $bETASoumisTaxeSalaires;
+
     /**
      * @var bool|null
      */
     protected $etASoumisTaxeSalaires;
+
     /**
      * @var bool|null
      */
     protected $bETASoumisTaxeSalairesPctImp;
+
     /**
      * @var float|null
      */
     protected $etASoumisTaxeSalairesPctImp;
+
     /**
      * @var bool|null
      */
     protected $bETASousMethodeSuiviAbsences;
+
     /**
      * @var int|null
      */
     protected $etASousMethodeSuiviAbsences;
+
     /**
      * @var bool|null
      */
     protected $bETASousMethodeSuiviAbsencesFJ;
+
     /**
      * @var int|null
      */
     protected $etASousMethodeSuiviAbsencesFJ;
+
     /**
      * @var bool|null
      */
     protected $bETASubrogation;
+
     /**
      * @var bool|null
      */
     protected $etASubrogation;
+
     /**
      * @var bool|null
      */
     protected $bETASubrogationVersEtaPrincipal;
+
     /**
      * @var bool|null
      */
     protected $etASubrogationVersEtaPrincipal;
+
     /**
      * @var bool|null
      */
     protected $bETATassageAbsencesJours;
+
     /**
      * @var int|null
      */
     protected $etATassageAbsencesJours;
+
     /**
      * @var bool|null
      */
     protected $bETATauxVersementTrs;
+
     /**
      * @var float|null
      */
     protected $etATauxVersementTrs;
+
     /**
      * @var bool|null
      */
     protected $bETATaxeSalairesAbattement;
+
     /**
      * @var bool|null
      */
     protected $etATaxeSalairesAbattement;
+
     /**
      * @var bool|null
      */
     protected $bETATaxeSalairesSurSeuilsAnnuel;
+
     /**
      * @var bool|null
      */
     protected $etATaxeSalairesSurSeuilsAnnuel;
+
     /**
      * @var bool|null
      */
     protected $bETATitresTrs;
+
     /**
      * @var bool|null
      */
     protected $etATitresTrs;
+
     /**
      * @var bool|null
      */
     protected $bETATResto;
+
     /**
      * @var bool|null
      */
     protected $etATResto;
+
     /**
      * @var bool|null
      */
     protected $bETATRestoNomVariable;
+
     /**
      * @var string|null
      */
     protected $etATRestoNomVariable;
+
     /**
      * @var bool|null
      */
     protected $bETATRestoPartSalariale;
+
     /**
      * @var float|null
      */
     protected $etATRestoPartSalariale;
+
     /**
      * @var bool|null
      */
     protected $bETATypeAcquisitionDIF;
+
     /**
      * @var int|null
      */
     protected $etATypeAcquisitionDIF;
+
     /**
      * @var bool|null
      */
     protected $bETAVTACodeRegion;
+
     /**
      * @var string|null
      */
     protected $etAVTACodeRegion;
+
     /**
      * @var bool|null
      */
     protected $bETAVTATaux;
+
     /**
      * @var float|null
      */
     protected $etAVTATaux;
+
     /**
      * @var bool|null
      */
     protected $bETAVTrsAuto;
+
     /**
      * @var bool|null
      */
     protected $etAVTrsAuto;
+
     /**
      * @var bool|null
      */
     protected $bINTBTQC;
+
     /**
      * @var string|null
      */
     protected $inTBTQC;
+
     /**
      * @var bool|null
      */
     protected $bINTCivilite;
+
     /**
      * @var int|null
      */
     protected $inTCivilite;
+
     /**
      * @var bool|null
      */
     protected $bINTCodePostal;
+
     /**
      * @var string|null
      */
     protected $inTCodePostal;
+
     /**
      * @var bool|null
      */
     protected $bINTCodePostalJF;
+
     /**
      * @var string|null
      */
     protected $inTCodePostalJF;
+
     /**
      * @var bool|null
      */
     protected $bINTCommune;
+
     /**
      * @var string|null
      */
     protected $inTCommune;
+
     /**
      * @var bool|null
      */
     protected $bINTCommuneINSEE;
+
     /**
      * @var string|null
      */
     protected $inTCommuneINSEE;
+
     /**
      * @var bool|null
      */
     protected $bINTComplementAdresse;
+
     /**
      * @var string|null
      */
     protected $inTComplementAdresse;
+
     /**
      * @var bool|null
      */
     protected $bINTDateDeces;
+
     /**
      * @var \DateTime|null
      */
     protected $inTDateDeces;
+
     /**
      * @var bool|null
      */
     protected $bINTDateNaissance;
+
     /**
      * @var \DateTime|null
      */
     protected $inTDateNaissance;
+
     /**
      * @var bool|null
      */
     protected $bINTEnseigne;
+
     /**
      * @var string|null
      */
     protected $inTEnseigne;
+
     /**
      * @var bool|null
      */
     protected $bINTFax;
+
     /**
      * @var string|null
      */
     protected $inTFax;
+
     /**
      * @var bool|null
      */
     protected $bINTFormeJuridique;
+
     /**
      * @var string|null
      */
     protected $inTFormeJuridique;
+
     /**
      * @var bool|null
      */
     protected $bINTMel;
+
     /**
      * @var string|null
      */
     protected $inTMel;
+
     /**
      * @var bool|null
      */
     protected $bINTNAF;
+
     /**
      * @var string|null
      */
     protected $inTNAF;
+
     /**
      * @var bool|null
      */
     protected $bINTNomPays;
+
     /**
      * @var string|null
      */
     protected $inTNomPays;
+
     /**
      * @var bool|null
      */
     protected $bINTNomUsuel;
+
     /**
      * @var string|null
      */
     protected $inTNomUsuel;
+
     /**
      * @var bool|null
      */
     protected $bINTNomVille;
+
     /**
      * @var string|null
      */
     protected $inTNomVille;
+
     /**
      * @var bool|null
      */
     protected $bINTNomVoie;
+
     /**
      * @var string|null
      */
     protected $inTNomVoie;
+
     /**
      * @var bool|null
      */
     protected $bINTNumVoie;
+
     /**
      * @var string|null
      */
     protected $inTNumVoie;
+
     /**
      * @var bool|null
      */
     protected $bINTPaysISO;
+
     /**
      * @var string|null
      */
     protected $inTPaysISO;
+
     /**
      * @var bool|null
      */
     protected $bINTPaysISOJF;
+
     /**
      * @var string|null
      */
     protected $inTPaysISOJF;
+
     /**
      * @var bool|null
      */
     protected $bINTPrenom;
+
     /**
      * @var string|null
      */
     protected $inTPrenom;
+
     /**
      * @var bool|null
      */
     protected $bINTRaisonSociale;
+
     /**
      * @var string|null
      */
     protected $inTRaisonSociale;
+
     /**
      * @var bool|null
      */
     protected $bINTSiret;
+
     /**
      * @var string|null
      */
     protected $inTSiret;
+
     /**
      * @var bool|null
      */
     protected $bINTSiteWeb;
+
     /**
      * @var string|null
      */
     protected $inTSiteWeb;
+
     /**
      * @var bool|null
      */
     protected $bINTTelBureau;
+
     /**
      * @var string|null
      */

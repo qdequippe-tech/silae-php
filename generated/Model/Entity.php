@@ -13,18 +13,22 @@ class Entity
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var int|null
      */
     protected $id;
+
     /**
      * @var string|null
      */
     protected $name;
+
     /**
      * @var \DateTime|null
      */
     protected $validityEndDate;
+
     /**
      * @var \DateTime|null
      */

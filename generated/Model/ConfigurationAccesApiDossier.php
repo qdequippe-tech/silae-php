@@ -13,18 +13,22 @@ class ConfigurationAccesApiDossier
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var string|null
      */
     protected $numeroDossier;
+
     /**
      * @var string|null
      */
     protected $raisonSociale;
+
     /**
      * @var string|null
      */
     protected $agence;
+
     /**
      * @var string|null
      */

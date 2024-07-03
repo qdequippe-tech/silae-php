@@ -13,18 +13,22 @@ class ModificationPersonnesLieesRequest
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var PersonneLiee|null
      */
     protected $conjoint;
+
     /**
-     * @var PersonneLiee[]|null
+     * @var list<PersonneLiee>|null
      */
     protected $personnesLiees;
+
     /**
      * @var string|null
      */
     protected $matricule;
+
     /**
      * @var string|null
      */
@@ -44,7 +48,7 @@ class ModificationPersonnesLieesRequest
     }
 
     /**
-     * @return PersonneLiee[]|null
+     * @return list<PersonneLiee>|null
      */
     public function getPersonnesLiees(): ?array
     {
@@ -52,7 +56,7 @@ class ModificationPersonnesLieesRequest
     }
 
     /**
-     * @param PersonneLiee[]|null $personnesLiees
+     * @param list<PersonneLiee>|null $personnesLiees
      */
     public function setPersonnesLiees(?array $personnesLiees): self
     {

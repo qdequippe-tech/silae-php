@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ImportXmlParametrageOrganismeDSNBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ImportXmlParametrageOrganismeDSNInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ImportXmlParametrageOrganismeDSNUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ImportXmlParametrageOrganismeDSNRequest;
 use QdequippeTech\Silae\Api\Model\ImportXmlParametrageOrganismeDSNResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class ImportXmlParametrageOrganismeDSN extends BaseEndpoint implements Endpoint
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class ImportXmlParametrageOrganismeDSN extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ImportXmlParametrageOrganismeDSNResponse', 'json');
+            return $serializer->deserialize($body, ImportXmlParametrageOrganismeDSNResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new ImportXmlParametrageOrganismeDSNBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ImportXmlParametrageOrganismeDSNBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new ImportXmlParametrageOrganismeDSNUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ImportXmlParametrageOrganismeDSNUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new ImportXmlParametrageOrganismeDSNInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new ImportXmlParametrageOrganismeDSNInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

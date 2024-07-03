@@ -13,210 +13,262 @@ class SpectacleSalarieAffectation
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebut;
+
     /**
      * @var \DateTime|null
      */
     protected $dateFin;
+
     /**
      * @var string|null
      */
     protected $numeroObjet;
+
     /**
      * @var string|null
      */
     protected $referenceExterneSpectacle;
+
     /**
      * @var bool|null
      */
     protected $aemInitiale;
+
     /**
      * @var bool|null
      */
     protected $aemComplementaire;
+
     /**
      * @var \DateTime|null
      */
     protected $dateDebutAEMInitiale;
+
     /**
      * @var \DateTime|null
      */
     protected $dateFinAEMInitiale;
+
     /**
      * @var bool|null
      */
     protected $docsFinContrat;
+
     /**
      * @var float|null
      */
     protected $tauxHoraire;
+
     /**
      * @var float|null
      */
     protected $nbH;
+
     /**
      * @var float|null
      */
     protected $nbCachets;
+
     /**
      * @var float|null
      */
     protected $puCachet;
+
     /**
      * @var int|null
      */
     protected $typeCachet;
+
     /**
      * @var bool|null
      */
     protected $montantNet;
+
     /**
      * @var bool|null
      */
     protected $montantCoutGlobal;
+
     /**
      * @var float|null
      */
     protected $nbJours;
+
     /**
      * @var float|null
      */
     protected $nbHRepet;
+
     /**
      * @var float|null
      */
     protected $mtHRepet;
+
     /**
      * @var string|null
      */
     protected $hLibreCode1;
+
     /**
      * @var float|null
      */
     protected $hLibreValeur1;
+
     /**
      * @var string|null
      */
     protected $hLibreCode2;
+
     /**
      * @var float|null
      */
     protected $hLibreValeur2;
+
     /**
      * @var string|null
      */
     protected $hLibreCode3;
+
     /**
      * @var float|null
      */
     protected $hLibreValeur3;
+
     /**
      * @var string|null
      */
     protected $hLibreCode4;
+
     /**
      * @var float|null
      */
     protected $hLibreValeur4;
+
     /**
      * @var string|null
      */
     protected $hLibreCode5;
+
     /**
      * @var float|null
      */
     protected $hLibreValeur5;
+
     /**
      * @var string|null
      */
     protected $hLibreCode6;
+
     /**
      * @var float|null
      */
     protected $hLibreValeur6;
+
     /**
      * @var string|null
      */
     protected $variableCode1;
+
     /**
      * @var float|null
      */
     protected $variableValeur1;
+
     /**
      * @var string|null
      */
     protected $variableCode2;
+
     /**
      * @var float|null
      */
     protected $variableValeur2;
+
     /**
      * @var string|null
      */
     protected $variableCode3;
+
     /**
      * @var float|null
      */
     protected $variableValeur3;
+
     /**
      * @var string|null
      */
     protected $variableCode4;
+
     /**
      * @var float|null
      */
     protected $variableValeur4;
+
     /**
      * @var string|null
      */
     protected $variableCode5;
+
     /**
      * @var float|null
      */
     protected $variableValeur5;
+
     /**
      * @var string|null
      */
     protected $variableCode6;
+
     /**
      * @var float|null
      */
     protected $variableValeur6;
+
     /**
      * @var string|null
      */
     protected $variableCode7;
+
     /**
      * @var float|null
      */
     protected $variableValeur7;
+
     /**
      * @var string|null
      */
     protected $variableCode8;
+
     /**
      * @var float|null
      */
     protected $variableValeur8;
+
     /**
      * @var string|null
      */
     protected $variableCode9;
+
     /**
      * @var float|null
      */
     protected $variableValeur9;
+
     /**
      * @var string|null
      */
     protected $affectationAnalytique;
+
     /**
      * @var string|null
      */
     protected $affectationAnalytique2;
+
     /**
      * @var string|null
      */

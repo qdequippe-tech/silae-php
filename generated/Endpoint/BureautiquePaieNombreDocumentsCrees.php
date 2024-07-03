@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\BureautiquePaieNombreDocumentsCreesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\BureautiquePaieNombreDocumentsCreesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\BureautiquePaieNombreDocumentsCreesUnauthorizedException;
+use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\BureautiquePaieNombreDocumentsCreesRequest;
 use QdequippeTech\Silae\Api\Model\BureautiquePaieNombreDocumentsCreesResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +48,7 @@ class BureautiquePaieNombreDocumentsCrees extends BaseEndpoint implements Endpoi
         return $this->getSerializedBody($serializer);
     }
 
-    public function getExtraHeaders(): array
+    protected function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
     }
@@ -77,17 +78,22 @@ class BureautiquePaieNombreDocumentsCrees extends BaseEndpoint implements Endpoi
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\BureautiquePaieNombreDocumentsCreesResponse', 'json');
+            return $serializer->deserialize($body, BureautiquePaieNombreDocumentsCreesResponse::class, 'json');
         }
+
         if (400 === $status) {
-            throw new BureautiquePaieNombreDocumentsCreesBadRequestException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new BureautiquePaieNombreDocumentsCreesBadRequestException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (401 === $status) {
-            throw new BureautiquePaieNombreDocumentsCreesUnauthorizedException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new BureautiquePaieNombreDocumentsCreesUnauthorizedException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
         if (500 === $status) {
-            throw new BureautiquePaieNombreDocumentsCreesInternalServerErrorException($serializer->deserialize($body, 'QdequippeTech\\Silae\\Api\\Model\\ApiErrors', 'json'), $response);
+            throw new BureautiquePaieNombreDocumentsCreesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
+
+        return null;
     }
 
     public function getAuthenticationScopes(): array

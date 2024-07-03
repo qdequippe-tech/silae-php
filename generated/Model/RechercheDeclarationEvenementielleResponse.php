@@ -13,13 +13,14 @@ class RechercheDeclarationEvenementielleResponse
     {
         return \array_key_exists($property, $this->initialized);
     }
+
     /**
-     * @var DeclarationEvenementielle[]|null
+     * @var list<DeclarationEvenementielle>|null
      */
     protected $listeDeclarationEvenementielle;
 
     /**
-     * @return DeclarationEvenementielle[]|null
+     * @return list<DeclarationEvenementielle>|null
      */
     public function getListeDeclarationEvenementielle(): ?array
     {
@@ -27,7 +28,7 @@ class RechercheDeclarationEvenementielleResponse
     }
 
     /**
-     * @param DeclarationEvenementielle[]|null $listeDeclarationEvenementielle
+     * @param list<DeclarationEvenementielle>|null $listeDeclarationEvenementielle
      */
     public function setListeDeclarationEvenementielle(?array $listeDeclarationEvenementielle): self
     {
