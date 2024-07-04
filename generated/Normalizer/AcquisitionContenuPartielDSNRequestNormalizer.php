@@ -83,7 +83,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             }
 
             if (\array_key_exists('periode', $data) && null !== $data['periode']) {
-                $object->setPeriode(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periode']));
+                $object->setPeriode(\DateTime::createFromFormat('Y-m-d', $data['periode'])->setTime(0, 0, 0));
             } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
                 $object->setPeriode(null);
             }
@@ -126,7 +126,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             }
 
             if ($object->isInitialized('periode') && null !== $object->getPeriode()) {
-                $data['periode'] = $object->getPeriode()->format('Y-m-d\TH:i:s');
+                $data['periode'] = $object->getPeriode()->format('Y-m-d');
             }
 
             $data['numeroDossier'] = $object->getNumeroDossier();
@@ -211,7 +211,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             }
 
             if (\array_key_exists('periode', $data) && null !== $data['periode']) {
-                $object->setPeriode(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periode']));
+                $object->setPeriode(\DateTime::createFromFormat('Y-m-d', $data['periode'])->setTime(0, 0, 0));
             } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
                 $object->setPeriode(null);
             }
@@ -259,7 +259,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             }
 
             if ($object->isInitialized('periode') && null !== $object->getPeriode()) {
-                $data['periode'] = $object->getPeriode()->format('Y-m-d\TH:i:s');
+                $data['periode'] = $object->getPeriode()->format('Y-m-d');
             }
 
             $data['numeroDossier'] = $object->getNumeroDossier();

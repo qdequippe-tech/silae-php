@@ -47,9 +47,12 @@ use QdequippeTech\Silae\Api\Endpoint\CreationSalarieEmploisAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\CreationUtilisateurClientPaie;
 use QdequippeTech\Silae\Api\Endpoint\Domaines;
 use QdequippeTech\Silae\Api\Endpoint\DossierRecupererPeriodeEnCours;
+use QdequippeTech\Silae\Api\Endpoint\EcritureReponsesQuestionnaireConventionnelSalarie;
+use QdequippeTech\Silae\Api\Endpoint\EcritureReponsesQuestionnaireFicheSalarie;
 use QdequippeTech\Silae\Api\Endpoint\EcrituresComptables;
 use QdequippeTech\Silae\Api\Endpoint\EcrituresComptables2;
 use QdequippeTech\Silae\Api\Endpoint\EcrituresComptables3;
+use QdequippeTech\Silae\Api\Endpoint\EcrituresComptables4;
 use QdequippeTech\Silae\Api\Endpoint\EcrituresComptablesAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\EditionControleCICE;
 use QdequippeTech\Silae\Api\Endpoint\EditionControleCICEAsynchrone;
@@ -102,6 +105,8 @@ use QdequippeTech\Silae\Api\Endpoint\LectureInformationBancaireSociete;
 use QdequippeTech\Silae\Api\Endpoint\LectureInformationsPaie;
 use QdequippeTech\Silae\Api\Endpoint\LecturePersonnesLiees;
 use QdequippeTech\Silae\Api\Endpoint\LectureQuestionnaireContratComplementaireSalarie;
+use QdequippeTech\Silae\Api\Endpoint\LectureReponsesQuestionnaireConventionnelSalarie;
+use QdequippeTech\Silae\Api\Endpoint\LectureReponsesQuestionnaireFicheSalarie;
 use QdequippeTech\Silae\Api\Endpoint\LectureSaisieArret;
 use QdequippeTech\Silae\Api\Endpoint\LectureSalarieProtege;
 use QdequippeTech\Silae\Api\Endpoint\LectureTaxeApprentissageEtablissement;
@@ -351,12 +356,21 @@ use QdequippeTech\Silae\Api\Exception\DomainesUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\DossierRecupererPeriodeEnCoursBadRequestException;
 use QdequippeTech\Silae\Api\Exception\DossierRecupererPeriodeEnCoursInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\DossierRecupererPeriodeEnCoursUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\EcritureReponsesQuestionnaireConventionnelSalarieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EcritureReponsesQuestionnaireConventionnelSalarieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EcritureReponsesQuestionnaireConventionnelSalarieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\EcritureReponsesQuestionnaireFicheSalarieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EcritureReponsesQuestionnaireFicheSalarieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EcritureReponsesQuestionnaireFicheSalarieUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables2BadRequestException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables2InternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables2UnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables3BadRequestException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables3InternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables3UnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptables4BadRequestException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptables4InternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptables4UnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptablesAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptablesAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptablesAsynchroneUnauthorizedException;
@@ -516,6 +530,12 @@ use QdequippeTech\Silae\Api\Exception\LecturePersonnesLieesUnauthorizedException
 use QdequippeTech\Silae\Api\Exception\LectureQuestionnaireContratComplementaireSalarieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureQuestionnaireContratComplementaireSalarieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureQuestionnaireContratComplementaireSalarieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\LectureReponsesQuestionnaireConventionnelSalarieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureReponsesQuestionnaireConventionnelSalarieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureReponsesQuestionnaireConventionnelSalarieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\LectureReponsesQuestionnaireFicheSalarieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureReponsesQuestionnaireFicheSalarieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureReponsesQuestionnaireFicheSalarieUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\LectureSaisieArretBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureSaisieArretInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureSaisieArretUnauthorizedException;
@@ -968,8 +988,12 @@ use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRequest;
 use QdequippeTech\Silae\Api\Model\DossierRecupererPeriodeEnCoursResponse;
 use QdequippeTech\Silae\Api\Model\DossierRequest;
+use QdequippeTech\Silae\Api\Model\EcritureReponsesQuestionnaireConventionnelSalarieRequest;
+use QdequippeTech\Silae\Api\Model\EcritureReponsesQuestionnaireFicheSalarieRequest;
 use QdequippeTech\Silae\Api\Model\EcrituresComptables2Request;
 use QdequippeTech\Silae\Api\Model\EcrituresComptables3Request;
+use QdequippeTech\Silae\Api\Model\EcrituresComptables4Request;
+use QdequippeTech\Silae\Api\Model\EcrituresComptablesAvecRuptures;
 use QdequippeTech\Silae\Api\Model\EditionControleCICEResponse;
 use QdequippeTech\Silae\Api\Model\EditionCoutsSalariauxResponse;
 use QdequippeTech\Silae\Api\Model\EditionDetailDesCotisationsResponse;
@@ -1026,6 +1050,9 @@ use QdequippeTech\Silae\Api\Model\LectureInformationsPaieResponse;
 use QdequippeTech\Silae\Api\Model\LecturePersonnesLieesResponse;
 use QdequippeTech\Silae\Api\Model\LectureQuestionnaireContratComplementaireRequest;
 use QdequippeTech\Silae\Api\Model\LectureQuestionnaireContratComplementaireResponse;
+use QdequippeTech\Silae\Api\Model\LectureReponsesQuestionnaireConventionnelSalarieRequest;
+use QdequippeTech\Silae\Api\Model\LectureReponsesQuestionnaireConventionnelSalarieResponse;
+use QdequippeTech\Silae\Api\Model\LectureReponsesQuestionnaireFicheSalarieResponse;
 use QdequippeTech\Silae\Api\Model\LectureSaisieArretResponse;
 use QdequippeTech\Silae\Api\Model\LectureSalarieProtegeResponse;
 use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageEtablissementRequest;
@@ -1146,6 +1173,7 @@ use QdequippeTech\Silae\Api\Model\SalariesStockVarRequest;
 use QdequippeTech\Silae\Api\Model\SalariesStockVarResponse;
 use QdequippeTech\Silae\Api\Model\SalarieSupprimerAbsenceRequest;
 use QdequippeTech\Silae\Api\Model\SalarieSyntheseCarriereResponse;
+use QdequippeTech\Silae\Api\Model\SimpleMessageResponse;
 use QdequippeTech\Silae\Api\Model\SiteGenereMotDePasseAlternatifRequest;
 use QdequippeTech\Silae\Api\Model\SiteGenereMotDePasseAlternatifResponse;
 use QdequippeTech\Silae\Api\Model\SpectacleCreationRequest;
@@ -2815,6 +2843,28 @@ class Client extends Runtime\Client\Client
     public function ecrituresComptables3(EcrituresComptables3Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EcrituresComptables3($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return EcrituresComptablesAvecRuptures|ResponseInterface
+     *
+     * @throws EcrituresComptables4BadRequestException
+     * @throws EcrituresComptables4UnauthorizedException
+     * @throws EcrituresComptables4InternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function ecrituresComptables4(EcrituresComptables4Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EcrituresComptables4($request, $headerParameters), $fetch);
     }
 
     /**
@@ -5080,6 +5130,28 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
+     * @return LectureReponsesQuestionnaireFicheSalarieResponse|ResponseInterface
+     *
+     * @throws LectureReponsesQuestionnaireFicheSalarieBadRequestException
+     * @throws LectureReponsesQuestionnaireFicheSalarieUnauthorizedException
+     * @throws LectureReponsesQuestionnaireFicheSalarieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function lectureReponsesQuestionnaireFicheSalarie(DossierMatriculeSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new LectureReponsesQuestionnaireFicheSalarie($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
      * @return ListeNumerosDossiersResponse|ResponseInterface
      *
      * @throws ListeNumerosDossiersBadRequestException
@@ -5767,6 +5839,50 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
+     * @return LectureReponsesQuestionnaireConventionnelSalarieResponse|ResponseInterface
+     *
+     * @throws LectureReponsesQuestionnaireConventionnelSalarieBadRequestException
+     * @throws LectureReponsesQuestionnaireConventionnelSalarieUnauthorizedException
+     * @throws LectureReponsesQuestionnaireConventionnelSalarieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function lectureReponsesQuestionnaireConventionnelSalarie(LectureReponsesQuestionnaireConventionnelSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new LectureReponsesQuestionnaireConventionnelSalarie($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return SimpleMessageResponse|ResponseInterface
+     *
+     * @throws EcritureReponsesQuestionnaireConventionnelSalarieBadRequestException
+     * @throws EcritureReponsesQuestionnaireConventionnelSalarieUnauthorizedException
+     * @throws EcritureReponsesQuestionnaireConventionnelSalarieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function ecritureReponsesQuestionnaireConventionnelSalarie(EcritureReponsesQuestionnaireConventionnelSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EcritureReponsesQuestionnaireConventionnelSalarie($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
      * @return RecupererImageResponse|ResponseInterface
      *
      * @throws RecupererImageBadRequestException
@@ -6232,6 +6348,28 @@ class Client extends Runtime\Client\Client
     public function modificationGrilleHoraireSalarie(ModificationGrilleHoraireSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new ModificationGrilleHoraireSalarie($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return SimpleMessageResponse|ResponseInterface
+     *
+     * @throws EcritureReponsesQuestionnaireFicheSalarieBadRequestException
+     * @throws EcritureReponsesQuestionnaireFicheSalarieUnauthorizedException
+     * @throws EcritureReponsesQuestionnaireFicheSalarieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function ecritureReponsesQuestionnaireFicheSalarie(EcritureReponsesQuestionnaireFicheSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EcritureReponsesQuestionnaireFicheSalarie($request, $headerParameters), $fetch);
     }
 
     /**

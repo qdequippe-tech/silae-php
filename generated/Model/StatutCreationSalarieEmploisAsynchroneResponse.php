@@ -27,6 +27,11 @@ class StatutCreationSalarieEmploisAsynchroneResponse
     /**
      * @var string|null
      */
+    protected $warning;
+
+    /**
+     * @var string|null
+     */
     protected $statut;
 
     /**
@@ -72,6 +77,19 @@ class StatutCreationSalarieEmploisAsynchroneResponse
     {
         $this->initialized['erreurNumero'] = true;
         $this->erreurNumero = $erreurNumero;
+
+        return $this;
+    }
+
+    public function getWarning(): ?string
+    {
+        return $this->warning;
+    }
+
+    public function setWarning(?string $warning): self
+    {
+        $this->initialized['warning'] = true;
+        $this->warning = $warning;
 
         return $this;
     }

@@ -177,6 +177,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setDateReelleFinEmploi(null);
             }
 
+            if (\array_key_exists('identifiantEmploi', $data) && null !== $data['identifiantEmploi']) {
+                $object->setIdentifiantEmploi($data['identifiantEmploi']);
+            } elseif (\array_key_exists('identifiantEmploi', $data) && null === $data['identifiantEmploi']) {
+                $object->setIdentifiantEmploi(null);
+            }
+
             return $object;
         }
 
@@ -257,6 +263,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             if ($object->isInitialized('dateReelleFinEmploi') && null !== $object->getDateReelleFinEmploi()) {
                 $data['dateReelleFinEmploi'] = $object->getDateReelleFinEmploi()->format('Y-m-d\TH:i:s');
+            }
+
+            if ($object->isInitialized('identifiantEmploi') && null !== $object->getIdentifiantEmploi()) {
+                $data['identifiantEmploi'] = $object->getIdentifiantEmploi();
             }
 
             return $data;
@@ -433,6 +443,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setDateReelleFinEmploi(null);
             }
 
+            if (\array_key_exists('identifiantEmploi', $data) && null !== $data['identifiantEmploi']) {
+                $object->setIdentifiantEmploi($data['identifiantEmploi']);
+            } elseif (\array_key_exists('identifiantEmploi', $data) && null === $data['identifiantEmploi']) {
+                $object->setIdentifiantEmploi(null);
+            }
+
             return $object;
         }
 
@@ -518,6 +534,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             if ($object->isInitialized('dateReelleFinEmploi') && null !== $object->getDateReelleFinEmploi()) {
                 $data['dateReelleFinEmploi'] = $object->getDateReelleFinEmploi()->format('Y-m-d\TH:i:s');
+            }
+
+            if ($object->isInitialized('identifiantEmploi') && null !== $object->getIdentifiantEmploi()) {
+                $data['identifiantEmploi'] = $object->getIdentifiantEmploi();
             }
 
             return $data;

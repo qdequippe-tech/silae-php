@@ -2,7 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Model;
 
-class Statistiques
+class StatistiquesV2
 {
     /**
      * @var array
@@ -25,7 +25,7 @@ class Statistiques
     protected $codeAgence;
 
     /**
-     * @var list<StatistiquesProduction>|null
+     * @var list<StatistiquesProductionV2>|null
      */
     protected $statistiquesProduction;
 
@@ -61,7 +61,7 @@ class Statistiques
     }
 
     /**
-     * @return list<StatistiquesProduction>|null
+     * @return list<StatistiquesProductionV2>|null
      */
     public function getStatistiquesProduction(): ?array
     {
@@ -69,7 +69,7 @@ class Statistiques
     }
 
     /**
-     * @param list<StatistiquesProduction>|null $statistiquesProduction
+     * @param list<StatistiquesProductionV2>|null $statistiquesProduction
      */
     public function setStatistiquesProduction(?array $statistiquesProduction): self
     {

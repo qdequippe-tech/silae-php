@@ -474,6 +474,16 @@ class SalarieEmplois
      */
     protected $emplois;
 
+    /**
+     * @var int|null
+     */
+    protected $anneeNaissance;
+
+    /**
+     * @var bool|null
+     */
+    protected $bAnneeNaissance;
+
     public function getMatriculeSalarie(): ?string
     {
         return $this->matriculeSalarie;
@@ -1672,6 +1682,32 @@ class SalarieEmplois
     {
         $this->initialized['emplois'] = true;
         $this->emplois = $emplois;
+
+        return $this;
+    }
+
+    public function getAnneeNaissance(): ?int
+    {
+        return $this->anneeNaissance;
+    }
+
+    public function setAnneeNaissance(?int $anneeNaissance): self
+    {
+        $this->initialized['anneeNaissance'] = true;
+        $this->anneeNaissance = $anneeNaissance;
+
+        return $this;
+    }
+
+    public function getBAnneeNaissance(): ?bool
+    {
+        return $this->bAnneeNaissance;
+    }
+
+    public function setBAnneeNaissance(?bool $bAnneeNaissance): self
+    {
+        $this->initialized['bAnneeNaissance'] = true;
+        $this->bAnneeNaissance = $bAnneeNaissance;
 
         return $this;
     }

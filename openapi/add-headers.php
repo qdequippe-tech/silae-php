@@ -28,4 +28,4 @@ foreach ($openAPISpec['paths'] as $key => &$path) {
     }
 }
 
-file_put_contents('silae-paie-rest-api.json', json_encode($openAPISpec, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES));
+file_put_contents(__DIR__.'/silae-paie-rest-api.json', json_encode($openAPISpec, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES));

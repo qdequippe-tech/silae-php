@@ -89,6 +89,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setResponsableInformatique(null);
             }
 
+            if (\array_key_exists('responsableJuridique', $data) && null !== $data['responsableJuridique']) {
+                $object->setResponsableJuridique($data['responsableJuridique']);
+            } elseif (\array_key_exists('responsableJuridique', $data) && null === $data['responsableJuridique']) {
+                $object->setResponsableJuridique(null);
+            }
+
             return $object;
         }
 
@@ -121,6 +127,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             if ($object->isInitialized('responsableInformatique') && null !== $object->getResponsableInformatique()) {
                 $data['responsableInformatique'] = $object->getResponsableInformatique();
+            }
+
+            if ($object->isInitialized('responsableJuridique') && null !== $object->getResponsableJuridique()) {
+                $data['responsableJuridique'] = $object->getResponsableJuridique();
             }
 
             return $data;
@@ -209,6 +219,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setResponsableInformatique(null);
             }
 
+            if (\array_key_exists('responsableJuridique', $data) && null !== $data['responsableJuridique']) {
+                $object->setResponsableJuridique($data['responsableJuridique']);
+            } elseif (\array_key_exists('responsableJuridique', $data) && null === $data['responsableJuridique']) {
+                $object->setResponsableJuridique(null);
+            }
+
             return $object;
         }
 
@@ -246,6 +262,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             if ($object->isInitialized('responsableInformatique') && null !== $object->getResponsableInformatique()) {
                 $data['responsableInformatique'] = $object->getResponsableInformatique();
+            }
+
+            if ($object->isInitialized('responsableJuridique') && null !== $object->getResponsableJuridique()) {
+                $data['responsableJuridique'] = $object->getResponsableJuridique();
             }
 
             return $data;

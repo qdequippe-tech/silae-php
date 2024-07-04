@@ -69,6 +69,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setErreurNumero(null);
             }
 
+            if (\array_key_exists('warning', $data) && null !== $data['warning']) {
+                $object->setWarning($data['warning']);
+            } elseif (\array_key_exists('warning', $data) && null === $data['warning']) {
+                $object->setWarning(null);
+            }
+
             if (\array_key_exists('statut', $data) && null !== $data['statut']) {
                 $object->setStatut($data['statut']);
             } elseif (\array_key_exists('statut', $data) && null === $data['statut']) {
@@ -110,6 +116,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             if ($object->isInitialized('erreurNumero') && null !== $object->getErreurNumero()) {
                 $data['erreurNumero'] = $object->getErreurNumero();
+            }
+
+            if ($object->isInitialized('warning') && null !== $object->getWarning()) {
+                $data['warning'] = $object->getWarning();
             }
 
             if ($object->isInitialized('statut') && null !== $object->getStatut()) {
@@ -193,6 +203,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setErreurNumero(null);
             }
 
+            if (\array_key_exists('warning', $data) && null !== $data['warning']) {
+                $object->setWarning($data['warning']);
+            } elseif (\array_key_exists('warning', $data) && null === $data['warning']) {
+                $object->setWarning(null);
+            }
+
             if (\array_key_exists('statut', $data) && null !== $data['statut']) {
                 $object->setStatut($data['statut']);
             } elseif (\array_key_exists('statut', $data) && null === $data['statut']) {
@@ -239,6 +255,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             if ($object->isInitialized('erreurNumero') && null !== $object->getErreurNumero()) {
                 $data['erreurNumero'] = $object->getErreurNumero();
+            }
+
+            if ($object->isInitialized('warning') && null !== $object->getWarning()) {
+                $data['warning'] = $object->getWarning();
             }
 
             if ($object->isInitialized('statut') && null !== $object->getStatut()) {

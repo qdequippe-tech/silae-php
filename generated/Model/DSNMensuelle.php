@@ -34,6 +34,11 @@ class DSNMensuelle
      */
     protected $typeDSN;
 
+    /**
+     * @var string|null
+     */
+    protected $siret;
+
     public function getEtablissement(): ?string
     {
         return $this->etablissement;
@@ -82,6 +87,19 @@ class DSNMensuelle
     {
         $this->initialized['typeDSN'] = true;
         $this->typeDSN = $typeDSN;
+
+        return $this;
+    }
+
+    public function getSiret(): ?string
+    {
+        return $this->siret;
+    }
+
+    public function setSiret(?string $siret): self
+    {
+        $this->initialized['siret'] = true;
+        $this->siret = $siret;
 
         return $this;
     }

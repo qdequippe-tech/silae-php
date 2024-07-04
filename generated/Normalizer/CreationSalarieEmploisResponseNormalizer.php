@@ -59,6 +59,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setResultatsCreationsEmplois(null);
             }
 
+            if (\array_key_exists('warning', $data) && null !== $data['warning']) {
+                $object->setWarning($data['warning']);
+            } elseif (\array_key_exists('warning', $data) && null === $data['warning']) {
+                $object->setWarning(null);
+            }
+
             return $object;
         }
 
@@ -72,6 +78,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 }
 
                 $data['resultatsCreationsEmplois'] = $values;
+            }
+
+            if ($object->isInitialized('warning') && null !== $object->getWarning()) {
+                $data['warning'] = $object->getWarning();
             }
 
             return $data;
@@ -129,6 +139,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setResultatsCreationsEmplois(null);
             }
 
+            if (\array_key_exists('warning', $data) && null !== $data['warning']) {
+                $object->setWarning($data['warning']);
+            } elseif (\array_key_exists('warning', $data) && null === $data['warning']) {
+                $object->setWarning(null);
+            }
+
             return $object;
         }
 
@@ -147,6 +163,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 }
 
                 $data['resultatsCreationsEmplois'] = $values;
+            }
+
+            if ($object->isInitialized('warning') && null !== $object->getWarning()) {
+                $data['warning'] = $object->getWarning();
             }
 
             return $data;

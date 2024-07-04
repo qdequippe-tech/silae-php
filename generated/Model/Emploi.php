@@ -47,6 +47,11 @@ class Emploi
     /**
      * @var \DateTime|null
      */
+    protected $dateDebutContrat;
+
+    /**
+     * @var \DateTime|null
+     */
     protected $dateFin;
 
     /**
@@ -519,6 +524,36 @@ class Emploi
      */
     protected $bTicketRestaurant;
 
+    /**
+     * @var string|null
+     */
+    protected $codeTerritoire;
+
+    /**
+     * @var bool|null
+     */
+    protected $bCodeTerritoire;
+
+    /**
+     * @var string|null
+     */
+    protected $codeSecteurDFS;
+
+    /**
+     * @var bool|null
+     */
+    protected $bCodeSecteurDFS;
+
+    /**
+     * @var bool|null
+     */
+    protected $pctAbattementLissage;
+
+    /**
+     * @var bool|null
+     */
+    protected $bPctAbattementLissage;
+
     public function getIdentifiantEmploi(): ?int
     {
         return $this->identifiantEmploi;
@@ -593,6 +628,19 @@ class Emploi
     {
         $this->initialized['dateDebut'] = true;
         $this->dateDebut = $dateDebut;
+
+        return $this;
+    }
+
+    public function getDateDebutContrat(): ?\DateTime
+    {
+        return $this->dateDebutContrat;
+    }
+
+    public function setDateDebutContrat(?\DateTime $dateDebutContrat): self
+    {
+        $this->initialized['dateDebutContrat'] = true;
+        $this->dateDebutContrat = $dateDebutContrat;
 
         return $this;
     }
@@ -1852,6 +1900,84 @@ class Emploi
     {
         $this->initialized['bTicketRestaurant'] = true;
         $this->bTicketRestaurant = $bTicketRestaurant;
+
+        return $this;
+    }
+
+    public function getCodeTerritoire(): ?string
+    {
+        return $this->codeTerritoire;
+    }
+
+    public function setCodeTerritoire(?string $codeTerritoire): self
+    {
+        $this->initialized['codeTerritoire'] = true;
+        $this->codeTerritoire = $codeTerritoire;
+
+        return $this;
+    }
+
+    public function getBCodeTerritoire(): ?bool
+    {
+        return $this->bCodeTerritoire;
+    }
+
+    public function setBCodeTerritoire(?bool $bCodeTerritoire): self
+    {
+        $this->initialized['bCodeTerritoire'] = true;
+        $this->bCodeTerritoire = $bCodeTerritoire;
+
+        return $this;
+    }
+
+    public function getCodeSecteurDFS(): ?string
+    {
+        return $this->codeSecteurDFS;
+    }
+
+    public function setCodeSecteurDFS(?string $codeSecteurDFS): self
+    {
+        $this->initialized['codeSecteurDFS'] = true;
+        $this->codeSecteurDFS = $codeSecteurDFS;
+
+        return $this;
+    }
+
+    public function getBCodeSecteurDFS(): ?bool
+    {
+        return $this->bCodeSecteurDFS;
+    }
+
+    public function setBCodeSecteurDFS(?bool $bCodeSecteurDFS): self
+    {
+        $this->initialized['bCodeSecteurDFS'] = true;
+        $this->bCodeSecteurDFS = $bCodeSecteurDFS;
+
+        return $this;
+    }
+
+    public function getPctAbattementLissage(): ?bool
+    {
+        return $this->pctAbattementLissage;
+    }
+
+    public function setPctAbattementLissage(?bool $pctAbattementLissage): self
+    {
+        $this->initialized['pctAbattementLissage'] = true;
+        $this->pctAbattementLissage = $pctAbattementLissage;
+
+        return $this;
+    }
+
+    public function getBPctAbattementLissage(): ?bool
+    {
+        return $this->bPctAbattementLissage;
+    }
+
+    public function setBPctAbattementLissage(?bool $bPctAbattementLissage): self
+    {
+        $this->initialized['bPctAbattementLissage'] = true;
+        $this->bPctAbattementLissage = $bPctAbattementLissage;
 
         return $this;
     }

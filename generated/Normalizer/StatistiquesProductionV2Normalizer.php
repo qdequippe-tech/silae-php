@@ -3,7 +3,7 @@
 namespace QdequippeTech\Silae\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use QdequippeTech\Silae\Api\Model\StatistiquesProduction;
+use QdequippeTech\Silae\Api\Model\StatistiquesProductionV2;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\HttpKernel\Kernel;
@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
-    class StatistiquesProductionNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+    class StatistiquesProductionV2Normalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
         use CheckArray;
         use DenormalizerAwareTrait;
@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return StatistiquesProduction::class === $type;
+            return StatistiquesProductionV2::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && StatistiquesProduction::class === $data::class;
+            return \is_object($data) && StatistiquesProductionV2::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -42,9 +42,21 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 return new Reference($data['$recursiveRef'], $context['document-origin']);
             }
 
-            $object = new StatistiquesProduction();
+            $object = new StatistiquesProductionV2();
             if (null === $data || false === \is_array($data)) {
                 return $object;
+            }
+
+            if (\array_key_exists('nbBulletinsCoffresForts', $data) && null !== $data['nbBulletinsCoffresForts']) {
+                $object->setNbBulletinsCoffresForts($data['nbBulletinsCoffresForts']);
+            } elseif (\array_key_exists('nbBulletinsCoffresForts', $data) && null === $data['nbBulletinsCoffresForts']) {
+                $object->setNbBulletinsCoffresForts(null);
+            }
+
+            if (\array_key_exists('nbBulletinsCoffresFortsEditique', $data) && null !== $data['nbBulletinsCoffresFortsEditique']) {
+                $object->setNbBulletinsCoffresFortsEditique($data['nbBulletinsCoffresFortsEditique']);
+            } elseif (\array_key_exists('nbBulletinsCoffresFortsEditique', $data) && null === $data['nbBulletinsCoffresFortsEditique']) {
+                $object->setNbBulletinsCoffresFortsEditique(null);
             }
 
             if (\array_key_exists('periode', $data) && null !== $data['periode']) {
@@ -107,6 +119,14 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
         public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
         {
             $data = [];
+            if ($object->isInitialized('nbBulletinsCoffresForts') && null !== $object->getNbBulletinsCoffresForts()) {
+                $data['nbBulletinsCoffresForts'] = $object->getNbBulletinsCoffresForts();
+            }
+
+            if ($object->isInitialized('nbBulletinsCoffresFortsEditique') && null !== $object->getNbBulletinsCoffresFortsEditique()) {
+                $data['nbBulletinsCoffresFortsEditique'] = $object->getNbBulletinsCoffresFortsEditique();
+            }
+
             if ($object->isInitialized('periode') && null !== $object->getPeriode()) {
                 $data['periode'] = $object->getPeriode()->format('Y-m-d\TH:i:s');
             }
@@ -148,11 +168,11 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return [StatistiquesProduction::class => false];
+            return [StatistiquesProductionV2::class => false];
         }
     }
 } else {
-    class StatistiquesProductionNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+    class StatistiquesProductionV2Normalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
         use CheckArray;
         use DenormalizerAwareTrait;
@@ -161,12 +181,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return StatistiquesProduction::class === $type;
+            return StatistiquesProductionV2::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && StatistiquesProduction::class === $data::class;
+            return \is_object($data) && StatistiquesProductionV2::class === $data::class;
         }
 
         /**
@@ -182,9 +202,21 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 return new Reference($data['$recursiveRef'], $context['document-origin']);
             }
 
-            $object = new StatistiquesProduction();
+            $object = new StatistiquesProductionV2();
             if (null === $data || false === \is_array($data)) {
                 return $object;
+            }
+
+            if (\array_key_exists('nbBulletinsCoffresForts', $data) && null !== $data['nbBulletinsCoffresForts']) {
+                $object->setNbBulletinsCoffresForts($data['nbBulletinsCoffresForts']);
+            } elseif (\array_key_exists('nbBulletinsCoffresForts', $data) && null === $data['nbBulletinsCoffresForts']) {
+                $object->setNbBulletinsCoffresForts(null);
+            }
+
+            if (\array_key_exists('nbBulletinsCoffresFortsEditique', $data) && null !== $data['nbBulletinsCoffresFortsEditique']) {
+                $object->setNbBulletinsCoffresFortsEditique($data['nbBulletinsCoffresFortsEditique']);
+            } elseif (\array_key_exists('nbBulletinsCoffresFortsEditique', $data) && null === $data['nbBulletinsCoffresFortsEditique']) {
+                $object->setNbBulletinsCoffresFortsEditique(null);
             }
 
             if (\array_key_exists('periode', $data) && null !== $data['periode']) {
@@ -252,6 +284,14 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
         public function normalize($object, $format = null, array $context = [])
         {
             $data = [];
+            if ($object->isInitialized('nbBulletinsCoffresForts') && null !== $object->getNbBulletinsCoffresForts()) {
+                $data['nbBulletinsCoffresForts'] = $object->getNbBulletinsCoffresForts();
+            }
+
+            if ($object->isInitialized('nbBulletinsCoffresFortsEditique') && null !== $object->getNbBulletinsCoffresFortsEditique()) {
+                $data['nbBulletinsCoffresFortsEditique'] = $object->getNbBulletinsCoffresFortsEditique();
+            }
+
             if ($object->isInitialized('periode') && null !== $object->getPeriode()) {
                 $data['periode'] = $object->getPeriode()->format('Y-m-d\TH:i:s');
             }
@@ -293,7 +333,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return [StatistiquesProduction::class => false];
+            return [StatistiquesProductionV2::class => false];
         }
     }
 }

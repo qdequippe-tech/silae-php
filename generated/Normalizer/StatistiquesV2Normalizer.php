@@ -3,9 +3,9 @@
 namespace QdequippeTech\Silae\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use QdequippeTech\Silae\Api\Model\Statistiques;
 use QdequippeTech\Silae\Api\Model\StatistiquesDADS;
-use QdequippeTech\Silae\Api\Model\StatistiquesProduction;
+use QdequippeTech\Silae\Api\Model\StatistiquesProductionV2;
+use QdequippeTech\Silae\Api\Model\StatistiquesV2;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\HttpKernel\Kernel;
@@ -17,7 +17,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
-    class StatistiquesNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+    class StatistiquesV2Normalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
         use CheckArray;
         use DenormalizerAwareTrait;
@@ -26,12 +26,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return Statistiques::class === $type;
+            return StatistiquesV2::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && Statistiques::class === $data::class;
+            return \is_object($data) && StatistiquesV2::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -44,7 +44,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 return new Reference($data['$recursiveRef'], $context['document-origin']);
             }
 
-            $object = new Statistiques();
+            $object = new StatistiquesV2();
             if (null === $data || false === \is_array($data)) {
                 return $object;
             }
@@ -64,7 +64,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('statistiquesProduction', $data) && null !== $data['statistiquesProduction']) {
                 $values = [];
                 foreach ($data['statistiquesProduction'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, StatistiquesProduction::class, 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, StatistiquesProductionV2::class, 'json', $context);
                 }
 
                 $object->setStatistiquesProduction($values);
@@ -120,11 +120,11 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return [Statistiques::class => false];
+            return [StatistiquesV2::class => false];
         }
     }
 } else {
-    class StatistiquesNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+    class StatistiquesV2Normalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
         use CheckArray;
         use DenormalizerAwareTrait;
@@ -133,12 +133,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return Statistiques::class === $type;
+            return StatistiquesV2::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && Statistiques::class === $data::class;
+            return \is_object($data) && StatistiquesV2::class === $data::class;
         }
 
         /**
@@ -154,7 +154,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 return new Reference($data['$recursiveRef'], $context['document-origin']);
             }
 
-            $object = new Statistiques();
+            $object = new StatistiquesV2();
             if (null === $data || false === \is_array($data)) {
                 return $object;
             }
@@ -174,7 +174,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('statistiquesProduction', $data) && null !== $data['statistiquesProduction']) {
                 $values = [];
                 foreach ($data['statistiquesProduction'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, StatistiquesProduction::class, 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, StatistiquesProductionV2::class, 'json', $context);
                 }
 
                 $object->setStatistiquesProduction($values);
@@ -235,7 +235,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return [Statistiques::class => false];
+            return [StatistiquesV2::class => false];
         }
     }
 }

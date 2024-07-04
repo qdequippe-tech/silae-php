@@ -15,12 +15,12 @@ class AnalyseProductionPaieResponse
     }
 
     /**
-     * @var list<Statistiques>|null
+     * @var list<StatistiquesV2>|null
      */
     protected $statistiques;
 
     /**
-     * @return list<Statistiques>|null
+     * @return list<StatistiquesV2>|null
      */
     public function getStatistiques(): ?array
     {
@@ -28,7 +28,7 @@ class AnalyseProductionPaieResponse
     }
 
     /**
-     * @param list<Statistiques>|null $statistiques
+     * @param list<StatistiquesV2>|null $statistiques
      */
     public function setStatistiques(?array $statistiques): self
     {

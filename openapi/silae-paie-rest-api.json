@@ -5227,6 +5227,79 @@
                 }
             }
         },
+        "/v1/EcrituresComptables/EcrituresComptables4": {
+            "post": {
+                "tags": [
+                    "EcrituresComptables"
+                ],
+                "summary": "EcrituresComptables4",
+                "operationId": "EcrituresComptables4",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EcrituresComptables4Request"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/EcrituresComptablesAvecRuptures"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/EcrituresComptables/EcrituresComptablesAsynchrone": {
             "post": {
                 "tags": [
@@ -12436,6 +12509,79 @@
                 }
             }
         },
+        "/v1/InfosSalaries/LectureReponsesQuestionnaireFicheSalarie": {
+            "post": {
+                "tags": [
+                    "InfosSalaries"
+                ],
+                "summary": "LectureReponsesQuestionnaireFicheSalarie",
+                "operationId": "LectureReponsesQuestionnaireFicheSalarie",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DossierMatriculeSalarieRequest"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/LectureReponsesQuestionnaireFicheSalarieResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/InfosTechniquesDossiers/ListeNumerosDossiers": {
             "post": {
                 "tags": [
@@ -14654,6 +14800,152 @@
                 }
             }
         },
+        "/v1/QuestionnaireCCN/LectureReponsesQuestionnaireConventionnelSalarie": {
+            "post": {
+                "tags": [
+                    "QuestionnaireCCN"
+                ],
+                "summary": "LectureReponsesQuestionnaireConventionnelSalarie",
+                "operationId": "LectureReponsesQuestionnaireConventionnelSalarie",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LectureReponsesQuestionnaireConventionnelSalarieRequest"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/LectureReponsesQuestionnaireConventionnelSalarieResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/QuestionnaireCCN/EcritureReponsesQuestionnaireConventionnelSalarie": {
+            "post": {
+                "tags": [
+                    "QuestionnaireCCN"
+                ],
+                "summary": "EcritureReponsesQuestionnaireConventionnelSalarie",
+                "operationId": "EcritureReponsesQuestionnaireConventionnelSalarie",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EcritureReponsesQuestionnaireConventionnelSalarieRequest"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SimpleMessageResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/RecuperationBulletins/RecupererImage": {
             "post": {
                 "tags": [
@@ -16169,6 +16461,79 @@
                 }
             }
         },
+        "/v1/SalarieEmplois/EcritureReponsesQuestionnaireFicheSalarie": {
+            "post": {
+                "tags": [
+                    "SalarieEmplois"
+                ],
+                "summary": "EcritureReponsesQuestionnaireFicheSalarie",
+                "operationId": "EcritureReponsesQuestionnaireFicheSalarie",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EcritureReponsesQuestionnaireFicheSalarieRequest"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SimpleMessageResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/SSO/SiteGenereMotDePasseAlternatif": {
             "post": {
                 "tags": [
@@ -17184,9 +17549,6 @@
                 "onglet_GestionInterneSimplifiee": {
                     "type": "boolean"
                 },
-                "onglet_GestionDesIdentifiants": {
-                    "type": "boolean"
-                },
                 "onglet_ParametragePaie": {
                     "type": "boolean"
                 },
@@ -17411,6 +17773,9 @@
                 },
                 "responsableInformatique": {
                     "type": "boolean"
+                },
+                "responsableJuridique": {
+                    "type": "boolean"
                 }
             }
         },
@@ -17586,13 +17951,7 @@
                 "gestionInterneParametragesClientsMenuSupprimer": {
                     "type": "string"
                 },
-                "gestionInterneParametragesCollaborateurs": {
-                    "type": "string"
-                },
                 "gestionInterneParametragesClientsConfigurationAPIFichiersVirement": {
-                    "type": "string"
-                },
-                "gestionInterneParametragesCollaborateursGestionRoles": {
                     "type": "string"
                 },
                 "gestionInterneParametragesAgences": {
@@ -17637,6 +17996,12 @@
                 "administrationConnexionPersonnalisationEcranConnexion": {
                     "type": "string"
                 },
+                "administrationParametrages": {
+                    "type": "string"
+                },
+                "administrationParametragesParametresAvances": {
+                    "type": "string"
+                },
                 "administrationPilotageActivite": {
                     "type": "string"
                 },
@@ -17649,7 +18014,16 @@
                 "administrationConfigurationExport": {
                     "type": "string"
                 },
-                "productionLienSilaeHub": {
+                "silaeHubLienSilaeHub": {
+                    "type": "string"
+                },
+                "productionSuiviFPOC": {
+                    "type": "string"
+                },
+                "productionSuiviFPOCTelechargerPlus": {
+                    "type": "string"
+                },
+                "productionSuiviFPOCAfficherNonRattachees": {
                     "type": "string"
                 }
             }
@@ -18192,12 +18566,12 @@
                 "statistiques": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/Statistiques"
+                        "$ref": "#/definitions/StatistiquesV2"
                     }
                 }
             }
         },
-        "Statistiques": {
+        "StatistiquesV2": {
             "type": "object",
             "properties": {
                 "numeroDossier": {
@@ -18210,7 +18584,7 @@
                 "statistiquesProduction": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/StatistiquesProduction"
+                        "$ref": "#/definitions/StatistiquesProductionV2"
                     }
                 },
                 "statistiquesDADS": {
@@ -18221,9 +18595,17 @@
                 }
             }
         },
-        "StatistiquesProduction": {
+        "StatistiquesProductionV2": {
             "type": "object",
             "properties": {
+                "nbBulletinsCoffresForts": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "nbBulletinsCoffresFortsEditique": {
+                    "format": "int32",
+                    "type": "integer"
+                },
                 "periode": {
                     "format": "date-time",
                     "type": "string"
@@ -18285,7 +18667,7 @@
                 "statistiques": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/Statistiques"
+                        "$ref": "#/definitions/StatistiquesV2"
                     }
                 },
                 "statut": {
@@ -19660,7 +20042,7 @@
             "type": "object",
             "properties": {
                 "periode": {
-                    "format": "date-time",
+                    "format": "date",
                     "type": "string"
                 },
                 "numeroDossier": {
@@ -19819,6 +20201,74 @@
                 "numeroDossier": {
                     "type": "string",
                     "example": "{{numeroDossier}}"
+                }
+            }
+        },
+        "EcrituresComptables4Request": {
+            "required": [
+                "numeroDossier"
+            ],
+            "type": "object",
+            "properties": {
+                "avecToutesLesRepartitionsAnalytiques": {
+                    "type": "boolean"
+                },
+                "periodeDebut": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "periodeFin": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                }
+            }
+        },
+        "EcrituresComptablesAvecRuptures": {
+            "type": "object",
+            "properties": {
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                },
+                "periodeDebut": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "periodeFin": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "ruptures": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EcrituresComptablesRupture"
+                    }
+                }
+            }
+        },
+        "EcrituresComptablesRupture": {
+            "type": "object",
+            "properties": {
+                "libelle": {
+                    "type": "string"
+                },
+                "totalDebit": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "totalCredit": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "ecritures": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EcrituresComptablesLigne"
+                    }
                 }
             }
         },
@@ -20184,7 +20634,7 @@
                     "type": "string"
                 },
                 "periode": {
-                    "format": "date-time",
+                    "format": "date",
                     "type": "string"
                 },
                 "numeroDossier": {
@@ -23447,6 +23897,9 @@
                 "typeDSN": {
                     "format": "int32",
                     "type": "integer"
+                },
+                "siret": {
+                    "type": "string"
                 }
             }
         },
@@ -23476,7 +23929,7 @@
                     }
                 },
                 "periode": {
-                    "format": "date-time",
+                    "format": "date",
                     "type": "string"
                 },
                 "numeroDossier": {
@@ -23505,7 +23958,7 @@
                     "type": "integer"
                 },
                 "periode": {
-                    "format": "date-time",
+                    "format": "date",
                     "type": "string"
                 },
                 "numeroDossier": {
@@ -23949,6 +24402,10 @@
                 "dateReelleFinEmploi": {
                     "format": "date-time",
                     "type": "string"
+                },
+                "identifiantEmploi": {
+                    "format": "int32",
+                    "type": "integer"
                 }
             }
         },
@@ -24177,6 +24634,67 @@
                 "montantsDejaVerses": {
                     "format": "double",
                     "type": "number"
+                }
+            }
+        },
+        "LectureReponsesQuestionnaireFicheSalarieResponse": {
+            "type": "object",
+            "properties": {
+                "reponses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/QReponse"
+                    }
+                }
+            }
+        },
+        "QReponse": {
+            "type": "object",
+            "properties": {
+                "libelleQuestion": {
+                    "type": "string"
+                },
+                "listeChoix": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/LibelleValeur"
+                    }
+                },
+                "nomChamp": {
+                    "type": "string"
+                },
+                "typeChamp": {
+                    "type": "string"
+                },
+                "valeurINT32": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "valeurDOUBLE": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "valeurSTRING": {
+                    "type": "string"
+                },
+                "valeurDATETIME": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "valeurBOOL": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "LibelleValeur": {
+            "type": "object",
+            "properties": {
+                "libelle": {
+                    "type": "string"
+                },
+                "valeur": {
+                    "format": "int32",
+                    "type": "integer"
                 }
             }
         },
@@ -25111,7 +25629,7 @@
                     }
                 },
                 "periode": {
-                    "format": "date-time",
+                    "format": "date",
                     "type": "string"
                 },
                 "numeroDossier": {
@@ -25186,7 +25704,7 @@
                     }
                 },
                 "periode": {
-                    "format": "date-time",
+                    "format": "date",
                     "type": "string"
                 },
                 "numeroDossier": {
@@ -25320,15 +25838,127 @@
                 }
             }
         },
-        "LibelleValeur": {
+        "LectureReponsesQuestionnaireConventionnelSalarieRequest": {
+            "required": [
+                "matriculeSalarie",
+                "numeroDossier"
+            ],
             "type": "object",
             "properties": {
-                "libelle": {
-                    "type": "string"
-                },
-                "valeur": {
+                "identifiantEmploi": {
                     "format": "int32",
                     "type": "integer"
+                },
+                "matriculeSalarie": {
+                    "type": "string",
+                    "example": "{{matriculeSalarie}}"
+                },
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                }
+            }
+        },
+        "LectureReponsesQuestionnaireConventionnelSalarieResponse": {
+            "type": "object",
+            "properties": {
+                "qccn": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/QCCNReponses"
+                    }
+                }
+            }
+        },
+        "QCCNReponses": {
+            "type": "object",
+            "properties": {
+                "codeCCN": {
+                    "type": "string"
+                },
+                "reponses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/QReponse"
+                    }
+                }
+            }
+        },
+        "EcritureReponsesQuestionnaireConventionnelSalarieRequest": {
+            "required": [
+                "matriculeSalarie",
+                "numeroDossier"
+            ],
+            "type": "object",
+            "properties": {
+                "identifiantEmploi": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "qccn": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/QCCNReponsesSimple"
+                    }
+                },
+                "matriculeSalarie": {
+                    "type": "string",
+                    "example": "{{matriculeSalarie}}"
+                },
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                }
+            }
+        },
+        "QCCNReponsesSimple": {
+            "type": "object",
+            "properties": {
+                "codeCCN": {
+                    "type": "string"
+                },
+                "reponses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/QReponseSimple"
+                    }
+                }
+            }
+        },
+        "QReponseSimple": {
+            "type": "object",
+            "properties": {
+                "nomChamp": {
+                    "type": "string"
+                },
+                "typeChamp": {
+                    "type": "string"
+                },
+                "valeurINT32": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "valeurDOUBLE": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "valeurSTRING": {
+                    "type": "string"
+                },
+                "valeurDATETIME": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "valeurBOOL": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SimpleMessageResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
                 }
             }
         },
@@ -25741,6 +26371,13 @@
                     "items": {
                         "$ref": "#/definitions/Emploi"
                     }
+                },
+                "anneeNaissance": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "bAnneeNaissance": {
+                    "type": "boolean"
                 }
             }
         },
@@ -25765,6 +26402,10 @@
                     "type": "string"
                 },
                 "dateDebut": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "dateDebutContrat": {
                     "format": "date-time",
                     "type": "string"
                 },
@@ -26086,6 +26727,24 @@
                 },
                 "bTicketRestaurant": {
                     "type": "boolean"
+                },
+                "codeTerritoire": {
+                    "type": "string"
+                },
+                "bCodeTerritoire": {
+                    "type": "boolean"
+                },
+                "codeSecteurDFS": {
+                    "type": "string"
+                },
+                "bCodeSecteurDFS": {
+                    "type": "boolean"
+                },
+                "pctAbattementLissage": {
+                    "type": "boolean"
+                },
+                "bPctAbattementLissage": {
+                    "type": "boolean"
                 }
             }
         },
@@ -26097,6 +26756,9 @@
                     "items": {
                         "$ref": "#/definitions/CreationSalarieEmploiResult"
                     }
+                },
+                "warning": {
+                    "type": "string"
                 }
             }
         },
@@ -26124,6 +26786,9 @@
                 "erreurNumero": {
                     "format": "int32",
                     "type": "integer"
+                },
+                "warning": {
+                    "type": "string"
                 },
                 "statut": {
                     "type": "string"
@@ -26621,6 +27286,29 @@
                 "tauxHeuresLibres3": {
                     "format": "double",
                     "type": "number"
+                }
+            }
+        },
+        "EcritureReponsesQuestionnaireFicheSalarieRequest": {
+            "required": [
+                "matriculeSalarie",
+                "numeroDossier"
+            ],
+            "type": "object",
+            "properties": {
+                "reponses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/QReponseSimple"
+                    }
+                },
+                "matriculeSalarie": {
+                    "type": "string",
+                    "example": "{{matriculeSalarie}}"
+                },
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
                 }
             }
         },

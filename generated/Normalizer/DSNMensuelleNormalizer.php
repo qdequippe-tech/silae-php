@@ -71,6 +71,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setTypeDSN(null);
             }
 
+            if (\array_key_exists('siret', $data) && null !== $data['siret']) {
+                $object->setSiret($data['siret']);
+            } elseif (\array_key_exists('siret', $data) && null === $data['siret']) {
+                $object->setSiret(null);
+            }
+
             return $object;
         }
 
@@ -91,6 +97,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             if ($object->isInitialized('typeDSN') && null !== $object->getTypeDSN()) {
                 $data['typeDSN'] = $object->getTypeDSN();
+            }
+
+            if ($object->isInitialized('siret') && null !== $object->getSiret()) {
+                $data['siret'] = $object->getSiret();
             }
 
             return $data;
@@ -161,6 +171,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setTypeDSN(null);
             }
 
+            if (\array_key_exists('siret', $data) && null !== $data['siret']) {
+                $object->setSiret($data['siret']);
+            } elseif (\array_key_exists('siret', $data) && null === $data['siret']) {
+                $object->setSiret(null);
+            }
+
             return $object;
         }
 
@@ -186,6 +202,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             if ($object->isInitialized('typeDSN') && null !== $object->getTypeDSN()) {
                 $data['typeDSN'] = $object->getTypeDSN();
+            }
+
+            if ($object->isInitialized('siret') && null !== $object->getSiret()) {
+                $data['siret'] = $object->getSiret();
             }
 
             return $data;

@@ -49,6 +49,11 @@ class CompteCollaborateurRoles
      */
     protected $responsableInformatique;
 
+    /**
+     * @var bool|null
+     */
+    protected $responsableJuridique;
+
     public function getDataProtectionOfficier(): ?bool
     {
         return $this->dataProtectionOfficier;
@@ -136,6 +141,19 @@ class CompteCollaborateurRoles
     {
         $this->initialized['responsableInformatique'] = true;
         $this->responsableInformatique = $responsableInformatique;
+
+        return $this;
+    }
+
+    public function getResponsableJuridique(): ?bool
+    {
+        return $this->responsableJuridique;
+    }
+
+    public function setResponsableJuridique(?bool $responsableJuridique): self
+    {
+        $this->initialized['responsableJuridique'] = true;
+        $this->responsableJuridique = $responsableJuridique;
 
         return $this;
     }
