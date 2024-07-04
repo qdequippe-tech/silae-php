@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ExistenceMatriculeBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ExistenceMatriculeInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ExistenceMatriculeUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierMatriculeRequest;
 use QdequippeTech\Silae\Api\Model\ExistenceMatriculeResponse;
@@ -67,11 +68,12 @@ class ExistenceMatricule extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return ExistenceMatriculeResponse|null
+     * @return ExistenceMatriculeResponse
      *
      * @throws ExistenceMatriculeBadRequestException
      * @throws ExistenceMatriculeUnauthorizedException
      * @throws ExistenceMatriculeInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class ExistenceMatricule extends BaseEndpoint implements Endpoint
             throw new ExistenceMatriculeInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

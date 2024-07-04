@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AjouteCompteRenduEdiBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AjouteCompteRenduEdiInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AjouteCompteRenduEdiUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\AjouteCompteRenduEdiRequest;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class AjouteCompteRenduEdi extends BaseEndpoint implements Endpoint
      * @throws AjouteCompteRenduEdiBadRequestException
      * @throws AjouteCompteRenduEdiUnauthorizedException
      * @throws AjouteCompteRenduEdiInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class AjouteCompteRenduEdi extends BaseEndpoint implements Endpoint
             throw new AjouteCompteRenduEdiInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

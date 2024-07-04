@@ -15,7 +15,7 @@ class StatutAnalyseProductionPaieAsynchroneResponse
     }
 
     /**
-     * @var list<Statistiques>|null
+     * @var list<StatistiquesV2>|null
      */
     protected $statistiques;
 
@@ -40,7 +40,7 @@ class StatutAnalyseProductionPaieAsynchroneResponse
     protected $dureeExecution;
 
     /**
-     * @return list<Statistiques>|null
+     * @return list<StatistiquesV2>|null
      */
     public function getStatistiques(): ?array
     {
@@ -48,7 +48,7 @@ class StatutAnalyseProductionPaieAsynchroneResponse
     }
 
     /**
-     * @param list<Statistiques>|null $statistiques
+     * @param list<StatistiquesV2>|null $statistiques
      */
     public function setStatistiques(?array $statistiques): self
     {

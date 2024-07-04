@@ -29,7 +29,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return $data instanceof ListeInformationsDossiersPaieRequest;
+            return \is_object($data) && ListeInformationsDossiersPaieRequest::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -42,12 +42,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 return new Reference($data['$recursiveRef'], $context['document-origin']);
             }
 
-            $object = new ListeInformationsDossiersPaieRequest();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            return $object;
+            return new ListeInformationsDossiersPaieRequest();
         }
 
         public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
@@ -75,7 +70,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return $data instanceof ListeInformationsDossiersPaieRequest;
+            return \is_object($data) && ListeInformationsDossiersPaieRequest::class === $data::class;
         }
 
         /**
@@ -91,12 +86,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 return new Reference($data['$recursiveRef'], $context['document-origin']);
             }
 
-            $object = new ListeInformationsDossiersPaieRequest();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            return $object;
+            return new ListeInformationsDossiersPaieRequest();
         }
 
         /**

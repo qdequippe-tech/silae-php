@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\StatutEditionHistoriqueAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionHistoriqueAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionHistoriqueAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\StatutAsynchroneDocumentResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -82,11 +83,12 @@ class StatutEditionHistoriqueAsynchrone extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return StatutAsynchroneDocumentResponse|null
+     * @return StatutAsynchroneDocumentResponse
      *
      * @throws StatutEditionHistoriqueAsynchroneBadRequestException
      * @throws StatutEditionHistoriqueAsynchroneUnauthorizedException
      * @throws StatutEditionHistoriqueAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -112,7 +114,7 @@ class StatutEditionHistoriqueAsynchrone extends BaseEndpoint implements Endpoint
             throw new StatutEditionHistoriqueAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

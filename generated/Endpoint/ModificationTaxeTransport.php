@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ModificationTaxeTransportBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ModificationTaxeTransportInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ModificationTaxeTransportUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ModificationTaxeTransportRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class ModificationTaxeTransport extends BaseEndpoint implements Endpoint
      * @throws ModificationTaxeTransportBadRequestException
      * @throws ModificationTaxeTransportUnauthorizedException
      * @throws ModificationTaxeTransportInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class ModificationTaxeTransport extends BaseEndpoint implements Endpoint
             throw new ModificationTaxeTransportInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

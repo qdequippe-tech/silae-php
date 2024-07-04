@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\CreationDossierPaieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\CreationDossierPaieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\CreationDossierPaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\CreationDossierPaieRequest;
 use QdequippeTech\Silae\Api\Model\CreationDossierPaieResponse;
@@ -67,11 +68,12 @@ class CreationDossierPaie extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return CreationDossierPaieResponse|null
+     * @return CreationDossierPaieResponse
      *
      * @throws CreationDossierPaieBadRequestException
      * @throws CreationDossierPaieUnauthorizedException
      * @throws CreationDossierPaieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class CreationDossierPaie extends BaseEndpoint implements Endpoint
             throw new CreationDossierPaieInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

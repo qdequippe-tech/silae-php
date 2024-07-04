@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireEtablissementCCNAvecTexteBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireEtablissementCCNAvecTexteInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireEtablissementCCNAvecTexteUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest;
 use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNResponse;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
@@ -67,11 +68,12 @@ class AcquisitionQuestionnaireEtablissementCCNAvecTexte extends BaseEndpoint imp
     }
 
     /**
-     * @return AcquisitionQuestionnaireCCNResponse|null
+     * @return AcquisitionQuestionnaireCCNResponse
      *
      * @throws AcquisitionQuestionnaireEtablissementCCNAvecTexteBadRequestException
      * @throws AcquisitionQuestionnaireEtablissementCCNAvecTexteUnauthorizedException
      * @throws AcquisitionQuestionnaireEtablissementCCNAvecTexteInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class AcquisitionQuestionnaireEtablissementCCNAvecTexte extends BaseEndpoint imp
             throw new AcquisitionQuestionnaireEtablissementCCNAvecTexteInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

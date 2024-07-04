@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalariesStockVarBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalariesStockVarInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalariesStockVarUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalariesStockVarRequest;
 use QdequippeTech\Silae\Api\Model\SalariesStockVarResponse;
@@ -67,11 +68,12 @@ class SalariesStockVar extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return SalariesStockVarResponse|null
+     * @return SalariesStockVarResponse
      *
      * @throws SalariesStockVarBadRequestException
      * @throws SalariesStockVarUnauthorizedException
      * @throws SalariesStockVarInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class SalariesStockVar extends BaseEndpoint implements Endpoint
             throw new SalariesStockVarInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

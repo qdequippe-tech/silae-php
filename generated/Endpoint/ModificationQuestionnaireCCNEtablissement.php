@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireCCNEtablissementBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireCCNEtablissementInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireCCNEtablissementUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ModificationQuestionnaireCCNEtablissementRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class ModificationQuestionnaireCCNEtablissement extends BaseEndpoint implements 
      * @throws ModificationQuestionnaireCCNEtablissementBadRequestException
      * @throws ModificationQuestionnaireCCNEtablissementUnauthorizedException
      * @throws ModificationQuestionnaireCCNEtablissementInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class ModificationQuestionnaireCCNEtablissement extends BaseEndpoint implements 
             throw new ModificationQuestionnaireCCNEtablissementInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

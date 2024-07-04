@@ -2,7 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Model;
 
-class StatistiquesProduction
+class StatistiquesProductionV2
 {
     /**
      * @var array
@@ -13,6 +13,16 @@ class StatistiquesProduction
     {
         return \array_key_exists($property, $this->initialized);
     }
+
+    /**
+     * @var int|null
+     */
+    protected $nbBulletinsCoffresForts;
+
+    /**
+     * @var int|null
+     */
+    protected $nbBulletinsCoffresFortsEditique;
 
     /**
      * @var \DateTime|null
@@ -58,6 +68,32 @@ class StatistiquesProduction
      * @var int|null
      */
     protected $nbIJSS;
+
+    public function getNbBulletinsCoffresForts(): ?int
+    {
+        return $this->nbBulletinsCoffresForts;
+    }
+
+    public function setNbBulletinsCoffresForts(?int $nbBulletinsCoffresForts): self
+    {
+        $this->initialized['nbBulletinsCoffresForts'] = true;
+        $this->nbBulletinsCoffresForts = $nbBulletinsCoffresForts;
+
+        return $this;
+    }
+
+    public function getNbBulletinsCoffresFortsEditique(): ?int
+    {
+        return $this->nbBulletinsCoffresFortsEditique;
+    }
+
+    public function setNbBulletinsCoffresFortsEditique(?int $nbBulletinsCoffresFortsEditique): self
+    {
+        $this->initialized['nbBulletinsCoffresFortsEditique'] = true;
+        $this->nbBulletinsCoffresFortsEditique = $nbBulletinsCoffresFortsEditique;
+
+        return $this;
+    }
 
     public function getPeriode(): ?\DateTime
     {

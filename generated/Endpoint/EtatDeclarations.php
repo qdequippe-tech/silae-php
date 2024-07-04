@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\EtatDeclarationsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EtatDeclarationsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EtatDeclarationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\EtatDeclarationsRequest;
 use QdequippeTech\Silae\Api\Model\EtatDeclarationsResponse;
@@ -67,11 +68,12 @@ class EtatDeclarations extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return EtatDeclarationsResponse|null
+     * @return EtatDeclarationsResponse
      *
      * @throws EtatDeclarationsBadRequestException
      * @throws EtatDeclarationsUnauthorizedException
      * @throws EtatDeclarationsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class EtatDeclarations extends BaseEndpoint implements Endpoint
             throw new EtatDeclarationsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

@@ -1,6 +1,6 @@
 <?php
 
-$content = file_get_contents(__DIR__.'/Silae_Paie_Rest_API_2023-07-03_Partenaires.json');
+$content = file_get_contents(__DIR__.'/Silae_Paie_Rest_API_Partenaires_latest.json');
 $openAPISpec = json_decode($content, true);
 
 foreach ($openAPISpec['paths'] as $key => &$path) {
@@ -28,4 +28,4 @@ foreach ($openAPISpec['paths'] as $key => &$path) {
     }
 }
 
-file_put_contents('silae-paie-rest-api.json', json_encode($openAPISpec, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES));
+file_put_contents(__DIR__.'/silae-paie-rest-api.json', json_encode($openAPISpec, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES));

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalariesBulletinsAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalariesBulletinsAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalariesBulletinsAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalariesBulletinsRequest;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
@@ -67,11 +68,12 @@ class SalariesBulletinsAsynchrone extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return TraitementAsynchroneResponse|null
+     * @return TraitementAsynchroneResponse
      *
      * @throws SalariesBulletinsAsynchroneBadRequestException
      * @throws SalariesBulletinsAsynchroneUnauthorizedException
      * @throws SalariesBulletinsAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class SalariesBulletinsAsynchrone extends BaseEndpoint implements Endpoint
             throw new SalariesBulletinsAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

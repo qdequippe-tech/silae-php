@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\LectureSalarieProtegeBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureSalarieProtegeInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureSalarieProtegeUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierMatriculeRequest;
 use QdequippeTech\Silae\Api\Model\LectureSalarieProtegeResponse;
@@ -67,11 +68,12 @@ class LectureSalarieProtege extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return LectureSalarieProtegeResponse|null
+     * @return LectureSalarieProtegeResponse
      *
      * @throws LectureSalarieProtegeBadRequestException
      * @throws LectureSalarieProtegeUnauthorizedException
      * @throws LectureSalarieProtegeInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class LectureSalarieProtege extends BaseEndpoint implements Endpoint
             throw new LectureSalarieProtegeInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

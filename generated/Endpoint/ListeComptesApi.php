@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ListeComptesApiBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeComptesApiInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeComptesApiUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ListeComptesApiResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -65,11 +66,12 @@ class ListeComptesApi extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return ListeComptesApiResponse|null
+     * @return ListeComptesApiResponse
      *
      * @throws ListeComptesApiBadRequestException
      * @throws ListeComptesApiUnauthorizedException
      * @throws ListeComptesApiInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -91,7 +93,7 @@ class ListeComptesApi extends BaseEndpoint implements Endpoint
             throw new ListeComptesApiInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

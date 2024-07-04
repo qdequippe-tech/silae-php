@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\EditionHistoriqueBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EditionHistoriqueInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EditionHistoriqueUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\EditionHistoriqueRequest;
 use QdequippeTech\Silae\Api\Model\EditionHistoriqueResponse;
@@ -67,11 +68,12 @@ class EditionHistorique extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return EditionHistoriqueResponse|null
+     * @return EditionHistoriqueResponse
      *
      * @throws EditionHistoriqueBadRequestException
      * @throws EditionHistoriqueUnauthorizedException
      * @throws EditionHistoriqueInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class EditionHistorique extends BaseEndpoint implements Endpoint
             throw new EditionHistoriqueInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

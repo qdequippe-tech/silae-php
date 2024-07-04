@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiResponse;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
@@ -67,11 +68,12 @@ class AnalyseConfigurationAccesApi extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return AnalyseConfigurationAccesApiResponse|null
+     * @return AnalyseConfigurationAccesApiResponse
      *
      * @throws AnalyseConfigurationAccesApiBadRequestException
      * @throws AnalyseConfigurationAccesApiUnauthorizedException
      * @throws AnalyseConfigurationAccesApiInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class AnalyseConfigurationAccesApi extends BaseEndpoint implements Endpoint
             throw new AnalyseConfigurationAccesApiInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

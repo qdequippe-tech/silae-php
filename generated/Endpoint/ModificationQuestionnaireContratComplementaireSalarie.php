@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireContratComplementaireSalarieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireContratComplementaireSalarieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ModificationQuestionnaireContratComplementaireSalarieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ModificationQuestionnaireContratComplementaireRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class ModificationQuestionnaireContratComplementaireSalarie extends BaseEndpoint
      * @throws ModificationQuestionnaireContratComplementaireSalarieBadRequestException
      * @throws ModificationQuestionnaireContratComplementaireSalarieUnauthorizedException
      * @throws ModificationQuestionnaireContratComplementaireSalarieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class ModificationQuestionnaireContratComplementaireSalarie extends BaseEndpoint
             throw new ModificationQuestionnaireContratComplementaireSalarieInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

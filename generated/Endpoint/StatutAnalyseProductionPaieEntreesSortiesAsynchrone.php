@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -82,11 +83,12 @@ class StatutAnalyseProductionPaieEntreesSortiesAsynchrone extends BaseEndpoint i
     }
 
     /**
-     * @return StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse|null
+     * @return StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse
      *
      * @throws StatutAnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException
      * @throws StatutAnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -112,7 +114,7 @@ class StatutAnalyseProductionPaieEntreesSortiesAsynchrone extends BaseEndpoint i
             throw new StatutAnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

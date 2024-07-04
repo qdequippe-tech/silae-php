@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureParIdentifiantBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureParIdentifiantInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureParIdentifiantUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\AdministrationCollaborateurLectureParIdentifiantRequest;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\UtilisateurCollaborateur;
@@ -67,11 +68,12 @@ class AdministrationCollaborateurLectureParIdentifiant extends BaseEndpoint impl
     }
 
     /**
-     * @return UtilisateurCollaborateur|null
+     * @return UtilisateurCollaborateur
      *
      * @throws AdministrationCollaborateurLectureParIdentifiantBadRequestException
      * @throws AdministrationCollaborateurLectureParIdentifiantUnauthorizedException
      * @throws AdministrationCollaborateurLectureParIdentifiantInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class AdministrationCollaborateurLectureParIdentifiant extends BaseEndpoint impl
             throw new AdministrationCollaborateurLectureParIdentifiantInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

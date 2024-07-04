@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\LectureFNALBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureFNALInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureFNALUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierRequest;
 use QdequippeTech\Silae\Api\Model\FNAL;
@@ -67,11 +68,12 @@ class LectureFNAL extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return FNAL|null
+     * @return FNAL
      *
      * @throws LectureFNALBadRequestException
      * @throws LectureFNALUnauthorizedException
      * @throws LectureFNALInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class LectureFNAL extends BaseEndpoint implements Endpoint
             throw new LectureFNALInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

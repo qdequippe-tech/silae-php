@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\GenerationFichierTRBadRequestException;
 use QdequippeTech\Silae\Api\Exception\GenerationFichierTRInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\GenerationFichierTRUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\GenerationFichierTRRequest;
 use QdequippeTech\Silae\Api\Model\GenererFichierTRResponse;
@@ -67,11 +68,12 @@ class GenerationFichierTR extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return GenererFichierTRResponse|null
+     * @return GenererFichierTRResponse
      *
      * @throws GenerationFichierTRBadRequestException
      * @throws GenerationFichierTRUnauthorizedException
      * @throws GenerationFichierTRInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class GenerationFichierTR extends BaseEndpoint implements Endpoint
             throw new GenerationFichierTRInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

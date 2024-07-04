@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalarieInitialiserCumulsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieInitialiserCumulsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieInitialiserCumulsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalarieInitialiserCumulsRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class SalarieInitialiserCumuls extends BaseEndpoint implements Endpoint
      * @throws SalarieInitialiserCumulsBadRequestException
      * @throws SalarieInitialiserCumulsUnauthorizedException
      * @throws SalarieInitialiserCumulsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class SalarieInitialiserCumuls extends BaseEndpoint implements Endpoint
             throw new SalarieInitialiserCumulsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

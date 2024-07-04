@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\StatutSalariesConfirmerSaisiesAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutSalariesConfirmerSaisiesAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutSalariesConfirmerSaisiesAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\StatutSalariesConfirmerSaisiesResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -82,11 +83,12 @@ class StatutSalariesConfirmerSaisiesAsynchrone extends BaseEndpoint implements E
     }
 
     /**
-     * @return StatutSalariesConfirmerSaisiesResponse|null
+     * @return StatutSalariesConfirmerSaisiesResponse
      *
      * @throws StatutSalariesConfirmerSaisiesAsynchroneBadRequestException
      * @throws StatutSalariesConfirmerSaisiesAsynchroneUnauthorizedException
      * @throws StatutSalariesConfirmerSaisiesAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -112,7 +114,7 @@ class StatutSalariesConfirmerSaisiesAsynchrone extends BaseEndpoint implements E
             throw new StatutSalariesConfirmerSaisiesAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

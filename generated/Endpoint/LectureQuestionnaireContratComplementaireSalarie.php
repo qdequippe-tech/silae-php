@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\LectureQuestionnaireContratComplementaireSalarieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureQuestionnaireContratComplementaireSalarieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureQuestionnaireContratComplementaireSalarieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\LectureQuestionnaireContratComplementaireRequest;
 use QdequippeTech\Silae\Api\Model\LectureQuestionnaireContratComplementaireResponse;
@@ -67,11 +68,12 @@ class LectureQuestionnaireContratComplementaireSalarie extends BaseEndpoint impl
     }
 
     /**
-     * @return LectureQuestionnaireContratComplementaireResponse|null
+     * @return LectureQuestionnaireContratComplementaireResponse
      *
      * @throws LectureQuestionnaireContratComplementaireSalarieBadRequestException
      * @throws LectureQuestionnaireContratComplementaireSalarieUnauthorizedException
      * @throws LectureQuestionnaireContratComplementaireSalarieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class LectureQuestionnaireContratComplementaireSalarie extends BaseEndpoint impl
             throw new LectureQuestionnaireContratComplementaireSalarieInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ExtraCreationManifestationBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ExtraCreationManifestationInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ExtraCreationManifestationUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ExtraCreationManifestationRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class ExtraCreationManifestation extends BaseEndpoint implements Endpoint
      * @throws ExtraCreationManifestationBadRequestException
      * @throws ExtraCreationManifestationUnauthorizedException
      * @throws ExtraCreationManifestationInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class ExtraCreationManifestation extends BaseEndpoint implements Endpoint
             throw new ExtraCreationManifestationInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

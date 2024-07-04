@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ModificationDroitsFonctionnelsProductionPaieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ModificationDroitsFonctionnelsProductionPaieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ModificationDroitsFonctionnelsProductionPaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ModificationDroitsFonctionnelsProductionPaieRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class ModificationDroitsFonctionnelsProductionPaie extends BaseEndpoint implemen
      * @throws ModificationDroitsFonctionnelsProductionPaieBadRequestException
      * @throws ModificationDroitsFonctionnelsProductionPaieUnauthorizedException
      * @throws ModificationDroitsFonctionnelsProductionPaieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class ModificationDroitsFonctionnelsProductionPaie extends BaseEndpoint implemen
             throw new ModificationDroitsFonctionnelsProductionPaieInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

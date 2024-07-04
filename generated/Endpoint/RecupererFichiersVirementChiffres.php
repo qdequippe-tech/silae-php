@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementChiffresBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementChiffresInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementChiffresUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementChiffresRequest;
 use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementResponse;
@@ -67,11 +68,12 @@ class RecupererFichiersVirementChiffres extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return RecupererFichiersVirementResponse|null
+     * @return RecupererFichiersVirementResponse
      *
      * @throws RecupererFichiersVirementChiffresBadRequestException
      * @throws RecupererFichiersVirementChiffresUnauthorizedException
      * @throws RecupererFichiersVirementChiffresInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class RecupererFichiersVirementChiffres extends BaseEndpoint implements Endpoint
             throw new RecupererFichiersVirementChiffresInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

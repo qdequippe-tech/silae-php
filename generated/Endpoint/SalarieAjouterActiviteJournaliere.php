@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterActiviteJournaliereBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterActiviteJournaliereInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterActiviteJournaliereUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterActiviteJournaliereRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class SalarieAjouterActiviteJournaliere extends BaseEndpoint implements Endpoint
      * @throws SalarieAjouterActiviteJournaliereBadRequestException
      * @throws SalarieAjouterActiviteJournaliereUnauthorizedException
      * @throws SalarieAjouterActiviteJournaliereInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class SalarieAjouterActiviteJournaliere extends BaseEndpoint implements Endpoint
             throw new SalarieAjouterActiviteJournaliereInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

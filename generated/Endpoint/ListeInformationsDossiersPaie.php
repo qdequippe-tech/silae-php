@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ListeInformationsDossiersPaieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeInformationsDossiersPaieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeInformationsDossiersPaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ListeInformationsDossiersPaieResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -65,11 +66,12 @@ class ListeInformationsDossiersPaie extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return ListeInformationsDossiersPaieResponse|null
+     * @return ListeInformationsDossiersPaieResponse
      *
      * @throws ListeInformationsDossiersPaieBadRequestException
      * @throws ListeInformationsDossiersPaieUnauthorizedException
      * @throws ListeInformationsDossiersPaieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -91,7 +93,7 @@ class ListeInformationsDossiersPaie extends BaseEndpoint implements Endpoint
             throw new ListeInformationsDossiersPaieInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

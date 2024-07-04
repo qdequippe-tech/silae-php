@@ -12,18 +12,21 @@ cs_check: tools-vendor ## Check code style
 	./tools/php-cs-fixer/vendor/bin/php-cs-fixer check
 
 cs: tools-vendor ## Fix code style
-	./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix
+	./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix -q
 
 rectify: vendor ## Run Rector
-	./vendor/bin/rector
+	./vendor/bin/rector --no-diffs
 
 rector: vendor ## Run Rector (dry run)
 	./vendor/bin/rector --dry-run
 
-jane: vendor ## Generate the SDK
+jane: vendor openapi/silae-paie-rest-api.json ## Generate the SDK
 	./vendor/bin/jane-openapi generate --config-file=.jane-openapi.php
 
-build: jane rectify cs
+patch-spec: openapi/Silae_Paie_Rest_API_Partenaires_latest.json
+	php openapi/add-headers.php
+
+build: patch-spec jane rectify cs
 
 .PHONY: help
 

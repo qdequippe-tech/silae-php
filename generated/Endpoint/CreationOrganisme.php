@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\CreationOrganismeBadRequestException;
 use QdequippeTech\Silae\Api\Exception\CreationOrganismeInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\CreationOrganismeUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\CreationOrganismeRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class CreationOrganisme extends BaseEndpoint implements Endpoint
      * @throws CreationOrganismeBadRequestException
      * @throws CreationOrganismeUnauthorizedException
      * @throws CreationOrganismeInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class CreationOrganisme extends BaseEndpoint implements Endpoint
             throw new CreationOrganismeInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\LectureCompteCollaborateurBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureCompteCollaborateurInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureCompteCollaborateurUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateur;
 use QdequippeTech\Silae\Api\Model\LectureCompteCollaborateurRequest;
@@ -67,11 +68,12 @@ class LectureCompteCollaborateur extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return CompteCollaborateur|null
+     * @return CompteCollaborateur
      *
      * @throws LectureCompteCollaborateurBadRequestException
      * @throws LectureCompteCollaborateurUnauthorizedException
      * @throws LectureCompteCollaborateurInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class LectureCompteCollaborateur extends BaseEndpoint implements Endpoint
             throw new LectureCompteCollaborateurInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

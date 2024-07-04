@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\StatutEditionEtatDesPaiementsAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionEtatDesPaiementsAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionEtatDesPaiementsAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\StatutAsynchroneDocumentResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -82,11 +83,12 @@ class StatutEditionEtatDesPaiementsAsynchrone extends BaseEndpoint implements En
     }
 
     /**
-     * @return StatutAsynchroneDocumentResponse|null
+     * @return StatutAsynchroneDocumentResponse
      *
      * @throws StatutEditionEtatDesPaiementsAsynchroneBadRequestException
      * @throws StatutEditionEtatDesPaiementsAsynchroneUnauthorizedException
      * @throws StatutEditionEtatDesPaiementsAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -112,7 +114,7 @@ class StatutEditionEtatDesPaiementsAsynchrone extends BaseEndpoint implements En
             throw new StatutEditionEtatDesPaiementsAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

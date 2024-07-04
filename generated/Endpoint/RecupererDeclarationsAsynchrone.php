@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRequest;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
@@ -67,11 +68,12 @@ class RecupererDeclarationsAsynchrone extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return TraitementAsynchroneResponse|null
+     * @return TraitementAsynchroneResponse
      *
      * @throws RecupererDeclarationsAsynchroneBadRequestException
      * @throws RecupererDeclarationsAsynchroneUnauthorizedException
      * @throws RecupererDeclarationsAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class RecupererDeclarationsAsynchrone extends BaseEndpoint implements Endpoint
             throw new RecupererDeclarationsAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

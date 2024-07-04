@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ExtraListeManifestationsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ExtraListeManifestationsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ExtraListeManifestationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ExtraListeManifestationsRequest;
 use QdequippeTech\Silae\Api\Model\ExtraListeManifestationsResponse;
@@ -67,11 +68,12 @@ class ExtraListeManifestations extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return ExtraListeManifestationsResponse|null
+     * @return ExtraListeManifestationsResponse
      *
      * @throws ExtraListeManifestationsBadRequestException
      * @throws ExtraListeManifestationsUnauthorizedException
      * @throws ExtraListeManifestationsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class ExtraListeManifestations extends BaseEndpoint implements Endpoint
             throw new ExtraListeManifestationsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

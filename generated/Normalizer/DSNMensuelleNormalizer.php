@@ -29,7 +29,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return $data instanceof DSNMensuelle;
+            return \is_object($data) && DSNMensuelle::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -71,6 +71,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setTypeDSN(null);
             }
 
+            if (\array_key_exists('siret', $data) && null !== $data['siret']) {
+                $object->setSiret($data['siret']);
+            } elseif (\array_key_exists('siret', $data) && null === $data['siret']) {
+                $object->setSiret(null);
+            }
+
             return $object;
         }
 
@@ -91,6 +97,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             if ($object->isInitialized('typeDSN') && null !== $object->getTypeDSN()) {
                 $data['typeDSN'] = $object->getTypeDSN();
+            }
+
+            if ($object->isInitialized('siret') && null !== $object->getSiret()) {
+                $data['siret'] = $object->getSiret();
             }
 
             return $data;
@@ -116,7 +126,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return $data instanceof DSNMensuelle;
+            return \is_object($data) && DSNMensuelle::class === $data::class;
         }
 
         /**
@@ -161,6 +171,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setTypeDSN(null);
             }
 
+            if (\array_key_exists('siret', $data) && null !== $data['siret']) {
+                $object->setSiret($data['siret']);
+            } elseif (\array_key_exists('siret', $data) && null === $data['siret']) {
+                $object->setSiret(null);
+            }
+
             return $object;
         }
 
@@ -186,6 +202,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             if ($object->isInitialized('typeDSN') && null !== $object->getTypeDSN()) {
                 $data['typeDSN'] = $object->getTypeDSN();
+            }
+
+            if ($object->isInitialized('siret') && null !== $object->getSiret()) {
+                $data['siret'] = $object->getSiret();
             }
 
             return $data;

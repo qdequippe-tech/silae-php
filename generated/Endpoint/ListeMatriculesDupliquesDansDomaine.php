@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesDansDomaineBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesDansDomaineInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesDansDomaineUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesDansDomaineResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -65,11 +66,12 @@ class ListeMatriculesDupliquesDansDomaine extends BaseEndpoint implements Endpoi
     }
 
     /**
-     * @return ListeMatriculesDupliquesDansDomaineResponse|null
+     * @return ListeMatriculesDupliquesDansDomaineResponse
      *
      * @throws ListeMatriculesDupliquesDansDomaineBadRequestException
      * @throws ListeMatriculesDupliquesDansDomaineUnauthorizedException
      * @throws ListeMatriculesDupliquesDansDomaineInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -91,7 +93,7 @@ class ListeMatriculesDupliquesDansDomaine extends BaseEndpoint implements Endpoi
             throw new ListeMatriculesDupliquesDansDomaineInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

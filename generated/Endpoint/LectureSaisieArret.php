@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\LectureSaisieArretBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureSaisieArretInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureSaisieArretUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierMatriculeRequest;
 use QdequippeTech\Silae\Api\Model\LectureSaisieArretResponse;
@@ -67,11 +68,12 @@ class LectureSaisieArret extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return LectureSaisieArretResponse|null
+     * @return LectureSaisieArretResponse
      *
      * @throws LectureSaisieArretBadRequestException
      * @throws LectureSaisieArretUnauthorizedException
      * @throws LectureSaisieArretInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class LectureSaisieArret extends BaseEndpoint implements Endpoint
             throw new LectureSaisieArretInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

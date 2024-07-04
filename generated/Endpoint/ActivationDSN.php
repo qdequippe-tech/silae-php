@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ActivationDSNBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ActivationDSNInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ActivationDSNUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ActivationDSNRequest;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class ActivationDSN extends BaseEndpoint implements Endpoint
      * @throws ActivationDSNBadRequestException
      * @throws ActivationDSNUnauthorizedException
      * @throws ActivationDSNInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class ActivationDSN extends BaseEndpoint implements Endpoint
             throw new ActivationDSNInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

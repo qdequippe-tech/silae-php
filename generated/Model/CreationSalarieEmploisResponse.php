@@ -20,6 +20,11 @@ class CreationSalarieEmploisResponse
     protected $resultatsCreationsEmplois;
 
     /**
+     * @var string|null
+     */
+    protected $warning;
+
+    /**
      * @return list<CreationSalarieEmploiResult>|null
      */
     public function getResultatsCreationsEmplois(): ?array
@@ -34,6 +39,19 @@ class CreationSalarieEmploisResponse
     {
         $this->initialized['resultatsCreationsEmplois'] = true;
         $this->resultatsCreationsEmplois = $resultatsCreationsEmplois;
+
+        return $this;
+    }
+
+    public function getWarning(): ?string
+    {
+        return $this->warning;
+    }
+
+    public function setWarning(?string $warning): self
+    {
+        $this->initialized['warning'] = true;
+        $this->warning = $warning;
 
         return $this;
     }

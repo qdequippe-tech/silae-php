@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalarieReinitialiserIdentifiantsEmploisExternesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieReinitialiserIdentifiantsEmploisExternesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieReinitialiserIdentifiantsEmploisExternesUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class SalarieReinitialiserIdentifiantsEmploisExternes extends BaseEndpoint imple
      * @throws SalarieReinitialiserIdentifiantsEmploisExternesBadRequestException
      * @throws SalarieReinitialiserIdentifiantsEmploisExternesUnauthorizedException
      * @throws SalarieReinitialiserIdentifiantsEmploisExternesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class SalarieReinitialiserIdentifiantsEmploisExternes extends BaseEndpoint imple
             throw new SalarieReinitialiserIdentifiantsEmploisExternesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ListeAgencesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeAgencesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeAgencesUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ListeAgencesResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -65,11 +66,12 @@ class ListeAgences extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return ListeAgencesResponse|null
+     * @return ListeAgencesResponse
      *
      * @throws ListeAgencesBadRequestException
      * @throws ListeAgencesUnauthorizedException
      * @throws ListeAgencesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -91,7 +93,7 @@ class ListeAgences extends BaseEndpoint implements Endpoint
             throw new ListeAgencesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

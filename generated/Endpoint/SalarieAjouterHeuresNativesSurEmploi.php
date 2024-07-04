@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterHeuresNativesSurEmploiBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterHeuresNativesSurEmploiInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterHeuresNativesSurEmploiUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterHeuresNativesSurEmploiRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class SalarieAjouterHeuresNativesSurEmploi extends BaseEndpoint implements Endpo
      * @throws SalarieAjouterHeuresNativesSurEmploiBadRequestException
      * @throws SalarieAjouterHeuresNativesSurEmploiUnauthorizedException
      * @throws SalarieAjouterHeuresNativesSurEmploiInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class SalarieAjouterHeuresNativesSurEmploi extends BaseEndpoint implements Endpo
             throw new SalarieAjouterHeuresNativesSurEmploiInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

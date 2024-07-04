@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\EntitesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EntitesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EntitesUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\Entity;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -65,11 +66,12 @@ class Entites extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return Entity[]|null
+     * @return Entity[]
      *
      * @throws EntitesBadRequestException
      * @throws EntitesUnauthorizedException
      * @throws EntitesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -91,7 +93,7 @@ class Entites extends BaseEndpoint implements Endpoint
             throw new EntitesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

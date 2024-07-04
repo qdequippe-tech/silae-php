@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalarieRecupererDUEBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieRecupererDUEInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieRecupererDUEUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest;
 use QdequippeTech\Silae\Api\Model\SalarieRecupererDUEResponse;
@@ -67,11 +68,12 @@ class SalarieRecupererDUE extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return SalarieRecupererDUEResponse|null
+     * @return SalarieRecupererDUEResponse
      *
      * @throws SalarieRecupererDUEBadRequestException
      * @throws SalarieRecupererDUEUnauthorizedException
      * @throws SalarieRecupererDUEInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class SalarieRecupererDUE extends BaseEndpoint implements Endpoint
             throw new SalarieRecupererDUEInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ClassificationMetierCompleteBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ClassificationMetierCompleteInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ClassificationMetierCompleteUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ClassificationMetierCompleteRequest;
 use QdequippeTech\Silae\Api\Model\ClassificationMetierCompleteResponse;
@@ -67,11 +68,12 @@ class ClassificationMetierComplete extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return ClassificationMetierCompleteResponse|null
+     * @return ClassificationMetierCompleteResponse
      *
      * @throws ClassificationMetierCompleteBadRequestException
      * @throws ClassificationMetierCompleteUnauthorizedException
      * @throws ClassificationMetierCompleteInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class ClassificationMetierComplete extends BaseEndpoint implements Endpoint
             throw new ClassificationMetierCompleteInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalarieReinitialiserSaisiesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieReinitialiserSaisiesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieReinitialiserSaisiesUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalarieReinitialiserSaisiesRequest;
 use QdequippeTech\Silae\Api\Model\SalarieReinitialiserSaisiesResponse;
@@ -67,11 +68,12 @@ class SalarieReinitialiserSaisies extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return SalarieReinitialiserSaisiesResponse|null
+     * @return SalarieReinitialiserSaisiesResponse
      *
      * @throws SalarieReinitialiserSaisiesBadRequestException
      * @throws SalarieReinitialiserSaisiesUnauthorizedException
      * @throws SalarieReinitialiserSaisiesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class SalarieReinitialiserSaisies extends BaseEndpoint implements Endpoint
             throw new SalarieReinitialiserSaisiesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

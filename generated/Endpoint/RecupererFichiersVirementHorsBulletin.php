@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersVirementHorsBulletinUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementHorsBulletinRequest;
 use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementResponse;
@@ -67,11 +68,12 @@ class RecupererFichiersVirementHorsBulletin extends BaseEndpoint implements Endp
     }
 
     /**
-     * @return RecupererFichiersVirementResponse|null
+     * @return RecupererFichiersVirementResponse
      *
      * @throws RecupererFichiersVirementHorsBulletinBadRequestException
      * @throws RecupererFichiersVirementHorsBulletinUnauthorizedException
      * @throws RecupererFichiersVirementHorsBulletinInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class RecupererFichiersVirementHorsBulletin extends BaseEndpoint implements Endp
             throw new RecupererFichiersVirementHorsBulletinInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

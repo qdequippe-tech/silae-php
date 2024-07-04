@@ -29,7 +29,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return $data instanceof UtilisateurCollaborateur;
+            return \is_object($data) && UtilisateurCollaborateur::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -281,12 +281,6 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setOngletGestionInterneSimplifiee(null);
             }
 
-            if (\array_key_exists('onglet_GestionDesIdentifiants', $data) && null !== $data['onglet_GestionDesIdentifiants']) {
-                $object->setOngletGestionDesIdentifiants($data['onglet_GestionDesIdentifiants']);
-            } elseif (\array_key_exists('onglet_GestionDesIdentifiants', $data) && null === $data['onglet_GestionDesIdentifiants']) {
-                $object->setOngletGestionDesIdentifiants(null);
-            }
-
             if (\array_key_exists('onglet_ParametragePaie', $data) && null !== $data['onglet_ParametragePaie']) {
                 $object->setOngletParametragePaie($data['onglet_ParametragePaie']);
             } elseif (\array_key_exists('onglet_ParametragePaie', $data) && null === $data['onglet_ParametragePaie']) {
@@ -521,10 +515,6 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['onglet_GestionInterneSimplifiee'] = $object->getOngletGestionInterneSimplifiee();
             }
 
-            if ($object->isInitialized('ongletGestionDesIdentifiants') && null !== $object->getOngletGestionDesIdentifiants()) {
-                $data['onglet_GestionDesIdentifiants'] = $object->getOngletGestionDesIdentifiants();
-            }
-
             if ($object->isInitialized('ongletParametragePaie') && null !== $object->getOngletParametragePaie()) {
                 $data['onglet_ParametragePaie'] = $object->getOngletParametragePaie();
             }
@@ -596,7 +586,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return $data instanceof UtilisateurCollaborateur;
+            return \is_object($data) && UtilisateurCollaborateur::class === $data::class;
         }
 
         /**
@@ -851,12 +841,6 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setOngletGestionInterneSimplifiee(null);
             }
 
-            if (\array_key_exists('onglet_GestionDesIdentifiants', $data) && null !== $data['onglet_GestionDesIdentifiants']) {
-                $object->setOngletGestionDesIdentifiants($data['onglet_GestionDesIdentifiants']);
-            } elseif (\array_key_exists('onglet_GestionDesIdentifiants', $data) && null === $data['onglet_GestionDesIdentifiants']) {
-                $object->setOngletGestionDesIdentifiants(null);
-            }
-
             if (\array_key_exists('onglet_ParametragePaie', $data) && null !== $data['onglet_ParametragePaie']) {
                 $object->setOngletParametragePaie($data['onglet_ParametragePaie']);
             } elseif (\array_key_exists('onglet_ParametragePaie', $data) && null === $data['onglet_ParametragePaie']) {
@@ -1094,10 +1078,6 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             if ($object->isInitialized('ongletGestionInterneSimplifiee') && null !== $object->getOngletGestionInterneSimplifiee()) {
                 $data['onglet_GestionInterneSimplifiee'] = $object->getOngletGestionInterneSimplifiee();
-            }
-
-            if ($object->isInitialized('ongletGestionDesIdentifiants') && null !== $object->getOngletGestionDesIdentifiants()) {
-                $data['onglet_GestionDesIdentifiants'] = $object->getOngletGestionDesIdentifiants();
             }
 
             if ($object->isInitialized('ongletParametragePaie') && null !== $object->getOngletParametragePaie()) {

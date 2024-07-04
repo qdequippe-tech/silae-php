@@ -212,11 +212,6 @@ class UtilisateurCollaborateur
     /**
      * @var bool|null
      */
-    protected $ongletGestionDesIdentifiants;
-
-    /**
-     * @var bool|null
-     */
     protected $ongletParametragePaie;
 
     /**
@@ -777,19 +772,6 @@ class UtilisateurCollaborateur
     {
         $this->initialized['ongletGestionInterneSimplifiee'] = true;
         $this->ongletGestionInterneSimplifiee = $ongletGestionInterneSimplifiee;
-
-        return $this;
-    }
-
-    public function getOngletGestionDesIdentifiants(): ?bool
-    {
-        return $this->ongletGestionDesIdentifiants;
-    }
-
-    public function setOngletGestionDesIdentifiants(?bool $ongletGestionDesIdentifiants): self
-    {
-        $this->initialized['ongletGestionDesIdentifiants'] = true;
-        $this->ongletGestionDesIdentifiants = $ongletGestionDesIdentifiants;
 
         return $this;
     }

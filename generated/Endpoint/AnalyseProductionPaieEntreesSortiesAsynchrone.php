@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRequest;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
@@ -67,11 +68,12 @@ class AnalyseProductionPaieEntreesSortiesAsynchrone extends BaseEndpoint impleme
     }
 
     /**
-     * @return TraitementAsynchroneResponse|null
+     * @return TraitementAsynchroneResponse
      *
      * @throws AnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException
      * @throws AnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException
      * @throws AnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class AnalyseProductionPaieEntreesSortiesAsynchrone extends BaseEndpoint impleme
             throw new AnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

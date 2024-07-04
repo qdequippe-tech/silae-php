@@ -217,17 +217,7 @@ class CompteCollaborateurDroitsUtilisateur
     /**
      * @var string|null
      */
-    protected $gestionInterneParametragesCollaborateurs;
-
-    /**
-     * @var string|null
-     */
     protected $gestionInterneParametragesClientsConfigurationAPIFichiersVirement;
-
-    /**
-     * @var string|null
-     */
-    protected $gestionInterneParametragesCollaborateursGestionRoles;
 
     /**
      * @var string|null
@@ -302,6 +292,16 @@ class CompteCollaborateurDroitsUtilisateur
     /**
      * @var string|null
      */
+    protected $administrationParametrages;
+
+    /**
+     * @var string|null
+     */
+    protected $administrationParametragesParametresAvances;
+
+    /**
+     * @var string|null
+     */
     protected $administrationPilotageActivite;
 
     /**
@@ -322,7 +322,22 @@ class CompteCollaborateurDroitsUtilisateur
     /**
      * @var string|null
      */
-    protected $productionLienSilaeHub;
+    protected $silaeHubLienSilaeHub;
+
+    /**
+     * @var string|null
+     */
+    protected $productionSuiviFPOC;
+
+    /**
+     * @var string|null
+     */
+    protected $productionSuiviFPOCTelechargerPlus;
+
+    /**
+     * @var string|null
+     */
+    protected $productionSuiviFPOCAfficherNonRattachees;
 
     public function getPaieRelationClientGestionPortailCP(): ?string
     {
@@ -844,19 +859,6 @@ class CompteCollaborateurDroitsUtilisateur
         return $this;
     }
 
-    public function getGestionInterneParametragesCollaborateurs(): ?string
-    {
-        return $this->gestionInterneParametragesCollaborateurs;
-    }
-
-    public function setGestionInterneParametragesCollaborateurs(?string $gestionInterneParametragesCollaborateurs): self
-    {
-        $this->initialized['gestionInterneParametragesCollaborateurs'] = true;
-        $this->gestionInterneParametragesCollaborateurs = $gestionInterneParametragesCollaborateurs;
-
-        return $this;
-    }
-
     public function getGestionInterneParametragesClientsConfigurationAPIFichiersVirement(): ?string
     {
         return $this->gestionInterneParametragesClientsConfigurationAPIFichiersVirement;
@@ -866,19 +868,6 @@ class CompteCollaborateurDroitsUtilisateur
     {
         $this->initialized['gestionInterneParametragesClientsConfigurationAPIFichiersVirement'] = true;
         $this->gestionInterneParametragesClientsConfigurationAPIFichiersVirement = $gestionInterneParametragesClientsConfigurationAPIFichiersVirement;
-
-        return $this;
-    }
-
-    public function getGestionInterneParametragesCollaborateursGestionRoles(): ?string
-    {
-        return $this->gestionInterneParametragesCollaborateursGestionRoles;
-    }
-
-    public function setGestionInterneParametragesCollaborateursGestionRoles(?string $gestionInterneParametragesCollaborateursGestionRoles): self
-    {
-        $this->initialized['gestionInterneParametragesCollaborateursGestionRoles'] = true;
-        $this->gestionInterneParametragesCollaborateursGestionRoles = $gestionInterneParametragesCollaborateursGestionRoles;
 
         return $this;
     }
@@ -1065,6 +1054,32 @@ class CompteCollaborateurDroitsUtilisateur
         return $this;
     }
 
+    public function getAdministrationParametrages(): ?string
+    {
+        return $this->administrationParametrages;
+    }
+
+    public function setAdministrationParametrages(?string $administrationParametrages): self
+    {
+        $this->initialized['administrationParametrages'] = true;
+        $this->administrationParametrages = $administrationParametrages;
+
+        return $this;
+    }
+
+    public function getAdministrationParametragesParametresAvances(): ?string
+    {
+        return $this->administrationParametragesParametresAvances;
+    }
+
+    public function setAdministrationParametragesParametresAvances(?string $administrationParametragesParametresAvances): self
+    {
+        $this->initialized['administrationParametragesParametresAvances'] = true;
+        $this->administrationParametragesParametresAvances = $administrationParametragesParametresAvances;
+
+        return $this;
+    }
+
     public function getAdministrationPilotageActivite(): ?string
     {
         return $this->administrationPilotageActivite;
@@ -1117,15 +1132,54 @@ class CompteCollaborateurDroitsUtilisateur
         return $this;
     }
 
-    public function getProductionLienSilaeHub(): ?string
+    public function getSilaeHubLienSilaeHub(): ?string
     {
-        return $this->productionLienSilaeHub;
+        return $this->silaeHubLienSilaeHub;
     }
 
-    public function setProductionLienSilaeHub(?string $productionLienSilaeHub): self
+    public function setSilaeHubLienSilaeHub(?string $silaeHubLienSilaeHub): self
     {
-        $this->initialized['productionLienSilaeHub'] = true;
-        $this->productionLienSilaeHub = $productionLienSilaeHub;
+        $this->initialized['silaeHubLienSilaeHub'] = true;
+        $this->silaeHubLienSilaeHub = $silaeHubLienSilaeHub;
+
+        return $this;
+    }
+
+    public function getProductionSuiviFPOC(): ?string
+    {
+        return $this->productionSuiviFPOC;
+    }
+
+    public function setProductionSuiviFPOC(?string $productionSuiviFPOC): self
+    {
+        $this->initialized['productionSuiviFPOC'] = true;
+        $this->productionSuiviFPOC = $productionSuiviFPOC;
+
+        return $this;
+    }
+
+    public function getProductionSuiviFPOCTelechargerPlus(): ?string
+    {
+        return $this->productionSuiviFPOCTelechargerPlus;
+    }
+
+    public function setProductionSuiviFPOCTelechargerPlus(?string $productionSuiviFPOCTelechargerPlus): self
+    {
+        $this->initialized['productionSuiviFPOCTelechargerPlus'] = true;
+        $this->productionSuiviFPOCTelechargerPlus = $productionSuiviFPOCTelechargerPlus;
+
+        return $this;
+    }
+
+    public function getProductionSuiviFPOCAfficherNonRattachees(): ?string
+    {
+        return $this->productionSuiviFPOCAfficherNonRattachees;
+    }
+
+    public function setProductionSuiviFPOCAfficherNonRattachees(?string $productionSuiviFPOCAfficherNonRattachees): self
+    {
+        $this->initialized['productionSuiviFPOCAfficherNonRattachees'] = true;
+        $this->productionSuiviFPOCAfficherNonRattachees = $productionSuiviFPOCAfficherNonRattachees;
 
         return $this;
     }

@@ -109,6 +109,11 @@ class SalarieElementCarriere
      */
     protected $dateReelleFinEmploi;
 
+    /**
+     * @var int|null
+     */
+    protected $identifiantEmploi;
+
     public function getDateDebut(): ?\DateTime
     {
         return $this->dateDebut;
@@ -352,6 +357,19 @@ class SalarieElementCarriere
     {
         $this->initialized['dateReelleFinEmploi'] = true;
         $this->dateReelleFinEmploi = $dateReelleFinEmploi;
+
+        return $this;
+    }
+
+    public function getIdentifiantEmploi(): ?int
+    {
+        return $this->identifiantEmploi;
+    }
+
+    public function setIdentifiantEmploi(?int $identifiantEmploi): self
+    {
+        $this->initialized['identifiantEmploi'] = true;
+        $this->identifiantEmploi = $identifiantEmploi;
 
         return $this;
     }

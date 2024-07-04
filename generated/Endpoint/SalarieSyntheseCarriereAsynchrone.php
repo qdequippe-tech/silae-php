@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalarieSyntheseCarriereAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieSyntheseCarriereAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieSyntheseCarriereAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
@@ -67,11 +68,12 @@ class SalarieSyntheseCarriereAsynchrone extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return TraitementAsynchroneResponse|null
+     * @return TraitementAsynchroneResponse
      *
      * @throws SalarieSyntheseCarriereAsynchroneBadRequestException
      * @throws SalarieSyntheseCarriereAsynchroneUnauthorizedException
      * @throws SalarieSyntheseCarriereAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class SalarieSyntheseCarriereAsynchrone extends BaseEndpoint implements Endpoint
             throw new SalarieSyntheseCarriereAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

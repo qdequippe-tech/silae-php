@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieCalculerBulletinAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieCalculerBulletinAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieCalculerBulletinAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieCalculerBulletinRequest;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
@@ -67,11 +68,12 @@ class SpectacleSalarieCalculerBulletinAsynchrone extends BaseEndpoint implements
     }
 
     /**
-     * @return TraitementAsynchroneResponse|null
+     * @return TraitementAsynchroneResponse
      *
      * @throws SpectacleSalarieCalculerBulletinAsynchroneBadRequestException
      * @throws SpectacleSalarieCalculerBulletinAsynchroneUnauthorizedException
      * @throws SpectacleSalarieCalculerBulletinAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class SpectacleSalarieCalculerBulletinAsynchrone extends BaseEndpoint implements
             throw new SpectacleSalarieCalculerBulletinAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

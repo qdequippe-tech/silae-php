@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireEtablissementCCNBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireEtablissementCCNInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireEtablissementCCNUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest;
 use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNResponse;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
@@ -67,11 +68,12 @@ class AcquisitionQuestionnaireEtablissementCCN extends BaseEndpoint implements E
     }
 
     /**
-     * @return AcquisitionQuestionnaireCCNResponse|null
+     * @return AcquisitionQuestionnaireCCNResponse
      *
      * @throws AcquisitionQuestionnaireEtablissementCCNBadRequestException
      * @throws AcquisitionQuestionnaireEtablissementCCNUnauthorizedException
      * @throws AcquisitionQuestionnaireEtablissementCCNInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class AcquisitionQuestionnaireEtablissementCCN extends BaseEndpoint implements E
             throw new AcquisitionQuestionnaireEtablissementCCNInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

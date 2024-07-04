@@ -30,7 +30,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return $data instanceof SalarieEmplois;
+            return \is_object($data) && SalarieEmplois::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -605,6 +605,18 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setEmplois(null);
             }
 
+            if (\array_key_exists('anneeNaissance', $data) && null !== $data['anneeNaissance']) {
+                $object->setAnneeNaissance($data['anneeNaissance']);
+            } elseif (\array_key_exists('anneeNaissance', $data) && null === $data['anneeNaissance']) {
+                $object->setAnneeNaissance(null);
+            }
+
+            if (\array_key_exists('bAnneeNaissance', $data) && null !== $data['bAnneeNaissance']) {
+                $object->setBAnneeNaissance($data['bAnneeNaissance']);
+            } elseif (\array_key_exists('bAnneeNaissance', $data) && null === $data['bAnneeNaissance']) {
+                $object->setBAnneeNaissance(null);
+            }
+
             return $object;
         }
 
@@ -984,6 +996,14 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['emplois'] = $values;
             }
 
+            if ($object->isInitialized('anneeNaissance') && null !== $object->getAnneeNaissance()) {
+                $data['anneeNaissance'] = $object->getAnneeNaissance();
+            }
+
+            if ($object->isInitialized('bAnneeNaissance') && null !== $object->getBAnneeNaissance()) {
+                $data['bAnneeNaissance'] = $object->getBAnneeNaissance();
+            }
+
             return $data;
         }
 
@@ -1007,7 +1027,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return $data instanceof SalarieEmplois;
+            return \is_object($data) && SalarieEmplois::class === $data::class;
         }
 
         /**
@@ -1585,6 +1605,18 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setEmplois(null);
             }
 
+            if (\array_key_exists('anneeNaissance', $data) && null !== $data['anneeNaissance']) {
+                $object->setAnneeNaissance($data['anneeNaissance']);
+            } elseif (\array_key_exists('anneeNaissance', $data) && null === $data['anneeNaissance']) {
+                $object->setAnneeNaissance(null);
+            }
+
+            if (\array_key_exists('bAnneeNaissance', $data) && null !== $data['bAnneeNaissance']) {
+                $object->setBAnneeNaissance($data['bAnneeNaissance']);
+            } elseif (\array_key_exists('bAnneeNaissance', $data) && null === $data['bAnneeNaissance']) {
+                $object->setBAnneeNaissance(null);
+            }
+
             return $object;
         }
 
@@ -1967,6 +1999,14 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 }
 
                 $data['emplois'] = $values;
+            }
+
+            if ($object->isInitialized('anneeNaissance') && null !== $object->getAnneeNaissance()) {
+                $data['anneeNaissance'] = $object->getAnneeNaissance();
+            }
+
+            if ($object->isInitialized('bAnneeNaissance') && null !== $object->getBAnneeNaissance()) {
+                $data['bAnneeNaissance'] = $object->getBAnneeNaissance();
             }
 
             return $data;

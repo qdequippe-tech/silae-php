@@ -3,7 +3,7 @@
 namespace QdequippeTech\Silae\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use QdequippeTech\Silae\Api\Model\Statistiques;
+use QdequippeTech\Silae\Api\Model\StatistiquesV2;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -30,7 +30,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return $data instanceof StatutAnalyseProductionPaieAsynchroneResponse;
+            return \is_object($data) && StatutAnalyseProductionPaieAsynchroneResponse::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -55,7 +55,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('statistiques', $data) && null !== $data['statistiques']) {
                 $values = [];
                 foreach ($data['statistiques'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, Statistiques::class, 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, StatistiquesV2::class, 'json', $context);
                 }
 
                 $object->setStatistiques($values);
@@ -141,7 +141,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return $data instanceof StatutAnalyseProductionPaieAsynchroneResponse;
+            return \is_object($data) && StatutAnalyseProductionPaieAsynchroneResponse::class === $data::class;
         }
 
         /**
@@ -169,7 +169,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('statistiques', $data) && null !== $data['statistiques']) {
                 $values = [];
                 foreach ($data['statistiques'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, Statistiques::class, 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, StatistiquesV2::class, 'json', $context);
                 }
 
                 $object->setStatistiques($values);

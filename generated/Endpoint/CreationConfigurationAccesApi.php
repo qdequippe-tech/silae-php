@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\CreationConfigurationAccesApiBadRequestException;
 use QdequippeTech\Silae\Api\Exception\CreationConfigurationAccesApiInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\CreationConfigurationAccesApiUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\CreationConfigurationAccesApiRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -66,11 +67,12 @@ class CreationConfigurationAccesApi extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\CreationConfigurationAccesApi|null
+     * @return \QdequippeTech\Silae\Api\Model\CreationConfigurationAccesApi
      *
      * @throws CreationConfigurationAccesApiBadRequestException
      * @throws CreationConfigurationAccesApiUnauthorizedException
      * @throws CreationConfigurationAccesApiInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -92,7 +94,7 @@ class CreationConfigurationAccesApi extends BaseEndpoint implements Endpoint
             throw new CreationConfigurationAccesApiInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\DossierRecupererPeriodeEnCoursBadRequestException;
 use QdequippeTech\Silae\Api\Exception\DossierRecupererPeriodeEnCoursInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\DossierRecupererPeriodeEnCoursUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierRecupererPeriodeEnCoursResponse;
 use QdequippeTech\Silae\Api\Model\DossierRequest;
@@ -67,11 +68,12 @@ class DossierRecupererPeriodeEnCours extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return DossierRecupererPeriodeEnCoursResponse|null
+     * @return DossierRecupererPeriodeEnCoursResponse
      *
      * @throws DossierRecupererPeriodeEnCoursBadRequestException
      * @throws DossierRecupererPeriodeEnCoursUnauthorizedException
      * @throws DossierRecupererPeriodeEnCoursInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class DossierRecupererPeriodeEnCours extends BaseEndpoint implements Endpoint
             throw new DossierRecupererPeriodeEnCoursInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

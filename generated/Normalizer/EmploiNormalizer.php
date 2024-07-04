@@ -29,7 +29,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return $data instanceof Emploi;
+            return \is_object($data) && Emploi::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -121,6 +121,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setDateDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebut']));
             } elseif (\array_key_exists('dateDebut', $data) && null === $data['dateDebut']) {
                 $object->setDateDebut(null);
+            }
+
+            if (\array_key_exists('dateDebutContrat', $data) && null !== $data['dateDebutContrat']) {
+                $object->setDateDebutContrat(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebutContrat']));
+            } elseif (\array_key_exists('dateDebutContrat', $data) && null === $data['dateDebutContrat']) {
+                $object->setDateDebutContrat(null);
             }
 
             if (\array_key_exists('dateFin', $data) && null !== $data['dateFin']) {
@@ -713,6 +719,42 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setBTicketRestaurant(null);
             }
 
+            if (\array_key_exists('codeTerritoire', $data) && null !== $data['codeTerritoire']) {
+                $object->setCodeTerritoire($data['codeTerritoire']);
+            } elseif (\array_key_exists('codeTerritoire', $data) && null === $data['codeTerritoire']) {
+                $object->setCodeTerritoire(null);
+            }
+
+            if (\array_key_exists('bCodeTerritoire', $data) && null !== $data['bCodeTerritoire']) {
+                $object->setBCodeTerritoire($data['bCodeTerritoire']);
+            } elseif (\array_key_exists('bCodeTerritoire', $data) && null === $data['bCodeTerritoire']) {
+                $object->setBCodeTerritoire(null);
+            }
+
+            if (\array_key_exists('codeSecteurDFS', $data) && null !== $data['codeSecteurDFS']) {
+                $object->setCodeSecteurDFS($data['codeSecteurDFS']);
+            } elseif (\array_key_exists('codeSecteurDFS', $data) && null === $data['codeSecteurDFS']) {
+                $object->setCodeSecteurDFS(null);
+            }
+
+            if (\array_key_exists('bCodeSecteurDFS', $data) && null !== $data['bCodeSecteurDFS']) {
+                $object->setBCodeSecteurDFS($data['bCodeSecteurDFS']);
+            } elseif (\array_key_exists('bCodeSecteurDFS', $data) && null === $data['bCodeSecteurDFS']) {
+                $object->setBCodeSecteurDFS(null);
+            }
+
+            if (\array_key_exists('pctAbattementLissage', $data) && null !== $data['pctAbattementLissage']) {
+                $object->setPctAbattementLissage($data['pctAbattementLissage']);
+            } elseif (\array_key_exists('pctAbattementLissage', $data) && null === $data['pctAbattementLissage']) {
+                $object->setPctAbattementLissage(null);
+            }
+
+            if (\array_key_exists('bPctAbattementLissage', $data) && null !== $data['bPctAbattementLissage']) {
+                $object->setBPctAbattementLissage($data['bPctAbattementLissage']);
+            } elseif (\array_key_exists('bPctAbattementLissage', $data) && null === $data['bPctAbattementLissage']) {
+                $object->setBPctAbattementLissage(null);
+            }
+
             return $object;
         }
 
@@ -741,6 +783,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             if ($object->isInitialized('dateDebut') && null !== $object->getDateDebut()) {
                 $data['dateDebut'] = $object->getDateDebut()->format('Y-m-d\TH:i:s');
+            }
+
+            if ($object->isInitialized('dateDebutContrat') && null !== $object->getDateDebutContrat()) {
+                $data['dateDebutContrat'] = $object->getDateDebutContrat()->format('Y-m-d\TH:i:s');
             }
 
             if ($object->isInitialized('dateFin') && null !== $object->getDateFin()) {
@@ -1143,6 +1189,30 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['bTicketRestaurant'] = $object->getBTicketRestaurant();
             }
 
+            if ($object->isInitialized('codeTerritoire') && null !== $object->getCodeTerritoire()) {
+                $data['codeTerritoire'] = $object->getCodeTerritoire();
+            }
+
+            if ($object->isInitialized('bCodeTerritoire') && null !== $object->getBCodeTerritoire()) {
+                $data['bCodeTerritoire'] = $object->getBCodeTerritoire();
+            }
+
+            if ($object->isInitialized('codeSecteurDFS') && null !== $object->getCodeSecteurDFS()) {
+                $data['codeSecteurDFS'] = $object->getCodeSecteurDFS();
+            }
+
+            if ($object->isInitialized('bCodeSecteurDFS') && null !== $object->getBCodeSecteurDFS()) {
+                $data['bCodeSecteurDFS'] = $object->getBCodeSecteurDFS();
+            }
+
+            if ($object->isInitialized('pctAbattementLissage') && null !== $object->getPctAbattementLissage()) {
+                $data['pctAbattementLissage'] = $object->getPctAbattementLissage();
+            }
+
+            if ($object->isInitialized('bPctAbattementLissage') && null !== $object->getBPctAbattementLissage()) {
+                $data['bPctAbattementLissage'] = $object->getBPctAbattementLissage();
+            }
+
             return $data;
         }
 
@@ -1166,7 +1236,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return $data instanceof Emploi;
+            return \is_object($data) && Emploi::class === $data::class;
         }
 
         /**
@@ -1263,6 +1333,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setDateDebut(null);
             }
 
+            if (\array_key_exists('dateDebutContrat', $data) && null !== $data['dateDebutContrat']) {
+                $object->setDateDebutContrat(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebutContrat']));
+            } elseif (\array_key_exists('dateDebutContrat', $data) && null === $data['dateDebutContrat']) {
+                $object->setDateDebutContrat(null);
+            }
+
             if (\array_key_exists('dateFin', $data) && null !== $data['dateFin']) {
                 $object->setDateFin(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFin']));
             } elseif (\array_key_exists('dateFin', $data) && null === $data['dateFin']) {
@@ -1853,6 +1929,42 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setBTicketRestaurant(null);
             }
 
+            if (\array_key_exists('codeTerritoire', $data) && null !== $data['codeTerritoire']) {
+                $object->setCodeTerritoire($data['codeTerritoire']);
+            } elseif (\array_key_exists('codeTerritoire', $data) && null === $data['codeTerritoire']) {
+                $object->setCodeTerritoire(null);
+            }
+
+            if (\array_key_exists('bCodeTerritoire', $data) && null !== $data['bCodeTerritoire']) {
+                $object->setBCodeTerritoire($data['bCodeTerritoire']);
+            } elseif (\array_key_exists('bCodeTerritoire', $data) && null === $data['bCodeTerritoire']) {
+                $object->setBCodeTerritoire(null);
+            }
+
+            if (\array_key_exists('codeSecteurDFS', $data) && null !== $data['codeSecteurDFS']) {
+                $object->setCodeSecteurDFS($data['codeSecteurDFS']);
+            } elseif (\array_key_exists('codeSecteurDFS', $data) && null === $data['codeSecteurDFS']) {
+                $object->setCodeSecteurDFS(null);
+            }
+
+            if (\array_key_exists('bCodeSecteurDFS', $data) && null !== $data['bCodeSecteurDFS']) {
+                $object->setBCodeSecteurDFS($data['bCodeSecteurDFS']);
+            } elseif (\array_key_exists('bCodeSecteurDFS', $data) && null === $data['bCodeSecteurDFS']) {
+                $object->setBCodeSecteurDFS(null);
+            }
+
+            if (\array_key_exists('pctAbattementLissage', $data) && null !== $data['pctAbattementLissage']) {
+                $object->setPctAbattementLissage($data['pctAbattementLissage']);
+            } elseif (\array_key_exists('pctAbattementLissage', $data) && null === $data['pctAbattementLissage']) {
+                $object->setPctAbattementLissage(null);
+            }
+
+            if (\array_key_exists('bPctAbattementLissage', $data) && null !== $data['bPctAbattementLissage']) {
+                $object->setBPctAbattementLissage($data['bPctAbattementLissage']);
+            } elseif (\array_key_exists('bPctAbattementLissage', $data) && null === $data['bPctAbattementLissage']) {
+                $object->setBPctAbattementLissage(null);
+            }
+
             return $object;
         }
 
@@ -1886,6 +1998,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             if ($object->isInitialized('dateDebut') && null !== $object->getDateDebut()) {
                 $data['dateDebut'] = $object->getDateDebut()->format('Y-m-d\TH:i:s');
+            }
+
+            if ($object->isInitialized('dateDebutContrat') && null !== $object->getDateDebutContrat()) {
+                $data['dateDebutContrat'] = $object->getDateDebutContrat()->format('Y-m-d\TH:i:s');
             }
 
             if ($object->isInitialized('dateFin') && null !== $object->getDateFin()) {
@@ -2286,6 +2402,30 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             if ($object->isInitialized('bTicketRestaurant') && null !== $object->getBTicketRestaurant()) {
                 $data['bTicketRestaurant'] = $object->getBTicketRestaurant();
+            }
+
+            if ($object->isInitialized('codeTerritoire') && null !== $object->getCodeTerritoire()) {
+                $data['codeTerritoire'] = $object->getCodeTerritoire();
+            }
+
+            if ($object->isInitialized('bCodeTerritoire') && null !== $object->getBCodeTerritoire()) {
+                $data['bCodeTerritoire'] = $object->getBCodeTerritoire();
+            }
+
+            if ($object->isInitialized('codeSecteurDFS') && null !== $object->getCodeSecteurDFS()) {
+                $data['codeSecteurDFS'] = $object->getCodeSecteurDFS();
+            }
+
+            if ($object->isInitialized('bCodeSecteurDFS') && null !== $object->getBCodeSecteurDFS()) {
+                $data['bCodeSecteurDFS'] = $object->getBCodeSecteurDFS();
+            }
+
+            if ($object->isInitialized('pctAbattementLissage') && null !== $object->getPctAbattementLissage()) {
+                $data['pctAbattementLissage'] = $object->getPctAbattementLissage();
+            }
+
+            if ($object->isInitialized('bPctAbattementLissage') && null !== $object->getBPctAbattementLissage()) {
+                $data['bPctAbattementLissage'] = $object->getBPctAbattementLissage();
             }
 
             return $data;

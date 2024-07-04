@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ImportXmlParametrageOrganismeDSNBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ImportXmlParametrageOrganismeDSNInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ImportXmlParametrageOrganismeDSNUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ImportXmlParametrageOrganismeDSNRequest;
 use QdequippeTech\Silae\Api\Model\ImportXmlParametrageOrganismeDSNResponse;
@@ -67,11 +68,12 @@ class ImportXmlParametrageOrganismeDSN extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return ImportXmlParametrageOrganismeDSNResponse|null
+     * @return ImportXmlParametrageOrganismeDSNResponse
      *
      * @throws ImportXmlParametrageOrganismeDSNBadRequestException
      * @throws ImportXmlParametrageOrganismeDSNUnauthorizedException
      * @throws ImportXmlParametrageOrganismeDSNInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class ImportXmlParametrageOrganismeDSN extends BaseEndpoint implements Endpoint
             throw new ImportXmlParametrageOrganismeDSNInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

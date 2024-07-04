@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\BureautiquePaieNombreDocumentsCreesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\BureautiquePaieNombreDocumentsCreesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\BureautiquePaieNombreDocumentsCreesUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\BureautiquePaieNombreDocumentsCreesRequest;
 use QdequippeTech\Silae\Api\Model\BureautiquePaieNombreDocumentsCreesResponse;
@@ -67,11 +68,12 @@ class BureautiquePaieNombreDocumentsCrees extends BaseEndpoint implements Endpoi
     }
 
     /**
-     * @return BureautiquePaieNombreDocumentsCreesResponse|null
+     * @return BureautiquePaieNombreDocumentsCreesResponse
      *
      * @throws BureautiquePaieNombreDocumentsCreesBadRequestException
      * @throws BureautiquePaieNombreDocumentsCreesUnauthorizedException
      * @throws BureautiquePaieNombreDocumentsCreesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class BureautiquePaieNombreDocumentsCrees extends BaseEndpoint implements Endpoi
             throw new BureautiquePaieNombreDocumentsCreesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\LectureInformationBancaireSocieteBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureInformationBancaireSocieteInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureInformationBancaireSocieteUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierRequest;
 use QdequippeTech\Silae\Api\Model\LectureInformationBancaireSocieteResponse;
@@ -67,11 +68,12 @@ class LectureInformationBancaireSociete extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return LectureInformationBancaireSocieteResponse|null
+     * @return LectureInformationBancaireSocieteResponse
      *
      * @throws LectureInformationBancaireSocieteBadRequestException
      * @throws LectureInformationBancaireSocieteUnauthorizedException
      * @throws LectureInformationBancaireSocieteInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class LectureInformationBancaireSociete extends BaseEndpoint implements Endpoint
             throw new LectureInformationBancaireSocieteInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

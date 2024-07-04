@@ -29,7 +29,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return $data instanceof CompteCollaborateurDroitsUtilisateur;
+            return \is_object($data) && CompteCollaborateurDroitsUtilisateur::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -287,22 +287,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setGestionInterneParametragesClientsMenuSupprimer(null);
             }
 
-            if (\array_key_exists('gestionInterneParametragesCollaborateurs', $data) && null !== $data['gestionInterneParametragesCollaborateurs']) {
-                $object->setGestionInterneParametragesCollaborateurs($data['gestionInterneParametragesCollaborateurs']);
-            } elseif (\array_key_exists('gestionInterneParametragesCollaborateurs', $data) && null === $data['gestionInterneParametragesCollaborateurs']) {
-                $object->setGestionInterneParametragesCollaborateurs(null);
-            }
-
             if (\array_key_exists('gestionInterneParametragesClientsConfigurationAPIFichiersVirement', $data) && null !== $data['gestionInterneParametragesClientsConfigurationAPIFichiersVirement']) {
                 $object->setGestionInterneParametragesClientsConfigurationAPIFichiersVirement($data['gestionInterneParametragesClientsConfigurationAPIFichiersVirement']);
             } elseif (\array_key_exists('gestionInterneParametragesClientsConfigurationAPIFichiersVirement', $data) && null === $data['gestionInterneParametragesClientsConfigurationAPIFichiersVirement']) {
                 $object->setGestionInterneParametragesClientsConfigurationAPIFichiersVirement(null);
-            }
-
-            if (\array_key_exists('gestionInterneParametragesCollaborateursGestionRoles', $data) && null !== $data['gestionInterneParametragesCollaborateursGestionRoles']) {
-                $object->setGestionInterneParametragesCollaborateursGestionRoles($data['gestionInterneParametragesCollaborateursGestionRoles']);
-            } elseif (\array_key_exists('gestionInterneParametragesCollaborateursGestionRoles', $data) && null === $data['gestionInterneParametragesCollaborateursGestionRoles']) {
-                $object->setGestionInterneParametragesCollaborateursGestionRoles(null);
             }
 
             if (\array_key_exists('gestionInterneParametragesAgences', $data) && null !== $data['gestionInterneParametragesAgences']) {
@@ -389,6 +377,18 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setAdministrationConnexionPersonnalisationEcranConnexion(null);
             }
 
+            if (\array_key_exists('administrationParametrages', $data) && null !== $data['administrationParametrages']) {
+                $object->setAdministrationParametrages($data['administrationParametrages']);
+            } elseif (\array_key_exists('administrationParametrages', $data) && null === $data['administrationParametrages']) {
+                $object->setAdministrationParametrages(null);
+            }
+
+            if (\array_key_exists('administrationParametragesParametresAvances', $data) && null !== $data['administrationParametragesParametresAvances']) {
+                $object->setAdministrationParametragesParametresAvances($data['administrationParametragesParametresAvances']);
+            } elseif (\array_key_exists('administrationParametragesParametresAvances', $data) && null === $data['administrationParametragesParametresAvances']) {
+                $object->setAdministrationParametragesParametresAvances(null);
+            }
+
             if (\array_key_exists('administrationPilotageActivite', $data) && null !== $data['administrationPilotageActivite']) {
                 $object->setAdministrationPilotageActivite($data['administrationPilotageActivite']);
             } elseif (\array_key_exists('administrationPilotageActivite', $data) && null === $data['administrationPilotageActivite']) {
@@ -413,10 +413,28 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setAdministrationConfigurationExport(null);
             }
 
-            if (\array_key_exists('productionLienSilaeHub', $data) && null !== $data['productionLienSilaeHub']) {
-                $object->setProductionLienSilaeHub($data['productionLienSilaeHub']);
-            } elseif (\array_key_exists('productionLienSilaeHub', $data) && null === $data['productionLienSilaeHub']) {
-                $object->setProductionLienSilaeHub(null);
+            if (\array_key_exists('silaeHubLienSilaeHub', $data) && null !== $data['silaeHubLienSilaeHub']) {
+                $object->setSilaeHubLienSilaeHub($data['silaeHubLienSilaeHub']);
+            } elseif (\array_key_exists('silaeHubLienSilaeHub', $data) && null === $data['silaeHubLienSilaeHub']) {
+                $object->setSilaeHubLienSilaeHub(null);
+            }
+
+            if (\array_key_exists('productionSuiviFPOC', $data) && null !== $data['productionSuiviFPOC']) {
+                $object->setProductionSuiviFPOC($data['productionSuiviFPOC']);
+            } elseif (\array_key_exists('productionSuiviFPOC', $data) && null === $data['productionSuiviFPOC']) {
+                $object->setProductionSuiviFPOC(null);
+            }
+
+            if (\array_key_exists('productionSuiviFPOCTelechargerPlus', $data) && null !== $data['productionSuiviFPOCTelechargerPlus']) {
+                $object->setProductionSuiviFPOCTelechargerPlus($data['productionSuiviFPOCTelechargerPlus']);
+            } elseif (\array_key_exists('productionSuiviFPOCTelechargerPlus', $data) && null === $data['productionSuiviFPOCTelechargerPlus']) {
+                $object->setProductionSuiviFPOCTelechargerPlus(null);
+            }
+
+            if (\array_key_exists('productionSuiviFPOCAfficherNonRattachees', $data) && null !== $data['productionSuiviFPOCAfficherNonRattachees']) {
+                $object->setProductionSuiviFPOCAfficherNonRattachees($data['productionSuiviFPOCAfficherNonRattachees']);
+            } elseif (\array_key_exists('productionSuiviFPOCAfficherNonRattachees', $data) && null === $data['productionSuiviFPOCAfficherNonRattachees']) {
+                $object->setProductionSuiviFPOCAfficherNonRattachees(null);
             }
 
             return $object;
@@ -585,16 +603,8 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['gestionInterneParametragesClientsMenuSupprimer'] = $object->getGestionInterneParametragesClientsMenuSupprimer();
             }
 
-            if ($object->isInitialized('gestionInterneParametragesCollaborateurs') && null !== $object->getGestionInterneParametragesCollaborateurs()) {
-                $data['gestionInterneParametragesCollaborateurs'] = $object->getGestionInterneParametragesCollaborateurs();
-            }
-
             if ($object->isInitialized('gestionInterneParametragesClientsConfigurationAPIFichiersVirement') && null !== $object->getGestionInterneParametragesClientsConfigurationAPIFichiersVirement()) {
                 $data['gestionInterneParametragesClientsConfigurationAPIFichiersVirement'] = $object->getGestionInterneParametragesClientsConfigurationAPIFichiersVirement();
-            }
-
-            if ($object->isInitialized('gestionInterneParametragesCollaborateursGestionRoles') && null !== $object->getGestionInterneParametragesCollaborateursGestionRoles()) {
-                $data['gestionInterneParametragesCollaborateursGestionRoles'] = $object->getGestionInterneParametragesCollaborateursGestionRoles();
             }
 
             if ($object->isInitialized('gestionInterneParametragesAgences') && null !== $object->getGestionInterneParametragesAgences()) {
@@ -653,6 +663,14 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['administrationConnexionPersonnalisationEcranConnexion'] = $object->getAdministrationConnexionPersonnalisationEcranConnexion();
             }
 
+            if ($object->isInitialized('administrationParametrages') && null !== $object->getAdministrationParametrages()) {
+                $data['administrationParametrages'] = $object->getAdministrationParametrages();
+            }
+
+            if ($object->isInitialized('administrationParametragesParametresAvances') && null !== $object->getAdministrationParametragesParametresAvances()) {
+                $data['administrationParametragesParametresAvances'] = $object->getAdministrationParametragesParametresAvances();
+            }
+
             if ($object->isInitialized('administrationPilotageActivite') && null !== $object->getAdministrationPilotageActivite()) {
                 $data['administrationPilotageActivite'] = $object->getAdministrationPilotageActivite();
             }
@@ -669,8 +687,20 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['administrationConfigurationExport'] = $object->getAdministrationConfigurationExport();
             }
 
-            if ($object->isInitialized('productionLienSilaeHub') && null !== $object->getProductionLienSilaeHub()) {
-                $data['productionLienSilaeHub'] = $object->getProductionLienSilaeHub();
+            if ($object->isInitialized('silaeHubLienSilaeHub') && null !== $object->getSilaeHubLienSilaeHub()) {
+                $data['silaeHubLienSilaeHub'] = $object->getSilaeHubLienSilaeHub();
+            }
+
+            if ($object->isInitialized('productionSuiviFPOC') && null !== $object->getProductionSuiviFPOC()) {
+                $data['productionSuiviFPOC'] = $object->getProductionSuiviFPOC();
+            }
+
+            if ($object->isInitialized('productionSuiviFPOCTelechargerPlus') && null !== $object->getProductionSuiviFPOCTelechargerPlus()) {
+                $data['productionSuiviFPOCTelechargerPlus'] = $object->getProductionSuiviFPOCTelechargerPlus();
+            }
+
+            if ($object->isInitialized('productionSuiviFPOCAfficherNonRattachees') && null !== $object->getProductionSuiviFPOCAfficherNonRattachees()) {
+                $data['productionSuiviFPOCAfficherNonRattachees'] = $object->getProductionSuiviFPOCAfficherNonRattachees();
             }
 
             return $data;
@@ -696,7 +726,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return $data instanceof CompteCollaborateurDroitsUtilisateur;
+            return \is_object($data) && CompteCollaborateurDroitsUtilisateur::class === $data::class;
         }
 
         /**
@@ -957,22 +987,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setGestionInterneParametragesClientsMenuSupprimer(null);
             }
 
-            if (\array_key_exists('gestionInterneParametragesCollaborateurs', $data) && null !== $data['gestionInterneParametragesCollaborateurs']) {
-                $object->setGestionInterneParametragesCollaborateurs($data['gestionInterneParametragesCollaborateurs']);
-            } elseif (\array_key_exists('gestionInterneParametragesCollaborateurs', $data) && null === $data['gestionInterneParametragesCollaborateurs']) {
-                $object->setGestionInterneParametragesCollaborateurs(null);
-            }
-
             if (\array_key_exists('gestionInterneParametragesClientsConfigurationAPIFichiersVirement', $data) && null !== $data['gestionInterneParametragesClientsConfigurationAPIFichiersVirement']) {
                 $object->setGestionInterneParametragesClientsConfigurationAPIFichiersVirement($data['gestionInterneParametragesClientsConfigurationAPIFichiersVirement']);
             } elseif (\array_key_exists('gestionInterneParametragesClientsConfigurationAPIFichiersVirement', $data) && null === $data['gestionInterneParametragesClientsConfigurationAPIFichiersVirement']) {
                 $object->setGestionInterneParametragesClientsConfigurationAPIFichiersVirement(null);
-            }
-
-            if (\array_key_exists('gestionInterneParametragesCollaborateursGestionRoles', $data) && null !== $data['gestionInterneParametragesCollaborateursGestionRoles']) {
-                $object->setGestionInterneParametragesCollaborateursGestionRoles($data['gestionInterneParametragesCollaborateursGestionRoles']);
-            } elseif (\array_key_exists('gestionInterneParametragesCollaborateursGestionRoles', $data) && null === $data['gestionInterneParametragesCollaborateursGestionRoles']) {
-                $object->setGestionInterneParametragesCollaborateursGestionRoles(null);
             }
 
             if (\array_key_exists('gestionInterneParametragesAgences', $data) && null !== $data['gestionInterneParametragesAgences']) {
@@ -1059,6 +1077,18 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setAdministrationConnexionPersonnalisationEcranConnexion(null);
             }
 
+            if (\array_key_exists('administrationParametrages', $data) && null !== $data['administrationParametrages']) {
+                $object->setAdministrationParametrages($data['administrationParametrages']);
+            } elseif (\array_key_exists('administrationParametrages', $data) && null === $data['administrationParametrages']) {
+                $object->setAdministrationParametrages(null);
+            }
+
+            if (\array_key_exists('administrationParametragesParametresAvances', $data) && null !== $data['administrationParametragesParametresAvances']) {
+                $object->setAdministrationParametragesParametresAvances($data['administrationParametragesParametresAvances']);
+            } elseif (\array_key_exists('administrationParametragesParametresAvances', $data) && null === $data['administrationParametragesParametresAvances']) {
+                $object->setAdministrationParametragesParametresAvances(null);
+            }
+
             if (\array_key_exists('administrationPilotageActivite', $data) && null !== $data['administrationPilotageActivite']) {
                 $object->setAdministrationPilotageActivite($data['administrationPilotageActivite']);
             } elseif (\array_key_exists('administrationPilotageActivite', $data) && null === $data['administrationPilotageActivite']) {
@@ -1083,10 +1113,28 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setAdministrationConfigurationExport(null);
             }
 
-            if (\array_key_exists('productionLienSilaeHub', $data) && null !== $data['productionLienSilaeHub']) {
-                $object->setProductionLienSilaeHub($data['productionLienSilaeHub']);
-            } elseif (\array_key_exists('productionLienSilaeHub', $data) && null === $data['productionLienSilaeHub']) {
-                $object->setProductionLienSilaeHub(null);
+            if (\array_key_exists('silaeHubLienSilaeHub', $data) && null !== $data['silaeHubLienSilaeHub']) {
+                $object->setSilaeHubLienSilaeHub($data['silaeHubLienSilaeHub']);
+            } elseif (\array_key_exists('silaeHubLienSilaeHub', $data) && null === $data['silaeHubLienSilaeHub']) {
+                $object->setSilaeHubLienSilaeHub(null);
+            }
+
+            if (\array_key_exists('productionSuiviFPOC', $data) && null !== $data['productionSuiviFPOC']) {
+                $object->setProductionSuiviFPOC($data['productionSuiviFPOC']);
+            } elseif (\array_key_exists('productionSuiviFPOC', $data) && null === $data['productionSuiviFPOC']) {
+                $object->setProductionSuiviFPOC(null);
+            }
+
+            if (\array_key_exists('productionSuiviFPOCTelechargerPlus', $data) && null !== $data['productionSuiviFPOCTelechargerPlus']) {
+                $object->setProductionSuiviFPOCTelechargerPlus($data['productionSuiviFPOCTelechargerPlus']);
+            } elseif (\array_key_exists('productionSuiviFPOCTelechargerPlus', $data) && null === $data['productionSuiviFPOCTelechargerPlus']) {
+                $object->setProductionSuiviFPOCTelechargerPlus(null);
+            }
+
+            if (\array_key_exists('productionSuiviFPOCAfficherNonRattachees', $data) && null !== $data['productionSuiviFPOCAfficherNonRattachees']) {
+                $object->setProductionSuiviFPOCAfficherNonRattachees($data['productionSuiviFPOCAfficherNonRattachees']);
+            } elseif (\array_key_exists('productionSuiviFPOCAfficherNonRattachees', $data) && null === $data['productionSuiviFPOCAfficherNonRattachees']) {
+                $object->setProductionSuiviFPOCAfficherNonRattachees(null);
             }
 
             return $object;
@@ -1260,16 +1308,8 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['gestionInterneParametragesClientsMenuSupprimer'] = $object->getGestionInterneParametragesClientsMenuSupprimer();
             }
 
-            if ($object->isInitialized('gestionInterneParametragesCollaborateurs') && null !== $object->getGestionInterneParametragesCollaborateurs()) {
-                $data['gestionInterneParametragesCollaborateurs'] = $object->getGestionInterneParametragesCollaborateurs();
-            }
-
             if ($object->isInitialized('gestionInterneParametragesClientsConfigurationAPIFichiersVirement') && null !== $object->getGestionInterneParametragesClientsConfigurationAPIFichiersVirement()) {
                 $data['gestionInterneParametragesClientsConfigurationAPIFichiersVirement'] = $object->getGestionInterneParametragesClientsConfigurationAPIFichiersVirement();
-            }
-
-            if ($object->isInitialized('gestionInterneParametragesCollaborateursGestionRoles') && null !== $object->getGestionInterneParametragesCollaborateursGestionRoles()) {
-                $data['gestionInterneParametragesCollaborateursGestionRoles'] = $object->getGestionInterneParametragesCollaborateursGestionRoles();
             }
 
             if ($object->isInitialized('gestionInterneParametragesAgences') && null !== $object->getGestionInterneParametragesAgences()) {
@@ -1328,6 +1368,14 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['administrationConnexionPersonnalisationEcranConnexion'] = $object->getAdministrationConnexionPersonnalisationEcranConnexion();
             }
 
+            if ($object->isInitialized('administrationParametrages') && null !== $object->getAdministrationParametrages()) {
+                $data['administrationParametrages'] = $object->getAdministrationParametrages();
+            }
+
+            if ($object->isInitialized('administrationParametragesParametresAvances') && null !== $object->getAdministrationParametragesParametresAvances()) {
+                $data['administrationParametragesParametresAvances'] = $object->getAdministrationParametragesParametresAvances();
+            }
+
             if ($object->isInitialized('administrationPilotageActivite') && null !== $object->getAdministrationPilotageActivite()) {
                 $data['administrationPilotageActivite'] = $object->getAdministrationPilotageActivite();
             }
@@ -1344,8 +1392,20 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['administrationConfigurationExport'] = $object->getAdministrationConfigurationExport();
             }
 
-            if ($object->isInitialized('productionLienSilaeHub') && null !== $object->getProductionLienSilaeHub()) {
-                $data['productionLienSilaeHub'] = $object->getProductionLienSilaeHub();
+            if ($object->isInitialized('silaeHubLienSilaeHub') && null !== $object->getSilaeHubLienSilaeHub()) {
+                $data['silaeHubLienSilaeHub'] = $object->getSilaeHubLienSilaeHub();
+            }
+
+            if ($object->isInitialized('productionSuiviFPOC') && null !== $object->getProductionSuiviFPOC()) {
+                $data['productionSuiviFPOC'] = $object->getProductionSuiviFPOC();
+            }
+
+            if ($object->isInitialized('productionSuiviFPOCTelechargerPlus') && null !== $object->getProductionSuiviFPOCTelechargerPlus()) {
+                $data['productionSuiviFPOCTelechargerPlus'] = $object->getProductionSuiviFPOCTelechargerPlus();
+            }
+
+            if ($object->isInitialized('productionSuiviFPOCAfficherNonRattachees') && null !== $object->getProductionSuiviFPOCAfficherNonRattachees()) {
+                $data['productionSuiviFPOCAfficherNonRattachees'] = $object->getProductionSuiviFPOCAfficherNonRattachees();
             }
 
             return $data;
