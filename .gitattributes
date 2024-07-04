@@ -11,3 +11,6 @@
 /resources export-ignore
 /tests export-ignore
 /VERSIONING.md export-ignore
+/openapi export-ignore
+/tools export-ignore
+/rector.php export-ignore
