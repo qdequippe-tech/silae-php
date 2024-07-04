@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
 use QdequippeTech\Silae\Api\Model\RecupererFichiersEcrituresComptablesResponse;
@@ -67,11 +68,12 @@ class RecupererFichiersEcrituresComptables extends BaseEndpoint implements Endpo
     }
 
     /**
-     * @return RecupererFichiersEcrituresComptablesResponse|null
+     * @return RecupererFichiersEcrituresComptablesResponse
      *
      * @throws RecupererFichiersEcrituresComptablesBadRequestException
      * @throws RecupererFichiersEcrituresComptablesUnauthorizedException
      * @throws RecupererFichiersEcrituresComptablesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class RecupererFichiersEcrituresComptables extends BaseEndpoint implements Endpo
             throw new RecupererFichiersEcrituresComptablesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

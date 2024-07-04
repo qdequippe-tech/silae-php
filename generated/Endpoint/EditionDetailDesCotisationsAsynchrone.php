@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\EditionDetailDesCotisationsAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EditionDetailDesCotisationsAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EditionDetailDesCotisationsAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
@@ -67,11 +68,12 @@ class EditionDetailDesCotisationsAsynchrone extends BaseEndpoint implements Endp
     }
 
     /**
-     * @return TraitementAsynchroneResponse|null
+     * @return TraitementAsynchroneResponse
      *
      * @throws EditionDetailDesCotisationsAsynchroneBadRequestException
      * @throws EditionDetailDesCotisationsAsynchroneUnauthorizedException
      * @throws EditionDetailDesCotisationsAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class EditionDetailDesCotisationsAsynchrone extends BaseEndpoint implements Endp
             throw new EditionDetailDesCotisationsAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

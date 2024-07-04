@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterElementVariableSurEmploiBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterElementVariableSurEmploiInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterElementVariableSurEmploiUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterElementVariableSurEmploiRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class SalarieAjouterElementVariableSurEmploi extends BaseEndpoint implements End
      * @throws SalarieAjouterElementVariableSurEmploiBadRequestException
      * @throws SalarieAjouterElementVariableSurEmploiUnauthorizedException
      * @throws SalarieAjouterElementVariableSurEmploiInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class SalarieAjouterElementVariableSurEmploi extends BaseEndpoint implements End
             throw new SalarieAjouterElementVariableSurEmploiInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RecupererDeclarationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRequest;
 use QdequippeTech\Silae\Api\Model\RecupererDeclarationsResponse;
@@ -67,11 +68,12 @@ class RecupererDeclarations extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return RecupererDeclarationsResponse|null
+     * @return RecupererDeclarationsResponse
      *
      * @throws RecupererDeclarationsBadRequestException
      * @throws RecupererDeclarationsUnauthorizedException
      * @throws RecupererDeclarationsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class RecupererDeclarations extends BaseEndpoint implements Endpoint
             throw new RecupererDeclarationsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

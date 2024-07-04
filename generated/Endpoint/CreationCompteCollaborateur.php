@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\CreationCompteCollaborateurBadRequestException;
 use QdequippeTech\Silae\Api\Exception\CreationCompteCollaborateurInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\CreationCompteCollaborateurUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateur;
 use QdequippeTech\Silae\Api\Model\CreationCompteCollaborateurRequest;
@@ -67,11 +68,12 @@ class CreationCompteCollaborateur extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return CompteCollaborateur|null
+     * @return CompteCollaborateur
      *
      * @throws CreationCompteCollaborateurBadRequestException
      * @throws CreationCompteCollaborateurUnauthorizedException
      * @throws CreationCompteCollaborateurInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class CreationCompteCollaborateur extends BaseEndpoint implements Endpoint
             throw new CreationCompteCollaborateurInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

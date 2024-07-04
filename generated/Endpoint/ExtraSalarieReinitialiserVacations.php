@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ExtraSalarieReinitialiserVacationsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ExtraSalarieReinitialiserVacationsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ExtraSalarieReinitialiserVacationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ExtraSalarieReinitialiserVacationsRequest;
 use QdequippeTech\Silae\Api\Model\ExtraSalarieReinitialiserVacationsResponse;
@@ -67,11 +68,12 @@ class ExtraSalarieReinitialiserVacations extends BaseEndpoint implements Endpoin
     }
 
     /**
-     * @return ExtraSalarieReinitialiserVacationsResponse|null
+     * @return ExtraSalarieReinitialiserVacationsResponse
      *
      * @throws ExtraSalarieReinitialiserVacationsBadRequestException
      * @throws ExtraSalarieReinitialiserVacationsUnauthorizedException
      * @throws ExtraSalarieReinitialiserVacationsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class ExtraSalarieReinitialiserVacations extends BaseEndpoint implements Endpoin
             throw new ExtraSalarieReinitialiserVacationsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

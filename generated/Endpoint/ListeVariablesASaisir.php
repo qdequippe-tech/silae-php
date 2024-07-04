@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ListeVariablesASaisirBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeVariablesASaisirInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeVariablesASaisirUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierRequest;
 use QdequippeTech\Silae\Api\Model\ListeVariablesASaisirResponse;
@@ -67,11 +68,12 @@ class ListeVariablesASaisir extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return ListeVariablesASaisirResponse|null
+     * @return ListeVariablesASaisirResponse
      *
      * @throws ListeVariablesASaisirBadRequestException
      * @throws ListeVariablesASaisirUnauthorizedException
      * @throws ListeVariablesASaisirInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class ListeVariablesASaisir extends BaseEndpoint implements Endpoint
             throw new ListeVariablesASaisirInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

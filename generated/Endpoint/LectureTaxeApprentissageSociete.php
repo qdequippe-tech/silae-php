@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteRequest;
 use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteResponse;
@@ -67,11 +68,12 @@ class LectureTaxeApprentissageSociete extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return LectureTaxeApprentissageSocieteResponse|null
+     * @return LectureTaxeApprentissageSocieteResponse
      *
      * @throws LectureTaxeApprentissageSocieteBadRequestException
      * @throws LectureTaxeApprentissageSocieteUnauthorizedException
      * @throws LectureTaxeApprentissageSocieteInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class LectureTaxeApprentissageSociete extends BaseEndpoint implements Endpoint
             throw new LectureTaxeApprentissageSocieteInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

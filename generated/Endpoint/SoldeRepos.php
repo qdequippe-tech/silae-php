@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SoldeReposBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SoldeReposInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SoldeReposUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -66,11 +67,12 @@ class SoldeRepos extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return \QdequippeTech\Silae\Api\Model\SoldeRepos|null
+     * @return \QdequippeTech\Silae\Api\Model\SoldeRepos
      *
      * @throws SoldeReposBadRequestException
      * @throws SoldeReposUnauthorizedException
      * @throws SoldeReposInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -92,7 +94,7 @@ class SoldeRepos extends BaseEndpoint implements Endpoint
             throw new SoldeReposInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\EditionControleCICEBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EditionControleCICEInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EditionControleCICEUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
 use QdequippeTech\Silae\Api\Model\EditionControleCICEResponse;
@@ -67,11 +68,12 @@ class EditionControleCICE extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return EditionControleCICEResponse|null
+     * @return EditionControleCICEResponse
      *
      * @throws EditionControleCICEBadRequestException
      * @throws EditionControleCICEUnauthorizedException
      * @throws EditionControleCICEInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class EditionControleCICE extends BaseEndpoint implements Endpoint
             throw new EditionControleCICEInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

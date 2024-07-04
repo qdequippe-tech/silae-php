@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\StatutSoldeReposAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutSoldeReposAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutSoldeReposAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\StatutSoldeReposResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -82,11 +83,12 @@ class StatutSoldeReposAsynchrone extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return StatutSoldeReposResponse|null
+     * @return StatutSoldeReposResponse
      *
      * @throws StatutSoldeReposAsynchroneBadRequestException
      * @throws StatutSoldeReposAsynchroneUnauthorizedException
      * @throws StatutSoldeReposAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -112,7 +114,7 @@ class StatutSoldeReposAsynchrone extends BaseEndpoint implements Endpoint
             throw new StatutSoldeReposAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

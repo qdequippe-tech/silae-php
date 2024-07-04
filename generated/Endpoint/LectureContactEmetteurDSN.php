@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNRequest;
 use QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNResponse;
@@ -67,11 +68,12 @@ class LectureContactEmetteurDSN extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return LectureContactEmetteurDSNResponse|null
+     * @return LectureContactEmetteurDSNResponse
      *
      * @throws LectureContactEmetteurDSNBadRequestException
      * @throws LectureContactEmetteurDSNUnauthorizedException
      * @throws LectureContactEmetteurDSNInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class LectureContactEmetteurDSN extends BaseEndpoint implements Endpoint
             throw new LectureContactEmetteurDSNInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

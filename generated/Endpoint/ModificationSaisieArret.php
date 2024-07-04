@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ModificationSaisieArretBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ModificationSaisieArretInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ModificationSaisieArretUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ModificationSaisieArretRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class ModificationSaisieArret extends BaseEndpoint implements Endpoint
      * @throws ModificationSaisieArretBadRequestException
      * @throws ModificationSaisieArretUnauthorizedException
      * @throws ModificationSaisieArretInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class ModificationSaisieArret extends BaseEndpoint implements Endpoint
             throw new ModificationSaisieArretInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

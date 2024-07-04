@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalarieRecupererPeriodeDernierBulletinCalculeBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieRecupererPeriodeDernierBulletinCalculeInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieRecupererPeriodeDernierBulletinCalculeUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest;
 use QdequippeTech\Silae\Api\Model\SalarieRecupererPeriodeDernierBulletinCalculeResponse;
@@ -67,11 +68,12 @@ class SalarieRecupererPeriodeDernierBulletinCalcule extends BaseEndpoint impleme
     }
 
     /**
-     * @return SalarieRecupererPeriodeDernierBulletinCalculeResponse|null
+     * @return SalarieRecupererPeriodeDernierBulletinCalculeResponse
      *
      * @throws SalarieRecupererPeriodeDernierBulletinCalculeBadRequestException
      * @throws SalarieRecupererPeriodeDernierBulletinCalculeUnauthorizedException
      * @throws SalarieRecupererPeriodeDernierBulletinCalculeInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class SalarieRecupererPeriodeDernierBulletinCalcule extends BaseEndpoint impleme
             throw new SalarieRecupererPeriodeDernierBulletinCalculeInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

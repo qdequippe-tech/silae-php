@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurEnregistrementBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurEnregistrementInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurEnregistrementUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\AdministrationCollaborateurEnregistrementRequest;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class AdministrationCollaborateurEnregistrement extends BaseEndpoint implements 
      * @throws AdministrationCollaborateurEnregistrementBadRequestException
      * @throws AdministrationCollaborateurEnregistrementUnauthorizedException
      * @throws AdministrationCollaborateurEnregistrementInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class AdministrationCollaborateurEnregistrement extends BaseEndpoint implements 
             throw new AdministrationCollaborateurEnregistrementInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

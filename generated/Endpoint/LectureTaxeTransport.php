@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\LectureTaxeTransportBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureTaxeTransportInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureTaxeTransportUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\LectureTaxeTransportRequest;
 use QdequippeTech\Silae\Api\Model\LectureTaxeTransportResponse;
@@ -67,11 +68,12 @@ class LectureTaxeTransport extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return LectureTaxeTransportResponse|null
+     * @return LectureTaxeTransportResponse
      *
      * @throws LectureTaxeTransportBadRequestException
      * @throws LectureTaxeTransportUnauthorizedException
      * @throws LectureTaxeTransportInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class LectureTaxeTransport extends BaseEndpoint implements Endpoint
             throw new LectureTaxeTransportInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

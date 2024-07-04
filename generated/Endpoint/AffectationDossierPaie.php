@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AffectationDossierPaieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AffectationDossierPaieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AffectationDossierPaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\AffectationDossierPaieRequest;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class AffectationDossierPaie extends BaseEndpoint implements Endpoint
      * @throws AffectationDossierPaieBadRequestException
      * @throws AffectationDossierPaieUnauthorizedException
      * @throws AffectationDossierPaieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class AffectationDossierPaie extends BaseEndpoint implements Endpoint
             throw new AffectationDossierPaieInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

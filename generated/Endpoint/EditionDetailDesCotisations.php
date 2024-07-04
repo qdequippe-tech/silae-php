@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\EditionDetailDesCotisationsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EditionDetailDesCotisationsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EditionDetailDesCotisationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
 use QdequippeTech\Silae\Api\Model\EditionDetailDesCotisationsResponse;
@@ -67,11 +68,12 @@ class EditionDetailDesCotisations extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return EditionDetailDesCotisationsResponse|null
+     * @return EditionDetailDesCotisationsResponse
      *
      * @throws EditionDetailDesCotisationsBadRequestException
      * @throws EditionDetailDesCotisationsUnauthorizedException
      * @throws EditionDetailDesCotisationsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class EditionDetailDesCotisations extends BaseEndpoint implements Endpoint
             throw new EditionDetailDesCotisationsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AffecterCleDossierBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AffecterCleDossierInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AffecterCleDossierUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\AffecterCleDossierRequest;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class AffecterCleDossier extends BaseEndpoint implements Endpoint
      * @throws AffecterCleDossierBadRequestException
      * @throws AffecterCleDossierUnauthorizedException
      * @throws AffecterCleDossierInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class AffecterCleDossier extends BaseEndpoint implements Endpoint
             throw new AffecterCleDossierInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

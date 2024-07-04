@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\RechercheDeclarationEvenementielleBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RechercheDeclarationEvenementielleInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RechercheDeclarationEvenementielleUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\RechercheDeclarationEvenementielleRequest;
 use QdequippeTech\Silae\Api\Model\RechercheDeclarationEvenementielleResponse;
@@ -67,11 +68,12 @@ class RechercheDeclarationEvenementielle extends BaseEndpoint implements Endpoin
     }
 
     /**
-     * @return RechercheDeclarationEvenementielleResponse|null
+     * @return RechercheDeclarationEvenementielleResponse
      *
      * @throws RechercheDeclarationEvenementielleBadRequestException
      * @throws RechercheDeclarationEvenementielleUnauthorizedException
      * @throws RechercheDeclarationEvenementielleInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class RechercheDeclarationEvenementielle extends BaseEndpoint implements Endpoin
             throw new RechercheDeclarationEvenementielleInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

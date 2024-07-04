@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\StatutSalarieDUEAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutSalarieDUEAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutSalarieDUEAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\StatutSalariesDUEAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -82,11 +83,12 @@ class StatutSalarieDUEAsynchrone extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return StatutSalariesDUEAsynchroneResponse|null
+     * @return StatutSalariesDUEAsynchroneResponse
      *
      * @throws StatutSalarieDUEAsynchroneBadRequestException
      * @throws StatutSalarieDUEAsynchroneUnauthorizedException
      * @throws StatutSalarieDUEAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -112,7 +114,7 @@ class StatutSalarieDUEAsynchrone extends BaseEndpoint implements Endpoint
             throw new StatutSalarieDUEAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

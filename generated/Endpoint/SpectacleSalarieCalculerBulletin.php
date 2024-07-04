@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieCalculerBulletinBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieCalculerBulletinInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieCalculerBulletinUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieCalculerBulletinRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class SpectacleSalarieCalculerBulletin extends BaseEndpoint implements Endpoint
      * @throws SpectacleSalarieCalculerBulletinBadRequestException
      * @throws SpectacleSalarieCalculerBulletinUnauthorizedException
      * @throws SpectacleSalarieCalculerBulletinInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class SpectacleSalarieCalculerBulletin extends BaseEndpoint implements Endpoint
             throw new SpectacleSalarieCalculerBulletinInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

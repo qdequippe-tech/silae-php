@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AcquisitionContenuPartielDSNBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AcquisitionContenuPartielDSNInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AcquisitionContenuPartielDSNUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\AcquisitionContenuPartielDSNRequest;
 use QdequippeTech\Silae\Api\Model\AcquisitionContenuPartielDSNResponse;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
@@ -67,11 +68,12 @@ class AcquisitionContenuPartielDSN extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return AcquisitionContenuPartielDSNResponse|null
+     * @return AcquisitionContenuPartielDSNResponse
      *
      * @throws AcquisitionContenuPartielDSNBadRequestException
      * @throws AcquisitionContenuPartielDSNUnauthorizedException
      * @throws AcquisitionContenuPartielDSNInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class AcquisitionContenuPartielDSN extends BaseEndpoint implements Endpoint
             throw new AcquisitionContenuPartielDSNInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

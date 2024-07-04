@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalarieSupprimerAbsenceBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieSupprimerAbsenceInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieSupprimerAbsenceUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalarieSupprimerAbsenceRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class SalarieSupprimerAbsence extends BaseEndpoint implements Endpoint
      * @throws SalarieSupprimerAbsenceBadRequestException
      * @throws SalarieSupprimerAbsenceUnauthorizedException
      * @throws SalarieSupprimerAbsenceInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class SalarieSupprimerAbsence extends BaseEndpoint implements Endpoint
             throw new SalarieSupprimerAbsenceInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

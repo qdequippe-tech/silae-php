@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SiteGenereMotDePasseAlternatifBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SiteGenereMotDePasseAlternatifInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SiteGenereMotDePasseAlternatifUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SiteGenereMotDePasseAlternatifRequest;
 use QdequippeTech\Silae\Api\Model\SiteGenereMotDePasseAlternatifResponse;
@@ -67,11 +68,12 @@ class SiteGenereMotDePasseAlternatif extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return SiteGenereMotDePasseAlternatifResponse|null
+     * @return SiteGenereMotDePasseAlternatifResponse
      *
      * @throws SiteGenereMotDePasseAlternatifBadRequestException
      * @throws SiteGenereMotDePasseAlternatifUnauthorizedException
      * @throws SiteGenereMotDePasseAlternatifInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class SiteGenereMotDePasseAlternatif extends BaseEndpoint implements Endpoint
             throw new SiteGenereMotDePasseAlternatifInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

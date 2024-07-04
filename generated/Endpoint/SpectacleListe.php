@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SpectacleListeBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SpectacleListeInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SpectacleListeUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SpectacleListeRequest;
 use QdequippeTech\Silae\Api\Model\SpectacleListeResponse;
@@ -67,11 +68,12 @@ class SpectacleListe extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return SpectacleListeResponse|null
+     * @return SpectacleListeResponse
      *
      * @throws SpectacleListeBadRequestException
      * @throws SpectacleListeUnauthorizedException
      * @throws SpectacleListeInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class SpectacleListe extends BaseEndpoint implements Endpoint
             throw new SpectacleListeInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

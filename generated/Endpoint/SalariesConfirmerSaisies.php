@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalariesConfirmerSaisiesRequest;
 use QdequippeTech\Silae\Api\Model\SalariesConfirmerSaisiesResponse;
@@ -67,11 +68,12 @@ class SalariesConfirmerSaisies extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return SalariesConfirmerSaisiesResponse|null
+     * @return SalariesConfirmerSaisiesResponse
      *
      * @throws SalariesConfirmerSaisiesBadRequestException
      * @throws SalariesConfirmerSaisiesUnauthorizedException
      * @throws SalariesConfirmerSaisiesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class SalariesConfirmerSaisies extends BaseEndpoint implements Endpoint
             throw new SalariesConfirmerSaisiesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

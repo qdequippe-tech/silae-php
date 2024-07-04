@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ModificationGrilleHoraireEtablissementBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ModificationGrilleHoraireEtablissementInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ModificationGrilleHoraireEtablissementUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ModificationGrilleHoraireEtablissementRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class ModificationGrilleHoraireEtablissement extends BaseEndpoint implements End
      * @throws ModificationGrilleHoraireEtablissementBadRequestException
      * @throws ModificationGrilleHoraireEtablissementUnauthorizedException
      * @throws ModificationGrilleHoraireEtablissementInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class ModificationGrilleHoraireEtablissement extends BaseEndpoint implements End
             throw new ModificationGrilleHoraireEtablissementInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

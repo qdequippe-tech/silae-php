@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ListeSalarieEmploisExternesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeSalarieEmploisExternesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeSalarieEmploisExternesUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest;
 use QdequippeTech\Silae\Api\Model\ListeSalarieEmploisExternesResponse;
@@ -67,11 +68,12 @@ class ListeSalarieEmploisExternes extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return ListeSalarieEmploisExternesResponse|null
+     * @return ListeSalarieEmploisExternesResponse
      *
      * @throws ListeSalarieEmploisExternesBadRequestException
      * @throws ListeSalarieEmploisExternesUnauthorizedException
      * @throws ListeSalarieEmploisExternesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class ListeSalarieEmploisExternes extends BaseEndpoint implements Endpoint
             throw new ListeSalarieEmploisExternesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

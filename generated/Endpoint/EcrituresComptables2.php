@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables2BadRequestException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables2InternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables2UnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\EcrituresComptables;
 use QdequippeTech\Silae\Api\Model\EcrituresComptables2Request;
@@ -67,11 +68,12 @@ class EcrituresComptables2 extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return EcrituresComptables|null
+     * @return EcrituresComptables
      *
      * @throws EcrituresComptables2BadRequestException
      * @throws EcrituresComptables2UnauthorizedException
      * @throws EcrituresComptables2InternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class EcrituresComptables2 extends BaseEndpoint implements Endpoint
             throw new EcrituresComptables2InternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\CreationDossierParImportFichierDSNBadRequestException;
 use QdequippeTech\Silae\Api\Exception\CreationDossierParImportFichierDSNInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\CreationDossierParImportFichierDSNUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\CreationDossierParImportFichierDSNRequest;
 use QdequippeTech\Silae\Api\Model\RetourImportDSN;
@@ -67,11 +68,12 @@ class CreationDossierParImportFichierDSN extends BaseEndpoint implements Endpoin
     }
 
     /**
-     * @return RetourImportDSN|null
+     * @return RetourImportDSN
      *
      * @throws CreationDossierParImportFichierDSNBadRequestException
      * @throws CreationDossierParImportFichierDSNUnauthorizedException
      * @throws CreationDossierParImportFichierDSNInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class CreationDossierParImportFichierDSN extends BaseEndpoint implements Endpoin
             throw new CreationDossierParImportFichierDSNInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

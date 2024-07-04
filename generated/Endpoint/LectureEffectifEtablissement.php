@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\LectureEffectifEtablissementBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureEffectifEtablissementInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureEffectifEtablissementUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\LectureEffectifEtablissementRequest;
 use QdequippeTech\Silae\Api\Model\LectureEffectifEtablissementResponse;
@@ -67,11 +68,12 @@ class LectureEffectifEtablissement extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return LectureEffectifEtablissementResponse|null
+     * @return LectureEffectifEtablissementResponse
      *
      * @throws LectureEffectifEtablissementBadRequestException
      * @throws LectureEffectifEtablissementUnauthorizedException
      * @throws LectureEffectifEtablissementInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class LectureEffectifEtablissement extends BaseEndpoint implements Endpoint
             throw new LectureEffectifEtablissementInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

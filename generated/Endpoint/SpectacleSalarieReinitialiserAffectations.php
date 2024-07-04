@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsRequest;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsResponse;
@@ -67,11 +68,12 @@ class SpectacleSalarieReinitialiserAffectations extends BaseEndpoint implements 
     }
 
     /**
-     * @return SpectacleSalarieReinitialiserAffectationsResponse|null
+     * @return SpectacleSalarieReinitialiserAffectationsResponse
      *
      * @throws SpectacleSalarieReinitialiserAffectationsBadRequestException
      * @throws SpectacleSalarieReinitialiserAffectationsUnauthorizedException
      * @throws SpectacleSalarieReinitialiserAffectationsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class SpectacleSalarieReinitialiserAffectations extends BaseEndpoint implements 
             throw new SpectacleSalarieReinitialiserAffectationsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

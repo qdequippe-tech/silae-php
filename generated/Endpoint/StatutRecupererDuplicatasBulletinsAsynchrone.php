@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\StatutRecupererDuplicatasBulletinsAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutRecupererDuplicatasBulletinsAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutRecupererDuplicatasBulletinsAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\StatutAsynchroneDocumentResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -82,11 +83,12 @@ class StatutRecupererDuplicatasBulletinsAsynchrone extends BaseEndpoint implemen
     }
 
     /**
-     * @return StatutAsynchroneDocumentResponse|null
+     * @return StatutAsynchroneDocumentResponse
      *
      * @throws StatutRecupererDuplicatasBulletinsAsynchroneBadRequestException
      * @throws StatutRecupererDuplicatasBulletinsAsynchroneUnauthorizedException
      * @throws StatutRecupererDuplicatasBulletinsAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -112,7 +114,7 @@ class StatutRecupererDuplicatasBulletinsAsynchrone extends BaseEndpoint implemen
             throw new StatutRecupererDuplicatasBulletinsAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

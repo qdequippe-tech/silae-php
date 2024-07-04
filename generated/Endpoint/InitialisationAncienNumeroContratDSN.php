@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\InitialisationAncienNumeroContratDSNBadRequestException;
 use QdequippeTech\Silae\Api\Exception\InitialisationAncienNumeroContratDSNInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\InitialisationAncienNumeroContratDSNUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\InitialisationAncienNumeroContratDSNRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class InitialisationAncienNumeroContratDSN extends BaseEndpoint implements Endpo
      * @throws InitialisationAncienNumeroContratDSNBadRequestException
      * @throws InitialisationAncienNumeroContratDSNUnauthorizedException
      * @throws InitialisationAncienNumeroContratDSNInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class InitialisationAncienNumeroContratDSN extends BaseEndpoint implements Endpo
             throw new InitialisationAncienNumeroContratDSNInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

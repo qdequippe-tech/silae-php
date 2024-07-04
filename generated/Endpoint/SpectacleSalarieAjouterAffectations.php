@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAjouterAffectationsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAjouterAffectationsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SpectacleSalarieAjouterAffectationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieAjouterAffectationsRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class SpectacleSalarieAjouterAffectations extends BaseEndpoint implements Endpoi
      * @throws SpectacleSalarieAjouterAffectationsBadRequestException
      * @throws SpectacleSalarieAjouterAffectationsUnauthorizedException
      * @throws SpectacleSalarieAjouterAffectationsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class SpectacleSalarieAjouterAffectations extends BaseEndpoint implements Endpoi
             throw new SpectacleSalarieAjouterAffectationsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

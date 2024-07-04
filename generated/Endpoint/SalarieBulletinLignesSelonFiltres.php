@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalarieBulletinLignesSelonFiltresBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieBulletinLignesSelonFiltresInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieBulletinLignesSelonFiltresUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinLignesResult;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinLignesSelonFiltresRequest;
@@ -67,11 +68,12 @@ class SalarieBulletinLignesSelonFiltres extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return SalarieBulletinLignesResult|null
+     * @return SalarieBulletinLignesResult
      *
      * @throws SalarieBulletinLignesSelonFiltresBadRequestException
      * @throws SalarieBulletinLignesSelonFiltresUnauthorizedException
      * @throws SalarieBulletinLignesSelonFiltresInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class SalarieBulletinLignesSelonFiltres extends BaseEndpoint implements Endpoint
             throw new SalarieBulletinLignesSelonFiltresInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDetailBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDetailInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDetailUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDetailRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDetailResponse;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
@@ -67,11 +68,12 @@ class AnalyseProductionPaieDetail extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return AnalyseProductionPaieDetailResponse|null
+     * @return AnalyseProductionPaieDetailResponse
      *
      * @throws AnalyseProductionPaieDetailBadRequestException
      * @throws AnalyseProductionPaieDetailUnauthorizedException
      * @throws AnalyseProductionPaieDetailInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class AnalyseProductionPaieDetail extends BaseEndpoint implements Endpoint
             throw new AnalyseProductionPaieDetailInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

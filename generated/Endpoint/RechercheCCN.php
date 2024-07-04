@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\RechercheCCNBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RechercheCCNInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RechercheCCNUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\RechercheCCNRequest;
 use QdequippeTech\Silae\Api\Model\RechercheCCNResponse;
@@ -67,11 +68,12 @@ class RechercheCCN extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return RechercheCCNResponse|null
+     * @return RechercheCCNResponse
      *
      * @throws RechercheCCNBadRequestException
      * @throws RechercheCCNUnauthorizedException
      * @throws RechercheCCNInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class RechercheCCN extends BaseEndpoint implements Endpoint
             throw new RechercheCCNInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

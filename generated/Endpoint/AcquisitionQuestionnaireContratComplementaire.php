@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireContratComplementaireBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireContratComplementaireInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireContratComplementaireUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireContratComplementaireRequest;
 use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireContratComplementaireResponse;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
@@ -67,11 +68,12 @@ class AcquisitionQuestionnaireContratComplementaire extends BaseEndpoint impleme
     }
 
     /**
-     * @return AcquisitionQuestionnaireContratComplementaireResponse|null
+     * @return AcquisitionQuestionnaireContratComplementaireResponse
      *
      * @throws AcquisitionQuestionnaireContratComplementaireBadRequestException
      * @throws AcquisitionQuestionnaireContratComplementaireUnauthorizedException
      * @throws AcquisitionQuestionnaireContratComplementaireInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class AcquisitionQuestionnaireContratComplementaire extends BaseEndpoint impleme
             throw new AcquisitionQuestionnaireContratComplementaireInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

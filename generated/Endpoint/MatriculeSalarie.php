@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\MatriculeSalarieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\MatriculeSalarieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\MatriculeSalarieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\MatriculeSalarieRequest;
 use QdequippeTech\Silae\Api\Model\MatriculeSalarieResponse;
@@ -67,11 +68,12 @@ class MatriculeSalarie extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return MatriculeSalarieResponse|null
+     * @return MatriculeSalarieResponse
      *
      * @throws MatriculeSalarieBadRequestException
      * @throws MatriculeSalarieUnauthorizedException
      * @throws MatriculeSalarieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class MatriculeSalarie extends BaseEndpoint implements Endpoint
             throw new MatriculeSalarieInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

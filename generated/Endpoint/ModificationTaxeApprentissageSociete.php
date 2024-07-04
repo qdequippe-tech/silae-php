@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageSocieteBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageSocieteInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageSocieteUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteRequest;
 use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteResponse;
@@ -67,11 +68,12 @@ class ModificationTaxeApprentissageSociete extends BaseEndpoint implements Endpo
     }
 
     /**
-     * @return ModificationTaxeApprentissageSocieteResponse|null
+     * @return ModificationTaxeApprentissageSocieteResponse
      *
      * @throws ModificationTaxeApprentissageSocieteBadRequestException
      * @throws ModificationTaxeApprentissageSocieteUnauthorizedException
      * @throws ModificationTaxeApprentissageSocieteInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class ModificationTaxeApprentissageSociete extends BaseEndpoint implements Endpo
             throw new ModificationTaxeApprentissageSocieteInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

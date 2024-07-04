@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ExtraSalarieAcquisitionVacationsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ExtraSalarieAcquisitionVacationsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ExtraSalarieAcquisitionVacationsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ExtraSalarieAcquisitionVacationsRequest;
 use QdequippeTech\Silae\Api\Model\ExtraSalarieVacations;
@@ -67,11 +68,12 @@ class ExtraSalarieAcquisitionVacations extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return ExtraSalarieVacations|null
+     * @return ExtraSalarieVacations
      *
      * @throws ExtraSalarieAcquisitionVacationsBadRequestException
      * @throws ExtraSalarieAcquisitionVacationsUnauthorizedException
      * @throws ExtraSalarieAcquisitionVacationsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class ExtraSalarieAcquisitionVacations extends BaseEndpoint implements Endpoint
             throw new ExtraSalarieAcquisitionVacationsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

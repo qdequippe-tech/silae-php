@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\RecupererDuplicatasBulletinsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RecupererDuplicatasBulletinsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RecupererDuplicatasBulletinsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\RecupererDuplicatasBulletinsRequest;
 use QdequippeTech\Silae\Api\Model\RecupererDuplicatasBulletinsResponse;
@@ -67,11 +68,12 @@ class RecupererDuplicatasBulletins extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return RecupererDuplicatasBulletinsResponse|null
+     * @return RecupererDuplicatasBulletinsResponse
      *
      * @throws RecupererDuplicatasBulletinsBadRequestException
      * @throws RecupererDuplicatasBulletinsUnauthorizedException
      * @throws RecupererDuplicatasBulletinsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class RecupererDuplicatasBulletins extends BaseEndpoint implements Endpoint
             throw new RecupererDuplicatasBulletinsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

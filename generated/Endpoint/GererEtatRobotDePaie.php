@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\GererEtatRobotDePaieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\GererEtatRobotDePaieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\GererEtatRobotDePaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\GererEtatRobotDePaieRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -69,6 +70,7 @@ class GererEtatRobotDePaie extends BaseEndpoint implements Endpoint
      * @throws GererEtatRobotDePaieBadRequestException
      * @throws GererEtatRobotDePaieUnauthorizedException
      * @throws GererEtatRobotDePaieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -90,7 +92,7 @@ class GererEtatRobotDePaie extends BaseEndpoint implements Endpoint
             throw new GererEtatRobotDePaieInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalariesConfirmerSaisiesAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalariesConfirmerSaisiesRequest;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
@@ -67,11 +68,12 @@ class SalariesConfirmerSaisiesAsynchrone extends BaseEndpoint implements Endpoin
     }
 
     /**
-     * @return TraitementAsynchroneResponse|null
+     * @return TraitementAsynchroneResponse
      *
      * @throws SalariesConfirmerSaisiesAsynchroneBadRequestException
      * @throws SalariesConfirmerSaisiesAsynchroneUnauthorizedException
      * @throws SalariesConfirmerSaisiesAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class SalariesConfirmerSaisiesAsynchrone extends BaseEndpoint implements Endpoin
             throw new SalariesConfirmerSaisiesAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array

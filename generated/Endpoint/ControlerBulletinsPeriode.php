@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\ControlerBulletinsPeriodeBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ControlerBulletinsPeriodeInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ControlerBulletinsPeriodeUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ControlerBulletinsPeriodeRequest;
 use QdequippeTech\Silae\Api\Model\ControlerBulletinsPeriodeResponse;
@@ -67,11 +68,12 @@ class ControlerBulletinsPeriode extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return ControlerBulletinsPeriodeResponse|null
+     * @return ControlerBulletinsPeriodeResponse
      *
      * @throws ControlerBulletinsPeriodeBadRequestException
      * @throws ControlerBulletinsPeriodeUnauthorizedException
      * @throws ControlerBulletinsPeriodeInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -93,7 +95,7 @@ class ControlerBulletinsPeriode extends BaseEndpoint implements Endpoint
             throw new ControlerBulletinsPeriodeInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        return null;
+        throw new UnexpectedStatusCodeException($status, $body);
     }
 
     public function getAuthenticationScopes(): array
