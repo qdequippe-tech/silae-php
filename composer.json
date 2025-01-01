@@ -38,6 +38,6 @@
     "require-dev": {
         "jane-php/open-api-2": "^7.5",
         "nyholm/psr7": "^1.8",
-        "rector/rector": "^1.2"
+        "rector/rector": "^1.2 || ^2.0"
     }
 }
