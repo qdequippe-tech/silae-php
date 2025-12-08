@@ -109,6 +109,11 @@ class SalarieAbsenceV2
      */
     protected $bValeur5;
 
+    /**
+     * @var bool|null
+     */
+    protected $avecInfluencePSS;
+
     public function getDateDebutAbsence(): ?\DateTime
     {
         return $this->dateDebutAbsence;
@@ -352,6 +357,19 @@ class SalarieAbsenceV2
     {
         $this->initialized['bValeur5'] = true;
         $this->bValeur5 = $bValeur5;
+
+        return $this;
+    }
+
+    public function getAvecInfluencePSS(): ?bool
+    {
+        return $this->avecInfluencePSS;
+    }
+
+    public function setAvecInfluencePSS(?bool $avecInfluencePSS): self
+    {
+        $this->initialized['avecInfluencePSS'] = true;
+        $this->avecInfluencePSS = $avecInfluencePSS;
 
         return $this;
     }

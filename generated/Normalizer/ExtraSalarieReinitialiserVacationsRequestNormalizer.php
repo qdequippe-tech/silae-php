@@ -7,7 +7,6 @@ use QdequippeTech\Silae\Api\Model\ExtraSalarieReinitialiserVacationsRequest;
 use QdequippeTech\Silae\Api\Model\RequeteExtraSalarieVacations;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -15,162 +14,77 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
-    class ExtraSalarieReinitialiserVacationsRequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class ExtraSalarieReinitialiserVacationsRequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use CheckArray;
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use ValidatorTrait;
+
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
-
-        public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
-        {
-            return ExtraSalarieReinitialiserVacationsRequest::class === $type;
-        }
-
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && ExtraSalarieReinitialiserVacationsRequest::class === $data::class;
-        }
-
-        public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
-
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
-
-            $object = new ExtraSalarieReinitialiserVacationsRequest();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('categorie', $data) && null !== $data['categorie']) {
-                $object->setCategorie($data['categorie']);
-            } elseif (\array_key_exists('categorie', $data) && null === $data['categorie']) {
-                $object->setCategorie(null);
-            }
-
-            if (\array_key_exists('requeteExtraSalarieVacations', $data) && null !== $data['requeteExtraSalarieVacations']) {
-                $object->setRequeteExtraSalarieVacations($this->denormalizer->denormalize($data['requeteExtraSalarieVacations'], RequeteExtraSalarieVacations::class, 'json', $context));
-            } elseif (\array_key_exists('requeteExtraSalarieVacations', $data) && null === $data['requeteExtraSalarieVacations']) {
-                $object->setRequeteExtraSalarieVacations(null);
-            }
-
-            if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
-                $object->setNumeroDossier($data['numeroDossier']);
-            } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
-                $object->setNumeroDossier(null);
-            }
-
-            return $object;
-        }
-
-        public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
-        {
-            $data = [];
-            if ($object->isInitialized('categorie') && null !== $object->getCategorie()) {
-                $data['categorie'] = $object->getCategorie();
-            }
-
-            if ($object->isInitialized('requeteExtraSalarieVacations') && null !== $object->getRequeteExtraSalarieVacations()) {
-                $data['requeteExtraSalarieVacations'] = $this->normalizer->normalize($object->getRequeteExtraSalarieVacations(), 'json', $context);
-            }
-
-            $data['numeroDossier'] = $object->getNumeroDossier();
-
-            return $data;
-        }
-
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [ExtraSalarieReinitialiserVacationsRequest::class => false];
-        }
+        return ExtraSalarieReinitialiserVacationsRequest::class === $type;
     }
-} else {
-    class ExtraSalarieReinitialiserVacationsRequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
+        return \is_object($data) && ExtraSalarieReinitialiserVacationsRequest::class === $data::class;
+    }
 
-        public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
-        {
-            return ExtraSalarieReinitialiserVacationsRequest::class === $type;
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+    {
+        if (isset($data['$ref'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
         }
 
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && ExtraSalarieReinitialiserVacationsRequest::class === $data::class;
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        /**
-         * @param mixed|null $format
-         */
-        public function denormalize($data, $type, $format = null, array $context = [])
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
-
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
-
-            $object = new ExtraSalarieReinitialiserVacationsRequest();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('categorie', $data) && null !== $data['categorie']) {
-                $object->setCategorie($data['categorie']);
-            } elseif (\array_key_exists('categorie', $data) && null === $data['categorie']) {
-                $object->setCategorie(null);
-            }
-
-            if (\array_key_exists('requeteExtraSalarieVacations', $data) && null !== $data['requeteExtraSalarieVacations']) {
-                $object->setRequeteExtraSalarieVacations($this->denormalizer->denormalize($data['requeteExtraSalarieVacations'], RequeteExtraSalarieVacations::class, 'json', $context));
-            } elseif (\array_key_exists('requeteExtraSalarieVacations', $data) && null === $data['requeteExtraSalarieVacations']) {
-                $object->setRequeteExtraSalarieVacations(null);
-            }
-
-            if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
-                $object->setNumeroDossier($data['numeroDossier']);
-            } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
-                $object->setNumeroDossier(null);
-            }
-
+        $object = new ExtraSalarieReinitialiserVacationsRequest();
+        if (null === $data || false === \is_array($data)) {
             return $object;
         }
 
-        /**
-         * @param mixed|null $format
-         *
-         * @return array|string|int|float|bool|\ArrayObject|null
-         */
-        public function normalize($object, $format = null, array $context = [])
-        {
-            $data = [];
-            if ($object->isInitialized('categorie') && null !== $object->getCategorie()) {
-                $data['categorie'] = $object->getCategorie();
-            }
-
-            if ($object->isInitialized('requeteExtraSalarieVacations') && null !== $object->getRequeteExtraSalarieVacations()) {
-                $data['requeteExtraSalarieVacations'] = $this->normalizer->normalize($object->getRequeteExtraSalarieVacations(), 'json', $context);
-            }
-
-            $data['numeroDossier'] = $object->getNumeroDossier();
-
-            return $data;
+        if (\array_key_exists('categorie', $data) && null !== $data['categorie']) {
+            $object->setCategorie($data['categorie']);
+        } elseif (\array_key_exists('categorie', $data) && null === $data['categorie']) {
+            $object->setCategorie(null);
         }
 
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [ExtraSalarieReinitialiserVacationsRequest::class => false];
+        if (\array_key_exists('requeteExtraSalarieVacations', $data) && null !== $data['requeteExtraSalarieVacations']) {
+            $object->setRequeteExtraSalarieVacations($this->denormalizer->denormalize($data['requeteExtraSalarieVacations'], RequeteExtraSalarieVacations::class, 'json', $context));
+        } elseif (\array_key_exists('requeteExtraSalarieVacations', $data) && null === $data['requeteExtraSalarieVacations']) {
+            $object->setRequeteExtraSalarieVacations(null);
         }
+
+        if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
+            $object->setNumeroDossier($data['numeroDossier']);
+        } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
+            $object->setNumeroDossier(null);
+        }
+
+        return $object;
+    }
+
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    {
+        $dataArray = [];
+        if ($data->isInitialized('categorie') && null !== $data->getCategorie()) {
+            $dataArray['categorie'] = $data->getCategorie();
+        }
+
+        if ($data->isInitialized('requeteExtraSalarieVacations') && null !== $data->getRequeteExtraSalarieVacations()) {
+            $dataArray['requeteExtraSalarieVacations'] = $this->normalizer->normalize($data->getRequeteExtraSalarieVacations(), 'json', $context);
+        }
+
+        $dataArray['numeroDossier'] = $data->getNumeroDossier();
+
+        return $dataArray;
+    }
+
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [ExtraSalarieReinitialiserVacationsRequest::class => false];
     }
 }

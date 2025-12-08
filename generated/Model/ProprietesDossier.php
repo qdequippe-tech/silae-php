@@ -34,6 +34,21 @@ class ProprietesDossier
      */
     protected $groupe;
 
+    /**
+     * @var int|null
+     */
+    protected $jourPaiementMaxSSOC;
+
+    /**
+     * @var int|null
+     */
+    protected $etatDossier;
+
+    /**
+     * @var string|null
+     */
+    protected $numeroInterne;
+
     public function getNumero(): ?string
     {
         return $this->numero;
@@ -82,6 +97,45 @@ class ProprietesDossier
     {
         $this->initialized['groupe'] = true;
         $this->groupe = $groupe;
+
+        return $this;
+    }
+
+    public function getJourPaiementMaxSSOC(): ?int
+    {
+        return $this->jourPaiementMaxSSOC;
+    }
+
+    public function setJourPaiementMaxSSOC(?int $jourPaiementMaxSSOC): self
+    {
+        $this->initialized['jourPaiementMaxSSOC'] = true;
+        $this->jourPaiementMaxSSOC = $jourPaiementMaxSSOC;
+
+        return $this;
+    }
+
+    public function getEtatDossier(): ?int
+    {
+        return $this->etatDossier;
+    }
+
+    public function setEtatDossier(?int $etatDossier): self
+    {
+        $this->initialized['etatDossier'] = true;
+        $this->etatDossier = $etatDossier;
+
+        return $this;
+    }
+
+    public function getNumeroInterne(): ?string
+    {
+        return $this->numeroInterne;
+    }
+
+    public function setNumeroInterne(?string $numeroInterne): self
+    {
+        $this->initialized['numeroInterne'] = true;
+        $this->numeroInterne = $numeroInterne;
 
         return $this;
     }

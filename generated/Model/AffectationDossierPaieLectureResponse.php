@@ -20,6 +20,11 @@ class AffectationDossierPaieLectureResponse
     protected $affectationDossier;
 
     /**
+     * @var string|null
+     */
+    protected $codeAgence;
+
+    /**
      * @return list<string>|null
      */
     public function getAffectationDossier(): ?array
@@ -34,6 +39,19 @@ class AffectationDossierPaieLectureResponse
     {
         $this->initialized['affectationDossier'] = true;
         $this->affectationDossier = $affectationDossier;
+
+        return $this;
+    }
+
+    public function getCodeAgence(): ?string
+    {
+        return $this->codeAgence;
+    }
+
+    public function setCodeAgence(?string $codeAgence): self
+    {
+        $this->initialized['codeAgence'] = true;
+        $this->codeAgence = $codeAgence;
 
         return $this;
     }

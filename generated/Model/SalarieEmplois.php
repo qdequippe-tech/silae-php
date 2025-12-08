@@ -484,6 +484,226 @@ class SalarieEmplois
      */
     protected $bAnneeNaissance;
 
+    /**
+     * @var string|null
+     */
+    protected $eMailPro;
+
+    /**
+     * @var bool|null
+     */
+    protected $bEMailPro;
+
+    /**
+     * @var string|null
+     */
+    protected $personneAContacterUrgenceNom;
+
+    /**
+     * @var bool|null
+     */
+    protected $bPersonneAContacterUrgenceNom;
+
+    /**
+     * @var string|null
+     */
+    protected $personneAContacterUrgencePrenom;
+
+    /**
+     * @var bool|null
+     */
+    protected $bPersonneAContacterUrgencePrenom;
+
+    /**
+     * @var string|null
+     */
+    protected $personneAContacterUrgenceTel;
+
+    /**
+     * @var bool|null
+     */
+    protected $bPersonneAContacterUrgenceTel;
+
+    /**
+     * @var string|null
+     */
+    protected $personneAContacterUrgenceMel;
+
+    /**
+     * @var bool|null
+     */
+    protected $bPersonneAContacterUrgenceMel;
+
+    /**
+     * @var bool|null
+     */
+    protected $ribPourVirements;
+
+    /**
+     * @var bool|null
+     */
+    protected $bRibPourVirements;
+
+    /**
+     * @var float|null
+     */
+    protected $ribVersementPlafond;
+
+    /**
+     * @var bool|null
+     */
+    protected $bRibVersementPlafond;
+
+    /**
+     * @var bool|null
+     */
+    protected $paiementEspeces;
+
+    /**
+     * @var bool|null
+     */
+    protected $bPaiementEspeces;
+
+    /**
+     * @var int|null
+     */
+    protected $dureePeriodeEssai1;
+
+    /**
+     * @var bool|null
+     */
+    protected $bDureePeriodeEssai1;
+
+    /**
+     * @var int|null
+     */
+    protected $dureePeriodeEssai2;
+
+    /**
+     * @var bool|null
+     */
+    protected $bDureePeriodeEssai2;
+
+    /**
+     * @var int|null
+     */
+    protected $nbPersACharge;
+
+    /**
+     * @var bool|null
+     */
+    protected $bNbPersACharge;
+
+    /**
+     * @var string|null
+     */
+    protected $rib2;
+
+    /**
+     * @var bool|null
+     */
+    protected $bRib2;
+
+    /**
+     * @var string|null
+     */
+    protected $iBan2;
+
+    /**
+     * @var bool|null
+     */
+    protected $bIBan2;
+
+    /**
+     * @var string|null
+     */
+    protected $bic2;
+
+    /**
+     * @var bool|null
+     */
+    protected $bBic2;
+
+    /**
+     * @var bool|null
+     */
+    protected $rib2PourVirements;
+
+    /**
+     * @var bool|null
+     */
+    protected $bRib2PourVirements;
+
+    /**
+     * @var float|null
+     */
+    protected $rib2VersementPlafond;
+
+    /**
+     * @var bool|null
+     */
+    protected $bRib2VersementPlafond;
+
+    /**
+     * @var string|null
+     */
+    protected $rib3;
+
+    /**
+     * @var bool|null
+     */
+    protected $bRib3;
+
+    /**
+     * @var string|null
+     */
+    protected $iBan3;
+
+    /**
+     * @var bool|null
+     */
+    protected $bIBan3;
+
+    /**
+     * @var string|null
+     */
+    protected $bic3;
+
+    /**
+     * @var bool|null
+     */
+    protected $bBic3;
+
+    /**
+     * @var bool|null
+     */
+    protected $rib3PourVirements;
+
+    /**
+     * @var bool|null
+     */
+    protected $bRib3PourVirements;
+
+    /**
+     * @var float|null
+     */
+    protected $rib3VersementPlafond;
+
+    /**
+     * @var bool|null
+     */
+    protected $bRib3VersementPlafond;
+
+    /**
+     * @var int|null
+     */
+    protected $sexe;
+
+    /**
+     * @var bool|null
+     */
+    protected $bSexe;
+
     public function getMatriculeSalarie(): ?string
     {
         return $this->matriculeSalarie;
@@ -1708,6 +1928,578 @@ class SalarieEmplois
     {
         $this->initialized['bAnneeNaissance'] = true;
         $this->bAnneeNaissance = $bAnneeNaissance;
+
+        return $this;
+    }
+
+    public function getEMailPro(): ?string
+    {
+        return $this->eMailPro;
+    }
+
+    public function setEMailPro(?string $eMailPro): self
+    {
+        $this->initialized['eMailPro'] = true;
+        $this->eMailPro = $eMailPro;
+
+        return $this;
+    }
+
+    public function getBEMailPro(): ?bool
+    {
+        return $this->bEMailPro;
+    }
+
+    public function setBEMailPro(?bool $bEMailPro): self
+    {
+        $this->initialized['bEMailPro'] = true;
+        $this->bEMailPro = $bEMailPro;
+
+        return $this;
+    }
+
+    public function getPersonneAContacterUrgenceNom(): ?string
+    {
+        return $this->personneAContacterUrgenceNom;
+    }
+
+    public function setPersonneAContacterUrgenceNom(?string $personneAContacterUrgenceNom): self
+    {
+        $this->initialized['personneAContacterUrgenceNom'] = true;
+        $this->personneAContacterUrgenceNom = $personneAContacterUrgenceNom;
+
+        return $this;
+    }
+
+    public function getBPersonneAContacterUrgenceNom(): ?bool
+    {
+        return $this->bPersonneAContacterUrgenceNom;
+    }
+
+    public function setBPersonneAContacterUrgenceNom(?bool $bPersonneAContacterUrgenceNom): self
+    {
+        $this->initialized['bPersonneAContacterUrgenceNom'] = true;
+        $this->bPersonneAContacterUrgenceNom = $bPersonneAContacterUrgenceNom;
+
+        return $this;
+    }
+
+    public function getPersonneAContacterUrgencePrenom(): ?string
+    {
+        return $this->personneAContacterUrgencePrenom;
+    }
+
+    public function setPersonneAContacterUrgencePrenom(?string $personneAContacterUrgencePrenom): self
+    {
+        $this->initialized['personneAContacterUrgencePrenom'] = true;
+        $this->personneAContacterUrgencePrenom = $personneAContacterUrgencePrenom;
+
+        return $this;
+    }
+
+    public function getBPersonneAContacterUrgencePrenom(): ?bool
+    {
+        return $this->bPersonneAContacterUrgencePrenom;
+    }
+
+    public function setBPersonneAContacterUrgencePrenom(?bool $bPersonneAContacterUrgencePrenom): self
+    {
+        $this->initialized['bPersonneAContacterUrgencePrenom'] = true;
+        $this->bPersonneAContacterUrgencePrenom = $bPersonneAContacterUrgencePrenom;
+
+        return $this;
+    }
+
+    public function getPersonneAContacterUrgenceTel(): ?string
+    {
+        return $this->personneAContacterUrgenceTel;
+    }
+
+    public function setPersonneAContacterUrgenceTel(?string $personneAContacterUrgenceTel): self
+    {
+        $this->initialized['personneAContacterUrgenceTel'] = true;
+        $this->personneAContacterUrgenceTel = $personneAContacterUrgenceTel;
+
+        return $this;
+    }
+
+    public function getBPersonneAContacterUrgenceTel(): ?bool
+    {
+        return $this->bPersonneAContacterUrgenceTel;
+    }
+
+    public function setBPersonneAContacterUrgenceTel(?bool $bPersonneAContacterUrgenceTel): self
+    {
+        $this->initialized['bPersonneAContacterUrgenceTel'] = true;
+        $this->bPersonneAContacterUrgenceTel = $bPersonneAContacterUrgenceTel;
+
+        return $this;
+    }
+
+    public function getPersonneAContacterUrgenceMel(): ?string
+    {
+        return $this->personneAContacterUrgenceMel;
+    }
+
+    public function setPersonneAContacterUrgenceMel(?string $personneAContacterUrgenceMel): self
+    {
+        $this->initialized['personneAContacterUrgenceMel'] = true;
+        $this->personneAContacterUrgenceMel = $personneAContacterUrgenceMel;
+
+        return $this;
+    }
+
+    public function getBPersonneAContacterUrgenceMel(): ?bool
+    {
+        return $this->bPersonneAContacterUrgenceMel;
+    }
+
+    public function setBPersonneAContacterUrgenceMel(?bool $bPersonneAContacterUrgenceMel): self
+    {
+        $this->initialized['bPersonneAContacterUrgenceMel'] = true;
+        $this->bPersonneAContacterUrgenceMel = $bPersonneAContacterUrgenceMel;
+
+        return $this;
+    }
+
+    public function getRibPourVirements(): ?bool
+    {
+        return $this->ribPourVirements;
+    }
+
+    public function setRibPourVirements(?bool $ribPourVirements): self
+    {
+        $this->initialized['ribPourVirements'] = true;
+        $this->ribPourVirements = $ribPourVirements;
+
+        return $this;
+    }
+
+    public function getBRibPourVirements(): ?bool
+    {
+        return $this->bRibPourVirements;
+    }
+
+    public function setBRibPourVirements(?bool $bRibPourVirements): self
+    {
+        $this->initialized['bRibPourVirements'] = true;
+        $this->bRibPourVirements = $bRibPourVirements;
+
+        return $this;
+    }
+
+    public function getRibVersementPlafond(): ?float
+    {
+        return $this->ribVersementPlafond;
+    }
+
+    public function setRibVersementPlafond(?float $ribVersementPlafond): self
+    {
+        $this->initialized['ribVersementPlafond'] = true;
+        $this->ribVersementPlafond = $ribVersementPlafond;
+
+        return $this;
+    }
+
+    public function getBRibVersementPlafond(): ?bool
+    {
+        return $this->bRibVersementPlafond;
+    }
+
+    public function setBRibVersementPlafond(?bool $bRibVersementPlafond): self
+    {
+        $this->initialized['bRibVersementPlafond'] = true;
+        $this->bRibVersementPlafond = $bRibVersementPlafond;
+
+        return $this;
+    }
+
+    public function getPaiementEspeces(): ?bool
+    {
+        return $this->paiementEspeces;
+    }
+
+    public function setPaiementEspeces(?bool $paiementEspeces): self
+    {
+        $this->initialized['paiementEspeces'] = true;
+        $this->paiementEspeces = $paiementEspeces;
+
+        return $this;
+    }
+
+    public function getBPaiementEspeces(): ?bool
+    {
+        return $this->bPaiementEspeces;
+    }
+
+    public function setBPaiementEspeces(?bool $bPaiementEspeces): self
+    {
+        $this->initialized['bPaiementEspeces'] = true;
+        $this->bPaiementEspeces = $bPaiementEspeces;
+
+        return $this;
+    }
+
+    public function getDureePeriodeEssai1(): ?int
+    {
+        return $this->dureePeriodeEssai1;
+    }
+
+    public function setDureePeriodeEssai1(?int $dureePeriodeEssai1): self
+    {
+        $this->initialized['dureePeriodeEssai1'] = true;
+        $this->dureePeriodeEssai1 = $dureePeriodeEssai1;
+
+        return $this;
+    }
+
+    public function getBDureePeriodeEssai1(): ?bool
+    {
+        return $this->bDureePeriodeEssai1;
+    }
+
+    public function setBDureePeriodeEssai1(?bool $bDureePeriodeEssai1): self
+    {
+        $this->initialized['bDureePeriodeEssai1'] = true;
+        $this->bDureePeriodeEssai1 = $bDureePeriodeEssai1;
+
+        return $this;
+    }
+
+    public function getDureePeriodeEssai2(): ?int
+    {
+        return $this->dureePeriodeEssai2;
+    }
+
+    public function setDureePeriodeEssai2(?int $dureePeriodeEssai2): self
+    {
+        $this->initialized['dureePeriodeEssai2'] = true;
+        $this->dureePeriodeEssai2 = $dureePeriodeEssai2;
+
+        return $this;
+    }
+
+    public function getBDureePeriodeEssai2(): ?bool
+    {
+        return $this->bDureePeriodeEssai2;
+    }
+
+    public function setBDureePeriodeEssai2(?bool $bDureePeriodeEssai2): self
+    {
+        $this->initialized['bDureePeriodeEssai2'] = true;
+        $this->bDureePeriodeEssai2 = $bDureePeriodeEssai2;
+
+        return $this;
+    }
+
+    public function getNbPersACharge(): ?int
+    {
+        return $this->nbPersACharge;
+    }
+
+    public function setNbPersACharge(?int $nbPersACharge): self
+    {
+        $this->initialized['nbPersACharge'] = true;
+        $this->nbPersACharge = $nbPersACharge;
+
+        return $this;
+    }
+
+    public function getBNbPersACharge(): ?bool
+    {
+        return $this->bNbPersACharge;
+    }
+
+    public function setBNbPersACharge(?bool $bNbPersACharge): self
+    {
+        $this->initialized['bNbPersACharge'] = true;
+        $this->bNbPersACharge = $bNbPersACharge;
+
+        return $this;
+    }
+
+    public function getRib2(): ?string
+    {
+        return $this->rib2;
+    }
+
+    public function setRib2(?string $rib2): self
+    {
+        $this->initialized['rib2'] = true;
+        $this->rib2 = $rib2;
+
+        return $this;
+    }
+
+    public function getBRib2(): ?bool
+    {
+        return $this->bRib2;
+    }
+
+    public function setBRib2(?bool $bRib2): self
+    {
+        $this->initialized['bRib2'] = true;
+        $this->bRib2 = $bRib2;
+
+        return $this;
+    }
+
+    public function getIBan2(): ?string
+    {
+        return $this->iBan2;
+    }
+
+    public function setIBan2(?string $iBan2): self
+    {
+        $this->initialized['iBan2'] = true;
+        $this->iBan2 = $iBan2;
+
+        return $this;
+    }
+
+    public function getBIBan2(): ?bool
+    {
+        return $this->bIBan2;
+    }
+
+    public function setBIBan2(?bool $bIBan2): self
+    {
+        $this->initialized['bIBan2'] = true;
+        $this->bIBan2 = $bIBan2;
+
+        return $this;
+    }
+
+    public function getBic2(): ?string
+    {
+        return $this->bic2;
+    }
+
+    public function setBic2(?string $bic2): self
+    {
+        $this->initialized['bic2'] = true;
+        $this->bic2 = $bic2;
+
+        return $this;
+    }
+
+    public function getBBic2(): ?bool
+    {
+        return $this->bBic2;
+    }
+
+    public function setBBic2(?bool $bBic2): self
+    {
+        $this->initialized['bBic2'] = true;
+        $this->bBic2 = $bBic2;
+
+        return $this;
+    }
+
+    public function getRib2PourVirements(): ?bool
+    {
+        return $this->rib2PourVirements;
+    }
+
+    public function setRib2PourVirements(?bool $rib2PourVirements): self
+    {
+        $this->initialized['rib2PourVirements'] = true;
+        $this->rib2PourVirements = $rib2PourVirements;
+
+        return $this;
+    }
+
+    public function getBRib2PourVirements(): ?bool
+    {
+        return $this->bRib2PourVirements;
+    }
+
+    public function setBRib2PourVirements(?bool $bRib2PourVirements): self
+    {
+        $this->initialized['bRib2PourVirements'] = true;
+        $this->bRib2PourVirements = $bRib2PourVirements;
+
+        return $this;
+    }
+
+    public function getRib2VersementPlafond(): ?float
+    {
+        return $this->rib2VersementPlafond;
+    }
+
+    public function setRib2VersementPlafond(?float $rib2VersementPlafond): self
+    {
+        $this->initialized['rib2VersementPlafond'] = true;
+        $this->rib2VersementPlafond = $rib2VersementPlafond;
+
+        return $this;
+    }
+
+    public function getBRib2VersementPlafond(): ?bool
+    {
+        return $this->bRib2VersementPlafond;
+    }
+
+    public function setBRib2VersementPlafond(?bool $bRib2VersementPlafond): self
+    {
+        $this->initialized['bRib2VersementPlafond'] = true;
+        $this->bRib2VersementPlafond = $bRib2VersementPlafond;
+
+        return $this;
+    }
+
+    public function getRib3(): ?string
+    {
+        return $this->rib3;
+    }
+
+    public function setRib3(?string $rib3): self
+    {
+        $this->initialized['rib3'] = true;
+        $this->rib3 = $rib3;
+
+        return $this;
+    }
+
+    public function getBRib3(): ?bool
+    {
+        return $this->bRib3;
+    }
+
+    public function setBRib3(?bool $bRib3): self
+    {
+        $this->initialized['bRib3'] = true;
+        $this->bRib3 = $bRib3;
+
+        return $this;
+    }
+
+    public function getIBan3(): ?string
+    {
+        return $this->iBan3;
+    }
+
+    public function setIBan3(?string $iBan3): self
+    {
+        $this->initialized['iBan3'] = true;
+        $this->iBan3 = $iBan3;
+
+        return $this;
+    }
+
+    public function getBIBan3(): ?bool
+    {
+        return $this->bIBan3;
+    }
+
+    public function setBIBan3(?bool $bIBan3): self
+    {
+        $this->initialized['bIBan3'] = true;
+        $this->bIBan3 = $bIBan3;
+
+        return $this;
+    }
+
+    public function getBic3(): ?string
+    {
+        return $this->bic3;
+    }
+
+    public function setBic3(?string $bic3): self
+    {
+        $this->initialized['bic3'] = true;
+        $this->bic3 = $bic3;
+
+        return $this;
+    }
+
+    public function getBBic3(): ?bool
+    {
+        return $this->bBic3;
+    }
+
+    public function setBBic3(?bool $bBic3): self
+    {
+        $this->initialized['bBic3'] = true;
+        $this->bBic3 = $bBic3;
+
+        return $this;
+    }
+
+    public function getRib3PourVirements(): ?bool
+    {
+        return $this->rib3PourVirements;
+    }
+
+    public function setRib3PourVirements(?bool $rib3PourVirements): self
+    {
+        $this->initialized['rib3PourVirements'] = true;
+        $this->rib3PourVirements = $rib3PourVirements;
+
+        return $this;
+    }
+
+    public function getBRib3PourVirements(): ?bool
+    {
+        return $this->bRib3PourVirements;
+    }
+
+    public function setBRib3PourVirements(?bool $bRib3PourVirements): self
+    {
+        $this->initialized['bRib3PourVirements'] = true;
+        $this->bRib3PourVirements = $bRib3PourVirements;
+
+        return $this;
+    }
+
+    public function getRib3VersementPlafond(): ?float
+    {
+        return $this->rib3VersementPlafond;
+    }
+
+    public function setRib3VersementPlafond(?float $rib3VersementPlafond): self
+    {
+        $this->initialized['rib3VersementPlafond'] = true;
+        $this->rib3VersementPlafond = $rib3VersementPlafond;
+
+        return $this;
+    }
+
+    public function getBRib3VersementPlafond(): ?bool
+    {
+        return $this->bRib3VersementPlafond;
+    }
+
+    public function setBRib3VersementPlafond(?bool $bRib3VersementPlafond): self
+    {
+        $this->initialized['bRib3VersementPlafond'] = true;
+        $this->bRib3VersementPlafond = $bRib3VersementPlafond;
+
+        return $this;
+    }
+
+    public function getSexe(): ?int
+    {
+        return $this->sexe;
+    }
+
+    public function setSexe(?int $sexe): self
+    {
+        $this->initialized['sexe'] = true;
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    public function getBSexe(): ?bool
+    {
+        return $this->bSexe;
+    }
+
+    public function setBSexe(?bool $bSexe): self
+    {
+        $this->initialized['bSexe'] = true;
+        $this->bSexe = $bSexe;
 
         return $this;
     }

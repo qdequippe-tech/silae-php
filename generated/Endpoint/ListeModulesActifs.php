@@ -20,15 +20,21 @@ class ListeModulesActifs extends BaseEndpoint implements Endpoint
     use EndpointTrait;
 
     /**
+     * @param array $queryParameters {
+     *
+     * @var string $codeAgence
+     *             }
+     *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
      */
-    public function __construct(array $headerParameters = [])
+    public function __construct(array $queryParameters = [], array $headerParameters = [])
     {
+        $this->queryParameters = $queryParameters;
         $this->headerParameters = $headerParameters;
     }
 
@@ -52,6 +58,17 @@ class ListeModulesActifs extends BaseEndpoint implements Endpoint
         return ['Accept' => ['application/json']];
     }
 
+    protected function getQueryOptionsResolver(): OptionsResolver
+    {
+        $optionsResolver = parent::getQueryOptionsResolver();
+        $optionsResolver->setDefined(['codeAgence']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->addAllowedTypes('codeAgence', ['string']);
+
+        return $optionsResolver;
+    }
+
     protected function getHeadersOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
@@ -73,7 +90,7 @@ class ListeModulesActifs extends BaseEndpoint implements Endpoint
      * @throws ListeModulesActifsInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

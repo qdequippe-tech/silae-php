@@ -22,7 +22,7 @@ class ListeMatriculesDupliquesDansDomaine extends BaseEndpoint implements Endpoi
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -73,7 +73,7 @@ class ListeMatriculesDupliquesDansDomaine extends BaseEndpoint implements Endpoi
      * @throws ListeMatriculesDupliquesDansDomaineInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

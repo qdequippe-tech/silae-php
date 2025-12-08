@@ -7,8 +7,8 @@ use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
-use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieV2Request;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -23,12 +23,12 @@ class AnalyseProductionPaie extends BaseEndpoint implements Endpoint
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
      */
-    public function __construct(AnalyseProductionPaieRequest $request, array $headerParameters = [])
+    public function __construct(AnalyseProductionPaieV2Request $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -75,7 +75,7 @@ class AnalyseProductionPaie extends BaseEndpoint implements Endpoint
      * @throws AnalyseProductionPaieInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

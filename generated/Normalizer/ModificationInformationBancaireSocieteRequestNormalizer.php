@@ -7,7 +7,6 @@ use QdequippeTech\Silae\Api\Model\InformationBancaireSociete;
 use QdequippeTech\Silae\Api\Model\ModificationInformationBancaireSocieteRequest;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -15,182 +14,87 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
-    class ModificationInformationBancaireSocieteRequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class ModificationInformationBancaireSocieteRequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use CheckArray;
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use ValidatorTrait;
+
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
-
-        public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
-        {
-            return ModificationInformationBancaireSocieteRequest::class === $type;
-        }
-
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && ModificationInformationBancaireSocieteRequest::class === $data::class;
-        }
-
-        public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
-
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
-
-            $object = new ModificationInformationBancaireSocieteRequest();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('sepaModeComptabilisation', $data) && null !== $data['sepaModeComptabilisation']) {
-                $object->setSepaModeComptabilisation($data['sepaModeComptabilisation']);
-            } elseif (\array_key_exists('sepaModeComptabilisation', $data) && null === $data['sepaModeComptabilisation']) {
-                $object->setSepaModeComptabilisation(null);
-            }
-
-            if (\array_key_exists('informationBancaireSociete', $data) && null !== $data['informationBancaireSociete']) {
-                $values = [];
-                foreach ($data['informationBancaireSociete'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, InformationBancaireSociete::class, 'json', $context);
-                }
-
-                $object->setInformationBancaireSociete($values);
-            } elseif (\array_key_exists('informationBancaireSociete', $data) && null === $data['informationBancaireSociete']) {
-                $object->setInformationBancaireSociete(null);
-            }
-
-            if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
-                $object->setNumeroDossier($data['numeroDossier']);
-            } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
-                $object->setNumeroDossier(null);
-            }
-
-            return $object;
-        }
-
-        public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
-        {
-            $data = [];
-            if ($object->isInitialized('sepaModeComptabilisation') && null !== $object->getSepaModeComptabilisation()) {
-                $data['sepaModeComptabilisation'] = $object->getSepaModeComptabilisation();
-            }
-
-            if ($object->isInitialized('informationBancaireSociete') && null !== $object->getInformationBancaireSociete()) {
-                $values = [];
-                foreach ($object->getInformationBancaireSociete() as $value) {
-                    $values[] = $this->normalizer->normalize($value, 'json', $context);
-                }
-
-                $data['informationBancaireSociete'] = $values;
-            }
-
-            $data['numeroDossier'] = $object->getNumeroDossier();
-
-            return $data;
-        }
-
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [ModificationInformationBancaireSocieteRequest::class => false];
-        }
+        return ModificationInformationBancaireSocieteRequest::class === $type;
     }
-} else {
-    class ModificationInformationBancaireSocieteRequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
+        return \is_object($data) && ModificationInformationBancaireSocieteRequest::class === $data::class;
+    }
 
-        public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
-        {
-            return ModificationInformationBancaireSocieteRequest::class === $type;
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+    {
+        if (isset($data['$ref'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
         }
 
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && ModificationInformationBancaireSocieteRequest::class === $data::class;
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        /**
-         * @param mixed|null $format
-         */
-        public function denormalize($data, $type, $format = null, array $context = [])
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
-
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
-
-            $object = new ModificationInformationBancaireSocieteRequest();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('sepaModeComptabilisation', $data) && null !== $data['sepaModeComptabilisation']) {
-                $object->setSepaModeComptabilisation($data['sepaModeComptabilisation']);
-            } elseif (\array_key_exists('sepaModeComptabilisation', $data) && null === $data['sepaModeComptabilisation']) {
-                $object->setSepaModeComptabilisation(null);
-            }
-
-            if (\array_key_exists('informationBancaireSociete', $data) && null !== $data['informationBancaireSociete']) {
-                $values = [];
-                foreach ($data['informationBancaireSociete'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, InformationBancaireSociete::class, 'json', $context);
-                }
-
-                $object->setInformationBancaireSociete($values);
-            } elseif (\array_key_exists('informationBancaireSociete', $data) && null === $data['informationBancaireSociete']) {
-                $object->setInformationBancaireSociete(null);
-            }
-
-            if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
-                $object->setNumeroDossier($data['numeroDossier']);
-            } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
-                $object->setNumeroDossier(null);
-            }
-
+        $object = new ModificationInformationBancaireSocieteRequest();
+        if (null === $data || false === \is_array($data)) {
             return $object;
         }
 
-        /**
-         * @param mixed|null $format
-         *
-         * @return array|string|int|float|bool|\ArrayObject|null
-         */
-        public function normalize($object, $format = null, array $context = [])
-        {
-            $data = [];
-            if ($object->isInitialized('sepaModeComptabilisation') && null !== $object->getSepaModeComptabilisation()) {
-                $data['sepaModeComptabilisation'] = $object->getSepaModeComptabilisation();
-            }
-
-            if ($object->isInitialized('informationBancaireSociete') && null !== $object->getInformationBancaireSociete()) {
-                $values = [];
-                foreach ($object->getInformationBancaireSociete() as $value) {
-                    $values[] = $this->normalizer->normalize($value, 'json', $context);
-                }
-
-                $data['informationBancaireSociete'] = $values;
-            }
-
-            $data['numeroDossier'] = $object->getNumeroDossier();
-
-            return $data;
+        if (\array_key_exists('sepaModeComptabilisation', $data) && null !== $data['sepaModeComptabilisation']) {
+            $object->setSepaModeComptabilisation($data['sepaModeComptabilisation']);
+        } elseif (\array_key_exists('sepaModeComptabilisation', $data) && null === $data['sepaModeComptabilisation']) {
+            $object->setSepaModeComptabilisation(null);
         }
 
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [ModificationInformationBancaireSocieteRequest::class => false];
+        if (\array_key_exists('informationBancaireSociete', $data) && null !== $data['informationBancaireSociete']) {
+            $values = [];
+            foreach ($data['informationBancaireSociete'] as $value) {
+                $values[] = $this->denormalizer->denormalize($value, InformationBancaireSociete::class, 'json', $context);
+            }
+
+            $object->setInformationBancaireSociete($values);
+        } elseif (\array_key_exists('informationBancaireSociete', $data) && null === $data['informationBancaireSociete']) {
+            $object->setInformationBancaireSociete(null);
         }
+
+        if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
+            $object->setNumeroDossier($data['numeroDossier']);
+        } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
+            $object->setNumeroDossier(null);
+        }
+
+        return $object;
+    }
+
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    {
+        $dataArray = [];
+        if ($data->isInitialized('sepaModeComptabilisation') && null !== $data->getSepaModeComptabilisation()) {
+            $dataArray['sepaModeComptabilisation'] = $data->getSepaModeComptabilisation();
+        }
+
+        if ($data->isInitialized('informationBancaireSociete') && null !== $data->getInformationBancaireSociete()) {
+            $values = [];
+            foreach ($data->getInformationBancaireSociete() as $value) {
+                $values[] = $this->normalizer->normalize($value, 'json', $context);
+            }
+
+            $dataArray['informationBancaireSociete'] = $values;
+        }
+
+        $dataArray['numeroDossier'] = $data->getNumeroDossier();
+
+        return $dataArray;
+    }
+
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [ModificationInformationBancaireSocieteRequest::class => false];
     }
 }

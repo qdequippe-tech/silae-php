@@ -40,6 +40,11 @@ class AcquisitionContenuPartielDSNRequest
     protected $segments;
 
     /**
+     * @var int|null
+     */
+    protected $fraction;
+
+    /**
      * @var \DateTime|null
      */
     protected $periode;
@@ -116,6 +121,19 @@ class AcquisitionContenuPartielDSNRequest
     {
         $this->initialized['segments'] = true;
         $this->segments = $segments;
+
+        return $this;
+    }
+
+    public function getFraction(): ?int
+    {
+        return $this->fraction;
+    }
+
+    public function setFraction(?int $fraction): self
+    {
+        $this->initialized['fraction'] = true;
+        $this->fraction = $fraction;
 
         return $this;
     }

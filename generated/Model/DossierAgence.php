@@ -44,6 +44,11 @@ class DossierAgence
      */
     protected $dossierInterne;
 
+    /**
+     * @var bool|null
+     */
+    protected $miseADisposition;
+
     public function getNumeroDossier(): ?string
     {
         return $this->numeroDossier;
@@ -118,6 +123,19 @@ class DossierAgence
     {
         $this->initialized['dossierInterne'] = true;
         $this->dossierInterne = $dossierInterne;
+
+        return $this;
+    }
+
+    public function getMiseADisposition(): ?bool
+    {
+        return $this->miseADisposition;
+    }
+
+    public function setMiseADisposition(?bool $miseADisposition): self
+    {
+        $this->initialized['miseADisposition'] = true;
+        $this->miseADisposition = $miseADisposition;
 
         return $this;
     }

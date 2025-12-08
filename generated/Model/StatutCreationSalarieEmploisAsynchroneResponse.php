@@ -32,6 +32,11 @@ class StatutCreationSalarieEmploisAsynchroneResponse
     /**
      * @var string|null
      */
+    protected $matriculeSalarie;
+
+    /**
+     * @var string|null
+     */
     protected $statut;
 
     /**
@@ -90,6 +95,19 @@ class StatutCreationSalarieEmploisAsynchroneResponse
     {
         $this->initialized['warning'] = true;
         $this->warning = $warning;
+
+        return $this;
+    }
+
+    public function getMatriculeSalarie(): ?string
+    {
+        return $this->matriculeSalarie;
+    }
+
+    public function setMatriculeSalarie(?string $matriculeSalarie): self
+    {
+        $this->initialized['matriculeSalarie'] = true;
+        $this->matriculeSalarie = $matriculeSalarie;
 
         return $this;
     }

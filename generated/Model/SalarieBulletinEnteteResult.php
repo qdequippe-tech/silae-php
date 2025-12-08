@@ -89,6 +89,11 @@ class SalarieBulletinEnteteResult
      */
     protected $heuresMajorees;
 
+    /**
+     * @var int|null
+     */
+    protected $indicePeriode;
+
     public function getMatriculeSalarie(): ?string
     {
         return $this->matriculeSalarie;
@@ -280,6 +285,19 @@ class SalarieBulletinEnteteResult
     {
         $this->initialized['heuresMajorees'] = true;
         $this->heuresMajorees = $heuresMajorees;
+
+        return $this;
+    }
+
+    public function getIndicePeriode(): ?int
+    {
+        return $this->indicePeriode;
+    }
+
+    public function setIndicePeriode(?int $indicePeriode): self
+    {
+        $this->initialized['indicePeriode'] = true;
+        $this->indicePeriode = $indicePeriode;
 
         return $this;
     }

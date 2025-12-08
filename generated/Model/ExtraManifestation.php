@@ -59,6 +59,16 @@ class ExtraManifestation
      */
     protected $dateFin;
 
+    /**
+     * @var string|null
+     */
+    protected $axeAnalytique3;
+
+    /**
+     * @var string|null
+     */
+    protected $valeurAxeAnalytique3;
+
     public function getNomInterneEtablissement(): ?string
     {
         return $this->nomInterneEtablissement;
@@ -172,6 +182,32 @@ class ExtraManifestation
     {
         $this->initialized['dateFin'] = true;
         $this->dateFin = $dateFin;
+
+        return $this;
+    }
+
+    public function getAxeAnalytique3(): ?string
+    {
+        return $this->axeAnalytique3;
+    }
+
+    public function setAxeAnalytique3(?string $axeAnalytique3): self
+    {
+        $this->initialized['axeAnalytique3'] = true;
+        $this->axeAnalytique3 = $axeAnalytique3;
+
+        return $this;
+    }
+
+    public function getValeurAxeAnalytique3(): ?string
+    {
+        return $this->valeurAxeAnalytique3;
+    }
+
+    public function setValeurAxeAnalytique3(?string $valeurAxeAnalytique3): self
+    {
+        $this->initialized['valeurAxeAnalytique3'] = true;
+        $this->valeurAxeAnalytique3 = $valeurAxeAnalytique3;
 
         return $this;
     }

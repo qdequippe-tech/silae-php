@@ -7,7 +7,7 @@ use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchr
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
-use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRequest;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEntreesSortiesRequest;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -23,12 +23,12 @@ class AnalyseProductionPaieEntreesSortiesAsynchrone extends BaseEndpoint impleme
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
      */
-    public function __construct(AnalyseProductionPaieRequest $request, array $headerParameters = [])
+    public function __construct(AnalyseProductionPaieEntreesSortiesRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -75,7 +75,7 @@ class AnalyseProductionPaieEntreesSortiesAsynchrone extends BaseEndpoint impleme
      * @throws AnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

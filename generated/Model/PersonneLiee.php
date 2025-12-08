@@ -49,6 +49,61 @@ class PersonneLiee
      */
     protected $aCharge;
 
+    /**
+     * @var \DateTime|null
+     */
+    protected $dateDeces;
+
+    /**
+     * @var bool|null
+     */
+    protected $handicape;
+
+    /**
+     * @var bool|null
+     */
+    protected $bDateDeces;
+
+    /**
+     * @var \DateTime|null
+     */
+    protected $dateDebutRattachement;
+
+    /**
+     * @var bool|null
+     */
+    protected $bDateDebutRattachement;
+
+    /**
+     * @var \DateTime|null
+     */
+    protected $dateFinRattachement;
+
+    /**
+     * @var bool|null
+     */
+    protected $bDateFinRattachement;
+
+    /**
+     * @var string|null
+     */
+    protected $codeOrganismeAM;
+
+    /**
+     * @var bool|null
+     */
+    protected $alsaceMoselle;
+
+    /**
+     * @var bool|null
+     */
+    protected $bCivilite;
+
+    /**
+     * @var int|null
+     */
+    protected $civilite;
+
     public function getPrenom(): ?string
     {
         return $this->prenom;
@@ -136,6 +191,149 @@ class PersonneLiee
     {
         $this->initialized['aCharge'] = true;
         $this->aCharge = $aCharge;
+
+        return $this;
+    }
+
+    public function getDateDeces(): ?\DateTime
+    {
+        return $this->dateDeces;
+    }
+
+    public function setDateDeces(?\DateTime $dateDeces): self
+    {
+        $this->initialized['dateDeces'] = true;
+        $this->dateDeces = $dateDeces;
+
+        return $this;
+    }
+
+    public function getHandicape(): ?bool
+    {
+        return $this->handicape;
+    }
+
+    public function setHandicape(?bool $handicape): self
+    {
+        $this->initialized['handicape'] = true;
+        $this->handicape = $handicape;
+
+        return $this;
+    }
+
+    public function getBDateDeces(): ?bool
+    {
+        return $this->bDateDeces;
+    }
+
+    public function setBDateDeces(?bool $bDateDeces): self
+    {
+        $this->initialized['bDateDeces'] = true;
+        $this->bDateDeces = $bDateDeces;
+
+        return $this;
+    }
+
+    public function getDateDebutRattachement(): ?\DateTime
+    {
+        return $this->dateDebutRattachement;
+    }
+
+    public function setDateDebutRattachement(?\DateTime $dateDebutRattachement): self
+    {
+        $this->initialized['dateDebutRattachement'] = true;
+        $this->dateDebutRattachement = $dateDebutRattachement;
+
+        return $this;
+    }
+
+    public function getBDateDebutRattachement(): ?bool
+    {
+        return $this->bDateDebutRattachement;
+    }
+
+    public function setBDateDebutRattachement(?bool $bDateDebutRattachement): self
+    {
+        $this->initialized['bDateDebutRattachement'] = true;
+        $this->bDateDebutRattachement = $bDateDebutRattachement;
+
+        return $this;
+    }
+
+    public function getDateFinRattachement(): ?\DateTime
+    {
+        return $this->dateFinRattachement;
+    }
+
+    public function setDateFinRattachement(?\DateTime $dateFinRattachement): self
+    {
+        $this->initialized['dateFinRattachement'] = true;
+        $this->dateFinRattachement = $dateFinRattachement;
+
+        return $this;
+    }
+
+    public function getBDateFinRattachement(): ?bool
+    {
+        return $this->bDateFinRattachement;
+    }
+
+    public function setBDateFinRattachement(?bool $bDateFinRattachement): self
+    {
+        $this->initialized['bDateFinRattachement'] = true;
+        $this->bDateFinRattachement = $bDateFinRattachement;
+
+        return $this;
+    }
+
+    public function getCodeOrganismeAM(): ?string
+    {
+        return $this->codeOrganismeAM;
+    }
+
+    public function setCodeOrganismeAM(?string $codeOrganismeAM): self
+    {
+        $this->initialized['codeOrganismeAM'] = true;
+        $this->codeOrganismeAM = $codeOrganismeAM;
+
+        return $this;
+    }
+
+    public function getAlsaceMoselle(): ?bool
+    {
+        return $this->alsaceMoselle;
+    }
+
+    public function setAlsaceMoselle(?bool $alsaceMoselle): self
+    {
+        $this->initialized['alsaceMoselle'] = true;
+        $this->alsaceMoselle = $alsaceMoselle;
+
+        return $this;
+    }
+
+    public function getBCivilite(): ?bool
+    {
+        return $this->bCivilite;
+    }
+
+    public function setBCivilite(?bool $bCivilite): self
+    {
+        $this->initialized['bCivilite'] = true;
+        $this->bCivilite = $bCivilite;
+
+        return $this;
+    }
+
+    public function getCivilite(): ?int
+    {
+        return $this->civilite;
+    }
+
+    public function setCivilite(?int $civilite): self
+    {
+        $this->initialized['civilite'] = true;
+        $this->civilite = $civilite;
 
         return $this;
     }

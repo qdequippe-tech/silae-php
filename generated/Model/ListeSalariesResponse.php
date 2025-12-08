@@ -15,12 +15,12 @@ class ListeSalariesResponse
     }
 
     /**
-     * @var list<SalarieInformations>|null
+     * @var list<SalarieInformationsV3>|null
      */
     protected $listeSalariesInformations;
 
     /**
-     * @return list<SalarieInformations>|null
+     * @return list<SalarieInformationsV3>|null
      */
     public function getListeSalariesInformations(): ?array
     {
@@ -28,7 +28,7 @@ class ListeSalariesResponse
     }
 
     /**
-     * @param list<SalarieInformations>|null $listeSalariesInformations
+     * @param list<SalarieInformationsV3>|null $listeSalariesInformations
      */
     public function setListeSalariesInformations(?array $listeSalariesInformations): self
     {

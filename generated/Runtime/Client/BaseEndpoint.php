@@ -9,13 +9,13 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 abstract class BaseEndpoint implements Endpoint
 {
-    protected $formParameters = [];
+    protected array $formParameters = [];
 
-    protected $queryParameters = [];
+    protected array $queryParameters = [];
 
-    protected $headerParameters = [];
+    protected array $headerParameters = [];
 
-    protected $body;
+    protected mixed $body;
 
     abstract public function getMethod(): string;
 
@@ -35,7 +35,7 @@ abstract class BaseEndpoint implements Endpoint
     public function getQueryString(): string
     {
         $optionsResolved = $this->getQueryOptionsResolver()->resolve($this->queryParameters);
-        $optionsResolved = array_map(function ($value) {
+        $optionsResolved = array_map(static function ($value) {
             return $value ?? '';
         }, $optionsResolved);
 

@@ -8,7 +8,7 @@ use QdequippeTech\Silae\Api\Exception\EditionSoldeDeReposInternalServerErrorExce
 use QdequippeTech\Silae\Api\Exception\EditionSoldeDeReposUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
-use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
+use QdequippeTech\Silae\Api\Model\EditionSoldeDeReposRequest;
 use QdequippeTech\Silae\Api\Model\EditionSoldeDeReposResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -23,12 +23,12 @@ class EditionSoldeDeRepos extends BaseEndpoint implements Endpoint
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
      */
-    public function __construct(DossierPeriodeRangeRequest $request, array $headerParameters = [])
+    public function __construct(EditionSoldeDeReposRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -75,7 +75,7 @@ class EditionSoldeDeRepos extends BaseEndpoint implements Endpoint
      * @throws EditionSoldeDeReposInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

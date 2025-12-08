@@ -19,6 +19,11 @@ class ExistenceMatriculeResponse
      */
     protected $existe;
 
+    /**
+     * @var list<string>|null
+     */
+    protected $matricules;
+
     public function getExiste(): ?bool
     {
         return $this->existe;
@@ -28,6 +33,25 @@ class ExistenceMatriculeResponse
     {
         $this->initialized['existe'] = true;
         $this->existe = $existe;
+
+        return $this;
+    }
+
+    /**
+     * @return list<string>|null
+     */
+    public function getMatricules(): ?array
+    {
+        return $this->matricules;
+    }
+
+    /**
+     * @param list<string>|null $matricules
+     */
+    public function setMatricules(?array $matricules): self
+    {
+        $this->initialized['matricules'] = true;
+        $this->matricules = $matricules;
 
         return $this;
     }

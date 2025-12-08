@@ -25,6 +25,11 @@ class StatistiquesProductionV2
     protected $nbBulletinsCoffresFortsEditique;
 
     /**
+     * @var int|null
+     */
+    protected $nbDocsSortieCoffresForts;
+
+    /**
      * @var \DateTime|null
      */
     protected $periode;
@@ -91,6 +96,19 @@ class StatistiquesProductionV2
     {
         $this->initialized['nbBulletinsCoffresFortsEditique'] = true;
         $this->nbBulletinsCoffresFortsEditique = $nbBulletinsCoffresFortsEditique;
+
+        return $this;
+    }
+
+    public function getNbDocsSortieCoffresForts(): ?int
+    {
+        return $this->nbDocsSortieCoffresForts;
+    }
+
+    public function setNbDocsSortieCoffresForts(?int $nbDocsSortieCoffresForts): self
+    {
+        $this->initialized['nbDocsSortieCoffresForts'] = true;
+        $this->nbDocsSortieCoffresForts = $nbDocsSortieCoffresForts;
 
         return $this;
     }

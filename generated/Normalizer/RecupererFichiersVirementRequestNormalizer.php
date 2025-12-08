@@ -6,7 +6,6 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementRequest;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -14,222 +13,107 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
-    class RecupererFichiersVirementRequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class RecupererFichiersVirementRequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use CheckArray;
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use ValidatorTrait;
+
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
-
-        public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
-        {
-            return RecupererFichiersVirementRequest::class === $type;
-        }
-
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && RecupererFichiersVirementRequest::class === $data::class;
-        }
-
-        public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
-
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
-
-            $object = new RecupererFichiersVirementRequest();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('dateValeur', $data) && null !== $data['dateValeur']) {
-                $object->setDateValeur(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateValeur']));
-            } elseif (\array_key_exists('dateValeur', $data) && null === $data['dateValeur']) {
-                $object->setDateValeur(null);
-            }
-
-            if (\array_key_exists('libelleVirement', $data) && null !== $data['libelleVirement']) {
-                $object->setLibelleVirement($data['libelleVirement']);
-            } elseif (\array_key_exists('libelleVirement', $data) && null === $data['libelleVirement']) {
-                $object->setLibelleVirement(null);
-            }
-
-            if (\array_key_exists('matriculeSalaries', $data) && null !== $data['matriculeSalaries']) {
-                $values = [];
-                foreach ($data['matriculeSalaries'] as $value) {
-                    $values[] = $value;
-                }
-
-                $object->setMatriculeSalaries($values);
-            } elseif (\array_key_exists('matriculeSalaries', $data) && null === $data['matriculeSalaries']) {
-                $object->setMatriculeSalaries(null);
-            }
-
-            if (\array_key_exists('periode', $data) && null !== $data['periode']) {
-                $object->setPeriode(\DateTime::createFromFormat('Y-m-d', $data['periode'])->setTime(0, 0, 0));
-            } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
-                $object->setPeriode(null);
-            }
-
-            if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
-                $object->setNumeroDossier($data['numeroDossier']);
-            } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
-                $object->setNumeroDossier(null);
-            }
-
-            return $object;
-        }
-
-        public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
-        {
-            $data = [];
-            if ($object->isInitialized('dateValeur') && null !== $object->getDateValeur()) {
-                $data['dateValeur'] = $object->getDateValeur()->format('Y-m-d\TH:i:s');
-            }
-
-            if ($object->isInitialized('libelleVirement') && null !== $object->getLibelleVirement()) {
-                $data['libelleVirement'] = $object->getLibelleVirement();
-            }
-
-            if ($object->isInitialized('matriculeSalaries') && null !== $object->getMatriculeSalaries()) {
-                $values = [];
-                foreach ($object->getMatriculeSalaries() as $value) {
-                    $values[] = $value;
-                }
-
-                $data['matriculeSalaries'] = $values;
-            }
-
-            if ($object->isInitialized('periode') && null !== $object->getPeriode()) {
-                $data['periode'] = $object->getPeriode()->format('Y-m-d');
-            }
-
-            $data['numeroDossier'] = $object->getNumeroDossier();
-
-            return $data;
-        }
-
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [RecupererFichiersVirementRequest::class => false];
-        }
+        return RecupererFichiersVirementRequest::class === $type;
     }
-} else {
-    class RecupererFichiersVirementRequestNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
+        return \is_object($data) && RecupererFichiersVirementRequest::class === $data::class;
+    }
 
-        public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
-        {
-            return RecupererFichiersVirementRequest::class === $type;
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+    {
+        if (isset($data['$ref'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
         }
 
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && RecupererFichiersVirementRequest::class === $data::class;
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        /**
-         * @param mixed|null $format
-         */
-        public function denormalize($data, $type, $format = null, array $context = [])
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
-
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
-
-            $object = new RecupererFichiersVirementRequest();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('dateValeur', $data) && null !== $data['dateValeur']) {
-                $object->setDateValeur(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateValeur']));
-            } elseif (\array_key_exists('dateValeur', $data) && null === $data['dateValeur']) {
-                $object->setDateValeur(null);
-            }
-
-            if (\array_key_exists('libelleVirement', $data) && null !== $data['libelleVirement']) {
-                $object->setLibelleVirement($data['libelleVirement']);
-            } elseif (\array_key_exists('libelleVirement', $data) && null === $data['libelleVirement']) {
-                $object->setLibelleVirement(null);
-            }
-
-            if (\array_key_exists('matriculeSalaries', $data) && null !== $data['matriculeSalaries']) {
-                $values = [];
-                foreach ($data['matriculeSalaries'] as $value) {
-                    $values[] = $value;
-                }
-
-                $object->setMatriculeSalaries($values);
-            } elseif (\array_key_exists('matriculeSalaries', $data) && null === $data['matriculeSalaries']) {
-                $object->setMatriculeSalaries(null);
-            }
-
-            if (\array_key_exists('periode', $data) && null !== $data['periode']) {
-                $object->setPeriode(\DateTime::createFromFormat('Y-m-d', $data['periode'])->setTime(0, 0, 0));
-            } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
-                $object->setPeriode(null);
-            }
-
-            if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
-                $object->setNumeroDossier($data['numeroDossier']);
-            } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
-                $object->setNumeroDossier(null);
-            }
-
+        $object = new RecupererFichiersVirementRequest();
+        if (null === $data || false === \is_array($data)) {
             return $object;
         }
 
-        /**
-         * @param mixed|null $format
-         *
-         * @return array|string|int|float|bool|\ArrayObject|null
-         */
-        public function normalize($object, $format = null, array $context = [])
-        {
-            $data = [];
-            if ($object->isInitialized('dateValeur') && null !== $object->getDateValeur()) {
-                $data['dateValeur'] = $object->getDateValeur()->format('Y-m-d\TH:i:s');
-            }
-
-            if ($object->isInitialized('libelleVirement') && null !== $object->getLibelleVirement()) {
-                $data['libelleVirement'] = $object->getLibelleVirement();
-            }
-
-            if ($object->isInitialized('matriculeSalaries') && null !== $object->getMatriculeSalaries()) {
-                $values = [];
-                foreach ($object->getMatriculeSalaries() as $value) {
-                    $values[] = $value;
-                }
-
-                $data['matriculeSalaries'] = $values;
-            }
-
-            if ($object->isInitialized('periode') && null !== $object->getPeriode()) {
-                $data['periode'] = $object->getPeriode()->format('Y-m-d');
-            }
-
-            $data['numeroDossier'] = $object->getNumeroDossier();
-
-            return $data;
+        if (\array_key_exists('dateValeur', $data) && null !== $data['dateValeur']) {
+            $object->setDateValeur(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateValeur']));
+        } elseif (\array_key_exists('dateValeur', $data) && null === $data['dateValeur']) {
+            $object->setDateValeur(null);
         }
 
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [RecupererFichiersVirementRequest::class => false];
+        if (\array_key_exists('libelleVirement', $data) && null !== $data['libelleVirement']) {
+            $object->setLibelleVirement($data['libelleVirement']);
+        } elseif (\array_key_exists('libelleVirement', $data) && null === $data['libelleVirement']) {
+            $object->setLibelleVirement(null);
         }
+
+        if (\array_key_exists('matriculeSalaries', $data) && null !== $data['matriculeSalaries']) {
+            $values = [];
+            foreach ($data['matriculeSalaries'] as $value) {
+                $values[] = $value;
+            }
+
+            $object->setMatriculeSalaries($values);
+        } elseif (\array_key_exists('matriculeSalaries', $data) && null === $data['matriculeSalaries']) {
+            $object->setMatriculeSalaries(null);
+        }
+
+        if (\array_key_exists('periode', $data) && null !== $data['periode']) {
+            $object->setPeriode(\DateTime::createFromFormat('Y-m-d', $data['periode'])->setTime(0, 0, 0));
+        } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
+            $object->setPeriode(null);
+        }
+
+        if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
+            $object->setNumeroDossier($data['numeroDossier']);
+        } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
+            $object->setNumeroDossier(null);
+        }
+
+        return $object;
+    }
+
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    {
+        $dataArray = [];
+        if ($data->isInitialized('dateValeur') && null !== $data->getDateValeur()) {
+            $dataArray['dateValeur'] = $data->getDateValeur()->format('Y-m-d\TH:i:s');
+        }
+
+        if ($data->isInitialized('libelleVirement') && null !== $data->getLibelleVirement()) {
+            $dataArray['libelleVirement'] = $data->getLibelleVirement();
+        }
+
+        if ($data->isInitialized('matriculeSalaries') && null !== $data->getMatriculeSalaries()) {
+            $values = [];
+            foreach ($data->getMatriculeSalaries() as $value) {
+                $values[] = $value;
+            }
+
+            $dataArray['matriculeSalaries'] = $values;
+        }
+
+        if ($data->isInitialized('periode') && null !== $data->getPeriode()) {
+            $dataArray['periode'] = $data->getPeriode()->format('Y-m-d');
+        }
+
+        $dataArray['numeroDossier'] = $data->getNumeroDossier();
+
+        return $dataArray;
+    }
+
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [RecupererFichiersVirementRequest::class => false];
     }
 }
