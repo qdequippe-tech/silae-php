@@ -30,7 +30,7 @@ class EcrituresComptablesRupture
     protected $totalCredit;
 
     /**
-     * @var list<EcrituresComptablesLigne>|null
+     * @var list<EcrituresComptablesLigneRupture>|null
      */
     protected $ecritures;
 
@@ -74,7 +74,7 @@ class EcrituresComptablesRupture
     }
 
     /**
-     * @return list<EcrituresComptablesLigne>|null
+     * @return list<EcrituresComptablesLigneRupture>|null
      */
     public function getEcritures(): ?array
     {
@@ -82,7 +82,7 @@ class EcrituresComptablesRupture
     }
 
     /**
-     * @param list<EcrituresComptablesLigne>|null $ecritures
+     * @param list<EcrituresComptablesLigneRupture>|null $ecritures
      */
     public function setEcritures(?array $ecritures): self
     {

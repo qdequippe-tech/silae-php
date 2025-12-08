@@ -28,14 +28,24 @@ use QdequippeTech\Silae\Api\Endpoint\AjoutSousCategorieAxeAnalytique;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseConfigurationAccesApi;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaie;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieBulletinsCoffresForts;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieBulletinsCoffresFortsAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieBulletinsOriginaux;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieBulletinsOriginauxAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieDetail;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieEffectifs;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieEffectifsAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieEntreesSorties;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieEntreesSortiesAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieUtilisateurs;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieUtilisateursV2;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieUtilisateursV2Asynchrone;
+use QdequippeTech\Silae\Api\Endpoint\AppliquerModeleCollaborateur;
 use QdequippeTech\Silae\Api\Endpoint\BureautiquePaieNombreDocumentsCrees;
 use QdequippeTech\Silae\Api\Endpoint\ClassificationMetierComplete;
 use QdequippeTech\Silae\Api\Endpoint\ControlerBulletinsPeriode;
 use QdequippeTech\Silae\Api\Endpoint\CreationCompteCollaborateur;
+use QdequippeTech\Silae\Api\Endpoint\CreationCompteCollaborateurDepuisModele;
 use QdequippeTech\Silae\Api\Endpoint\CreationConfigurationAccesApi;
 use QdequippeTech\Silae\Api\Endpoint\CreationDossierPaie;
 use QdequippeTech\Silae\Api\Endpoint\CreationDossierParImportFichierDSN;
@@ -53,7 +63,11 @@ use QdequippeTech\Silae\Api\Endpoint\EcrituresComptables;
 use QdequippeTech\Silae\Api\Endpoint\EcrituresComptables2;
 use QdequippeTech\Silae\Api\Endpoint\EcrituresComptables3;
 use QdequippeTech\Silae\Api\Endpoint\EcrituresComptables4;
+use QdequippeTech\Silae\Api\Endpoint\EcrituresComptables4Asynchrone;
 use QdequippeTech\Silae\Api\Endpoint\EcrituresComptablesAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\EcrituresComptablesPaiementAcomptes;
+use QdequippeTech\Silae\Api\Endpoint\EcrituresComptablesPaiementSalaires;
+use QdequippeTech\Silae\Api\Endpoint\EcrituresComptablesPaiementSalairesLotsVirement;
 use QdequippeTech\Silae\Api\Endpoint\EditionControleCICE;
 use QdequippeTech\Silae\Api\Endpoint\EditionControleCICEAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\EditionCoutsSalariaux;
@@ -64,10 +78,14 @@ use QdequippeTech\Silae\Api\Endpoint\EditionEtatDesPaiements;
 use QdequippeTech\Silae\Api\Endpoint\EditionEtatDesPaiementsAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\EditionHistorique;
 use QdequippeTech\Silae\Api\Endpoint\EditionHistoriqueAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\EditionHistoriqueChiffre;
+use QdequippeTech\Silae\Api\Endpoint\EditionHistoriqueChiffreAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\EditionJournalDePaie;
 use QdequippeTech\Silae\Api\Endpoint\EditionJournalDePaieAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\EditionRecapDePaie;
 use QdequippeTech\Silae\Api\Endpoint\EditionRecapDePaieAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\EditionRecapDePaieDetailleParSalarie;
+use QdequippeTech\Silae\Api\Endpoint\EditionRecapDePaieDetailleParSalarieAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\EditionSoldeDeRepos;
 use QdequippeTech\Silae\Api\Endpoint\EditionSoldeDeReposAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\EditionTableauDesCharges;
@@ -86,6 +104,7 @@ use QdequippeTech\Silae\Api\Endpoint\GenerationFichierTR;
 use QdequippeTech\Silae\Api\Endpoint\GererCycleDePaie;
 use QdequippeTech\Silae\Api\Endpoint\GererEtatDossierPaie;
 use QdequippeTech\Silae\Api\Endpoint\GererEtatRobotDePaie;
+use QdequippeTech\Silae\Api\Endpoint\HistoriqueDesModifications;
 use QdequippeTech\Silae\Api\Endpoint\ImportDossierDemoAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\ImportFichierDSN;
 use QdequippeTech\Silae\Api\Endpoint\ImportXmlParametrageOrganismeDSN;
@@ -94,12 +113,14 @@ use QdequippeTech\Silae\Api\Endpoint\LectureAxesAnalytiques;
 use QdequippeTech\Silae\Api\Endpoint\LectureAxesAnalytiquesSalaries;
 use QdequippeTech\Silae\Api\Endpoint\LectureCCNSociete;
 use QdequippeTech\Silae\Api\Endpoint\LectureCompteCollaborateur;
+use QdequippeTech\Silae\Api\Endpoint\LectureCompteCollaborateurModeles;
 use QdequippeTech\Silae\Api\Endpoint\LectureContactEmetteurDSN;
 use QdequippeTech\Silae\Api\Endpoint\LectureEffectifEtablissement;
 use QdequippeTech\Silae\Api\Endpoint\LectureEffectifSociete;
 use QdequippeTech\Silae\Api\Endpoint\LectureEffortConstruction;
 use QdequippeTech\Silae\Api\Endpoint\LectureFicheAgence;
 use QdequippeTech\Silae\Api\Endpoint\LectureFNAL;
+use QdequippeTech\Silae\Api\Endpoint\LectureGrilleHoraireFicheSalarie;
 use QdequippeTech\Silae\Api\Endpoint\LectureHandicap;
 use QdequippeTech\Silae\Api\Endpoint\LectureInformationBancaireSociete;
 use QdequippeTech\Silae\Api\Endpoint\LectureInformationsPaie;
@@ -117,22 +138,28 @@ use QdequippeTech\Silae\Api\Endpoint\ListeComptesApi;
 use QdequippeTech\Silae\Api\Endpoint\ListeDossiers;
 use QdequippeTech\Silae\Api\Endpoint\ListeDossiersAgence;
 use QdequippeTech\Silae\Api\Endpoint\ListeDossiersDemoSilae;
+use QdequippeTech\Silae\Api\Endpoint\ListeDSNEvenementielles;
 use QdequippeTech\Silae\Api\Endpoint\ListeDSNMensuelles;
 use QdequippeTech\Silae\Api\Endpoint\ListeEtablissementsDossierPaie;
 use QdequippeTech\Silae\Api\Endpoint\ListeInformationsDossiersPaie;
 use QdequippeTech\Silae\Api\Endpoint\ListeMatriculesDupliques;
 use QdequippeTech\Silae\Api\Endpoint\ListeMatriculesDupliquesDansDomaine;
 use QdequippeTech\Silae\Api\Endpoint\ListeModulesActifs;
+use QdequippeTech\Silae\Api\Endpoint\ListeModulesMySilae;
 use QdequippeTech\Silae\Api\Endpoint\ListeNumerosDossiers;
+use QdequippeTech\Silae\Api\Endpoint\ListeOrganismes;
 use QdequippeTech\Silae\Api\Endpoint\ListeSalarieEmplois;
 use QdequippeTech\Silae\Api\Endpoint\ListeSalarieEmploisExternes;
 use QdequippeTech\Silae\Api\Endpoint\ListeSalaries;
 use QdequippeTech\Silae\Api\Endpoint\ListeSalariesExternes;
 use QdequippeTech\Silae\Api\Endpoint\ListeUtilisateursDossierPaie;
+use QdequippeTech\Silae\Api\Endpoint\ListeUtilisateursDossierPaieV2;
 use QdequippeTech\Silae\Api\Endpoint\ListeVariablesASaisir;
 use QdequippeTech\Silae\Api\Endpoint\MatriculeSalarie;
 use QdequippeTech\Silae\Api\Endpoint\MiseAJourFicheEtablissement;
 use QdequippeTech\Silae\Api\Endpoint\MiseAJourFicheSociete;
+use QdequippeTech\Silae\Api\Endpoint\ModificationAxesAnalytiquesSalarie;
+use QdequippeTech\Silae\Api\Endpoint\ModificationCCNEtablissement;
 use QdequippeTech\Silae\Api\Endpoint\ModificationCCNSociete;
 use QdequippeTech\Silae\Api\Endpoint\ModificationChampSalarie;
 use QdequippeTech\Silae\Api\Endpoint\ModificationDroitsFonctionnelsProductionPaie;
@@ -160,6 +187,7 @@ use QdequippeTech\Silae\Api\Endpoint\RecupererDeclarationsAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\RecupererDuplicatasBulletins;
 use QdequippeTech\Silae\Api\Endpoint\RecupererDuplicatasBulletinsAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\RecupererFichiersEcrituresComptables;
+use QdequippeTech\Silae\Api\Endpoint\RecupererFichiersEcrituresComptablesAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\RecupererFichiersVirement;
 use QdequippeTech\Silae\Api\Endpoint\RecupererFichiersVirementChiffres;
 use QdequippeTech\Silae\Api\Endpoint\RecupererFichiersVirementHorsBulletin;
@@ -167,7 +195,10 @@ use QdequippeTech\Silae\Api\Endpoint\RecupererFichiersVirementHorsBulletinChiffr
 use QdequippeTech\Silae\Api\Endpoint\RecupererImage;
 use QdequippeTech\Silae\Api\Endpoint\RecupererImageAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\SalarieAbsences;
+use QdequippeTech\Silae\Api\Endpoint\SalarieAbsencesV2;
+use QdequippeTech\Silae\Api\Endpoint\SalarieActiviteJournaliere;
 use QdequippeTech\Silae\Api\Endpoint\SalarieAjouterAbsence;
+use QdequippeTech\Silae\Api\Endpoint\SalarieAjouterAbsenceV2;
 use QdequippeTech\Silae\Api\Endpoint\SalarieAjouterAcompte;
 use QdequippeTech\Silae\Api\Endpoint\SalarieAjouterActiviteJournaliere;
 use QdequippeTech\Silae\Api\Endpoint\SalarieAjouterActiviteJournaliereSurEmploi;
@@ -184,11 +215,14 @@ use QdequippeTech\Silae\Api\Endpoint\SalarieBulletinDetails;
 use QdequippeTech\Silae\Api\Endpoint\SalarieBulletinEntete;
 use QdequippeTech\Silae\Api\Endpoint\SalarieBulletinLignes;
 use QdequippeTech\Silae\Api\Endpoint\SalarieBulletinLignesSelonFiltres;
+use QdequippeTech\Silae\Api\Endpoint\SalarieBulletinsIndices;
+use QdequippeTech\Silae\Api\Endpoint\SalarieBulletinStatutEtatAvancement;
 use QdequippeTech\Silae\Api\Endpoint\SalarieDUE;
 use QdequippeTech\Silae\Api\Endpoint\SalarieDUEAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\SalarieEmploiClassificationMetier;
 use QdequippeTech\Silae\Api\Endpoint\SalarieInitialiserCumuls;
 use QdequippeTech\Silae\Api\Endpoint\SalarieModifierAbsence;
+use QdequippeTech\Silae\Api\Endpoint\SalarieModifierAbsenceV2;
 use QdequippeTech\Silae\Api\Endpoint\SalarieRecupererDUE;
 use QdequippeTech\Silae\Api\Endpoint\SalarieRecupererPeriodeDernierBulletinCalcule;
 use QdequippeTech\Silae\Api\Endpoint\SalarieRecupererRecuDPAE;
@@ -216,21 +250,29 @@ use QdequippeTech\Silae\Api\Endpoint\SpectacleSalarieCalculerBulletin;
 use QdequippeTech\Silae\Api\Endpoint\SpectacleSalarieCalculerBulletinAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\SpectacleSalarieReinitialiserAffectations;
 use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieBulletinsOriginauxAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieEffectifsAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieEntreesSortiesAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieUtilisateursV2Asynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutCreationSalarieEmploisAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutEcrituresComptables4Asynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEcrituresComptablesAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionControleCICEAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionCoutsSalariauxAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionDetailDesCotisationsAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionEtatDesPaiementsAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionHistoriqueAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutEditionHistoriqueChiffreAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionJournalDePaieAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionRecapDePaieAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutEditionRecapDePaieDetailleParSalarieAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionSoldeDeReposAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionTableauDesChargesAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutImportDossierDemoAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutRecupererDeclarationsAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutRecupererDuplicatasBulletinsAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutRecupererFichiersEcrituresComptablesAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutRecupererImageAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutSalarieDUEAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutSalariesBulletinsAsynchrone;
@@ -297,9 +339,27 @@ use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieAsynchroneBadRequestE
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBulletinsCoffresFortsAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBulletinsCoffresFortsAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBulletinsCoffresFortsAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBulletinsCoffresFortsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBulletinsCoffresFortsInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBulletinsCoffresFortsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBulletinsOriginauxAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBulletinsOriginauxAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBulletinsOriginauxAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBulletinsOriginauxBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBulletinsOriginauxInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBulletinsOriginauxUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDetailBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDetailInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDetailUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEffectifsAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEffectifsAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEffectifsAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEffectifsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEffectifsInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEffectifsUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException;
@@ -311,6 +371,15 @@ use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUnauthorizedException
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV2AsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV2AsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV2AsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV2BadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV2InternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV2UnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AppliquerModeleCollaborateurBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AppliquerModeleCollaborateurInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AppliquerModeleCollaborateurUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\BureautiquePaieNombreDocumentsCreesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\BureautiquePaieNombreDocumentsCreesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\BureautiquePaieNombreDocumentsCreesUnauthorizedException;
@@ -321,6 +390,9 @@ use QdequippeTech\Silae\Api\Exception\ControlerBulletinsPeriodeBadRequestExcepti
 use QdequippeTech\Silae\Api\Exception\ControlerBulletinsPeriodeInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ControlerBulletinsPeriodeUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\CreationCompteCollaborateurBadRequestException;
+use QdequippeTech\Silae\Api\Exception\CreationCompteCollaborateurDepuisModeleBadRequestException;
+use QdequippeTech\Silae\Api\Exception\CreationCompteCollaborateurDepuisModeleInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\CreationCompteCollaborateurDepuisModeleUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\CreationCompteCollaborateurInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\CreationCompteCollaborateurUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\CreationConfigurationAccesApiBadRequestException;
@@ -368,6 +440,9 @@ use QdequippeTech\Silae\Api\Exception\EcrituresComptables2UnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables3BadRequestException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables3InternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables3UnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptables4AsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptables4AsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptables4AsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables4BadRequestException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables4InternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptables4UnauthorizedException;
@@ -376,6 +451,15 @@ use QdequippeTech\Silae\Api\Exception\EcrituresComptablesAsynchroneInternalServe
 use QdequippeTech\Silae\Api\Exception\EcrituresComptablesAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptablesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptablesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptablesPaiementAcomptesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptablesPaiementAcomptesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptablesPaiementAcomptesUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptablesPaiementSalairesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptablesPaiementSalairesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptablesPaiementSalairesLotsVirementBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptablesPaiementSalairesLotsVirementInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptablesPaiementSalairesLotsVirementUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\EcrituresComptablesPaiementSalairesUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptablesUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EditionControleCICEAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EditionControleCICEAsynchroneInternalServerErrorException;
@@ -405,6 +489,12 @@ use QdequippeTech\Silae\Api\Exception\EditionHistoriqueAsynchroneBadRequestExcep
 use QdequippeTech\Silae\Api\Exception\EditionHistoriqueAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EditionHistoriqueAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EditionHistoriqueBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionHistoriqueChiffreAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionHistoriqueChiffreAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EditionHistoriqueChiffreAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\EditionHistoriqueChiffreBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionHistoriqueChiffreInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EditionHistoriqueChiffreUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EditionHistoriqueInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EditionHistoriqueUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EditionJournalDePaieAsynchroneBadRequestException;
@@ -417,6 +507,12 @@ use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieAsynchroneBadRequestExce
 use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParSalarieAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParSalarieAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParSalarieAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParSalarieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParSalarieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParSalarieUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EditionSoldeDeReposAsynchroneBadRequestException;
@@ -473,6 +569,9 @@ use QdequippeTech\Silae\Api\Exception\GererEtatDossierPaieUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\GererEtatRobotDePaieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\GererEtatRobotDePaieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\GererEtatRobotDePaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\HistoriqueDesModificationsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\HistoriqueDesModificationsInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\HistoriqueDesModificationsUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\ImportDossierDemoAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ImportDossierDemoAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ImportDossierDemoAsynchroneUnauthorizedException;
@@ -496,6 +595,9 @@ use QdequippeTech\Silae\Api\Exception\LectureCCNSocieteInternalServerErrorExcept
 use QdequippeTech\Silae\Api\Exception\LectureCCNSocieteUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\LectureCompteCollaborateurBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureCompteCollaborateurInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureCompteCollaborateurModelesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureCompteCollaborateurModelesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureCompteCollaborateurModelesUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\LectureCompteCollaborateurUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureContactEmetteurDSNInternalServerErrorException;
@@ -515,6 +617,9 @@ use QdequippeTech\Silae\Api\Exception\LectureFicheAgenceUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\LectureFNALBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureFNALInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureFNALUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\LectureGrilleHoraireFicheSalarieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureGrilleHoraireFicheSalarieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureGrilleHoraireFicheSalarieUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\LectureHandicapBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureHandicapInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureHandicapUnauthorizedException;
@@ -566,6 +671,9 @@ use QdequippeTech\Silae\Api\Exception\ListeDossiersDemoSilaeInternalServerErrorE
 use QdequippeTech\Silae\Api\Exception\ListeDossiersDemoSilaeUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\ListeDossiersInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeDossiersUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\ListeDSNEvenementiellesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ListeDSNEvenementiellesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ListeDSNEvenementiellesUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\ListeDSNMensuellesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeDSNMensuellesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeDSNMensuellesUnauthorizedException;
@@ -584,9 +692,15 @@ use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesUnauthorizedExcept
 use QdequippeTech\Silae\Api\Exception\ListeModulesActifsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeModulesActifsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeModulesActifsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\ListeModulesMySilaeBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ListeModulesMySilaeInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ListeModulesMySilaeUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\ListeNumerosDossiersBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeNumerosDossiersInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeNumerosDossiersUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\ListeOrganismesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ListeOrganismesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ListeOrganismesUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\ListeSalarieEmploisBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeSalarieEmploisExternesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeSalarieEmploisExternesInternalServerErrorException;
@@ -602,6 +716,9 @@ use QdequippeTech\Silae\Api\Exception\ListeSalariesUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieV2BadRequestException;
+use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieV2InternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieV2UnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\ListeVariablesASaisirBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeVariablesASaisirInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeVariablesASaisirUnauthorizedException;
@@ -614,6 +731,12 @@ use QdequippeTech\Silae\Api\Exception\MiseAJourFicheEtablissementUnauthorizedExc
 use QdequippeTech\Silae\Api\Exception\MiseAJourFicheSocieteBadRequestException;
 use QdequippeTech\Silae\Api\Exception\MiseAJourFicheSocieteInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\MiseAJourFicheSocieteUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\ModificationAxesAnalytiquesSalarieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ModificationAxesAnalytiquesSalarieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ModificationAxesAnalytiquesSalarieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\ModificationCCNEtablissementBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ModificationCCNEtablissementInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ModificationCCNEtablissementUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\ModificationCCNSocieteBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ModificationCCNSocieteInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ModificationCCNSocieteUnauthorizedException;
@@ -692,6 +815,9 @@ use QdequippeTech\Silae\Api\Exception\RecupererDuplicatasBulletinsAsynchroneUnau
 use QdequippeTech\Silae\Api\Exception\RecupererDuplicatasBulletinsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RecupererDuplicatasBulletinsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RecupererDuplicatasBulletinsUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RecupererFichiersEcrituresComptablesUnauthorizedException;
@@ -716,9 +842,18 @@ use QdequippeTech\Silae\Api\Exception\RecupererImageUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\SalarieAbsencesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieAbsencesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieAbsencesUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\SalarieAbsencesV2BadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieAbsencesV2InternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieAbsencesV2UnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\SalarieActiviteJournaliereBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieActiviteJournaliereInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieActiviteJournaliereUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterAbsenceBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterAbsenceInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterAbsenceUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\SalarieAjouterAbsenceV2BadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieAjouterAbsenceV2InternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieAjouterAbsenceV2UnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterAcompteBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterAcompteInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieAjouterAcompteUnauthorizedException;
@@ -767,6 +902,12 @@ use QdequippeTech\Silae\Api\Exception\SalarieBulletinLignesSelonFiltresBadReques
 use QdequippeTech\Silae\Api\Exception\SalarieBulletinLignesSelonFiltresInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieBulletinLignesSelonFiltresUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\SalarieBulletinLignesUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\SalarieBulletinsIndicesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieBulletinsIndicesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieBulletinsIndicesUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\SalarieBulletinStatutEtatAvancementBadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieBulletinStatutEtatAvancementInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieBulletinStatutEtatAvancementUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\SalarieDUEAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieDUEAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieDUEAsynchroneUnauthorizedException;
@@ -782,6 +923,9 @@ use QdequippeTech\Silae\Api\Exception\SalarieInitialiserCumulsUnauthorizedExcept
 use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceV2BadRequestException;
+use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceV2InternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceV2UnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\SalarieRecupererDUEBadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieRecupererDUEInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieRecupererDUEUnauthorizedException;
@@ -863,12 +1007,27 @@ use QdequippeTech\Silae\Api\Exception\SpectacleSalarieReinitialiserAffectationsU
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEffectifsAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEffectifsAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEffectifsAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieUtilisateursV2AsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieUtilisateursV2AsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieUtilisateursV2AsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\StatutCreationSalarieEmploisAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutCreationSalarieEmploisAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutCreationSalarieEmploisAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutEcrituresComptables4AsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutEcrituresComptables4AsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutEcrituresComptables4AsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\StatutEcrituresComptablesAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutEcrituresComptablesAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutEcrituresComptablesAsynchroneUnauthorizedException;
@@ -887,12 +1046,18 @@ use QdequippeTech\Silae\Api\Exception\StatutEditionEtatDesPaiementsAsynchroneUna
 use QdequippeTech\Silae\Api\Exception\StatutEditionHistoriqueAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionHistoriqueAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionHistoriqueAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionHistoriqueChiffreAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionHistoriqueChiffreAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionHistoriqueChiffreAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionJournalDePaieAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionJournalDePaieAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionJournalDePaieAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieDetailleParSalarieAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieDetailleParSalarieAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieDetailleParSalarieAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionSoldeDeReposAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionSoldeDeReposAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionSoldeDeReposAsynchroneUnauthorizedException;
@@ -908,6 +1073,9 @@ use QdequippeTech\Silae\Api\Exception\StatutRecupererDeclarationsAsynchroneUnaut
 use QdequippeTech\Silae\Api\Exception\StatutRecupererDuplicatasBulletinsAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutRecupererDuplicatasBulletinsAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutRecupererDuplicatasBulletinsAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutRecupererFichiersEcrituresComptablesAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutRecupererFichiersEcrituresComptablesAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutRecupererFichiersEcrituresComptablesAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\StatutRecupererImageAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutRecupererImageAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutRecupererImageAsynchroneUnauthorizedException;
@@ -954,14 +1122,20 @@ use QdequippeTech\Silae\Api\Model\AjouteCompteRenduEdiRequest;
 use QdequippeTech\Silae\Api\Model\AjoutSousCategorieAxeAnalytiqueRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieBulletinsCoffresFortsResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieBulletinsOriginauxResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDetailRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDetailResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEffectifsRequest;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEffectifsResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEntreesSortiesRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEntreesSortiesResponse;
-use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursV2Response;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieV2Request;
+use QdequippeTech\Silae\Api\Model\AppliquerModeleCollaborateurRequest;
 use QdequippeTech\Silae\Api\Model\BureautiquePaieNombreDocumentsCreesRequest;
 use QdequippeTech\Silae\Api\Model\BureautiquePaieNombreDocumentsCreesResponse;
 use QdequippeTech\Silae\Api\Model\CCN;
@@ -970,6 +1144,7 @@ use QdequippeTech\Silae\Api\Model\ClassificationMetierCompleteResponse;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateur;
 use QdequippeTech\Silae\Api\Model\ControlerBulletinsPeriodeRequest;
 use QdequippeTech\Silae\Api\Model\ControlerBulletinsPeriodeResponse;
+use QdequippeTech\Silae\Api\Model\CreationCompteCollaborateurDepuisModeleRequest;
 use QdequippeTech\Silae\Api\Model\CreationCompteCollaborateurRequest;
 use QdequippeTech\Silae\Api\Model\CreationConfigurationAccesApiRequest;
 use QdequippeTech\Silae\Api\Model\CreationDossierPaieRequest;
@@ -984,6 +1159,7 @@ use QdequippeTech\Silae\Api\Model\CreationUtilisateurClientPaieRequest;
 use QdequippeTech\Silae\Api\Model\Domain;
 use QdequippeTech\Silae\Api\Model\DossierMatriculeRequest;
 use QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest;
+use QdequippeTech\Silae\Api\Model\DossierPeriodePaiementSalairesLotsVirementRequest;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRequest;
 use QdequippeTech\Silae\Api\Model\DossierRecupererPeriodeEnCoursResponse;
@@ -994,15 +1170,27 @@ use QdequippeTech\Silae\Api\Model\EcrituresComptables2Request;
 use QdequippeTech\Silae\Api\Model\EcrituresComptables3Request;
 use QdequippeTech\Silae\Api\Model\EcrituresComptables4Request;
 use QdequippeTech\Silae\Api\Model\EcrituresComptablesAvecRuptures;
+use QdequippeTech\Silae\Api\Model\EcrituresComptablesPaiementSalairesLotsVirementResponse;
+use QdequippeTech\Silae\Api\Model\EcrituresComptablesPaiementSalairesRequest;
 use QdequippeTech\Silae\Api\Model\EditionControleCICEResponse;
+use QdequippeTech\Silae\Api\Model\EditionCoutsSalariauxRequest;
 use QdequippeTech\Silae\Api\Model\EditionCoutsSalariauxResponse;
+use QdequippeTech\Silae\Api\Model\EditionDetailDesCotisationsRequest;
 use QdequippeTech\Silae\Api\Model\EditionDetailDesCotisationsResponse;
+use QdequippeTech\Silae\Api\Model\EditionEtatDesPaiementsRequest;
 use QdequippeTech\Silae\Api\Model\EditionEtatDesPaiementsResponse;
+use QdequippeTech\Silae\Api\Model\EditionHistoriqueChiffreRequest;
 use QdequippeTech\Silae\Api\Model\EditionHistoriqueRequest;
 use QdequippeTech\Silae\Api\Model\EditionHistoriqueResponse;
+use QdequippeTech\Silae\Api\Model\EditionJournalDePaieRequest;
 use QdequippeTech\Silae\Api\Model\EditionJournalDePaieResponse;
+use QdequippeTech\Silae\Api\Model\EditionRecapDePaieDetailleParSalarieRequest;
+use QdequippeTech\Silae\Api\Model\EditionRecapDePaieDetailleParSalarieResponse;
+use QdequippeTech\Silae\Api\Model\EditionRecapDePaieRequest;
 use QdequippeTech\Silae\Api\Model\EditionRecapDePaieResponse;
+use QdequippeTech\Silae\Api\Model\EditionSoldeDeReposRequest;
 use QdequippeTech\Silae\Api\Model\EditionSoldeDeReposResponse;
+use QdequippeTech\Silae\Api\Model\EditionTableauDesChargesRequest;
 use QdequippeTech\Silae\Api\Model\EditionTableauDesChargesResponse;
 use QdequippeTech\Silae\Api\Model\EffortConstruction;
 use QdequippeTech\Silae\Api\Model\EmploiClassificationMetier;
@@ -1011,6 +1199,7 @@ use QdequippeTech\Silae\Api\Model\EtablissementsAExclureCVAERequest;
 use QdequippeTech\Silae\Api\Model\EtablissementsAExclureCVAEResponse;
 use QdequippeTech\Silae\Api\Model\EtatDeclarationsRequest;
 use QdequippeTech\Silae\Api\Model\EtatDeclarationsResponse;
+use QdequippeTech\Silae\Api\Model\ExistenceMatriculeRequest;
 use QdequippeTech\Silae\Api\Model\ExistenceMatriculeResponse;
 use QdequippeTech\Silae\Api\Model\ExtraCreationManifestationRequest;
 use QdequippeTech\Silae\Api\Model\ExtraListeManifestationsRequest;
@@ -1027,6 +1216,8 @@ use QdequippeTech\Silae\Api\Model\GenererFichierTRResponse;
 use QdequippeTech\Silae\Api\Model\GererCycleDePaieRequest;
 use QdequippeTech\Silae\Api\Model\GererEtatDossierPaieRequest;
 use QdequippeTech\Silae\Api\Model\GererEtatRobotDePaieRequest;
+use QdequippeTech\Silae\Api\Model\HistoriqueDesModificationsRequest;
+use QdequippeTech\Silae\Api\Model\HistoriqueDesModificationsResponse;
 use QdequippeTech\Silae\Api\Model\ImportDossierDemoRequest;
 use QdequippeTech\Silae\Api\Model\ImportFichierDSNRequest;
 use QdequippeTech\Silae\Api\Model\ImportXmlParametrageOrganismeDSNRequest;
@@ -1036,6 +1227,7 @@ use QdequippeTech\Silae\Api\Model\LectureAxesAnalytiquesResponse;
 use QdequippeTech\Silae\Api\Model\LectureAxesAnalytiquesSalariesRequest;
 use QdequippeTech\Silae\Api\Model\LectureAxesAnalytiquesSalariesResponse;
 use QdequippeTech\Silae\Api\Model\LectureCCNSocieteResponse;
+use QdequippeTech\Silae\Api\Model\LectureCompteCollaborateurModelesResponse;
 use QdequippeTech\Silae\Api\Model\LectureCompteCollaborateurRequest;
 use QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNRequest;
 use QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNResponse;
@@ -1043,6 +1235,8 @@ use QdequippeTech\Silae\Api\Model\LectureEffectifEtablissementRequest;
 use QdequippeTech\Silae\Api\Model\LectureEffectifEtablissementResponse;
 use QdequippeTech\Silae\Api\Model\LectureEffectifSocieteResponse;
 use QdequippeTech\Silae\Api\Model\LectureFicheAgenceRequest;
+use QdequippeTech\Silae\Api\Model\LectureGrilleHoraireFicheSalarieRequest;
+use QdequippeTech\Silae\Api\Model\LectureGrilleHoraireFicheSalarieResponse;
 use QdequippeTech\Silae\Api\Model\LectureHandicapResponse;
 use QdequippeTech\Silae\Api\Model\LectureInformationBancaireSocieteResponse;
 use QdequippeTech\Silae\Api\Model\LectureInformationsPaieRequest;
@@ -1068,6 +1262,8 @@ use QdequippeTech\Silae\Api\Model\ListeDossiersAgenceResponse;
 use QdequippeTech\Silae\Api\Model\ListeDossiersDemoSilaeResponse;
 use QdequippeTech\Silae\Api\Model\ListeDossiersRequest;
 use QdequippeTech\Silae\Api\Model\ListeDossiersResponse;
+use QdequippeTech\Silae\Api\Model\ListeDSNEvenementiellesRequest;
+use QdequippeTech\Silae\Api\Model\ListeDSNEvenementiellesResponse;
 use QdequippeTech\Silae\Api\Model\ListeDSNMensuellesResponse;
 use QdequippeTech\Silae\Api\Model\ListeEtablissementsDossierPaieResponse;
 use QdequippeTech\Silae\Api\Model\ListeInformationsDossiersPaieResponse;
@@ -1075,7 +1271,10 @@ use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesDansDomaineResponse;
 use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesRequest;
 use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesResponse;
 use QdequippeTech\Silae\Api\Model\ListeModulesActifsResponse;
+use QdequippeTech\Silae\Api\Model\ListeModulesMySilaeResponse;
 use QdequippeTech\Silae\Api\Model\ListeNumerosDossiersResponse;
+use QdequippeTech\Silae\Api\Model\ListeOrganismesRequest;
+use QdequippeTech\Silae\Api\Model\ListeOrganismesResponse;
 use QdequippeTech\Silae\Api\Model\ListeSalarieEmploisExternesResponse;
 use QdequippeTech\Silae\Api\Model\ListeSalarieEmploisRequest;
 use QdequippeTech\Silae\Api\Model\ListeSalarieEmploisResponse;
@@ -1084,11 +1283,14 @@ use QdequippeTech\Silae\Api\Model\ListeSalariesExternesResponse;
 use QdequippeTech\Silae\Api\Model\ListeSalariesRequest;
 use QdequippeTech\Silae\Api\Model\ListeSalariesResponse;
 use QdequippeTech\Silae\Api\Model\ListeUtilisateursDossierPaieResponse;
+use QdequippeTech\Silae\Api\Model\ListeUtilisateursDossierPaieV2Response;
 use QdequippeTech\Silae\Api\Model\ListeVariablesASaisirResponse;
 use QdequippeTech\Silae\Api\Model\MatriculeSalarieRequest;
 use QdequippeTech\Silae\Api\Model\MatriculeSalarieResponse;
 use QdequippeTech\Silae\Api\Model\MiseAJourFicheEtablissementRequest;
 use QdequippeTech\Silae\Api\Model\MiseAJourFicheSocieteRequest;
+use QdequippeTech\Silae\Api\Model\ModificationAxesAnalytiquesSalarieRequest;
+use QdequippeTech\Silae\Api\Model\ModificationCCNEtablissementRequest;
 use QdequippeTech\Silae\Api\Model\ModificationCCNSocieteRequest;
 use QdequippeTech\Silae\Api\Model\ModificationChamp;
 use QdequippeTech\Silae\Api\Model\ModificationChampSalarieRequest;
@@ -1131,7 +1333,10 @@ use QdequippeTech\Silae\Api\Model\RecupererImageResponse;
 use QdequippeTech\Silae\Api\Model\RetourImportDSN;
 use QdequippeTech\Silae\Api\Model\SalarieAbsencesRequest;
 use QdequippeTech\Silae\Api\Model\SalarieAbsencesResponse;
+use QdequippeTech\Silae\Api\Model\SalarieActiviteJournaliereRequest;
+use QdequippeTech\Silae\Api\Model\SalarieActiviteJournaliereResponse;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterAbsenceRequest;
+use QdequippeTech\Silae\Api\Model\SalarieAjouterAbsenceV2Request;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterAcompteRequest;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterActiviteJournaliereRequest;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterActiviteJournaliereSurEmploiRequest;
@@ -1152,10 +1357,15 @@ use QdequippeTech\Silae\Api\Model\SalarieBulletinEnteteResult;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinLignesRequest;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinLignesResult;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinLignesSelonFiltresRequest;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinsIndicesRequest;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinsIndicesResponse;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinStatutEtatAvancementRequest;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinStatutEtatAvancementResponse;
 use QdequippeTech\Silae\Api\Model\SalarieDUERequest;
 use QdequippeTech\Silae\Api\Model\SalarieEmploiClassificationMetierRequest;
 use QdequippeTech\Silae\Api\Model\SalarieInitialiserCumulsRequest;
 use QdequippeTech\Silae\Api\Model\SalarieModifierAbsenceRequest;
+use QdequippeTech\Silae\Api\Model\SalarieModifierAbsenceV2Request;
 use QdequippeTech\Silae\Api\Model\SalarieRecupererDUEResponse;
 use QdequippeTech\Silae\Api\Model\SalarieRecupererPeriodeDernierBulletinCalculeResponse;
 use QdequippeTech\Silae\Api\Model\SalarieRecupererRecuDPAEResponse;
@@ -1176,6 +1386,7 @@ use QdequippeTech\Silae\Api\Model\SalarieSyntheseCarriereResponse;
 use QdequippeTech\Silae\Api\Model\SimpleMessageResponse;
 use QdequippeTech\Silae\Api\Model\SiteGenereMotDePasseAlternatifRequest;
 use QdequippeTech\Silae\Api\Model\SiteGenereMotDePasseAlternatifResponse;
+use QdequippeTech\Silae\Api\Model\SoldeReposRequest;
 use QdequippeTech\Silae\Api\Model\SpectacleCreationRequest;
 use QdequippeTech\Silae\Api\Model\SpectacleListeRequest;
 use QdequippeTech\Silae\Api\Model\SpectacleListeResponse;
@@ -1186,11 +1397,17 @@ use QdequippeTech\Silae\Api\Model\SpectacleSalarieCalculerBulletinRequest;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsRequest;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsResponse;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieEffectifsAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAsynchroneDocumentResponse;
 use QdequippeTech\Silae\Api\Model\StatutAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutCreationSalarieEmploisAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutEcrituresComptables4AsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutEcrituresComptablesAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutRecupererFichiersEcrituresComptablesAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutRecupererImageAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutSalariesBulletinsResponse;
 use QdequippeTech\Silae\Api\Model\StatutSalariesConfirmerSaisiesResponse;
@@ -1212,7 +1429,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1234,7 +1451,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1256,7 +1473,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ResponseInterface|null
+     *
+     * @throws SalarieAjouterAbsenceV2BadRequestException
+     * @throws SalarieAjouterAbsenceV2UnauthorizedException
+     * @throws SalarieAjouterAbsenceV2InternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function salarieAjouterAbsenceV2(SalarieAjouterAbsenceV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new SalarieAjouterAbsenceV2($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1278,7 +1517,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ResponseInterface|null
+     *
+     * @throws SalarieModifierAbsenceV2BadRequestException
+     * @throws SalarieModifierAbsenceV2UnauthorizedException
+     * @throws SalarieModifierAbsenceV2InternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function salarieModifierAbsenceV2(SalarieModifierAbsenceV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new SalarieModifierAbsenceV2($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1300,7 +1561,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return SalarieAbsencesResponse|ResponseInterface
+     *
+     * @throws SalarieAbsencesV2BadRequestException
+     * @throws SalarieAbsencesV2UnauthorizedException
+     * @throws SalarieAbsencesV2InternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function salarieAbsencesV2(SalarieAbsencesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new SalarieAbsencesV2($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1322,7 +1605,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1344,7 +1627,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1366,7 +1649,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return SalarieActiviteJournaliereResponse|ResponseInterface
+     *
+     * @throws SalarieActiviteJournaliereBadRequestException
+     * @throws SalarieActiviteJournaliereUnauthorizedException
+     * @throws SalarieActiviteJournaliereInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function salarieActiviteJournaliere(SalarieActiviteJournaliereRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new SalarieActiviteJournaliere($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1388,7 +1693,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1410,7 +1715,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1432,7 +1737,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1454,7 +1759,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1476,7 +1781,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1498,7 +1803,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1520,7 +1825,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1542,7 +1847,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1564,7 +1869,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1586,7 +1891,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1608,7 +1913,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1630,7 +1935,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1652,7 +1957,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1674,7 +1979,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return LectureCompteCollaborateurModelesResponse|ResponseInterface
+     *
+     * @throws LectureCompteCollaborateurModelesBadRequestException
+     * @throws LectureCompteCollaborateurModelesUnauthorizedException
+     * @throws LectureCompteCollaborateurModelesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function lectureCompteCollaborateurModeles(array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new LectureCompteCollaborateurModeles($headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1696,7 +2023,51 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return CompteCollaborateur|ResponseInterface
+     *
+     * @throws CreationCompteCollaborateurDepuisModeleBadRequestException
+     * @throws CreationCompteCollaborateurDepuisModeleUnauthorizedException
+     * @throws CreationCompteCollaborateurDepuisModeleInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function creationCompteCollaborateurDepuisModele(CreationCompteCollaborateurDepuisModeleRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new CreationCompteCollaborateurDepuisModele($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return CompteCollaborateur|ResponseInterface
+     *
+     * @throws AppliquerModeleCollaborateurBadRequestException
+     * @throws AppliquerModeleCollaborateurUnauthorizedException
+     * @throws AppliquerModeleCollaborateurInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function appliquerModeleCollaborateur(AppliquerModeleCollaborateurRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AppliquerModeleCollaborateur($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1718,7 +2089,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1740,7 +2111,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1762,7 +2133,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1784,7 +2155,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1806,7 +2177,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1833,7 +2204,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1855,7 +2226,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1877,7 +2248,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1899,7 +2270,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1926,7 +2297,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1948,7 +2319,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1975,7 +2346,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -1997,7 +2368,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2011,7 +2382,7 @@ class Client extends Runtime\Client\Client
      * @throws AnalyseProductionPaieInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function analyseProductionPaie(AnalyseProductionPaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function analyseProductionPaie(AnalyseProductionPaieV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new AnalyseProductionPaie($request, $headerParameters), $fetch);
     }
@@ -2019,7 +2390,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2033,7 +2404,7 @@ class Client extends Runtime\Client\Client
      * @throws AnalyseProductionPaieAsynchroneInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function analyseProductionPaieAsynchrone(AnalyseProductionPaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function analyseProductionPaieAsynchrone(AnalyseProductionPaieV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new AnalyseProductionPaieAsynchrone($request, $headerParameters), $fetch);
     }
@@ -2046,7 +2417,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2068,7 +2439,149 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return AnalyseProductionPaieBulletinsOriginauxResponse|ResponseInterface
+     *
+     * @throws AnalyseProductionPaieBulletinsOriginauxBadRequestException
+     * @throws AnalyseProductionPaieBulletinsOriginauxUnauthorizedException
+     * @throws AnalyseProductionPaieBulletinsOriginauxInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseProductionPaieBulletinsOriginaux(AnalyseProductionPaieV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseProductionPaieBulletinsOriginaux($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return TraitementAsynchroneResponse|ResponseInterface
+     *
+     * @throws AnalyseProductionPaieBulletinsOriginauxAsynchroneBadRequestException
+     * @throws AnalyseProductionPaieBulletinsOriginauxAsynchroneUnauthorizedException
+     * @throws AnalyseProductionPaieBulletinsOriginauxAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseProductionPaieBulletinsOriginauxAsynchrone(AnalyseProductionPaieV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseProductionPaieBulletinsOriginauxAsynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneResponse|ResponseInterface
+     *
+     * @throws StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneBadRequestException
+     * @throws StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneUnauthorizedException
+     * @throws StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function statutAnalyseProductionPaieBulletinsOriginauxAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutAnalyseProductionPaieBulletinsOriginauxAsynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return AnalyseProductionPaieBulletinsCoffresFortsResponse|ResponseInterface
+     *
+     * @throws AnalyseProductionPaieBulletinsCoffresFortsBadRequestException
+     * @throws AnalyseProductionPaieBulletinsCoffresFortsUnauthorizedException
+     * @throws AnalyseProductionPaieBulletinsCoffresFortsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseProductionPaieBulletinsCoffresForts(AnalyseProductionPaieV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseProductionPaieBulletinsCoffresForts($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return TraitementAsynchroneResponse|ResponseInterface
+     *
+     * @throws AnalyseProductionPaieBulletinsCoffresFortsAsynchroneBadRequestException
+     * @throws AnalyseProductionPaieBulletinsCoffresFortsAsynchroneUnauthorizedException
+     * @throws AnalyseProductionPaieBulletinsCoffresFortsAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseProductionPaieBulletinsCoffresFortsAsynchrone(AnalyseProductionPaieV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseProductionPaieBulletinsCoffresFortsAsynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponse|ResponseInterface
+     *
+     * @throws StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneBadRequestException
+     * @throws StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneUnauthorizedException
+     * @throws StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function statutAnalyseProductionPaieBulletinsCoffresFortsAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2090,7 +2603,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2112,7 +2625,149 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return AnalyseProductionPaieUtilisateursV2Response|ResponseInterface
+     *
+     * @throws AnalyseProductionPaieUtilisateursV2BadRequestException
+     * @throws AnalyseProductionPaieUtilisateursV2UnauthorizedException
+     * @throws AnalyseProductionPaieUtilisateursV2InternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseProductionPaieUtilisateursV2(AnalyseProductionPaieUtilisateursRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseProductionPaieUtilisateursV2($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return TraitementAsynchroneResponse|ResponseInterface
+     *
+     * @throws AnalyseProductionPaieUtilisateursV2AsynchroneBadRequestException
+     * @throws AnalyseProductionPaieUtilisateursV2AsynchroneUnauthorizedException
+     * @throws AnalyseProductionPaieUtilisateursV2AsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseProductionPaieUtilisateursV2Asynchrone(AnalyseProductionPaieUtilisateursRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseProductionPaieUtilisateursV2Asynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse|ResponseInterface
+     *
+     * @throws StatutAnalyseProductionPaieUtilisateursV2AsynchroneBadRequestException
+     * @throws StatutAnalyseProductionPaieUtilisateursV2AsynchroneUnauthorizedException
+     * @throws StatutAnalyseProductionPaieUtilisateursV2AsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function statutAnalyseProductionPaieUtilisateursV2Asynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutAnalyseProductionPaieUtilisateursV2Asynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return AnalyseProductionPaieEffectifsResponse|ResponseInterface
+     *
+     * @throws AnalyseProductionPaieEffectifsBadRequestException
+     * @throws AnalyseProductionPaieEffectifsUnauthorizedException
+     * @throws AnalyseProductionPaieEffectifsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseProductionPaieEffectifs(AnalyseProductionPaieEffectifsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseProductionPaieEffectifs($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return TraitementAsynchroneResponse|ResponseInterface
+     *
+     * @throws AnalyseProductionPaieEffectifsAsynchroneBadRequestException
+     * @throws AnalyseProductionPaieEffectifsAsynchroneUnauthorizedException
+     * @throws AnalyseProductionPaieEffectifsAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseProductionPaieEffectifsAsynchrone(AnalyseProductionPaieEffectifsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseProductionPaieEffectifsAsynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return StatutAnalyseProductionPaieEffectifsAsynchroneResponse|ResponseInterface
+     *
+     * @throws StatutAnalyseProductionPaieEffectifsAsynchroneBadRequestException
+     * @throws StatutAnalyseProductionPaieEffectifsAsynchroneUnauthorizedException
+     * @throws StatutAnalyseProductionPaieEffectifsAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function statutAnalyseProductionPaieEffectifsAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutAnalyseProductionPaieEffectifsAsynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2134,7 +2789,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2148,7 +2803,7 @@ class Client extends Runtime\Client\Client
      * @throws AnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function analyseProductionPaieEntreesSortiesAsynchrone(AnalyseProductionPaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function analyseProductionPaieEntreesSortiesAsynchrone(AnalyseProductionPaieEntreesSortiesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new AnalyseProductionPaieEntreesSortiesAsynchrone($request, $headerParameters), $fetch);
     }
@@ -2161,7 +2816,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2183,7 +2838,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2203,9 +2858,14 @@ class Client extends Runtime\Client\Client
     }
 
     /**
+     * @param array $queryParameters {
+     *
+     * @var string $codeAgence
+     *             }
+     *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2219,15 +2879,42 @@ class Client extends Runtime\Client\Client
      * @throws ListeModulesActifsInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function listeModulesActifs(array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function listeModulesActifs(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new ListeModulesActifs($headerParameters), $fetch);
+        return $this->executeEndpoint(new ListeModulesActifs($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $codeAgence
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ListeModulesMySilaeResponse|ResponseInterface
+     *
+     * @throws ListeModulesMySilaeBadRequestException
+     * @throws ListeModulesMySilaeUnauthorizedException
+     * @throws ListeModulesMySilaeInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function listeModulesMySilae(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new ListeModulesMySilae($queryParameters, $headerParameters), $fetch);
     }
 
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2249,7 +2936,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2271,7 +2958,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2293,7 +2980,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2315,7 +3002,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2337,7 +3024,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2359,7 +3046,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2381,7 +3068,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2403,7 +3090,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2425,7 +3112,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2447,7 +3134,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2469,7 +3156,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2491,7 +3178,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2513,7 +3200,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2535,7 +3222,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2557,7 +3244,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ListeUtilisateursDossierPaieV2Response|ResponseInterface
+     *
+     * @throws ListeUtilisateursDossierPaieV2BadRequestException
+     * @throws ListeUtilisateursDossierPaieV2UnauthorizedException
+     * @throws ListeUtilisateursDossierPaieV2InternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function listeUtilisateursDossierPaieV2(DossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new ListeUtilisateursDossierPaieV2($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2579,7 +3288,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2601,7 +3310,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2623,7 +3332,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2645,7 +3354,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2667,7 +3376,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2689,7 +3398,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2711,7 +3420,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2733,7 +3442,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2760,7 +3469,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2782,7 +3491,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2804,7 +3513,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2826,7 +3535,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2848,7 +3557,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2870,7 +3579,51 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return EcrituresComptablesAvecRuptures|ResponseInterface
+     *
+     * @throws EcrituresComptablesPaiementSalairesBadRequestException
+     * @throws EcrituresComptablesPaiementSalairesUnauthorizedException
+     * @throws EcrituresComptablesPaiementSalairesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function ecrituresComptablesPaiementSalaires(EcrituresComptablesPaiementSalairesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EcrituresComptablesPaiementSalaires($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return EcrituresComptablesAvecRuptures|ResponseInterface
+     *
+     * @throws EcrituresComptablesPaiementAcomptesBadRequestException
+     * @throws EcrituresComptablesPaiementAcomptesUnauthorizedException
+     * @throws EcrituresComptablesPaiementAcomptesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function ecrituresComptablesPaiementAcomptes(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EcrituresComptablesPaiementAcomptes($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2897,7 +3650,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2919,7 +3672,56 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return TraitementAsynchroneResponse|ResponseInterface
+     *
+     * @throws EcrituresComptables4AsynchroneBadRequestException
+     * @throws EcrituresComptables4AsynchroneUnauthorizedException
+     * @throws EcrituresComptables4AsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function ecrituresComptables4Asynchrone(EcrituresComptables4Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EcrituresComptables4Asynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return StatutEcrituresComptables4AsynchroneResponse|ResponseInterface
+     *
+     * @throws StatutEcrituresComptables4AsynchroneBadRequestException
+     * @throws StatutEcrituresComptables4AsynchroneUnauthorizedException
+     * @throws StatutEcrituresComptables4AsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function statutEcrituresComptables4Asynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutEcrituresComptables4Asynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2941,7 +3743,78 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return TraitementAsynchroneResponse|ResponseInterface
+     *
+     * @throws RecupererFichiersEcrituresComptablesAsynchroneBadRequestException
+     * @throws RecupererFichiersEcrituresComptablesAsynchroneUnauthorizedException
+     * @throws RecupererFichiersEcrituresComptablesAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function recupererFichiersEcrituresComptablesAsynchrone(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new RecupererFichiersEcrituresComptablesAsynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return StatutRecupererFichiersEcrituresComptablesAsynchroneResponse|ResponseInterface
+     *
+     * @throws StatutRecupererFichiersEcrituresComptablesAsynchroneBadRequestException
+     * @throws StatutRecupererFichiersEcrituresComptablesAsynchroneUnauthorizedException
+     * @throws StatutRecupererFichiersEcrituresComptablesAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function statutRecupererFichiersEcrituresComptablesAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutRecupererFichiersEcrituresComptablesAsynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return EcrituresComptablesPaiementSalairesLotsVirementResponse|ResponseInterface
+     *
+     * @throws EcrituresComptablesPaiementSalairesLotsVirementBadRequestException
+     * @throws EcrituresComptablesPaiementSalairesLotsVirementUnauthorizedException
+     * @throws EcrituresComptablesPaiementSalairesLotsVirementInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function ecrituresComptablesPaiementSalairesLotsVirement(DossierPeriodePaiementSalairesLotsVirementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EcrituresComptablesPaiementSalairesLotsVirement($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2955,7 +3828,7 @@ class Client extends Runtime\Client\Client
      * @throws SoldeReposInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function soldeRepos(DossierPeriodeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function soldeRepos(SoldeReposRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new SoldeRepos($request, $headerParameters), $fetch);
     }
@@ -2963,7 +3836,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -2977,7 +3850,7 @@ class Client extends Runtime\Client\Client
      * @throws SoldeReposAsynchroneInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function soldeReposAsynchrone(DossierPeriodeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function soldeReposAsynchrone(SoldeReposRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new SoldeReposAsynchrone($request, $headerParameters), $fetch);
     }
@@ -2990,7 +3863,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3012,7 +3885,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3026,7 +3899,7 @@ class Client extends Runtime\Client\Client
      * @throws EditionJournalDePaieInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function editionJournalDePaie(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function editionJournalDePaie(EditionJournalDePaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EditionJournalDePaie($request, $headerParameters), $fetch);
     }
@@ -3034,7 +3907,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3048,7 +3921,7 @@ class Client extends Runtime\Client\Client
      * @throws EditionJournalDePaieAsynchroneInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function editionJournalDePaieAsynchrone(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function editionJournalDePaieAsynchrone(EditionJournalDePaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EditionJournalDePaieAsynchrone($request, $headerParameters), $fetch);
     }
@@ -3061,7 +3934,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3083,7 +3956,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3097,7 +3970,7 @@ class Client extends Runtime\Client\Client
      * @throws EditionTableauDesChargesInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function editionTableauDesCharges(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function editionTableauDesCharges(EditionTableauDesChargesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EditionTableauDesCharges($request, $headerParameters), $fetch);
     }
@@ -3105,7 +3978,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3119,7 +3992,7 @@ class Client extends Runtime\Client\Client
      * @throws EditionTableauDesChargesAsynchroneInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function editionTableauDesChargesAsynchrone(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function editionTableauDesChargesAsynchrone(EditionTableauDesChargesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EditionTableauDesChargesAsynchrone($request, $headerParameters), $fetch);
     }
@@ -3132,7 +4005,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3154,7 +4027,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3168,7 +4041,7 @@ class Client extends Runtime\Client\Client
      * @throws EditionEtatDesPaiementsInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function editionEtatDesPaiements(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function editionEtatDesPaiements(EditionEtatDesPaiementsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EditionEtatDesPaiements($request, $headerParameters), $fetch);
     }
@@ -3176,7 +4049,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3190,7 +4063,7 @@ class Client extends Runtime\Client\Client
      * @throws EditionEtatDesPaiementsAsynchroneInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function editionEtatDesPaiementsAsynchrone(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function editionEtatDesPaiementsAsynchrone(EditionEtatDesPaiementsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EditionEtatDesPaiementsAsynchrone($request, $headerParameters), $fetch);
     }
@@ -3203,7 +4076,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3225,7 +4098,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3239,7 +4112,7 @@ class Client extends Runtime\Client\Client
      * @throws EditionRecapDePaieInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function editionRecapDePaie(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function editionRecapDePaie(EditionRecapDePaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EditionRecapDePaie($request, $headerParameters), $fetch);
     }
@@ -3247,7 +4120,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3261,7 +4134,7 @@ class Client extends Runtime\Client\Client
      * @throws EditionRecapDePaieAsynchroneInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function editionRecapDePaieAsynchrone(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function editionRecapDePaieAsynchrone(EditionRecapDePaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EditionRecapDePaieAsynchrone($request, $headerParameters), $fetch);
     }
@@ -3274,7 +4147,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3296,7 +4169,78 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return EditionRecapDePaieDetailleParSalarieResponse|ResponseInterface
+     *
+     * @throws EditionRecapDePaieDetailleParSalarieBadRequestException
+     * @throws EditionRecapDePaieDetailleParSalarieUnauthorizedException
+     * @throws EditionRecapDePaieDetailleParSalarieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function editionRecapDePaieDetailleParSalarie(EditionRecapDePaieDetailleParSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EditionRecapDePaieDetailleParSalarie($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return TraitementAsynchroneResponse|ResponseInterface
+     *
+     * @throws EditionRecapDePaieDetailleParSalarieAsynchroneBadRequestException
+     * @throws EditionRecapDePaieDetailleParSalarieAsynchroneUnauthorizedException
+     * @throws EditionRecapDePaieDetailleParSalarieAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function editionRecapDePaieDetailleParSalarieAsynchrone(EditionRecapDePaieDetailleParSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EditionRecapDePaieDetailleParSalarieAsynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     *
+     * @throws StatutEditionRecapDePaieDetailleParSalarieAsynchroneBadRequestException
+     * @throws StatutEditionRecapDePaieDetailleParSalarieAsynchroneUnauthorizedException
+     * @throws StatutEditionRecapDePaieDetailleParSalarieAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function statutEditionRecapDePaieDetailleParSalarieAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutEditionRecapDePaieDetailleParSalarieAsynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3310,7 +4254,7 @@ class Client extends Runtime\Client\Client
      * @throws EditionSoldeDeReposInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function editionSoldeDeRepos(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function editionSoldeDeRepos(EditionSoldeDeReposRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EditionSoldeDeRepos($request, $headerParameters), $fetch);
     }
@@ -3318,7 +4262,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3332,7 +4276,7 @@ class Client extends Runtime\Client\Client
      * @throws EditionSoldeDeReposAsynchroneInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function editionSoldeDeReposAsynchrone(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function editionSoldeDeReposAsynchrone(EditionSoldeDeReposRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EditionSoldeDeReposAsynchrone($request, $headerParameters), $fetch);
     }
@@ -3345,7 +4289,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3367,7 +4311,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3389,7 +4333,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3416,7 +4360,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3438,7 +4382,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3452,7 +4396,7 @@ class Client extends Runtime\Client\Client
      * @throws EditionDetailDesCotisationsInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function editionDetailDesCotisations(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function editionDetailDesCotisations(EditionDetailDesCotisationsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EditionDetailDesCotisations($request, $headerParameters), $fetch);
     }
@@ -3460,7 +4404,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3474,7 +4418,7 @@ class Client extends Runtime\Client\Client
      * @throws EditionDetailDesCotisationsAsynchroneInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function editionDetailDesCotisationsAsynchrone(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function editionDetailDesCotisationsAsynchrone(EditionDetailDesCotisationsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EditionDetailDesCotisationsAsynchrone($request, $headerParameters), $fetch);
     }
@@ -3487,7 +4431,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3509,7 +4453,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3523,7 +4467,7 @@ class Client extends Runtime\Client\Client
      * @throws EditionCoutsSalariauxInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function editionCoutsSalariaux(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function editionCoutsSalariaux(EditionCoutsSalariauxRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EditionCoutsSalariaux($request, $headerParameters), $fetch);
     }
@@ -3531,7 +4475,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3545,7 +4489,7 @@ class Client extends Runtime\Client\Client
      * @throws EditionCoutsSalariauxAsynchroneInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function editionCoutsSalariauxAsynchrone(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function editionCoutsSalariauxAsynchrone(EditionCoutsSalariauxRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new EditionCoutsSalariauxAsynchrone($request, $headerParameters), $fetch);
     }
@@ -3558,7 +4502,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3580,7 +4524,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3602,7 +4546,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3624,7 +4568,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return EditionHistoriqueResponse|ResponseInterface
+     *
+     * @throws EditionHistoriqueChiffreBadRequestException
+     * @throws EditionHistoriqueChiffreUnauthorizedException
+     * @throws EditionHistoriqueChiffreInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function editionHistoriqueChiffre(EditionHistoriqueChiffreRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EditionHistoriqueChiffre($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3651,7 +4617,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3673,7 +4639,56 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return TraitementAsynchroneResponse|ResponseInterface
+     *
+     * @throws EditionHistoriqueChiffreAsynchroneBadRequestException
+     * @throws EditionHistoriqueChiffreAsynchroneUnauthorizedException
+     * @throws EditionHistoriqueChiffreAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function editionHistoriqueChiffreAsynchrone(EditionHistoriqueChiffreRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EditionHistoriqueChiffreAsynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     *
+     * @throws StatutEditionHistoriqueChiffreAsynchroneBadRequestException
+     * @throws StatutEditionHistoriqueChiffreAsynchroneUnauthorizedException
+     * @throws StatutEditionHistoriqueChiffreAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function statutEditionHistoriqueChiffreAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutEditionHistoriqueChiffreAsynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3695,7 +4710,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3717,7 +4732,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3739,7 +4754,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3761,7 +4776,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3783,7 +4798,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3805,7 +4820,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3832,7 +4847,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3854,7 +4869,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3876,7 +4891,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3898,7 +4913,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3920,7 +4935,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3942,7 +4957,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3964,7 +4979,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -3986,7 +5001,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4008,7 +5023,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4030,7 +5045,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4052,7 +5067,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4074,7 +5089,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4096,7 +5111,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4118,7 +5133,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4140,7 +5155,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ResponseInterface|null
+     *
+     * @throws ModificationCCNEtablissementBadRequestException
+     * @throws ModificationCCNEtablissementUnauthorizedException
+     * @throws ModificationCCNEtablissementInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function modificationCCNEtablissement(ModificationCCNEtablissementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new ModificationCCNEtablissement($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4162,7 +5199,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4184,7 +5221,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4206,7 +5243,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4228,7 +5265,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4250,7 +5287,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4272,7 +5309,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4294,7 +5331,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4316,7 +5353,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4338,7 +5375,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4360,7 +5397,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4382,7 +5419,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4404,7 +5441,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4426,7 +5463,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4448,7 +5485,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4470,7 +5507,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4497,7 +5534,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4519,7 +5556,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4541,7 +5578,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4563,7 +5600,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4585,7 +5622,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4607,7 +5644,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return SalarieBulletinsIndicesResponse|ResponseInterface
+     *
+     * @throws SalarieBulletinsIndicesBadRequestException
+     * @throws SalarieBulletinsIndicesUnauthorizedException
+     * @throws SalarieBulletinsIndicesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function salarieBulletinsIndices(SalarieBulletinsIndicesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new SalarieBulletinsIndices($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4629,7 +5688,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4651,7 +5710,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4673,7 +5732,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return SalarieBulletinStatutEtatAvancementResponse|ResponseInterface
+     *
+     * @throws SalarieBulletinStatutEtatAvancementBadRequestException
+     * @throws SalarieBulletinStatutEtatAvancementUnauthorizedException
+     * @throws SalarieBulletinStatutEtatAvancementInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function salarieBulletinStatutEtatAvancement(SalarieBulletinStatutEtatAvancementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new SalarieBulletinStatutEtatAvancement($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4695,7 +5776,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4717,7 +5798,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4739,7 +5820,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4761,7 +5842,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4783,7 +5864,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ListeDSNEvenementiellesResponse|ResponseInterface
+     *
+     * @throws ListeDSNEvenementiellesBadRequestException
+     * @throws ListeDSNEvenementiellesUnauthorizedException
+     * @throws ListeDSNEvenementiellesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function listeDSNEvenementielles(ListeDSNEvenementiellesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new ListeDSNEvenementielles($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4805,7 +5908,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4827,7 +5930,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return HistoriqueDesModificationsResponse|ResponseInterface
+     *
+     * @throws HistoriqueDesModificationsBadRequestException
+     * @throws HistoriqueDesModificationsUnauthorizedException
+     * @throws HistoriqueDesModificationsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function historiqueDesModifications(HistoriqueDesModificationsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new HistoriqueDesModifications($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4849,7 +5974,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4876,7 +6001,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4898,7 +6023,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4920,7 +6045,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4942,7 +6067,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4964,7 +6089,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -4986,7 +6111,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5013,7 +6138,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5035,7 +6160,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5057,7 +6182,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5079,7 +6204,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5101,7 +6226,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5123,7 +6248,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5145,7 +6270,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5167,7 +6292,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5189,7 +6314,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5211,7 +6336,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5233,7 +6358,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5255,7 +6380,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5277,7 +6402,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5299,7 +6424,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5313,7 +6438,7 @@ class Client extends Runtime\Client\Client
      * @throws ExistenceMatriculeInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function existenceMatricule(DossierMatriculeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function existenceMatricule(ExistenceMatriculeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new ExistenceMatricule($request, $headerParameters), $fetch);
     }
@@ -5321,7 +6446,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5343,7 +6468,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5365,7 +6490,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5387,7 +6512,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5409,7 +6534,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5431,7 +6556,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5453,7 +6578,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5475,7 +6600,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5497,7 +6622,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5519,7 +6644,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5541,7 +6666,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5563,7 +6688,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5585,7 +6710,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5612,7 +6737,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5634,7 +6759,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5656,7 +6781,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ListeOrganismesResponse|ResponseInterface
+     *
+     * @throws ListeOrganismesBadRequestException
+     * @throws ListeOrganismesUnauthorizedException
+     * @throws ListeOrganismesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function listeOrganismes(ListeOrganismesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new ListeOrganismes($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5678,7 +6825,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5700,7 +6847,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5722,7 +6869,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5744,7 +6891,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5766,7 +6913,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5788,7 +6935,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5810,7 +6957,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5832,7 +6979,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5854,7 +7001,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5876,7 +7023,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5898,7 +7045,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5925,7 +7072,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5947,7 +7094,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5969,7 +7116,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -5996,7 +7143,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6018,7 +7165,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6040,7 +7187,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6067,7 +7214,7 @@ class Client extends Runtime\Client\Client
      *
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6089,7 +7236,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6111,7 +7258,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6133,7 +7280,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6155,7 +7302,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6177,7 +7324,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6199,7 +7346,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ResponseInterface|null
+     *
+     * @throws ModificationAxesAnalytiquesSalarieBadRequestException
+     * @throws ModificationAxesAnalytiquesSalarieUnauthorizedException
+     * @throws ModificationAxesAnalytiquesSalarieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function modificationAxesAnalytiquesSalarie(ModificationAxesAnalytiquesSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new ModificationAxesAnalytiquesSalarie($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6221,7 +7390,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6243,7 +7412,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6265,7 +7434,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6287,7 +7456,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6309,7 +7478,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6331,7 +7500,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6353,7 +7522,29 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return LectureGrilleHoraireFicheSalarieResponse|ResponseInterface
+     *
+     * @throws LectureGrilleHoraireFicheSalarieBadRequestException
+     * @throws LectureGrilleHoraireFicheSalarieUnauthorizedException
+     * @throws LectureGrilleHoraireFicheSalarieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function lectureGrilleHoraireFicheSalarie(LectureGrilleHoraireFicheSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new LectureGrilleHoraireFicheSalarie($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6375,7 +7566,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
@@ -6397,7 +7588,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }

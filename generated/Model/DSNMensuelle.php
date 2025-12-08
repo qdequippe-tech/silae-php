@@ -39,6 +39,16 @@ class DSNMensuelle
      */
     protected $siret;
 
+    /**
+     * @var int|null
+     */
+    protected $fraction;
+
+    /**
+     * @var \DateTime|null
+     */
+    protected $dateEnvoiDSN;
+
     public function getEtablissement(): ?string
     {
         return $this->etablissement;
@@ -100,6 +110,32 @@ class DSNMensuelle
     {
         $this->initialized['siret'] = true;
         $this->siret = $siret;
+
+        return $this;
+    }
+
+    public function getFraction(): ?int
+    {
+        return $this->fraction;
+    }
+
+    public function setFraction(?int $fraction): self
+    {
+        $this->initialized['fraction'] = true;
+        $this->fraction = $fraction;
+
+        return $this;
+    }
+
+    public function getDateEnvoiDSN(): ?\DateTime
+    {
+        return $this->dateEnvoiDSN;
+    }
+
+    public function setDateEnvoiDSN(?\DateTime $dateEnvoiDSN): self
+    {
+        $this->initialized['dateEnvoiDSN'] = true;
+        $this->dateEnvoiDSN = $dateEnvoiDSN;
 
         return $this;
     }

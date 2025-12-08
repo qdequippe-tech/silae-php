@@ -69,6 +69,16 @@ class UtilisateurClient
      */
     protected $accesCompletAccesRelationClient;
 
+    /**
+     * @var string|null
+     */
+    protected $telBureau;
+
+    /**
+     * @var string|null
+     */
+    protected $fonction;
+
     public function getNom(): ?string
     {
         return $this->nom;
@@ -208,6 +218,32 @@ class UtilisateurClient
     {
         $this->initialized['accesCompletAccesRelationClient'] = true;
         $this->accesCompletAccesRelationClient = $accesCompletAccesRelationClient;
+
+        return $this;
+    }
+
+    public function getTelBureau(): ?string
+    {
+        return $this->telBureau;
+    }
+
+    public function setTelBureau(?string $telBureau): self
+    {
+        $this->initialized['telBureau'] = true;
+        $this->telBureau = $telBureau;
+
+        return $this;
+    }
+
+    public function getFonction(): ?string
+    {
+        return $this->fonction;
+    }
+
+    public function setFonction(?string $fonction): self
+    {
+        $this->initialized['fonction'] = true;
+        $this->fonction = $fonction;
 
         return $this;
     }

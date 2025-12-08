@@ -22,6 +22,11 @@ class SalariesBulletinsRequest
     /**
      * @var string|null
      */
+    protected $nomInterneEtablissement;
+
+    /**
+     * @var string|null
+     */
     protected $numeroDossier;
 
     public function getRequeteSalariesBulletins(): ?RequeteSalariesBulletins
@@ -33,6 +38,19 @@ class SalariesBulletinsRequest
     {
         $this->initialized['requeteSalariesBulletins'] = true;
         $this->requeteSalariesBulletins = $requeteSalariesBulletins;
+
+        return $this;
+    }
+
+    public function getNomInterneEtablissement(): ?string
+    {
+        return $this->nomInterneEtablissement;
+    }
+
+    public function setNomInterneEtablissement(?string $nomInterneEtablissement): self
+    {
+        $this->initialized['nomInterneEtablissement'] = true;
+        $this->nomInterneEtablissement = $nomInterneEtablissement;
 
         return $this;
     }

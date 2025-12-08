@@ -6,7 +6,6 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\CompteApi;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -14,146 +13,69 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
-    class CompteApiNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class CompteApiNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use CheckArray;
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use ValidatorTrait;
+
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
-
-        public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
-        {
-            return CompteApi::class === $type;
-        }
-
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && CompteApi::class === $data::class;
-        }
-
-        public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
-
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
-
-            $object = new CompteApi();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('clientId', $data) && null !== $data['clientId']) {
-                $object->setClientId($data['clientId']);
-            } elseif (\array_key_exists('clientId', $data) && null === $data['clientId']) {
-                $object->setClientId(null);
-            }
-
-            if (\array_key_exists('nomCompteAPI', $data) && null !== $data['nomCompteAPI']) {
-                $object->setNomCompteAPI($data['nomCompteAPI']);
-            } elseif (\array_key_exists('nomCompteAPI', $data) && null === $data['nomCompteAPI']) {
-                $object->setNomCompteAPI(null);
-            }
-
-            return $object;
-        }
-
-        public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
-        {
-            $data = [];
-            if ($object->isInitialized('clientId') && null !== $object->getClientId()) {
-                $data['clientId'] = $object->getClientId();
-            }
-
-            if ($object->isInitialized('nomCompteAPI') && null !== $object->getNomCompteAPI()) {
-                $data['nomCompteAPI'] = $object->getNomCompteAPI();
-            }
-
-            return $data;
-        }
-
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [CompteApi::class => false];
-        }
+        return CompteApi::class === $type;
     }
-} else {
-    class CompteApiNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
+        return \is_object($data) && CompteApi::class === $data::class;
+    }
 
-        public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
-        {
-            return CompteApi::class === $type;
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+    {
+        if (isset($data['$ref'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
         }
 
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && CompteApi::class === $data::class;
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        /**
-         * @param mixed|null $format
-         */
-        public function denormalize($data, $type, $format = null, array $context = [])
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
-
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
-
-            $object = new CompteApi();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('clientId', $data) && null !== $data['clientId']) {
-                $object->setClientId($data['clientId']);
-            } elseif (\array_key_exists('clientId', $data) && null === $data['clientId']) {
-                $object->setClientId(null);
-            }
-
-            if (\array_key_exists('nomCompteAPI', $data) && null !== $data['nomCompteAPI']) {
-                $object->setNomCompteAPI($data['nomCompteAPI']);
-            } elseif (\array_key_exists('nomCompteAPI', $data) && null === $data['nomCompteAPI']) {
-                $object->setNomCompteAPI(null);
-            }
-
+        $object = new CompteApi();
+        if (null === $data || false === \is_array($data)) {
             return $object;
         }
 
-        /**
-         * @param mixed|null $format
-         *
-         * @return array|string|int|float|bool|\ArrayObject|null
-         */
-        public function normalize($object, $format = null, array $context = [])
-        {
-            $data = [];
-            if ($object->isInitialized('clientId') && null !== $object->getClientId()) {
-                $data['clientId'] = $object->getClientId();
-            }
-
-            if ($object->isInitialized('nomCompteAPI') && null !== $object->getNomCompteAPI()) {
-                $data['nomCompteAPI'] = $object->getNomCompteAPI();
-            }
-
-            return $data;
+        if (\array_key_exists('clientId', $data) && null !== $data['clientId']) {
+            $object->setClientId($data['clientId']);
+        } elseif (\array_key_exists('clientId', $data) && null === $data['clientId']) {
+            $object->setClientId(null);
         }
 
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [CompteApi::class => false];
+        if (\array_key_exists('nomCompteAPI', $data) && null !== $data['nomCompteAPI']) {
+            $object->setNomCompteAPI($data['nomCompteAPI']);
+        } elseif (\array_key_exists('nomCompteAPI', $data) && null === $data['nomCompteAPI']) {
+            $object->setNomCompteAPI(null);
         }
+
+        return $object;
+    }
+
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    {
+        $dataArray = [];
+        if ($data->isInitialized('clientId') && null !== $data->getClientId()) {
+            $dataArray['clientId'] = $data->getClientId();
+        }
+
+        if ($data->isInitialized('nomCompteAPI') && null !== $data->getNomCompteAPI()) {
+            $dataArray['nomCompteAPI'] = $data->getNomCompteAPI();
+        }
+
+        return $dataArray;
+    }
+
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [CompteApi::class => false];
     }
 }

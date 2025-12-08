@@ -19,6 +19,11 @@ class ListeDossiersRequest
      */
     protected $typeDossiers;
 
+    /**
+     * @var int|null
+     */
+    protected $etatDossier;
+
     public function getTypeDossiers(): ?int
     {
         return $this->typeDossiers;
@@ -28,6 +33,19 @@ class ListeDossiersRequest
     {
         $this->initialized['typeDossiers'] = true;
         $this->typeDossiers = $typeDossiers;
+
+        return $this;
+    }
+
+    public function getEtatDossier(): ?int
+    {
+        return $this->etatDossier;
+    }
+
+    public function setEtatDossier(?int $etatDossier): self
+    {
+        $this->initialized['etatDossier'] = true;
+        $this->etatDossier = $etatDossier;
 
         return $this;
     }

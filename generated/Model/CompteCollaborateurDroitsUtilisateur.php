@@ -132,6 +132,26 @@ class CompteCollaborateurDroitsUtilisateur
     /**
      * @var string|null
      */
+    protected $paieParametrageImportExportParams;
+
+    /**
+     * @var string|null
+     */
+    protected $paieParametrageEditionsHistoriques;
+
+    /**
+     * @var string|null
+     */
+    protected $paieParametrageEditionsHistoriquesNoCode;
+
+    /**
+     * @var string|null
+     */
+    protected $paieParametrageEditionsHistoriquesNoCodeHistorisation;
+
+    /**
+     * @var string|null
+     */
     protected $paieGestionAnalytiqueEnPourcentage;
 
     /**
@@ -338,6 +358,66 @@ class CompteCollaborateurDroitsUtilisateur
      * @var string|null
      */
     protected $productionSuiviFPOCAfficherNonRattachees;
+
+    /**
+     * @var string|null
+     */
+    protected $dossierPaieOutilsSuppressionDesDonnees;
+
+    /**
+     * @var string|null
+     */
+    protected $dossierPaieDsnRegularisationManuelle;
+
+    /**
+     * @var string|null
+     */
+    protected $gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier;
+
+    /**
+     * @var string|null
+     */
+    protected $gestionInterneParametragesClientsSuppressionDeDossiers;
+
+    /**
+     * @var string|null
+     */
+    protected $outilsPaieExportV2ExportNonChiffre;
+
+    /**
+     * @var string|null
+     */
+    protected $administrationConnexion;
+
+    /**
+     * @var string|null
+     */
+    protected $administrationParametragesAuthentificationExterneDossier;
+
+    /**
+     * @var string|null
+     */
+    protected $administrationPilotageActiviteBlocageAppelant;
+
+    /**
+     * @var string|null
+     */
+    protected $administrationPilotageActiviteComptesBloques;
+
+    /**
+     * @var string|null
+     */
+    protected $utilisationApi;
+
+    /**
+     * @var string|null
+     */
+    protected $utilisationApiGenerationMotDePasseAlternatif;
+
+    /**
+     * @var string|null
+     */
+    protected $dossierPaieSuiviModifications;
 
     public function getPaieRelationClientGestionPortailCP(): ?string
     {
@@ -634,6 +714,58 @@ class CompteCollaborateurDroitsUtilisateur
     {
         $this->initialized['paieGestionImputationsAnalytiques'] = true;
         $this->paieGestionImputationsAnalytiques = $paieGestionImputationsAnalytiques;
+
+        return $this;
+    }
+
+    public function getPaieParametrageImportExportParams(): ?string
+    {
+        return $this->paieParametrageImportExportParams;
+    }
+
+    public function setPaieParametrageImportExportParams(?string $paieParametrageImportExportParams): self
+    {
+        $this->initialized['paieParametrageImportExportParams'] = true;
+        $this->paieParametrageImportExportParams = $paieParametrageImportExportParams;
+
+        return $this;
+    }
+
+    public function getPaieParametrageEditionsHistoriques(): ?string
+    {
+        return $this->paieParametrageEditionsHistoriques;
+    }
+
+    public function setPaieParametrageEditionsHistoriques(?string $paieParametrageEditionsHistoriques): self
+    {
+        $this->initialized['paieParametrageEditionsHistoriques'] = true;
+        $this->paieParametrageEditionsHistoriques = $paieParametrageEditionsHistoriques;
+
+        return $this;
+    }
+
+    public function getPaieParametrageEditionsHistoriquesNoCode(): ?string
+    {
+        return $this->paieParametrageEditionsHistoriquesNoCode;
+    }
+
+    public function setPaieParametrageEditionsHistoriquesNoCode(?string $paieParametrageEditionsHistoriquesNoCode): self
+    {
+        $this->initialized['paieParametrageEditionsHistoriquesNoCode'] = true;
+        $this->paieParametrageEditionsHistoriquesNoCode = $paieParametrageEditionsHistoriquesNoCode;
+
+        return $this;
+    }
+
+    public function getPaieParametrageEditionsHistoriquesNoCodeHistorisation(): ?string
+    {
+        return $this->paieParametrageEditionsHistoriquesNoCodeHistorisation;
+    }
+
+    public function setPaieParametrageEditionsHistoriquesNoCodeHistorisation(?string $paieParametrageEditionsHistoriquesNoCodeHistorisation): self
+    {
+        $this->initialized['paieParametrageEditionsHistoriquesNoCodeHistorisation'] = true;
+        $this->paieParametrageEditionsHistoriquesNoCodeHistorisation = $paieParametrageEditionsHistoriquesNoCodeHistorisation;
 
         return $this;
     }
@@ -1180,6 +1312,162 @@ class CompteCollaborateurDroitsUtilisateur
     {
         $this->initialized['productionSuiviFPOCAfficherNonRattachees'] = true;
         $this->productionSuiviFPOCAfficherNonRattachees = $productionSuiviFPOCAfficherNonRattachees;
+
+        return $this;
+    }
+
+    public function getDossierPaieOutilsSuppressionDesDonnees(): ?string
+    {
+        return $this->dossierPaieOutilsSuppressionDesDonnees;
+    }
+
+    public function setDossierPaieOutilsSuppressionDesDonnees(?string $dossierPaieOutilsSuppressionDesDonnees): self
+    {
+        $this->initialized['dossierPaieOutilsSuppressionDesDonnees'] = true;
+        $this->dossierPaieOutilsSuppressionDesDonnees = $dossierPaieOutilsSuppressionDesDonnees;
+
+        return $this;
+    }
+
+    public function getDossierPaieDsnRegularisationManuelle(): ?string
+    {
+        return $this->dossierPaieDsnRegularisationManuelle;
+    }
+
+    public function setDossierPaieDsnRegularisationManuelle(?string $dossierPaieDsnRegularisationManuelle): self
+    {
+        $this->initialized['dossierPaieDsnRegularisationManuelle'] = true;
+        $this->dossierPaieDsnRegularisationManuelle = $dossierPaieDsnRegularisationManuelle;
+
+        return $this;
+    }
+
+    public function getGestionInterneParametragesClientsConfigurationAPIAccesAPIDossier(): ?string
+    {
+        return $this->gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier;
+    }
+
+    public function setGestionInterneParametragesClientsConfigurationAPIAccesAPIDossier(?string $gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier): self
+    {
+        $this->initialized['gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier'] = true;
+        $this->gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier = $gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier;
+
+        return $this;
+    }
+
+    public function getGestionInterneParametragesClientsSuppressionDeDossiers(): ?string
+    {
+        return $this->gestionInterneParametragesClientsSuppressionDeDossiers;
+    }
+
+    public function setGestionInterneParametragesClientsSuppressionDeDossiers(?string $gestionInterneParametragesClientsSuppressionDeDossiers): self
+    {
+        $this->initialized['gestionInterneParametragesClientsSuppressionDeDossiers'] = true;
+        $this->gestionInterneParametragesClientsSuppressionDeDossiers = $gestionInterneParametragesClientsSuppressionDeDossiers;
+
+        return $this;
+    }
+
+    public function getOutilsPaieExportV2ExportNonChiffre(): ?string
+    {
+        return $this->outilsPaieExportV2ExportNonChiffre;
+    }
+
+    public function setOutilsPaieExportV2ExportNonChiffre(?string $outilsPaieExportV2ExportNonChiffre): self
+    {
+        $this->initialized['outilsPaieExportV2ExportNonChiffre'] = true;
+        $this->outilsPaieExportV2ExportNonChiffre = $outilsPaieExportV2ExportNonChiffre;
+
+        return $this;
+    }
+
+    public function getAdministrationConnexion(): ?string
+    {
+        return $this->administrationConnexion;
+    }
+
+    public function setAdministrationConnexion(?string $administrationConnexion): self
+    {
+        $this->initialized['administrationConnexion'] = true;
+        $this->administrationConnexion = $administrationConnexion;
+
+        return $this;
+    }
+
+    public function getAdministrationParametragesAuthentificationExterneDossier(): ?string
+    {
+        return $this->administrationParametragesAuthentificationExterneDossier;
+    }
+
+    public function setAdministrationParametragesAuthentificationExterneDossier(?string $administrationParametragesAuthentificationExterneDossier): self
+    {
+        $this->initialized['administrationParametragesAuthentificationExterneDossier'] = true;
+        $this->administrationParametragesAuthentificationExterneDossier = $administrationParametragesAuthentificationExterneDossier;
+
+        return $this;
+    }
+
+    public function getAdministrationPilotageActiviteBlocageAppelant(): ?string
+    {
+        return $this->administrationPilotageActiviteBlocageAppelant;
+    }
+
+    public function setAdministrationPilotageActiviteBlocageAppelant(?string $administrationPilotageActiviteBlocageAppelant): self
+    {
+        $this->initialized['administrationPilotageActiviteBlocageAppelant'] = true;
+        $this->administrationPilotageActiviteBlocageAppelant = $administrationPilotageActiviteBlocageAppelant;
+
+        return $this;
+    }
+
+    public function getAdministrationPilotageActiviteComptesBloques(): ?string
+    {
+        return $this->administrationPilotageActiviteComptesBloques;
+    }
+
+    public function setAdministrationPilotageActiviteComptesBloques(?string $administrationPilotageActiviteComptesBloques): self
+    {
+        $this->initialized['administrationPilotageActiviteComptesBloques'] = true;
+        $this->administrationPilotageActiviteComptesBloques = $administrationPilotageActiviteComptesBloques;
+
+        return $this;
+    }
+
+    public function getUtilisationApi(): ?string
+    {
+        return $this->utilisationApi;
+    }
+
+    public function setUtilisationApi(?string $utilisationApi): self
+    {
+        $this->initialized['utilisationApi'] = true;
+        $this->utilisationApi = $utilisationApi;
+
+        return $this;
+    }
+
+    public function getUtilisationApiGenerationMotDePasseAlternatif(): ?string
+    {
+        return $this->utilisationApiGenerationMotDePasseAlternatif;
+    }
+
+    public function setUtilisationApiGenerationMotDePasseAlternatif(?string $utilisationApiGenerationMotDePasseAlternatif): self
+    {
+        $this->initialized['utilisationApiGenerationMotDePasseAlternatif'] = true;
+        $this->utilisationApiGenerationMotDePasseAlternatif = $utilisationApiGenerationMotDePasseAlternatif;
+
+        return $this;
+    }
+
+    public function getDossierPaieSuiviModifications(): ?string
+    {
+        return $this->dossierPaieSuiviModifications;
+    }
+
+    public function setDossierPaieSuiviModifications(?string $dossierPaieSuiviModifications): self
+    {
+        $this->initialized['dossierPaieSuiviModifications'] = true;
+        $this->dossierPaieSuiviModifications = $dossierPaieSuiviModifications;
 
         return $this;
     }

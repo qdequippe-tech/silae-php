@@ -15,12 +15,12 @@ class ModificationPersonnesLieesRequest
     }
 
     /**
-     * @var PersonneLiee|null
+     * @var PersonneLieeV2|null
      */
     protected $conjoint;
 
     /**
-     * @var list<PersonneLiee>|null
+     * @var list<PersonneLieeV2>|null
      */
     protected $personnesLiees;
 
@@ -34,12 +34,12 @@ class ModificationPersonnesLieesRequest
      */
     protected $numeroDossier;
 
-    public function getConjoint(): ?PersonneLiee
+    public function getConjoint(): ?PersonneLieeV2
     {
         return $this->conjoint;
     }
 
-    public function setConjoint(?PersonneLiee $conjoint): self
+    public function setConjoint(?PersonneLieeV2 $conjoint): self
     {
         $this->initialized['conjoint'] = true;
         $this->conjoint = $conjoint;
@@ -48,7 +48,7 @@ class ModificationPersonnesLieesRequest
     }
 
     /**
-     * @return list<PersonneLiee>|null
+     * @return list<PersonneLieeV2>|null
      */
     public function getPersonnesLiees(): ?array
     {
@@ -56,7 +56,7 @@ class ModificationPersonnesLieesRequest
     }
 
     /**
-     * @param list<PersonneLiee>|null $personnesLiees
+     * @param list<PersonneLieeV2>|null $personnesLiees
      */
     public function setPersonnesLiees(?array $personnesLiees): self
     {

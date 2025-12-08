@@ -54,6 +54,21 @@ class SalarieBulletinCumulsResult
      */
     protected $impotSurLeRevenuPreleveALaSource;
 
+    /**
+     * @var float|null
+     */
+    protected $plafondSecuriteSocial;
+
+    /**
+     * @var float|null
+     */
+    protected $nombreHeuresTravaillees;
+
+    /**
+     * @var float|null
+     */
+    protected $nombreJoursTravailees;
+
     public function getSalaireDeBase(): ?float
     {
         return $this->salaireDeBase;
@@ -154,6 +169,45 @@ class SalarieBulletinCumulsResult
     {
         $this->initialized['impotSurLeRevenuPreleveALaSource'] = true;
         $this->impotSurLeRevenuPreleveALaSource = $impotSurLeRevenuPreleveALaSource;
+
+        return $this;
+    }
+
+    public function getPlafondSecuriteSocial(): ?float
+    {
+        return $this->plafondSecuriteSocial;
+    }
+
+    public function setPlafondSecuriteSocial(?float $plafondSecuriteSocial): self
+    {
+        $this->initialized['plafondSecuriteSocial'] = true;
+        $this->plafondSecuriteSocial = $plafondSecuriteSocial;
+
+        return $this;
+    }
+
+    public function getNombreHeuresTravaillees(): ?float
+    {
+        return $this->nombreHeuresTravaillees;
+    }
+
+    public function setNombreHeuresTravaillees(?float $nombreHeuresTravaillees): self
+    {
+        $this->initialized['nombreHeuresTravaillees'] = true;
+        $this->nombreHeuresTravaillees = $nombreHeuresTravaillees;
+
+        return $this;
+    }
+
+    public function getNombreJoursTravailees(): ?float
+    {
+        return $this->nombreJoursTravailees;
+    }
+
+    public function setNombreJoursTravailees(?float $nombreJoursTravailees): self
+    {
+        $this->initialized['nombreJoursTravailees'] = true;
+        $this->nombreJoursTravailees = $nombreJoursTravailees;
 
         return $this;
     }

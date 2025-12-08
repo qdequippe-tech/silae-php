@@ -8,7 +8,7 @@ use QdequippeTech\Silae\Api\Exception\EditionJournalDePaieAsynchroneInternalServ
 use QdequippeTech\Silae\Api\Exception\EditionJournalDePaieAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
-use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
+use QdequippeTech\Silae\Api\Model\EditionJournalDePaieRequest;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -23,12 +23,12 @@ class EditionJournalDePaieAsynchrone extends BaseEndpoint implements Endpoint
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
      */
-    public function __construct(DossierPeriodeRangeRequest $request, array $headerParameters = [])
+    public function __construct(EditionJournalDePaieRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -75,7 +75,7 @@ class EditionJournalDePaieAsynchrone extends BaseEndpoint implements Endpoint
      * @throws EditionJournalDePaieAsynchroneInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

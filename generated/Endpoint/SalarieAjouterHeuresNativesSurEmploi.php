@@ -22,7 +22,7 @@ class SalarieAjouterHeuresNativesSurEmploi extends BaseEndpoint implements Endpo
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }

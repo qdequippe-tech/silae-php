@@ -8,7 +8,7 @@ use QdequippeTech\Silae\Api\Exception\ExistenceMatriculeInternalServerErrorExcep
 use QdequippeTech\Silae\Api\Exception\ExistenceMatriculeUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
-use QdequippeTech\Silae\Api\Model\DossierMatriculeRequest;
+use QdequippeTech\Silae\Api\Model\ExistenceMatriculeRequest;
 use QdequippeTech\Silae\Api\Model\ExistenceMatriculeResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -23,12 +23,12 @@ class ExistenceMatricule extends BaseEndpoint implements Endpoint
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
      */
-    public function __construct(DossierMatriculeRequest $request, array $headerParameters = [])
+    public function __construct(ExistenceMatriculeRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -75,7 +75,7 @@ class ExistenceMatricule extends BaseEndpoint implements Endpoint
      * @throws ExistenceMatriculeInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

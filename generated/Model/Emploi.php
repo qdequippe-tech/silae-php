@@ -554,6 +554,96 @@ class Emploi
      */
     protected $bPctAbattementLissage;
 
+    /**
+     * @var string|null
+     */
+    protected $codeStatutRegimeProtectionSociale;
+
+    /**
+     * @var bool|null
+     */
+    protected $bCodeStatutRegimeProtectionSociale;
+
+    /**
+     * @var bool|null
+     */
+    protected $emploiNonPrincipal;
+
+    /**
+     * @var bool|null
+     */
+    protected $bEmploiNonPrincipal;
+
+    /**
+     * @var \DateTime|null
+     */
+    protected $contratPartDtSignature;
+
+    /**
+     * @var bool|null
+     */
+    protected $bContratPartDtSignature;
+
+    /**
+     * @var float|null
+     */
+    protected $fjNbJAn;
+
+    /**
+     * @var bool|null
+     */
+    protected $bFJNbJAn;
+
+    /**
+     * @var bool|null
+     */
+    protected $nonSoumisHEta;
+
+    /**
+     * @var bool|null
+     */
+    protected $bNonSoumisHEta;
+
+    /**
+     * @var string|null
+     */
+    protected $motifRuptureContrat;
+
+    /**
+     * @var bool|null
+     */
+    protected $bMotifRuptureContrat;
+
+    /**
+     * @var bool|null
+     */
+    protected $docsFinContratInactifs;
+
+    /**
+     * @var bool|null
+     */
+    protected $bDocsFinContratInactifs;
+
+    /**
+     * @var int|null
+     */
+    protected $rttTypeAcq;
+
+    /**
+     * @var bool|null
+     */
+    protected $bRTTTypeAcq;
+
+    /**
+     * @var float|null
+     */
+    protected $avnLMontantSal;
+
+    /**
+     * @var bool|null
+     */
+    protected $bAvnLMontantSal;
+
     public function getIdentifiantEmploi(): ?int
     {
         return $this->identifiantEmploi;
@@ -1978,6 +2068,240 @@ class Emploi
     {
         $this->initialized['bPctAbattementLissage'] = true;
         $this->bPctAbattementLissage = $bPctAbattementLissage;
+
+        return $this;
+    }
+
+    public function getCodeStatutRegimeProtectionSociale(): ?string
+    {
+        return $this->codeStatutRegimeProtectionSociale;
+    }
+
+    public function setCodeStatutRegimeProtectionSociale(?string $codeStatutRegimeProtectionSociale): self
+    {
+        $this->initialized['codeStatutRegimeProtectionSociale'] = true;
+        $this->codeStatutRegimeProtectionSociale = $codeStatutRegimeProtectionSociale;
+
+        return $this;
+    }
+
+    public function getBCodeStatutRegimeProtectionSociale(): ?bool
+    {
+        return $this->bCodeStatutRegimeProtectionSociale;
+    }
+
+    public function setBCodeStatutRegimeProtectionSociale(?bool $bCodeStatutRegimeProtectionSociale): self
+    {
+        $this->initialized['bCodeStatutRegimeProtectionSociale'] = true;
+        $this->bCodeStatutRegimeProtectionSociale = $bCodeStatutRegimeProtectionSociale;
+
+        return $this;
+    }
+
+    public function getEmploiNonPrincipal(): ?bool
+    {
+        return $this->emploiNonPrincipal;
+    }
+
+    public function setEmploiNonPrincipal(?bool $emploiNonPrincipal): self
+    {
+        $this->initialized['emploiNonPrincipal'] = true;
+        $this->emploiNonPrincipal = $emploiNonPrincipal;
+
+        return $this;
+    }
+
+    public function getBEmploiNonPrincipal(): ?bool
+    {
+        return $this->bEmploiNonPrincipal;
+    }
+
+    public function setBEmploiNonPrincipal(?bool $bEmploiNonPrincipal): self
+    {
+        $this->initialized['bEmploiNonPrincipal'] = true;
+        $this->bEmploiNonPrincipal = $bEmploiNonPrincipal;
+
+        return $this;
+    }
+
+    public function getContratPartDtSignature(): ?\DateTime
+    {
+        return $this->contratPartDtSignature;
+    }
+
+    public function setContratPartDtSignature(?\DateTime $contratPartDtSignature): self
+    {
+        $this->initialized['contratPartDtSignature'] = true;
+        $this->contratPartDtSignature = $contratPartDtSignature;
+
+        return $this;
+    }
+
+    public function getBContratPartDtSignature(): ?bool
+    {
+        return $this->bContratPartDtSignature;
+    }
+
+    public function setBContratPartDtSignature(?bool $bContratPartDtSignature): self
+    {
+        $this->initialized['bContratPartDtSignature'] = true;
+        $this->bContratPartDtSignature = $bContratPartDtSignature;
+
+        return $this;
+    }
+
+    public function getFjNbJAn(): ?float
+    {
+        return $this->fjNbJAn;
+    }
+
+    public function setFjNbJAn(?float $fjNbJAn): self
+    {
+        $this->initialized['fjNbJAn'] = true;
+        $this->fjNbJAn = $fjNbJAn;
+
+        return $this;
+    }
+
+    public function getBFJNbJAn(): ?bool
+    {
+        return $this->bFJNbJAn;
+    }
+
+    public function setBFJNbJAn(?bool $bFJNbJAn): self
+    {
+        $this->initialized['bFJNbJAn'] = true;
+        $this->bFJNbJAn = $bFJNbJAn;
+
+        return $this;
+    }
+
+    public function getNonSoumisHEta(): ?bool
+    {
+        return $this->nonSoumisHEta;
+    }
+
+    public function setNonSoumisHEta(?bool $nonSoumisHEta): self
+    {
+        $this->initialized['nonSoumisHEta'] = true;
+        $this->nonSoumisHEta = $nonSoumisHEta;
+
+        return $this;
+    }
+
+    public function getBNonSoumisHEta(): ?bool
+    {
+        return $this->bNonSoumisHEta;
+    }
+
+    public function setBNonSoumisHEta(?bool $bNonSoumisHEta): self
+    {
+        $this->initialized['bNonSoumisHEta'] = true;
+        $this->bNonSoumisHEta = $bNonSoumisHEta;
+
+        return $this;
+    }
+
+    public function getMotifRuptureContrat(): ?string
+    {
+        return $this->motifRuptureContrat;
+    }
+
+    public function setMotifRuptureContrat(?string $motifRuptureContrat): self
+    {
+        $this->initialized['motifRuptureContrat'] = true;
+        $this->motifRuptureContrat = $motifRuptureContrat;
+
+        return $this;
+    }
+
+    public function getBMotifRuptureContrat(): ?bool
+    {
+        return $this->bMotifRuptureContrat;
+    }
+
+    public function setBMotifRuptureContrat(?bool $bMotifRuptureContrat): self
+    {
+        $this->initialized['bMotifRuptureContrat'] = true;
+        $this->bMotifRuptureContrat = $bMotifRuptureContrat;
+
+        return $this;
+    }
+
+    public function getDocsFinContratInactifs(): ?bool
+    {
+        return $this->docsFinContratInactifs;
+    }
+
+    public function setDocsFinContratInactifs(?bool $docsFinContratInactifs): self
+    {
+        $this->initialized['docsFinContratInactifs'] = true;
+        $this->docsFinContratInactifs = $docsFinContratInactifs;
+
+        return $this;
+    }
+
+    public function getBDocsFinContratInactifs(): ?bool
+    {
+        return $this->bDocsFinContratInactifs;
+    }
+
+    public function setBDocsFinContratInactifs(?bool $bDocsFinContratInactifs): self
+    {
+        $this->initialized['bDocsFinContratInactifs'] = true;
+        $this->bDocsFinContratInactifs = $bDocsFinContratInactifs;
+
+        return $this;
+    }
+
+    public function getRttTypeAcq(): ?int
+    {
+        return $this->rttTypeAcq;
+    }
+
+    public function setRttTypeAcq(?int $rttTypeAcq): self
+    {
+        $this->initialized['rttTypeAcq'] = true;
+        $this->rttTypeAcq = $rttTypeAcq;
+
+        return $this;
+    }
+
+    public function getBRTTTypeAcq(): ?bool
+    {
+        return $this->bRTTTypeAcq;
+    }
+
+    public function setBRTTTypeAcq(?bool $bRTTTypeAcq): self
+    {
+        $this->initialized['bRTTTypeAcq'] = true;
+        $this->bRTTTypeAcq = $bRTTTypeAcq;
+
+        return $this;
+    }
+
+    public function getAvnLMontantSal(): ?float
+    {
+        return $this->avnLMontantSal;
+    }
+
+    public function setAvnLMontantSal(?float $avnLMontantSal): self
+    {
+        $this->initialized['avnLMontantSal'] = true;
+        $this->avnLMontantSal = $avnLMontantSal;
+
+        return $this;
+    }
+
+    public function getBAvnLMontantSal(): ?bool
+    {
+        return $this->bAvnLMontantSal;
+    }
+
+    public function setBAvnLMontantSal(?bool $bAvnLMontantSal): self
+    {
+        $this->initialized['bAvnLMontantSal'] = true;
+        $this->bAvnLMontantSal = $bAvnLMontantSal;
 
         return $this;
     }

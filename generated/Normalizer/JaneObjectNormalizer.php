@@ -27,16 +27,23 @@ use QdequippeTech\Silae\Api\Model\AjouteCompteRenduEdiRequest;
 use QdequippeTech\Silae\Api\Model\AjoutSousCategorieAxeAnalytiqueRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseEffectifs;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieBulletinsCoffresFortsResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieBulletinsOriginauxResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDetailRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDetailResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEffectifsRequest;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEffectifsResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEntreesSortiesRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEntreesSortiesResponse;
-use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursV2Response;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieV2Request;
 use QdequippeTech\Silae\Api\Model\ApiError;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
+use QdequippeTech\Silae\Api\Model\AppliquerModeleCollaborateurRequest;
 use QdequippeTech\Silae\Api\Model\AxeAnalytique;
 use QdequippeTech\Silae\Api\Model\AxesAnalytiqueSalarie;
 use QdequippeTech\Silae\Api\Model\BilanMatricules;
@@ -46,8 +53,10 @@ use QdequippeTech\Silae\Api\Model\CCN;
 use QdequippeTech\Silae\Api\Model\CCNSociete;
 use QdequippeTech\Silae\Api\Model\ClassificationMetierCompleteRequest;
 use QdequippeTech\Silae\Api\Model\ClassificationMetierCompleteResponse;
+use QdequippeTech\Silae\Api\Model\CollaborateurModele;
 use QdequippeTech\Silae\Api\Model\CompteApi;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateur;
+use QdequippeTech\Silae\Api\Model\CompteCollaborateurDepuisModele;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateurDroits;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateurDroitsUtilisateur;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateurHoraireAccesParJour;
@@ -55,9 +64,11 @@ use QdequippeTech\Silae\Api\Model\CompteCollaborateurHorairesAcces;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateurRoles;
 use QdequippeTech\Silae\Api\Model\ConfigurationAccesApi;
 use QdequippeTech\Silae\Api\Model\ConfigurationAccesApiDossier;
+use QdequippeTech\Silae\Api\Model\ContactInformations;
 use QdequippeTech\Silae\Api\Model\ControlerBulletinsPeriodeRequest;
 use QdequippeTech\Silae\Api\Model\ControlerBulletinsPeriodeResponse;
 use QdequippeTech\Silae\Api\Model\CoupleDossierMatricule;
+use QdequippeTech\Silae\Api\Model\CreationCompteCollaborateurDepuisModeleRequest;
 use QdequippeTech\Silae\Api\Model\CreationCompteCollaborateurRequest;
 use QdequippeTech\Silae\Api\Model\CreationConfigurationAccesApi;
 use QdequippeTech\Silae\Api\Model\CreationConfigurationAccesApiRequest;
@@ -80,6 +91,7 @@ use QdequippeTech\Silae\Api\Model\DossierAgence;
 use QdequippeTech\Silae\Api\Model\DossierDemoSilae;
 use QdequippeTech\Silae\Api\Model\DossierMatriculeRequest;
 use QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest;
+use QdequippeTech\Silae\Api\Model\DossierPeriodePaiementSalairesLotsVirementRequest;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRequest;
 use QdequippeTech\Silae\Api\Model\DossierRecupererPeriodeEnCoursResponse;
@@ -95,16 +107,29 @@ use QdequippeTech\Silae\Api\Model\EcrituresComptables4Request;
 use QdequippeTech\Silae\Api\Model\EcrituresComptablesAvecRuptures;
 use QdequippeTech\Silae\Api\Model\EcrituresComptablesFichier;
 use QdequippeTech\Silae\Api\Model\EcrituresComptablesLigne;
+use QdequippeTech\Silae\Api\Model\EcrituresComptablesLigneRupture;
+use QdequippeTech\Silae\Api\Model\EcrituresComptablesPaiementSalairesLotsVirementResponse;
+use QdequippeTech\Silae\Api\Model\EcrituresComptablesPaiementSalairesRequest;
 use QdequippeTech\Silae\Api\Model\EcrituresComptablesRupture;
 use QdequippeTech\Silae\Api\Model\EditionControleCICEResponse;
+use QdequippeTech\Silae\Api\Model\EditionCoutsSalariauxRequest;
 use QdequippeTech\Silae\Api\Model\EditionCoutsSalariauxResponse;
+use QdequippeTech\Silae\Api\Model\EditionDetailDesCotisationsRequest;
 use QdequippeTech\Silae\Api\Model\EditionDetailDesCotisationsResponse;
+use QdequippeTech\Silae\Api\Model\EditionEtatDesPaiementsRequest;
 use QdequippeTech\Silae\Api\Model\EditionEtatDesPaiementsResponse;
+use QdequippeTech\Silae\Api\Model\EditionHistoriqueChiffreRequest;
 use QdequippeTech\Silae\Api\Model\EditionHistoriqueRequest;
 use QdequippeTech\Silae\Api\Model\EditionHistoriqueResponse;
+use QdequippeTech\Silae\Api\Model\EditionJournalDePaieRequest;
 use QdequippeTech\Silae\Api\Model\EditionJournalDePaieResponse;
+use QdequippeTech\Silae\Api\Model\EditionRecapDePaieDetailleParSalarieRequest;
+use QdequippeTech\Silae\Api\Model\EditionRecapDePaieDetailleParSalarieResponse;
+use QdequippeTech\Silae\Api\Model\EditionRecapDePaieRequest;
 use QdequippeTech\Silae\Api\Model\EditionRecapDePaieResponse;
+use QdequippeTech\Silae\Api\Model\EditionSoldeDeReposRequest;
 use QdequippeTech\Silae\Api\Model\EditionSoldeDeReposResponse;
+use QdequippeTech\Silae\Api\Model\EditionTableauDesChargesRequest;
 use QdequippeTech\Silae\Api\Model\EditionTableauDesChargesResponse;
 use QdequippeTech\Silae\Api\Model\EffectifEtablissement;
 use QdequippeTech\Silae\Api\Model\EffectifSociete;
@@ -121,6 +146,7 @@ use QdequippeTech\Silae\Api\Model\EtatDeclaration;
 use QdequippeTech\Silae\Api\Model\EtatDeclarationRetour;
 use QdequippeTech\Silae\Api\Model\EtatDeclarationsRequest;
 use QdequippeTech\Silae\Api\Model\EtatDeclarationsResponse;
+use QdequippeTech\Silae\Api\Model\ExistenceMatriculeRequest;
 use QdequippeTech\Silae\Api\Model\ExistenceMatriculeResponse;
 use QdequippeTech\Silae\Api\Model\ExtraCreationManifestationRequest;
 use QdequippeTech\Silae\Api\Model\ExtraListeManifestationsRequest;
@@ -140,6 +166,9 @@ use QdequippeTech\Silae\Api\Model\GererCycleDePaieRequest;
 use QdequippeTech\Silae\Api\Model\GererEtatDossierPaieRequest;
 use QdequippeTech\Silae\Api\Model\GererEtatRobotDePaieRequest;
 use QdequippeTech\Silae\Api\Model\Handicap;
+use QdequippeTech\Silae\Api\Model\HistoriqueDesModificationsRequest;
+use QdequippeTech\Silae\Api\Model\HistoriqueDesModificationsResponse;
+use QdequippeTech\Silae\Api\Model\HistoriqueModification;
 use QdequippeTech\Silae\Api\Model\ImageAnnexe;
 use QdequippeTech\Silae\Api\Model\ImportDossierDemoRequest;
 use QdequippeTech\Silae\Api\Model\ImportFichierDSNRequest;
@@ -155,6 +184,7 @@ use QdequippeTech\Silae\Api\Model\LectureAxesAnalytiquesSalariesRequest;
 use QdequippeTech\Silae\Api\Model\LectureAxesAnalytiquesSalariesResponse;
 use QdequippeTech\Silae\Api\Model\LectureCCNSocieteResponse;
 use QdequippeTech\Silae\Api\Model\LectureChampLibelle;
+use QdequippeTech\Silae\Api\Model\LectureCompteCollaborateurModelesResponse;
 use QdequippeTech\Silae\Api\Model\LectureCompteCollaborateurRequest;
 use QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSN;
 use QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNRequest;
@@ -163,7 +193,10 @@ use QdequippeTech\Silae\Api\Model\LectureEffectifEtablissementRequest;
 use QdequippeTech\Silae\Api\Model\LectureEffectifEtablissementResponse;
 use QdequippeTech\Silae\Api\Model\LectureEffectifSocieteResponse;
 use QdequippeTech\Silae\Api\Model\LectureFicheAgenceRequest;
+use QdequippeTech\Silae\Api\Model\LectureGrilleHoraireFicheSalarieRequest;
+use QdequippeTech\Silae\Api\Model\LectureGrilleHoraireFicheSalarieResponse;
 use QdequippeTech\Silae\Api\Model\LectureHandicapResponse;
+use QdequippeTech\Silae\Api\Model\LectureHoraireSalarie;
 use QdequippeTech\Silae\Api\Model\LectureInformationBancaireSocieteResponse;
 use QdequippeTech\Silae\Api\Model\LectureInformationsPaieRequest;
 use QdequippeTech\Silae\Api\Model\LectureInformationsPaieResponse;
@@ -187,11 +220,14 @@ use QdequippeTech\Silae\Api\Model\LibelleValeurComplete;
 use QdequippeTech\Silae\Api\Model\LigneBulletin;
 use QdequippeTech\Silae\Api\Model\ListeAgencesResponse;
 use QdequippeTech\Silae\Api\Model\ListeComptesApiResponse;
+use QdequippeTech\Silae\Api\Model\ListeDeclarationEvenementielle;
 use QdequippeTech\Silae\Api\Model\ListeDossiersAgenceRequest;
 use QdequippeTech\Silae\Api\Model\ListeDossiersAgenceResponse;
 use QdequippeTech\Silae\Api\Model\ListeDossiersDemoSilaeResponse;
 use QdequippeTech\Silae\Api\Model\ListeDossiersRequest;
 use QdequippeTech\Silae\Api\Model\ListeDossiersResponse;
+use QdequippeTech\Silae\Api\Model\ListeDSNEvenementiellesRequest;
+use QdequippeTech\Silae\Api\Model\ListeDSNEvenementiellesResponse;
 use QdequippeTech\Silae\Api\Model\ListeDSNMensuellesResponse;
 use QdequippeTech\Silae\Api\Model\ListeEtablissementsDossierPaieResponse;
 use QdequippeTech\Silae\Api\Model\ListeInformationsDossiersPaieRequest;
@@ -200,7 +236,10 @@ use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesDansDomaineResponse;
 use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesRequest;
 use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesResponse;
 use QdequippeTech\Silae\Api\Model\ListeModulesActifsResponse;
+use QdequippeTech\Silae\Api\Model\ListeModulesMySilaeResponse;
 use QdequippeTech\Silae\Api\Model\ListeNumerosDossiersResponse;
+use QdequippeTech\Silae\Api\Model\ListeOrganismesRequest;
+use QdequippeTech\Silae\Api\Model\ListeOrganismesResponse;
 use QdequippeTech\Silae\Api\Model\ListeSalarieEmploisExternesResponse;
 use QdequippeTech\Silae\Api\Model\ListeSalarieEmploisRequest;
 use QdequippeTech\Silae\Api\Model\ListeSalarieEmploisResponse;
@@ -210,11 +249,15 @@ use QdequippeTech\Silae\Api\Model\ListeSalariesOptions;
 use QdequippeTech\Silae\Api\Model\ListeSalariesRequest;
 use QdequippeTech\Silae\Api\Model\ListeSalariesResponse;
 use QdequippeTech\Silae\Api\Model\ListeUtilisateursDossierPaieResponse;
+use QdequippeTech\Silae\Api\Model\ListeUtilisateursDossierPaieV2Response;
 use QdequippeTech\Silae\Api\Model\ListeVariablesASaisirResponse;
+use QdequippeTech\Silae\Api\Model\LotsVirement;
 use QdequippeTech\Silae\Api\Model\MatriculeSalarieRequest;
 use QdequippeTech\Silae\Api\Model\MatriculeSalarieResponse;
 use QdequippeTech\Silae\Api\Model\MiseAJourFicheEtablissementRequest;
 use QdequippeTech\Silae\Api\Model\MiseAJourFicheSocieteRequest;
+use QdequippeTech\Silae\Api\Model\ModificationAxesAnalytiquesSalarieRequest;
+use QdequippeTech\Silae\Api\Model\ModificationCCNEtablissementRequest;
 use QdequippeTech\Silae\Api\Model\ModificationCCNSocieteRequest;
 use QdequippeTech\Silae\Api\Model\ModificationChamp;
 use QdequippeTech\Silae\Api\Model\ModificationChampByte;
@@ -242,10 +285,13 @@ use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteRequest;
 use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteResponse;
 use QdequippeTech\Silae\Api\Model\ModificationTaxeTransportRequest;
 use QdequippeTech\Silae\Api\Model\ModuleActifParDossier;
+use QdequippeTech\Silae\Api\Model\ModuleMySilaeParDossier;
 use QdequippeTech\Silae\Api\Model\ModulesActifsParDossier;
+use QdequippeTech\Silae\Api\Model\ModulesMySilaeParDossier;
 use QdequippeTech\Silae\Api\Model\OngletProduction;
 use QdequippeTech\Silae\Api\Model\Organisme;
 use QdequippeTech\Silae\Api\Model\PersonneLiee;
+use QdequippeTech\Silae\Api\Model\PersonneLieeV2;
 use QdequippeTech\Silae\Api\Model\ProprietesChiffrement;
 use QdequippeTech\Silae\Api\Model\ProprietesDossier;
 use QdequippeTech\Silae\Api\Model\QCCN;
@@ -274,11 +320,13 @@ use QdequippeTech\Silae\Api\Model\RecupererImageResponse;
 use QdequippeTech\Silae\Api\Model\RecupererRecuDPAEResult;
 use QdequippeTech\Silae\Api\Model\RequeteAnalyseProduction;
 use QdequippeTech\Silae\Api\Model\RequeteAnalyseProductionDetail;
+use QdequippeTech\Silae\Api\Model\RequeteAnalyseProductionV2;
 use QdequippeTech\Silae\Api\Model\RequeteExtraSalarieVacations;
 use QdequippeTech\Silae\Api\Model\RequeteLectureInfos;
 use QdequippeTech\Silae\Api\Model\RequeteSalarieAbsences;
 use QdequippeTech\Silae\Api\Model\RequeteSalarieBulletinDetails;
 use QdequippeTech\Silae\Api\Model\RequeteSalarieBulletinEntete;
+use QdequippeTech\Silae\Api\Model\RequeteSalarieBulletinIndices;
 use QdequippeTech\Silae\Api\Model\RequeteSalarieBulletinLignes;
 use QdequippeTech\Silae\Api\Model\RequeteSalarieBulletinLignesFiltres;
 use QdequippeTech\Silae\Api\Model\RequeteSalariesBulletins;
@@ -291,10 +339,16 @@ use QdequippeTech\Silae\Api\Model\SalarieAbsence;
 use QdequippeTech\Silae\Api\Model\SalarieAbsencesRequest;
 use QdequippeTech\Silae\Api\Model\SalarieAbsencesResponse;
 use QdequippeTech\Silae\Api\Model\SalarieAbsenceV2;
+use QdequippeTech\Silae\Api\Model\SalarieAbsenceV3;
 use QdequippeTech\Silae\Api\Model\SalarieAcompte;
 use QdequippeTech\Silae\Api\Model\SalarieActiviteJournaliere;
 use QdequippeTech\Silae\Api\Model\SalarieActiviteJournalierePeriode;
+use QdequippeTech\Silae\Api\Model\SalarieActiviteJournalierePeriodeSaisie;
+use QdequippeTech\Silae\Api\Model\SalarieActiviteJournaliereRequest;
+use QdequippeTech\Silae\Api\Model\SalarieActiviteJournaliereResponse;
+use QdequippeTech\Silae\Api\Model\SalarieActiviteJournaliereSaisie;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterAbsenceRequest;
+use QdequippeTech\Silae\Api\Model\SalarieAjouterAbsenceV2Request;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterAcompteRequest;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterActiviteJournaliereRequest;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterActiviteJournaliereSurEmploiRequest;
@@ -314,11 +368,18 @@ use QdequippeTech\Silae\Api\Model\SalarieBulletinDetailsResult;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinEnteteRequest;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinEnteteResult;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinEnteteSimpleResult;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinIndiceResult;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinLignesRequest;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinLignesResult;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinLignesSelonFiltresRequest;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinResult;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinsIndicesRequest;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinsIndicesResponse;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinsIndicesResult;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinsResult;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinStatutEtatAvancementReponse;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinStatutEtatAvancementRequest;
+use QdequippeTech\Silae\Api\Model\SalarieBulletinStatutEtatAvancementResponse;
 use QdequippeTech\Silae\Api\Model\SalarieCumuls;
 use QdequippeTech\Silae\Api\Model\SalarieDUE;
 use QdequippeTech\Silae\Api\Model\SalarieDUERequest;
@@ -329,9 +390,10 @@ use QdequippeTech\Silae\Api\Model\SalarieEmploiExterneInformations;
 use QdequippeTech\Silae\Api\Model\SalarieEmploiInformations;
 use QdequippeTech\Silae\Api\Model\SalarieEmplois;
 use QdequippeTech\Silae\Api\Model\SalarieHeures;
-use QdequippeTech\Silae\Api\Model\SalarieInformations;
+use QdequippeTech\Silae\Api\Model\SalarieInformationsV3;
 use QdequippeTech\Silae\Api\Model\SalarieInitialiserCumulsRequest;
 use QdequippeTech\Silae\Api\Model\SalarieModifierAbsenceRequest;
+use QdequippeTech\Silae\Api\Model\SalarieModifierAbsenceV2Request;
 use QdequippeTech\Silae\Api\Model\SalariePrime;
 use QdequippeTech\Silae\Api\Model\SalarieProtege;
 use QdequippeTech\Silae\Api\Model\SalarieRecupererDUEResponse;
@@ -359,6 +421,7 @@ use QdequippeTech\Silae\Api\Model\SiteGenereMotDePasseAlternatifRequest;
 use QdequippeTech\Silae\Api\Model\SiteGenereMotDePasseAlternatifResponse;
 use QdequippeTech\Silae\Api\Model\SocieteInfoSup;
 use QdequippeTech\Silae\Api\Model\SoldeRepos;
+use QdequippeTech\Silae\Api\Model\SoldeReposRequest;
 use QdequippeTech\Silae\Api\Model\SoldeReposSalarie;
 use QdequippeTech\Silae\Api\Model\SousCategorie;
 use QdequippeTech\Silae\Api\Model\SousCategoriesEnPC;
@@ -373,20 +436,32 @@ use QdequippeTech\Silae\Api\Model\SpectacleSalarieAjouterAffectationsRequest;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieCalculerBulletinRequest;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsRequest;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsResponse;
+use QdequippeTech\Silae\Api\Model\StatistiquesBulletin;
+use QdequippeTech\Silae\Api\Model\StatistiquesBulletinCoffreFort;
 use QdequippeTech\Silae\Api\Model\StatistiquesBureautique;
 use QdequippeTech\Silae\Api\Model\StatistiquesDADS;
 use QdequippeTech\Silae\Api\Model\StatistiquesEntreesSorties;
 use QdequippeTech\Silae\Api\Model\StatistiquesEntreesSortiesDetails;
+use QdequippeTech\Silae\Api\Model\StatistiquesProductionBulletin;
+use QdequippeTech\Silae\Api\Model\StatistiquesProductionBulletinCoffreFort;
 use QdequippeTech\Silae\Api\Model\StatistiquesProductionUtilisateur;
+use QdequippeTech\Silae\Api\Model\StatistiquesProductionUtilisateurV2;
 use QdequippeTech\Silae\Api\Model\StatistiquesProductionV2;
 use QdequippeTech\Silae\Api\Model\StatistiquesUtilisateurs;
+use QdequippeTech\Silae\Api\Model\StatistiquesUtilisateursV2;
 use QdequippeTech\Silae\Api\Model\StatistiquesV2;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieEffectifsAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAsynchroneDocumentResponse;
 use QdequippeTech\Silae\Api\Model\StatutAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutCreationSalarieEmploisAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutEcrituresComptables4AsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutEcrituresComptablesAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutRecupererFichiersEcrituresComptablesAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutRecupererImageAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutSalariesBulletinsResponse;
 use QdequippeTech\Silae\Api\Model\StatutSalariesConfirmerSaisiesResponse;
@@ -403,7 +478,6 @@ use QdequippeTech\Silae\Api\Model\VariableASaisir;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ReferenceNormalizer;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -411,126 +485,1478 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
-    class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use CheckArray;
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use ValidatorTrait;
+    protected $normalizers = [
+        SalarieSupprimerAbsenceRequest::class => SalarieSupprimerAbsenceRequestNormalizer::class,
+
+        ApiErrors::class => ApiErrorsNormalizer::class,
+
+        ApiError::class => ApiErrorNormalizer::class,
+
+        SalarieAjouterAbsenceRequest::class => SalarieAjouterAbsenceRequestNormalizer::class,
+
+        SalarieAbsenceV2::class => SalarieAbsenceV2Normalizer::class,
+
+        SalarieAjouterAbsenceV2Request::class => SalarieAjouterAbsenceV2RequestNormalizer::class,
+
+        SalarieAbsenceV3::class => SalarieAbsenceV3Normalizer::class,
+
+        SalarieModifierAbsenceRequest::class => SalarieModifierAbsenceRequestNormalizer::class,
+
+        SalarieModifierAbsenceV2Request::class => SalarieModifierAbsenceV2RequestNormalizer::class,
+
+        SalarieAbsencesRequest::class => SalarieAbsencesRequestNormalizer::class,
+
+        RequeteSalarieAbsences::class => RequeteSalarieAbsencesNormalizer::class,
+
+        SalarieAbsencesResponse::class => SalarieAbsencesResponseNormalizer::class,
+
+        SalarieAbsence::class => SalarieAbsenceNormalizer::class,
+
+        SalarieAjouterHeuresRequest::class => SalarieAjouterHeuresRequestNormalizer::class,
+
+        SalarieHeures::class => SalarieHeuresNormalizer::class,
+
+        SalarieAjouterHeuresSurEmploiRequest::class => SalarieAjouterHeuresSurEmploiRequestNormalizer::class,
+
+        SalarieAjouterActiviteJournaliereRequest::class => SalarieAjouterActiviteJournaliereRequestNormalizer::class,
+
+        SalarieActiviteJournalierePeriode::class => SalarieActiviteJournalierePeriodeNormalizer::class,
+
+        SalarieActiviteJournaliere::class => SalarieActiviteJournaliereNormalizer::class,
+
+        SalarieActiviteJournaliereRequest::class => SalarieActiviteJournaliereRequestNormalizer::class,
+
+        SalarieActiviteJournaliereResponse::class => SalarieActiviteJournaliereResponseNormalizer::class,
+
+        SalarieActiviteJournalierePeriodeSaisie::class => SalarieActiviteJournalierePeriodeSaisieNormalizer::class,
+
+        SalarieActiviteJournaliereSaisie::class => SalarieActiviteJournaliereSaisieNormalizer::class,
+
+        SalarieAjouterActiviteJournaliereSurEmploiRequest::class => SalarieAjouterActiviteJournaliereSurEmploiRequestNormalizer::class,
+
+        SalarieAjouterHeuresNativesRequest::class => SalarieAjouterHeuresNativesRequestNormalizer::class,
+
+        SalarieAjouterHeuresNativesSurEmploiRequest::class => SalarieAjouterHeuresNativesSurEmploiRequestNormalizer::class,
+
+        SalarieReinitialiserSaisiesRequest::class => SalarieReinitialiserSaisiesRequestNormalizer::class,
+
+        SalarieReinitialisationSaisies::class => SalarieReinitialisationSaisiesNormalizer::class,
+
+        SalarieReinitialiserSaisiesResponse::class => SalarieReinitialiserSaisiesResponseNormalizer::class,
+
+        ListeAgencesResponse::class => ListeAgencesResponseNormalizer::class,
+
+        Agence::class => AgenceNormalizer::class,
+
+        ListeDossiersAgenceRequest::class => ListeDossiersAgenceRequestNormalizer::class,
+
+        ListeDossiersAgenceResponse::class => ListeDossiersAgenceResponseNormalizer::class,
+
+        DossierAgence::class => DossierAgenceNormalizer::class,
+
+        LectureFicheAgenceRequest::class => LectureFicheAgenceRequestNormalizer::class,
+
+        AgenceDetail::class => AgenceDetailNormalizer::class,
+
+        AffectationDossierPaieRequest::class => AffectationDossierPaieRequestNormalizer::class,
+
+        DossierRequest::class => DossierRequestNormalizer::class,
+
+        AffectationDossierPaieLectureResponse::class => AffectationDossierPaieLectureResponseNormalizer::class,
+
+        AdministrationCollaborateurLectureRequest::class => AdministrationCollaborateurLectureRequestNormalizer::class,
+
+        UtilisateurCollaborateur::class => UtilisateurCollaborateurNormalizer::class,
+
+        AdministrationCollaborateurLectureParIdentifiantRequest::class => AdministrationCollaborateurLectureParIdentifiantRequestNormalizer::class,
+
+        AdministrationCollaborateurEnregistrementRequest::class => AdministrationCollaborateurEnregistrementRequestNormalizer::class,
+
+        ModificationDroitsFonctionnelsProductionPaieRequest::class => ModificationDroitsFonctionnelsProductionPaieRequestNormalizer::class,
+
+        OngletProduction::class => OngletProductionNormalizer::class,
+
+        LectureCompteCollaborateurRequest::class => LectureCompteCollaborateurRequestNormalizer::class,
+
+        CompteCollaborateur::class => CompteCollaborateurNormalizer::class,
+
+        CompteCollaborateurRoles::class => CompteCollaborateurRolesNormalizer::class,
+
+        CompteCollaborateurDroits::class => CompteCollaborateurDroitsNormalizer::class,
+
+        CompteCollaborateurHorairesAcces::class => CompteCollaborateurHorairesAccesNormalizer::class,
+
+        CompteCollaborateurDroitsUtilisateur::class => CompteCollaborateurDroitsUtilisateurNormalizer::class,
+
+        CompteCollaborateurHoraireAccesParJour::class => CompteCollaborateurHoraireAccesParJourNormalizer::class,
+
+        LectureCompteCollaborateurModelesResponse::class => LectureCompteCollaborateurModelesResponseNormalizer::class,
+
+        CollaborateurModele::class => CollaborateurModeleNormalizer::class,
+
+        CreationCompteCollaborateurRequest::class => CreationCompteCollaborateurRequestNormalizer::class,
+
+        CreationCompteCollaborateurDepuisModeleRequest::class => CreationCompteCollaborateurDepuisModeleRequestNormalizer::class,
+
+        CompteCollaborateurDepuisModele::class => CompteCollaborateurDepuisModeleNormalizer::class,
+
+        AppliquerModeleCollaborateurRequest::class => AppliquerModeleCollaborateurRequestNormalizer::class,
+
+        AffecterCleDossierRequest::class => AffecterCleDossierRequestNormalizer::class,
+
+        GererEtatDossierPaieRequest::class => GererEtatDossierPaieRequestNormalizer::class,
+
+        GererEtatRobotDePaieRequest::class => GererEtatRobotDePaieRequestNormalizer::class,
+
+        GererCycleDePaieRequest::class => GererCycleDePaieRequestNormalizer::class,
+
+        DossierTache::class => DossierTacheNormalizer::class,
+
+        ListeDossiersDemoSilaeResponse::class => ListeDossiersDemoSilaeResponseNormalizer::class,
+
+        DossierDemoSilae::class => DossierDemoSilaeNormalizer::class,
+
+        ImportDossierDemoRequest::class => ImportDossierDemoRequestNormalizer::class,
+
+        AffectationsDossier::class => AffectationsDossierNormalizer::class,
+
+        TraitementAsynchroneResponse::class => TraitementAsynchroneResponseNormalizer::class,
+
+        StatutAsynchroneResponse::class => StatutAsynchroneResponseNormalizer::class,
+
+        AnalyseConfigurationAccesApiRequest::class => AnalyseConfigurationAccesApiRequestNormalizer::class,
+
+        AnalyseConfigurationAccesApiResponse::class => AnalyseConfigurationAccesApiResponseNormalizer::class,
+
+        ConfigurationAccesApi::class => ConfigurationAccesApiNormalizer::class,
+
+        ConfigurationAccesApiDossier::class => ConfigurationAccesApiDossierNormalizer::class,
+
+        CreationConfigurationAccesApiRequest::class => CreationConfigurationAccesApiRequestNormalizer::class,
+
+        CreationConfigurationAccesApi::class => CreationConfigurationAccesApiNormalizer::class,
+
+        ListeComptesApiResponse::class => ListeComptesApiResponseNormalizer::class,
+
+        CompteApi::class => CompteApiNormalizer::class,
+
+        Domain::class => DomainNormalizer::class,
+
+        Entity::class => EntityNormalizer::class,
+
+        Agency::class => AgencyNormalizer::class,
+
+        AnalyseProductionPaieV2Request::class => AnalyseProductionPaieV2RequestNormalizer::class,
+
+        RequeteAnalyseProductionV2::class => RequeteAnalyseProductionV2Normalizer::class,
+
+        AnalyseProductionPaieResponse::class => AnalyseProductionPaieResponseNormalizer::class,
+
+        StatistiquesV2::class => StatistiquesV2Normalizer::class,
+
+        StatistiquesProductionV2::class => StatistiquesProductionV2Normalizer::class,
+
+        StatistiquesDADS::class => StatistiquesDADSNormalizer::class,
+
+        StatutAnalyseProductionPaieAsynchroneResponse::class => StatutAnalyseProductionPaieAsynchroneResponseNormalizer::class,
+
+        AnalyseProductionPaieBulletinsOriginauxResponse::class => AnalyseProductionPaieBulletinsOriginauxResponseNormalizer::class,
+
+        StatistiquesBulletin::class => StatistiquesBulletinNormalizer::class,
+
+        StatistiquesProductionBulletin::class => StatistiquesProductionBulletinNormalizer::class,
+
+        StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneResponse::class => StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneResponseNormalizer::class,
+
+        AnalyseProductionPaieBulletinsCoffresFortsResponse::class => AnalyseProductionPaieBulletinsCoffresFortsResponseNormalizer::class,
+
+        StatistiquesBulletinCoffreFort::class => StatistiquesBulletinCoffreFortNormalizer::class,
+
+        StatistiquesProductionBulletinCoffreFort::class => StatistiquesProductionBulletinCoffreFortNormalizer::class,
+
+        StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponse::class => StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponseNormalizer::class,
+
+        AnalyseProductionPaieDetailRequest::class => AnalyseProductionPaieDetailRequestNormalizer::class,
+
+        RequeteAnalyseProductionDetail::class => RequeteAnalyseProductionDetailNormalizer::class,
+
+        AnalyseProductionPaieDetailResponse::class => AnalyseProductionPaieDetailResponseNormalizer::class,
+
+        SalarieBase::class => SalarieBaseNormalizer::class,
+
+        AnalyseProductionPaieUtilisateursRequest::class => AnalyseProductionPaieUtilisateursRequestNormalizer::class,
+
+        RequeteAnalyseProduction::class => RequeteAnalyseProductionNormalizer::class,
+
+        AnalyseProductionPaieUtilisateursResponse::class => AnalyseProductionPaieUtilisateursResponseNormalizer::class,
+
+        StatistiquesUtilisateurs::class => StatistiquesUtilisateursNormalizer::class,
+
+        StatistiquesProductionUtilisateur::class => StatistiquesProductionUtilisateurNormalizer::class,
+
+        AnalyseProductionPaieUtilisateursV2Response::class => AnalyseProductionPaieUtilisateursV2ResponseNormalizer::class,
+
+        StatistiquesUtilisateursV2::class => StatistiquesUtilisateursV2Normalizer::class,
+
+        StatistiquesProductionUtilisateurV2::class => StatistiquesProductionUtilisateurV2Normalizer::class,
+
+        StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse::class => StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponseNormalizer::class,
+
+        AnalyseProductionPaieEffectifsRequest::class => AnalyseProductionPaieEffectifsRequestNormalizer::class,
+
+        AnalyseProductionPaieEffectifsResponse::class => AnalyseProductionPaieEffectifsResponseNormalizer::class,
+
+        AnalyseEffectifs::class => AnalyseEffectifsNormalizer::class,
+
+        StatutAnalyseProductionPaieEffectifsAsynchroneResponse::class => StatutAnalyseProductionPaieEffectifsAsynchroneResponseNormalizer::class,
+
+        AnalyseProductionPaieEntreesSortiesRequest::class => AnalyseProductionPaieEntreesSortiesRequestNormalizer::class,
+
+        AnalyseProductionPaieEntreesSortiesResponse::class => AnalyseProductionPaieEntreesSortiesResponseNormalizer::class,
+
+        StatistiquesEntreesSorties::class => StatistiquesEntreesSortiesNormalizer::class,
+
+        StatistiquesEntreesSortiesDetails::class => StatistiquesEntreesSortiesDetailsNormalizer::class,
+
+        StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse::class => StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponseNormalizer::class,
+
+        BureautiquePaieNombreDocumentsCreesRequest::class => BureautiquePaieNombreDocumentsCreesRequestNormalizer::class,
+
+        BureautiquePaieNombreDocumentsCreesResponse::class => BureautiquePaieNombreDocumentsCreesResponseNormalizer::class,
+
+        StatistiquesBureautique::class => StatistiquesBureautiqueNormalizer::class,
+
+        ListeModulesActifsResponse::class => ListeModulesActifsResponseNormalizer::class,
+
+        ModulesActifsParDossier::class => ModulesActifsParDossierNormalizer::class,
+
+        ModuleActifParDossier::class => ModuleActifParDossierNormalizer::class,
+
+        ListeModulesMySilaeResponse::class => ListeModulesMySilaeResponseNormalizer::class,
+
+        ModulesMySilaeParDossier::class => ModulesMySilaeParDossierNormalizer::class,
+
+        ModuleMySilaeParDossier::class => ModuleMySilaeParDossierNormalizer::class,
+
+        LectureAxesAnalytiquesResponse::class => LectureAxesAnalytiquesResponseNormalizer::class,
+
+        AxeAnalytique::class => AxeAnalytiqueNormalizer::class,
+
+        SousCategorie::class => SousCategorieNormalizer::class,
+
+        AjoutSousCategorieAxeAnalytiqueRequest::class => AjoutSousCategorieAxeAnalytiqueRequestNormalizer::class,
+
+        LectureAxesAnalytiquesSalariesRequest::class => LectureAxesAnalytiquesSalariesRequestNormalizer::class,
+
+        LectureAxesAnalytiquesSalariesResponse::class => LectureAxesAnalytiquesSalariesResponseNormalizer::class,
+
+        AxesAnalytiqueSalarie::class => AxesAnalytiqueSalarieNormalizer::class,
+
+        DonneesAxeAnalytiqueSalarie::class => DonneesAxeAnalytiqueSalarieNormalizer::class,
+
+        SousCategoriesEnPC::class => SousCategoriesEnPCNormalizer::class,
+
+        SalarieEmploiClassificationMetierRequest::class => SalarieEmploiClassificationMetierRequestNormalizer::class,
+
+        EmploiClassificationMetier::class => EmploiClassificationMetierNormalizer::class,
+
+        ClassificationMetierCompleteRequest::class => ClassificationMetierCompleteRequestNormalizer::class,
+
+        ClassificationMetierCompleteResponse::class => ClassificationMetierCompleteResponseNormalizer::class,
+
+        AjouteCompteRenduEdiRequest::class => AjouteCompteRenduEdiRequestNormalizer::class,
+
+        AjouteCompteRenduEdi94Request::class => AjouteCompteRenduEdi94RequestNormalizer::class,
+
+        AjouteCompteRenduEdi94Response::class => AjouteCompteRenduEdi94ResponseNormalizer::class,
+
+        CreationEmetteurDSNRequest::class => CreationEmetteurDSNRequestNormalizer::class,
+
+        EmetteurDSN::class => EmetteurDSNNormalizer::class,
+
+        LectureContactEmetteurDSNRequest::class => LectureContactEmetteurDSNRequestNormalizer::class,
+
+        LectureContactEmetteurDSNResponse::class => LectureContactEmetteurDSNResponseNormalizer::class,
+
+        LectureContactEmetteurDSN::class => LectureContactEmetteurDSNNormalizer::class,
+
+        ImportXmlParametrageOrganismeDSNRequest::class => ImportXmlParametrageOrganismeDSNRequestNormalizer::class,
+
+        ImportXmlParametrageOrganismeDSNResponse::class => ImportXmlParametrageOrganismeDSNResponseNormalizer::class,
+
+        InitialisationAncienNumeroContratDSNRequest::class => InitialisationAncienNumeroContratDSNRequestNormalizer::class,
+
+        InitialisationAncienNumeroContratDSN::class => InitialisationAncienNumeroContratDSNNormalizer::class,
+
+        ActivationDSNRequest::class => ActivationDSNRequestNormalizer::class,
+
+        ActivationDSN::class => ActivationDSNNormalizer::class,
+
+        ValideCleDossierRequest::class => ValideCleDossierRequestNormalizer::class,
+
+        CreationUtilisateurClientPaieRequest::class => CreationUtilisateurClientPaieRequestNormalizer::class,
+
+        UtilisateurClient::class => UtilisateurClientNormalizer::class,
+
+        ListeUtilisateursDossierPaieResponse::class => ListeUtilisateursDossierPaieResponseNormalizer::class,
+
+        ListeUtilisateursDossierPaieV2Response::class => ListeUtilisateursDossierPaieV2ResponseNormalizer::class,
+
+        ContactInformations::class => ContactInformationsNormalizer::class,
+
+        AcquisitionQuestionnaireContratComplementaireRequest::class => AcquisitionQuestionnaireContratComplementaireRequestNormalizer::class,
+
+        AcquisitionQuestionnaireContratComplementaireResponse::class => AcquisitionQuestionnaireContratComplementaireResponseNormalizer::class,
+
+        QuestionnaireContratComplementaire::class => QuestionnaireContratComplementaireNormalizer::class,
+
+        LibelleValeurComplete::class => LibelleValeurCompleteNormalizer::class,
+
+        CreationQuestionnaireContratComplementaireRequest::class => CreationQuestionnaireContratComplementaireRequestNormalizer::class,
+
+        ControlerBulletinsPeriodeRequest::class => ControlerBulletinsPeriodeRequestNormalizer::class,
+
+        ControlerBulletinsPeriodeResponse::class => ControlerBulletinsPeriodeResponseNormalizer::class,
+
+        CreationDossierPaieRequest::class => CreationDossierPaieRequestNormalizer::class,
+
+        Dossier::class => DossierNormalizer::class,
+
+        Etablissement::class => EtablissementNormalizer::class,
+
+        CreationDossierPaieResponse::class => CreationDossierPaieResponseNormalizer::class,
+
+        ImportFichierDSNRequest::class => ImportFichierDSNRequestNormalizer::class,
+
+        RetourImportDSN::class => RetourImportDSNNormalizer::class,
+
+        CreationDossierParImportFichierDSNRequest::class => CreationDossierParImportFichierDSNRequestNormalizer::class,
+
+        SalarieInitialiserCumulsRequest::class => SalarieInitialiserCumulsRequestNormalizer::class,
+
+        SalarieCumuls::class => SalarieCumulsNormalizer::class,
+
+        DossierPeriodeRequest::class => DossierPeriodeRequestNormalizer::class,
+
+        RecupererDeclarationsResponse::class => RecupererDeclarationsResponseNormalizer::class,
+
+        StatutAsynchroneDocumentResponse::class => StatutAsynchroneDocumentResponseNormalizer::class,
+
+        DossierPeriodeRangeRequest::class => DossierPeriodeRangeRequestNormalizer::class,
+
+        EcrituresComptables::class => EcrituresComptablesNormalizer::class,
+
+        EcrituresComptablesLigne::class => EcrituresComptablesLigneNormalizer::class,
+
+        EcrituresComptables2Request::class => EcrituresComptables2RequestNormalizer::class,
+
+        EcrituresComptables3Request::class => EcrituresComptables3RequestNormalizer::class,
+
+        EcrituresComptables4Request::class => EcrituresComptables4RequestNormalizer::class,
+
+        EcrituresComptablesAvecRuptures::class => EcrituresComptablesAvecRupturesNormalizer::class,
+
+        EcrituresComptablesRupture::class => EcrituresComptablesRuptureNormalizer::class,
+
+        EcrituresComptablesLigneRupture::class => EcrituresComptablesLigneRuptureNormalizer::class,
+
+        EcrituresComptablesPaiementSalairesRequest::class => EcrituresComptablesPaiementSalairesRequestNormalizer::class,
+
+        StatutEcrituresComptablesAsynchroneResponse::class => StatutEcrituresComptablesAsynchroneResponseNormalizer::class,
+
+        StatutEcrituresComptables4AsynchroneResponse::class => StatutEcrituresComptables4AsynchroneResponseNormalizer::class,
+
+        RecupererFichiersEcrituresComptablesResponse::class => RecupererFichiersEcrituresComptablesResponseNormalizer::class,
+
+        EcrituresComptablesFichier::class => EcrituresComptablesFichierNormalizer::class,
+
+        StatutRecupererFichiersEcrituresComptablesAsynchroneResponse::class => StatutRecupererFichiersEcrituresComptablesAsynchroneResponseNormalizer::class,
+
+        DossierPeriodePaiementSalairesLotsVirementRequest::class => DossierPeriodePaiementSalairesLotsVirementRequestNormalizer::class,
+
+        EcrituresComptablesPaiementSalairesLotsVirementResponse::class => EcrituresComptablesPaiementSalairesLotsVirementResponseNormalizer::class,
+
+        LotsVirement::class => LotsVirementNormalizer::class,
+
+        SoldeReposRequest::class => SoldeReposRequestNormalizer::class,
+
+        SoldeRepos::class => SoldeReposNormalizer::class,
+
+        SoldeReposSalarie::class => SoldeReposSalarieNormalizer::class,
+
+        StatutSoldeReposResponse::class => StatutSoldeReposResponseNormalizer::class,
+
+        EditionJournalDePaieRequest::class => EditionJournalDePaieRequestNormalizer::class,
+
+        EditionJournalDePaieResponse::class => EditionJournalDePaieResponseNormalizer::class,
+
+        EditionTableauDesChargesRequest::class => EditionTableauDesChargesRequestNormalizer::class,
+
+        EditionTableauDesChargesResponse::class => EditionTableauDesChargesResponseNormalizer::class,
+
+        EditionEtatDesPaiementsRequest::class => EditionEtatDesPaiementsRequestNormalizer::class,
+
+        EditionEtatDesPaiementsResponse::class => EditionEtatDesPaiementsResponseNormalizer::class,
+
+        EditionRecapDePaieRequest::class => EditionRecapDePaieRequestNormalizer::class,
+
+        EditionRecapDePaieResponse::class => EditionRecapDePaieResponseNormalizer::class,
+
+        EditionRecapDePaieDetailleParSalarieRequest::class => EditionRecapDePaieDetailleParSalarieRequestNormalizer::class,
+
+        EditionRecapDePaieDetailleParSalarieResponse::class => EditionRecapDePaieDetailleParSalarieResponseNormalizer::class,
+
+        EditionSoldeDeReposRequest::class => EditionSoldeDeReposRequestNormalizer::class,
+
+        EditionSoldeDeReposResponse::class => EditionSoldeDeReposResponseNormalizer::class,
+
+        EditionControleCICEResponse::class => EditionControleCICEResponseNormalizer::class,
+
+        EditionDetailDesCotisationsRequest::class => EditionDetailDesCotisationsRequestNormalizer::class,
+
+        EditionDetailDesCotisationsResponse::class => EditionDetailDesCotisationsResponseNormalizer::class,
+
+        EditionCoutsSalariauxRequest::class => EditionCoutsSalariauxRequestNormalizer::class,
+
+        EditionCoutsSalariauxResponse::class => EditionCoutsSalariauxResponseNormalizer::class,
+
+        GenerationFichierTRRequest::class => GenerationFichierTRRequestNormalizer::class,
+
+        GenererFichierTRResponse::class => GenererFichierTRResponseNormalizer::class,
+
+        EditionHistoriqueRequest::class => EditionHistoriqueRequestNormalizer::class,
+
+        EditionHistoriqueResponse::class => EditionHistoriqueResponseNormalizer::class,
+
+        EditionHistoriqueChiffreRequest::class => EditionHistoriqueChiffreRequestNormalizer::class,
+
+        ProprietesChiffrement::class => ProprietesChiffrementNormalizer::class,
+
+        SalarieAjouterPrimeRequest::class => SalarieAjouterPrimeRequestNormalizer::class,
+
+        SalariePrime::class => SalariePrimeNormalizer::class,
+
+        SalarieAjouterPrimeSurEmploiRequest::class => SalarieAjouterPrimeSurEmploiRequestNormalizer::class,
+
+        SalarieAjouterElementVariableRequest::class => SalarieAjouterElementVariableRequestNormalizer::class,
+
+        SalarieElementVariable::class => SalarieElementVariableNormalizer::class,
+
+        SalarieAjouterElementVariableSurEmploiRequest::class => SalarieAjouterElementVariableSurEmploiRequestNormalizer::class,
+
+        SalarieAjouterAcompteRequest::class => SalarieAjouterAcompteRequestNormalizer::class,
+
+        SalarieAcompte::class => SalarieAcompteNormalizer::class,
+
+        SalariesConfirmerSaisiesRequest::class => SalariesConfirmerSaisiesRequestNormalizer::class,
+
+        SalariesConfirmerSaisies::class => SalariesConfirmerSaisiesNormalizer::class,
+
+        SalariesConfirmerSaisiesResponse::class => SalariesConfirmerSaisiesResponseNormalizer::class,
+
+        StatutSalariesConfirmerSaisiesResponse::class => StatutSalariesConfirmerSaisiesResponseNormalizer::class,
+
+        EtatDeclarationsRequest::class => EtatDeclarationsRequestNormalizer::class,
+
+        EtatDeclarationsResponse::class => EtatDeclarationsResponseNormalizer::class,
+
+        EtatDeclaration::class => EtatDeclarationNormalizer::class,
+
+        EtatDeclarationRetour::class => EtatDeclarationRetourNormalizer::class,
+
+        ListeEtablissementsDossierPaieResponse::class => ListeEtablissementsDossierPaieResponseNormalizer::class,
+
+        InformationsEtablissement::class => InformationsEtablissementNormalizer::class,
+
+        EtablissementsAExclureCVAERequest::class => EtablissementsAExclureCVAERequestNormalizer::class,
+
+        EtablissementsAExclureCVAEResponse::class => EtablissementsAExclureCVAEResponseNormalizer::class,
+
+        MiseAJourFicheSocieteRequest::class => MiseAJourFicheSocieteRequestNormalizer::class,
+
+        SocieteInfoSup::class => SocieteInfoSupNormalizer::class,
+
+        MiseAJourFicheEtablissementRequest::class => MiseAJourFicheEtablissementRequestNormalizer::class,
+
+        EtablissementInfoSup::class => EtablissementInfoSupNormalizer::class,
+
+        ModificationEffectifSocieteRequest::class => ModificationEffectifSocieteRequestNormalizer::class,
+
+        EffectifSociete::class => EffectifSocieteNormalizer::class,
+
+        ModificationCCNSocieteRequest::class => ModificationCCNSocieteRequestNormalizer::class,
+
+        CCNSociete::class => CCNSocieteNormalizer::class,
+
+        ModificationEffortConstructionRequest::class => ModificationEffortConstructionRequestNormalizer::class,
+
+        EffortConstruction::class => EffortConstructionNormalizer::class,
+
+        ModificationFNALRequest::class => ModificationFNALRequestNormalizer::class,
+
+        FNAL::class => FNALNormalizer::class,
+
+        ModificationInformationBancaireSocieteRequest::class => ModificationInformationBancaireSocieteRequestNormalizer::class,
+
+        InformationBancaireSociete::class => InformationBancaireSocieteNormalizer::class,
+
+        ModificationTaxeTransportRequest::class => ModificationTaxeTransportRequestNormalizer::class,
+
+        TaxeTransport::class => TaxeTransportNormalizer::class,
+
+        ModificationTaxeApprentissageEtablissementRequest::class => ModificationTaxeApprentissageEtablissementRequestNormalizer::class,
+
+        ModificationTaxeApprentissageEtablissementResponse::class => ModificationTaxeApprentissageEtablissementResponseNormalizer::class,
+
+        TaxeApprentissage::class => TaxeApprentissageNormalizer::class,
+
+        ModificationTaxeApprentissageSocieteRequest::class => ModificationTaxeApprentissageSocieteRequestNormalizer::class,
+
+        ModificationTaxeApprentissageSocieteResponse::class => ModificationTaxeApprentissageSocieteResponseNormalizer::class,
+
+        ModificationCCNEtablissementRequest::class => ModificationCCNEtablissementRequestNormalizer::class,
+
+        ModificationEffectifEtablissementRequest::class => ModificationEffectifEtablissementRequestNormalizer::class,
+
+        EffectifEtablissement::class => EffectifEtablissementNormalizer::class,
+
+        ModificationQuestionnaireCCNEtablissementRequest::class => ModificationQuestionnaireCCNEtablissementRequestNormalizer::class,
+
+        ModificationChampValeursTypees::class => ModificationChampValeursTypeesNormalizer::class,
+
+        ModificationGrilleHoraireEtablissementRequest::class => ModificationGrilleHoraireEtablissementRequestNormalizer::class,
+
+        ModificationHoraireEtablissement::class => ModificationHoraireEtablissementNormalizer::class,
+
+        LectureEffectifSocieteResponse::class => LectureEffectifSocieteResponseNormalizer::class,
+
+        LectureCCNSocieteResponse::class => LectureCCNSocieteResponseNormalizer::class,
+
+        LectureInformationBancaireSocieteResponse::class => LectureInformationBancaireSocieteResponseNormalizer::class,
+
+        LectureTaxeTransportRequest::class => LectureTaxeTransportRequestNormalizer::class,
+
+        LectureTaxeTransportResponse::class => LectureTaxeTransportResponseNormalizer::class,
+
+        LectureTaxeApprentissageSocieteRequest::class => LectureTaxeApprentissageSocieteRequestNormalizer::class,
+
+        LectureTaxeApprentissageSocieteResponse::class => LectureTaxeApprentissageSocieteResponseNormalizer::class,
+
+        LectureTaxeApprentissageEtablissementRequest::class => LectureTaxeApprentissageEtablissementRequestNormalizer::class,
+
+        LectureTaxeApprentissageEtablissementResponse::class => LectureTaxeApprentissageEtablissementResponseNormalizer::class,
+
+        LectureEffectifEtablissementRequest::class => LectureEffectifEtablissementRequestNormalizer::class,
+
+        LectureEffectifEtablissementResponse::class => LectureEffectifEtablissementResponseNormalizer::class,
+
+        DossierMatriculeSalarieRequest::class => DossierMatriculeSalarieRequestNormalizer::class,
+
+        SalarieRecupererDUEResponse::class => SalarieRecupererDUEResponseNormalizer::class,
+
+        SalarieRecupererRecuDPAEResponse::class => SalarieRecupererRecuDPAEResponseNormalizer::class,
+
+        RecupererRecuDPAEResult::class => RecupererRecuDPAEResultNormalizer::class,
+
+        SalarieDUERequest::class => SalarieDUERequestNormalizer::class,
+
+        SalarieDUE::class => SalarieDUENormalizer::class,
+
+        StatutSalariesDUEAsynchroneResponse::class => StatutSalariesDUEAsynchroneResponseNormalizer::class,
+
+        SalariesDUERequest::class => SalariesDUERequestNormalizer::class,
+
+        RequeteSalariesDUE::class => RequeteSalariesDUENormalizer::class,
+
+        SalariesDUEResponse::class => SalariesDUEResponseNormalizer::class,
+
+        RechercheCCNRequest::class => RechercheCCNRequestNormalizer::class,
+
+        CritereRechercheCCN::class => CritereRechercheCCNNormalizer::class,
+
+        RechercheCCNResponse::class => RechercheCCNResponseNormalizer::class,
+
+        CCN::class => CCNNormalizer::class,
+
+        RechercheCCNParCodeRequest::class => RechercheCCNParCodeRequestNormalizer::class,
+
+        SalarieBulletinEnteteRequest::class => SalarieBulletinEnteteRequestNormalizer::class,
+
+        RequeteSalarieBulletinEntete::class => RequeteSalarieBulletinEnteteNormalizer::class,
+
+        SalarieBulletinEnteteResult::class => SalarieBulletinEnteteResultNormalizer::class,
+
+        SalarieBulletinsIndicesRequest::class => SalarieBulletinsIndicesRequestNormalizer::class,
+
+        RequeteSalarieBulletinIndices::class => RequeteSalarieBulletinIndicesNormalizer::class,
+
+        SalarieBulletinsIndicesResponse::class => SalarieBulletinsIndicesResponseNormalizer::class,
+
+        SalarieBulletinsIndicesResult::class => SalarieBulletinsIndicesResultNormalizer::class,
+
+        SalarieBulletinIndiceResult::class => SalarieBulletinIndiceResultNormalizer::class,
+
+        SalarieBulletinLignesRequest::class => SalarieBulletinLignesRequestNormalizer::class,
+
+        RequeteSalarieBulletinLignes::class => RequeteSalarieBulletinLignesNormalizer::class,
+
+        SalarieBulletinLignesResult::class => SalarieBulletinLignesResultNormalizer::class,
+
+        LigneBulletin::class => LigneBulletinNormalizer::class,
+
+        SalarieBulletinLignesSelonFiltresRequest::class => SalarieBulletinLignesSelonFiltresRequestNormalizer::class,
+
+        RequeteSalarieBulletinLignesFiltres::class => RequeteSalarieBulletinLignesFiltresNormalizer::class,
+
+        SalarieBulletinDetailsRequest::class => SalarieBulletinDetailsRequestNormalizer::class,
+
+        RequeteSalarieBulletinDetails::class => RequeteSalarieBulletinDetailsNormalizer::class,
+
+        SalarieBulletinDetailsResult::class => SalarieBulletinDetailsResultNormalizer::class,
+
+        SalarieBulletinResult::class => SalarieBulletinResultNormalizer::class,
+
+        SalarieBulletinEnteteSimpleResult::class => SalarieBulletinEnteteSimpleResultNormalizer::class,
+
+        SalarieBulletinStatutEtatAvancementRequest::class => SalarieBulletinStatutEtatAvancementRequestNormalizer::class,
+
+        SalarieBulletinStatutEtatAvancementResponse::class => SalarieBulletinStatutEtatAvancementResponseNormalizer::class,
+
+        SalarieBulletinStatutEtatAvancementReponse::class => SalarieBulletinStatutEtatAvancementReponseNormalizer::class,
+
+        SalarieBulletinCumulsRequest::class => SalarieBulletinCumulsRequestNormalizer::class,
+
+        SalarieBulletinCumulsResult::class => SalarieBulletinCumulsResultNormalizer::class,
+
+        SalariesStockVarRequest::class => SalariesStockVarRequestNormalizer::class,
+
+        RequeteSalariesStockVar::class => RequeteSalariesStockVarNormalizer::class,
+
+        SalariesStockVarResponse::class => SalariesStockVarResponseNormalizer::class,
+
+        SalarieStockVarResult::class => SalarieStockVarResultNormalizer::class,
+
+        ListeDSNMensuellesResponse::class => ListeDSNMensuellesResponseNormalizer::class,
+
+        DSNMensuelle::class => DSNMensuelleNormalizer::class,
+
+        AcquisitionContenuPartielDSNRequest::class => AcquisitionContenuPartielDSNRequestNormalizer::class,
+
+        AcquisitionContenuPartielDSNResponse::class => AcquisitionContenuPartielDSNResponseNormalizer::class,
+
+        RechercheDeclarationEvenementielleRequest::class => RechercheDeclarationEvenementielleRequestNormalizer::class,
+
+        RechercheDeclarationEvenementielleResponse::class => RechercheDeclarationEvenementielleResponseNormalizer::class,
+
+        DeclarationEvenementielle::class => DeclarationEvenementielleNormalizer::class,
+
+        ListeDSNEvenementiellesRequest::class => ListeDSNEvenementiellesRequestNormalizer::class,
+
+        ListeDSNEvenementiellesResponse::class => ListeDSNEvenementiellesResponseNormalizer::class,
+
+        ListeDeclarationEvenementielle::class => ListeDeclarationEvenementielleNormalizer::class,
+
+        SalarieRecupererPeriodeDernierBulletinCalculeResponse::class => SalarieRecupererPeriodeDernierBulletinCalculeResponseNormalizer::class,
+
+        LectureInformationsPaieRequest::class => LectureInformationsPaieRequestNormalizer::class,
+
+        RequeteLectureInfos::class => RequeteLectureInfosNormalizer::class,
+
+        LectureInformationsPaieResponse::class => LectureInformationsPaieResponseNormalizer::class,
+
+        LectureInfosResult::class => LectureInfosResultNormalizer::class,
+
+        HistoriqueDesModificationsRequest::class => HistoriqueDesModificationsRequestNormalizer::class,
+
+        HistoriqueDesModificationsResponse::class => HistoriqueDesModificationsResponseNormalizer::class,
+
+        HistoriqueModification::class => HistoriqueModificationNormalizer::class,
+
+        SalariesBulletinsRequest::class => SalariesBulletinsRequestNormalizer::class,
+
+        RequeteSalariesBulletins::class => RequeteSalariesBulletinsNormalizer::class,
+
+        SalariesBulletinsResponse::class => SalariesBulletinsResponseNormalizer::class,
+
+        SalarieBulletinsResult::class => SalarieBulletinsResultNormalizer::class,
+
+        StatutSalariesBulletinsResponse::class => StatutSalariesBulletinsResponseNormalizer::class,
+
+        ListeSalariesRequest::class => ListeSalariesRequestNormalizer::class,
+
+        ListeSalariesOptions::class => ListeSalariesOptionsNormalizer::class,
+
+        ListeSalariesResponse::class => ListeSalariesResponseNormalizer::class,
+
+        SalarieInformationsV3::class => SalarieInformationsV3Normalizer::class,
+
+        ListeSalariesExternesRequest::class => ListeSalariesExternesRequestNormalizer::class,
+
+        ListeSalariesExternesResponse::class => ListeSalariesExternesResponseNormalizer::class,
+
+        SalarieSalaireDeBaseRequest::class => SalarieSalaireDeBaseRequestNormalizer::class,
+
+        SalarieSalaireDeBaseResult::class => SalarieSalaireDeBaseResultNormalizer::class,
+
+        SalarieSyntheseCarriereResponse::class => SalarieSyntheseCarriereResponseNormalizer::class,
+
+        SalarieElementCarriere::class => SalarieElementCarriereNormalizer::class,
+
+        StatutSalarieSyntheseCarriereResponse::class => StatutSalarieSyntheseCarriereResponseNormalizer::class,
+
+        DossierMatriculeRequest::class => DossierMatriculeRequestNormalizer::class,
+
+        LecturePersonnesLieesResponse::class => LecturePersonnesLieesResponseNormalizer::class,
+
+        PersonneLiee::class => PersonneLieeNormalizer::class,
+
+        LectureHandicapResponse::class => LectureHandicapResponseNormalizer::class,
+
+        Handicap::class => HandicapNormalizer::class,
+
+        LectureSalarieProtegeResponse::class => LectureSalarieProtegeResponseNormalizer::class,
+
+        SalarieProtege::class => SalarieProtegeNormalizer::class,
+
+        LectureSaisieArretResponse::class => LectureSaisieArretResponseNormalizer::class,
+
+        SaisieArret::class => SaisieArretNormalizer::class,
+
+        LectureReponsesQuestionnaireFicheSalarieResponse::class => LectureReponsesQuestionnaireFicheSalarieResponseNormalizer::class,
+
+        QReponse::class => QReponseNormalizer::class,
+
+        LibelleValeur::class => LibelleValeurNormalizer::class,
+
+        ListeInformationsDossiersPaieRequest::class => ListeInformationsDossiersPaieRequestNormalizer::class,
+
+        ListeNumerosDossiersResponse::class => ListeNumerosDossiersResponseNormalizer::class,
+
+        ListeDossiersRequest::class => ListeDossiersRequestNormalizer::class,
+
+        ListeDossiersResponse::class => ListeDossiersResponseNormalizer::class,
+
+        ProprietesDossier::class => ProprietesDossierNormalizer::class,
+
+        ListeInformationsDossiersPaieResponse::class => ListeInformationsDossiersPaieResponseNormalizer::class,
+
+        InformationsDossier::class => InformationsDossierNormalizer::class,
+
+        DossierRecupererPeriodeEnCoursResponse::class => DossierRecupererPeriodeEnCoursResponseNormalizer::class,
+
+        MatriculeSalarieRequest::class => MatriculeSalarieRequestNormalizer::class,
+
+        MatriculeSalarieResponse::class => MatriculeSalarieResponseNormalizer::class,
+
+        ListeMatriculesDupliquesRequest::class => ListeMatriculesDupliquesRequestNormalizer::class,
+
+        ListeMatriculesDupliquesResponse::class => ListeMatriculesDupliquesResponseNormalizer::class,
+
+        ListeMatriculesDupliquesDansDomaineResponse::class => ListeMatriculesDupliquesDansDomaineResponseNormalizer::class,
+
+        CoupleDossierMatricule::class => CoupleDossierMatriculeNormalizer::class,
+
+        ExistenceMatriculeRequest::class => ExistenceMatriculeRequestNormalizer::class,
+
+        ExistenceMatriculeResponse::class => ExistenceMatriculeResponseNormalizer::class,
+
+        ExtraListeManifestationsRequest::class => ExtraListeManifestationsRequestNormalizer::class,
+
+        ExtraListeManifestationsResponse::class => ExtraListeManifestationsResponseNormalizer::class,
+
+        ExtraManifestation::class => ExtraManifestationNormalizer::class,
+
+        ExtraCreationManifestationRequest::class => ExtraCreationManifestationRequestNormalizer::class,
+
+        ExtraSalarieAcquisitionVacationsRequest::class => ExtraSalarieAcquisitionVacationsRequestNormalizer::class,
+
+        RequeteExtraSalarieVacations::class => RequeteExtraSalarieVacationsNormalizer::class,
+
+        ExtraSalarieVacations::class => ExtraSalarieVacationsNormalizer::class,
+
+        ExtraSalarieVacation::class => ExtraSalarieVacationNormalizer::class,
+
+        ExtraSalarieAjouterVacationsRequest::class => ExtraSalarieAjouterVacationsRequestNormalizer::class,
+
+        ExtraSalarieReinitialiserVacationsRequest::class => ExtraSalarieReinitialiserVacationsRequestNormalizer::class,
+
+        ExtraSalarieReinitialiserVacationsResponse::class => ExtraSalarieReinitialiserVacationsResponseNormalizer::class,
+
+        ExtraSalarieCalculerBulletinRequest::class => ExtraSalarieCalculerBulletinRequestNormalizer::class,
+
+        SpectacleListeRequest::class => SpectacleListeRequestNormalizer::class,
+
+        SpectacleListeResponse::class => SpectacleListeResponseNormalizer::class,
+
+        Spectacle::class => SpectacleNormalizer::class,
+
+        SpectacleCreationRequest::class => SpectacleCreationRequestNormalizer::class,
+
+        SpectacleSalarieAcquisitionAffectationsRequest::class => SpectacleSalarieAcquisitionAffectationsRequestNormalizer::class,
+
+        RequeteSpectacleSalarieAffectations::class => RequeteSpectacleSalarieAffectationsNormalizer::class,
+
+        SpectacleSalarieAffectations::class => SpectacleSalarieAffectationsNormalizer::class,
+
+        SpectacleSalarieAffectation::class => SpectacleSalarieAffectationNormalizer::class,
+
+        SpectacleSalarieAjouterAffectationsRequest::class => SpectacleSalarieAjouterAffectationsRequestNormalizer::class,
+
+        SpectacleSalarieReinitialiserAffectationsRequest::class => SpectacleSalarieReinitialiserAffectationsRequestNormalizer::class,
+
+        SpectacleSalarieReinitialiserAffectationsResponse::class => SpectacleSalarieReinitialiserAffectationsResponseNormalizer::class,
+
+        SpectacleSalarieCalculerBulletinRequest::class => SpectacleSalarieCalculerBulletinRequestNormalizer::class,
+
+        CreationOrganismeRequest::class => CreationOrganismeRequestNormalizer::class,
+
+        Organisme::class => OrganismeNormalizer::class,
+
+        ListeOrganismesRequest::class => ListeOrganismesRequestNormalizer::class,
+
+        ListeOrganismesResponse::class => ListeOrganismesResponseNormalizer::class,
+
+        RecupererFichiersVirementRequest::class => RecupererFichiersVirementRequestNormalizer::class,
+
+        RecupererFichiersVirementResponse::class => RecupererFichiersVirementResponseNormalizer::class,
+
+        BilanMatricules::class => BilanMatriculesNormalizer::class,
+
+        RecupererFichierVirementResult::class => RecupererFichierVirementResultNormalizer::class,
+
+        RecupererFichiersVirementChiffresRequest::class => RecupererFichiersVirementChiffresRequestNormalizer::class,
+
+        RecupererFichiersVirementHorsBulletinRequest::class => RecupererFichiersVirementHorsBulletinRequestNormalizer::class,
+
+        RecupererFichiersVirementHorsBulletinChiffresRequest::class => RecupererFichiersVirementHorsBulletinChiffresRequestNormalizer::class,
+
+        AcquisitionQuestionnaireCCNRequest::class => AcquisitionQuestionnaireCCNRequestNormalizer::class,
+
+        AcquisitionQuestionnaireCCNResponse::class => AcquisitionQuestionnaireCCNResponseNormalizer::class,
+
+        QCCN::class => QCCNNormalizer::class,
+
+        LectureReponsesQuestionnaireConventionnelSalarieRequest::class => LectureReponsesQuestionnaireConventionnelSalarieRequestNormalizer::class,
+
+        LectureReponsesQuestionnaireConventionnelSalarieResponse::class => LectureReponsesQuestionnaireConventionnelSalarieResponseNormalizer::class,
+
+        QCCNReponses::class => QCCNReponsesNormalizer::class,
+
+        EcritureReponsesQuestionnaireConventionnelSalarieRequest::class => EcritureReponsesQuestionnaireConventionnelSalarieRequestNormalizer::class,
+
+        QCCNReponsesSimple::class => QCCNReponsesSimpleNormalizer::class,
+
+        QReponseSimple::class => QReponseSimpleNormalizer::class,
+
+        SimpleMessageResponse::class => SimpleMessageResponseNormalizer::class,
+
+        RecupererImageRequest::class => RecupererImageRequestNormalizer::class,
+
+        RecupererImageResponse::class => RecupererImageResponseNormalizer::class,
+
+        ImageAnnexe::class => ImageAnnexeNormalizer::class,
+
+        StatutRecupererImageAsynchroneResponse::class => StatutRecupererImageAsynchroneResponseNormalizer::class,
+
+        RecupererDuplicatasBulletinsRequest::class => RecupererDuplicatasBulletinsRequestNormalizer::class,
+
+        RecupererDuplicatasBulletinsResponse::class => RecupererDuplicatasBulletinsResponseNormalizer::class,
+
+        CreationSalarieEmploisRequest::class => CreationSalarieEmploisRequestNormalizer::class,
+
+        SalarieEmplois::class => SalarieEmploisNormalizer::class,
+
+        Emploi::class => EmploiNormalizer::class,
+
+        CreationSalarieEmploisResponse::class => CreationSalarieEmploisResponseNormalizer::class,
+
+        CreationSalarieEmploiResult::class => CreationSalarieEmploiResultNormalizer::class,
+
+        StatutCreationSalarieEmploisAsynchroneResponse::class => StatutCreationSalarieEmploisAsynchroneResponseNormalizer::class,
+
+        ListeSalarieEmploisRequest::class => ListeSalarieEmploisRequestNormalizer::class,
+
+        ListeSalarieEmploisResponse::class => ListeSalarieEmploisResponseNormalizer::class,
+
+        SalarieEmploiInformations::class => SalarieEmploiInformationsNormalizer::class,
+
+        ListeSalarieEmploisExternesResponse::class => ListeSalarieEmploisExternesResponseNormalizer::class,
+
+        SalarieEmploiExterneInformations::class => SalarieEmploiExterneInformationsNormalizer::class,
+
+        ModificationChampSalarieRequest::class => ModificationChampSalarieRequestNormalizer::class,
+
+        ModificationChamp::class => ModificationChampNormalizer::class,
+
+        ModificationAxesAnalytiquesSalarieRequest::class => ModificationAxesAnalytiquesSalarieRequestNormalizer::class,
+
+        ModificationPersonnesLieesRequest::class => ModificationPersonnesLieesRequestNormalizer::class,
+
+        PersonneLieeV2::class => PersonneLieeV2Normalizer::class,
+
+        ModificationHandicapRequest::class => ModificationHandicapRequestNormalizer::class,
+
+        ModificationSalarieProtegeRequest::class => ModificationSalarieProtegeRequestNormalizer::class,
+
+        ModificationSaisieArretRequest::class => ModificationSaisieArretRequestNormalizer::class,
+
+        LectureQuestionnaireContratComplementaireRequest::class => LectureQuestionnaireContratComplementaireRequestNormalizer::class,
+
+        LectureQuestionnaireContratComplementaireResponse::class => LectureQuestionnaireContratComplementaireResponseNormalizer::class,
+
+        LectureChampLibelle::class => LectureChampLibelleNormalizer::class,
+
+        ModificationQuestionnaireContratComplementaireRequest::class => ModificationQuestionnaireContratComplementaireRequestNormalizer::class,
+
+        ModificationChampByte::class => ModificationChampByteNormalizer::class,
+
+        ModificationGrilleHoraireSalarieRequest::class => ModificationGrilleHoraireSalarieRequestNormalizer::class,
+
+        ModificationHoraireSalarie::class => ModificationHoraireSalarieNormalizer::class,
+
+        LectureGrilleHoraireFicheSalarieRequest::class => LectureGrilleHoraireFicheSalarieRequestNormalizer::class,
+
+        LectureGrilleHoraireFicheSalarieResponse::class => LectureGrilleHoraireFicheSalarieResponseNormalizer::class,
+
+        LectureHoraireSalarie::class => LectureHoraireSalarieNormalizer::class,
+
+        EcritureReponsesQuestionnaireFicheSalarieRequest::class => EcritureReponsesQuestionnaireFicheSalarieRequestNormalizer::class,
+
+        SiteGenereMotDePasseAlternatifRequest::class => SiteGenereMotDePasseAlternatifRequestNormalizer::class,
+
+        SiteGenereMotDePasseAlternatifResponse::class => SiteGenereMotDePasseAlternatifResponseNormalizer::class,
+
+        ListeVariablesASaisirResponse::class => ListeVariablesASaisirResponseNormalizer::class,
+
+        VariableASaisir::class => VariableASaisirNormalizer::class,
+
+        Reference::class => ReferenceNormalizer::class,
+    ];
+    protected $normalizersCache = [];
+
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
-        protected $normalizers = [SalarieSupprimerAbsenceRequest::class => SalarieSupprimerAbsenceRequestNormalizer::class, ApiErrors::class => ApiErrorsNormalizer::class, ApiError::class => ApiErrorNormalizer::class, SalarieAjouterAbsenceRequest::class => SalarieAjouterAbsenceRequestNormalizer::class, SalarieAbsenceV2::class => SalarieAbsenceV2Normalizer::class, SalarieModifierAbsenceRequest::class => SalarieModifierAbsenceRequestNormalizer::class, SalarieAbsencesRequest::class => SalarieAbsencesRequestNormalizer::class, RequeteSalarieAbsences::class => RequeteSalarieAbsencesNormalizer::class, SalarieAbsencesResponse::class => SalarieAbsencesResponseNormalizer::class, SalarieAbsence::class => SalarieAbsenceNormalizer::class, SalarieAjouterHeuresRequest::class => SalarieAjouterHeuresRequestNormalizer::class, SalarieHeures::class => SalarieHeuresNormalizer::class, SalarieAjouterHeuresSurEmploiRequest::class => SalarieAjouterHeuresSurEmploiRequestNormalizer::class, SalarieAjouterActiviteJournaliereRequest::class => SalarieAjouterActiviteJournaliereRequestNormalizer::class, SalarieActiviteJournalierePeriode::class => SalarieActiviteJournalierePeriodeNormalizer::class, SalarieActiviteJournaliere::class => SalarieActiviteJournaliereNormalizer::class, SalarieAjouterActiviteJournaliereSurEmploiRequest::class => SalarieAjouterActiviteJournaliereSurEmploiRequestNormalizer::class, SalarieAjouterHeuresNativesRequest::class => SalarieAjouterHeuresNativesRequestNormalizer::class, SalarieAjouterHeuresNativesSurEmploiRequest::class => SalarieAjouterHeuresNativesSurEmploiRequestNormalizer::class, SalarieReinitialiserSaisiesRequest::class => SalarieReinitialiserSaisiesRequestNormalizer::class, SalarieReinitialisationSaisies::class => SalarieReinitialisationSaisiesNormalizer::class, SalarieReinitialiserSaisiesResponse::class => SalarieReinitialiserSaisiesResponseNormalizer::class, ListeAgencesResponse::class => ListeAgencesResponseNormalizer::class, Agence::class => AgenceNormalizer::class, ListeDossiersAgenceRequest::class => ListeDossiersAgenceRequestNormalizer::class, ListeDossiersAgenceResponse::class => ListeDossiersAgenceResponseNormalizer::class, DossierAgence::class => DossierAgenceNormalizer::class, LectureFicheAgenceRequest::class => LectureFicheAgenceRequestNormalizer::class, AgenceDetail::class => AgenceDetailNormalizer::class, AffectationDossierPaieRequest::class => AffectationDossierPaieRequestNormalizer::class, DossierRequest::class => DossierRequestNormalizer::class, AffectationDossierPaieLectureResponse::class => AffectationDossierPaieLectureResponseNormalizer::class, AdministrationCollaborateurLectureRequest::class => AdministrationCollaborateurLectureRequestNormalizer::class, UtilisateurCollaborateur::class => UtilisateurCollaborateurNormalizer::class, AdministrationCollaborateurLectureParIdentifiantRequest::class => AdministrationCollaborateurLectureParIdentifiantRequestNormalizer::class, AdministrationCollaborateurEnregistrementRequest::class => AdministrationCollaborateurEnregistrementRequestNormalizer::class, ModificationDroitsFonctionnelsProductionPaieRequest::class => ModificationDroitsFonctionnelsProductionPaieRequestNormalizer::class, OngletProduction::class => OngletProductionNormalizer::class, LectureCompteCollaborateurRequest::class => LectureCompteCollaborateurRequestNormalizer::class, CompteCollaborateur::class => CompteCollaborateurNormalizer::class, CompteCollaborateurRoles::class => CompteCollaborateurRolesNormalizer::class, CompteCollaborateurDroits::class => CompteCollaborateurDroitsNormalizer::class, CompteCollaborateurHorairesAcces::class => CompteCollaborateurHorairesAccesNormalizer::class, CompteCollaborateurDroitsUtilisateur::class => CompteCollaborateurDroitsUtilisateurNormalizer::class, CompteCollaborateurHoraireAccesParJour::class => CompteCollaborateurHoraireAccesParJourNormalizer::class, CreationCompteCollaborateurRequest::class => CreationCompteCollaborateurRequestNormalizer::class, AffecterCleDossierRequest::class => AffecterCleDossierRequestNormalizer::class, GererEtatDossierPaieRequest::class => GererEtatDossierPaieRequestNormalizer::class, GererEtatRobotDePaieRequest::class => GererEtatRobotDePaieRequestNormalizer::class, GererCycleDePaieRequest::class => GererCycleDePaieRequestNormalizer::class, DossierTache::class => DossierTacheNormalizer::class, ListeDossiersDemoSilaeResponse::class => ListeDossiersDemoSilaeResponseNormalizer::class, DossierDemoSilae::class => DossierDemoSilaeNormalizer::class, ImportDossierDemoRequest::class => ImportDossierDemoRequestNormalizer::class, AffectationsDossier::class => AffectationsDossierNormalizer::class, TraitementAsynchroneResponse::class => TraitementAsynchroneResponseNormalizer::class, StatutAsynchroneResponse::class => StatutAsynchroneResponseNormalizer::class, AnalyseConfigurationAccesApiRequest::class => AnalyseConfigurationAccesApiRequestNormalizer::class, AnalyseConfigurationAccesApiResponse::class => AnalyseConfigurationAccesApiResponseNormalizer::class, ConfigurationAccesApi::class => ConfigurationAccesApiNormalizer::class, ConfigurationAccesApiDossier::class => ConfigurationAccesApiDossierNormalizer::class, CreationConfigurationAccesApiRequest::class => CreationConfigurationAccesApiRequestNormalizer::class, CreationConfigurationAccesApi::class => CreationConfigurationAccesApiNormalizer::class, ListeComptesApiResponse::class => ListeComptesApiResponseNormalizer::class, CompteApi::class => CompteApiNormalizer::class, Domain::class => DomainNormalizer::class, Entity::class => EntityNormalizer::class, Agency::class => AgencyNormalizer::class, AnalyseProductionPaieRequest::class => AnalyseProductionPaieRequestNormalizer::class, RequeteAnalyseProduction::class => RequeteAnalyseProductionNormalizer::class, AnalyseProductionPaieResponse::class => AnalyseProductionPaieResponseNormalizer::class, StatistiquesV2::class => StatistiquesV2Normalizer::class, StatistiquesProductionV2::class => StatistiquesProductionV2Normalizer::class, StatistiquesDADS::class => StatistiquesDADSNormalizer::class, StatutAnalyseProductionPaieAsynchroneResponse::class => StatutAnalyseProductionPaieAsynchroneResponseNormalizer::class, AnalyseProductionPaieDetailRequest::class => AnalyseProductionPaieDetailRequestNormalizer::class, RequeteAnalyseProductionDetail::class => RequeteAnalyseProductionDetailNormalizer::class, AnalyseProductionPaieDetailResponse::class => AnalyseProductionPaieDetailResponseNormalizer::class, SalarieBase::class => SalarieBaseNormalizer::class, AnalyseProductionPaieUtilisateursRequest::class => AnalyseProductionPaieUtilisateursRequestNormalizer::class, AnalyseProductionPaieUtilisateursResponse::class => AnalyseProductionPaieUtilisateursResponseNormalizer::class, StatistiquesUtilisateurs::class => StatistiquesUtilisateursNormalizer::class, StatistiquesProductionUtilisateur::class => StatistiquesProductionUtilisateurNormalizer::class, AnalyseProductionPaieEntreesSortiesRequest::class => AnalyseProductionPaieEntreesSortiesRequestNormalizer::class, AnalyseProductionPaieEntreesSortiesResponse::class => AnalyseProductionPaieEntreesSortiesResponseNormalizer::class, StatistiquesEntreesSorties::class => StatistiquesEntreesSortiesNormalizer::class, StatistiquesEntreesSortiesDetails::class => StatistiquesEntreesSortiesDetailsNormalizer::class, StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse::class => StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponseNormalizer::class, BureautiquePaieNombreDocumentsCreesRequest::class => BureautiquePaieNombreDocumentsCreesRequestNormalizer::class, BureautiquePaieNombreDocumentsCreesResponse::class => BureautiquePaieNombreDocumentsCreesResponseNormalizer::class, StatistiquesBureautique::class => StatistiquesBureautiqueNormalizer::class, ListeModulesActifsResponse::class => ListeModulesActifsResponseNormalizer::class, ModulesActifsParDossier::class => ModulesActifsParDossierNormalizer::class, ModuleActifParDossier::class => ModuleActifParDossierNormalizer::class, LectureAxesAnalytiquesResponse::class => LectureAxesAnalytiquesResponseNormalizer::class, AxeAnalytique::class => AxeAnalytiqueNormalizer::class, SousCategorie::class => SousCategorieNormalizer::class, AjoutSousCategorieAxeAnalytiqueRequest::class => AjoutSousCategorieAxeAnalytiqueRequestNormalizer::class, LectureAxesAnalytiquesSalariesRequest::class => LectureAxesAnalytiquesSalariesRequestNormalizer::class, LectureAxesAnalytiquesSalariesResponse::class => LectureAxesAnalytiquesSalariesResponseNormalizer::class, AxesAnalytiqueSalarie::class => AxesAnalytiqueSalarieNormalizer::class, DonneesAxeAnalytiqueSalarie::class => DonneesAxeAnalytiqueSalarieNormalizer::class, SousCategoriesEnPC::class => SousCategoriesEnPCNormalizer::class, SalarieEmploiClassificationMetierRequest::class => SalarieEmploiClassificationMetierRequestNormalizer::class, EmploiClassificationMetier::class => EmploiClassificationMetierNormalizer::class, ClassificationMetierCompleteRequest::class => ClassificationMetierCompleteRequestNormalizer::class, ClassificationMetierCompleteResponse::class => ClassificationMetierCompleteResponseNormalizer::class, AjouteCompteRenduEdiRequest::class => AjouteCompteRenduEdiRequestNormalizer::class, AjouteCompteRenduEdi94Request::class => AjouteCompteRenduEdi94RequestNormalizer::class, AjouteCompteRenduEdi94Response::class => AjouteCompteRenduEdi94ResponseNormalizer::class, CreationEmetteurDSNRequest::class => CreationEmetteurDSNRequestNormalizer::class, EmetteurDSN::class => EmetteurDSNNormalizer::class, LectureContactEmetteurDSNRequest::class => LectureContactEmetteurDSNRequestNormalizer::class, LectureContactEmetteurDSNResponse::class => LectureContactEmetteurDSNResponseNormalizer::class, LectureContactEmetteurDSN::class => LectureContactEmetteurDSNNormalizer::class, ImportXmlParametrageOrganismeDSNRequest::class => ImportXmlParametrageOrganismeDSNRequestNormalizer::class, ImportXmlParametrageOrganismeDSNResponse::class => ImportXmlParametrageOrganismeDSNResponseNormalizer::class, InitialisationAncienNumeroContratDSNRequest::class => InitialisationAncienNumeroContratDSNRequestNormalizer::class, InitialisationAncienNumeroContratDSN::class => InitialisationAncienNumeroContratDSNNormalizer::class, ActivationDSNRequest::class => ActivationDSNRequestNormalizer::class, ActivationDSN::class => ActivationDSNNormalizer::class, ValideCleDossierRequest::class => ValideCleDossierRequestNormalizer::class, CreationUtilisateurClientPaieRequest::class => CreationUtilisateurClientPaieRequestNormalizer::class, UtilisateurClient::class => UtilisateurClientNormalizer::class, ListeUtilisateursDossierPaieResponse::class => ListeUtilisateursDossierPaieResponseNormalizer::class, AcquisitionQuestionnaireContratComplementaireRequest::class => AcquisitionQuestionnaireContratComplementaireRequestNormalizer::class, AcquisitionQuestionnaireContratComplementaireResponse::class => AcquisitionQuestionnaireContratComplementaireResponseNormalizer::class, QuestionnaireContratComplementaire::class => QuestionnaireContratComplementaireNormalizer::class, LibelleValeurComplete::class => LibelleValeurCompleteNormalizer::class, CreationQuestionnaireContratComplementaireRequest::class => CreationQuestionnaireContratComplementaireRequestNormalizer::class, ControlerBulletinsPeriodeRequest::class => ControlerBulletinsPeriodeRequestNormalizer::class, ControlerBulletinsPeriodeResponse::class => ControlerBulletinsPeriodeResponseNormalizer::class, CreationDossierPaieRequest::class => CreationDossierPaieRequestNormalizer::class, Dossier::class => DossierNormalizer::class, Etablissement::class => EtablissementNormalizer::class, CreationDossierPaieResponse::class => CreationDossierPaieResponseNormalizer::class, ImportFichierDSNRequest::class => ImportFichierDSNRequestNormalizer::class, RetourImportDSN::class => RetourImportDSNNormalizer::class, CreationDossierParImportFichierDSNRequest::class => CreationDossierParImportFichierDSNRequestNormalizer::class, SalarieInitialiserCumulsRequest::class => SalarieInitialiserCumulsRequestNormalizer::class, SalarieCumuls::class => SalarieCumulsNormalizer::class, DossierPeriodeRequest::class => DossierPeriodeRequestNormalizer::class, RecupererDeclarationsResponse::class => RecupererDeclarationsResponseNormalizer::class, StatutAsynchroneDocumentResponse::class => StatutAsynchroneDocumentResponseNormalizer::class, DossierPeriodeRangeRequest::class => DossierPeriodeRangeRequestNormalizer::class, EcrituresComptables::class => EcrituresComptablesNormalizer::class, EcrituresComptablesLigne::class => EcrituresComptablesLigneNormalizer::class, EcrituresComptables2Request::class => EcrituresComptables2RequestNormalizer::class, EcrituresComptables3Request::class => EcrituresComptables3RequestNormalizer::class, EcrituresComptables4Request::class => EcrituresComptables4RequestNormalizer::class, EcrituresComptablesAvecRuptures::class => EcrituresComptablesAvecRupturesNormalizer::class, EcrituresComptablesRupture::class => EcrituresComptablesRuptureNormalizer::class, StatutEcrituresComptablesAsynchroneResponse::class => StatutEcrituresComptablesAsynchroneResponseNormalizer::class, RecupererFichiersEcrituresComptablesResponse::class => RecupererFichiersEcrituresComptablesResponseNormalizer::class, EcrituresComptablesFichier::class => EcrituresComptablesFichierNormalizer::class, SoldeRepos::class => SoldeReposNormalizer::class, SoldeReposSalarie::class => SoldeReposSalarieNormalizer::class, StatutSoldeReposResponse::class => StatutSoldeReposResponseNormalizer::class, EditionJournalDePaieResponse::class => EditionJournalDePaieResponseNormalizer::class, EditionTableauDesChargesResponse::class => EditionTableauDesChargesResponseNormalizer::class, EditionEtatDesPaiementsResponse::class => EditionEtatDesPaiementsResponseNormalizer::class, EditionRecapDePaieResponse::class => EditionRecapDePaieResponseNormalizer::class, EditionSoldeDeReposResponse::class => EditionSoldeDeReposResponseNormalizer::class, EditionControleCICEResponse::class => EditionControleCICEResponseNormalizer::class, EditionDetailDesCotisationsResponse::class => EditionDetailDesCotisationsResponseNormalizer::class, EditionCoutsSalariauxResponse::class => EditionCoutsSalariauxResponseNormalizer::class, GenerationFichierTRRequest::class => GenerationFichierTRRequestNormalizer::class, GenererFichierTRResponse::class => GenererFichierTRResponseNormalizer::class, EditionHistoriqueRequest::class => EditionHistoriqueRequestNormalizer::class, EditionHistoriqueResponse::class => EditionHistoriqueResponseNormalizer::class, SalarieAjouterPrimeRequest::class => SalarieAjouterPrimeRequestNormalizer::class, SalariePrime::class => SalariePrimeNormalizer::class, SalarieAjouterPrimeSurEmploiRequest::class => SalarieAjouterPrimeSurEmploiRequestNormalizer::class, SalarieAjouterElementVariableRequest::class => SalarieAjouterElementVariableRequestNormalizer::class, SalarieElementVariable::class => SalarieElementVariableNormalizer::class, SalarieAjouterElementVariableSurEmploiRequest::class => SalarieAjouterElementVariableSurEmploiRequestNormalizer::class, SalarieAjouterAcompteRequest::class => SalarieAjouterAcompteRequestNormalizer::class, SalarieAcompte::class => SalarieAcompteNormalizer::class, SalariesConfirmerSaisiesRequest::class => SalariesConfirmerSaisiesRequestNormalizer::class, SalariesConfirmerSaisies::class => SalariesConfirmerSaisiesNormalizer::class, SalariesConfirmerSaisiesResponse::class => SalariesConfirmerSaisiesResponseNormalizer::class, StatutSalariesConfirmerSaisiesResponse::class => StatutSalariesConfirmerSaisiesResponseNormalizer::class, EtatDeclarationsRequest::class => EtatDeclarationsRequestNormalizer::class, EtatDeclarationsResponse::class => EtatDeclarationsResponseNormalizer::class, EtatDeclaration::class => EtatDeclarationNormalizer::class, EtatDeclarationRetour::class => EtatDeclarationRetourNormalizer::class, ListeEtablissementsDossierPaieResponse::class => ListeEtablissementsDossierPaieResponseNormalizer::class, InformationsEtablissement::class => InformationsEtablissementNormalizer::class, EtablissementsAExclureCVAERequest::class => EtablissementsAExclureCVAERequestNormalizer::class, EtablissementsAExclureCVAEResponse::class => EtablissementsAExclureCVAEResponseNormalizer::class, MiseAJourFicheSocieteRequest::class => MiseAJourFicheSocieteRequestNormalizer::class, SocieteInfoSup::class => SocieteInfoSupNormalizer::class, MiseAJourFicheEtablissementRequest::class => MiseAJourFicheEtablissementRequestNormalizer::class, EtablissementInfoSup::class => EtablissementInfoSupNormalizer::class, ModificationEffectifSocieteRequest::class => ModificationEffectifSocieteRequestNormalizer::class, EffectifSociete::class => EffectifSocieteNormalizer::class, ModificationCCNSocieteRequest::class => ModificationCCNSocieteRequestNormalizer::class, CCNSociete::class => CCNSocieteNormalizer::class, ModificationEffortConstructionRequest::class => ModificationEffortConstructionRequestNormalizer::class, EffortConstruction::class => EffortConstructionNormalizer::class, ModificationFNALRequest::class => ModificationFNALRequestNormalizer::class, FNAL::class => FNALNormalizer::class, ModificationInformationBancaireSocieteRequest::class => ModificationInformationBancaireSocieteRequestNormalizer::class, InformationBancaireSociete::class => InformationBancaireSocieteNormalizer::class, ModificationTaxeTransportRequest::class => ModificationTaxeTransportRequestNormalizer::class, TaxeTransport::class => TaxeTransportNormalizer::class, ModificationTaxeApprentissageEtablissementRequest::class => ModificationTaxeApprentissageEtablissementRequestNormalizer::class, ModificationTaxeApprentissageEtablissementResponse::class => ModificationTaxeApprentissageEtablissementResponseNormalizer::class, TaxeApprentissage::class => TaxeApprentissageNormalizer::class, ModificationTaxeApprentissageSocieteRequest::class => ModificationTaxeApprentissageSocieteRequestNormalizer::class, ModificationTaxeApprentissageSocieteResponse::class => ModificationTaxeApprentissageSocieteResponseNormalizer::class, ModificationEffectifEtablissementRequest::class => ModificationEffectifEtablissementRequestNormalizer::class, EffectifEtablissement::class => EffectifEtablissementNormalizer::class, ModificationQuestionnaireCCNEtablissementRequest::class => ModificationQuestionnaireCCNEtablissementRequestNormalizer::class, ModificationChampValeursTypees::class => ModificationChampValeursTypeesNormalizer::class, ModificationGrilleHoraireEtablissementRequest::class => ModificationGrilleHoraireEtablissementRequestNormalizer::class, ModificationHoraireEtablissement::class => ModificationHoraireEtablissementNormalizer::class, LectureEffectifSocieteResponse::class => LectureEffectifSocieteResponseNormalizer::class, LectureCCNSocieteResponse::class => LectureCCNSocieteResponseNormalizer::class, LectureInformationBancaireSocieteResponse::class => LectureInformationBancaireSocieteResponseNormalizer::class, LectureTaxeTransportRequest::class => LectureTaxeTransportRequestNormalizer::class, LectureTaxeTransportResponse::class => LectureTaxeTransportResponseNormalizer::class, LectureTaxeApprentissageSocieteRequest::class => LectureTaxeApprentissageSocieteRequestNormalizer::class, LectureTaxeApprentissageSocieteResponse::class => LectureTaxeApprentissageSocieteResponseNormalizer::class, LectureTaxeApprentissageEtablissementRequest::class => LectureTaxeApprentissageEtablissementRequestNormalizer::class, LectureTaxeApprentissageEtablissementResponse::class => LectureTaxeApprentissageEtablissementResponseNormalizer::class, LectureEffectifEtablissementRequest::class => LectureEffectifEtablissementRequestNormalizer::class, LectureEffectifEtablissementResponse::class => LectureEffectifEtablissementResponseNormalizer::class, DossierMatriculeSalarieRequest::class => DossierMatriculeSalarieRequestNormalizer::class, SalarieRecupererDUEResponse::class => SalarieRecupererDUEResponseNormalizer::class, SalarieRecupererRecuDPAEResponse::class => SalarieRecupererRecuDPAEResponseNormalizer::class, RecupererRecuDPAEResult::class => RecupererRecuDPAEResultNormalizer::class, SalarieDUERequest::class => SalarieDUERequestNormalizer::class, SalarieDUE::class => SalarieDUENormalizer::class, StatutSalariesDUEAsynchroneResponse::class => StatutSalariesDUEAsynchroneResponseNormalizer::class, SalariesDUERequest::class => SalariesDUERequestNormalizer::class, RequeteSalariesDUE::class => RequeteSalariesDUENormalizer::class, SalariesDUEResponse::class => SalariesDUEResponseNormalizer::class, RechercheCCNRequest::class => RechercheCCNRequestNormalizer::class, CritereRechercheCCN::class => CritereRechercheCCNNormalizer::class, RechercheCCNResponse::class => RechercheCCNResponseNormalizer::class, CCN::class => CCNNormalizer::class, RechercheCCNParCodeRequest::class => RechercheCCNParCodeRequestNormalizer::class, SalarieBulletinEnteteRequest::class => SalarieBulletinEnteteRequestNormalizer::class, RequeteSalarieBulletinEntete::class => RequeteSalarieBulletinEnteteNormalizer::class, SalarieBulletinEnteteResult::class => SalarieBulletinEnteteResultNormalizer::class, SalarieBulletinLignesRequest::class => SalarieBulletinLignesRequestNormalizer::class, RequeteSalarieBulletinLignes::class => RequeteSalarieBulletinLignesNormalizer::class, SalarieBulletinLignesResult::class => SalarieBulletinLignesResultNormalizer::class, LigneBulletin::class => LigneBulletinNormalizer::class, SalarieBulletinLignesSelonFiltresRequest::class => SalarieBulletinLignesSelonFiltresRequestNormalizer::class, RequeteSalarieBulletinLignesFiltres::class => RequeteSalarieBulletinLignesFiltresNormalizer::class, SalarieBulletinDetailsRequest::class => SalarieBulletinDetailsRequestNormalizer::class, RequeteSalarieBulletinDetails::class => RequeteSalarieBulletinDetailsNormalizer::class, SalarieBulletinDetailsResult::class => SalarieBulletinDetailsResultNormalizer::class, SalarieBulletinResult::class => SalarieBulletinResultNormalizer::class, SalarieBulletinEnteteSimpleResult::class => SalarieBulletinEnteteSimpleResultNormalizer::class, SalarieBulletinCumulsRequest::class => SalarieBulletinCumulsRequestNormalizer::class, SalarieBulletinCumulsResult::class => SalarieBulletinCumulsResultNormalizer::class, SalariesStockVarRequest::class => SalariesStockVarRequestNormalizer::class, RequeteSalariesStockVar::class => RequeteSalariesStockVarNormalizer::class, SalariesStockVarResponse::class => SalariesStockVarResponseNormalizer::class, SalarieStockVarResult::class => SalarieStockVarResultNormalizer::class, ListeDSNMensuellesResponse::class => ListeDSNMensuellesResponseNormalizer::class, DSNMensuelle::class => DSNMensuelleNormalizer::class, AcquisitionContenuPartielDSNRequest::class => AcquisitionContenuPartielDSNRequestNormalizer::class, AcquisitionContenuPartielDSNResponse::class => AcquisitionContenuPartielDSNResponseNormalizer::class, RechercheDeclarationEvenementielleRequest::class => RechercheDeclarationEvenementielleRequestNormalizer::class, RechercheDeclarationEvenementielleResponse::class => RechercheDeclarationEvenementielleResponseNormalizer::class, DeclarationEvenementielle::class => DeclarationEvenementielleNormalizer::class, SalarieRecupererPeriodeDernierBulletinCalculeResponse::class => SalarieRecupererPeriodeDernierBulletinCalculeResponseNormalizer::class, LectureInformationsPaieRequest::class => LectureInformationsPaieRequestNormalizer::class, RequeteLectureInfos::class => RequeteLectureInfosNormalizer::class, LectureInformationsPaieResponse::class => LectureInformationsPaieResponseNormalizer::class, LectureInfosResult::class => LectureInfosResultNormalizer::class, SalariesBulletinsRequest::class => SalariesBulletinsRequestNormalizer::class, RequeteSalariesBulletins::class => RequeteSalariesBulletinsNormalizer::class, SalariesBulletinsResponse::class => SalariesBulletinsResponseNormalizer::class, SalarieBulletinsResult::class => SalarieBulletinsResultNormalizer::class, StatutSalariesBulletinsResponse::class => StatutSalariesBulletinsResponseNormalizer::class, ListeSalariesRequest::class => ListeSalariesRequestNormalizer::class, ListeSalariesOptions::class => ListeSalariesOptionsNormalizer::class, ListeSalariesResponse::class => ListeSalariesResponseNormalizer::class, SalarieInformations::class => SalarieInformationsNormalizer::class, ListeSalariesExternesRequest::class => ListeSalariesExternesRequestNormalizer::class, ListeSalariesExternesResponse::class => ListeSalariesExternesResponseNormalizer::class, SalarieSalaireDeBaseRequest::class => SalarieSalaireDeBaseRequestNormalizer::class, SalarieSalaireDeBaseResult::class => SalarieSalaireDeBaseResultNormalizer::class, SalarieSyntheseCarriereResponse::class => SalarieSyntheseCarriereResponseNormalizer::class, SalarieElementCarriere::class => SalarieElementCarriereNormalizer::class, StatutSalarieSyntheseCarriereResponse::class => StatutSalarieSyntheseCarriereResponseNormalizer::class, DossierMatriculeRequest::class => DossierMatriculeRequestNormalizer::class, LecturePersonnesLieesResponse::class => LecturePersonnesLieesResponseNormalizer::class, PersonneLiee::class => PersonneLieeNormalizer::class, LectureHandicapResponse::class => LectureHandicapResponseNormalizer::class, Handicap::class => HandicapNormalizer::class, LectureSalarieProtegeResponse::class => LectureSalarieProtegeResponseNormalizer::class, SalarieProtege::class => SalarieProtegeNormalizer::class, LectureSaisieArretResponse::class => LectureSaisieArretResponseNormalizer::class, SaisieArret::class => SaisieArretNormalizer::class, LectureReponsesQuestionnaireFicheSalarieResponse::class => LectureReponsesQuestionnaireFicheSalarieResponseNormalizer::class, QReponse::class => QReponseNormalizer::class, LibelleValeur::class => LibelleValeurNormalizer::class, ListeInformationsDossiersPaieRequest::class => ListeInformationsDossiersPaieRequestNormalizer::class, ListeNumerosDossiersResponse::class => ListeNumerosDossiersResponseNormalizer::class, ListeDossiersRequest::class => ListeDossiersRequestNormalizer::class, ListeDossiersResponse::class => ListeDossiersResponseNormalizer::class, ProprietesDossier::class => ProprietesDossierNormalizer::class, ListeInformationsDossiersPaieResponse::class => ListeInformationsDossiersPaieResponseNormalizer::class, InformationsDossier::class => InformationsDossierNormalizer::class, DossierRecupererPeriodeEnCoursResponse::class => DossierRecupererPeriodeEnCoursResponseNormalizer::class, MatriculeSalarieRequest::class => MatriculeSalarieRequestNormalizer::class, MatriculeSalarieResponse::class => MatriculeSalarieResponseNormalizer::class, ListeMatriculesDupliquesRequest::class => ListeMatriculesDupliquesRequestNormalizer::class, ListeMatriculesDupliquesResponse::class => ListeMatriculesDupliquesResponseNormalizer::class, ListeMatriculesDupliquesDansDomaineResponse::class => ListeMatriculesDupliquesDansDomaineResponseNormalizer::class, CoupleDossierMatricule::class => CoupleDossierMatriculeNormalizer::class, ExistenceMatriculeResponse::class => ExistenceMatriculeResponseNormalizer::class, ExtraListeManifestationsRequest::class => ExtraListeManifestationsRequestNormalizer::class, ExtraListeManifestationsResponse::class => ExtraListeManifestationsResponseNormalizer::class, ExtraManifestation::class => ExtraManifestationNormalizer::class, ExtraCreationManifestationRequest::class => ExtraCreationManifestationRequestNormalizer::class, ExtraSalarieAcquisitionVacationsRequest::class => ExtraSalarieAcquisitionVacationsRequestNormalizer::class, RequeteExtraSalarieVacations::class => RequeteExtraSalarieVacationsNormalizer::class, ExtraSalarieVacations::class => ExtraSalarieVacationsNormalizer::class, ExtraSalarieVacation::class => ExtraSalarieVacationNormalizer::class, ExtraSalarieAjouterVacationsRequest::class => ExtraSalarieAjouterVacationsRequestNormalizer::class, ExtraSalarieReinitialiserVacationsRequest::class => ExtraSalarieReinitialiserVacationsRequestNormalizer::class, ExtraSalarieReinitialiserVacationsResponse::class => ExtraSalarieReinitialiserVacationsResponseNormalizer::class, ExtraSalarieCalculerBulletinRequest::class => ExtraSalarieCalculerBulletinRequestNormalizer::class, SpectacleListeRequest::class => SpectacleListeRequestNormalizer::class, SpectacleListeResponse::class => SpectacleListeResponseNormalizer::class, Spectacle::class => SpectacleNormalizer::class, SpectacleCreationRequest::class => SpectacleCreationRequestNormalizer::class, SpectacleSalarieAcquisitionAffectationsRequest::class => SpectacleSalarieAcquisitionAffectationsRequestNormalizer::class, RequeteSpectacleSalarieAffectations::class => RequeteSpectacleSalarieAffectationsNormalizer::class, SpectacleSalarieAffectations::class => SpectacleSalarieAffectationsNormalizer::class, SpectacleSalarieAffectation::class => SpectacleSalarieAffectationNormalizer::class, SpectacleSalarieAjouterAffectationsRequest::class => SpectacleSalarieAjouterAffectationsRequestNormalizer::class, SpectacleSalarieReinitialiserAffectationsRequest::class => SpectacleSalarieReinitialiserAffectationsRequestNormalizer::class, SpectacleSalarieReinitialiserAffectationsResponse::class => SpectacleSalarieReinitialiserAffectationsResponseNormalizer::class, SpectacleSalarieCalculerBulletinRequest::class => SpectacleSalarieCalculerBulletinRequestNormalizer::class, CreationOrganismeRequest::class => CreationOrganismeRequestNormalizer::class, Organisme::class => OrganismeNormalizer::class, RecupererFichiersVirementRequest::class => RecupererFichiersVirementRequestNormalizer::class, RecupererFichiersVirementResponse::class => RecupererFichiersVirementResponseNormalizer::class, BilanMatricules::class => BilanMatriculesNormalizer::class, RecupererFichierVirementResult::class => RecupererFichierVirementResultNormalizer::class, RecupererFichiersVirementChiffresRequest::class => RecupererFichiersVirementChiffresRequestNormalizer::class, ProprietesChiffrement::class => ProprietesChiffrementNormalizer::class, RecupererFichiersVirementHorsBulletinRequest::class => RecupererFichiersVirementHorsBulletinRequestNormalizer::class, RecupererFichiersVirementHorsBulletinChiffresRequest::class => RecupererFichiersVirementHorsBulletinChiffresRequestNormalizer::class, AcquisitionQuestionnaireCCNRequest::class => AcquisitionQuestionnaireCCNRequestNormalizer::class, AcquisitionQuestionnaireCCNResponse::class => AcquisitionQuestionnaireCCNResponseNormalizer::class, QCCN::class => QCCNNormalizer::class, LectureReponsesQuestionnaireConventionnelSalarieRequest::class => LectureReponsesQuestionnaireConventionnelSalarieRequestNormalizer::class, LectureReponsesQuestionnaireConventionnelSalarieResponse::class => LectureReponsesQuestionnaireConventionnelSalarieResponseNormalizer::class, QCCNReponses::class => QCCNReponsesNormalizer::class, EcritureReponsesQuestionnaireConventionnelSalarieRequest::class => EcritureReponsesQuestionnaireConventionnelSalarieRequestNormalizer::class, QCCNReponsesSimple::class => QCCNReponsesSimpleNormalizer::class, QReponseSimple::class => QReponseSimpleNormalizer::class, SimpleMessageResponse::class => SimpleMessageResponseNormalizer::class, RecupererImageRequest::class => RecupererImageRequestNormalizer::class, RecupererImageResponse::class => RecupererImageResponseNormalizer::class, ImageAnnexe::class => ImageAnnexeNormalizer::class, StatutRecupererImageAsynchroneResponse::class => StatutRecupererImageAsynchroneResponseNormalizer::class, RecupererDuplicatasBulletinsRequest::class => RecupererDuplicatasBulletinsRequestNormalizer::class, RecupererDuplicatasBulletinsResponse::class => RecupererDuplicatasBulletinsResponseNormalizer::class, CreationSalarieEmploisRequest::class => CreationSalarieEmploisRequestNormalizer::class, SalarieEmplois::class => SalarieEmploisNormalizer::class, Emploi::class => EmploiNormalizer::class, CreationSalarieEmploisResponse::class => CreationSalarieEmploisResponseNormalizer::class, CreationSalarieEmploiResult::class => CreationSalarieEmploiResultNormalizer::class, StatutCreationSalarieEmploisAsynchroneResponse::class => StatutCreationSalarieEmploisAsynchroneResponseNormalizer::class, ListeSalarieEmploisRequest::class => ListeSalarieEmploisRequestNormalizer::class, ListeSalarieEmploisResponse::class => ListeSalarieEmploisResponseNormalizer::class, SalarieEmploiInformations::class => SalarieEmploiInformationsNormalizer::class, ListeSalarieEmploisExternesResponse::class => ListeSalarieEmploisExternesResponseNormalizer::class, SalarieEmploiExterneInformations::class => SalarieEmploiExterneInformationsNormalizer::class, ModificationChampSalarieRequest::class => ModificationChampSalarieRequestNormalizer::class, ModificationChamp::class => ModificationChampNormalizer::class, ModificationPersonnesLieesRequest::class => ModificationPersonnesLieesRequestNormalizer::class, ModificationHandicapRequest::class => ModificationHandicapRequestNormalizer::class, ModificationSalarieProtegeRequest::class => ModificationSalarieProtegeRequestNormalizer::class, ModificationSaisieArretRequest::class => ModificationSaisieArretRequestNormalizer::class, LectureQuestionnaireContratComplementaireRequest::class => LectureQuestionnaireContratComplementaireRequestNormalizer::class, LectureQuestionnaireContratComplementaireResponse::class => LectureQuestionnaireContratComplementaireResponseNormalizer::class, LectureChampLibelle::class => LectureChampLibelleNormalizer::class, ModificationQuestionnaireContratComplementaireRequest::class => ModificationQuestionnaireContratComplementaireRequestNormalizer::class, ModificationChampByte::class => ModificationChampByteNormalizer::class, ModificationGrilleHoraireSalarieRequest::class => ModificationGrilleHoraireSalarieRequestNormalizer::class, ModificationHoraireSalarie::class => ModificationHoraireSalarieNormalizer::class, EcritureReponsesQuestionnaireFicheSalarieRequest::class => EcritureReponsesQuestionnaireFicheSalarieRequestNormalizer::class, SiteGenereMotDePasseAlternatifRequest::class => SiteGenereMotDePasseAlternatifRequestNormalizer::class, SiteGenereMotDePasseAlternatifResponse::class => SiteGenereMotDePasseAlternatifResponseNormalizer::class, ListeVariablesASaisirResponse::class => ListeVariablesASaisirResponseNormalizer::class, VariableASaisir::class => VariableASaisirNormalizer::class, Reference::class => ReferenceNormalizer::class];
-
-        protected $normalizersCache = [];
-
-        public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
-        {
-            return \array_key_exists($type, $this->normalizers);
-        }
-
-        public function supportsNormalization($data, $format = null, array $context = []): bool
-        {
-            return \is_object($data) && \array_key_exists($data::class, $this->normalizers);
-        }
-
-        public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
-        {
-            $normalizerClass = $this->normalizers[$object::class];
-            $normalizer = $this->getNormalizer($normalizerClass);
-
-            return $normalizer->normalize($object, $format, $context);
-        }
-
-        public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
-        {
-            $denormalizerClass = $this->normalizers[$type];
-            $denormalizer = $this->getNormalizer($denormalizerClass);
-
-            return $denormalizer->denormalize($data, $type, $format, $context);
-        }
-
-        private function getNormalizer(string $normalizerClass)
-        {
-            return $this->normalizersCache[$normalizerClass] ?? $this->initNormalizer($normalizerClass);
-        }
-
-        private function initNormalizer(string $normalizerClass)
-        {
-            $normalizer = new $normalizerClass();
-            $normalizer->setNormalizer($this->normalizer);
-            $normalizer->setDenormalizer($this->denormalizer);
-            $this->normalizersCache[$normalizerClass] = $normalizer;
-
-            return $normalizer;
-        }
-
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [SalarieSupprimerAbsenceRequest::class => false, ApiErrors::class => false, ApiError::class => false, SalarieAjouterAbsenceRequest::class => false, SalarieAbsenceV2::class => false, SalarieModifierAbsenceRequest::class => false, SalarieAbsencesRequest::class => false, RequeteSalarieAbsences::class => false, SalarieAbsencesResponse::class => false, SalarieAbsence::class => false, SalarieAjouterHeuresRequest::class => false, SalarieHeures::class => false, SalarieAjouterHeuresSurEmploiRequest::class => false, SalarieAjouterActiviteJournaliereRequest::class => false, SalarieActiviteJournalierePeriode::class => false, SalarieActiviteJournaliere::class => false, SalarieAjouterActiviteJournaliereSurEmploiRequest::class => false, SalarieAjouterHeuresNativesRequest::class => false, SalarieAjouterHeuresNativesSurEmploiRequest::class => false, SalarieReinitialiserSaisiesRequest::class => false, SalarieReinitialisationSaisies::class => false, SalarieReinitialiserSaisiesResponse::class => false, ListeAgencesResponse::class => false, Agence::class => false, ListeDossiersAgenceRequest::class => false, ListeDossiersAgenceResponse::class => false, DossierAgence::class => false, LectureFicheAgenceRequest::class => false, AgenceDetail::class => false, AffectationDossierPaieRequest::class => false, DossierRequest::class => false, AffectationDossierPaieLectureResponse::class => false, AdministrationCollaborateurLectureRequest::class => false, UtilisateurCollaborateur::class => false, AdministrationCollaborateurLectureParIdentifiantRequest::class => false, AdministrationCollaborateurEnregistrementRequest::class => false, ModificationDroitsFonctionnelsProductionPaieRequest::class => false, OngletProduction::class => false, LectureCompteCollaborateurRequest::class => false, CompteCollaborateur::class => false, CompteCollaborateurRoles::class => false, CompteCollaborateurDroits::class => false, CompteCollaborateurHorairesAcces::class => false, CompteCollaborateurDroitsUtilisateur::class => false, CompteCollaborateurHoraireAccesParJour::class => false, CreationCompteCollaborateurRequest::class => false, AffecterCleDossierRequest::class => false, GererEtatDossierPaieRequest::class => false, GererEtatRobotDePaieRequest::class => false, GererCycleDePaieRequest::class => false, DossierTache::class => false, ListeDossiersDemoSilaeResponse::class => false, DossierDemoSilae::class => false, ImportDossierDemoRequest::class => false, AffectationsDossier::class => false, TraitementAsynchroneResponse::class => false, StatutAsynchroneResponse::class => false, AnalyseConfigurationAccesApiRequest::class => false, AnalyseConfigurationAccesApiResponse::class => false, ConfigurationAccesApi::class => false, ConfigurationAccesApiDossier::class => false, CreationConfigurationAccesApiRequest::class => false, CreationConfigurationAccesApi::class => false, ListeComptesApiResponse::class => false, CompteApi::class => false, Domain::class => false, Entity::class => false, Agency::class => false, AnalyseProductionPaieRequest::class => false, RequeteAnalyseProduction::class => false, AnalyseProductionPaieResponse::class => false, StatistiquesV2::class => false, StatistiquesProductionV2::class => false, StatistiquesDADS::class => false, StatutAnalyseProductionPaieAsynchroneResponse::class => false, AnalyseProductionPaieDetailRequest::class => false, RequeteAnalyseProductionDetail::class => false, AnalyseProductionPaieDetailResponse::class => false, SalarieBase::class => false, AnalyseProductionPaieUtilisateursRequest::class => false, AnalyseProductionPaieUtilisateursResponse::class => false, StatistiquesUtilisateurs::class => false, StatistiquesProductionUtilisateur::class => false, AnalyseProductionPaieEntreesSortiesRequest::class => false, AnalyseProductionPaieEntreesSortiesResponse::class => false, StatistiquesEntreesSorties::class => false, StatistiquesEntreesSortiesDetails::class => false, StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse::class => false, BureautiquePaieNombreDocumentsCreesRequest::class => false, BureautiquePaieNombreDocumentsCreesResponse::class => false, StatistiquesBureautique::class => false, ListeModulesActifsResponse::class => false, ModulesActifsParDossier::class => false, ModuleActifParDossier::class => false, LectureAxesAnalytiquesResponse::class => false, AxeAnalytique::class => false, SousCategorie::class => false, AjoutSousCategorieAxeAnalytiqueRequest::class => false, LectureAxesAnalytiquesSalariesRequest::class => false, LectureAxesAnalytiquesSalariesResponse::class => false, AxesAnalytiqueSalarie::class => false, DonneesAxeAnalytiqueSalarie::class => false, SousCategoriesEnPC::class => false, SalarieEmploiClassificationMetierRequest::class => false, EmploiClassificationMetier::class => false, ClassificationMetierCompleteRequest::class => false, ClassificationMetierCompleteResponse::class => false, AjouteCompteRenduEdiRequest::class => false, AjouteCompteRenduEdi94Request::class => false, AjouteCompteRenduEdi94Response::class => false, CreationEmetteurDSNRequest::class => false, EmetteurDSN::class => false, LectureContactEmetteurDSNRequest::class => false, LectureContactEmetteurDSNResponse::class => false, LectureContactEmetteurDSN::class => false, ImportXmlParametrageOrganismeDSNRequest::class => false, ImportXmlParametrageOrganismeDSNResponse::class => false, InitialisationAncienNumeroContratDSNRequest::class => false, InitialisationAncienNumeroContratDSN::class => false, ActivationDSNRequest::class => false, ActivationDSN::class => false, ValideCleDossierRequest::class => false, CreationUtilisateurClientPaieRequest::class => false, UtilisateurClient::class => false, ListeUtilisateursDossierPaieResponse::class => false, AcquisitionQuestionnaireContratComplementaireRequest::class => false, AcquisitionQuestionnaireContratComplementaireResponse::class => false, QuestionnaireContratComplementaire::class => false, LibelleValeurComplete::class => false, CreationQuestionnaireContratComplementaireRequest::class => false, ControlerBulletinsPeriodeRequest::class => false, ControlerBulletinsPeriodeResponse::class => false, CreationDossierPaieRequest::class => false, Dossier::class => false, Etablissement::class => false, CreationDossierPaieResponse::class => false, ImportFichierDSNRequest::class => false, RetourImportDSN::class => false, CreationDossierParImportFichierDSNRequest::class => false, SalarieInitialiserCumulsRequest::class => false, SalarieCumuls::class => false, DossierPeriodeRequest::class => false, RecupererDeclarationsResponse::class => false, StatutAsynchroneDocumentResponse::class => false, DossierPeriodeRangeRequest::class => false, EcrituresComptables::class => false, EcrituresComptablesLigne::class => false, EcrituresComptables2Request::class => false, EcrituresComptables3Request::class => false, EcrituresComptables4Request::class => false, EcrituresComptablesAvecRuptures::class => false, EcrituresComptablesRupture::class => false, StatutEcrituresComptablesAsynchroneResponse::class => false, RecupererFichiersEcrituresComptablesResponse::class => false, EcrituresComptablesFichier::class => false, SoldeRepos::class => false, SoldeReposSalarie::class => false, StatutSoldeReposResponse::class => false, EditionJournalDePaieResponse::class => false, EditionTableauDesChargesResponse::class => false, EditionEtatDesPaiementsResponse::class => false, EditionRecapDePaieResponse::class => false, EditionSoldeDeReposResponse::class => false, EditionControleCICEResponse::class => false, EditionDetailDesCotisationsResponse::class => false, EditionCoutsSalariauxResponse::class => false, GenerationFichierTRRequest::class => false, GenererFichierTRResponse::class => false, EditionHistoriqueRequest::class => false, EditionHistoriqueResponse::class => false, SalarieAjouterPrimeRequest::class => false, SalariePrime::class => false, SalarieAjouterPrimeSurEmploiRequest::class => false, SalarieAjouterElementVariableRequest::class => false, SalarieElementVariable::class => false, SalarieAjouterElementVariableSurEmploiRequest::class => false, SalarieAjouterAcompteRequest::class => false, SalarieAcompte::class => false, SalariesConfirmerSaisiesRequest::class => false, SalariesConfirmerSaisies::class => false, SalariesConfirmerSaisiesResponse::class => false, StatutSalariesConfirmerSaisiesResponse::class => false, EtatDeclarationsRequest::class => false, EtatDeclarationsResponse::class => false, EtatDeclaration::class => false, EtatDeclarationRetour::class => false, ListeEtablissementsDossierPaieResponse::class => false, InformationsEtablissement::class => false, EtablissementsAExclureCVAERequest::class => false, EtablissementsAExclureCVAEResponse::class => false, MiseAJourFicheSocieteRequest::class => false, SocieteInfoSup::class => false, MiseAJourFicheEtablissementRequest::class => false, EtablissementInfoSup::class => false, ModificationEffectifSocieteRequest::class => false, EffectifSociete::class => false, ModificationCCNSocieteRequest::class => false, CCNSociete::class => false, ModificationEffortConstructionRequest::class => false, EffortConstruction::class => false, ModificationFNALRequest::class => false, FNAL::class => false, ModificationInformationBancaireSocieteRequest::class => false, InformationBancaireSociete::class => false, ModificationTaxeTransportRequest::class => false, TaxeTransport::class => false, ModificationTaxeApprentissageEtablissementRequest::class => false, ModificationTaxeApprentissageEtablissementResponse::class => false, TaxeApprentissage::class => false, ModificationTaxeApprentissageSocieteRequest::class => false, ModificationTaxeApprentissageSocieteResponse::class => false, ModificationEffectifEtablissementRequest::class => false, EffectifEtablissement::class => false, ModificationQuestionnaireCCNEtablissementRequest::class => false, ModificationChampValeursTypees::class => false, ModificationGrilleHoraireEtablissementRequest::class => false, ModificationHoraireEtablissement::class => false, LectureEffectifSocieteResponse::class => false, LectureCCNSocieteResponse::class => false, LectureInformationBancaireSocieteResponse::class => false, LectureTaxeTransportRequest::class => false, LectureTaxeTransportResponse::class => false, LectureTaxeApprentissageSocieteRequest::class => false, LectureTaxeApprentissageSocieteResponse::class => false, LectureTaxeApprentissageEtablissementRequest::class => false, LectureTaxeApprentissageEtablissementResponse::class => false, LectureEffectifEtablissementRequest::class => false, LectureEffectifEtablissementResponse::class => false, DossierMatriculeSalarieRequest::class => false, SalarieRecupererDUEResponse::class => false, SalarieRecupererRecuDPAEResponse::class => false, RecupererRecuDPAEResult::class => false, SalarieDUERequest::class => false, SalarieDUE::class => false, StatutSalariesDUEAsynchroneResponse::class => false, SalariesDUERequest::class => false, RequeteSalariesDUE::class => false, SalariesDUEResponse::class => false, RechercheCCNRequest::class => false, CritereRechercheCCN::class => false, RechercheCCNResponse::class => false, CCN::class => false, RechercheCCNParCodeRequest::class => false, SalarieBulletinEnteteRequest::class => false, RequeteSalarieBulletinEntete::class => false, SalarieBulletinEnteteResult::class => false, SalarieBulletinLignesRequest::class => false, RequeteSalarieBulletinLignes::class => false, SalarieBulletinLignesResult::class => false, LigneBulletin::class => false, SalarieBulletinLignesSelonFiltresRequest::class => false, RequeteSalarieBulletinLignesFiltres::class => false, SalarieBulletinDetailsRequest::class => false, RequeteSalarieBulletinDetails::class => false, SalarieBulletinDetailsResult::class => false, SalarieBulletinResult::class => false, SalarieBulletinEnteteSimpleResult::class => false, SalarieBulletinCumulsRequest::class => false, SalarieBulletinCumulsResult::class => false, SalariesStockVarRequest::class => false, RequeteSalariesStockVar::class => false, SalariesStockVarResponse::class => false, SalarieStockVarResult::class => false, ListeDSNMensuellesResponse::class => false, DSNMensuelle::class => false, AcquisitionContenuPartielDSNRequest::class => false, AcquisitionContenuPartielDSNResponse::class => false, RechercheDeclarationEvenementielleRequest::class => false, RechercheDeclarationEvenementielleResponse::class => false, DeclarationEvenementielle::class => false, SalarieRecupererPeriodeDernierBulletinCalculeResponse::class => false, LectureInformationsPaieRequest::class => false, RequeteLectureInfos::class => false, LectureInformationsPaieResponse::class => false, LectureInfosResult::class => false, SalariesBulletinsRequest::class => false, RequeteSalariesBulletins::class => false, SalariesBulletinsResponse::class => false, SalarieBulletinsResult::class => false, StatutSalariesBulletinsResponse::class => false, ListeSalariesRequest::class => false, ListeSalariesOptions::class => false, ListeSalariesResponse::class => false, SalarieInformations::class => false, ListeSalariesExternesRequest::class => false, ListeSalariesExternesResponse::class => false, SalarieSalaireDeBaseRequest::class => false, SalarieSalaireDeBaseResult::class => false, SalarieSyntheseCarriereResponse::class => false, SalarieElementCarriere::class => false, StatutSalarieSyntheseCarriereResponse::class => false, DossierMatriculeRequest::class => false, LecturePersonnesLieesResponse::class => false, PersonneLiee::class => false, LectureHandicapResponse::class => false, Handicap::class => false, LectureSalarieProtegeResponse::class => false, SalarieProtege::class => false, LectureSaisieArretResponse::class => false, SaisieArret::class => false, LectureReponsesQuestionnaireFicheSalarieResponse::class => false, QReponse::class => false, LibelleValeur::class => false, ListeInformationsDossiersPaieRequest::class => false, ListeNumerosDossiersResponse::class => false, ListeDossiersRequest::class => false, ListeDossiersResponse::class => false, ProprietesDossier::class => false, ListeInformationsDossiersPaieResponse::class => false, InformationsDossier::class => false, DossierRecupererPeriodeEnCoursResponse::class => false, MatriculeSalarieRequest::class => false, MatriculeSalarieResponse::class => false, ListeMatriculesDupliquesRequest::class => false, ListeMatriculesDupliquesResponse::class => false, ListeMatriculesDupliquesDansDomaineResponse::class => false, CoupleDossierMatricule::class => false, ExistenceMatriculeResponse::class => false, ExtraListeManifestationsRequest::class => false, ExtraListeManifestationsResponse::class => false, ExtraManifestation::class => false, ExtraCreationManifestationRequest::class => false, ExtraSalarieAcquisitionVacationsRequest::class => false, RequeteExtraSalarieVacations::class => false, ExtraSalarieVacations::class => false, ExtraSalarieVacation::class => false, ExtraSalarieAjouterVacationsRequest::class => false, ExtraSalarieReinitialiserVacationsRequest::class => false, ExtraSalarieReinitialiserVacationsResponse::class => false, ExtraSalarieCalculerBulletinRequest::class => false, SpectacleListeRequest::class => false, SpectacleListeResponse::class => false, Spectacle::class => false, SpectacleCreationRequest::class => false, SpectacleSalarieAcquisitionAffectationsRequest::class => false, RequeteSpectacleSalarieAffectations::class => false, SpectacleSalarieAffectations::class => false, SpectacleSalarieAffectation::class => false, SpectacleSalarieAjouterAffectationsRequest::class => false, SpectacleSalarieReinitialiserAffectationsRequest::class => false, SpectacleSalarieReinitialiserAffectationsResponse::class => false, SpectacleSalarieCalculerBulletinRequest::class => false, CreationOrganismeRequest::class => false, Organisme::class => false, RecupererFichiersVirementRequest::class => false, RecupererFichiersVirementResponse::class => false, BilanMatricules::class => false, RecupererFichierVirementResult::class => false, RecupererFichiersVirementChiffresRequest::class => false, ProprietesChiffrement::class => false, RecupererFichiersVirementHorsBulletinRequest::class => false, RecupererFichiersVirementHorsBulletinChiffresRequest::class => false, AcquisitionQuestionnaireCCNRequest::class => false, AcquisitionQuestionnaireCCNResponse::class => false, QCCN::class => false, LectureReponsesQuestionnaireConventionnelSalarieRequest::class => false, LectureReponsesQuestionnaireConventionnelSalarieResponse::class => false, QCCNReponses::class => false, EcritureReponsesQuestionnaireConventionnelSalarieRequest::class => false, QCCNReponsesSimple::class => false, QReponseSimple::class => false, SimpleMessageResponse::class => false, RecupererImageRequest::class => false, RecupererImageResponse::class => false, ImageAnnexe::class => false, StatutRecupererImageAsynchroneResponse::class => false, RecupererDuplicatasBulletinsRequest::class => false, RecupererDuplicatasBulletinsResponse::class => false, CreationSalarieEmploisRequest::class => false, SalarieEmplois::class => false, Emploi::class => false, CreationSalarieEmploisResponse::class => false, CreationSalarieEmploiResult::class => false, StatutCreationSalarieEmploisAsynchroneResponse::class => false, ListeSalarieEmploisRequest::class => false, ListeSalarieEmploisResponse::class => false, SalarieEmploiInformations::class => false, ListeSalarieEmploisExternesResponse::class => false, SalarieEmploiExterneInformations::class => false, ModificationChampSalarieRequest::class => false, ModificationChamp::class => false, ModificationPersonnesLieesRequest::class => false, ModificationHandicapRequest::class => false, ModificationSalarieProtegeRequest::class => false, ModificationSaisieArretRequest::class => false, LectureQuestionnaireContratComplementaireRequest::class => false, LectureQuestionnaireContratComplementaireResponse::class => false, LectureChampLibelle::class => false, ModificationQuestionnaireContratComplementaireRequest::class => false, ModificationChampByte::class => false, ModificationGrilleHoraireSalarieRequest::class => false, ModificationHoraireSalarie::class => false, EcritureReponsesQuestionnaireFicheSalarieRequest::class => false, SiteGenereMotDePasseAlternatifRequest::class => false, SiteGenereMotDePasseAlternatifResponse::class => false, ListeVariablesASaisirResponse::class => false, VariableASaisir::class => false, Reference::class => false];
-        }
+        return \array_key_exists($type, $this->normalizers);
     }
-} else {
-    class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
-        protected $normalizers = [SalarieSupprimerAbsenceRequest::class => SalarieSupprimerAbsenceRequestNormalizer::class, ApiErrors::class => ApiErrorsNormalizer::class, ApiError::class => ApiErrorNormalizer::class, SalarieAjouterAbsenceRequest::class => SalarieAjouterAbsenceRequestNormalizer::class, SalarieAbsenceV2::class => SalarieAbsenceV2Normalizer::class, SalarieModifierAbsenceRequest::class => SalarieModifierAbsenceRequestNormalizer::class, SalarieAbsencesRequest::class => SalarieAbsencesRequestNormalizer::class, RequeteSalarieAbsences::class => RequeteSalarieAbsencesNormalizer::class, SalarieAbsencesResponse::class => SalarieAbsencesResponseNormalizer::class, SalarieAbsence::class => SalarieAbsenceNormalizer::class, SalarieAjouterHeuresRequest::class => SalarieAjouterHeuresRequestNormalizer::class, SalarieHeures::class => SalarieHeuresNormalizer::class, SalarieAjouterHeuresSurEmploiRequest::class => SalarieAjouterHeuresSurEmploiRequestNormalizer::class, SalarieAjouterActiviteJournaliereRequest::class => SalarieAjouterActiviteJournaliereRequestNormalizer::class, SalarieActiviteJournalierePeriode::class => SalarieActiviteJournalierePeriodeNormalizer::class, SalarieActiviteJournaliere::class => SalarieActiviteJournaliereNormalizer::class, SalarieAjouterActiviteJournaliereSurEmploiRequest::class => SalarieAjouterActiviteJournaliereSurEmploiRequestNormalizer::class, SalarieAjouterHeuresNativesRequest::class => SalarieAjouterHeuresNativesRequestNormalizer::class, SalarieAjouterHeuresNativesSurEmploiRequest::class => SalarieAjouterHeuresNativesSurEmploiRequestNormalizer::class, SalarieReinitialiserSaisiesRequest::class => SalarieReinitialiserSaisiesRequestNormalizer::class, SalarieReinitialisationSaisies::class => SalarieReinitialisationSaisiesNormalizer::class, SalarieReinitialiserSaisiesResponse::class => SalarieReinitialiserSaisiesResponseNormalizer::class, ListeAgencesResponse::class => ListeAgencesResponseNormalizer::class, Agence::class => AgenceNormalizer::class, ListeDossiersAgenceRequest::class => ListeDossiersAgenceRequestNormalizer::class, ListeDossiersAgenceResponse::class => ListeDossiersAgenceResponseNormalizer::class, DossierAgence::class => DossierAgenceNormalizer::class, LectureFicheAgenceRequest::class => LectureFicheAgenceRequestNormalizer::class, AgenceDetail::class => AgenceDetailNormalizer::class, AffectationDossierPaieRequest::class => AffectationDossierPaieRequestNormalizer::class, DossierRequest::class => DossierRequestNormalizer::class, AffectationDossierPaieLectureResponse::class => AffectationDossierPaieLectureResponseNormalizer::class, AdministrationCollaborateurLectureRequest::class => AdministrationCollaborateurLectureRequestNormalizer::class, UtilisateurCollaborateur::class => UtilisateurCollaborateurNormalizer::class, AdministrationCollaborateurLectureParIdentifiantRequest::class => AdministrationCollaborateurLectureParIdentifiantRequestNormalizer::class, AdministrationCollaborateurEnregistrementRequest::class => AdministrationCollaborateurEnregistrementRequestNormalizer::class, ModificationDroitsFonctionnelsProductionPaieRequest::class => ModificationDroitsFonctionnelsProductionPaieRequestNormalizer::class, OngletProduction::class => OngletProductionNormalizer::class, LectureCompteCollaborateurRequest::class => LectureCompteCollaborateurRequestNormalizer::class, CompteCollaborateur::class => CompteCollaborateurNormalizer::class, CompteCollaborateurRoles::class => CompteCollaborateurRolesNormalizer::class, CompteCollaborateurDroits::class => CompteCollaborateurDroitsNormalizer::class, CompteCollaborateurHorairesAcces::class => CompteCollaborateurHorairesAccesNormalizer::class, CompteCollaborateurDroitsUtilisateur::class => CompteCollaborateurDroitsUtilisateurNormalizer::class, CompteCollaborateurHoraireAccesParJour::class => CompteCollaborateurHoraireAccesParJourNormalizer::class, CreationCompteCollaborateurRequest::class => CreationCompteCollaborateurRequestNormalizer::class, AffecterCleDossierRequest::class => AffecterCleDossierRequestNormalizer::class, GererEtatDossierPaieRequest::class => GererEtatDossierPaieRequestNormalizer::class, GererEtatRobotDePaieRequest::class => GererEtatRobotDePaieRequestNormalizer::class, GererCycleDePaieRequest::class => GererCycleDePaieRequestNormalizer::class, DossierTache::class => DossierTacheNormalizer::class, ListeDossiersDemoSilaeResponse::class => ListeDossiersDemoSilaeResponseNormalizer::class, DossierDemoSilae::class => DossierDemoSilaeNormalizer::class, ImportDossierDemoRequest::class => ImportDossierDemoRequestNormalizer::class, AffectationsDossier::class => AffectationsDossierNormalizer::class, TraitementAsynchroneResponse::class => TraitementAsynchroneResponseNormalizer::class, StatutAsynchroneResponse::class => StatutAsynchroneResponseNormalizer::class, AnalyseConfigurationAccesApiRequest::class => AnalyseConfigurationAccesApiRequestNormalizer::class, AnalyseConfigurationAccesApiResponse::class => AnalyseConfigurationAccesApiResponseNormalizer::class, ConfigurationAccesApi::class => ConfigurationAccesApiNormalizer::class, ConfigurationAccesApiDossier::class => ConfigurationAccesApiDossierNormalizer::class, CreationConfigurationAccesApiRequest::class => CreationConfigurationAccesApiRequestNormalizer::class, CreationConfigurationAccesApi::class => CreationConfigurationAccesApiNormalizer::class, ListeComptesApiResponse::class => ListeComptesApiResponseNormalizer::class, CompteApi::class => CompteApiNormalizer::class, Domain::class => DomainNormalizer::class, Entity::class => EntityNormalizer::class, Agency::class => AgencyNormalizer::class, AnalyseProductionPaieRequest::class => AnalyseProductionPaieRequestNormalizer::class, RequeteAnalyseProduction::class => RequeteAnalyseProductionNormalizer::class, AnalyseProductionPaieResponse::class => AnalyseProductionPaieResponseNormalizer::class, StatistiquesV2::class => StatistiquesV2Normalizer::class, StatistiquesProductionV2::class => StatistiquesProductionV2Normalizer::class, StatistiquesDADS::class => StatistiquesDADSNormalizer::class, StatutAnalyseProductionPaieAsynchroneResponse::class => StatutAnalyseProductionPaieAsynchroneResponseNormalizer::class, AnalyseProductionPaieDetailRequest::class => AnalyseProductionPaieDetailRequestNormalizer::class, RequeteAnalyseProductionDetail::class => RequeteAnalyseProductionDetailNormalizer::class, AnalyseProductionPaieDetailResponse::class => AnalyseProductionPaieDetailResponseNormalizer::class, SalarieBase::class => SalarieBaseNormalizer::class, AnalyseProductionPaieUtilisateursRequest::class => AnalyseProductionPaieUtilisateursRequestNormalizer::class, AnalyseProductionPaieUtilisateursResponse::class => AnalyseProductionPaieUtilisateursResponseNormalizer::class, StatistiquesUtilisateurs::class => StatistiquesUtilisateursNormalizer::class, StatistiquesProductionUtilisateur::class => StatistiquesProductionUtilisateurNormalizer::class, AnalyseProductionPaieEntreesSortiesRequest::class => AnalyseProductionPaieEntreesSortiesRequestNormalizer::class, AnalyseProductionPaieEntreesSortiesResponse::class => AnalyseProductionPaieEntreesSortiesResponseNormalizer::class, StatistiquesEntreesSorties::class => StatistiquesEntreesSortiesNormalizer::class, StatistiquesEntreesSortiesDetails::class => StatistiquesEntreesSortiesDetailsNormalizer::class, StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse::class => StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponseNormalizer::class, BureautiquePaieNombreDocumentsCreesRequest::class => BureautiquePaieNombreDocumentsCreesRequestNormalizer::class, BureautiquePaieNombreDocumentsCreesResponse::class => BureautiquePaieNombreDocumentsCreesResponseNormalizer::class, StatistiquesBureautique::class => StatistiquesBureautiqueNormalizer::class, ListeModulesActifsResponse::class => ListeModulesActifsResponseNormalizer::class, ModulesActifsParDossier::class => ModulesActifsParDossierNormalizer::class, ModuleActifParDossier::class => ModuleActifParDossierNormalizer::class, LectureAxesAnalytiquesResponse::class => LectureAxesAnalytiquesResponseNormalizer::class, AxeAnalytique::class => AxeAnalytiqueNormalizer::class, SousCategorie::class => SousCategorieNormalizer::class, AjoutSousCategorieAxeAnalytiqueRequest::class => AjoutSousCategorieAxeAnalytiqueRequestNormalizer::class, LectureAxesAnalytiquesSalariesRequest::class => LectureAxesAnalytiquesSalariesRequestNormalizer::class, LectureAxesAnalytiquesSalariesResponse::class => LectureAxesAnalytiquesSalariesResponseNormalizer::class, AxesAnalytiqueSalarie::class => AxesAnalytiqueSalarieNormalizer::class, DonneesAxeAnalytiqueSalarie::class => DonneesAxeAnalytiqueSalarieNormalizer::class, SousCategoriesEnPC::class => SousCategoriesEnPCNormalizer::class, SalarieEmploiClassificationMetierRequest::class => SalarieEmploiClassificationMetierRequestNormalizer::class, EmploiClassificationMetier::class => EmploiClassificationMetierNormalizer::class, ClassificationMetierCompleteRequest::class => ClassificationMetierCompleteRequestNormalizer::class, ClassificationMetierCompleteResponse::class => ClassificationMetierCompleteResponseNormalizer::class, AjouteCompteRenduEdiRequest::class => AjouteCompteRenduEdiRequestNormalizer::class, AjouteCompteRenduEdi94Request::class => AjouteCompteRenduEdi94RequestNormalizer::class, AjouteCompteRenduEdi94Response::class => AjouteCompteRenduEdi94ResponseNormalizer::class, CreationEmetteurDSNRequest::class => CreationEmetteurDSNRequestNormalizer::class, EmetteurDSN::class => EmetteurDSNNormalizer::class, LectureContactEmetteurDSNRequest::class => LectureContactEmetteurDSNRequestNormalizer::class, LectureContactEmetteurDSNResponse::class => LectureContactEmetteurDSNResponseNormalizer::class, LectureContactEmetteurDSN::class => LectureContactEmetteurDSNNormalizer::class, ImportXmlParametrageOrganismeDSNRequest::class => ImportXmlParametrageOrganismeDSNRequestNormalizer::class, ImportXmlParametrageOrganismeDSNResponse::class => ImportXmlParametrageOrganismeDSNResponseNormalizer::class, InitialisationAncienNumeroContratDSNRequest::class => InitialisationAncienNumeroContratDSNRequestNormalizer::class, InitialisationAncienNumeroContratDSN::class => InitialisationAncienNumeroContratDSNNormalizer::class, ActivationDSNRequest::class => ActivationDSNRequestNormalizer::class, ActivationDSN::class => ActivationDSNNormalizer::class, ValideCleDossierRequest::class => ValideCleDossierRequestNormalizer::class, CreationUtilisateurClientPaieRequest::class => CreationUtilisateurClientPaieRequestNormalizer::class, UtilisateurClient::class => UtilisateurClientNormalizer::class, ListeUtilisateursDossierPaieResponse::class => ListeUtilisateursDossierPaieResponseNormalizer::class, AcquisitionQuestionnaireContratComplementaireRequest::class => AcquisitionQuestionnaireContratComplementaireRequestNormalizer::class, AcquisitionQuestionnaireContratComplementaireResponse::class => AcquisitionQuestionnaireContratComplementaireResponseNormalizer::class, QuestionnaireContratComplementaire::class => QuestionnaireContratComplementaireNormalizer::class, LibelleValeurComplete::class => LibelleValeurCompleteNormalizer::class, CreationQuestionnaireContratComplementaireRequest::class => CreationQuestionnaireContratComplementaireRequestNormalizer::class, ControlerBulletinsPeriodeRequest::class => ControlerBulletinsPeriodeRequestNormalizer::class, ControlerBulletinsPeriodeResponse::class => ControlerBulletinsPeriodeResponseNormalizer::class, CreationDossierPaieRequest::class => CreationDossierPaieRequestNormalizer::class, Dossier::class => DossierNormalizer::class, Etablissement::class => EtablissementNormalizer::class, CreationDossierPaieResponse::class => CreationDossierPaieResponseNormalizer::class, ImportFichierDSNRequest::class => ImportFichierDSNRequestNormalizer::class, RetourImportDSN::class => RetourImportDSNNormalizer::class, CreationDossierParImportFichierDSNRequest::class => CreationDossierParImportFichierDSNRequestNormalizer::class, SalarieInitialiserCumulsRequest::class => SalarieInitialiserCumulsRequestNormalizer::class, SalarieCumuls::class => SalarieCumulsNormalizer::class, DossierPeriodeRequest::class => DossierPeriodeRequestNormalizer::class, RecupererDeclarationsResponse::class => RecupererDeclarationsResponseNormalizer::class, StatutAsynchroneDocumentResponse::class => StatutAsynchroneDocumentResponseNormalizer::class, DossierPeriodeRangeRequest::class => DossierPeriodeRangeRequestNormalizer::class, EcrituresComptables::class => EcrituresComptablesNormalizer::class, EcrituresComptablesLigne::class => EcrituresComptablesLigneNormalizer::class, EcrituresComptables2Request::class => EcrituresComptables2RequestNormalizer::class, EcrituresComptables3Request::class => EcrituresComptables3RequestNormalizer::class, EcrituresComptables4Request::class => EcrituresComptables4RequestNormalizer::class, EcrituresComptablesAvecRuptures::class => EcrituresComptablesAvecRupturesNormalizer::class, EcrituresComptablesRupture::class => EcrituresComptablesRuptureNormalizer::class, StatutEcrituresComptablesAsynchroneResponse::class => StatutEcrituresComptablesAsynchroneResponseNormalizer::class, RecupererFichiersEcrituresComptablesResponse::class => RecupererFichiersEcrituresComptablesResponseNormalizer::class, EcrituresComptablesFichier::class => EcrituresComptablesFichierNormalizer::class, SoldeRepos::class => SoldeReposNormalizer::class, SoldeReposSalarie::class => SoldeReposSalarieNormalizer::class, StatutSoldeReposResponse::class => StatutSoldeReposResponseNormalizer::class, EditionJournalDePaieResponse::class => EditionJournalDePaieResponseNormalizer::class, EditionTableauDesChargesResponse::class => EditionTableauDesChargesResponseNormalizer::class, EditionEtatDesPaiementsResponse::class => EditionEtatDesPaiementsResponseNormalizer::class, EditionRecapDePaieResponse::class => EditionRecapDePaieResponseNormalizer::class, EditionSoldeDeReposResponse::class => EditionSoldeDeReposResponseNormalizer::class, EditionControleCICEResponse::class => EditionControleCICEResponseNormalizer::class, EditionDetailDesCotisationsResponse::class => EditionDetailDesCotisationsResponseNormalizer::class, EditionCoutsSalariauxResponse::class => EditionCoutsSalariauxResponseNormalizer::class, GenerationFichierTRRequest::class => GenerationFichierTRRequestNormalizer::class, GenererFichierTRResponse::class => GenererFichierTRResponseNormalizer::class, EditionHistoriqueRequest::class => EditionHistoriqueRequestNormalizer::class, EditionHistoriqueResponse::class => EditionHistoriqueResponseNormalizer::class, SalarieAjouterPrimeRequest::class => SalarieAjouterPrimeRequestNormalizer::class, SalariePrime::class => SalariePrimeNormalizer::class, SalarieAjouterPrimeSurEmploiRequest::class => SalarieAjouterPrimeSurEmploiRequestNormalizer::class, SalarieAjouterElementVariableRequest::class => SalarieAjouterElementVariableRequestNormalizer::class, SalarieElementVariable::class => SalarieElementVariableNormalizer::class, SalarieAjouterElementVariableSurEmploiRequest::class => SalarieAjouterElementVariableSurEmploiRequestNormalizer::class, SalarieAjouterAcompteRequest::class => SalarieAjouterAcompteRequestNormalizer::class, SalarieAcompte::class => SalarieAcompteNormalizer::class, SalariesConfirmerSaisiesRequest::class => SalariesConfirmerSaisiesRequestNormalizer::class, SalariesConfirmerSaisies::class => SalariesConfirmerSaisiesNormalizer::class, SalariesConfirmerSaisiesResponse::class => SalariesConfirmerSaisiesResponseNormalizer::class, StatutSalariesConfirmerSaisiesResponse::class => StatutSalariesConfirmerSaisiesResponseNormalizer::class, EtatDeclarationsRequest::class => EtatDeclarationsRequestNormalizer::class, EtatDeclarationsResponse::class => EtatDeclarationsResponseNormalizer::class, EtatDeclaration::class => EtatDeclarationNormalizer::class, EtatDeclarationRetour::class => EtatDeclarationRetourNormalizer::class, ListeEtablissementsDossierPaieResponse::class => ListeEtablissementsDossierPaieResponseNormalizer::class, InformationsEtablissement::class => InformationsEtablissementNormalizer::class, EtablissementsAExclureCVAERequest::class => EtablissementsAExclureCVAERequestNormalizer::class, EtablissementsAExclureCVAEResponse::class => EtablissementsAExclureCVAEResponseNormalizer::class, MiseAJourFicheSocieteRequest::class => MiseAJourFicheSocieteRequestNormalizer::class, SocieteInfoSup::class => SocieteInfoSupNormalizer::class, MiseAJourFicheEtablissementRequest::class => MiseAJourFicheEtablissementRequestNormalizer::class, EtablissementInfoSup::class => EtablissementInfoSupNormalizer::class, ModificationEffectifSocieteRequest::class => ModificationEffectifSocieteRequestNormalizer::class, EffectifSociete::class => EffectifSocieteNormalizer::class, ModificationCCNSocieteRequest::class => ModificationCCNSocieteRequestNormalizer::class, CCNSociete::class => CCNSocieteNormalizer::class, ModificationEffortConstructionRequest::class => ModificationEffortConstructionRequestNormalizer::class, EffortConstruction::class => EffortConstructionNormalizer::class, ModificationFNALRequest::class => ModificationFNALRequestNormalizer::class, FNAL::class => FNALNormalizer::class, ModificationInformationBancaireSocieteRequest::class => ModificationInformationBancaireSocieteRequestNormalizer::class, InformationBancaireSociete::class => InformationBancaireSocieteNormalizer::class, ModificationTaxeTransportRequest::class => ModificationTaxeTransportRequestNormalizer::class, TaxeTransport::class => TaxeTransportNormalizer::class, ModificationTaxeApprentissageEtablissementRequest::class => ModificationTaxeApprentissageEtablissementRequestNormalizer::class, ModificationTaxeApprentissageEtablissementResponse::class => ModificationTaxeApprentissageEtablissementResponseNormalizer::class, TaxeApprentissage::class => TaxeApprentissageNormalizer::class, ModificationTaxeApprentissageSocieteRequest::class => ModificationTaxeApprentissageSocieteRequestNormalizer::class, ModificationTaxeApprentissageSocieteResponse::class => ModificationTaxeApprentissageSocieteResponseNormalizer::class, ModificationEffectifEtablissementRequest::class => ModificationEffectifEtablissementRequestNormalizer::class, EffectifEtablissement::class => EffectifEtablissementNormalizer::class, ModificationQuestionnaireCCNEtablissementRequest::class => ModificationQuestionnaireCCNEtablissementRequestNormalizer::class, ModificationChampValeursTypees::class => ModificationChampValeursTypeesNormalizer::class, ModificationGrilleHoraireEtablissementRequest::class => ModificationGrilleHoraireEtablissementRequestNormalizer::class, ModificationHoraireEtablissement::class => ModificationHoraireEtablissementNormalizer::class, LectureEffectifSocieteResponse::class => LectureEffectifSocieteResponseNormalizer::class, LectureCCNSocieteResponse::class => LectureCCNSocieteResponseNormalizer::class, LectureInformationBancaireSocieteResponse::class => LectureInformationBancaireSocieteResponseNormalizer::class, LectureTaxeTransportRequest::class => LectureTaxeTransportRequestNormalizer::class, LectureTaxeTransportResponse::class => LectureTaxeTransportResponseNormalizer::class, LectureTaxeApprentissageSocieteRequest::class => LectureTaxeApprentissageSocieteRequestNormalizer::class, LectureTaxeApprentissageSocieteResponse::class => LectureTaxeApprentissageSocieteResponseNormalizer::class, LectureTaxeApprentissageEtablissementRequest::class => LectureTaxeApprentissageEtablissementRequestNormalizer::class, LectureTaxeApprentissageEtablissementResponse::class => LectureTaxeApprentissageEtablissementResponseNormalizer::class, LectureEffectifEtablissementRequest::class => LectureEffectifEtablissementRequestNormalizer::class, LectureEffectifEtablissementResponse::class => LectureEffectifEtablissementResponseNormalizer::class, DossierMatriculeSalarieRequest::class => DossierMatriculeSalarieRequestNormalizer::class, SalarieRecupererDUEResponse::class => SalarieRecupererDUEResponseNormalizer::class, SalarieRecupererRecuDPAEResponse::class => SalarieRecupererRecuDPAEResponseNormalizer::class, RecupererRecuDPAEResult::class => RecupererRecuDPAEResultNormalizer::class, SalarieDUERequest::class => SalarieDUERequestNormalizer::class, SalarieDUE::class => SalarieDUENormalizer::class, StatutSalariesDUEAsynchroneResponse::class => StatutSalariesDUEAsynchroneResponseNormalizer::class, SalariesDUERequest::class => SalariesDUERequestNormalizer::class, RequeteSalariesDUE::class => RequeteSalariesDUENormalizer::class, SalariesDUEResponse::class => SalariesDUEResponseNormalizer::class, RechercheCCNRequest::class => RechercheCCNRequestNormalizer::class, CritereRechercheCCN::class => CritereRechercheCCNNormalizer::class, RechercheCCNResponse::class => RechercheCCNResponseNormalizer::class, CCN::class => CCNNormalizer::class, RechercheCCNParCodeRequest::class => RechercheCCNParCodeRequestNormalizer::class, SalarieBulletinEnteteRequest::class => SalarieBulletinEnteteRequestNormalizer::class, RequeteSalarieBulletinEntete::class => RequeteSalarieBulletinEnteteNormalizer::class, SalarieBulletinEnteteResult::class => SalarieBulletinEnteteResultNormalizer::class, SalarieBulletinLignesRequest::class => SalarieBulletinLignesRequestNormalizer::class, RequeteSalarieBulletinLignes::class => RequeteSalarieBulletinLignesNormalizer::class, SalarieBulletinLignesResult::class => SalarieBulletinLignesResultNormalizer::class, LigneBulletin::class => LigneBulletinNormalizer::class, SalarieBulletinLignesSelonFiltresRequest::class => SalarieBulletinLignesSelonFiltresRequestNormalizer::class, RequeteSalarieBulletinLignesFiltres::class => RequeteSalarieBulletinLignesFiltresNormalizer::class, SalarieBulletinDetailsRequest::class => SalarieBulletinDetailsRequestNormalizer::class, RequeteSalarieBulletinDetails::class => RequeteSalarieBulletinDetailsNormalizer::class, SalarieBulletinDetailsResult::class => SalarieBulletinDetailsResultNormalizer::class, SalarieBulletinResult::class => SalarieBulletinResultNormalizer::class, SalarieBulletinEnteteSimpleResult::class => SalarieBulletinEnteteSimpleResultNormalizer::class, SalarieBulletinCumulsRequest::class => SalarieBulletinCumulsRequestNormalizer::class, SalarieBulletinCumulsResult::class => SalarieBulletinCumulsResultNormalizer::class, SalariesStockVarRequest::class => SalariesStockVarRequestNormalizer::class, RequeteSalariesStockVar::class => RequeteSalariesStockVarNormalizer::class, SalariesStockVarResponse::class => SalariesStockVarResponseNormalizer::class, SalarieStockVarResult::class => SalarieStockVarResultNormalizer::class, ListeDSNMensuellesResponse::class => ListeDSNMensuellesResponseNormalizer::class, DSNMensuelle::class => DSNMensuelleNormalizer::class, AcquisitionContenuPartielDSNRequest::class => AcquisitionContenuPartielDSNRequestNormalizer::class, AcquisitionContenuPartielDSNResponse::class => AcquisitionContenuPartielDSNResponseNormalizer::class, RechercheDeclarationEvenementielleRequest::class => RechercheDeclarationEvenementielleRequestNormalizer::class, RechercheDeclarationEvenementielleResponse::class => RechercheDeclarationEvenementielleResponseNormalizer::class, DeclarationEvenementielle::class => DeclarationEvenementielleNormalizer::class, SalarieRecupererPeriodeDernierBulletinCalculeResponse::class => SalarieRecupererPeriodeDernierBulletinCalculeResponseNormalizer::class, LectureInformationsPaieRequest::class => LectureInformationsPaieRequestNormalizer::class, RequeteLectureInfos::class => RequeteLectureInfosNormalizer::class, LectureInformationsPaieResponse::class => LectureInformationsPaieResponseNormalizer::class, LectureInfosResult::class => LectureInfosResultNormalizer::class, SalariesBulletinsRequest::class => SalariesBulletinsRequestNormalizer::class, RequeteSalariesBulletins::class => RequeteSalariesBulletinsNormalizer::class, SalariesBulletinsResponse::class => SalariesBulletinsResponseNormalizer::class, SalarieBulletinsResult::class => SalarieBulletinsResultNormalizer::class, StatutSalariesBulletinsResponse::class => StatutSalariesBulletinsResponseNormalizer::class, ListeSalariesRequest::class => ListeSalariesRequestNormalizer::class, ListeSalariesOptions::class => ListeSalariesOptionsNormalizer::class, ListeSalariesResponse::class => ListeSalariesResponseNormalizer::class, SalarieInformations::class => SalarieInformationsNormalizer::class, ListeSalariesExternesRequest::class => ListeSalariesExternesRequestNormalizer::class, ListeSalariesExternesResponse::class => ListeSalariesExternesResponseNormalizer::class, SalarieSalaireDeBaseRequest::class => SalarieSalaireDeBaseRequestNormalizer::class, SalarieSalaireDeBaseResult::class => SalarieSalaireDeBaseResultNormalizer::class, SalarieSyntheseCarriereResponse::class => SalarieSyntheseCarriereResponseNormalizer::class, SalarieElementCarriere::class => SalarieElementCarriereNormalizer::class, StatutSalarieSyntheseCarriereResponse::class => StatutSalarieSyntheseCarriereResponseNormalizer::class, DossierMatriculeRequest::class => DossierMatriculeRequestNormalizer::class, LecturePersonnesLieesResponse::class => LecturePersonnesLieesResponseNormalizer::class, PersonneLiee::class => PersonneLieeNormalizer::class, LectureHandicapResponse::class => LectureHandicapResponseNormalizer::class, Handicap::class => HandicapNormalizer::class, LectureSalarieProtegeResponse::class => LectureSalarieProtegeResponseNormalizer::class, SalarieProtege::class => SalarieProtegeNormalizer::class, LectureSaisieArretResponse::class => LectureSaisieArretResponseNormalizer::class, SaisieArret::class => SaisieArretNormalizer::class, LectureReponsesQuestionnaireFicheSalarieResponse::class => LectureReponsesQuestionnaireFicheSalarieResponseNormalizer::class, QReponse::class => QReponseNormalizer::class, LibelleValeur::class => LibelleValeurNormalizer::class, ListeInformationsDossiersPaieRequest::class => ListeInformationsDossiersPaieRequestNormalizer::class, ListeNumerosDossiersResponse::class => ListeNumerosDossiersResponseNormalizer::class, ListeDossiersRequest::class => ListeDossiersRequestNormalizer::class, ListeDossiersResponse::class => ListeDossiersResponseNormalizer::class, ProprietesDossier::class => ProprietesDossierNormalizer::class, ListeInformationsDossiersPaieResponse::class => ListeInformationsDossiersPaieResponseNormalizer::class, InformationsDossier::class => InformationsDossierNormalizer::class, DossierRecupererPeriodeEnCoursResponse::class => DossierRecupererPeriodeEnCoursResponseNormalizer::class, MatriculeSalarieRequest::class => MatriculeSalarieRequestNormalizer::class, MatriculeSalarieResponse::class => MatriculeSalarieResponseNormalizer::class, ListeMatriculesDupliquesRequest::class => ListeMatriculesDupliquesRequestNormalizer::class, ListeMatriculesDupliquesResponse::class => ListeMatriculesDupliquesResponseNormalizer::class, ListeMatriculesDupliquesDansDomaineResponse::class => ListeMatriculesDupliquesDansDomaineResponseNormalizer::class, CoupleDossierMatricule::class => CoupleDossierMatriculeNormalizer::class, ExistenceMatriculeResponse::class => ExistenceMatriculeResponseNormalizer::class, ExtraListeManifestationsRequest::class => ExtraListeManifestationsRequestNormalizer::class, ExtraListeManifestationsResponse::class => ExtraListeManifestationsResponseNormalizer::class, ExtraManifestation::class => ExtraManifestationNormalizer::class, ExtraCreationManifestationRequest::class => ExtraCreationManifestationRequestNormalizer::class, ExtraSalarieAcquisitionVacationsRequest::class => ExtraSalarieAcquisitionVacationsRequestNormalizer::class, RequeteExtraSalarieVacations::class => RequeteExtraSalarieVacationsNormalizer::class, ExtraSalarieVacations::class => ExtraSalarieVacationsNormalizer::class, ExtraSalarieVacation::class => ExtraSalarieVacationNormalizer::class, ExtraSalarieAjouterVacationsRequest::class => ExtraSalarieAjouterVacationsRequestNormalizer::class, ExtraSalarieReinitialiserVacationsRequest::class => ExtraSalarieReinitialiserVacationsRequestNormalizer::class, ExtraSalarieReinitialiserVacationsResponse::class => ExtraSalarieReinitialiserVacationsResponseNormalizer::class, ExtraSalarieCalculerBulletinRequest::class => ExtraSalarieCalculerBulletinRequestNormalizer::class, SpectacleListeRequest::class => SpectacleListeRequestNormalizer::class, SpectacleListeResponse::class => SpectacleListeResponseNormalizer::class, Spectacle::class => SpectacleNormalizer::class, SpectacleCreationRequest::class => SpectacleCreationRequestNormalizer::class, SpectacleSalarieAcquisitionAffectationsRequest::class => SpectacleSalarieAcquisitionAffectationsRequestNormalizer::class, RequeteSpectacleSalarieAffectations::class => RequeteSpectacleSalarieAffectationsNormalizer::class, SpectacleSalarieAffectations::class => SpectacleSalarieAffectationsNormalizer::class, SpectacleSalarieAffectation::class => SpectacleSalarieAffectationNormalizer::class, SpectacleSalarieAjouterAffectationsRequest::class => SpectacleSalarieAjouterAffectationsRequestNormalizer::class, SpectacleSalarieReinitialiserAffectationsRequest::class => SpectacleSalarieReinitialiserAffectationsRequestNormalizer::class, SpectacleSalarieReinitialiserAffectationsResponse::class => SpectacleSalarieReinitialiserAffectationsResponseNormalizer::class, SpectacleSalarieCalculerBulletinRequest::class => SpectacleSalarieCalculerBulletinRequestNormalizer::class, CreationOrganismeRequest::class => CreationOrganismeRequestNormalizer::class, Organisme::class => OrganismeNormalizer::class, RecupererFichiersVirementRequest::class => RecupererFichiersVirementRequestNormalizer::class, RecupererFichiersVirementResponse::class => RecupererFichiersVirementResponseNormalizer::class, BilanMatricules::class => BilanMatriculesNormalizer::class, RecupererFichierVirementResult::class => RecupererFichierVirementResultNormalizer::class, RecupererFichiersVirementChiffresRequest::class => RecupererFichiersVirementChiffresRequestNormalizer::class, ProprietesChiffrement::class => ProprietesChiffrementNormalizer::class, RecupererFichiersVirementHorsBulletinRequest::class => RecupererFichiersVirementHorsBulletinRequestNormalizer::class, RecupererFichiersVirementHorsBulletinChiffresRequest::class => RecupererFichiersVirementHorsBulletinChiffresRequestNormalizer::class, AcquisitionQuestionnaireCCNRequest::class => AcquisitionQuestionnaireCCNRequestNormalizer::class, AcquisitionQuestionnaireCCNResponse::class => AcquisitionQuestionnaireCCNResponseNormalizer::class, QCCN::class => QCCNNormalizer::class, LectureReponsesQuestionnaireConventionnelSalarieRequest::class => LectureReponsesQuestionnaireConventionnelSalarieRequestNormalizer::class, LectureReponsesQuestionnaireConventionnelSalarieResponse::class => LectureReponsesQuestionnaireConventionnelSalarieResponseNormalizer::class, QCCNReponses::class => QCCNReponsesNormalizer::class, EcritureReponsesQuestionnaireConventionnelSalarieRequest::class => EcritureReponsesQuestionnaireConventionnelSalarieRequestNormalizer::class, QCCNReponsesSimple::class => QCCNReponsesSimpleNormalizer::class, QReponseSimple::class => QReponseSimpleNormalizer::class, SimpleMessageResponse::class => SimpleMessageResponseNormalizer::class, RecupererImageRequest::class => RecupererImageRequestNormalizer::class, RecupererImageResponse::class => RecupererImageResponseNormalizer::class, ImageAnnexe::class => ImageAnnexeNormalizer::class, StatutRecupererImageAsynchroneResponse::class => StatutRecupererImageAsynchroneResponseNormalizer::class, RecupererDuplicatasBulletinsRequest::class => RecupererDuplicatasBulletinsRequestNormalizer::class, RecupererDuplicatasBulletinsResponse::class => RecupererDuplicatasBulletinsResponseNormalizer::class, CreationSalarieEmploisRequest::class => CreationSalarieEmploisRequestNormalizer::class, SalarieEmplois::class => SalarieEmploisNormalizer::class, Emploi::class => EmploiNormalizer::class, CreationSalarieEmploisResponse::class => CreationSalarieEmploisResponseNormalizer::class, CreationSalarieEmploiResult::class => CreationSalarieEmploiResultNormalizer::class, StatutCreationSalarieEmploisAsynchroneResponse::class => StatutCreationSalarieEmploisAsynchroneResponseNormalizer::class, ListeSalarieEmploisRequest::class => ListeSalarieEmploisRequestNormalizer::class, ListeSalarieEmploisResponse::class => ListeSalarieEmploisResponseNormalizer::class, SalarieEmploiInformations::class => SalarieEmploiInformationsNormalizer::class, ListeSalarieEmploisExternesResponse::class => ListeSalarieEmploisExternesResponseNormalizer::class, SalarieEmploiExterneInformations::class => SalarieEmploiExterneInformationsNormalizer::class, ModificationChampSalarieRequest::class => ModificationChampSalarieRequestNormalizer::class, ModificationChamp::class => ModificationChampNormalizer::class, ModificationPersonnesLieesRequest::class => ModificationPersonnesLieesRequestNormalizer::class, ModificationHandicapRequest::class => ModificationHandicapRequestNormalizer::class, ModificationSalarieProtegeRequest::class => ModificationSalarieProtegeRequestNormalizer::class, ModificationSaisieArretRequest::class => ModificationSaisieArretRequestNormalizer::class, LectureQuestionnaireContratComplementaireRequest::class => LectureQuestionnaireContratComplementaireRequestNormalizer::class, LectureQuestionnaireContratComplementaireResponse::class => LectureQuestionnaireContratComplementaireResponseNormalizer::class, LectureChampLibelle::class => LectureChampLibelleNormalizer::class, ModificationQuestionnaireContratComplementaireRequest::class => ModificationQuestionnaireContratComplementaireRequestNormalizer::class, ModificationChampByte::class => ModificationChampByteNormalizer::class, ModificationGrilleHoraireSalarieRequest::class => ModificationGrilleHoraireSalarieRequestNormalizer::class, ModificationHoraireSalarie::class => ModificationHoraireSalarieNormalizer::class, EcritureReponsesQuestionnaireFicheSalarieRequest::class => EcritureReponsesQuestionnaireFicheSalarieRequestNormalizer::class, SiteGenereMotDePasseAlternatifRequest::class => SiteGenereMotDePasseAlternatifRequestNormalizer::class, SiteGenereMotDePasseAlternatifResponse::class => SiteGenereMotDePasseAlternatifResponseNormalizer::class, ListeVariablesASaisirResponse::class => ListeVariablesASaisirResponseNormalizer::class, VariableASaisir::class => VariableASaisirNormalizer::class, Reference::class => ReferenceNormalizer::class];
+        return \is_object($data) && \array_key_exists($data::class, $this->normalizers);
+    }
 
-        protected $normalizersCache = [];
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    {
+        $normalizerClass = $this->normalizers[$data::class];
+        $normalizer = $this->getNormalizer($normalizerClass);
 
-        public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
-        {
-            return \array_key_exists($type, $this->normalizers);
-        }
+        return $normalizer->normalize($data, $format, $context);
+    }
 
-        public function supportsNormalization($data, $format = null, array $context = []): bool
-        {
-            return \is_object($data) && \array_key_exists($data::class, $this->normalizers);
-        }
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+    {
+        $denormalizerClass = $this->normalizers[$type];
+        $denormalizer = $this->getNormalizer($denormalizerClass);
 
-        /**
-         * @param mixed|null $format
-         *
-         * @return array|string|int|float|bool|\ArrayObject|null
-         */
-        public function normalize($object, $format = null, array $context = [])
-        {
-            $normalizerClass = $this->normalizers[$object::class];
-            $normalizer = $this->getNormalizer($normalizerClass);
+        return $denormalizer->denormalize($data, $type, $format, $context);
+    }
 
-            return $normalizer->normalize($object, $format, $context);
-        }
+    private function getNormalizer(string $normalizerClass)
+    {
+        return $this->normalizersCache[$normalizerClass] ?? $this->initNormalizer($normalizerClass);
+    }
 
-        /**
-         * @param mixed|null $format
-         */
-        public function denormalize($data, $type, $format = null, array $context = [])
-        {
-            $denormalizerClass = $this->normalizers[$type];
-            $denormalizer = $this->getNormalizer($denormalizerClass);
+    private function initNormalizer(string $normalizerClass)
+    {
+        $normalizer = new $normalizerClass();
+        $normalizer->setNormalizer($this->normalizer);
+        $normalizer->setDenormalizer($this->denormalizer);
+        $this->normalizersCache[$normalizerClass] = $normalizer;
 
-            return $denormalizer->denormalize($data, $type, $format, $context);
-        }
+        return $normalizer;
+    }
 
-        private function getNormalizer(string $normalizerClass)
-        {
-            return $this->normalizersCache[$normalizerClass] ?? $this->initNormalizer($normalizerClass);
-        }
-
-        private function initNormalizer(string $normalizerClass)
-        {
-            $normalizer = new $normalizerClass();
-            $normalizer->setNormalizer($this->normalizer);
-            $normalizer->setDenormalizer($this->denormalizer);
-            $this->normalizersCache[$normalizerClass] = $normalizer;
-
-            return $normalizer;
-        }
-
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [SalarieSupprimerAbsenceRequest::class => false, ApiErrors::class => false, ApiError::class => false, SalarieAjouterAbsenceRequest::class => false, SalarieAbsenceV2::class => false, SalarieModifierAbsenceRequest::class => false, SalarieAbsencesRequest::class => false, RequeteSalarieAbsences::class => false, SalarieAbsencesResponse::class => false, SalarieAbsence::class => false, SalarieAjouterHeuresRequest::class => false, SalarieHeures::class => false, SalarieAjouterHeuresSurEmploiRequest::class => false, SalarieAjouterActiviteJournaliereRequest::class => false, SalarieActiviteJournalierePeriode::class => false, SalarieActiviteJournaliere::class => false, SalarieAjouterActiviteJournaliereSurEmploiRequest::class => false, SalarieAjouterHeuresNativesRequest::class => false, SalarieAjouterHeuresNativesSurEmploiRequest::class => false, SalarieReinitialiserSaisiesRequest::class => false, SalarieReinitialisationSaisies::class => false, SalarieReinitialiserSaisiesResponse::class => false, ListeAgencesResponse::class => false, Agence::class => false, ListeDossiersAgenceRequest::class => false, ListeDossiersAgenceResponse::class => false, DossierAgence::class => false, LectureFicheAgenceRequest::class => false, AgenceDetail::class => false, AffectationDossierPaieRequest::class => false, DossierRequest::class => false, AffectationDossierPaieLectureResponse::class => false, AdministrationCollaborateurLectureRequest::class => false, UtilisateurCollaborateur::class => false, AdministrationCollaborateurLectureParIdentifiantRequest::class => false, AdministrationCollaborateurEnregistrementRequest::class => false, ModificationDroitsFonctionnelsProductionPaieRequest::class => false, OngletProduction::class => false, LectureCompteCollaborateurRequest::class => false, CompteCollaborateur::class => false, CompteCollaborateurRoles::class => false, CompteCollaborateurDroits::class => false, CompteCollaborateurHorairesAcces::class => false, CompteCollaborateurDroitsUtilisateur::class => false, CompteCollaborateurHoraireAccesParJour::class => false, CreationCompteCollaborateurRequest::class => false, AffecterCleDossierRequest::class => false, GererEtatDossierPaieRequest::class => false, GererEtatRobotDePaieRequest::class => false, GererCycleDePaieRequest::class => false, DossierTache::class => false, ListeDossiersDemoSilaeResponse::class => false, DossierDemoSilae::class => false, ImportDossierDemoRequest::class => false, AffectationsDossier::class => false, TraitementAsynchroneResponse::class => false, StatutAsynchroneResponse::class => false, AnalyseConfigurationAccesApiRequest::class => false, AnalyseConfigurationAccesApiResponse::class => false, ConfigurationAccesApi::class => false, ConfigurationAccesApiDossier::class => false, CreationConfigurationAccesApiRequest::class => false, CreationConfigurationAccesApi::class => false, ListeComptesApiResponse::class => false, CompteApi::class => false, Domain::class => false, Entity::class => false, Agency::class => false, AnalyseProductionPaieRequest::class => false, RequeteAnalyseProduction::class => false, AnalyseProductionPaieResponse::class => false, StatistiquesV2::class => false, StatistiquesProductionV2::class => false, StatistiquesDADS::class => false, StatutAnalyseProductionPaieAsynchroneResponse::class => false, AnalyseProductionPaieDetailRequest::class => false, RequeteAnalyseProductionDetail::class => false, AnalyseProductionPaieDetailResponse::class => false, SalarieBase::class => false, AnalyseProductionPaieUtilisateursRequest::class => false, AnalyseProductionPaieUtilisateursResponse::class => false, StatistiquesUtilisateurs::class => false, StatistiquesProductionUtilisateur::class => false, AnalyseProductionPaieEntreesSortiesRequest::class => false, AnalyseProductionPaieEntreesSortiesResponse::class => false, StatistiquesEntreesSorties::class => false, StatistiquesEntreesSortiesDetails::class => false, StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse::class => false, BureautiquePaieNombreDocumentsCreesRequest::class => false, BureautiquePaieNombreDocumentsCreesResponse::class => false, StatistiquesBureautique::class => false, ListeModulesActifsResponse::class => false, ModulesActifsParDossier::class => false, ModuleActifParDossier::class => false, LectureAxesAnalytiquesResponse::class => false, AxeAnalytique::class => false, SousCategorie::class => false, AjoutSousCategorieAxeAnalytiqueRequest::class => false, LectureAxesAnalytiquesSalariesRequest::class => false, LectureAxesAnalytiquesSalariesResponse::class => false, AxesAnalytiqueSalarie::class => false, DonneesAxeAnalytiqueSalarie::class => false, SousCategoriesEnPC::class => false, SalarieEmploiClassificationMetierRequest::class => false, EmploiClassificationMetier::class => false, ClassificationMetierCompleteRequest::class => false, ClassificationMetierCompleteResponse::class => false, AjouteCompteRenduEdiRequest::class => false, AjouteCompteRenduEdi94Request::class => false, AjouteCompteRenduEdi94Response::class => false, CreationEmetteurDSNRequest::class => false, EmetteurDSN::class => false, LectureContactEmetteurDSNRequest::class => false, LectureContactEmetteurDSNResponse::class => false, LectureContactEmetteurDSN::class => false, ImportXmlParametrageOrganismeDSNRequest::class => false, ImportXmlParametrageOrganismeDSNResponse::class => false, InitialisationAncienNumeroContratDSNRequest::class => false, InitialisationAncienNumeroContratDSN::class => false, ActivationDSNRequest::class => false, ActivationDSN::class => false, ValideCleDossierRequest::class => false, CreationUtilisateurClientPaieRequest::class => false, UtilisateurClient::class => false, ListeUtilisateursDossierPaieResponse::class => false, AcquisitionQuestionnaireContratComplementaireRequest::class => false, AcquisitionQuestionnaireContratComplementaireResponse::class => false, QuestionnaireContratComplementaire::class => false, LibelleValeurComplete::class => false, CreationQuestionnaireContratComplementaireRequest::class => false, ControlerBulletinsPeriodeRequest::class => false, ControlerBulletinsPeriodeResponse::class => false, CreationDossierPaieRequest::class => false, Dossier::class => false, Etablissement::class => false, CreationDossierPaieResponse::class => false, ImportFichierDSNRequest::class => false, RetourImportDSN::class => false, CreationDossierParImportFichierDSNRequest::class => false, SalarieInitialiserCumulsRequest::class => false, SalarieCumuls::class => false, DossierPeriodeRequest::class => false, RecupererDeclarationsResponse::class => false, StatutAsynchroneDocumentResponse::class => false, DossierPeriodeRangeRequest::class => false, EcrituresComptables::class => false, EcrituresComptablesLigne::class => false, EcrituresComptables2Request::class => false, EcrituresComptables3Request::class => false, EcrituresComptables4Request::class => false, EcrituresComptablesAvecRuptures::class => false, EcrituresComptablesRupture::class => false, StatutEcrituresComptablesAsynchroneResponse::class => false, RecupererFichiersEcrituresComptablesResponse::class => false, EcrituresComptablesFichier::class => false, SoldeRepos::class => false, SoldeReposSalarie::class => false, StatutSoldeReposResponse::class => false, EditionJournalDePaieResponse::class => false, EditionTableauDesChargesResponse::class => false, EditionEtatDesPaiementsResponse::class => false, EditionRecapDePaieResponse::class => false, EditionSoldeDeReposResponse::class => false, EditionControleCICEResponse::class => false, EditionDetailDesCotisationsResponse::class => false, EditionCoutsSalariauxResponse::class => false, GenerationFichierTRRequest::class => false, GenererFichierTRResponse::class => false, EditionHistoriqueRequest::class => false, EditionHistoriqueResponse::class => false, SalarieAjouterPrimeRequest::class => false, SalariePrime::class => false, SalarieAjouterPrimeSurEmploiRequest::class => false, SalarieAjouterElementVariableRequest::class => false, SalarieElementVariable::class => false, SalarieAjouterElementVariableSurEmploiRequest::class => false, SalarieAjouterAcompteRequest::class => false, SalarieAcompte::class => false, SalariesConfirmerSaisiesRequest::class => false, SalariesConfirmerSaisies::class => false, SalariesConfirmerSaisiesResponse::class => false, StatutSalariesConfirmerSaisiesResponse::class => false, EtatDeclarationsRequest::class => false, EtatDeclarationsResponse::class => false, EtatDeclaration::class => false, EtatDeclarationRetour::class => false, ListeEtablissementsDossierPaieResponse::class => false, InformationsEtablissement::class => false, EtablissementsAExclureCVAERequest::class => false, EtablissementsAExclureCVAEResponse::class => false, MiseAJourFicheSocieteRequest::class => false, SocieteInfoSup::class => false, MiseAJourFicheEtablissementRequest::class => false, EtablissementInfoSup::class => false, ModificationEffectifSocieteRequest::class => false, EffectifSociete::class => false, ModificationCCNSocieteRequest::class => false, CCNSociete::class => false, ModificationEffortConstructionRequest::class => false, EffortConstruction::class => false, ModificationFNALRequest::class => false, FNAL::class => false, ModificationInformationBancaireSocieteRequest::class => false, InformationBancaireSociete::class => false, ModificationTaxeTransportRequest::class => false, TaxeTransport::class => false, ModificationTaxeApprentissageEtablissementRequest::class => false, ModificationTaxeApprentissageEtablissementResponse::class => false, TaxeApprentissage::class => false, ModificationTaxeApprentissageSocieteRequest::class => false, ModificationTaxeApprentissageSocieteResponse::class => false, ModificationEffectifEtablissementRequest::class => false, EffectifEtablissement::class => false, ModificationQuestionnaireCCNEtablissementRequest::class => false, ModificationChampValeursTypees::class => false, ModificationGrilleHoraireEtablissementRequest::class => false, ModificationHoraireEtablissement::class => false, LectureEffectifSocieteResponse::class => false, LectureCCNSocieteResponse::class => false, LectureInformationBancaireSocieteResponse::class => false, LectureTaxeTransportRequest::class => false, LectureTaxeTransportResponse::class => false, LectureTaxeApprentissageSocieteRequest::class => false, LectureTaxeApprentissageSocieteResponse::class => false, LectureTaxeApprentissageEtablissementRequest::class => false, LectureTaxeApprentissageEtablissementResponse::class => false, LectureEffectifEtablissementRequest::class => false, LectureEffectifEtablissementResponse::class => false, DossierMatriculeSalarieRequest::class => false, SalarieRecupererDUEResponse::class => false, SalarieRecupererRecuDPAEResponse::class => false, RecupererRecuDPAEResult::class => false, SalarieDUERequest::class => false, SalarieDUE::class => false, StatutSalariesDUEAsynchroneResponse::class => false, SalariesDUERequest::class => false, RequeteSalariesDUE::class => false, SalariesDUEResponse::class => false, RechercheCCNRequest::class => false, CritereRechercheCCN::class => false, RechercheCCNResponse::class => false, CCN::class => false, RechercheCCNParCodeRequest::class => false, SalarieBulletinEnteteRequest::class => false, RequeteSalarieBulletinEntete::class => false, SalarieBulletinEnteteResult::class => false, SalarieBulletinLignesRequest::class => false, RequeteSalarieBulletinLignes::class => false, SalarieBulletinLignesResult::class => false, LigneBulletin::class => false, SalarieBulletinLignesSelonFiltresRequest::class => false, RequeteSalarieBulletinLignesFiltres::class => false, SalarieBulletinDetailsRequest::class => false, RequeteSalarieBulletinDetails::class => false, SalarieBulletinDetailsResult::class => false, SalarieBulletinResult::class => false, SalarieBulletinEnteteSimpleResult::class => false, SalarieBulletinCumulsRequest::class => false, SalarieBulletinCumulsResult::class => false, SalariesStockVarRequest::class => false, RequeteSalariesStockVar::class => false, SalariesStockVarResponse::class => false, SalarieStockVarResult::class => false, ListeDSNMensuellesResponse::class => false, DSNMensuelle::class => false, AcquisitionContenuPartielDSNRequest::class => false, AcquisitionContenuPartielDSNResponse::class => false, RechercheDeclarationEvenementielleRequest::class => false, RechercheDeclarationEvenementielleResponse::class => false, DeclarationEvenementielle::class => false, SalarieRecupererPeriodeDernierBulletinCalculeResponse::class => false, LectureInformationsPaieRequest::class => false, RequeteLectureInfos::class => false, LectureInformationsPaieResponse::class => false, LectureInfosResult::class => false, SalariesBulletinsRequest::class => false, RequeteSalariesBulletins::class => false, SalariesBulletinsResponse::class => false, SalarieBulletinsResult::class => false, StatutSalariesBulletinsResponse::class => false, ListeSalariesRequest::class => false, ListeSalariesOptions::class => false, ListeSalariesResponse::class => false, SalarieInformations::class => false, ListeSalariesExternesRequest::class => false, ListeSalariesExternesResponse::class => false, SalarieSalaireDeBaseRequest::class => false, SalarieSalaireDeBaseResult::class => false, SalarieSyntheseCarriereResponse::class => false, SalarieElementCarriere::class => false, StatutSalarieSyntheseCarriereResponse::class => false, DossierMatriculeRequest::class => false, LecturePersonnesLieesResponse::class => false, PersonneLiee::class => false, LectureHandicapResponse::class => false, Handicap::class => false, LectureSalarieProtegeResponse::class => false, SalarieProtege::class => false, LectureSaisieArretResponse::class => false, SaisieArret::class => false, LectureReponsesQuestionnaireFicheSalarieResponse::class => false, QReponse::class => false, LibelleValeur::class => false, ListeInformationsDossiersPaieRequest::class => false, ListeNumerosDossiersResponse::class => false, ListeDossiersRequest::class => false, ListeDossiersResponse::class => false, ProprietesDossier::class => false, ListeInformationsDossiersPaieResponse::class => false, InformationsDossier::class => false, DossierRecupererPeriodeEnCoursResponse::class => false, MatriculeSalarieRequest::class => false, MatriculeSalarieResponse::class => false, ListeMatriculesDupliquesRequest::class => false, ListeMatriculesDupliquesResponse::class => false, ListeMatriculesDupliquesDansDomaineResponse::class => false, CoupleDossierMatricule::class => false, ExistenceMatriculeResponse::class => false, ExtraListeManifestationsRequest::class => false, ExtraListeManifestationsResponse::class => false, ExtraManifestation::class => false, ExtraCreationManifestationRequest::class => false, ExtraSalarieAcquisitionVacationsRequest::class => false, RequeteExtraSalarieVacations::class => false, ExtraSalarieVacations::class => false, ExtraSalarieVacation::class => false, ExtraSalarieAjouterVacationsRequest::class => false, ExtraSalarieReinitialiserVacationsRequest::class => false, ExtraSalarieReinitialiserVacationsResponse::class => false, ExtraSalarieCalculerBulletinRequest::class => false, SpectacleListeRequest::class => false, SpectacleListeResponse::class => false, Spectacle::class => false, SpectacleCreationRequest::class => false, SpectacleSalarieAcquisitionAffectationsRequest::class => false, RequeteSpectacleSalarieAffectations::class => false, SpectacleSalarieAffectations::class => false, SpectacleSalarieAffectation::class => false, SpectacleSalarieAjouterAffectationsRequest::class => false, SpectacleSalarieReinitialiserAffectationsRequest::class => false, SpectacleSalarieReinitialiserAffectationsResponse::class => false, SpectacleSalarieCalculerBulletinRequest::class => false, CreationOrganismeRequest::class => false, Organisme::class => false, RecupererFichiersVirementRequest::class => false, RecupererFichiersVirementResponse::class => false, BilanMatricules::class => false, RecupererFichierVirementResult::class => false, RecupererFichiersVirementChiffresRequest::class => false, ProprietesChiffrement::class => false, RecupererFichiersVirementHorsBulletinRequest::class => false, RecupererFichiersVirementHorsBulletinChiffresRequest::class => false, AcquisitionQuestionnaireCCNRequest::class => false, AcquisitionQuestionnaireCCNResponse::class => false, QCCN::class => false, LectureReponsesQuestionnaireConventionnelSalarieRequest::class => false, LectureReponsesQuestionnaireConventionnelSalarieResponse::class => false, QCCNReponses::class => false, EcritureReponsesQuestionnaireConventionnelSalarieRequest::class => false, QCCNReponsesSimple::class => false, QReponseSimple::class => false, SimpleMessageResponse::class => false, RecupererImageRequest::class => false, RecupererImageResponse::class => false, ImageAnnexe::class => false, StatutRecupererImageAsynchroneResponse::class => false, RecupererDuplicatasBulletinsRequest::class => false, RecupererDuplicatasBulletinsResponse::class => false, CreationSalarieEmploisRequest::class => false, SalarieEmplois::class => false, Emploi::class => false, CreationSalarieEmploisResponse::class => false, CreationSalarieEmploiResult::class => false, StatutCreationSalarieEmploisAsynchroneResponse::class => false, ListeSalarieEmploisRequest::class => false, ListeSalarieEmploisResponse::class => false, SalarieEmploiInformations::class => false, ListeSalarieEmploisExternesResponse::class => false, SalarieEmploiExterneInformations::class => false, ModificationChampSalarieRequest::class => false, ModificationChamp::class => false, ModificationPersonnesLieesRequest::class => false, ModificationHandicapRequest::class => false, ModificationSalarieProtegeRequest::class => false, ModificationSaisieArretRequest::class => false, LectureQuestionnaireContratComplementaireRequest::class => false, LectureQuestionnaireContratComplementaireResponse::class => false, LectureChampLibelle::class => false, ModificationQuestionnaireContratComplementaireRequest::class => false, ModificationChampByte::class => false, ModificationGrilleHoraireSalarieRequest::class => false, ModificationHoraireSalarie::class => false, EcritureReponsesQuestionnaireFicheSalarieRequest::class => false, SiteGenereMotDePasseAlternatifRequest::class => false, SiteGenereMotDePasseAlternatifResponse::class => false, ListeVariablesASaisirResponse::class => false, VariableASaisir::class => false, Reference::class => false];
-        }
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [
+            SalarieSupprimerAbsenceRequest::class => false,
+            ApiErrors::class => false,
+            ApiError::class => false,
+            SalarieAjouterAbsenceRequest::class => false,
+            SalarieAbsenceV2::class => false,
+            SalarieAjouterAbsenceV2Request::class => false,
+            SalarieAbsenceV3::class => false,
+            SalarieModifierAbsenceRequest::class => false,
+            SalarieModifierAbsenceV2Request::class => false,
+            SalarieAbsencesRequest::class => false,
+            RequeteSalarieAbsences::class => false,
+            SalarieAbsencesResponse::class => false,
+            SalarieAbsence::class => false,
+            SalarieAjouterHeuresRequest::class => false,
+            SalarieHeures::class => false,
+            SalarieAjouterHeuresSurEmploiRequest::class => false,
+            SalarieAjouterActiviteJournaliereRequest::class => false,
+            SalarieActiviteJournalierePeriode::class => false,
+            SalarieActiviteJournaliere::class => false,
+            SalarieActiviteJournaliereRequest::class => false,
+            SalarieActiviteJournaliereResponse::class => false,
+            SalarieActiviteJournalierePeriodeSaisie::class => false,
+            SalarieActiviteJournaliereSaisie::class => false,
+            SalarieAjouterActiviteJournaliereSurEmploiRequest::class => false,
+            SalarieAjouterHeuresNativesRequest::class => false,
+            SalarieAjouterHeuresNativesSurEmploiRequest::class => false,
+            SalarieReinitialiserSaisiesRequest::class => false,
+            SalarieReinitialisationSaisies::class => false,
+            SalarieReinitialiserSaisiesResponse::class => false,
+            ListeAgencesResponse::class => false,
+            Agence::class => false,
+            ListeDossiersAgenceRequest::class => false,
+            ListeDossiersAgenceResponse::class => false,
+            DossierAgence::class => false,
+            LectureFicheAgenceRequest::class => false,
+            AgenceDetail::class => false,
+            AffectationDossierPaieRequest::class => false,
+            DossierRequest::class => false,
+            AffectationDossierPaieLectureResponse::class => false,
+            AdministrationCollaborateurLectureRequest::class => false,
+            UtilisateurCollaborateur::class => false,
+            AdministrationCollaborateurLectureParIdentifiantRequest::class => false,
+            AdministrationCollaborateurEnregistrementRequest::class => false,
+            ModificationDroitsFonctionnelsProductionPaieRequest::class => false,
+            OngletProduction::class => false,
+            LectureCompteCollaborateurRequest::class => false,
+            CompteCollaborateur::class => false,
+            CompteCollaborateurRoles::class => false,
+            CompteCollaborateurDroits::class => false,
+            CompteCollaborateurHorairesAcces::class => false,
+            CompteCollaborateurDroitsUtilisateur::class => false,
+            CompteCollaborateurHoraireAccesParJour::class => false,
+            LectureCompteCollaborateurModelesResponse::class => false,
+            CollaborateurModele::class => false,
+            CreationCompteCollaborateurRequest::class => false,
+            CreationCompteCollaborateurDepuisModeleRequest::class => false,
+            CompteCollaborateurDepuisModele::class => false,
+            AppliquerModeleCollaborateurRequest::class => false,
+            AffecterCleDossierRequest::class => false,
+            GererEtatDossierPaieRequest::class => false,
+            GererEtatRobotDePaieRequest::class => false,
+            GererCycleDePaieRequest::class => false,
+            DossierTache::class => false,
+            ListeDossiersDemoSilaeResponse::class => false,
+            DossierDemoSilae::class => false,
+            ImportDossierDemoRequest::class => false,
+            AffectationsDossier::class => false,
+            TraitementAsynchroneResponse::class => false,
+            StatutAsynchroneResponse::class => false,
+            AnalyseConfigurationAccesApiRequest::class => false,
+            AnalyseConfigurationAccesApiResponse::class => false,
+            ConfigurationAccesApi::class => false,
+            ConfigurationAccesApiDossier::class => false,
+            CreationConfigurationAccesApiRequest::class => false,
+            CreationConfigurationAccesApi::class => false,
+            ListeComptesApiResponse::class => false,
+            CompteApi::class => false,
+            Domain::class => false,
+            Entity::class => false,
+            Agency::class => false,
+            AnalyseProductionPaieV2Request::class => false,
+            RequeteAnalyseProductionV2::class => false,
+            AnalyseProductionPaieResponse::class => false,
+            StatistiquesV2::class => false,
+            StatistiquesProductionV2::class => false,
+            StatistiquesDADS::class => false,
+            StatutAnalyseProductionPaieAsynchroneResponse::class => false,
+            AnalyseProductionPaieBulletinsOriginauxResponse::class => false,
+            StatistiquesBulletin::class => false,
+            StatistiquesProductionBulletin::class => false,
+            StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneResponse::class => false,
+            AnalyseProductionPaieBulletinsCoffresFortsResponse::class => false,
+            StatistiquesBulletinCoffreFort::class => false,
+            StatistiquesProductionBulletinCoffreFort::class => false,
+            StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponse::class => false,
+            AnalyseProductionPaieDetailRequest::class => false,
+            RequeteAnalyseProductionDetail::class => false,
+            AnalyseProductionPaieDetailResponse::class => false,
+            SalarieBase::class => false,
+            AnalyseProductionPaieUtilisateursRequest::class => false,
+            RequeteAnalyseProduction::class => false,
+            AnalyseProductionPaieUtilisateursResponse::class => false,
+            StatistiquesUtilisateurs::class => false,
+            StatistiquesProductionUtilisateur::class => false,
+            AnalyseProductionPaieUtilisateursV2Response::class => false,
+            StatistiquesUtilisateursV2::class => false,
+            StatistiquesProductionUtilisateurV2::class => false,
+            StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse::class => false,
+            AnalyseProductionPaieEffectifsRequest::class => false,
+            AnalyseProductionPaieEffectifsResponse::class => false,
+            AnalyseEffectifs::class => false,
+            StatutAnalyseProductionPaieEffectifsAsynchroneResponse::class => false,
+            AnalyseProductionPaieEntreesSortiesRequest::class => false,
+            AnalyseProductionPaieEntreesSortiesResponse::class => false,
+            StatistiquesEntreesSorties::class => false,
+            StatistiquesEntreesSortiesDetails::class => false,
+            StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse::class => false,
+            BureautiquePaieNombreDocumentsCreesRequest::class => false,
+            BureautiquePaieNombreDocumentsCreesResponse::class => false,
+            StatistiquesBureautique::class => false,
+            ListeModulesActifsResponse::class => false,
+            ModulesActifsParDossier::class => false,
+            ModuleActifParDossier::class => false,
+            ListeModulesMySilaeResponse::class => false,
+            ModulesMySilaeParDossier::class => false,
+            ModuleMySilaeParDossier::class => false,
+            LectureAxesAnalytiquesResponse::class => false,
+            AxeAnalytique::class => false,
+            SousCategorie::class => false,
+            AjoutSousCategorieAxeAnalytiqueRequest::class => false,
+            LectureAxesAnalytiquesSalariesRequest::class => false,
+            LectureAxesAnalytiquesSalariesResponse::class => false,
+            AxesAnalytiqueSalarie::class => false,
+            DonneesAxeAnalytiqueSalarie::class => false,
+            SousCategoriesEnPC::class => false,
+            SalarieEmploiClassificationMetierRequest::class => false,
+            EmploiClassificationMetier::class => false,
+            ClassificationMetierCompleteRequest::class => false,
+            ClassificationMetierCompleteResponse::class => false,
+            AjouteCompteRenduEdiRequest::class => false,
+            AjouteCompteRenduEdi94Request::class => false,
+            AjouteCompteRenduEdi94Response::class => false,
+            CreationEmetteurDSNRequest::class => false,
+            EmetteurDSN::class => false,
+            LectureContactEmetteurDSNRequest::class => false,
+            LectureContactEmetteurDSNResponse::class => false,
+            LectureContactEmetteurDSN::class => false,
+            ImportXmlParametrageOrganismeDSNRequest::class => false,
+            ImportXmlParametrageOrganismeDSNResponse::class => false,
+            InitialisationAncienNumeroContratDSNRequest::class => false,
+            InitialisationAncienNumeroContratDSN::class => false,
+            ActivationDSNRequest::class => false,
+            ActivationDSN::class => false,
+            ValideCleDossierRequest::class => false,
+            CreationUtilisateurClientPaieRequest::class => false,
+            UtilisateurClient::class => false,
+            ListeUtilisateursDossierPaieResponse::class => false,
+            ListeUtilisateursDossierPaieV2Response::class => false,
+            ContactInformations::class => false,
+            AcquisitionQuestionnaireContratComplementaireRequest::class => false,
+            AcquisitionQuestionnaireContratComplementaireResponse::class => false,
+            QuestionnaireContratComplementaire::class => false,
+            LibelleValeurComplete::class => false,
+            CreationQuestionnaireContratComplementaireRequest::class => false,
+            ControlerBulletinsPeriodeRequest::class => false,
+            ControlerBulletinsPeriodeResponse::class => false,
+            CreationDossierPaieRequest::class => false,
+            Dossier::class => false,
+            Etablissement::class => false,
+            CreationDossierPaieResponse::class => false,
+            ImportFichierDSNRequest::class => false,
+            RetourImportDSN::class => false,
+            CreationDossierParImportFichierDSNRequest::class => false,
+            SalarieInitialiserCumulsRequest::class => false,
+            SalarieCumuls::class => false,
+            DossierPeriodeRequest::class => false,
+            RecupererDeclarationsResponse::class => false,
+            StatutAsynchroneDocumentResponse::class => false,
+            DossierPeriodeRangeRequest::class => false,
+            EcrituresComptables::class => false,
+            EcrituresComptablesLigne::class => false,
+            EcrituresComptables2Request::class => false,
+            EcrituresComptables3Request::class => false,
+            EcrituresComptables4Request::class => false,
+            EcrituresComptablesAvecRuptures::class => false,
+            EcrituresComptablesRupture::class => false,
+            EcrituresComptablesLigneRupture::class => false,
+            EcrituresComptablesPaiementSalairesRequest::class => false,
+            StatutEcrituresComptablesAsynchroneResponse::class => false,
+            StatutEcrituresComptables4AsynchroneResponse::class => false,
+            RecupererFichiersEcrituresComptablesResponse::class => false,
+            EcrituresComptablesFichier::class => false,
+            StatutRecupererFichiersEcrituresComptablesAsynchroneResponse::class => false,
+            DossierPeriodePaiementSalairesLotsVirementRequest::class => false,
+            EcrituresComptablesPaiementSalairesLotsVirementResponse::class => false,
+            LotsVirement::class => false,
+            SoldeReposRequest::class => false,
+            SoldeRepos::class => false,
+            SoldeReposSalarie::class => false,
+            StatutSoldeReposResponse::class => false,
+            EditionJournalDePaieRequest::class => false,
+            EditionJournalDePaieResponse::class => false,
+            EditionTableauDesChargesRequest::class => false,
+            EditionTableauDesChargesResponse::class => false,
+            EditionEtatDesPaiementsRequest::class => false,
+            EditionEtatDesPaiementsResponse::class => false,
+            EditionRecapDePaieRequest::class => false,
+            EditionRecapDePaieResponse::class => false,
+            EditionRecapDePaieDetailleParSalarieRequest::class => false,
+            EditionRecapDePaieDetailleParSalarieResponse::class => false,
+            EditionSoldeDeReposRequest::class => false,
+            EditionSoldeDeReposResponse::class => false,
+            EditionControleCICEResponse::class => false,
+            EditionDetailDesCotisationsRequest::class => false,
+            EditionDetailDesCotisationsResponse::class => false,
+            EditionCoutsSalariauxRequest::class => false,
+            EditionCoutsSalariauxResponse::class => false,
+            GenerationFichierTRRequest::class => false,
+            GenererFichierTRResponse::class => false,
+            EditionHistoriqueRequest::class => false,
+            EditionHistoriqueResponse::class => false,
+            EditionHistoriqueChiffreRequest::class => false,
+            ProprietesChiffrement::class => false,
+            SalarieAjouterPrimeRequest::class => false,
+            SalariePrime::class => false,
+            SalarieAjouterPrimeSurEmploiRequest::class => false,
+            SalarieAjouterElementVariableRequest::class => false,
+            SalarieElementVariable::class => false,
+            SalarieAjouterElementVariableSurEmploiRequest::class => false,
+            SalarieAjouterAcompteRequest::class => false,
+            SalarieAcompte::class => false,
+            SalariesConfirmerSaisiesRequest::class => false,
+            SalariesConfirmerSaisies::class => false,
+            SalariesConfirmerSaisiesResponse::class => false,
+            StatutSalariesConfirmerSaisiesResponse::class => false,
+            EtatDeclarationsRequest::class => false,
+            EtatDeclarationsResponse::class => false,
+            EtatDeclaration::class => false,
+            EtatDeclarationRetour::class => false,
+            ListeEtablissementsDossierPaieResponse::class => false,
+            InformationsEtablissement::class => false,
+            EtablissementsAExclureCVAERequest::class => false,
+            EtablissementsAExclureCVAEResponse::class => false,
+            MiseAJourFicheSocieteRequest::class => false,
+            SocieteInfoSup::class => false,
+            MiseAJourFicheEtablissementRequest::class => false,
+            EtablissementInfoSup::class => false,
+            ModificationEffectifSocieteRequest::class => false,
+            EffectifSociete::class => false,
+            ModificationCCNSocieteRequest::class => false,
+            CCNSociete::class => false,
+            ModificationEffortConstructionRequest::class => false,
+            EffortConstruction::class => false,
+            ModificationFNALRequest::class => false,
+            FNAL::class => false,
+            ModificationInformationBancaireSocieteRequest::class => false,
+            InformationBancaireSociete::class => false,
+            ModificationTaxeTransportRequest::class => false,
+            TaxeTransport::class => false,
+            ModificationTaxeApprentissageEtablissementRequest::class => false,
+            ModificationTaxeApprentissageEtablissementResponse::class => false,
+            TaxeApprentissage::class => false,
+            ModificationTaxeApprentissageSocieteRequest::class => false,
+            ModificationTaxeApprentissageSocieteResponse::class => false,
+            ModificationCCNEtablissementRequest::class => false,
+            ModificationEffectifEtablissementRequest::class => false,
+            EffectifEtablissement::class => false,
+            ModificationQuestionnaireCCNEtablissementRequest::class => false,
+            ModificationChampValeursTypees::class => false,
+            ModificationGrilleHoraireEtablissementRequest::class => false,
+            ModificationHoraireEtablissement::class => false,
+            LectureEffectifSocieteResponse::class => false,
+            LectureCCNSocieteResponse::class => false,
+            LectureInformationBancaireSocieteResponse::class => false,
+            LectureTaxeTransportRequest::class => false,
+            LectureTaxeTransportResponse::class => false,
+            LectureTaxeApprentissageSocieteRequest::class => false,
+            LectureTaxeApprentissageSocieteResponse::class => false,
+            LectureTaxeApprentissageEtablissementRequest::class => false,
+            LectureTaxeApprentissageEtablissementResponse::class => false,
+            LectureEffectifEtablissementRequest::class => false,
+            LectureEffectifEtablissementResponse::class => false,
+            DossierMatriculeSalarieRequest::class => false,
+            SalarieRecupererDUEResponse::class => false,
+            SalarieRecupererRecuDPAEResponse::class => false,
+            RecupererRecuDPAEResult::class => false,
+            SalarieDUERequest::class => false,
+            SalarieDUE::class => false,
+            StatutSalariesDUEAsynchroneResponse::class => false,
+            SalariesDUERequest::class => false,
+            RequeteSalariesDUE::class => false,
+            SalariesDUEResponse::class => false,
+            RechercheCCNRequest::class => false,
+            CritereRechercheCCN::class => false,
+            RechercheCCNResponse::class => false,
+            CCN::class => false,
+            RechercheCCNParCodeRequest::class => false,
+            SalarieBulletinEnteteRequest::class => false,
+            RequeteSalarieBulletinEntete::class => false,
+            SalarieBulletinEnteteResult::class => false,
+            SalarieBulletinsIndicesRequest::class => false,
+            RequeteSalarieBulletinIndices::class => false,
+            SalarieBulletinsIndicesResponse::class => false,
+            SalarieBulletinsIndicesResult::class => false,
+            SalarieBulletinIndiceResult::class => false,
+            SalarieBulletinLignesRequest::class => false,
+            RequeteSalarieBulletinLignes::class => false,
+            SalarieBulletinLignesResult::class => false,
+            LigneBulletin::class => false,
+            SalarieBulletinLignesSelonFiltresRequest::class => false,
+            RequeteSalarieBulletinLignesFiltres::class => false,
+            SalarieBulletinDetailsRequest::class => false,
+            RequeteSalarieBulletinDetails::class => false,
+            SalarieBulletinDetailsResult::class => false,
+            SalarieBulletinResult::class => false,
+            SalarieBulletinEnteteSimpleResult::class => false,
+            SalarieBulletinStatutEtatAvancementRequest::class => false,
+            SalarieBulletinStatutEtatAvancementResponse::class => false,
+            SalarieBulletinStatutEtatAvancementReponse::class => false,
+            SalarieBulletinCumulsRequest::class => false,
+            SalarieBulletinCumulsResult::class => false,
+            SalariesStockVarRequest::class => false,
+            RequeteSalariesStockVar::class => false,
+            SalariesStockVarResponse::class => false,
+            SalarieStockVarResult::class => false,
+            ListeDSNMensuellesResponse::class => false,
+            DSNMensuelle::class => false,
+            AcquisitionContenuPartielDSNRequest::class => false,
+            AcquisitionContenuPartielDSNResponse::class => false,
+            RechercheDeclarationEvenementielleRequest::class => false,
+            RechercheDeclarationEvenementielleResponse::class => false,
+            DeclarationEvenementielle::class => false,
+            ListeDSNEvenementiellesRequest::class => false,
+            ListeDSNEvenementiellesResponse::class => false,
+            ListeDeclarationEvenementielle::class => false,
+            SalarieRecupererPeriodeDernierBulletinCalculeResponse::class => false,
+            LectureInformationsPaieRequest::class => false,
+            RequeteLectureInfos::class => false,
+            LectureInformationsPaieResponse::class => false,
+            LectureInfosResult::class => false,
+            HistoriqueDesModificationsRequest::class => false,
+            HistoriqueDesModificationsResponse::class => false,
+            HistoriqueModification::class => false,
+            SalariesBulletinsRequest::class => false,
+            RequeteSalariesBulletins::class => false,
+            SalariesBulletinsResponse::class => false,
+            SalarieBulletinsResult::class => false,
+            StatutSalariesBulletinsResponse::class => false,
+            ListeSalariesRequest::class => false,
+            ListeSalariesOptions::class => false,
+            ListeSalariesResponse::class => false,
+            SalarieInformationsV3::class => false,
+            ListeSalariesExternesRequest::class => false,
+            ListeSalariesExternesResponse::class => false,
+            SalarieSalaireDeBaseRequest::class => false,
+            SalarieSalaireDeBaseResult::class => false,
+            SalarieSyntheseCarriereResponse::class => false,
+            SalarieElementCarriere::class => false,
+            StatutSalarieSyntheseCarriereResponse::class => false,
+            DossierMatriculeRequest::class => false,
+            LecturePersonnesLieesResponse::class => false,
+            PersonneLiee::class => false,
+            LectureHandicapResponse::class => false,
+            Handicap::class => false,
+            LectureSalarieProtegeResponse::class => false,
+            SalarieProtege::class => false,
+            LectureSaisieArretResponse::class => false,
+            SaisieArret::class => false,
+            LectureReponsesQuestionnaireFicheSalarieResponse::class => false,
+            QReponse::class => false,
+            LibelleValeur::class => false,
+            ListeInformationsDossiersPaieRequest::class => false,
+            ListeNumerosDossiersResponse::class => false,
+            ListeDossiersRequest::class => false,
+            ListeDossiersResponse::class => false,
+            ProprietesDossier::class => false,
+            ListeInformationsDossiersPaieResponse::class => false,
+            InformationsDossier::class => false,
+            DossierRecupererPeriodeEnCoursResponse::class => false,
+            MatriculeSalarieRequest::class => false,
+            MatriculeSalarieResponse::class => false,
+            ListeMatriculesDupliquesRequest::class => false,
+            ListeMatriculesDupliquesResponse::class => false,
+            ListeMatriculesDupliquesDansDomaineResponse::class => false,
+            CoupleDossierMatricule::class => false,
+            ExistenceMatriculeRequest::class => false,
+            ExistenceMatriculeResponse::class => false,
+            ExtraListeManifestationsRequest::class => false,
+            ExtraListeManifestationsResponse::class => false,
+            ExtraManifestation::class => false,
+            ExtraCreationManifestationRequest::class => false,
+            ExtraSalarieAcquisitionVacationsRequest::class => false,
+            RequeteExtraSalarieVacations::class => false,
+            ExtraSalarieVacations::class => false,
+            ExtraSalarieVacation::class => false,
+            ExtraSalarieAjouterVacationsRequest::class => false,
+            ExtraSalarieReinitialiserVacationsRequest::class => false,
+            ExtraSalarieReinitialiserVacationsResponse::class => false,
+            ExtraSalarieCalculerBulletinRequest::class => false,
+            SpectacleListeRequest::class => false,
+            SpectacleListeResponse::class => false,
+            Spectacle::class => false,
+            SpectacleCreationRequest::class => false,
+            SpectacleSalarieAcquisitionAffectationsRequest::class => false,
+            RequeteSpectacleSalarieAffectations::class => false,
+            SpectacleSalarieAffectations::class => false,
+            SpectacleSalarieAffectation::class => false,
+            SpectacleSalarieAjouterAffectationsRequest::class => false,
+            SpectacleSalarieReinitialiserAffectationsRequest::class => false,
+            SpectacleSalarieReinitialiserAffectationsResponse::class => false,
+            SpectacleSalarieCalculerBulletinRequest::class => false,
+            CreationOrganismeRequest::class => false,
+            Organisme::class => false,
+            ListeOrganismesRequest::class => false,
+            ListeOrganismesResponse::class => false,
+            RecupererFichiersVirementRequest::class => false,
+            RecupererFichiersVirementResponse::class => false,
+            BilanMatricules::class => false,
+            RecupererFichierVirementResult::class => false,
+            RecupererFichiersVirementChiffresRequest::class => false,
+            RecupererFichiersVirementHorsBulletinRequest::class => false,
+            RecupererFichiersVirementHorsBulletinChiffresRequest::class => false,
+            AcquisitionQuestionnaireCCNRequest::class => false,
+            AcquisitionQuestionnaireCCNResponse::class => false,
+            QCCN::class => false,
+            LectureReponsesQuestionnaireConventionnelSalarieRequest::class => false,
+            LectureReponsesQuestionnaireConventionnelSalarieResponse::class => false,
+            QCCNReponses::class => false,
+            EcritureReponsesQuestionnaireConventionnelSalarieRequest::class => false,
+            QCCNReponsesSimple::class => false,
+            QReponseSimple::class => false,
+            SimpleMessageResponse::class => false,
+            RecupererImageRequest::class => false,
+            RecupererImageResponse::class => false,
+            ImageAnnexe::class => false,
+            StatutRecupererImageAsynchroneResponse::class => false,
+            RecupererDuplicatasBulletinsRequest::class => false,
+            RecupererDuplicatasBulletinsResponse::class => false,
+            CreationSalarieEmploisRequest::class => false,
+            SalarieEmplois::class => false,
+            Emploi::class => false,
+            CreationSalarieEmploisResponse::class => false,
+            CreationSalarieEmploiResult::class => false,
+            StatutCreationSalarieEmploisAsynchroneResponse::class => false,
+            ListeSalarieEmploisRequest::class => false,
+            ListeSalarieEmploisResponse::class => false,
+            SalarieEmploiInformations::class => false,
+            ListeSalarieEmploisExternesResponse::class => false,
+            SalarieEmploiExterneInformations::class => false,
+            ModificationChampSalarieRequest::class => false,
+            ModificationChamp::class => false,
+            ModificationAxesAnalytiquesSalarieRequest::class => false,
+            ModificationPersonnesLieesRequest::class => false,
+            PersonneLieeV2::class => false,
+            ModificationHandicapRequest::class => false,
+            ModificationSalarieProtegeRequest::class => false,
+            ModificationSaisieArretRequest::class => false,
+            LectureQuestionnaireContratComplementaireRequest::class => false,
+            LectureQuestionnaireContratComplementaireResponse::class => false,
+            LectureChampLibelle::class => false,
+            ModificationQuestionnaireContratComplementaireRequest::class => false,
+            ModificationChampByte::class => false,
+            ModificationGrilleHoraireSalarieRequest::class => false,
+            ModificationHoraireSalarie::class => false,
+            LectureGrilleHoraireFicheSalarieRequest::class => false,
+            LectureGrilleHoraireFicheSalarieResponse::class => false,
+            LectureHoraireSalarie::class => false,
+            EcritureReponsesQuestionnaireFicheSalarieRequest::class => false,
+            SiteGenereMotDePasseAlternatifRequest::class => false,
+            SiteGenereMotDePasseAlternatifResponse::class => false,
+            ListeVariablesASaisirResponse::class => false,
+            VariableASaisir::class => false,
+            Reference::class => false,
+        ];
     }
 }

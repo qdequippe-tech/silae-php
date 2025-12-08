@@ -89,6 +89,21 @@ class ExtraSalarieVacation
      */
     protected $variablesValeurs;
 
+    /**
+     * @var string|null
+     */
+    protected $valeurAxeAnalytique1;
+
+    /**
+     * @var string|null
+     */
+    protected $valeurAxeAnalytique2;
+
+    /**
+     * @var string|null
+     */
+    protected $valeurAxeAnalytique3;
+
     public function getDateDebut(): ?\DateTime
     {
         return $this->dateDebut;
@@ -304,6 +319,45 @@ class ExtraSalarieVacation
     {
         $this->initialized['variablesValeurs'] = true;
         $this->variablesValeurs = $variablesValeurs;
+
+        return $this;
+    }
+
+    public function getValeurAxeAnalytique1(): ?string
+    {
+        return $this->valeurAxeAnalytique1;
+    }
+
+    public function setValeurAxeAnalytique1(?string $valeurAxeAnalytique1): self
+    {
+        $this->initialized['valeurAxeAnalytique1'] = true;
+        $this->valeurAxeAnalytique1 = $valeurAxeAnalytique1;
+
+        return $this;
+    }
+
+    public function getValeurAxeAnalytique2(): ?string
+    {
+        return $this->valeurAxeAnalytique2;
+    }
+
+    public function setValeurAxeAnalytique2(?string $valeurAxeAnalytique2): self
+    {
+        $this->initialized['valeurAxeAnalytique2'] = true;
+        $this->valeurAxeAnalytique2 = $valeurAxeAnalytique2;
+
+        return $this;
+    }
+
+    public function getValeurAxeAnalytique3(): ?string
+    {
+        return $this->valeurAxeAnalytique3;
+    }
+
+    public function setValeurAxeAnalytique3(?string $valeurAxeAnalytique3): self
+    {
+        $this->initialized['valeurAxeAnalytique3'] = true;
+        $this->valeurAxeAnalytique3 = $valeurAxeAnalytique3;
 
         return $this;
     }

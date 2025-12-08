@@ -7,7 +7,6 @@ use QdequippeTech\Silae\Api\Model\CreationSalarieEmploiResult;
 use QdequippeTech\Silae\Api\Model\CreationSalarieEmploisResponse;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -15,166 +14,89 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
-    class CreationSalarieEmploisResponseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class CreationSalarieEmploisResponseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use CheckArray;
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use ValidatorTrait;
+
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
-
-        public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
-        {
-            return CreationSalarieEmploisResponse::class === $type;
-        }
-
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && CreationSalarieEmploisResponse::class === $data::class;
-        }
-
-        public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
-
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
-
-            $object = new CreationSalarieEmploisResponse();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('resultatsCreationsEmplois', $data) && null !== $data['resultatsCreationsEmplois']) {
-                $values = [];
-                foreach ($data['resultatsCreationsEmplois'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, CreationSalarieEmploiResult::class, 'json', $context);
-                }
-
-                $object->setResultatsCreationsEmplois($values);
-            } elseif (\array_key_exists('resultatsCreationsEmplois', $data) && null === $data['resultatsCreationsEmplois']) {
-                $object->setResultatsCreationsEmplois(null);
-            }
-
-            if (\array_key_exists('warning', $data) && null !== $data['warning']) {
-                $object->setWarning($data['warning']);
-            } elseif (\array_key_exists('warning', $data) && null === $data['warning']) {
-                $object->setWarning(null);
-            }
-
-            return $object;
-        }
-
-        public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
-        {
-            $data = [];
-            if ($object->isInitialized('resultatsCreationsEmplois') && null !== $object->getResultatsCreationsEmplois()) {
-                $values = [];
-                foreach ($object->getResultatsCreationsEmplois() as $value) {
-                    $values[] = $this->normalizer->normalize($value, 'json', $context);
-                }
-
-                $data['resultatsCreationsEmplois'] = $values;
-            }
-
-            if ($object->isInitialized('warning') && null !== $object->getWarning()) {
-                $data['warning'] = $object->getWarning();
-            }
-
-            return $data;
-        }
-
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [CreationSalarieEmploisResponse::class => false];
-        }
+        return CreationSalarieEmploisResponse::class === $type;
     }
-} else {
-    class CreationSalarieEmploisResponseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
+        return \is_object($data) && CreationSalarieEmploisResponse::class === $data::class;
+    }
 
-        public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
-        {
-            return CreationSalarieEmploisResponse::class === $type;
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+    {
+        if (isset($data['$ref'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
         }
 
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && CreationSalarieEmploisResponse::class === $data::class;
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        /**
-         * @param mixed|null $format
-         */
-        public function denormalize($data, $type, $format = null, array $context = [])
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
-
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
-
-            $object = new CreationSalarieEmploisResponse();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('resultatsCreationsEmplois', $data) && null !== $data['resultatsCreationsEmplois']) {
-                $values = [];
-                foreach ($data['resultatsCreationsEmplois'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, CreationSalarieEmploiResult::class, 'json', $context);
-                }
-
-                $object->setResultatsCreationsEmplois($values);
-            } elseif (\array_key_exists('resultatsCreationsEmplois', $data) && null === $data['resultatsCreationsEmplois']) {
-                $object->setResultatsCreationsEmplois(null);
-            }
-
-            if (\array_key_exists('warning', $data) && null !== $data['warning']) {
-                $object->setWarning($data['warning']);
-            } elseif (\array_key_exists('warning', $data) && null === $data['warning']) {
-                $object->setWarning(null);
-            }
-
+        $object = new CreationSalarieEmploisResponse();
+        if (null === $data || false === \is_array($data)) {
             return $object;
         }
 
-        /**
-         * @param mixed|null $format
-         *
-         * @return array|string|int|float|bool|\ArrayObject|null
-         */
-        public function normalize($object, $format = null, array $context = [])
-        {
-            $data = [];
-            if ($object->isInitialized('resultatsCreationsEmplois') && null !== $object->getResultatsCreationsEmplois()) {
-                $values = [];
-                foreach ($object->getResultatsCreationsEmplois() as $value) {
-                    $values[] = $this->normalizer->normalize($value, 'json', $context);
-                }
-
-                $data['resultatsCreationsEmplois'] = $values;
+        if (\array_key_exists('resultatsCreationsEmplois', $data) && null !== $data['resultatsCreationsEmplois']) {
+            $values = [];
+            foreach ($data['resultatsCreationsEmplois'] as $value) {
+                $values[] = $this->denormalizer->denormalize($value, CreationSalarieEmploiResult::class, 'json', $context);
             }
 
-            if ($object->isInitialized('warning') && null !== $object->getWarning()) {
-                $data['warning'] = $object->getWarning();
+            $object->setResultatsCreationsEmplois($values);
+        } elseif (\array_key_exists('resultatsCreationsEmplois', $data) && null === $data['resultatsCreationsEmplois']) {
+            $object->setResultatsCreationsEmplois(null);
+        }
+
+        if (\array_key_exists('warning', $data) && null !== $data['warning']) {
+            $object->setWarning($data['warning']);
+        } elseif (\array_key_exists('warning', $data) && null === $data['warning']) {
+            $object->setWarning(null);
+        }
+
+        if (\array_key_exists('matriculeSalarie', $data) && null !== $data['matriculeSalarie']) {
+            $object->setMatriculeSalarie($data['matriculeSalarie']);
+        } elseif (\array_key_exists('matriculeSalarie', $data) && null === $data['matriculeSalarie']) {
+            $object->setMatriculeSalarie(null);
+        }
+
+        return $object;
+    }
+
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    {
+        $dataArray = [];
+        if ($data->isInitialized('resultatsCreationsEmplois') && null !== $data->getResultatsCreationsEmplois()) {
+            $values = [];
+            foreach ($data->getResultatsCreationsEmplois() as $value) {
+                $values[] = $this->normalizer->normalize($value, 'json', $context);
             }
 
-            return $data;
+            $dataArray['resultatsCreationsEmplois'] = $values;
         }
 
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [CreationSalarieEmploisResponse::class => false];
+        if ($data->isInitialized('warning') && null !== $data->getWarning()) {
+            $dataArray['warning'] = $data->getWarning();
         }
+
+        if ($data->isInitialized('matriculeSalarie') && null !== $data->getMatriculeSalarie()) {
+            $dataArray['matriculeSalarie'] = $data->getMatriculeSalarie();
+        }
+
+        return $dataArray;
+    }
+
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [CreationSalarieEmploisResponse::class => false];
     }
 }

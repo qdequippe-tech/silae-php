@@ -24,6 +24,11 @@ class ModuleActifParDossier
      */
     protected $libelleModule;
 
+    /**
+     * @var \DateTime|null
+     */
+    protected $dateDerniereModification;
+
     public function getCodeModule(): ?string
     {
         return $this->codeModule;
@@ -46,6 +51,19 @@ class ModuleActifParDossier
     {
         $this->initialized['libelleModule'] = true;
         $this->libelleModule = $libelleModule;
+
+        return $this;
+    }
+
+    public function getDateDerniereModification(): ?\DateTime
+    {
+        return $this->dateDerniereModification;
+    }
+
+    public function setDateDerniereModification(?\DateTime $dateDerniereModification): self
+    {
+        $this->initialized['dateDerniereModification'] = true;
+        $this->dateDerniereModification = $dateDerniereModification;
 
         return $this;
     }

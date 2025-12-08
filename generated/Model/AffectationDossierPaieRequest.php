@@ -22,6 +22,11 @@ class AffectationDossierPaieRequest
     /**
      * @var string|null
      */
+    protected $codeAgence;
+
+    /**
+     * @var string|null
+     */
     protected $numeroDossier;
 
     /**
@@ -39,6 +44,19 @@ class AffectationDossierPaieRequest
     {
         $this->initialized['affectation'] = true;
         $this->affectation = $affectation;
+
+        return $this;
+    }
+
+    public function getCodeAgence(): ?string
+    {
+        return $this->codeAgence;
+    }
+
+    public function setCodeAgence(?string $codeAgence): self
+    {
+        $this->initialized['codeAgence'] = true;
+        $this->codeAgence = $codeAgence;
 
         return $this;
     }

@@ -6,7 +6,6 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\OngletProduction;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -14,326 +13,187 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
-    class OngletProductionNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class OngletProductionNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use CheckArray;
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use ValidatorTrait;
+
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
-
-        public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
-        {
-            return OngletProduction::class === $type;
-        }
-
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && OngletProduction::class === $data::class;
-        }
-
-        public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
-
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
-
-            $object = new OngletProduction();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('nomOnglet', $data) && null !== $data['nomOnglet']) {
-                $object->setNomOnglet($data['nomOnglet']);
-            } elseif (\array_key_exists('nomOnglet', $data) && null === $data['nomOnglet']) {
-                $object->setNomOnglet(null);
-            }
-
-            if (\array_key_exists('aSupprimer', $data) && null !== $data['aSupprimer']) {
-                $object->setASupprimer($data['aSupprimer']);
-            } elseif (\array_key_exists('aSupprimer', $data) && null === $data['aSupprimer']) {
-                $object->setASupprimer(null);
-            }
-
-            if (\array_key_exists('ordre', $data) && null !== $data['ordre']) {
-                $object->setOrdre($data['ordre']);
-            } elseif (\array_key_exists('ordre', $data) && null === $data['ordre']) {
-                $object->setOrdre(null);
-            }
-
-            if (\array_key_exists('nouveauNomOnglet', $data) && null !== $data['nouveauNomOnglet']) {
-                $object->setNouveauNomOnglet($data['nouveauNomOnglet']);
-            } elseif (\array_key_exists('nouveauNomOnglet', $data) && null === $data['nouveauNomOnglet']) {
-                $object->setNouveauNomOnglet(null);
-            }
-
-            if (\array_key_exists('paramPaieGestion', $data) && null !== $data['paramPaieGestion']) {
-                $object->setParamPaieGestion($data['paramPaieGestion']);
-            } elseif (\array_key_exists('paramPaieGestion', $data) && null === $data['paramPaieGestion']) {
-                $object->setParamPaieGestion(null);
-            }
-
-            if (\array_key_exists('paramPaieLiaisonClient', $data) && null !== $data['paramPaieLiaisonClient']) {
-                $object->setParamPaieLiaisonClient($data['paramPaieLiaisonClient']);
-            } elseif (\array_key_exists('paramPaieLiaisonClient', $data) && null === $data['paramPaieLiaisonClient']) {
-                $object->setParamPaieLiaisonClient(null);
-            }
-
-            if (\array_key_exists('paramPaieComplet', $data) && null !== $data['paramPaieComplet']) {
-                $object->setParamPaieComplet($data['paramPaieComplet']);
-            } elseif (\array_key_exists('paramPaieComplet', $data) && null === $data['paramPaieComplet']) {
-                $object->setParamPaieComplet(null);
-            }
-
-            if (\array_key_exists('paramPaieSimplifie', $data) && null !== $data['paramPaieSimplifie']) {
-                $object->setParamPaieSimplifie($data['paramPaieSimplifie']);
-            } elseif (\array_key_exists('paramPaieSimplifie', $data) && null === $data['paramPaieSimplifie']) {
-                $object->setParamPaieSimplifie(null);
-            }
-
-            if (\array_key_exists('afficherLaListe', $data) && null !== $data['afficherLaListe']) {
-                $object->setAfficherLaListe($data['afficherLaListe']);
-            } elseif (\array_key_exists('afficherLaListe', $data) && null === $data['afficherLaListe']) {
-                $object->setAfficherLaListe(null);
-            }
-
-            if (\array_key_exists('restreindreLaListe', $data) && null !== $data['restreindreLaListe']) {
-                $object->setRestreindreLaListe($data['restreindreLaListe']);
-            } elseif (\array_key_exists('restreindreLaListe', $data) && null === $data['restreindreLaListe']) {
-                $object->setRestreindreLaListe(null);
-            }
-
-            if (\array_key_exists('requeteFiltre', $data) && null !== $data['requeteFiltre']) {
-                $object->setRequeteFiltre($data['requeteFiltre']);
-            } elseif (\array_key_exists('requeteFiltre', $data) && null === $data['requeteFiltre']) {
-                $object->setRequeteFiltre(null);
-            }
-
-            return $object;
-        }
-
-        public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
-        {
-            $data = [];
-            if ($object->isInitialized('nomOnglet') && null !== $object->getNomOnglet()) {
-                $data['nomOnglet'] = $object->getNomOnglet();
-            }
-
-            if ($object->isInitialized('aSupprimer') && null !== $object->getASupprimer()) {
-                $data['aSupprimer'] = $object->getASupprimer();
-            }
-
-            if ($object->isInitialized('ordre') && null !== $object->getOrdre()) {
-                $data['ordre'] = $object->getOrdre();
-            }
-
-            if ($object->isInitialized('nouveauNomOnglet') && null !== $object->getNouveauNomOnglet()) {
-                $data['nouveauNomOnglet'] = $object->getNouveauNomOnglet();
-            }
-
-            if ($object->isInitialized('paramPaieGestion') && null !== $object->getParamPaieGestion()) {
-                $data['paramPaieGestion'] = $object->getParamPaieGestion();
-            }
-
-            if ($object->isInitialized('paramPaieLiaisonClient') && null !== $object->getParamPaieLiaisonClient()) {
-                $data['paramPaieLiaisonClient'] = $object->getParamPaieLiaisonClient();
-            }
-
-            if ($object->isInitialized('paramPaieComplet') && null !== $object->getParamPaieComplet()) {
-                $data['paramPaieComplet'] = $object->getParamPaieComplet();
-            }
-
-            if ($object->isInitialized('paramPaieSimplifie') && null !== $object->getParamPaieSimplifie()) {
-                $data['paramPaieSimplifie'] = $object->getParamPaieSimplifie();
-            }
-
-            if ($object->isInitialized('afficherLaListe') && null !== $object->getAfficherLaListe()) {
-                $data['afficherLaListe'] = $object->getAfficherLaListe();
-            }
-
-            if ($object->isInitialized('restreindreLaListe') && null !== $object->getRestreindreLaListe()) {
-                $data['restreindreLaListe'] = $object->getRestreindreLaListe();
-            }
-
-            if ($object->isInitialized('requeteFiltre') && null !== $object->getRequeteFiltre()) {
-                $data['requeteFiltre'] = $object->getRequeteFiltre();
-            }
-
-            return $data;
-        }
-
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [OngletProduction::class => false];
-        }
+        return OngletProduction::class === $type;
     }
-} else {
-    class OngletProductionNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
+        return \is_object($data) && OngletProduction::class === $data::class;
+    }
 
-        public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
-        {
-            return OngletProduction::class === $type;
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+    {
+        if (isset($data['$ref'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
         }
 
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && OngletProduction::class === $data::class;
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        /**
-         * @param mixed|null $format
-         */
-        public function denormalize($data, $type, $format = null, array $context = [])
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
+        $object = new OngletProduction();
+        if (\array_key_exists('aSupprimer', $data) && \is_int($data['aSupprimer'])) {
+            $data['aSupprimer'] = (bool) $data['aSupprimer'];
+        }
 
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
+        if (\array_key_exists('paramPaieGestion', $data) && \is_int($data['paramPaieGestion'])) {
+            $data['paramPaieGestion'] = (bool) $data['paramPaieGestion'];
+        }
 
-            $object = new OngletProduction();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
+        if (\array_key_exists('paramPaieLiaisonClient', $data) && \is_int($data['paramPaieLiaisonClient'])) {
+            $data['paramPaieLiaisonClient'] = (bool) $data['paramPaieLiaisonClient'];
+        }
 
-            if (\array_key_exists('nomOnglet', $data) && null !== $data['nomOnglet']) {
-                $object->setNomOnglet($data['nomOnglet']);
-            } elseif (\array_key_exists('nomOnglet', $data) && null === $data['nomOnglet']) {
-                $object->setNomOnglet(null);
-            }
+        if (\array_key_exists('paramPaieComplet', $data) && \is_int($data['paramPaieComplet'])) {
+            $data['paramPaieComplet'] = (bool) $data['paramPaieComplet'];
+        }
 
-            if (\array_key_exists('aSupprimer', $data) && null !== $data['aSupprimer']) {
-                $object->setASupprimer($data['aSupprimer']);
-            } elseif (\array_key_exists('aSupprimer', $data) && null === $data['aSupprimer']) {
-                $object->setASupprimer(null);
-            }
+        if (\array_key_exists('paramPaieSimplifie', $data) && \is_int($data['paramPaieSimplifie'])) {
+            $data['paramPaieSimplifie'] = (bool) $data['paramPaieSimplifie'];
+        }
 
-            if (\array_key_exists('ordre', $data) && null !== $data['ordre']) {
-                $object->setOrdre($data['ordre']);
-            } elseif (\array_key_exists('ordre', $data) && null === $data['ordre']) {
-                $object->setOrdre(null);
-            }
+        if (\array_key_exists('afficherLaListe', $data) && \is_int($data['afficherLaListe'])) {
+            $data['afficherLaListe'] = (bool) $data['afficherLaListe'];
+        }
 
-            if (\array_key_exists('nouveauNomOnglet', $data) && null !== $data['nouveauNomOnglet']) {
-                $object->setNouveauNomOnglet($data['nouveauNomOnglet']);
-            } elseif (\array_key_exists('nouveauNomOnglet', $data) && null === $data['nouveauNomOnglet']) {
-                $object->setNouveauNomOnglet(null);
-            }
+        if (\array_key_exists('restreindreLaListe', $data) && \is_int($data['restreindreLaListe'])) {
+            $data['restreindreLaListe'] = (bool) $data['restreindreLaListe'];
+        }
 
-            if (\array_key_exists('paramPaieGestion', $data) && null !== $data['paramPaieGestion']) {
-                $object->setParamPaieGestion($data['paramPaieGestion']);
-            } elseif (\array_key_exists('paramPaieGestion', $data) && null === $data['paramPaieGestion']) {
-                $object->setParamPaieGestion(null);
-            }
-
-            if (\array_key_exists('paramPaieLiaisonClient', $data) && null !== $data['paramPaieLiaisonClient']) {
-                $object->setParamPaieLiaisonClient($data['paramPaieLiaisonClient']);
-            } elseif (\array_key_exists('paramPaieLiaisonClient', $data) && null === $data['paramPaieLiaisonClient']) {
-                $object->setParamPaieLiaisonClient(null);
-            }
-
-            if (\array_key_exists('paramPaieComplet', $data) && null !== $data['paramPaieComplet']) {
-                $object->setParamPaieComplet($data['paramPaieComplet']);
-            } elseif (\array_key_exists('paramPaieComplet', $data) && null === $data['paramPaieComplet']) {
-                $object->setParamPaieComplet(null);
-            }
-
-            if (\array_key_exists('paramPaieSimplifie', $data) && null !== $data['paramPaieSimplifie']) {
-                $object->setParamPaieSimplifie($data['paramPaieSimplifie']);
-            } elseif (\array_key_exists('paramPaieSimplifie', $data) && null === $data['paramPaieSimplifie']) {
-                $object->setParamPaieSimplifie(null);
-            }
-
-            if (\array_key_exists('afficherLaListe', $data) && null !== $data['afficherLaListe']) {
-                $object->setAfficherLaListe($data['afficherLaListe']);
-            } elseif (\array_key_exists('afficherLaListe', $data) && null === $data['afficherLaListe']) {
-                $object->setAfficherLaListe(null);
-            }
-
-            if (\array_key_exists('restreindreLaListe', $data) && null !== $data['restreindreLaListe']) {
-                $object->setRestreindreLaListe($data['restreindreLaListe']);
-            } elseif (\array_key_exists('restreindreLaListe', $data) && null === $data['restreindreLaListe']) {
-                $object->setRestreindreLaListe(null);
-            }
-
-            if (\array_key_exists('requeteFiltre', $data) && null !== $data['requeteFiltre']) {
-                $object->setRequeteFiltre($data['requeteFiltre']);
-            } elseif (\array_key_exists('requeteFiltre', $data) && null === $data['requeteFiltre']) {
-                $object->setRequeteFiltre(null);
-            }
-
+        if (null === $data || false === \is_array($data)) {
             return $object;
         }
 
-        /**
-         * @param mixed|null $format
-         *
-         * @return array|string|int|float|bool|\ArrayObject|null
-         */
-        public function normalize($object, $format = null, array $context = [])
-        {
-            $data = [];
-            if ($object->isInitialized('nomOnglet') && null !== $object->getNomOnglet()) {
-                $data['nomOnglet'] = $object->getNomOnglet();
-            }
-
-            if ($object->isInitialized('aSupprimer') && null !== $object->getASupprimer()) {
-                $data['aSupprimer'] = $object->getASupprimer();
-            }
-
-            if ($object->isInitialized('ordre') && null !== $object->getOrdre()) {
-                $data['ordre'] = $object->getOrdre();
-            }
-
-            if ($object->isInitialized('nouveauNomOnglet') && null !== $object->getNouveauNomOnglet()) {
-                $data['nouveauNomOnglet'] = $object->getNouveauNomOnglet();
-            }
-
-            if ($object->isInitialized('paramPaieGestion') && null !== $object->getParamPaieGestion()) {
-                $data['paramPaieGestion'] = $object->getParamPaieGestion();
-            }
-
-            if ($object->isInitialized('paramPaieLiaisonClient') && null !== $object->getParamPaieLiaisonClient()) {
-                $data['paramPaieLiaisonClient'] = $object->getParamPaieLiaisonClient();
-            }
-
-            if ($object->isInitialized('paramPaieComplet') && null !== $object->getParamPaieComplet()) {
-                $data['paramPaieComplet'] = $object->getParamPaieComplet();
-            }
-
-            if ($object->isInitialized('paramPaieSimplifie') && null !== $object->getParamPaieSimplifie()) {
-                $data['paramPaieSimplifie'] = $object->getParamPaieSimplifie();
-            }
-
-            if ($object->isInitialized('afficherLaListe') && null !== $object->getAfficherLaListe()) {
-                $data['afficherLaListe'] = $object->getAfficherLaListe();
-            }
-
-            if ($object->isInitialized('restreindreLaListe') && null !== $object->getRestreindreLaListe()) {
-                $data['restreindreLaListe'] = $object->getRestreindreLaListe();
-            }
-
-            if ($object->isInitialized('requeteFiltre') && null !== $object->getRequeteFiltre()) {
-                $data['requeteFiltre'] = $object->getRequeteFiltre();
-            }
-
-            return $data;
+        if (\array_key_exists('nomOnglet', $data) && null !== $data['nomOnglet']) {
+            $object->setNomOnglet($data['nomOnglet']);
+        } elseif (\array_key_exists('nomOnglet', $data) && null === $data['nomOnglet']) {
+            $object->setNomOnglet(null);
         }
 
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [OngletProduction::class => false];
+        if (\array_key_exists('aSupprimer', $data) && null !== $data['aSupprimer']) {
+            $object->setASupprimer($data['aSupprimer']);
+        } elseif (\array_key_exists('aSupprimer', $data) && null === $data['aSupprimer']) {
+            $object->setASupprimer(null);
         }
+
+        if (\array_key_exists('ordre', $data) && null !== $data['ordre']) {
+            $object->setOrdre($data['ordre']);
+        } elseif (\array_key_exists('ordre', $data) && null === $data['ordre']) {
+            $object->setOrdre(null);
+        }
+
+        if (\array_key_exists('nouveauNomOnglet', $data) && null !== $data['nouveauNomOnglet']) {
+            $object->setNouveauNomOnglet($data['nouveauNomOnglet']);
+        } elseif (\array_key_exists('nouveauNomOnglet', $data) && null === $data['nouveauNomOnglet']) {
+            $object->setNouveauNomOnglet(null);
+        }
+
+        if (\array_key_exists('paramPaieGestion', $data) && null !== $data['paramPaieGestion']) {
+            $object->setParamPaieGestion($data['paramPaieGestion']);
+        } elseif (\array_key_exists('paramPaieGestion', $data) && null === $data['paramPaieGestion']) {
+            $object->setParamPaieGestion(null);
+        }
+
+        if (\array_key_exists('paramPaieLiaisonClient', $data) && null !== $data['paramPaieLiaisonClient']) {
+            $object->setParamPaieLiaisonClient($data['paramPaieLiaisonClient']);
+        } elseif (\array_key_exists('paramPaieLiaisonClient', $data) && null === $data['paramPaieLiaisonClient']) {
+            $object->setParamPaieLiaisonClient(null);
+        }
+
+        if (\array_key_exists('paramPaieComplet', $data) && null !== $data['paramPaieComplet']) {
+            $object->setParamPaieComplet($data['paramPaieComplet']);
+        } elseif (\array_key_exists('paramPaieComplet', $data) && null === $data['paramPaieComplet']) {
+            $object->setParamPaieComplet(null);
+        }
+
+        if (\array_key_exists('paramPaieSimplifie', $data) && null !== $data['paramPaieSimplifie']) {
+            $object->setParamPaieSimplifie($data['paramPaieSimplifie']);
+        } elseif (\array_key_exists('paramPaieSimplifie', $data) && null === $data['paramPaieSimplifie']) {
+            $object->setParamPaieSimplifie(null);
+        }
+
+        if (\array_key_exists('afficherLaListe', $data) && null !== $data['afficherLaListe']) {
+            $object->setAfficherLaListe($data['afficherLaListe']);
+        } elseif (\array_key_exists('afficherLaListe', $data) && null === $data['afficherLaListe']) {
+            $object->setAfficherLaListe(null);
+        }
+
+        if (\array_key_exists('restreindreLaListe', $data) && null !== $data['restreindreLaListe']) {
+            $object->setRestreindreLaListe($data['restreindreLaListe']);
+        } elseif (\array_key_exists('restreindreLaListe', $data) && null === $data['restreindreLaListe']) {
+            $object->setRestreindreLaListe(null);
+        }
+
+        if (\array_key_exists('requeteFiltre', $data) && null !== $data['requeteFiltre']) {
+            $object->setRequeteFiltre($data['requeteFiltre']);
+        } elseif (\array_key_exists('requeteFiltre', $data) && null === $data['requeteFiltre']) {
+            $object->setRequeteFiltre(null);
+        }
+
+        return $object;
+    }
+
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    {
+        $dataArray = [];
+        if ($data->isInitialized('nomOnglet') && null !== $data->getNomOnglet()) {
+            $dataArray['nomOnglet'] = $data->getNomOnglet();
+        }
+
+        if ($data->isInitialized('aSupprimer') && null !== $data->getASupprimer()) {
+            $dataArray['aSupprimer'] = $data->getASupprimer();
+        }
+
+        if ($data->isInitialized('ordre') && null !== $data->getOrdre()) {
+            $dataArray['ordre'] = $data->getOrdre();
+        }
+
+        if ($data->isInitialized('nouveauNomOnglet') && null !== $data->getNouveauNomOnglet()) {
+            $dataArray['nouveauNomOnglet'] = $data->getNouveauNomOnglet();
+        }
+
+        if ($data->isInitialized('paramPaieGestion') && null !== $data->getParamPaieGestion()) {
+            $dataArray['paramPaieGestion'] = $data->getParamPaieGestion();
+        }
+
+        if ($data->isInitialized('paramPaieLiaisonClient') && null !== $data->getParamPaieLiaisonClient()) {
+            $dataArray['paramPaieLiaisonClient'] = $data->getParamPaieLiaisonClient();
+        }
+
+        if ($data->isInitialized('paramPaieComplet') && null !== $data->getParamPaieComplet()) {
+            $dataArray['paramPaieComplet'] = $data->getParamPaieComplet();
+        }
+
+        if ($data->isInitialized('paramPaieSimplifie') && null !== $data->getParamPaieSimplifie()) {
+            $dataArray['paramPaieSimplifie'] = $data->getParamPaieSimplifie();
+        }
+
+        if ($data->isInitialized('afficherLaListe') && null !== $data->getAfficherLaListe()) {
+            $dataArray['afficherLaListe'] = $data->getAfficherLaListe();
+        }
+
+        if ($data->isInitialized('restreindreLaListe') && null !== $data->getRestreindreLaListe()) {
+            $dataArray['restreindreLaListe'] = $data->getRestreindreLaListe();
+        }
+
+        if ($data->isInitialized('requeteFiltre') && null !== $data->getRequeteFiltre()) {
+            $dataArray['requeteFiltre'] = $data->getRequeteFiltre();
+        }
+
+        return $dataArray;
+    }
+
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [OngletProduction::class => false];
     }
 }

@@ -8,7 +8,7 @@ use QdequippeTech\Silae\Api\Exception\SoldeReposAsynchroneInternalServerErrorExc
 use QdequippeTech\Silae\Api\Exception\SoldeReposAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
-use QdequippeTech\Silae\Api\Model\DossierPeriodeRequest;
+use QdequippeTech\Silae\Api\Model\SoldeReposRequest;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -23,12 +23,12 @@ class SoldeReposAsynchrone extends BaseEndpoint implements Endpoint
     /**
      * @param array $headerParameters {
      *
-     * @var string $Ocp-Apim-Subscription-Key
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
      * @var string $dossiers
      * @var string $Authorization Authorization de type Bearer.
      *             }
      */
-    public function __construct(DossierPeriodeRequest $request, array $headerParameters = [])
+    public function __construct(SoldeReposRequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;
@@ -75,7 +75,7 @@ class SoldeReposAsynchrone extends BaseEndpoint implements Endpoint
      * @throws SoldeReposAsynchroneInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

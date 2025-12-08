@@ -29,6 +29,11 @@ class SalarieAcompte
      */
     protected $montantAcompte;
 
+    /**
+     * @var string|null
+     */
+    protected $libelleAcompte;
+
     public function getDateAcompte(): ?\DateTime
     {
         return $this->dateAcompte;
@@ -64,6 +69,19 @@ class SalarieAcompte
     {
         $this->initialized['montantAcompte'] = true;
         $this->montantAcompte = $montantAcompte;
+
+        return $this;
+    }
+
+    public function getLibelleAcompte(): ?string
+    {
+        return $this->libelleAcompte;
+    }
+
+    public function setLibelleAcompte(?string $libelleAcompte): self
+    {
+        $this->initialized['libelleAcompte'] = true;
+        $this->libelleAcompte = $libelleAcompte;
 
         return $this;
     }

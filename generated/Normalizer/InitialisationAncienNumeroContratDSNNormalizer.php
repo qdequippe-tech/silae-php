@@ -6,7 +6,6 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\InitialisationAncienNumeroContratDSN;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -14,226 +13,109 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
-    class InitialisationAncienNumeroContratDSNNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class InitialisationAncienNumeroContratDSNNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use CheckArray;
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use ValidatorTrait;
+
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
-
-        public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
-        {
-            return InitialisationAncienNumeroContratDSN::class === $type;
-        }
-
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && InitialisationAncienNumeroContratDSN::class === $data::class;
-        }
-
-        public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
-
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
-
-            $object = new InitialisationAncienNumeroContratDSN();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
-                $object->setNumeroDossier($data['numeroDossier']);
-            } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
-                $object->setNumeroDossier(null);
-            }
-
-            if (\array_key_exists('matriculeSalarie', $data) && null !== $data['matriculeSalarie']) {
-                $object->setMatriculeSalarie($data['matriculeSalarie']);
-            } elseif (\array_key_exists('matriculeSalarie', $data) && null === $data['matriculeSalarie']) {
-                $object->setMatriculeSalarie(null);
-            }
-
-            if (\array_key_exists('identifiantEmploi', $data) && null !== $data['identifiantEmploi']) {
-                $object->setIdentifiantEmploi($data['identifiantEmploi']);
-            } elseif (\array_key_exists('identifiantEmploi', $data) && null === $data['identifiantEmploi']) {
-                $object->setIdentifiantEmploi(null);
-            }
-
-            if (\array_key_exists('numeroContratDSN', $data) && null !== $data['numeroContratDSN']) {
-                $object->setNumeroContratDSN($data['numeroContratDSN']);
-            } elseif (\array_key_exists('numeroContratDSN', $data) && null === $data['numeroContratDSN']) {
-                $object->setNumeroContratDSN(null);
-            }
-
-            if (\array_key_exists('siretDOrigine', $data) && null !== $data['siretDOrigine']) {
-                $object->setSiretDOrigine($data['siretDOrigine']);
-            } elseif (\array_key_exists('siretDOrigine', $data) && null === $data['siretDOrigine']) {
-                $object->setSiretDOrigine(null);
-            }
-
-            if (\array_key_exists('periodeDeclaration', $data) && null !== $data['periodeDeclaration']) {
-                $object->setPeriodeDeclaration(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeDeclaration']));
-            } elseif (\array_key_exists('periodeDeclaration', $data) && null === $data['periodeDeclaration']) {
-                $object->setPeriodeDeclaration(null);
-            }
-
-            return $object;
-        }
-
-        public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
-        {
-            $data = [];
-            if ($object->isInitialized('numeroDossier') && null !== $object->getNumeroDossier()) {
-                $data['numeroDossier'] = $object->getNumeroDossier();
-            }
-
-            if ($object->isInitialized('matriculeSalarie') && null !== $object->getMatriculeSalarie()) {
-                $data['matriculeSalarie'] = $object->getMatriculeSalarie();
-            }
-
-            if ($object->isInitialized('identifiantEmploi') && null !== $object->getIdentifiantEmploi()) {
-                $data['identifiantEmploi'] = $object->getIdentifiantEmploi();
-            }
-
-            if ($object->isInitialized('numeroContratDSN') && null !== $object->getNumeroContratDSN()) {
-                $data['numeroContratDSN'] = $object->getNumeroContratDSN();
-            }
-
-            if ($object->isInitialized('siretDOrigine') && null !== $object->getSiretDOrigine()) {
-                $data['siretDOrigine'] = $object->getSiretDOrigine();
-            }
-
-            if ($object->isInitialized('periodeDeclaration') && null !== $object->getPeriodeDeclaration()) {
-                $data['periodeDeclaration'] = $object->getPeriodeDeclaration()->format('Y-m-d\TH:i:s');
-            }
-
-            return $data;
-        }
-
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [InitialisationAncienNumeroContratDSN::class => false];
-        }
+        return InitialisationAncienNumeroContratDSN::class === $type;
     }
-} else {
-    class InitialisationAncienNumeroContratDSNNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
+        return \is_object($data) && InitialisationAncienNumeroContratDSN::class === $data::class;
+    }
 
-        public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
-        {
-            return InitialisationAncienNumeroContratDSN::class === $type;
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+    {
+        if (isset($data['$ref'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
         }
 
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && InitialisationAncienNumeroContratDSN::class === $data::class;
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        /**
-         * @param mixed|null $format
-         */
-        public function denormalize($data, $type, $format = null, array $context = [])
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
-
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
-
-            $object = new InitialisationAncienNumeroContratDSN();
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
-                $object->setNumeroDossier($data['numeroDossier']);
-            } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
-                $object->setNumeroDossier(null);
-            }
-
-            if (\array_key_exists('matriculeSalarie', $data) && null !== $data['matriculeSalarie']) {
-                $object->setMatriculeSalarie($data['matriculeSalarie']);
-            } elseif (\array_key_exists('matriculeSalarie', $data) && null === $data['matriculeSalarie']) {
-                $object->setMatriculeSalarie(null);
-            }
-
-            if (\array_key_exists('identifiantEmploi', $data) && null !== $data['identifiantEmploi']) {
-                $object->setIdentifiantEmploi($data['identifiantEmploi']);
-            } elseif (\array_key_exists('identifiantEmploi', $data) && null === $data['identifiantEmploi']) {
-                $object->setIdentifiantEmploi(null);
-            }
-
-            if (\array_key_exists('numeroContratDSN', $data) && null !== $data['numeroContratDSN']) {
-                $object->setNumeroContratDSN($data['numeroContratDSN']);
-            } elseif (\array_key_exists('numeroContratDSN', $data) && null === $data['numeroContratDSN']) {
-                $object->setNumeroContratDSN(null);
-            }
-
-            if (\array_key_exists('siretDOrigine', $data) && null !== $data['siretDOrigine']) {
-                $object->setSiretDOrigine($data['siretDOrigine']);
-            } elseif (\array_key_exists('siretDOrigine', $data) && null === $data['siretDOrigine']) {
-                $object->setSiretDOrigine(null);
-            }
-
-            if (\array_key_exists('periodeDeclaration', $data) && null !== $data['periodeDeclaration']) {
-                $object->setPeriodeDeclaration(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeDeclaration']));
-            } elseif (\array_key_exists('periodeDeclaration', $data) && null === $data['periodeDeclaration']) {
-                $object->setPeriodeDeclaration(null);
-            }
-
+        $object = new InitialisationAncienNumeroContratDSN();
+        if (null === $data || false === \is_array($data)) {
             return $object;
         }
 
-        /**
-         * @param mixed|null $format
-         *
-         * @return array|string|int|float|bool|\ArrayObject|null
-         */
-        public function normalize($object, $format = null, array $context = [])
-        {
-            $data = [];
-            if ($object->isInitialized('numeroDossier') && null !== $object->getNumeroDossier()) {
-                $data['numeroDossier'] = $object->getNumeroDossier();
-            }
-
-            if ($object->isInitialized('matriculeSalarie') && null !== $object->getMatriculeSalarie()) {
-                $data['matriculeSalarie'] = $object->getMatriculeSalarie();
-            }
-
-            if ($object->isInitialized('identifiantEmploi') && null !== $object->getIdentifiantEmploi()) {
-                $data['identifiantEmploi'] = $object->getIdentifiantEmploi();
-            }
-
-            if ($object->isInitialized('numeroContratDSN') && null !== $object->getNumeroContratDSN()) {
-                $data['numeroContratDSN'] = $object->getNumeroContratDSN();
-            }
-
-            if ($object->isInitialized('siretDOrigine') && null !== $object->getSiretDOrigine()) {
-                $data['siretDOrigine'] = $object->getSiretDOrigine();
-            }
-
-            if ($object->isInitialized('periodeDeclaration') && null !== $object->getPeriodeDeclaration()) {
-                $data['periodeDeclaration'] = $object->getPeriodeDeclaration()->format('Y-m-d\TH:i:s');
-            }
-
-            return $data;
+        if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
+            $object->setNumeroDossier($data['numeroDossier']);
+        } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
+            $object->setNumeroDossier(null);
         }
 
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [InitialisationAncienNumeroContratDSN::class => false];
+        if (\array_key_exists('matriculeSalarie', $data) && null !== $data['matriculeSalarie']) {
+            $object->setMatriculeSalarie($data['matriculeSalarie']);
+        } elseif (\array_key_exists('matriculeSalarie', $data) && null === $data['matriculeSalarie']) {
+            $object->setMatriculeSalarie(null);
         }
+
+        if (\array_key_exists('identifiantEmploi', $data) && null !== $data['identifiantEmploi']) {
+            $object->setIdentifiantEmploi($data['identifiantEmploi']);
+        } elseif (\array_key_exists('identifiantEmploi', $data) && null === $data['identifiantEmploi']) {
+            $object->setIdentifiantEmploi(null);
+        }
+
+        if (\array_key_exists('numeroContratDSN', $data) && null !== $data['numeroContratDSN']) {
+            $object->setNumeroContratDSN($data['numeroContratDSN']);
+        } elseif (\array_key_exists('numeroContratDSN', $data) && null === $data['numeroContratDSN']) {
+            $object->setNumeroContratDSN(null);
+        }
+
+        if (\array_key_exists('siretDOrigine', $data) && null !== $data['siretDOrigine']) {
+            $object->setSiretDOrigine($data['siretDOrigine']);
+        } elseif (\array_key_exists('siretDOrigine', $data) && null === $data['siretDOrigine']) {
+            $object->setSiretDOrigine(null);
+        }
+
+        if (\array_key_exists('periodeDeclaration', $data) && null !== $data['periodeDeclaration']) {
+            $object->setPeriodeDeclaration(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeDeclaration']));
+        } elseif (\array_key_exists('periodeDeclaration', $data) && null === $data['periodeDeclaration']) {
+            $object->setPeriodeDeclaration(null);
+        }
+
+        return $object;
+    }
+
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    {
+        $dataArray = [];
+        if ($data->isInitialized('numeroDossier') && null !== $data->getNumeroDossier()) {
+            $dataArray['numeroDossier'] = $data->getNumeroDossier();
+        }
+
+        if ($data->isInitialized('matriculeSalarie') && null !== $data->getMatriculeSalarie()) {
+            $dataArray['matriculeSalarie'] = $data->getMatriculeSalarie();
+        }
+
+        if ($data->isInitialized('identifiantEmploi') && null !== $data->getIdentifiantEmploi()) {
+            $dataArray['identifiantEmploi'] = $data->getIdentifiantEmploi();
+        }
+
+        if ($data->isInitialized('numeroContratDSN') && null !== $data->getNumeroContratDSN()) {
+            $dataArray['numeroContratDSN'] = $data->getNumeroContratDSN();
+        }
+
+        if ($data->isInitialized('siretDOrigine') && null !== $data->getSiretDOrigine()) {
+            $dataArray['siretDOrigine'] = $data->getSiretDOrigine();
+        }
+
+        if ($data->isInitialized('periodeDeclaration') && null !== $data->getPeriodeDeclaration()) {
+            $dataArray['periodeDeclaration'] = $data->getPeriodeDeclaration()->format('Y-m-d\TH:i:s');
+        }
+
+        return $dataArray;
+    }
+
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [InitialisationAncienNumeroContratDSN::class => false];
     }
 }

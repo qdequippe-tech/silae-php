@@ -6,7 +6,6 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\EffortConstruction;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -14,314 +13,157 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
-    class EffortConstructionNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class EffortConstructionNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use CheckArray;
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use ValidatorTrait;
+
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
-
-        public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
-        {
-            return EffortConstruction::class === $type;
-        }
-
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && EffortConstruction::class === $data::class;
-        }
-
-        public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
-
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
-
-            $object = new EffortConstruction();
-            if (\array_key_exists('pourcentageAnneeN', $data) && \is_int($data['pourcentageAnneeN'])) {
-                $data['pourcentageAnneeN'] = (float) $data['pourcentageAnneeN'];
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus1', $data) && \is_int($data['pourcentageAnneeNPlus1'])) {
-                $data['pourcentageAnneeNPlus1'] = (float) $data['pourcentageAnneeNPlus1'];
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus2', $data) && \is_int($data['pourcentageAnneeNPlus2'])) {
-                $data['pourcentageAnneeNPlus2'] = (float) $data['pourcentageAnneeNPlus2'];
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus3', $data) && \is_int($data['pourcentageAnneeNPlus3'])) {
-                $data['pourcentageAnneeNPlus3'] = (float) $data['pourcentageAnneeNPlus3'];
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus4', $data) && \is_int($data['pourcentageAnneeNPlus4'])) {
-                $data['pourcentageAnneeNPlus4'] = (float) $data['pourcentageAnneeNPlus4'];
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus5', $data) && \is_int($data['pourcentageAnneeNPlus5'])) {
-                $data['pourcentageAnneeNPlus5'] = (float) $data['pourcentageAnneeNPlus5'];
-            }
-
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('assujettissement', $data) && null !== $data['assujettissement']) {
-                $object->setAssujettissement($data['assujettissement']);
-            } elseif (\array_key_exists('assujettissement', $data) && null === $data['assujettissement']) {
-                $object->setAssujettissement(null);
-            }
-
-            if (\array_key_exists('anneeN', $data) && null !== $data['anneeN']) {
-                $object->setAnneeN(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['anneeN']));
-            } elseif (\array_key_exists('anneeN', $data) && null === $data['anneeN']) {
-                $object->setAnneeN(null);
-            }
-
-            if (\array_key_exists('pourcentageAnneeN', $data) && null !== $data['pourcentageAnneeN']) {
-                $object->setPourcentageAnneeN($data['pourcentageAnneeN']);
-            } elseif (\array_key_exists('pourcentageAnneeN', $data) && null === $data['pourcentageAnneeN']) {
-                $object->setPourcentageAnneeN(null);
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus1', $data) && null !== $data['pourcentageAnneeNPlus1']) {
-                $object->setPourcentageAnneeNPlus1($data['pourcentageAnneeNPlus1']);
-            } elseif (\array_key_exists('pourcentageAnneeNPlus1', $data) && null === $data['pourcentageAnneeNPlus1']) {
-                $object->setPourcentageAnneeNPlus1(null);
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus2', $data) && null !== $data['pourcentageAnneeNPlus2']) {
-                $object->setPourcentageAnneeNPlus2($data['pourcentageAnneeNPlus2']);
-            } elseif (\array_key_exists('pourcentageAnneeNPlus2', $data) && null === $data['pourcentageAnneeNPlus2']) {
-                $object->setPourcentageAnneeNPlus2(null);
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus3', $data) && null !== $data['pourcentageAnneeNPlus3']) {
-                $object->setPourcentageAnneeNPlus3($data['pourcentageAnneeNPlus3']);
-            } elseif (\array_key_exists('pourcentageAnneeNPlus3', $data) && null === $data['pourcentageAnneeNPlus3']) {
-                $object->setPourcentageAnneeNPlus3(null);
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus4', $data) && null !== $data['pourcentageAnneeNPlus4']) {
-                $object->setPourcentageAnneeNPlus4($data['pourcentageAnneeNPlus4']);
-            } elseif (\array_key_exists('pourcentageAnneeNPlus4', $data) && null === $data['pourcentageAnneeNPlus4']) {
-                $object->setPourcentageAnneeNPlus4(null);
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus5', $data) && null !== $data['pourcentageAnneeNPlus5']) {
-                $object->setPourcentageAnneeNPlus5($data['pourcentageAnneeNPlus5']);
-            } elseif (\array_key_exists('pourcentageAnneeNPlus5', $data) && null === $data['pourcentageAnneeNPlus5']) {
-                $object->setPourcentageAnneeNPlus5(null);
-            }
-
-            return $object;
-        }
-
-        public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
-        {
-            $data = [];
-            if ($object->isInitialized('assujettissement') && null !== $object->getAssujettissement()) {
-                $data['assujettissement'] = $object->getAssujettissement();
-            }
-
-            if ($object->isInitialized('anneeN') && null !== $object->getAnneeN()) {
-                $data['anneeN'] = $object->getAnneeN()->format('Y-m-d\TH:i:s');
-            }
-
-            if ($object->isInitialized('pourcentageAnneeN') && null !== $object->getPourcentageAnneeN()) {
-                $data['pourcentageAnneeN'] = $object->getPourcentageAnneeN();
-            }
-
-            if ($object->isInitialized('pourcentageAnneeNPlus1') && null !== $object->getPourcentageAnneeNPlus1()) {
-                $data['pourcentageAnneeNPlus1'] = $object->getPourcentageAnneeNPlus1();
-            }
-
-            if ($object->isInitialized('pourcentageAnneeNPlus2') && null !== $object->getPourcentageAnneeNPlus2()) {
-                $data['pourcentageAnneeNPlus2'] = $object->getPourcentageAnneeNPlus2();
-            }
-
-            if ($object->isInitialized('pourcentageAnneeNPlus3') && null !== $object->getPourcentageAnneeNPlus3()) {
-                $data['pourcentageAnneeNPlus3'] = $object->getPourcentageAnneeNPlus3();
-            }
-
-            if ($object->isInitialized('pourcentageAnneeNPlus4') && null !== $object->getPourcentageAnneeNPlus4()) {
-                $data['pourcentageAnneeNPlus4'] = $object->getPourcentageAnneeNPlus4();
-            }
-
-            if ($object->isInitialized('pourcentageAnneeNPlus5') && null !== $object->getPourcentageAnneeNPlus5()) {
-                $data['pourcentageAnneeNPlus5'] = $object->getPourcentageAnneeNPlus5();
-            }
-
-            return $data;
-        }
-
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [EffortConstruction::class => false];
-        }
+        return EffortConstruction::class === $type;
     }
-} else {
-    class EffortConstructionNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        use CheckArray;
-        use DenormalizerAwareTrait;
-        use NormalizerAwareTrait;
-        use ValidatorTrait;
+        return \is_object($data) && EffortConstruction::class === $data::class;
+    }
 
-        public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
-        {
-            return EffortConstruction::class === $type;
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+    {
+        if (isset($data['$ref'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
         }
 
-        public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
-        {
-            return \is_object($data) && EffortConstruction::class === $data::class;
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        /**
-         * @param mixed|null $format
-         */
-        public function denormalize($data, $type, $format = null, array $context = [])
-        {
-            if (isset($data['$ref'])) {
-                return new Reference($data['$ref'], $context['document-origin']);
-            }
+        $object = new EffortConstruction();
+        if (\array_key_exists('pourcentageAnneeN', $data) && \is_int($data['pourcentageAnneeN'])) {
+            $data['pourcentageAnneeN'] = (float) $data['pourcentageAnneeN'];
+        }
 
-            if (isset($data['$recursiveRef'])) {
-                return new Reference($data['$recursiveRef'], $context['document-origin']);
-            }
+        if (\array_key_exists('pourcentageAnneeNPlus1', $data) && \is_int($data['pourcentageAnneeNPlus1'])) {
+            $data['pourcentageAnneeNPlus1'] = (float) $data['pourcentageAnneeNPlus1'];
+        }
 
-            $object = new EffortConstruction();
-            if (\array_key_exists('pourcentageAnneeN', $data) && \is_int($data['pourcentageAnneeN'])) {
-                $data['pourcentageAnneeN'] = (float) $data['pourcentageAnneeN'];
-            }
+        if (\array_key_exists('pourcentageAnneeNPlus2', $data) && \is_int($data['pourcentageAnneeNPlus2'])) {
+            $data['pourcentageAnneeNPlus2'] = (float) $data['pourcentageAnneeNPlus2'];
+        }
 
-            if (\array_key_exists('pourcentageAnneeNPlus1', $data) && \is_int($data['pourcentageAnneeNPlus1'])) {
-                $data['pourcentageAnneeNPlus1'] = (float) $data['pourcentageAnneeNPlus1'];
-            }
+        if (\array_key_exists('pourcentageAnneeNPlus3', $data) && \is_int($data['pourcentageAnneeNPlus3'])) {
+            $data['pourcentageAnneeNPlus3'] = (float) $data['pourcentageAnneeNPlus3'];
+        }
 
-            if (\array_key_exists('pourcentageAnneeNPlus2', $data) && \is_int($data['pourcentageAnneeNPlus2'])) {
-                $data['pourcentageAnneeNPlus2'] = (float) $data['pourcentageAnneeNPlus2'];
-            }
+        if (\array_key_exists('pourcentageAnneeNPlus4', $data) && \is_int($data['pourcentageAnneeNPlus4'])) {
+            $data['pourcentageAnneeNPlus4'] = (float) $data['pourcentageAnneeNPlus4'];
+        }
 
-            if (\array_key_exists('pourcentageAnneeNPlus3', $data) && \is_int($data['pourcentageAnneeNPlus3'])) {
-                $data['pourcentageAnneeNPlus3'] = (float) $data['pourcentageAnneeNPlus3'];
-            }
+        if (\array_key_exists('pourcentageAnneeNPlus5', $data) && \is_int($data['pourcentageAnneeNPlus5'])) {
+            $data['pourcentageAnneeNPlus5'] = (float) $data['pourcentageAnneeNPlus5'];
+        }
 
-            if (\array_key_exists('pourcentageAnneeNPlus4', $data) && \is_int($data['pourcentageAnneeNPlus4'])) {
-                $data['pourcentageAnneeNPlus4'] = (float) $data['pourcentageAnneeNPlus4'];
-            }
+        if (\array_key_exists('assujettissement', $data) && \is_int($data['assujettissement'])) {
+            $data['assujettissement'] = (bool) $data['assujettissement'];
+        }
 
-            if (\array_key_exists('pourcentageAnneeNPlus5', $data) && \is_int($data['pourcentageAnneeNPlus5'])) {
-                $data['pourcentageAnneeNPlus5'] = (float) $data['pourcentageAnneeNPlus5'];
-            }
-
-            if (null === $data || false === \is_array($data)) {
-                return $object;
-            }
-
-            if (\array_key_exists('assujettissement', $data) && null !== $data['assujettissement']) {
-                $object->setAssujettissement($data['assujettissement']);
-            } elseif (\array_key_exists('assujettissement', $data) && null === $data['assujettissement']) {
-                $object->setAssujettissement(null);
-            }
-
-            if (\array_key_exists('anneeN', $data) && null !== $data['anneeN']) {
-                $object->setAnneeN(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['anneeN']));
-            } elseif (\array_key_exists('anneeN', $data) && null === $data['anneeN']) {
-                $object->setAnneeN(null);
-            }
-
-            if (\array_key_exists('pourcentageAnneeN', $data) && null !== $data['pourcentageAnneeN']) {
-                $object->setPourcentageAnneeN($data['pourcentageAnneeN']);
-            } elseif (\array_key_exists('pourcentageAnneeN', $data) && null === $data['pourcentageAnneeN']) {
-                $object->setPourcentageAnneeN(null);
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus1', $data) && null !== $data['pourcentageAnneeNPlus1']) {
-                $object->setPourcentageAnneeNPlus1($data['pourcentageAnneeNPlus1']);
-            } elseif (\array_key_exists('pourcentageAnneeNPlus1', $data) && null === $data['pourcentageAnneeNPlus1']) {
-                $object->setPourcentageAnneeNPlus1(null);
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus2', $data) && null !== $data['pourcentageAnneeNPlus2']) {
-                $object->setPourcentageAnneeNPlus2($data['pourcentageAnneeNPlus2']);
-            } elseif (\array_key_exists('pourcentageAnneeNPlus2', $data) && null === $data['pourcentageAnneeNPlus2']) {
-                $object->setPourcentageAnneeNPlus2(null);
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus3', $data) && null !== $data['pourcentageAnneeNPlus3']) {
-                $object->setPourcentageAnneeNPlus3($data['pourcentageAnneeNPlus3']);
-            } elseif (\array_key_exists('pourcentageAnneeNPlus3', $data) && null === $data['pourcentageAnneeNPlus3']) {
-                $object->setPourcentageAnneeNPlus3(null);
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus4', $data) && null !== $data['pourcentageAnneeNPlus4']) {
-                $object->setPourcentageAnneeNPlus4($data['pourcentageAnneeNPlus4']);
-            } elseif (\array_key_exists('pourcentageAnneeNPlus4', $data) && null === $data['pourcentageAnneeNPlus4']) {
-                $object->setPourcentageAnneeNPlus4(null);
-            }
-
-            if (\array_key_exists('pourcentageAnneeNPlus5', $data) && null !== $data['pourcentageAnneeNPlus5']) {
-                $object->setPourcentageAnneeNPlus5($data['pourcentageAnneeNPlus5']);
-            } elseif (\array_key_exists('pourcentageAnneeNPlus5', $data) && null === $data['pourcentageAnneeNPlus5']) {
-                $object->setPourcentageAnneeNPlus5(null);
-            }
-
+        if (null === $data || false === \is_array($data)) {
             return $object;
         }
 
-        /**
-         * @param mixed|null $format
-         *
-         * @return array|string|int|float|bool|\ArrayObject|null
-         */
-        public function normalize($object, $format = null, array $context = [])
-        {
-            $data = [];
-            if ($object->isInitialized('assujettissement') && null !== $object->getAssujettissement()) {
-                $data['assujettissement'] = $object->getAssujettissement();
-            }
-
-            if ($object->isInitialized('anneeN') && null !== $object->getAnneeN()) {
-                $data['anneeN'] = $object->getAnneeN()->format('Y-m-d\TH:i:s');
-            }
-
-            if ($object->isInitialized('pourcentageAnneeN') && null !== $object->getPourcentageAnneeN()) {
-                $data['pourcentageAnneeN'] = $object->getPourcentageAnneeN();
-            }
-
-            if ($object->isInitialized('pourcentageAnneeNPlus1') && null !== $object->getPourcentageAnneeNPlus1()) {
-                $data['pourcentageAnneeNPlus1'] = $object->getPourcentageAnneeNPlus1();
-            }
-
-            if ($object->isInitialized('pourcentageAnneeNPlus2') && null !== $object->getPourcentageAnneeNPlus2()) {
-                $data['pourcentageAnneeNPlus2'] = $object->getPourcentageAnneeNPlus2();
-            }
-
-            if ($object->isInitialized('pourcentageAnneeNPlus3') && null !== $object->getPourcentageAnneeNPlus3()) {
-                $data['pourcentageAnneeNPlus3'] = $object->getPourcentageAnneeNPlus3();
-            }
-
-            if ($object->isInitialized('pourcentageAnneeNPlus4') && null !== $object->getPourcentageAnneeNPlus4()) {
-                $data['pourcentageAnneeNPlus4'] = $object->getPourcentageAnneeNPlus4();
-            }
-
-            if ($object->isInitialized('pourcentageAnneeNPlus5') && null !== $object->getPourcentageAnneeNPlus5()) {
-                $data['pourcentageAnneeNPlus5'] = $object->getPourcentageAnneeNPlus5();
-            }
-
-            return $data;
+        if (\array_key_exists('assujettissement', $data) && null !== $data['assujettissement']) {
+            $object->setAssujettissement($data['assujettissement']);
+        } elseif (\array_key_exists('assujettissement', $data) && null === $data['assujettissement']) {
+            $object->setAssujettissement(null);
         }
 
-        public function getSupportedTypes(?string $format = null): array
-        {
-            return [EffortConstruction::class => false];
+        if (\array_key_exists('anneeN', $data) && null !== $data['anneeN']) {
+            $object->setAnneeN(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['anneeN']));
+        } elseif (\array_key_exists('anneeN', $data) && null === $data['anneeN']) {
+            $object->setAnneeN(null);
         }
+
+        if (\array_key_exists('pourcentageAnneeN', $data) && null !== $data['pourcentageAnneeN']) {
+            $object->setPourcentageAnneeN($data['pourcentageAnneeN']);
+        } elseif (\array_key_exists('pourcentageAnneeN', $data) && null === $data['pourcentageAnneeN']) {
+            $object->setPourcentageAnneeN(null);
+        }
+
+        if (\array_key_exists('pourcentageAnneeNPlus1', $data) && null !== $data['pourcentageAnneeNPlus1']) {
+            $object->setPourcentageAnneeNPlus1($data['pourcentageAnneeNPlus1']);
+        } elseif (\array_key_exists('pourcentageAnneeNPlus1', $data) && null === $data['pourcentageAnneeNPlus1']) {
+            $object->setPourcentageAnneeNPlus1(null);
+        }
+
+        if (\array_key_exists('pourcentageAnneeNPlus2', $data) && null !== $data['pourcentageAnneeNPlus2']) {
+            $object->setPourcentageAnneeNPlus2($data['pourcentageAnneeNPlus2']);
+        } elseif (\array_key_exists('pourcentageAnneeNPlus2', $data) && null === $data['pourcentageAnneeNPlus2']) {
+            $object->setPourcentageAnneeNPlus2(null);
+        }
+
+        if (\array_key_exists('pourcentageAnneeNPlus3', $data) && null !== $data['pourcentageAnneeNPlus3']) {
+            $object->setPourcentageAnneeNPlus3($data['pourcentageAnneeNPlus3']);
+        } elseif (\array_key_exists('pourcentageAnneeNPlus3', $data) && null === $data['pourcentageAnneeNPlus3']) {
+            $object->setPourcentageAnneeNPlus3(null);
+        }
+
+        if (\array_key_exists('pourcentageAnneeNPlus4', $data) && null !== $data['pourcentageAnneeNPlus4']) {
+            $object->setPourcentageAnneeNPlus4($data['pourcentageAnneeNPlus4']);
+        } elseif (\array_key_exists('pourcentageAnneeNPlus4', $data) && null === $data['pourcentageAnneeNPlus4']) {
+            $object->setPourcentageAnneeNPlus4(null);
+        }
+
+        if (\array_key_exists('pourcentageAnneeNPlus5', $data) && null !== $data['pourcentageAnneeNPlus5']) {
+            $object->setPourcentageAnneeNPlus5($data['pourcentageAnneeNPlus5']);
+        } elseif (\array_key_exists('pourcentageAnneeNPlus5', $data) && null === $data['pourcentageAnneeNPlus5']) {
+            $object->setPourcentageAnneeNPlus5(null);
+        }
+
+        return $object;
+    }
+
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    {
+        $dataArray = [];
+        if ($data->isInitialized('assujettissement') && null !== $data->getAssujettissement()) {
+            $dataArray['assujettissement'] = $data->getAssujettissement();
+        }
+
+        if ($data->isInitialized('anneeN') && null !== $data->getAnneeN()) {
+            $dataArray['anneeN'] = $data->getAnneeN()->format('Y-m-d\TH:i:s');
+        }
+
+        if ($data->isInitialized('pourcentageAnneeN') && null !== $data->getPourcentageAnneeN()) {
+            $dataArray['pourcentageAnneeN'] = $data->getPourcentageAnneeN();
+        }
+
+        if ($data->isInitialized('pourcentageAnneeNPlus1') && null !== $data->getPourcentageAnneeNPlus1()) {
+            $dataArray['pourcentageAnneeNPlus1'] = $data->getPourcentageAnneeNPlus1();
+        }
+
+        if ($data->isInitialized('pourcentageAnneeNPlus2') && null !== $data->getPourcentageAnneeNPlus2()) {
+            $dataArray['pourcentageAnneeNPlus2'] = $data->getPourcentageAnneeNPlus2();
+        }
+
+        if ($data->isInitialized('pourcentageAnneeNPlus3') && null !== $data->getPourcentageAnneeNPlus3()) {
+            $dataArray['pourcentageAnneeNPlus3'] = $data->getPourcentageAnneeNPlus3();
+        }
+
+        if ($data->isInitialized('pourcentageAnneeNPlus4') && null !== $data->getPourcentageAnneeNPlus4()) {
+            $dataArray['pourcentageAnneeNPlus4'] = $data->getPourcentageAnneeNPlus4();
+        }
+
+        if ($data->isInitialized('pourcentageAnneeNPlus5') && null !== $data->getPourcentageAnneeNPlus5()) {
+            $dataArray['pourcentageAnneeNPlus5'] = $data->getPourcentageAnneeNPlus5();
+        }
+
+        return $dataArray;
+    }
+
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [EffortConstruction::class => false];
     }
 }
