@@ -32,7 +32,7 @@ jobs:
                   working-directory: "tools/php-cs-fixer"
 
             - name: "Cache phpcsfixer"
-              uses: actions/cache@v4
+              uses: actions/cache@v5
               with:
                   path: var/.php-cs-fixer.cache
                   key: phpcsfixer-${{ matrix.php-version }}-${{ github.sha }}
