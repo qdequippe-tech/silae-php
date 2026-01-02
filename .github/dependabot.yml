@@ -12,7 +12,11 @@ updates:
       directory: "/"
       schedule:
           interval: "monthly"
-
+      groups:
+          jane:
+              patterns:
+                  - "jane-php/*"
+    
     # Maintain dependencies for php-cs-fixer tool
     - package-ecosystem: "composer"
       directory: "/tools/php-cs-fixer"
