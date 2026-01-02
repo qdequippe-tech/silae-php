@@ -12,9 +12,6 @@ jobs:
     check-cs:
         name: Coding Style
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                php-version: ['8.2', '8.3', '8.4']
         steps:
             - name: "Checkout code"
               uses: actions/checkout@v6
@@ -24,7 +21,6 @@ jobs:
               with:
                   coverage: "none"
                   extensions: intl
-                  php-version: ${{ matrix.php-version }}
                   tools: composer
 
             - uses: "ramsey/composer-install@v3"
@@ -35,8 +31,8 @@ jobs:
               uses: actions/cache@v5
               with:
                   path: var/.php-cs-fixer.cache
-                  key: phpcsfixer-${{ matrix.php-version }}-${{ github.sha }}
-                  restore-keys: phpcsfixer-${{ matrix.php-version }}-
+                  key: phpcsfixer-${{ github.sha }}
+                  restore-keys: phpcsfixer-
 
             - name: "PHP-CS-Fixer"
               run: ./tools/php-cs-fixer/vendor/bin/php-cs-fixer check
