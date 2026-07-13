@@ -32,7 +32,12 @@ class CollaborateurModeleNormalizer implements DenormalizerInterface, Normalizer
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new CollaborateurModele();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,13 +45,8 @@ class CollaborateurModeleNormalizer implements DenormalizerInterface, Normalizer
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new CollaborateurModele();
         if (\array_key_exists('defaut', $data) && \is_int($data['defaut'])) {
             $data['defaut'] = (bool) $data['defaut'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('nomModele', $data) && null !== $data['nomModele']) {

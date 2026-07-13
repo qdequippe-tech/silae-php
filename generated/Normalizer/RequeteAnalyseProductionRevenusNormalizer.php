@@ -1,0 +1,101 @@
+<?php
+
+namespace QdequippeTech\Silae\Api\Normalizer;
+
+use Jane\Component\JsonSchemaRuntime\Reference;
+use QdequippeTech\Silae\Api\Model\RequeteAnalyseProductionRevenus;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
+class RequeteAnalyseProductionRevenusNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use CheckArray;
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use ValidatorTrait;
+
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
+    {
+        return RequeteAnalyseProductionRevenus::class === $type;
+    }
+
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
+    {
+        return \is_object($data) && RequeteAnalyseProductionRevenus::class === $data::class;
+    }
+
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+    {
+        $object = new RequeteAnalyseProductionRevenus();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
+        }
+
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
+        }
+
+        if (\array_key_exists('millesime', $data) && null !== $data['millesime']) {
+            $object->setMillesime($data['millesime']);
+        } elseif (\array_key_exists('millesime', $data) && null === $data['millesime']) {
+            $object->setMillesime(null);
+        }
+
+        if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
+            $object->setNumeroDossier($data['numeroDossier']);
+        } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
+            $object->setNumeroDossier(null);
+        }
+
+        if (\array_key_exists('codeAgence', $data) && null !== $data['codeAgence']) {
+            $object->setCodeAgence($data['codeAgence']);
+        } elseif (\array_key_exists('codeAgence', $data) && null === $data['codeAgence']) {
+            $object->setCodeAgence(null);
+        }
+
+        if (\array_key_exists('typeAnalyse', $data) && null !== $data['typeAnalyse']) {
+            $object->setTypeAnalyse($data['typeAnalyse']);
+        } elseif (\array_key_exists('typeAnalyse', $data) && null === $data['typeAnalyse']) {
+            $object->setTypeAnalyse(null);
+        }
+
+        return $object;
+    }
+
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    {
+        $dataArray = [];
+        if ($data->isInitialized('millesime') && null !== $data->getMillesime()) {
+            $dataArray['millesime'] = $data->getMillesime();
+        }
+
+        if ($data->isInitialized('numeroDossier') && null !== $data->getNumeroDossier()) {
+            $dataArray['numeroDossier'] = $data->getNumeroDossier();
+        }
+
+        if ($data->isInitialized('codeAgence') && null !== $data->getCodeAgence()) {
+            $dataArray['codeAgence'] = $data->getCodeAgence();
+        }
+
+        if ($data->isInitialized('typeAnalyse') && null !== $data->getTypeAnalyse()) {
+            $dataArray['typeAnalyse'] = $data->getTypeAnalyse();
+        }
+
+        return $dataArray;
+    }
+
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [RequeteAnalyseProductionRevenus::class => false];
+    }
+}

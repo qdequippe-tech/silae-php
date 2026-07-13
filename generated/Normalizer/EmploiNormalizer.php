@@ -32,7 +32,12 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new Emploi();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new Emploi();
         if (\array_key_exists('pctAbattement', $data) && \is_int($data['pctAbattement'])) {
             $data['pctAbattement'] = (float) $data['pctAbattement'];
         }
@@ -361,8 +365,12 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $data['bAvnLMontantSal'] = (bool) $data['bAvnLMontantSal'];
         }
 
-        if (null === $data || false === \is_array($data)) {
-            return $object;
+        if (\array_key_exists('motifCDDExclusions', $data) && \is_int($data['motifCDDExclusions'])) {
+            $data['motifCDDExclusions'] = (bool) $data['motifCDDExclusions'];
+        }
+
+        if (\array_key_exists('bMotifCDDExclusions', $data) && \is_int($data['bMotifCDDExclusions'])) {
+            $data['bMotifCDDExclusions'] = (bool) $data['bMotifCDDExclusions'];
         }
 
         if (\array_key_exists('identifiantEmploi', $data) && null !== $data['identifiantEmploi']) {
@@ -1141,6 +1149,18 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $object->setBAvnLMontantSal(null);
         }
 
+        if (\array_key_exists('motifCDDExclusions', $data) && null !== $data['motifCDDExclusions']) {
+            $object->setMotifCDDExclusions($data['motifCDDExclusions']);
+        } elseif (\array_key_exists('motifCDDExclusions', $data) && null === $data['motifCDDExclusions']) {
+            $object->setMotifCDDExclusions(null);
+        }
+
+        if (\array_key_exists('bMotifCDDExclusions', $data) && null !== $data['bMotifCDDExclusions']) {
+            $object->setBMotifCDDExclusions($data['bMotifCDDExclusions']);
+        } elseif (\array_key_exists('bMotifCDDExclusions', $data) && null === $data['bMotifCDDExclusions']) {
+            $object->setBMotifCDDExclusions(null);
+        }
+
         return $object;
     }
 
@@ -1669,6 +1689,14 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
 
         if ($data->isInitialized('bAvnLMontantSal') && null !== $data->getBAvnLMontantSal()) {
             $dataArray['bAvnLMontantSal'] = $data->getBAvnLMontantSal();
+        }
+
+        if ($data->isInitialized('motifCDDExclusions') && null !== $data->getMotifCDDExclusions()) {
+            $dataArray['motifCDDExclusions'] = $data->getMotifCDDExclusions();
+        }
+
+        if ($data->isInitialized('bMotifCDDExclusions') && null !== $data->getBMotifCDDExclusions()) {
+            $dataArray['bMotifCDDExclusions'] = $data->getBMotifCDDExclusions();
         }
 
         return $dataArray;

@@ -32,7 +32,12 @@ class LigneBulletinNormalizer implements DenormalizerInterface, NormalizerInterf
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new LigneBulletin();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class LigneBulletinNormalizer implements DenormalizerInterface, NormalizerInterf
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new LigneBulletin();
         if (\array_key_exists('baseSalariale', $data) && \is_int($data['baseSalariale'])) {
             $data['baseSalariale'] = (float) $data['baseSalariale'];
         }
@@ -83,10 +87,6 @@ class LigneBulletinNormalizer implements DenormalizerInterface, NormalizerInterf
 
         if (\array_key_exists('fs', $data) && \is_int($data['fs'])) {
             $data['fs'] = (float) $data['fs'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('codeLibelle', $data) && null !== $data['codeLibelle']) {

@@ -32,7 +32,12 @@ class ModificationHoraireEtablissementNormalizer implements DenormalizerInterfac
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new ModificationHoraireEtablissement();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class ModificationHoraireEtablissementNormalizer implements DenormalizerInterfac
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new ModificationHoraireEtablissement();
         if (\array_key_exists('totalMensuelHeuresNormales', $data) && \is_int($data['totalMensuelHeuresNormales'])) {
             $data['totalMensuelHeuresNormales'] = (float) $data['totalMensuelHeuresNormales'];
         }
@@ -107,10 +111,6 @@ class ModificationHoraireEtablissementNormalizer implements DenormalizerInterfac
 
         if (\array_key_exists('bTotalMensuelHeuresLibres3', $data) && \is_int($data['bTotalMensuelHeuresLibres3'])) {
             $data['bTotalMensuelHeuresLibres3'] = (bool) $data['bTotalMensuelHeuresLibres3'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('bNomGrilleHoraire', $data) && null !== $data['bNomGrilleHoraire']) {

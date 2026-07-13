@@ -4,7 +4,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDetailRequest;
-use QdequippeTech\Silae\Api\Model\RequeteAnalyseProductionDetail;
+use QdequippeTech\Silae\Api\Model\RequeteAnalyseProductionDetailV2;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -33,7 +33,12 @@ class AnalyseProductionPaieDetailRequestNormalizer implements DenormalizerInterf
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new AnalyseProductionPaieDetailRequest();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -41,13 +46,8 @@ class AnalyseProductionPaieDetailRequestNormalizer implements DenormalizerInterf
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new AnalyseProductionPaieDetailRequest();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
-
         if (\array_key_exists('requeteAnalyseProductionDetail', $data) && null !== $data['requeteAnalyseProductionDetail']) {
-            $object->setRequeteAnalyseProductionDetail($this->denormalizer->denormalize($data['requeteAnalyseProductionDetail'], RequeteAnalyseProductionDetail::class, 'json', $context));
+            $object->setRequeteAnalyseProductionDetail($this->denormalizer->denormalize($data['requeteAnalyseProductionDetail'], RequeteAnalyseProductionDetailV2::class, 'json', $context));
         } elseif (\array_key_exists('requeteAnalyseProductionDetail', $data) && null === $data['requeteAnalyseProductionDetail']) {
             $object->setRequeteAnalyseProductionDetail(null);
         }

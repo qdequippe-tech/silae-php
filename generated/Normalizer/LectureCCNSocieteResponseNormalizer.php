@@ -33,7 +33,12 @@ class LectureCCNSocieteResponseNormalizer implements DenormalizerInterface, Norm
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new LectureCCNSocieteResponse();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -41,13 +46,8 @@ class LectureCCNSocieteResponseNormalizer implements DenormalizerInterface, Norm
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new LectureCCNSocieteResponse();
         if (\array_key_exists('pasDeCCSiege', $data) && \is_int($data['pasDeCCSiege'])) {
             $data['pasDeCCSiege'] = (bool) $data['pasDeCCSiege'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('ccnSociete', $data) && null !== $data['ccnSociete']) {

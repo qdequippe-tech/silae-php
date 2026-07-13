@@ -32,7 +32,12 @@ class RetourImportDSNNormalizer implements DenormalizerInterface, NormalizerInte
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new RetourImportDSN();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class RetourImportDSNNormalizer implements DenormalizerInterface, NormalizerInte
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new RetourImportDSN();
         if (\array_key_exists('existenceErreur', $data) && \is_int($data['existenceErreur'])) {
             $data['existenceErreur'] = (bool) $data['existenceErreur'];
         }
@@ -67,10 +71,6 @@ class RetourImportDSNNormalizer implements DenormalizerInterface, NormalizerInte
 
         if (\array_key_exists('erreurBlocanteImport', $data) && \is_int($data['erreurBlocanteImport'])) {
             $data['erreurBlocanteImport'] = (bool) $data['erreurBlocanteImport'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('existenceErreur', $data) && null !== $data['existenceErreur']) {

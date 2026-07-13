@@ -32,7 +32,12 @@ class OngletProductionNormalizer implements DenormalizerInterface, NormalizerInt
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new OngletProduction();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class OngletProductionNormalizer implements DenormalizerInterface, NormalizerInt
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new OngletProduction();
         if (\array_key_exists('aSupprimer', $data) && \is_int($data['aSupprimer'])) {
             $data['aSupprimer'] = (bool) $data['aSupprimer'];
         }
@@ -67,10 +71,6 @@ class OngletProductionNormalizer implements DenormalizerInterface, NormalizerInt
 
         if (\array_key_exists('restreindreLaListe', $data) && \is_int($data['restreindreLaListe'])) {
             $data['restreindreLaListe'] = (bool) $data['restreindreLaListe'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('nomOnglet', $data) && null !== $data['nomOnglet']) {

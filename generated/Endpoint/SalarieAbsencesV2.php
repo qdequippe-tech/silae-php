@@ -9,7 +9,7 @@ use QdequippeTech\Silae\Api\Exception\SalarieAbsencesV2UnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalarieAbsencesRequest;
-use QdequippeTech\Silae\Api\Model\SalarieAbsencesResponse;
+use QdequippeTech\Silae\Api\Model\SalarieAbsencesV2Response;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\EndpointTrait;
@@ -68,7 +68,7 @@ class SalarieAbsencesV2 extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * @return SalarieAbsencesResponse
+     * @return SalarieAbsencesV2Response
      *
      * @throws SalarieAbsencesV2BadRequestException
      * @throws SalarieAbsencesV2UnauthorizedException
@@ -80,7 +80,7 @@ class SalarieAbsencesV2 extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if (200 === $status) {
-            return $serializer->deserialize($body, SalarieAbsencesResponse::class, 'json');
+            return $serializer->deserialize($body, SalarieAbsencesV2Response::class, 'json');
         }
 
         if (400 === $status) {

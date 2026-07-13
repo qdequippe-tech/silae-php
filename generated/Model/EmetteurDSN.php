@@ -40,8 +40,6 @@ class EmetteurDSN
     protected $siret;
 
     /**
-     * Renseignée, on cherche le Mail (INT_Mail) du collaborateur affecté au dossier.
-     *
      * @var int|null
      */
     protected $affectation;
@@ -161,17 +159,11 @@ class EmetteurDSN
         return $this;
     }
 
-    /**
-     * Renseignée, on cherche le Mail (INT_Mail) du collaborateur affecté au dossier.
-     */
     public function getAffectation(): ?int
     {
         return $this->affectation;
     }
 
-    /**
-     * Renseignée, on cherche le Mail (INT_Mail) du collaborateur affecté au dossier.
-     */
     public function setAffectation(?int $affectation): self
     {
         $this->initialized['affectation'] = true;

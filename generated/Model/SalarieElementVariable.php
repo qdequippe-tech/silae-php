@@ -34,6 +34,11 @@ class SalarieElementVariable
      */
     protected $valeurChaineElementVariable;
 
+    /**
+     * @var bool|null
+     */
+    protected $controleExistenceElementVariable;
+
     public function getPeriodeElementVariable(): ?\DateTime
     {
         return $this->periodeElementVariable;
@@ -82,6 +87,19 @@ class SalarieElementVariable
     {
         $this->initialized['valeurChaineElementVariable'] = true;
         $this->valeurChaineElementVariable = $valeurChaineElementVariable;
+
+        return $this;
+    }
+
+    public function getControleExistenceElementVariable(): ?bool
+    {
+        return $this->controleExistenceElementVariable;
+    }
+
+    public function setControleExistenceElementVariable(?bool $controleExistenceElementVariable): self
+    {
+        $this->initialized['controleExistenceElementVariable'] = true;
+        $this->controleExistenceElementVariable = $controleExistenceElementVariable;
 
         return $this;
     }

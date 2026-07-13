@@ -32,7 +32,12 @@ class EcrituresComptablesLigneRuptureNormalizer implements DenormalizerInterface
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EcrituresComptablesLigneRupture();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,17 +45,12 @@ class EcrituresComptablesLigneRuptureNormalizer implements DenormalizerInterface
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new EcrituresComptablesLigneRupture();
         if (\array_key_exists('valeur', $data) && \is_int($data['valeur'])) {
             $data['valeur'] = (float) $data['valeur'];
         }
 
         if (\array_key_exists('pctRepartition', $data) && \is_int($data['pctRepartition'])) {
             $data['pctRepartition'] = (float) $data['pctRepartition'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('codeJournal', $data) && null !== $data['codeJournal']) {

@@ -20,7 +20,7 @@ class ExtraSalarieAcquisitionVacationsRequest
     protected $categorie;
 
     /**
-     * @var RequeteExtraSalarieVacations|null
+     * @var RequeteExtraSalarieVacationsV2|null
      */
     protected $requeteExtraSalarieVacations;
 
@@ -42,12 +42,12 @@ class ExtraSalarieAcquisitionVacationsRequest
         return $this;
     }
 
-    public function getRequeteExtraSalarieVacations(): ?RequeteExtraSalarieVacations
+    public function getRequeteExtraSalarieVacations(): ?RequeteExtraSalarieVacationsV2
     {
         return $this->requeteExtraSalarieVacations;
     }
 
-    public function setRequeteExtraSalarieVacations(?RequeteExtraSalarieVacations $requeteExtraSalarieVacations): self
+    public function setRequeteExtraSalarieVacations(?RequeteExtraSalarieVacationsV2 $requeteExtraSalarieVacations): self
     {
         $this->initialized['requeteExtraSalarieVacations'] = true;
         $this->requeteExtraSalarieVacations = $requeteExtraSalarieVacations;

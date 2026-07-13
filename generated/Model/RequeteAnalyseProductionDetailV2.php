@@ -2,7 +2,7 @@
 
 namespace QdequippeTech\Silae\Api\Model;
 
-class RequeteAnalyseProductionDetail
+class RequeteAnalyseProductionDetailV2
 {
     /**
      * @var array
@@ -13,6 +13,11 @@ class RequeteAnalyseProductionDetail
     {
         return \array_key_exists($property, $this->initialized);
     }
+
+    /**
+     * @var int|null
+     */
+    protected $typePeriode;
 
     /**
      * @var string|null
@@ -33,6 +38,19 @@ class RequeteAnalyseProductionDetail
      * @var string|null
      */
     protected $nomAnalyse;
+
+    public function getTypePeriode(): ?int
+    {
+        return $this->typePeriode;
+    }
+
+    public function setTypePeriode(?int $typePeriode): self
+    {
+        $this->initialized['typePeriode'] = true;
+        $this->typePeriode = $typePeriode;
+
+        return $this;
+    }
 
     public function getNumeroDossier(): ?string
     {

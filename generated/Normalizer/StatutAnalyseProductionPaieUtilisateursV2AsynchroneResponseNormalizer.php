@@ -33,7 +33,12 @@ class StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponseNormalizer impl
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -41,13 +46,8 @@ class StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponseNormalizer impl
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse();
         if (\array_key_exists('progression', $data) && \is_int($data['progression'])) {
             $data['progression'] = (float) $data['progression'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('statistiques', $data) && null !== $data['statistiques']) {

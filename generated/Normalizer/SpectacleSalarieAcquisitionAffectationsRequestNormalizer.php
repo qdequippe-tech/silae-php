@@ -3,7 +3,7 @@
 namespace QdequippeTech\Silae\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use QdequippeTech\Silae\Api\Model\RequeteSpectacleSalarieAffectations;
+use QdequippeTech\Silae\Api\Model\RequeteSpectacleSalarieAffectationsV2;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieAcquisitionAffectationsRequest;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
@@ -33,7 +33,12 @@ class SpectacleSalarieAcquisitionAffectationsRequestNormalizer implements Denorm
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SpectacleSalarieAcquisitionAffectationsRequest();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -41,13 +46,8 @@ class SpectacleSalarieAcquisitionAffectationsRequestNormalizer implements Denorm
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SpectacleSalarieAcquisitionAffectationsRequest();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
-
         if (\array_key_exists('requeteSpectacleSalarieAffectations', $data) && null !== $data['requeteSpectacleSalarieAffectations']) {
-            $object->setRequeteSpectacleSalarieAffectations($this->denormalizer->denormalize($data['requeteSpectacleSalarieAffectations'], RequeteSpectacleSalarieAffectations::class, 'json', $context));
+            $object->setRequeteSpectacleSalarieAffectations($this->denormalizer->denormalize($data['requeteSpectacleSalarieAffectations'], RequeteSpectacleSalarieAffectationsV2::class, 'json', $context));
         } elseif (\array_key_exists('requeteSpectacleSalarieAffectations', $data) && null === $data['requeteSpectacleSalarieAffectations']) {
             $object->setRequeteSpectacleSalarieAffectations(null);
         }

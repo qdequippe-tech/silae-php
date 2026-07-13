@@ -1,0 +1,40 @@
+<?php
+
+namespace QdequippeTech\Silae\Api\Model;
+
+class AnalyseProductionPaieRevenusResponse
+{
+    /**
+     * @var array
+     */
+    protected $initialized = [];
+
+    public function isInitialized($property): bool
+    {
+        return \array_key_exists($property, $this->initialized);
+    }
+
+    /**
+     * @var list<StatistiquesRevenus>|null
+     */
+    protected $statistiques;
+
+    /**
+     * @return list<StatistiquesRevenus>|null
+     */
+    public function getStatistiques(): ?array
+    {
+        return $this->statistiques;
+    }
+
+    /**
+     * @param list<StatistiquesRevenus>|null $statistiques
+     */
+    public function setStatistiques(?array $statistiques): self
+    {
+        $this->initialized['statistiques'] = true;
+        $this->statistiques = $statistiques;
+
+        return $this;
+    }
+}

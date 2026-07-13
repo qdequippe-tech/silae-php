@@ -32,7 +32,12 @@ class SalarieAbsenceV3Normalizer implements DenormalizerInterface, NormalizerInt
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalarieAbsenceV3();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class SalarieAbsenceV3Normalizer implements DenormalizerInterface, NormalizerInt
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalarieAbsenceV3();
         if (\array_key_exists('dureeEnHeuresSiJourUnique', $data) && \is_int($data['dureeEnHeuresSiJourUnique'])) {
             $data['dureeEnHeuresSiJourUnique'] = (float) $data['dureeEnHeuresSiJourUnique'];
         }
@@ -107,10 +111,6 @@ class SalarieAbsenceV3Normalizer implements DenormalizerInterface, NormalizerInt
 
         if (\array_key_exists('absenceDebutantPartiellementTravaille', $data) && \is_int($data['absenceDebutantPartiellementTravaille'])) {
             $data['absenceDebutantPartiellementTravaille'] = (bool) $data['absenceDebutantPartiellementTravaille'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('dateDebutAbsence', $data) && null !== $data['dateDebutAbsence']) {
@@ -245,6 +245,12 @@ class SalarieAbsenceV3Normalizer implements DenormalizerInterface, NormalizerInt
             $object->setCommentaire(null);
         }
 
+        if (\array_key_exists('absencesDemiJournee', $data) && null !== $data['absencesDemiJournee']) {
+            $object->setAbsencesDemiJournee($data['absencesDemiJournee']);
+        } elseif (\array_key_exists('absencesDemiJournee', $data) && null === $data['absencesDemiJournee']) {
+            $object->setAbsencesDemiJournee(null);
+        }
+
         return $object;
     }
 
@@ -337,6 +343,10 @@ class SalarieAbsenceV3Normalizer implements DenormalizerInterface, NormalizerInt
 
         if ($data->isInitialized('commentaire') && null !== $data->getCommentaire()) {
             $dataArray['commentaire'] = $data->getCommentaire();
+        }
+
+        if ($data->isInitialized('absencesDemiJournee') && null !== $data->getAbsencesDemiJournee()) {
+            $dataArray['absencesDemiJournee'] = $data->getAbsencesDemiJournee();
         }
 
         return $dataArray;

@@ -44,6 +44,16 @@ class ContactInformations
      */
     protected $eMail;
 
+    /**
+     * @var int|null
+     */
+    protected $typeContact;
+
+    /**
+     * @var string|null
+     */
+    protected $referenceFacturation;
+
     public function getIdentifiant(): ?string
     {
         return $this->identifiant;
@@ -118,6 +128,32 @@ class ContactInformations
     {
         $this->initialized['eMail'] = true;
         $this->eMail = $eMail;
+
+        return $this;
+    }
+
+    public function getTypeContact(): ?int
+    {
+        return $this->typeContact;
+    }
+
+    public function setTypeContact(?int $typeContact): self
+    {
+        $this->initialized['typeContact'] = true;
+        $this->typeContact = $typeContact;
+
+        return $this;
+    }
+
+    public function getReferenceFacturation(): ?string
+    {
+        return $this->referenceFacturation;
+    }
+
+    public function setReferenceFacturation(?string $referenceFacturation): self
+    {
+        $this->initialized['referenceFacturation'] = true;
+        $this->referenceFacturation = $referenceFacturation;
 
         return $this;
     }

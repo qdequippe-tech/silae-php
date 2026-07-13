@@ -49,6 +49,21 @@ class ProprietesDossier
      */
     protected $numeroInterne;
 
+    /**
+     * @var bool|null
+     */
+    protected $dossierInterne;
+
+    /**
+     * @var bool|null
+     */
+    protected $miseADisposition;
+
+    /**
+     * @var string|null
+     */
+    protected $referenceFacturation;
+
     public function getNumero(): ?string
     {
         return $this->numero;
@@ -136,6 +151,45 @@ class ProprietesDossier
     {
         $this->initialized['numeroInterne'] = true;
         $this->numeroInterne = $numeroInterne;
+
+        return $this;
+    }
+
+    public function getDossierInterne(): ?bool
+    {
+        return $this->dossierInterne;
+    }
+
+    public function setDossierInterne(?bool $dossierInterne): self
+    {
+        $this->initialized['dossierInterne'] = true;
+        $this->dossierInterne = $dossierInterne;
+
+        return $this;
+    }
+
+    public function getMiseADisposition(): ?bool
+    {
+        return $this->miseADisposition;
+    }
+
+    public function setMiseADisposition(?bool $miseADisposition): self
+    {
+        $this->initialized['miseADisposition'] = true;
+        $this->miseADisposition = $miseADisposition;
+
+        return $this;
+    }
+
+    public function getReferenceFacturation(): ?string
+    {
+        return $this->referenceFacturation;
+    }
+
+    public function setReferenceFacturation(?string $referenceFacturation): self
+    {
+        $this->initialized['referenceFacturation'] = true;
+        $this->referenceFacturation = $referenceFacturation;
 
         return $this;
     }

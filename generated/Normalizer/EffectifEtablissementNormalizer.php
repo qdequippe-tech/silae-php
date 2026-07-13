@@ -32,7 +32,12 @@ class EffectifEtablissementNormalizer implements DenormalizerInterface, Normaliz
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EffectifEtablissement();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,13 +45,8 @@ class EffectifEtablissementNormalizer implements DenormalizerInterface, Normaliz
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new EffectifEtablissement();
         if (\array_key_exists('effectifCT', $data) && \is_int($data['effectifCT'])) {
             $data['effectifCT'] = (float) $data['effectifCT'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('annee', $data) && null !== $data['annee']) {

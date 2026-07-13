@@ -32,7 +32,12 @@ class SalarieHeuresNormalizer implements DenormalizerInterface, NormalizerInterf
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalarieHeures();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,17 +45,12 @@ class SalarieHeuresNormalizer implements DenormalizerInterface, NormalizerInterf
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalarieHeures();
         if (\array_key_exists('nombreHeures', $data) && \is_int($data['nombreHeures'])) {
             $data['nombreHeures'] = (float) $data['nombreHeures'];
         }
 
         if (\array_key_exists('ajouter', $data) && \is_int($data['ajouter'])) {
             $data['ajouter'] = (bool) $data['ajouter'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('periodeHeures', $data) && null !== $data['periodeHeures']) {

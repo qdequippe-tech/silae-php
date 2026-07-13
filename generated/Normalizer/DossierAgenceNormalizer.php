@@ -32,7 +32,12 @@ class DossierAgenceNormalizer implements DenormalizerInterface, NormalizerInterf
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new DossierAgence();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,17 +45,12 @@ class DossierAgenceNormalizer implements DenormalizerInterface, NormalizerInterf
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new DossierAgence();
         if (\array_key_exists('dossierInterne', $data) && \is_int($data['dossierInterne'])) {
             $data['dossierInterne'] = (bool) $data['dossierInterne'];
         }
 
         if (\array_key_exists('miseADisposition', $data) && \is_int($data['miseADisposition'])) {
             $data['miseADisposition'] = (bool) $data['miseADisposition'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
@@ -95,6 +95,18 @@ class DossierAgenceNormalizer implements DenormalizerInterface, NormalizerInterf
             $object->setMiseADisposition(null);
         }
 
+        if (\array_key_exists('referenceFacturation', $data) && null !== $data['referenceFacturation']) {
+            $object->setReferenceFacturation($data['referenceFacturation']);
+        } elseif (\array_key_exists('referenceFacturation', $data) && null === $data['referenceFacturation']) {
+            $object->setReferenceFacturation(null);
+        }
+
+        if (\array_key_exists('numeroInterne', $data) && null !== $data['numeroInterne']) {
+            $object->setNumeroInterne($data['numeroInterne']);
+        } elseif (\array_key_exists('numeroInterne', $data) && null === $data['numeroInterne']) {
+            $object->setNumeroInterne(null);
+        }
+
         return $object;
     }
 
@@ -127,6 +139,14 @@ class DossierAgenceNormalizer implements DenormalizerInterface, NormalizerInterf
 
         if ($data->isInitialized('miseADisposition') && null !== $data->getMiseADisposition()) {
             $dataArray['miseADisposition'] = $data->getMiseADisposition();
+        }
+
+        if ($data->isInitialized('referenceFacturation') && null !== $data->getReferenceFacturation()) {
+            $dataArray['referenceFacturation'] = $data->getReferenceFacturation();
+        }
+
+        if ($data->isInitialized('numeroInterne') && null !== $data->getNumeroInterne()) {
+            $dataArray['numeroInterne'] = $data->getNumeroInterne();
         }
 
         return $dataArray;

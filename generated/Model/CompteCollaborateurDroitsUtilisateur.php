@@ -419,6 +419,56 @@ class CompteCollaborateurDroitsUtilisateur
      */
     protected $dossierPaieSuiviModifications;
 
+    /**
+     * @var string|null
+     */
+    protected $pilotageProjetGestionModeles;
+
+    /**
+     * @var string|null
+     */
+    protected $relationClientTachesPlanifiees;
+
+    /**
+     * @var string|null
+     */
+    protected $relationClientSyntheseCycleDePaie;
+
+    /**
+     * @var string|null
+     */
+    protected $relationClientParametrageCycleDePaie;
+
+    /**
+     * @var string|null
+     */
+    protected $outilsPaieExportDeDossier;
+
+    /**
+     * @var string|null
+     */
+    protected $outilsPaieImportDeDossier;
+
+    /**
+     * @var string|null
+     */
+    protected $outilsPaieImportDeDossierDemo;
+
+    /**
+     * @var string|null
+     */
+    protected $dossierPaieAccesDsn;
+
+    /**
+     * @var string|null
+     */
+    protected $gestionInterneConsoleDeGestionDesContacts;
+
+    /**
+     * @var string|null
+     */
+    protected $gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil;
+
     public function getPaieRelationClientGestionPortailCP(): ?string
     {
         return $this->paieRelationClientGestionPortailCP;
@@ -1468,6 +1518,136 @@ class CompteCollaborateurDroitsUtilisateur
     {
         $this->initialized['dossierPaieSuiviModifications'] = true;
         $this->dossierPaieSuiviModifications = $dossierPaieSuiviModifications;
+
+        return $this;
+    }
+
+    public function getPilotageProjetGestionModeles(): ?string
+    {
+        return $this->pilotageProjetGestionModeles;
+    }
+
+    public function setPilotageProjetGestionModeles(?string $pilotageProjetGestionModeles): self
+    {
+        $this->initialized['pilotageProjetGestionModeles'] = true;
+        $this->pilotageProjetGestionModeles = $pilotageProjetGestionModeles;
+
+        return $this;
+    }
+
+    public function getRelationClientTachesPlanifiees(): ?string
+    {
+        return $this->relationClientTachesPlanifiees;
+    }
+
+    public function setRelationClientTachesPlanifiees(?string $relationClientTachesPlanifiees): self
+    {
+        $this->initialized['relationClientTachesPlanifiees'] = true;
+        $this->relationClientTachesPlanifiees = $relationClientTachesPlanifiees;
+
+        return $this;
+    }
+
+    public function getRelationClientSyntheseCycleDePaie(): ?string
+    {
+        return $this->relationClientSyntheseCycleDePaie;
+    }
+
+    public function setRelationClientSyntheseCycleDePaie(?string $relationClientSyntheseCycleDePaie): self
+    {
+        $this->initialized['relationClientSyntheseCycleDePaie'] = true;
+        $this->relationClientSyntheseCycleDePaie = $relationClientSyntheseCycleDePaie;
+
+        return $this;
+    }
+
+    public function getRelationClientParametrageCycleDePaie(): ?string
+    {
+        return $this->relationClientParametrageCycleDePaie;
+    }
+
+    public function setRelationClientParametrageCycleDePaie(?string $relationClientParametrageCycleDePaie): self
+    {
+        $this->initialized['relationClientParametrageCycleDePaie'] = true;
+        $this->relationClientParametrageCycleDePaie = $relationClientParametrageCycleDePaie;
+
+        return $this;
+    }
+
+    public function getOutilsPaieExportDeDossier(): ?string
+    {
+        return $this->outilsPaieExportDeDossier;
+    }
+
+    public function setOutilsPaieExportDeDossier(?string $outilsPaieExportDeDossier): self
+    {
+        $this->initialized['outilsPaieExportDeDossier'] = true;
+        $this->outilsPaieExportDeDossier = $outilsPaieExportDeDossier;
+
+        return $this;
+    }
+
+    public function getOutilsPaieImportDeDossier(): ?string
+    {
+        return $this->outilsPaieImportDeDossier;
+    }
+
+    public function setOutilsPaieImportDeDossier(?string $outilsPaieImportDeDossier): self
+    {
+        $this->initialized['outilsPaieImportDeDossier'] = true;
+        $this->outilsPaieImportDeDossier = $outilsPaieImportDeDossier;
+
+        return $this;
+    }
+
+    public function getOutilsPaieImportDeDossierDemo(): ?string
+    {
+        return $this->outilsPaieImportDeDossierDemo;
+    }
+
+    public function setOutilsPaieImportDeDossierDemo(?string $outilsPaieImportDeDossierDemo): self
+    {
+        $this->initialized['outilsPaieImportDeDossierDemo'] = true;
+        $this->outilsPaieImportDeDossierDemo = $outilsPaieImportDeDossierDemo;
+
+        return $this;
+    }
+
+    public function getDossierPaieAccesDsn(): ?string
+    {
+        return $this->dossierPaieAccesDsn;
+    }
+
+    public function setDossierPaieAccesDsn(?string $dossierPaieAccesDsn): self
+    {
+        $this->initialized['dossierPaieAccesDsn'] = true;
+        $this->dossierPaieAccesDsn = $dossierPaieAccesDsn;
+
+        return $this;
+    }
+
+    public function getGestionInterneConsoleDeGestionDesContacts(): ?string
+    {
+        return $this->gestionInterneConsoleDeGestionDesContacts;
+    }
+
+    public function setGestionInterneConsoleDeGestionDesContacts(?string $gestionInterneConsoleDeGestionDesContacts): self
+    {
+        $this->initialized['gestionInterneConsoleDeGestionDesContacts'] = true;
+        $this->gestionInterneConsoleDeGestionDesContacts = $gestionInterneConsoleDeGestionDesContacts;
+
+        return $this;
+    }
+
+    public function getGestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil(): ?string
+    {
+        return $this->gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil;
+    }
+
+    public function setGestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil(?string $gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil): self
+    {
+        $this->initialized['gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil'] = true;
+        $this->gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil = $gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil;
 
         return $this;
     }

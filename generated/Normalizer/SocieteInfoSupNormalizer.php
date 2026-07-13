@@ -32,7 +32,12 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SocieteInfoSup();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,9 +45,12 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SocieteInfoSup();
         if (\array_key_exists('clI_MethodeSuiviCPAcqMois', $data) && \is_int($data['clI_MethodeSuiviCPAcqMois'])) {
             $data['clI_MethodeSuiviCPAcqMois'] = (float) $data['clI_MethodeSuiviCPAcqMois'];
+        }
+
+        if (\array_key_exists('inT_CapitalSocial', $data) && \is_int($data['inT_CapitalSocial'])) {
+            $data['inT_CapitalSocial'] = (float) $data['inT_CapitalSocial'];
         }
 
         if (\array_key_exists('bCLI_AffilieCCP', $data) && \is_int($data['bCLI_AffilieCCP'])) {
@@ -353,8 +361,12 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $data['clI_TaxeCotPPrev'] = (bool) $data['clI_TaxeCotPPrev'];
         }
 
-        if (null === $data || false === \is_array($data)) {
-            return $object;
+        if (\array_key_exists('bINT_CapitalSocial', $data) && \is_int($data['bINT_CapitalSocial'])) {
+            $data['bINT_CapitalSocial'] = (bool) $data['bINT_CapitalSocial'];
+        }
+
+        if (\array_key_exists('bINT_GreffeImmatriculationRCS', $data) && \is_int($data['bINT_GreffeImmatriculationRCS'])) {
+            $data['bINT_GreffeImmatriculationRCS'] = (bool) $data['bINT_GreffeImmatriculationRCS'];
         }
 
         if (\array_key_exists('bCLI_AffilieCCP', $data) && null !== $data['bCLI_AffilieCCP']) {
@@ -1053,6 +1065,30 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setClITaxeCotPPrev(null);
         }
 
+        if (\array_key_exists('bINT_CapitalSocial', $data) && null !== $data['bINT_CapitalSocial']) {
+            $object->setBINTCapitalSocial($data['bINT_CapitalSocial']);
+        } elseif (\array_key_exists('bINT_CapitalSocial', $data) && null === $data['bINT_CapitalSocial']) {
+            $object->setBINTCapitalSocial(null);
+        }
+
+        if (\array_key_exists('inT_CapitalSocial', $data) && null !== $data['inT_CapitalSocial']) {
+            $object->setInTCapitalSocial($data['inT_CapitalSocial']);
+        } elseif (\array_key_exists('inT_CapitalSocial', $data) && null === $data['inT_CapitalSocial']) {
+            $object->setInTCapitalSocial(null);
+        }
+
+        if (\array_key_exists('bINT_GreffeImmatriculationRCS', $data) && null !== $data['bINT_GreffeImmatriculationRCS']) {
+            $object->setBINTGreffeImmatriculationRCS($data['bINT_GreffeImmatriculationRCS']);
+        } elseif (\array_key_exists('bINT_GreffeImmatriculationRCS', $data) && null === $data['bINT_GreffeImmatriculationRCS']) {
+            $object->setBINTGreffeImmatriculationRCS(null);
+        }
+
+        if (\array_key_exists('inT_GreffeImmatriculationRCS', $data) && null !== $data['inT_GreffeImmatriculationRCS']) {
+            $object->setInTGreffeImmatriculationRCS($data['inT_GreffeImmatriculationRCS']);
+        } elseif (\array_key_exists('inT_GreffeImmatriculationRCS', $data) && null === $data['inT_GreffeImmatriculationRCS']) {
+            $object->setInTGreffeImmatriculationRCS(null);
+        }
+
         return $object;
     }
 
@@ -1521,6 +1557,22 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
 
         if ($data->isInitialized('clITaxeCotPPrev') && null !== $data->getClITaxeCotPPrev()) {
             $dataArray['clI_TaxeCotPPrev'] = $data->getClITaxeCotPPrev();
+        }
+
+        if ($data->isInitialized('bINTCapitalSocial') && null !== $data->getBINTCapitalSocial()) {
+            $dataArray['bINT_CapitalSocial'] = $data->getBINTCapitalSocial();
+        }
+
+        if ($data->isInitialized('inTCapitalSocial') && null !== $data->getInTCapitalSocial()) {
+            $dataArray['inT_CapitalSocial'] = $data->getInTCapitalSocial();
+        }
+
+        if ($data->isInitialized('bINTGreffeImmatriculationRCS') && null !== $data->getBINTGreffeImmatriculationRCS()) {
+            $dataArray['bINT_GreffeImmatriculationRCS'] = $data->getBINTGreffeImmatriculationRCS();
+        }
+
+        if ($data->isInitialized('inTGreffeImmatriculationRCS') && null !== $data->getInTGreffeImmatriculationRCS()) {
+            $dataArray['inT_GreffeImmatriculationRCS'] = $data->getInTGreffeImmatriculationRCS();
         }
 
         return $dataArray;

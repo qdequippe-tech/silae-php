@@ -32,7 +32,12 @@ class SalarieBulletinCumulsResultNormalizer implements DenormalizerInterface, No
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalarieBulletinCumulsResult();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class SalarieBulletinCumulsResultNormalizer implements DenormalizerInterface, No
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalarieBulletinCumulsResult();
         if (\array_key_exists('salaireDeBase', $data) && \is_int($data['salaireDeBase'])) {
             $data['salaireDeBase'] = (float) $data['salaireDeBase'];
         }
@@ -83,10 +87,6 @@ class SalarieBulletinCumulsResultNormalizer implements DenormalizerInterface, No
 
         if (\array_key_exists('nombreJoursTravailees', $data) && \is_int($data['nombreJoursTravailees'])) {
             $data['nombreJoursTravailees'] = (float) $data['nombreJoursTravailees'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('salaireDeBase', $data) && null !== $data['salaireDeBase']) {

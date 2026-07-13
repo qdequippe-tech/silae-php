@@ -32,7 +32,12 @@ class InformationsEtablissementNormalizer implements DenormalizerInterface, Norm
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new InformationsEtablissement();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,13 +45,8 @@ class InformationsEtablissementNormalizer implements DenormalizerInterface, Norm
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new InformationsEtablissement();
         if (\array_key_exists('etablissementPrincipal', $data) && \is_int($data['etablissementPrincipal'])) {
             $data['etablissementPrincipal'] = (bool) $data['etablissementPrincipal'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('nomInterne', $data) && null !== $data['nomInterne']) {

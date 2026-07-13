@@ -32,7 +32,12 @@ class DossierTacheNormalizer implements DenormalizerInterface, NormalizerInterfa
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new DossierTache();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class DossierTacheNormalizer implements DenormalizerInterface, NormalizerInterfa
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new DossierTache();
         if (\array_key_exists('aFaireParLeClient', $data) && \is_int($data['aFaireParLeClient'])) {
             $data['aFaireParLeClient'] = (bool) $data['aFaireParLeClient'];
         }
@@ -59,10 +63,6 @@ class DossierTacheNormalizer implements DenormalizerInterface, NormalizerInterfa
 
         if (\array_key_exists('supprimerTache', $data) && \is_int($data['supprimerTache'])) {
             $data['supprimerTache'] = (bool) $data['supprimerTache'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('nature', $data) && null !== $data['nature']) {

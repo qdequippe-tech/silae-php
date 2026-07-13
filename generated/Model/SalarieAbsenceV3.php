@@ -124,6 +124,11 @@ class SalarieAbsenceV3
      */
     protected $commentaire;
 
+    /**
+     * @var int|null
+     */
+    protected $absencesDemiJournee;
+
     public function getDateDebutAbsence(): ?\DateTime
     {
         return $this->dateDebutAbsence;
@@ -406,6 +411,19 @@ class SalarieAbsenceV3
     {
         $this->initialized['commentaire'] = true;
         $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    public function getAbsencesDemiJournee(): ?int
+    {
+        return $this->absencesDemiJournee;
+    }
+
+    public function setAbsencesDemiJournee(?int $absencesDemiJournee): self
+    {
+        $this->initialized['absencesDemiJournee'] = true;
+        $this->absencesDemiJournee = $absencesDemiJournee;
 
         return $this;
     }

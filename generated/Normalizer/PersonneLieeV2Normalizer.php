@@ -32,7 +32,12 @@ class PersonneLieeV2Normalizer implements DenormalizerInterface, NormalizerInter
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new PersonneLieeV2();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class PersonneLieeV2Normalizer implements DenormalizerInterface, NormalizerInter
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new PersonneLieeV2();
         if (\array_key_exists('aCharge', $data) && \is_int($data['aCharge'])) {
             $data['aCharge'] = (bool) $data['aCharge'];
         }
@@ -67,10 +71,6 @@ class PersonneLieeV2Normalizer implements DenormalizerInterface, NormalizerInter
 
         if (\array_key_exists('bCivilite', $data) && \is_int($data['bCivilite'])) {
             $data['bCivilite'] = (bool) $data['bCivilite'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('prenom', $data) && null !== $data['prenom']) {

@@ -32,7 +32,12 @@ class SalarieBulletinEnteteSimpleResultNormalizer implements DenormalizerInterfa
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalarieBulletinEnteteSimpleResult();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class SalarieBulletinEnteteSimpleResultNormalizer implements DenormalizerInterfa
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalarieBulletinEnteteSimpleResult();
         if (\array_key_exists('brut', $data) && \is_int($data['brut'])) {
             $data['brut'] = (float) $data['brut'];
         }
@@ -79,10 +83,6 @@ class SalarieBulletinEnteteSimpleResultNormalizer implements DenormalizerInterfa
 
         if (\array_key_exists('bulletinOriginal', $data) && \is_int($data['bulletinOriginal'])) {
             $data['bulletinOriginal'] = (bool) $data['bulletinOriginal'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('bulletinOriginal', $data) && null !== $data['bulletinOriginal']) {

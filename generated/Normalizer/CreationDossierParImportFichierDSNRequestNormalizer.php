@@ -32,7 +32,12 @@ class CreationDossierParImportFichierDSNRequestNormalizer implements Denormalize
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new CreationDossierParImportFichierDSNRequest();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,13 +45,8 @@ class CreationDossierParImportFichierDSNRequestNormalizer implements Denormalize
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new CreationDossierParImportFichierDSNRequest();
         if (\array_key_exists('dernierFichier', $data) && \is_int($data['dernierFichier'])) {
             $data['dernierFichier'] = (bool) $data['dernierFichier'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('dsnEnByteArray', $data) && null !== $data['dsnEnByteArray']) {

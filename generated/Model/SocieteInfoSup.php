@@ -594,6 +594,26 @@ class SocieteInfoSup
      */
     protected $clITaxeCotPPrev;
 
+    /**
+     * @var bool|null
+     */
+    protected $bINTCapitalSocial;
+
+    /**
+     * @var float|null
+     */
+    protected $inTCapitalSocial;
+
+    /**
+     * @var bool|null
+     */
+    protected $bINTGreffeImmatriculationRCS;
+
+    /**
+     * @var string|null
+     */
+    protected $inTGreffeImmatriculationRCS;
+
     public function getBCLIAffilieCCP(): ?bool
     {
         return $this->bCLIAffilieCCP;
@@ -2098,6 +2118,58 @@ class SocieteInfoSup
     {
         $this->initialized['clITaxeCotPPrev'] = true;
         $this->clITaxeCotPPrev = $clITaxeCotPPrev;
+
+        return $this;
+    }
+
+    public function getBINTCapitalSocial(): ?bool
+    {
+        return $this->bINTCapitalSocial;
+    }
+
+    public function setBINTCapitalSocial(?bool $bINTCapitalSocial): self
+    {
+        $this->initialized['bINTCapitalSocial'] = true;
+        $this->bINTCapitalSocial = $bINTCapitalSocial;
+
+        return $this;
+    }
+
+    public function getInTCapitalSocial(): ?float
+    {
+        return $this->inTCapitalSocial;
+    }
+
+    public function setInTCapitalSocial(?float $inTCapitalSocial): self
+    {
+        $this->initialized['inTCapitalSocial'] = true;
+        $this->inTCapitalSocial = $inTCapitalSocial;
+
+        return $this;
+    }
+
+    public function getBINTGreffeImmatriculationRCS(): ?bool
+    {
+        return $this->bINTGreffeImmatriculationRCS;
+    }
+
+    public function setBINTGreffeImmatriculationRCS(?bool $bINTGreffeImmatriculationRCS): self
+    {
+        $this->initialized['bINTGreffeImmatriculationRCS'] = true;
+        $this->bINTGreffeImmatriculationRCS = $bINTGreffeImmatriculationRCS;
+
+        return $this;
+    }
+
+    public function getInTGreffeImmatriculationRCS(): ?string
+    {
+        return $this->inTGreffeImmatriculationRCS;
+    }
+
+    public function setInTGreffeImmatriculationRCS(?string $inTGreffeImmatriculationRCS): self
+    {
+        $this->initialized['inTGreffeImmatriculationRCS'] = true;
+        $this->inTGreffeImmatriculationRCS = $inTGreffeImmatriculationRCS;
 
         return $this;
     }

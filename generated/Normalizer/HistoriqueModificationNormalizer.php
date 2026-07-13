@@ -32,7 +32,12 @@ class HistoriqueModificationNormalizer implements DenormalizerInterface, Normali
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new HistoriqueModification();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,13 +45,8 @@ class HistoriqueModificationNormalizer implements DenormalizerInterface, Normali
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new HistoriqueModification();
         if (\array_key_exists('modifAPI', $data) && \is_int($data['modifAPI'])) {
             $data['modifAPI'] = (bool) $data['modifAPI'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('date', $data) && null !== $data['date']) {

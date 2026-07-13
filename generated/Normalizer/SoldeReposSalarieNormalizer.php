@@ -32,7 +32,12 @@ class SoldeReposSalarieNormalizer implements DenormalizerInterface, NormalizerIn
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SoldeReposSalarie();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class SoldeReposSalarieNormalizer implements DenormalizerInterface, NormalizerIn
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SoldeReposSalarie();
         if (\array_key_exists('cpN1Acquis', $data) && \is_int($data['cpN1Acquis'])) {
             $data['cpN1Acquis'] = (float) $data['cpN1Acquis'];
         }
@@ -223,10 +227,6 @@ class SoldeReposSalarieNormalizer implements DenormalizerInterface, NormalizerIn
 
         if (\array_key_exists('rcProvision', $data) && \is_int($data['rcProvision'])) {
             $data['rcProvision'] = (float) $data['rcProvision'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('matricule', $data) && null !== $data['matricule']) {

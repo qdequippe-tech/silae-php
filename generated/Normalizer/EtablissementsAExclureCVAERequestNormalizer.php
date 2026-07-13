@@ -32,7 +32,12 @@ class EtablissementsAExclureCVAERequestNormalizer implements DenormalizerInterfa
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EtablissementsAExclureCVAERequest();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,13 +45,8 @@ class EtablissementsAExclureCVAERequestNormalizer implements DenormalizerInterfa
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new EtablissementsAExclureCVAERequest();
         if (\array_key_exists('exclure', $data) && \is_int($data['exclure'])) {
             $data['exclure'] = (bool) $data['exclure'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('nomsInterneEtablissements', $data) && null !== $data['nomsInterneEtablissements']) {

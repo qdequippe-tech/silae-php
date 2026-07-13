@@ -32,7 +32,12 @@ class TaxeTransportNormalizer implements DenormalizerInterface, NormalizerInterf
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new TaxeTransport();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,13 +45,8 @@ class TaxeTransportNormalizer implements DenormalizerInterface, NormalizerInterf
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new TaxeTransport();
         if (\array_key_exists('pourcentageAbattement', $data) && \is_int($data['pourcentageAbattement'])) {
             $data['pourcentageAbattement'] = (float) $data['pourcentageAbattement'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('moisDebut', $data) && null !== $data['moisDebut']) {

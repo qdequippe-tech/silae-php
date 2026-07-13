@@ -70,6 +70,31 @@ class Dossier
     protected $groupe;
 
     /**
+     * @var string|null
+     */
+    protected $numeroInterne;
+
+    /**
+     * @var bool|null
+     */
+    protected $miseADisposition;
+
+    /**
+     * @var bool|null
+     */
+    protected $bMiseADisposition;
+
+    /**
+     * @var bool|null
+     */
+    protected $dossierInterne;
+
+    /**
+     * @var string|null
+     */
+    protected $referenceFacturation;
+
+    /**
      * @var list<Etablissement>|null
      */
     protected $etablissements;
@@ -213,6 +238,71 @@ class Dossier
     {
         $this->initialized['groupe'] = true;
         $this->groupe = $groupe;
+
+        return $this;
+    }
+
+    public function getNumeroInterne(): ?string
+    {
+        return $this->numeroInterne;
+    }
+
+    public function setNumeroInterne(?string $numeroInterne): self
+    {
+        $this->initialized['numeroInterne'] = true;
+        $this->numeroInterne = $numeroInterne;
+
+        return $this;
+    }
+
+    public function getMiseADisposition(): ?bool
+    {
+        return $this->miseADisposition;
+    }
+
+    public function setMiseADisposition(?bool $miseADisposition): self
+    {
+        $this->initialized['miseADisposition'] = true;
+        $this->miseADisposition = $miseADisposition;
+
+        return $this;
+    }
+
+    public function getBMiseADisposition(): ?bool
+    {
+        return $this->bMiseADisposition;
+    }
+
+    public function setBMiseADisposition(?bool $bMiseADisposition): self
+    {
+        $this->initialized['bMiseADisposition'] = true;
+        $this->bMiseADisposition = $bMiseADisposition;
+
+        return $this;
+    }
+
+    public function getDossierInterne(): ?bool
+    {
+        return $this->dossierInterne;
+    }
+
+    public function setDossierInterne(?bool $dossierInterne): self
+    {
+        $this->initialized['dossierInterne'] = true;
+        $this->dossierInterne = $dossierInterne;
+
+        return $this;
+    }
+
+    public function getReferenceFacturation(): ?string
+    {
+        return $this->referenceFacturation;
+    }
+
+    public function setReferenceFacturation(?string $referenceFacturation): self
+    {
+        $this->initialized['referenceFacturation'] = true;
+        $this->referenceFacturation = $referenceFacturation;
 
         return $this;
     }

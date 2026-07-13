@@ -15,16 +15,16 @@ class AnalyseProductionPaieDetailRequest
     }
 
     /**
-     * @var RequeteAnalyseProductionDetail|null
+     * @var RequeteAnalyseProductionDetailV2|null
      */
     protected $requeteAnalyseProductionDetail;
 
-    public function getRequeteAnalyseProductionDetail(): ?RequeteAnalyseProductionDetail
+    public function getRequeteAnalyseProductionDetail(): ?RequeteAnalyseProductionDetailV2
     {
         return $this->requeteAnalyseProductionDetail;
     }
 
-    public function setRequeteAnalyseProductionDetail(?RequeteAnalyseProductionDetail $requeteAnalyseProductionDetail): self
+    public function setRequeteAnalyseProductionDetail(?RequeteAnalyseProductionDetailV2 $requeteAnalyseProductionDetail): self
     {
         $this->initialized['requeteAnalyseProductionDetail'] = true;
         $this->requeteAnalyseProductionDetail = $requeteAnalyseProductionDetail;

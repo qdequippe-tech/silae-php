@@ -644,6 +644,16 @@ class Emploi
      */
     protected $bAvnLMontantSal;
 
+    /**
+     * @var bool|null
+     */
+    protected $motifCDDExclusions;
+
+    /**
+     * @var bool|null
+     */
+    protected $bMotifCDDExclusions;
+
     public function getIdentifiantEmploi(): ?int
     {
         return $this->identifiantEmploi;
@@ -2302,6 +2312,32 @@ class Emploi
     {
         $this->initialized['bAvnLMontantSal'] = true;
         $this->bAvnLMontantSal = $bAvnLMontantSal;
+
+        return $this;
+    }
+
+    public function getMotifCDDExclusions(): ?bool
+    {
+        return $this->motifCDDExclusions;
+    }
+
+    public function setMotifCDDExclusions(?bool $motifCDDExclusions): self
+    {
+        $this->initialized['motifCDDExclusions'] = true;
+        $this->motifCDDExclusions = $motifCDDExclusions;
+
+        return $this;
+    }
+
+    public function getBMotifCDDExclusions(): ?bool
+    {
+        return $this->bMotifCDDExclusions;
+    }
+
+    public function setBMotifCDDExclusions(?bool $bMotifCDDExclusions): self
+    {
+        $this->initialized['bMotifCDDExclusions'] = true;
+        $this->bMotifCDDExclusions = $bMotifCDDExclusions;
 
         return $this;
     }

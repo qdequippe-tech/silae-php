@@ -49,6 +49,16 @@ class DossierAgence
      */
     protected $miseADisposition;
 
+    /**
+     * @var string|null
+     */
+    protected $referenceFacturation;
+
+    /**
+     * @var string|null
+     */
+    protected $numeroInterne;
+
     public function getNumeroDossier(): ?string
     {
         return $this->numeroDossier;
@@ -136,6 +146,32 @@ class DossierAgence
     {
         $this->initialized['miseADisposition'] = true;
         $this->miseADisposition = $miseADisposition;
+
+        return $this;
+    }
+
+    public function getReferenceFacturation(): ?string
+    {
+        return $this->referenceFacturation;
+    }
+
+    public function setReferenceFacturation(?string $referenceFacturation): self
+    {
+        $this->initialized['referenceFacturation'] = true;
+        $this->referenceFacturation = $referenceFacturation;
+
+        return $this;
+    }
+
+    public function getNumeroInterne(): ?string
+    {
+        return $this->numeroInterne;
+    }
+
+    public function setNumeroInterne(?string $numeroInterne): self
+    {
+        $this->initialized['numeroInterne'] = true;
+        $this->numeroInterne = $numeroInterne;
 
         return $this;
     }

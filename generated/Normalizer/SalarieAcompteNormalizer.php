@@ -32,7 +32,12 @@ class SalarieAcompteNormalizer implements DenormalizerInterface, NormalizerInter
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalarieAcompte();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,17 +45,12 @@ class SalarieAcompteNormalizer implements DenormalizerInterface, NormalizerInter
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalarieAcompte();
         if (\array_key_exists('montantAcompte', $data) && \is_int($data['montantAcompte'])) {
             $data['montantAcompte'] = (float) $data['montantAcompte'];
         }
 
         if (\array_key_exists('jourNonSignificatif', $data) && \is_int($data['jourNonSignificatif'])) {
             $data['jourNonSignificatif'] = (bool) $data['jourNonSignificatif'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('dateAcompte', $data) && null !== $data['dateAcompte']) {

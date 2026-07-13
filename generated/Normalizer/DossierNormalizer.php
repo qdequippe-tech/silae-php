@@ -33,7 +33,12 @@ class DossierNormalizer implements DenormalizerInterface, NormalizerInterface, D
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new Dossier();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -41,9 +46,16 @@ class DossierNormalizer implements DenormalizerInterface, NormalizerInterface, D
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new Dossier();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
+        if (\array_key_exists('miseADisposition', $data) && \is_int($data['miseADisposition'])) {
+            $data['miseADisposition'] = (bool) $data['miseADisposition'];
+        }
+
+        if (\array_key_exists('bMiseADisposition', $data) && \is_int($data['bMiseADisposition'])) {
+            $data['bMiseADisposition'] = (bool) $data['bMiseADisposition'];
+        }
+
+        if (\array_key_exists('dossierInterne', $data) && \is_int($data['dossierInterne'])) {
+            $data['dossierInterne'] = (bool) $data['dossierInterne'];
         }
 
         if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
@@ -112,6 +124,36 @@ class DossierNormalizer implements DenormalizerInterface, NormalizerInterface, D
             $object->setGroupe(null);
         }
 
+        if (\array_key_exists('numeroInterne', $data) && null !== $data['numeroInterne']) {
+            $object->setNumeroInterne($data['numeroInterne']);
+        } elseif (\array_key_exists('numeroInterne', $data) && null === $data['numeroInterne']) {
+            $object->setNumeroInterne(null);
+        }
+
+        if (\array_key_exists('miseADisposition', $data) && null !== $data['miseADisposition']) {
+            $object->setMiseADisposition($data['miseADisposition']);
+        } elseif (\array_key_exists('miseADisposition', $data) && null === $data['miseADisposition']) {
+            $object->setMiseADisposition(null);
+        }
+
+        if (\array_key_exists('bMiseADisposition', $data) && null !== $data['bMiseADisposition']) {
+            $object->setBMiseADisposition($data['bMiseADisposition']);
+        } elseif (\array_key_exists('bMiseADisposition', $data) && null === $data['bMiseADisposition']) {
+            $object->setBMiseADisposition(null);
+        }
+
+        if (\array_key_exists('dossierInterne', $data) && null !== $data['dossierInterne']) {
+            $object->setDossierInterne($data['dossierInterne']);
+        } elseif (\array_key_exists('dossierInterne', $data) && null === $data['dossierInterne']) {
+            $object->setDossierInterne(null);
+        }
+
+        if (\array_key_exists('referenceFacturation', $data) && null !== $data['referenceFacturation']) {
+            $object->setReferenceFacturation($data['referenceFacturation']);
+        } elseif (\array_key_exists('referenceFacturation', $data) && null === $data['referenceFacturation']) {
+            $object->setReferenceFacturation(null);
+        }
+
         if (\array_key_exists('etablissements', $data) && null !== $data['etablissements']) {
             $values = [];
             foreach ($data['etablissements'] as $value) {
@@ -171,6 +213,26 @@ class DossierNormalizer implements DenormalizerInterface, NormalizerInterface, D
 
         if ($data->isInitialized('groupe') && null !== $data->getGroupe()) {
             $dataArray['groupe'] = $data->getGroupe();
+        }
+
+        if ($data->isInitialized('numeroInterne') && null !== $data->getNumeroInterne()) {
+            $dataArray['numeroInterne'] = $data->getNumeroInterne();
+        }
+
+        if ($data->isInitialized('miseADisposition') && null !== $data->getMiseADisposition()) {
+            $dataArray['miseADisposition'] = $data->getMiseADisposition();
+        }
+
+        if ($data->isInitialized('bMiseADisposition') && null !== $data->getBMiseADisposition()) {
+            $dataArray['bMiseADisposition'] = $data->getBMiseADisposition();
+        }
+
+        if ($data->isInitialized('dossierInterne') && null !== $data->getDossierInterne()) {
+            $dataArray['dossierInterne'] = $data->getDossierInterne();
+        }
+
+        if ($data->isInitialized('referenceFacturation') && null !== $data->getReferenceFacturation()) {
+            $dataArray['referenceFacturation'] = $data->getReferenceFacturation();
         }
 
         if ($data->isInitialized('etablissements') && null !== $data->getEtablissements()) {

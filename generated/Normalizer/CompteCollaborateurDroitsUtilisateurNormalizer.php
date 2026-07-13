@@ -32,17 +32,17 @@ class CompteCollaborateurDroitsUtilisateurNormalizer implements DenormalizerInte
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new CompteCollaborateurDroitsUtilisateur();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-
-        $object = new CompteCollaborateurDroitsUtilisateur();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('paieRelationClientGestionPortailCP', $data) && null !== $data['paieRelationClientGestionPortailCP']) {
@@ -531,6 +531,66 @@ class CompteCollaborateurDroitsUtilisateurNormalizer implements DenormalizerInte
             $object->setDossierPaieSuiviModifications(null);
         }
 
+        if (\array_key_exists('pilotageProjetGestionModeles', $data) && null !== $data['pilotageProjetGestionModeles']) {
+            $object->setPilotageProjetGestionModeles($data['pilotageProjetGestionModeles']);
+        } elseif (\array_key_exists('pilotageProjetGestionModeles', $data) && null === $data['pilotageProjetGestionModeles']) {
+            $object->setPilotageProjetGestionModeles(null);
+        }
+
+        if (\array_key_exists('relationClientTachesPlanifiees', $data) && null !== $data['relationClientTachesPlanifiees']) {
+            $object->setRelationClientTachesPlanifiees($data['relationClientTachesPlanifiees']);
+        } elseif (\array_key_exists('relationClientTachesPlanifiees', $data) && null === $data['relationClientTachesPlanifiees']) {
+            $object->setRelationClientTachesPlanifiees(null);
+        }
+
+        if (\array_key_exists('relationClientSyntheseCycleDePaie', $data) && null !== $data['relationClientSyntheseCycleDePaie']) {
+            $object->setRelationClientSyntheseCycleDePaie($data['relationClientSyntheseCycleDePaie']);
+        } elseif (\array_key_exists('relationClientSyntheseCycleDePaie', $data) && null === $data['relationClientSyntheseCycleDePaie']) {
+            $object->setRelationClientSyntheseCycleDePaie(null);
+        }
+
+        if (\array_key_exists('relationClientParametrageCycleDePaie', $data) && null !== $data['relationClientParametrageCycleDePaie']) {
+            $object->setRelationClientParametrageCycleDePaie($data['relationClientParametrageCycleDePaie']);
+        } elseif (\array_key_exists('relationClientParametrageCycleDePaie', $data) && null === $data['relationClientParametrageCycleDePaie']) {
+            $object->setRelationClientParametrageCycleDePaie(null);
+        }
+
+        if (\array_key_exists('outilsPaieExportDeDossier', $data) && null !== $data['outilsPaieExportDeDossier']) {
+            $object->setOutilsPaieExportDeDossier($data['outilsPaieExportDeDossier']);
+        } elseif (\array_key_exists('outilsPaieExportDeDossier', $data) && null === $data['outilsPaieExportDeDossier']) {
+            $object->setOutilsPaieExportDeDossier(null);
+        }
+
+        if (\array_key_exists('outilsPaieImportDeDossier', $data) && null !== $data['outilsPaieImportDeDossier']) {
+            $object->setOutilsPaieImportDeDossier($data['outilsPaieImportDeDossier']);
+        } elseif (\array_key_exists('outilsPaieImportDeDossier', $data) && null === $data['outilsPaieImportDeDossier']) {
+            $object->setOutilsPaieImportDeDossier(null);
+        }
+
+        if (\array_key_exists('outilsPaieImportDeDossierDemo', $data) && null !== $data['outilsPaieImportDeDossierDemo']) {
+            $object->setOutilsPaieImportDeDossierDemo($data['outilsPaieImportDeDossierDemo']);
+        } elseif (\array_key_exists('outilsPaieImportDeDossierDemo', $data) && null === $data['outilsPaieImportDeDossierDemo']) {
+            $object->setOutilsPaieImportDeDossierDemo(null);
+        }
+
+        if (\array_key_exists('dossierPaieAccesDsn', $data) && null !== $data['dossierPaieAccesDsn']) {
+            $object->setDossierPaieAccesDsn($data['dossierPaieAccesDsn']);
+        } elseif (\array_key_exists('dossierPaieAccesDsn', $data) && null === $data['dossierPaieAccesDsn']) {
+            $object->setDossierPaieAccesDsn(null);
+        }
+
+        if (\array_key_exists('gestionInterneConsoleDeGestionDesContacts', $data) && null !== $data['gestionInterneConsoleDeGestionDesContacts']) {
+            $object->setGestionInterneConsoleDeGestionDesContacts($data['gestionInterneConsoleDeGestionDesContacts']);
+        } elseif (\array_key_exists('gestionInterneConsoleDeGestionDesContacts', $data) && null === $data['gestionInterneConsoleDeGestionDesContacts']) {
+            $object->setGestionInterneConsoleDeGestionDesContacts(null);
+        }
+
+        if (\array_key_exists('gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil', $data) && null !== $data['gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil']) {
+            $object->setGestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil($data['gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil']);
+        } elseif (\array_key_exists('gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil', $data) && null === $data['gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil']) {
+            $object->setGestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil(null);
+        }
+
         return $object;
     }
 
@@ -859,6 +919,46 @@ class CompteCollaborateurDroitsUtilisateurNormalizer implements DenormalizerInte
 
         if ($data->isInitialized('dossierPaieSuiviModifications') && null !== $data->getDossierPaieSuiviModifications()) {
             $dataArray['dossierPaieSuiviModifications'] = $data->getDossierPaieSuiviModifications();
+        }
+
+        if ($data->isInitialized('pilotageProjetGestionModeles') && null !== $data->getPilotageProjetGestionModeles()) {
+            $dataArray['pilotageProjetGestionModeles'] = $data->getPilotageProjetGestionModeles();
+        }
+
+        if ($data->isInitialized('relationClientTachesPlanifiees') && null !== $data->getRelationClientTachesPlanifiees()) {
+            $dataArray['relationClientTachesPlanifiees'] = $data->getRelationClientTachesPlanifiees();
+        }
+
+        if ($data->isInitialized('relationClientSyntheseCycleDePaie') && null !== $data->getRelationClientSyntheseCycleDePaie()) {
+            $dataArray['relationClientSyntheseCycleDePaie'] = $data->getRelationClientSyntheseCycleDePaie();
+        }
+
+        if ($data->isInitialized('relationClientParametrageCycleDePaie') && null !== $data->getRelationClientParametrageCycleDePaie()) {
+            $dataArray['relationClientParametrageCycleDePaie'] = $data->getRelationClientParametrageCycleDePaie();
+        }
+
+        if ($data->isInitialized('outilsPaieExportDeDossier') && null !== $data->getOutilsPaieExportDeDossier()) {
+            $dataArray['outilsPaieExportDeDossier'] = $data->getOutilsPaieExportDeDossier();
+        }
+
+        if ($data->isInitialized('outilsPaieImportDeDossier') && null !== $data->getOutilsPaieImportDeDossier()) {
+            $dataArray['outilsPaieImportDeDossier'] = $data->getOutilsPaieImportDeDossier();
+        }
+
+        if ($data->isInitialized('outilsPaieImportDeDossierDemo') && null !== $data->getOutilsPaieImportDeDossierDemo()) {
+            $dataArray['outilsPaieImportDeDossierDemo'] = $data->getOutilsPaieImportDeDossierDemo();
+        }
+
+        if ($data->isInitialized('dossierPaieAccesDsn') && null !== $data->getDossierPaieAccesDsn()) {
+            $dataArray['dossierPaieAccesDsn'] = $data->getDossierPaieAccesDsn();
+        }
+
+        if ($data->isInitialized('gestionInterneConsoleDeGestionDesContacts') && null !== $data->getGestionInterneConsoleDeGestionDesContacts()) {
+            $dataArray['gestionInterneConsoleDeGestionDesContacts'] = $data->getGestionInterneConsoleDeGestionDesContacts();
+        }
+
+        if ($data->isInitialized('gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil') && null !== $data->getGestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil()) {
+            $dataArray['gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil'] = $data->getGestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil();
         }
 
         return $dataArray;

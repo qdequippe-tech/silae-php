@@ -1,0 +1,92 @@
+<?php
+
+namespace QdequippeTech\Silae\Api\Normalizer;
+
+use Jane\Component\JsonSchemaRuntime\Reference;
+use QdequippeTech\Silae\Api\Model\HistoriqueConnexion;
+use QdequippeTech\Silae\Api\Model\HistoriqueDesConnexionsResponse;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
+class HistoriqueDesConnexionsResponseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use CheckArray;
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use ValidatorTrait;
+
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
+    {
+        return HistoriqueDesConnexionsResponse::class === $type;
+    }
+
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
+    {
+        return \is_object($data) && HistoriqueDesConnexionsResponse::class === $data::class;
+    }
+
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
+    {
+        $object = new HistoriqueDesConnexionsResponse();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
+        }
+
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
+        }
+
+        if (\array_key_exists('connexions', $data) && null !== $data['connexions']) {
+            $values = [];
+            foreach ($data['connexions'] as $value) {
+                $values[] = $this->denormalizer->denormalize($value, HistoriqueConnexion::class, 'json', $context);
+            }
+
+            $object->setConnexions($values);
+        } elseif (\array_key_exists('connexions', $data) && null === $data['connexions']) {
+            $object->setConnexions(null);
+        }
+
+        if (\array_key_exists('warning', $data) && null !== $data['warning']) {
+            $object->setWarning($data['warning']);
+        } elseif (\array_key_exists('warning', $data) && null === $data['warning']) {
+            $object->setWarning(null);
+        }
+
+        return $object;
+    }
+
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
+    {
+        $dataArray = [];
+        if ($data->isInitialized('connexions') && null !== $data->getConnexions()) {
+            $values = [];
+            foreach ($data->getConnexions() as $value) {
+                $values[] = $this->normalizer->normalize($value, 'json', $context);
+            }
+
+            $dataArray['connexions'] = $values;
+        }
+
+        if ($data->isInitialized('warning') && null !== $data->getWarning()) {
+            $dataArray['warning'] = $data->getWarning();
+        }
+
+        return $dataArray;
+    }
+
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [HistoriqueDesConnexionsResponse::class => false];
+    }
+}

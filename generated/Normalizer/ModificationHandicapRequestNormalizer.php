@@ -33,7 +33,12 @@ class ModificationHandicapRequestNormalizer implements DenormalizerInterface, No
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new ModificationHandicapRequest();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -41,13 +46,8 @@ class ModificationHandicapRequestNormalizer implements DenormalizerInterface, No
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new ModificationHandicapRequest();
         if (\array_key_exists('salarieHandicape', $data) && \is_int($data['salarieHandicape'])) {
             $data['salarieHandicape'] = (bool) $data['salarieHandicape'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('salarieHandicape', $data) && null !== $data['salarieHandicape']) {
