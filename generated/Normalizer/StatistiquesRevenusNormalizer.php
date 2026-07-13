@@ -3,7 +3,8 @@
 namespace QdequippeTech\Silae\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use QdequippeTech\Silae\Api\Model\RequeteAnalyseProductionDetail;
+use QdequippeTech\Silae\Api\Model\StatistiquesRevenus;
+use QdequippeTech\Silae\Api\Model\StatistiquesRevenusSalarie;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -13,7 +14,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class RequeteAnalyseProductionDetailNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class StatistiquesRevenusNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use CheckArray;
     use DenormalizerAwareTrait;
@@ -22,27 +23,27 @@ class RequeteAnalyseProductionDetailNormalizer implements DenormalizerInterface,
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return RequeteAnalyseProductionDetail::class === $type;
+        return StatistiquesRevenus::class === $type;
     }
 
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return \is_object($data) && RequeteAnalyseProductionDetail::class === $data::class;
+        return \is_object($data) && StatistiquesRevenus::class === $data::class;
     }
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new StatistiquesRevenus();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-
-        $object = new RequeteAnalyseProductionDetail();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
@@ -51,22 +52,21 @@ class RequeteAnalyseProductionDetailNormalizer implements DenormalizerInterface,
             $object->setNumeroDossier(null);
         }
 
-        if (\array_key_exists('periodeDebut', $data) && null !== $data['periodeDebut']) {
-            $object->setPeriodeDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeDebut']));
-        } elseif (\array_key_exists('periodeDebut', $data) && null === $data['periodeDebut']) {
-            $object->setPeriodeDebut(null);
+        if (\array_key_exists('codeAgence', $data) && null !== $data['codeAgence']) {
+            $object->setCodeAgence($data['codeAgence']);
+        } elseif (\array_key_exists('codeAgence', $data) && null === $data['codeAgence']) {
+            $object->setCodeAgence(null);
         }
 
-        if (\array_key_exists('periodeFin', $data) && null !== $data['periodeFin']) {
-            $object->setPeriodeFin(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeFin']));
-        } elseif (\array_key_exists('periodeFin', $data) && null === $data['periodeFin']) {
-            $object->setPeriodeFin(null);
-        }
+        if (\array_key_exists('statistiquesProductionMatricule', $data) && null !== $data['statistiquesProductionMatricule']) {
+            $values = [];
+            foreach ($data['statistiquesProductionMatricule'] as $value) {
+                $values[] = $this->denormalizer->denormalize($value, StatistiquesRevenusSalarie::class, 'json', $context);
+            }
 
-        if (\array_key_exists('nomAnalyse', $data) && null !== $data['nomAnalyse']) {
-            $object->setNomAnalyse($data['nomAnalyse']);
-        } elseif (\array_key_exists('nomAnalyse', $data) && null === $data['nomAnalyse']) {
-            $object->setNomAnalyse(null);
+            $object->setStatistiquesProductionMatricule($values);
+        } elseif (\array_key_exists('statistiquesProductionMatricule', $data) && null === $data['statistiquesProductionMatricule']) {
+            $object->setStatistiquesProductionMatricule(null);
         }
 
         return $object;
@@ -79,16 +79,17 @@ class RequeteAnalyseProductionDetailNormalizer implements DenormalizerInterface,
             $dataArray['numeroDossier'] = $data->getNumeroDossier();
         }
 
-        if ($data->isInitialized('periodeDebut') && null !== $data->getPeriodeDebut()) {
-            $dataArray['periodeDebut'] = $data->getPeriodeDebut()->format('Y-m-d\TH:i:s');
+        if ($data->isInitialized('codeAgence') && null !== $data->getCodeAgence()) {
+            $dataArray['codeAgence'] = $data->getCodeAgence();
         }
 
-        if ($data->isInitialized('periodeFin') && null !== $data->getPeriodeFin()) {
-            $dataArray['periodeFin'] = $data->getPeriodeFin()->format('Y-m-d\TH:i:s');
-        }
+        if ($data->isInitialized('statistiquesProductionMatricule') && null !== $data->getStatistiquesProductionMatricule()) {
+            $values = [];
+            foreach ($data->getStatistiquesProductionMatricule() as $value) {
+                $values[] = $this->normalizer->normalize($value, 'json', $context);
+            }
 
-        if ($data->isInitialized('nomAnalyse') && null !== $data->getNomAnalyse()) {
-            $dataArray['nomAnalyse'] = $data->getNomAnalyse();
+            $dataArray['statistiquesProductionMatricule'] = $values;
         }
 
         return $dataArray;
@@ -96,6 +97,6 @@ class RequeteAnalyseProductionDetailNormalizer implements DenormalizerInterface,
 
     public function getSupportedTypes(?string $format = null): array
     {
-        return [RequeteAnalyseProductionDetail::class => false];
+        return [StatistiquesRevenus::class => false];
     }
 }

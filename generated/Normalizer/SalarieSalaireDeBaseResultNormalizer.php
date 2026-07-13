@@ -32,7 +32,12 @@ class SalarieSalaireDeBaseResultNormalizer implements DenormalizerInterface, Nor
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalarieSalaireDeBaseResult();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class SalarieSalaireDeBaseResultNormalizer implements DenormalizerInterface, Nor
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalarieSalaireDeBaseResult();
         if (\array_key_exists('salaireDeBase', $data) && \is_int($data['salaireDeBase'])) {
             $data['salaireDeBase'] = (float) $data['salaireDeBase'];
         }
@@ -63,10 +67,6 @@ class SalarieSalaireDeBaseResultNormalizer implements DenormalizerInterface, Nor
 
         if (\array_key_exists('salaireDeBaseHLibre3', $data) && \is_int($data['salaireDeBaseHLibre3'])) {
             $data['salaireDeBaseHLibre3'] = (float) $data['salaireDeBaseHLibre3'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('matriculeSalarie', $data) && null !== $data['matriculeSalarie']) {

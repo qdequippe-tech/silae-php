@@ -32,7 +32,12 @@ class EffortConstructionNormalizer implements DenormalizerInterface, NormalizerI
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EffortConstruction();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class EffortConstructionNormalizer implements DenormalizerInterface, NormalizerI
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new EffortConstruction();
         if (\array_key_exists('pourcentageAnneeN', $data) && \is_int($data['pourcentageAnneeN'])) {
             $data['pourcentageAnneeN'] = (float) $data['pourcentageAnneeN'];
         }
@@ -67,10 +71,6 @@ class EffortConstructionNormalizer implements DenormalizerInterface, NormalizerI
 
         if (\array_key_exists('assujettissement', $data) && \is_int($data['assujettissement'])) {
             $data['assujettissement'] = (bool) $data['assujettissement'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('assujettissement', $data) && null !== $data['assujettissement']) {

@@ -33,7 +33,12 @@ class SalarieEmploisNormalizer implements DenormalizerInterface, NormalizerInter
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalarieEmplois();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -41,7 +46,6 @@ class SalarieEmploisNormalizer implements DenormalizerInterface, NormalizerInter
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalarieEmplois();
         if (\array_key_exists('ribVersementPlafond', $data) && \is_int($data['ribVersementPlafond'])) {
             $data['ribVersementPlafond'] = (float) $data['ribVersementPlafond'];
         }
@@ -346,8 +350,8 @@ class SalarieEmploisNormalizer implements DenormalizerInterface, NormalizerInter
             $data['bSexe'] = (bool) $data['bSexe'];
         }
 
-        if (null === $data || false === \is_array($data)) {
-            return $object;
+        if (\array_key_exists('bBeneficiaireFinal', $data) && \is_int($data['bBeneficiaireFinal'])) {
+            $data['bBeneficiaireFinal'] = (bool) $data['bBeneficiaireFinal'];
         }
 
         if (\array_key_exists('matriculeSalarie', $data) && null !== $data['matriculeSalarie']) {
@@ -1183,6 +1187,18 @@ class SalarieEmploisNormalizer implements DenormalizerInterface, NormalizerInter
             $object->setBSexe(null);
         }
 
+        if (\array_key_exists('beneficiaireFinal', $data) && null !== $data['beneficiaireFinal']) {
+            $object->setBeneficiaireFinal($data['beneficiaireFinal']);
+        } elseif (\array_key_exists('beneficiaireFinal', $data) && null === $data['beneficiaireFinal']) {
+            $object->setBeneficiaireFinal(null);
+        }
+
+        if (\array_key_exists('bBeneficiaireFinal', $data) && null !== $data['bBeneficiaireFinal']) {
+            $object->setBBeneficiaireFinal($data['bBeneficiaireFinal']);
+        } elseif (\array_key_exists('bBeneficiaireFinal', $data) && null === $data['bBeneficiaireFinal']) {
+            $object->setBBeneficiaireFinal(null);
+        }
+
         return $object;
     }
 
@@ -1744,6 +1760,14 @@ class SalarieEmploisNormalizer implements DenormalizerInterface, NormalizerInter
 
         if ($data->isInitialized('bSexe') && null !== $data->getBSexe()) {
             $dataArray['bSexe'] = $data->getBSexe();
+        }
+
+        if ($data->isInitialized('beneficiaireFinal') && null !== $data->getBeneficiaireFinal()) {
+            $dataArray['beneficiaireFinal'] = $data->getBeneficiaireFinal();
+        }
+
+        if ($data->isInitialized('bBeneficiaireFinal') && null !== $data->getBBeneficiaireFinal()) {
+            $dataArray['bBeneficiaireFinal'] = $data->getBBeneficiaireFinal();
         }
 
         return $dataArray;

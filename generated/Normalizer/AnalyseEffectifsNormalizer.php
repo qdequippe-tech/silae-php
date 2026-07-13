@@ -32,7 +32,12 @@ class AnalyseEffectifsNormalizer implements DenormalizerInterface, NormalizerInt
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new AnalyseEffectifs();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class AnalyseEffectifsNormalizer implements DenormalizerInterface, NormalizerInt
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new AnalyseEffectifs();
         if (\array_key_exists('effectifSecuriteSociale', $data) && \is_int($data['effectifSecuriteSociale'])) {
             $data['effectifSecuriteSociale'] = (float) $data['effectifSecuriteSociale'];
         }
@@ -67,10 +71,6 @@ class AnalyseEffectifsNormalizer implements DenormalizerInterface, NormalizerInt
 
         if (\array_key_exists('effectifCsaCfip', $data) && \is_int($data['effectifCsaCfip'])) {
             $data['effectifCsaCfip'] = (float) $data['effectifCsaCfip'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {

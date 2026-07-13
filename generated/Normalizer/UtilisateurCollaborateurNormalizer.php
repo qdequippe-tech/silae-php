@@ -32,7 +32,12 @@ class UtilisateurCollaborateurNormalizer implements DenormalizerInterface, Norma
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new UtilisateurCollaborateur();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class UtilisateurCollaborateurNormalizer implements DenormalizerInterface, Norma
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new UtilisateurCollaborateur();
         if (\array_key_exists('bCivilite', $data) && \is_int($data['bCivilite'])) {
             $data['bCivilite'] = (bool) $data['bCivilite'];
         }
@@ -159,10 +163,6 @@ class UtilisateurCollaborateurNormalizer implements DenormalizerInterface, Norma
 
         if (\array_key_exists('droitsLimitesCompta', $data) && \is_int($data['droitsLimitesCompta'])) {
             $data['droitsLimitesCompta'] = (bool) $data['droitsLimitesCompta'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('codeCollaborateur', $data) && null !== $data['codeCollaborateur']) {

@@ -32,7 +32,12 @@ class EditionDetailDesCotisationsRequestNormalizer implements DenormalizerInterf
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EditionDetailDesCotisationsRequest();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,13 +45,8 @@ class EditionDetailDesCotisationsRequestNormalizer implements DenormalizerInterf
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new EditionDetailDesCotisationsRequest();
         if (\array_key_exists('detailSalaries', $data) && \is_int($data['detailSalaries'])) {
             $data['detailSalaries'] = (bool) $data['detailSalaries'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('detailSalaries', $data) && null !== $data['detailSalaries']) {

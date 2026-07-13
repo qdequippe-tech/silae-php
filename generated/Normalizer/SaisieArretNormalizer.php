@@ -32,7 +32,12 @@ class SaisieArretNormalizer implements DenormalizerInterface, NormalizerInterfac
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SaisieArret();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,17 +45,12 @@ class SaisieArretNormalizer implements DenormalizerInterface, NormalizerInterfac
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SaisieArret();
         if (\array_key_exists('montantCreance', $data) && \is_int($data['montantCreance'])) {
             $data['montantCreance'] = (float) $data['montantCreance'];
         }
 
         if (\array_key_exists('montantsDejaVerses', $data) && \is_int($data['montantsDejaVerses'])) {
             $data['montantsDejaVerses'] = (float) $data['montantsDejaVerses'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('reference', $data) && null !== $data['reference']) {

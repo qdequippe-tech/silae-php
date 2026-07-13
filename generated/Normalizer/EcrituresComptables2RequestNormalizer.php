@@ -32,7 +32,12 @@ class EcrituresComptables2RequestNormalizer implements DenormalizerInterface, No
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EcrituresComptables2Request();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,13 +45,8 @@ class EcrituresComptables2RequestNormalizer implements DenormalizerInterface, No
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new EcrituresComptables2Request();
         if (\array_key_exists('avecLibelleParDefautDesEcritures', $data) && \is_int($data['avecLibelleParDefautDesEcritures'])) {
             $data['avecLibelleParDefautDesEcritures'] = (bool) $data['avecLibelleParDefautDesEcritures'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('avecLibelleParDefautDesEcritures', $data) && null !== $data['avecLibelleParDefautDesEcritures']) {

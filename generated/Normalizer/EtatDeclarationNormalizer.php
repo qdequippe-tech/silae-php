@@ -33,7 +33,12 @@ class EtatDeclarationNormalizer implements DenormalizerInterface, NormalizerInte
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EtatDeclaration();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -41,17 +46,12 @@ class EtatDeclarationNormalizer implements DenormalizerInterface, NormalizerInte
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new EtatDeclaration();
         if (\array_key_exists('obsolete', $data) && \is_int($data['obsolete'])) {
             $data['obsolete'] = (bool) $data['obsolete'];
         }
 
         if (\array_key_exists('test', $data) && \is_int($data['test'])) {
             $data['test'] = (bool) $data['test'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('numeroADS', $data) && null !== $data['numeroADS']) {

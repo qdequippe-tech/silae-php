@@ -32,7 +32,12 @@ class ExtraSalarieVacationNormalizer implements DenormalizerInterface, Normalize
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new ExtraSalarieVacation();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class ExtraSalarieVacationNormalizer implements DenormalizerInterface, Normalize
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new ExtraSalarieVacation();
         if (\array_key_exists('tauxHoraire', $data) && \is_int($data['tauxHoraire'])) {
             $data['tauxHoraire'] = (float) $data['tauxHoraire'];
         }
@@ -63,10 +67,6 @@ class ExtraSalarieVacationNormalizer implements DenormalizerInterface, Normalize
 
         if (\array_key_exists('montantCoutGlobal', $data) && \is_int($data['montantCoutGlobal'])) {
             $data['montantCoutGlobal'] = (bool) $data['montantCoutGlobal'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('dateDebut', $data) && null !== $data['dateDebut']) {

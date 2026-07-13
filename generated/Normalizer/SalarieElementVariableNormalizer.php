@@ -32,7 +32,12 @@ class SalarieElementVariableNormalizer implements DenormalizerInterface, Normali
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalarieElementVariable();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,13 +45,12 @@ class SalarieElementVariableNormalizer implements DenormalizerInterface, Normali
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalarieElementVariable();
         if (\array_key_exists('montantElementVariable', $data) && \is_int($data['montantElementVariable'])) {
             $data['montantElementVariable'] = (float) $data['montantElementVariable'];
         }
 
-        if (null === $data || false === \is_array($data)) {
-            return $object;
+        if (\array_key_exists('controleExistenceElementVariable', $data) && \is_int($data['controleExistenceElementVariable'])) {
+            $data['controleExistenceElementVariable'] = (bool) $data['controleExistenceElementVariable'];
         }
 
         if (\array_key_exists('periodeElementVariable', $data) && null !== $data['periodeElementVariable']) {
@@ -73,6 +77,12 @@ class SalarieElementVariableNormalizer implements DenormalizerInterface, Normali
             $object->setValeurChaineElementVariable(null);
         }
 
+        if (\array_key_exists('controleExistenceElementVariable', $data) && null !== $data['controleExistenceElementVariable']) {
+            $object->setControleExistenceElementVariable($data['controleExistenceElementVariable']);
+        } elseif (\array_key_exists('controleExistenceElementVariable', $data) && null === $data['controleExistenceElementVariable']) {
+            $object->setControleExistenceElementVariable(null);
+        }
+
         return $object;
     }
 
@@ -93,6 +103,10 @@ class SalarieElementVariableNormalizer implements DenormalizerInterface, Normali
 
         if ($data->isInitialized('valeurChaineElementVariable') && null !== $data->getValeurChaineElementVariable()) {
             $dataArray['valeurChaineElementVariable'] = $data->getValeurChaineElementVariable();
+        }
+
+        if ($data->isInitialized('controleExistenceElementVariable') && null !== $data->getControleExistenceElementVariable()) {
+            $dataArray['controleExistenceElementVariable'] = $data->getControleExistenceElementVariable();
         }
 
         return $dataArray;

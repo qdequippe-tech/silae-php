@@ -32,7 +32,12 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EtablissementInfoSup();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new EtablissementInfoSup();
         if (\array_key_exists('etA_AcquisitionHeuresDIF', $data) && \is_int($data['etA_AcquisitionHeuresDIF'])) {
             $data['etA_AcquisitionHeuresDIF'] = (float) $data['etA_AcquisitionHeuresDIF'];
         }
@@ -763,10 +767,6 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
 
         if (\array_key_exists('bINT_TelBureau', $data) && \is_int($data['bINT_TelBureau'])) {
             $data['bINT_TelBureau'] = (bool) $data['bINT_TelBureau'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('bETA_AcquisitionHeuresDIF', $data) && null !== $data['bETA_AcquisitionHeuresDIF']) {

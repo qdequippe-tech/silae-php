@@ -32,7 +32,12 @@ class ControlerBulletinsPeriodeRequestNormalizer implements DenormalizerInterfac
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new ControlerBulletinsPeriodeRequest();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,15 +45,22 @@ class ControlerBulletinsPeriodeRequestNormalizer implements DenormalizerInterfac
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new ControlerBulletinsPeriodeRequest();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
-
         if (\array_key_exists('periode', $data) && null !== $data['periode']) {
             $object->setPeriode(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periode']));
         } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
             $object->setPeriode(null);
+        }
+
+        if (\array_key_exists('matriculeSalarie', $data) && null !== $data['matriculeSalarie']) {
+            $object->setMatriculeSalarie($data['matriculeSalarie']);
+        } elseif (\array_key_exists('matriculeSalarie', $data) && null === $data['matriculeSalarie']) {
+            $object->setMatriculeSalarie(null);
+        }
+
+        if (\array_key_exists('identifiantEmploi', $data) && null !== $data['identifiantEmploi']) {
+            $object->setIdentifiantEmploi($data['identifiantEmploi']);
+        } elseif (\array_key_exists('identifiantEmploi', $data) && null === $data['identifiantEmploi']) {
+            $object->setIdentifiantEmploi(null);
         }
 
         if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
@@ -65,6 +77,14 @@ class ControlerBulletinsPeriodeRequestNormalizer implements DenormalizerInterfac
         $dataArray = [];
         if ($data->isInitialized('periode') && null !== $data->getPeriode()) {
             $dataArray['periode'] = $data->getPeriode()->format('Y-m-d\TH:i:s');
+        }
+
+        if ($data->isInitialized('matriculeSalarie') && null !== $data->getMatriculeSalarie()) {
+            $dataArray['matriculeSalarie'] = $data->getMatriculeSalarie();
+        }
+
+        if ($data->isInitialized('identifiantEmploi') && null !== $data->getIdentifiantEmploi()) {
+            $dataArray['identifiantEmploi'] = $data->getIdentifiantEmploi();
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

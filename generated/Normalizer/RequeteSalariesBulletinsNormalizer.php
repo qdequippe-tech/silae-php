@@ -32,7 +32,12 @@ class RequeteSalariesBulletinsNormalizer implements DenormalizerInterface, Norma
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new RequeteSalariesBulletins();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,13 +45,8 @@ class RequeteSalariesBulletinsNormalizer implements DenormalizerInterface, Norma
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new RequeteSalariesBulletins();
         if (\array_key_exists('bulletinsOriginauxSeulement', $data) && \is_int($data['bulletinsOriginauxSeulement'])) {
             $data['bulletinsOriginauxSeulement'] = (bool) $data['bulletinsOriginauxSeulement'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('matriculeSalarie', $data) && null !== $data['matriculeSalarie']) {

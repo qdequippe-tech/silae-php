@@ -33,7 +33,12 @@ class StatutSalarieSyntheseCarriereResponseNormalizer implements DenormalizerInt
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new StatutSalarieSyntheseCarriereResponse();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -41,13 +46,8 @@ class StatutSalarieSyntheseCarriereResponseNormalizer implements DenormalizerInt
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new StatutSalarieSyntheseCarriereResponse();
         if (\array_key_exists('progression', $data) && \is_int($data['progression'])) {
             $data['progression'] = (float) $data['progression'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('syntheseCarriere', $data) && null !== $data['syntheseCarriere']) {

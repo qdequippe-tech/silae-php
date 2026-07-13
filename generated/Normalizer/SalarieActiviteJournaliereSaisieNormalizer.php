@@ -32,7 +32,12 @@ class SalarieActiviteJournaliereSaisieNormalizer implements DenormalizerInterfac
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalarieActiviteJournaliereSaisie();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class SalarieActiviteJournaliereSaisieNormalizer implements DenormalizerInterfac
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalarieActiviteJournaliereSaisie();
         if (\array_key_exists('nombreHeures', $data) && \is_int($data['nombreHeures'])) {
             $data['nombreHeures'] = (float) $data['nombreHeures'];
         }
@@ -67,10 +71,6 @@ class SalarieActiviteJournaliereSaisieNormalizer implements DenormalizerInterfac
 
         if (\array_key_exists('heureFin3', $data) && \is_int($data['heureFin3'])) {
             $data['heureFin3'] = (float) $data['heureFin3'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('jour', $data) && null !== $data['jour']) {

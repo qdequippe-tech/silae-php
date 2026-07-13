@@ -25,6 +25,9 @@ use QdequippeTech\Silae\Api\Model\AjouteCompteRenduEdi94Request;
 use QdequippeTech\Silae\Api\Model\AjouteCompteRenduEdi94Response;
 use QdequippeTech\Silae\Api\Model\AjouteCompteRenduEdiRequest;
 use QdequippeTech\Silae\Api\Model\AjoutSousCategorieAxeAnalytiqueRequest;
+use QdequippeTech\Silae\Api\Model\AnalyseActiviteStatutAccesOptions;
+use QdequippeTech\Silae\Api\Model\AnalyseActiviteStatutAccesOptionsRequest;
+use QdequippeTech\Silae\Api\Model\AnalyseActiviteStatutAccesOptionsResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseEffectifs;
@@ -32,14 +35,20 @@ use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieBulletinsCoffresFortsResp
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieBulletinsOriginauxResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDetailRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDetailResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDocumentsSignesResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEffectifsRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEffectifsResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEntreesSortiesRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEntreesSortiesResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRevenusRequest;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRevenusResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursV2Response;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursV3Request;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursV3Response;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieV2Request;
 use QdequippeTech\Silae\Api\Model\ApiError;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
@@ -159,13 +168,18 @@ use QdequippeTech\Silae\Api\Model\ExtraSalarieReinitialiserVacationsRequest;
 use QdequippeTech\Silae\Api\Model\ExtraSalarieReinitialiserVacationsResponse;
 use QdequippeTech\Silae\Api\Model\ExtraSalarieVacation;
 use QdequippeTech\Silae\Api\Model\ExtraSalarieVacations;
+use QdequippeTech\Silae\Api\Model\FichierResult;
 use QdequippeTech\Silae\Api\Model\FNAL;
 use QdequippeTech\Silae\Api\Model\GenerationFichierTRRequest;
+use QdequippeTech\Silae\Api\Model\GenererDSNEvenementielleFCTURequest;
 use QdequippeTech\Silae\Api\Model\GenererFichierTRResponse;
 use QdequippeTech\Silae\Api\Model\GererCycleDePaieRequest;
 use QdequippeTech\Silae\Api\Model\GererEtatDossierPaieRequest;
 use QdequippeTech\Silae\Api\Model\GererEtatRobotDePaieRequest;
 use QdequippeTech\Silae\Api\Model\Handicap;
+use QdequippeTech\Silae\Api\Model\HistoriqueConnexion;
+use QdequippeTech\Silae\Api\Model\HistoriqueDesConnexionsRequest;
+use QdequippeTech\Silae\Api\Model\HistoriqueDesConnexionsResponse;
 use QdequippeTech\Silae\Api\Model\HistoriqueDesModificationsRequest;
 use QdequippeTech\Silae\Api\Model\HistoriqueDesModificationsResponse;
 use QdequippeTech\Silae\Api\Model\HistoriqueModification;
@@ -200,6 +214,9 @@ use QdequippeTech\Silae\Api\Model\LectureHoraireSalarie;
 use QdequippeTech\Silae\Api\Model\LectureInformationBancaireSocieteResponse;
 use QdequippeTech\Silae\Api\Model\LectureInformationsPaieRequest;
 use QdequippeTech\Silae\Api\Model\LectureInformationsPaieResponse;
+use QdequippeTech\Silae\Api\Model\LectureInformationsSalarie;
+use QdequippeTech\Silae\Api\Model\LectureInformationsSalarieEmploi;
+use QdequippeTech\Silae\Api\Model\LectureInformationsSalarieResponse;
 use QdequippeTech\Silae\Api\Model\LectureInfosResult;
 use QdequippeTech\Silae\Api\Model\LecturePersonnesLieesResponse;
 use QdequippeTech\Silae\Api\Model\LectureQuestionnaireContratComplementaireRequest;
@@ -215,6 +232,8 @@ use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteRequest;
 use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteResponse;
 use QdequippeTech\Silae\Api\Model\LectureTaxeTransportRequest;
 use QdequippeTech\Silae\Api\Model\LectureTaxeTransportResponse;
+use QdequippeTech\Silae\Api\Model\LectureTeletravailFicheSalarieRequest;
+use QdequippeTech\Silae\Api\Model\LectureTeletravailFicheSalarieResponse;
 use QdequippeTech\Silae\Api\Model\LibelleValeur;
 use QdequippeTech\Silae\Api\Model\LibelleValeurComplete;
 use QdequippeTech\Silae\Api\Model\LigneBulletin;
@@ -284,6 +303,7 @@ use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageEtablissementResp
 use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteRequest;
 use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteResponse;
 use QdequippeTech\Silae\Api\Model\ModificationTaxeTransportRequest;
+use QdequippeTech\Silae\Api\Model\ModificationTeletravailFicheSalarieRequest;
 use QdequippeTech\Silae\Api\Model\ModuleActifParDossier;
 use QdequippeTech\Silae\Api\Model\ModuleMySilaeParDossier;
 use QdequippeTech\Silae\Api\Model\ModulesActifsParDossier;
@@ -319,9 +339,11 @@ use QdequippeTech\Silae\Api\Model\RecupererImageRequest;
 use QdequippeTech\Silae\Api\Model\RecupererImageResponse;
 use QdequippeTech\Silae\Api\Model\RecupererRecuDPAEResult;
 use QdequippeTech\Silae\Api\Model\RequeteAnalyseProduction;
-use QdequippeTech\Silae\Api\Model\RequeteAnalyseProductionDetail;
+use QdequippeTech\Silae\Api\Model\RequeteAnalyseProductionDetailV2;
+use QdequippeTech\Silae\Api\Model\RequeteAnalyseProductionRevenus;
 use QdequippeTech\Silae\Api\Model\RequeteAnalyseProductionV2;
 use QdequippeTech\Silae\Api\Model\RequeteExtraSalarieVacations;
+use QdequippeTech\Silae\Api\Model\RequeteExtraSalarieVacationsV2;
 use QdequippeTech\Silae\Api\Model\RequeteLectureInfos;
 use QdequippeTech\Silae\Api\Model\RequeteSalarieAbsences;
 use QdequippeTech\Silae\Api\Model\RequeteSalarieBulletinDetails;
@@ -333,11 +355,13 @@ use QdequippeTech\Silae\Api\Model\RequeteSalariesBulletins;
 use QdequippeTech\Silae\Api\Model\RequeteSalariesDUE;
 use QdequippeTech\Silae\Api\Model\RequeteSalariesStockVar;
 use QdequippeTech\Silae\Api\Model\RequeteSpectacleSalarieAffectations;
+use QdequippeTech\Silae\Api\Model\RequeteSpectacleSalarieAffectationsV2;
 use QdequippeTech\Silae\Api\Model\RetourImportDSN;
 use QdequippeTech\Silae\Api\Model\SaisieArret;
 use QdequippeTech\Silae\Api\Model\SalarieAbsence;
 use QdequippeTech\Silae\Api\Model\SalarieAbsencesRequest;
 use QdequippeTech\Silae\Api\Model\SalarieAbsencesResponse;
+use QdequippeTech\Silae\Api\Model\SalarieAbsencesV2Response;
 use QdequippeTech\Silae\Api\Model\SalarieAbsenceV2;
 use QdequippeTech\Silae\Api\Model\SalarieAbsenceV3;
 use QdequippeTech\Silae\Api\Model\SalarieAcompte;
@@ -398,6 +422,7 @@ use QdequippeTech\Silae\Api\Model\SalariePrime;
 use QdequippeTech\Silae\Api\Model\SalarieProtege;
 use QdequippeTech\Silae\Api\Model\SalarieRecupererDUEResponse;
 use QdequippeTech\Silae\Api\Model\SalarieRecupererPeriodeDernierBulletinCalculeResponse;
+use QdequippeTech\Silae\Api\Model\SalarieRecupererRecuDPAERequest;
 use QdequippeTech\Silae\Api\Model\SalarieRecupererRecuDPAEResponse;
 use QdequippeTech\Silae\Api\Model\SalarieReinitialisationSaisies;
 use QdequippeTech\Silae\Api\Model\SalarieReinitialiserSaisiesRequest;
@@ -440,27 +465,37 @@ use QdequippeTech\Silae\Api\Model\StatistiquesBulletin;
 use QdequippeTech\Silae\Api\Model\StatistiquesBulletinCoffreFort;
 use QdequippeTech\Silae\Api\Model\StatistiquesBureautique;
 use QdequippeTech\Silae\Api\Model\StatistiquesDADS;
+use QdequippeTech\Silae\Api\Model\StatistiquesDocumentsSignes;
 use QdequippeTech\Silae\Api\Model\StatistiquesEntreesSorties;
 use QdequippeTech\Silae\Api\Model\StatistiquesEntreesSortiesDetails;
 use QdequippeTech\Silae\Api\Model\StatistiquesProductionBulletin;
 use QdequippeTech\Silae\Api\Model\StatistiquesProductionBulletinCoffreFort;
+use QdequippeTech\Silae\Api\Model\StatistiquesProductionDocumentsSignes;
 use QdequippeTech\Silae\Api\Model\StatistiquesProductionUtilisateur;
 use QdequippeTech\Silae\Api\Model\StatistiquesProductionUtilisateurV2;
+use QdequippeTech\Silae\Api\Model\StatistiquesProductionUtilisateurV3;
 use QdequippeTech\Silae\Api\Model\StatistiquesProductionV2;
+use QdequippeTech\Silae\Api\Model\StatistiquesRevenus;
+use QdequippeTech\Silae\Api\Model\StatistiquesRevenusSalarie;
 use QdequippeTech\Silae\Api\Model\StatistiquesUtilisateurs;
 use QdequippeTech\Silae\Api\Model\StatistiquesUtilisateursV2;
+use QdequippeTech\Silae\Api\Model\StatistiquesUtilisateursV3;
 use QdequippeTech\Silae\Api\Model\StatistiquesV2;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieDocumentsSignesAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieEffectifsAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieRevenusAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieUtilisateursV3AsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAsynchroneDocumentResponse;
 use QdequippeTech\Silae\Api\Model\StatutAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutCreationSalarieEmploisAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutEcrituresComptables4AsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutEcrituresComptablesAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutGenererDSNEvenementielleFCTUResponse;
 use QdequippeTech\Silae\Api\Model\StatutRecupererFichiersEcrituresComptablesAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutRecupererImageAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutSalariesBulletinsResponse;
@@ -470,6 +505,7 @@ use QdequippeTech\Silae\Api\Model\StatutSalarieSyntheseCarriereResponse;
 use QdequippeTech\Silae\Api\Model\StatutSoldeReposResponse;
 use QdequippeTech\Silae\Api\Model\TaxeApprentissage;
 use QdequippeTech\Silae\Api\Model\TaxeTransport;
+use QdequippeTech\Silae\Api\Model\TeletravailFicheSalarie;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\UtilisateurClient;
 use QdequippeTech\Silae\Api\Model\UtilisateurCollaborateur;
@@ -517,6 +553,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         SalarieAbsencesResponse::class => SalarieAbsencesResponseNormalizer::class,
 
         SalarieAbsence::class => SalarieAbsenceNormalizer::class,
+
+        SalarieAbsencesV2Response::class => SalarieAbsencesV2ResponseNormalizer::class,
 
         SalarieAjouterHeuresRequest::class => SalarieAjouterHeuresRequestNormalizer::class,
 
@@ -682,17 +720,39 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
 
         StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponse::class => StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponseNormalizer::class,
 
+        AnalyseProductionPaieRequest::class => AnalyseProductionPaieRequestNormalizer::class,
+
+        RequeteAnalyseProduction::class => RequeteAnalyseProductionNormalizer::class,
+
+        AnalyseProductionPaieDocumentsSignesResponse::class => AnalyseProductionPaieDocumentsSignesResponseNormalizer::class,
+
+        StatistiquesDocumentsSignes::class => StatistiquesDocumentsSignesNormalizer::class,
+
+        StatistiquesProductionDocumentsSignes::class => StatistiquesProductionDocumentsSignesNormalizer::class,
+
+        StatutAnalyseProductionPaieDocumentsSignesAsynchroneResponse::class => StatutAnalyseProductionPaieDocumentsSignesAsynchroneResponseNormalizer::class,
+
+        AnalyseProductionPaieRevenusRequest::class => AnalyseProductionPaieRevenusRequestNormalizer::class,
+
+        RequeteAnalyseProductionRevenus::class => RequeteAnalyseProductionRevenusNormalizer::class,
+
+        AnalyseProductionPaieRevenusResponse::class => AnalyseProductionPaieRevenusResponseNormalizer::class,
+
+        StatistiquesRevenus::class => StatistiquesRevenusNormalizer::class,
+
+        StatistiquesRevenusSalarie::class => StatistiquesRevenusSalarieNormalizer::class,
+
+        StatutAnalyseProductionPaieRevenusAsynchroneResponse::class => StatutAnalyseProductionPaieRevenusAsynchroneResponseNormalizer::class,
+
         AnalyseProductionPaieDetailRequest::class => AnalyseProductionPaieDetailRequestNormalizer::class,
 
-        RequeteAnalyseProductionDetail::class => RequeteAnalyseProductionDetailNormalizer::class,
+        RequeteAnalyseProductionDetailV2::class => RequeteAnalyseProductionDetailV2Normalizer::class,
 
         AnalyseProductionPaieDetailResponse::class => AnalyseProductionPaieDetailResponseNormalizer::class,
 
         SalarieBase::class => SalarieBaseNormalizer::class,
 
         AnalyseProductionPaieUtilisateursRequest::class => AnalyseProductionPaieUtilisateursRequestNormalizer::class,
-
-        RequeteAnalyseProduction::class => RequeteAnalyseProductionNormalizer::class,
 
         AnalyseProductionPaieUtilisateursResponse::class => AnalyseProductionPaieUtilisateursResponseNormalizer::class,
 
@@ -708,6 +768,16 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
 
         StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse::class => StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponseNormalizer::class,
 
+        AnalyseProductionPaieUtilisateursV3Request::class => AnalyseProductionPaieUtilisateursV3RequestNormalizer::class,
+
+        AnalyseProductionPaieUtilisateursV3Response::class => AnalyseProductionPaieUtilisateursV3ResponseNormalizer::class,
+
+        StatistiquesUtilisateursV3::class => StatistiquesUtilisateursV3Normalizer::class,
+
+        StatistiquesProductionUtilisateurV3::class => StatistiquesProductionUtilisateurV3Normalizer::class,
+
+        StatutAnalyseProductionPaieUtilisateursV3AsynchroneResponse::class => StatutAnalyseProductionPaieUtilisateursV3AsynchroneResponseNormalizer::class,
+
         AnalyseProductionPaieEffectifsRequest::class => AnalyseProductionPaieEffectifsRequestNormalizer::class,
 
         AnalyseProductionPaieEffectifsResponse::class => AnalyseProductionPaieEffectifsResponseNormalizer::class,
@@ -715,6 +785,12 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         AnalyseEffectifs::class => AnalyseEffectifsNormalizer::class,
 
         StatutAnalyseProductionPaieEffectifsAsynchroneResponse::class => StatutAnalyseProductionPaieEffectifsAsynchroneResponseNormalizer::class,
+
+        AnalyseActiviteStatutAccesOptionsRequest::class => AnalyseActiviteStatutAccesOptionsRequestNormalizer::class,
+
+        AnalyseActiviteStatutAccesOptionsResponse::class => AnalyseActiviteStatutAccesOptionsResponseNormalizer::class,
+
+        AnalyseActiviteStatutAccesOptions::class => AnalyseActiviteStatutAccesOptionsNormalizer::class,
 
         AnalyseProductionPaieEntreesSortiesRequest::class => AnalyseProductionPaieEntreesSortiesRequestNormalizer::class,
 
@@ -1056,9 +1132,17 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
 
         LectureEffectifEtablissementResponse::class => LectureEffectifEtablissementResponseNormalizer::class,
 
+        GenererDSNEvenementielleFCTURequest::class => GenererDSNEvenementielleFCTURequestNormalizer::class,
+
+        StatutGenererDSNEvenementielleFCTUResponse::class => StatutGenererDSNEvenementielleFCTUResponseNormalizer::class,
+
+        FichierResult::class => FichierResultNormalizer::class,
+
         DossierMatriculeSalarieRequest::class => DossierMatriculeSalarieRequestNormalizer::class,
 
         SalarieRecupererDUEResponse::class => SalarieRecupererDUEResponseNormalizer::class,
+
+        SalarieRecupererRecuDPAERequest::class => SalarieRecupererRecuDPAERequestNormalizer::class,
 
         SalarieRecupererRecuDPAEResponse::class => SalarieRecupererRecuDPAEResponseNormalizer::class,
 
@@ -1178,6 +1262,12 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
 
         HistoriqueModification::class => HistoriqueModificationNormalizer::class,
 
+        HistoriqueDesConnexionsRequest::class => HistoriqueDesConnexionsRequestNormalizer::class,
+
+        HistoriqueDesConnexionsResponse::class => HistoriqueDesConnexionsResponseNormalizer::class,
+
+        HistoriqueConnexion::class => HistoriqueConnexionNormalizer::class,
+
         SalariesBulletinsRequest::class => SalariesBulletinsRequestNormalizer::class,
 
         RequeteSalariesBulletins::class => RequeteSalariesBulletinsNormalizer::class,
@@ -1196,6 +1286,14 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
 
         SalarieInformationsV3::class => SalarieInformationsV3Normalizer::class,
 
+        DossierMatriculeRequest::class => DossierMatriculeRequestNormalizer::class,
+
+        LectureInformationsSalarieResponse::class => LectureInformationsSalarieResponseNormalizer::class,
+
+        LectureInformationsSalarie::class => LectureInformationsSalarieNormalizer::class,
+
+        LectureInformationsSalarieEmploi::class => LectureInformationsSalarieEmploiNormalizer::class,
+
         ListeSalariesExternesRequest::class => ListeSalariesExternesRequestNormalizer::class,
 
         ListeSalariesExternesResponse::class => ListeSalariesExternesResponseNormalizer::class,
@@ -1209,8 +1307,6 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         SalarieElementCarriere::class => SalarieElementCarriereNormalizer::class,
 
         StatutSalarieSyntheseCarriereResponse::class => StatutSalarieSyntheseCarriereResponseNormalizer::class,
-
-        DossierMatriculeRequest::class => DossierMatriculeRequestNormalizer::class,
 
         LecturePersonnesLieesResponse::class => LecturePersonnesLieesResponseNormalizer::class,
 
@@ -1276,7 +1372,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
 
         ExtraSalarieAcquisitionVacationsRequest::class => ExtraSalarieAcquisitionVacationsRequestNormalizer::class,
 
-        RequeteExtraSalarieVacations::class => RequeteExtraSalarieVacationsNormalizer::class,
+        RequeteExtraSalarieVacationsV2::class => RequeteExtraSalarieVacationsV2Normalizer::class,
 
         ExtraSalarieVacations::class => ExtraSalarieVacationsNormalizer::class,
 
@@ -1285,6 +1381,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         ExtraSalarieAjouterVacationsRequest::class => ExtraSalarieAjouterVacationsRequestNormalizer::class,
 
         ExtraSalarieReinitialiserVacationsRequest::class => ExtraSalarieReinitialiserVacationsRequestNormalizer::class,
+
+        RequeteExtraSalarieVacations::class => RequeteExtraSalarieVacationsNormalizer::class,
 
         ExtraSalarieReinitialiserVacationsResponse::class => ExtraSalarieReinitialiserVacationsResponseNormalizer::class,
 
@@ -1300,7 +1398,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
 
         SpectacleSalarieAcquisitionAffectationsRequest::class => SpectacleSalarieAcquisitionAffectationsRequestNormalizer::class,
 
-        RequeteSpectacleSalarieAffectations::class => RequeteSpectacleSalarieAffectationsNormalizer::class,
+        RequeteSpectacleSalarieAffectationsV2::class => RequeteSpectacleSalarieAffectationsV2Normalizer::class,
 
         SpectacleSalarieAffectations::class => SpectacleSalarieAffectationsNormalizer::class,
 
@@ -1309,6 +1407,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         SpectacleSalarieAjouterAffectationsRequest::class => SpectacleSalarieAjouterAffectationsRequestNormalizer::class,
 
         SpectacleSalarieReinitialiserAffectationsRequest::class => SpectacleSalarieReinitialiserAffectationsRequestNormalizer::class,
+
+        RequeteSpectacleSalarieAffectations::class => RequeteSpectacleSalarieAffectationsNormalizer::class,
 
         SpectacleSalarieReinitialiserAffectationsResponse::class => SpectacleSalarieReinitialiserAffectationsResponseNormalizer::class,
 
@@ -1428,6 +1528,14 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
 
         EcritureReponsesQuestionnaireFicheSalarieRequest::class => EcritureReponsesQuestionnaireFicheSalarieRequestNormalizer::class,
 
+        LectureTeletravailFicheSalarieRequest::class => LectureTeletravailFicheSalarieRequestNormalizer::class,
+
+        LectureTeletravailFicheSalarieResponse::class => LectureTeletravailFicheSalarieResponseNormalizer::class,
+
+        TeletravailFicheSalarie::class => TeletravailFicheSalarieNormalizer::class,
+
+        ModificationTeletravailFicheSalarieRequest::class => ModificationTeletravailFicheSalarieRequestNormalizer::class,
+
         SiteGenereMotDePasseAlternatifRequest::class => SiteGenereMotDePasseAlternatifRequestNormalizer::class,
 
         SiteGenereMotDePasseAlternatifResponse::class => SiteGenereMotDePasseAlternatifResponseNormalizer::class,
@@ -1497,6 +1605,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             RequeteSalarieAbsences::class => false,
             SalarieAbsencesResponse::class => false,
             SalarieAbsence::class => false,
+            SalarieAbsencesV2Response::class => false,
             SalarieAjouterHeuresRequest::class => false,
             SalarieHeures::class => false,
             SalarieAjouterHeuresSurEmploiRequest::class => false,
@@ -1579,12 +1688,23 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             StatistiquesBulletinCoffreFort::class => false,
             StatistiquesProductionBulletinCoffreFort::class => false,
             StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponse::class => false,
+            AnalyseProductionPaieRequest::class => false,
+            RequeteAnalyseProduction::class => false,
+            AnalyseProductionPaieDocumentsSignesResponse::class => false,
+            StatistiquesDocumentsSignes::class => false,
+            StatistiquesProductionDocumentsSignes::class => false,
+            StatutAnalyseProductionPaieDocumentsSignesAsynchroneResponse::class => false,
+            AnalyseProductionPaieRevenusRequest::class => false,
+            RequeteAnalyseProductionRevenus::class => false,
+            AnalyseProductionPaieRevenusResponse::class => false,
+            StatistiquesRevenus::class => false,
+            StatistiquesRevenusSalarie::class => false,
+            StatutAnalyseProductionPaieRevenusAsynchroneResponse::class => false,
             AnalyseProductionPaieDetailRequest::class => false,
-            RequeteAnalyseProductionDetail::class => false,
+            RequeteAnalyseProductionDetailV2::class => false,
             AnalyseProductionPaieDetailResponse::class => false,
             SalarieBase::class => false,
             AnalyseProductionPaieUtilisateursRequest::class => false,
-            RequeteAnalyseProduction::class => false,
             AnalyseProductionPaieUtilisateursResponse::class => false,
             StatistiquesUtilisateurs::class => false,
             StatistiquesProductionUtilisateur::class => false,
@@ -1592,10 +1712,18 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             StatistiquesUtilisateursV2::class => false,
             StatistiquesProductionUtilisateurV2::class => false,
             StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse::class => false,
+            AnalyseProductionPaieUtilisateursV3Request::class => false,
+            AnalyseProductionPaieUtilisateursV3Response::class => false,
+            StatistiquesUtilisateursV3::class => false,
+            StatistiquesProductionUtilisateurV3::class => false,
+            StatutAnalyseProductionPaieUtilisateursV3AsynchroneResponse::class => false,
             AnalyseProductionPaieEffectifsRequest::class => false,
             AnalyseProductionPaieEffectifsResponse::class => false,
             AnalyseEffectifs::class => false,
             StatutAnalyseProductionPaieEffectifsAsynchroneResponse::class => false,
+            AnalyseActiviteStatutAccesOptionsRequest::class => false,
+            AnalyseActiviteStatutAccesOptionsResponse::class => false,
+            AnalyseActiviteStatutAccesOptions::class => false,
             AnalyseProductionPaieEntreesSortiesRequest::class => false,
             AnalyseProductionPaieEntreesSortiesResponse::class => false,
             StatistiquesEntreesSorties::class => false,
@@ -1766,8 +1894,12 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             LectureTaxeApprentissageEtablissementResponse::class => false,
             LectureEffectifEtablissementRequest::class => false,
             LectureEffectifEtablissementResponse::class => false,
+            GenererDSNEvenementielleFCTURequest::class => false,
+            StatutGenererDSNEvenementielleFCTUResponse::class => false,
+            FichierResult::class => false,
             DossierMatriculeSalarieRequest::class => false,
             SalarieRecupererDUEResponse::class => false,
+            SalarieRecupererRecuDPAERequest::class => false,
             SalarieRecupererRecuDPAEResponse::class => false,
             RecupererRecuDPAEResult::class => false,
             SalarieDUERequest::class => false,
@@ -1827,6 +1959,9 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             HistoriqueDesModificationsRequest::class => false,
             HistoriqueDesModificationsResponse::class => false,
             HistoriqueModification::class => false,
+            HistoriqueDesConnexionsRequest::class => false,
+            HistoriqueDesConnexionsResponse::class => false,
+            HistoriqueConnexion::class => false,
             SalariesBulletinsRequest::class => false,
             RequeteSalariesBulletins::class => false,
             SalariesBulletinsResponse::class => false,
@@ -1836,6 +1971,10 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             ListeSalariesOptions::class => false,
             ListeSalariesResponse::class => false,
             SalarieInformationsV3::class => false,
+            DossierMatriculeRequest::class => false,
+            LectureInformationsSalarieResponse::class => false,
+            LectureInformationsSalarie::class => false,
+            LectureInformationsSalarieEmploi::class => false,
             ListeSalariesExternesRequest::class => false,
             ListeSalariesExternesResponse::class => false,
             SalarieSalaireDeBaseRequest::class => false,
@@ -1843,7 +1982,6 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             SalarieSyntheseCarriereResponse::class => false,
             SalarieElementCarriere::class => false,
             StatutSalarieSyntheseCarriereResponse::class => false,
-            DossierMatriculeRequest::class => false,
             LecturePersonnesLieesResponse::class => false,
             PersonneLiee::class => false,
             LectureHandicapResponse::class => false,
@@ -1876,11 +2014,12 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             ExtraManifestation::class => false,
             ExtraCreationManifestationRequest::class => false,
             ExtraSalarieAcquisitionVacationsRequest::class => false,
-            RequeteExtraSalarieVacations::class => false,
+            RequeteExtraSalarieVacationsV2::class => false,
             ExtraSalarieVacations::class => false,
             ExtraSalarieVacation::class => false,
             ExtraSalarieAjouterVacationsRequest::class => false,
             ExtraSalarieReinitialiserVacationsRequest::class => false,
+            RequeteExtraSalarieVacations::class => false,
             ExtraSalarieReinitialiserVacationsResponse::class => false,
             ExtraSalarieCalculerBulletinRequest::class => false,
             SpectacleListeRequest::class => false,
@@ -1888,11 +2027,12 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             Spectacle::class => false,
             SpectacleCreationRequest::class => false,
             SpectacleSalarieAcquisitionAffectationsRequest::class => false,
-            RequeteSpectacleSalarieAffectations::class => false,
+            RequeteSpectacleSalarieAffectationsV2::class => false,
             SpectacleSalarieAffectations::class => false,
             SpectacleSalarieAffectation::class => false,
             SpectacleSalarieAjouterAffectationsRequest::class => false,
             SpectacleSalarieReinitialiserAffectationsRequest::class => false,
+            RequeteSpectacleSalarieAffectations::class => false,
             SpectacleSalarieReinitialiserAffectationsResponse::class => false,
             SpectacleSalarieCalculerBulletinRequest::class => false,
             CreationOrganismeRequest::class => false,
@@ -1952,6 +2092,10 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             LectureGrilleHoraireFicheSalarieResponse::class => false,
             LectureHoraireSalarie::class => false,
             EcritureReponsesQuestionnaireFicheSalarieRequest::class => false,
+            LectureTeletravailFicheSalarieRequest::class => false,
+            LectureTeletravailFicheSalarieResponse::class => false,
+            TeletravailFicheSalarie::class => false,
+            ModificationTeletravailFicheSalarieRequest::class => false,
             SiteGenereMotDePasseAlternatifRequest::class => false,
             SiteGenereMotDePasseAlternatifResponse::class => false,
             ListeVariablesASaisirResponse::class => false,

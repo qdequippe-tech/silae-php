@@ -32,7 +32,12 @@ class CCNSocieteNormalizer implements DenormalizerInterface, NormalizerInterface
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new CCNSociete();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,17 +45,12 @@ class CCNSocieteNormalizer implements DenormalizerInterface, NormalizerInterface
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new CCNSociete();
         if (\array_key_exists('forceApplicationExtension', $data) && \is_int($data['forceApplicationExtension'])) {
             $data['forceApplicationExtension'] = (bool) $data['forceApplicationExtension'];
         }
 
         if (\array_key_exists('ccSiege', $data) && \is_int($data['ccSiege'])) {
             $data['ccSiege'] = (bool) $data['ccSiege'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('codeCCN', $data) && null !== $data['codeCCN']) {

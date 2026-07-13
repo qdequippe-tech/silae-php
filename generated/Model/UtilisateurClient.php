@@ -79,6 +79,16 @@ class UtilisateurClient
      */
     protected $fonction;
 
+    /**
+     * @var int|null
+     */
+    protected $typeContact;
+
+    /**
+     * @var string|null
+     */
+    protected $referenceFacturation;
+
     public function getNom(): ?string
     {
         return $this->nom;
@@ -244,6 +254,32 @@ class UtilisateurClient
     {
         $this->initialized['fonction'] = true;
         $this->fonction = $fonction;
+
+        return $this;
+    }
+
+    public function getTypeContact(): ?int
+    {
+        return $this->typeContact;
+    }
+
+    public function setTypeContact(?int $typeContact): self
+    {
+        $this->initialized['typeContact'] = true;
+        $this->typeContact = $typeContact;
+
+        return $this;
+    }
+
+    public function getReferenceFacturation(): ?string
+    {
+        return $this->referenceFacturation;
+    }
+
+    public function setReferenceFacturation(?string $referenceFacturation): self
+    {
+        $this->initialized['referenceFacturation'] = true;
+        $this->referenceFacturation = $referenceFacturation;
 
         return $this;
     }

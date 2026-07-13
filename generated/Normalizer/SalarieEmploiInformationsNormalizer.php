@@ -32,7 +32,12 @@ class SalarieEmploiInformationsNormalizer implements DenormalizerInterface, Norm
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalarieEmploiInformations();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,13 +45,8 @@ class SalarieEmploiInformationsNormalizer implements DenormalizerInterface, Norm
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalarieEmploiInformations();
         if (\array_key_exists('emploiArchive', $data) && \is_int($data['emploiArchive'])) {
             $data['emploiArchive'] = (bool) $data['emploiArchive'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('identifiantEmploi', $data) && null !== $data['identifiantEmploi']) {

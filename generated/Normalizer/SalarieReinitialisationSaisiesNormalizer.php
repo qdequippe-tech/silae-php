@@ -32,7 +32,12 @@ class SalarieReinitialisationSaisiesNormalizer implements DenormalizerInterface,
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalarieReinitialisationSaisies();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class SalarieReinitialisationSaisiesNormalizer implements DenormalizerInterface,
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalarieReinitialisationSaisies();
         if (\array_key_exists('reinitialiserHeures', $data) && \is_int($data['reinitialiserHeures'])) {
             $data['reinitialiserHeures'] = (bool) $data['reinitialiserHeures'];
         }
@@ -51,10 +55,6 @@ class SalarieReinitialisationSaisiesNormalizer implements DenormalizerInterface,
 
         if (\array_key_exists('reinitialiserAbsences', $data) && \is_int($data['reinitialiserAbsences'])) {
             $data['reinitialiserAbsences'] = (bool) $data['reinitialiserAbsences'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('periodeReinitialisation', $data) && null !== $data['periodeReinitialisation']) {

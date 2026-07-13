@@ -33,7 +33,12 @@ class LectureTaxeApprentissageEtablissementResponseNormalizer implements Denorma
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new LectureTaxeApprentissageEtablissementResponse();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -41,13 +46,8 @@ class LectureTaxeApprentissageEtablissementResponseNormalizer implements Denorma
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new LectureTaxeApprentissageEtablissementResponse();
         if (\array_key_exists('etablissementDiffereSociete', $data) && \is_int($data['etablissementDiffereSociete'])) {
             $data['etablissementDiffereSociete'] = (bool) $data['etablissementDiffereSociete'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('taxeApprentissage', $data) && null !== $data['taxeApprentissage']) {

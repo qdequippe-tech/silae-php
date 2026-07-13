@@ -15,21 +15,28 @@ class ApiError
     }
 
     /**
-     * Le code de l'erreur. Cela permet de regourper les erreurs dans des familles.
+     * Le code de l'erreur. Cela permet de regrouper les erreurs dans des familles.
      *
      * @var string|null
      */
     protected $code;
 
     /**
-     * Cette propriété contient des détails concernant l'errreur.
+     * Cette propriété contient des détails concernant l'erreur.
      *
      * @var string|null
      */
     protected $message;
 
     /**
-     * Le code de l'erreur. Cela permet de regourper les erreurs dans des familles.
+     * Cette propriété contient des données supplémentaires concernant l'erreur.
+     *
+     * @var array<string, string>|null
+     */
+    protected $metadata;
+
+    /**
+     * Le code de l'erreur. Cela permet de regrouper les erreurs dans des familles.
      */
     public function getCode(): ?string
     {
@@ -37,7 +44,7 @@ class ApiError
     }
 
     /**
-     * Le code de l'erreur. Cela permet de regourper les erreurs dans des familles.
+     * Le code de l'erreur. Cela permet de regrouper les erreurs dans des familles.
      */
     public function setCode(?string $code): self
     {
@@ -48,7 +55,7 @@ class ApiError
     }
 
     /**
-     * Cette propriété contient des détails concernant l'errreur.
+     * Cette propriété contient des détails concernant l'erreur.
      */
     public function getMessage(): ?string
     {
@@ -56,12 +63,35 @@ class ApiError
     }
 
     /**
-     * Cette propriété contient des détails concernant l'errreur.
+     * Cette propriété contient des détails concernant l'erreur.
      */
     public function setMessage(?string $message): self
     {
         $this->initialized['message'] = true;
         $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Cette propriété contient des données supplémentaires concernant l'erreur.
+     *
+     * @return array<string, string>|null
+     */
+    public function getMetadata(): ?iterable
+    {
+        return $this->metadata;
+    }
+
+    /**
+     * Cette propriété contient des données supplémentaires concernant l'erreur.
+     *
+     * @param array<string, string>|null $metadata
+     */
+    public function setMetadata(?iterable $metadata): self
+    {
+        $this->initialized['metadata'] = true;
+        $this->metadata = $metadata;
 
         return $this;
     }

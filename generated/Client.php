@@ -25,6 +25,7 @@ use QdequippeTech\Silae\Api\Endpoint\Agencies;
 use QdequippeTech\Silae\Api\Endpoint\AjouteCompteRenduEdi;
 use QdequippeTech\Silae\Api\Endpoint\AjouteCompteRenduEdi94;
 use QdequippeTech\Silae\Api\Endpoint\AjoutSousCategorieAxeAnalytique;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseActiviteStatutAccesOptions;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseConfigurationAccesApi;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaie;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieAsynchrone;
@@ -33,13 +34,19 @@ use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieBulletinsCoffresFortsA
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieBulletinsOriginaux;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieBulletinsOriginauxAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieDetail;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieDocumentsSignes;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieDocumentsSignesAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieEffectifs;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieEffectifsAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieEntreesSorties;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieEntreesSortiesAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieRevenus;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieRevenusAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieUtilisateurs;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieUtilisateursV2;
 use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieUtilisateursV2Asynchrone;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieUtilisateursV3;
+use QdequippeTech\Silae\Api\Endpoint\AnalyseProductionPaieUtilisateursV3Asynchrone;
 use QdequippeTech\Silae\Api\Endpoint\AppliquerModeleCollaborateur;
 use QdequippeTech\Silae\Api\Endpoint\BureautiquePaieNombreDocumentsCrees;
 use QdequippeTech\Silae\Api\Endpoint\ClassificationMetierComplete;
@@ -101,9 +108,11 @@ use QdequippeTech\Silae\Api\Endpoint\ExtraSalarieAjouterVacations;
 use QdequippeTech\Silae\Api\Endpoint\ExtraSalarieCalculerBulletin;
 use QdequippeTech\Silae\Api\Endpoint\ExtraSalarieReinitialiserVacations;
 use QdequippeTech\Silae\Api\Endpoint\GenerationFichierTR;
+use QdequippeTech\Silae\Api\Endpoint\GenererDSNEvenementielleFCTUAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\GererCycleDePaie;
 use QdequippeTech\Silae\Api\Endpoint\GererEtatDossierPaie;
 use QdequippeTech\Silae\Api\Endpoint\GererEtatRobotDePaie;
+use QdequippeTech\Silae\Api\Endpoint\HistoriqueDesConnexions;
 use QdequippeTech\Silae\Api\Endpoint\HistoriqueDesModifications;
 use QdequippeTech\Silae\Api\Endpoint\ImportDossierDemoAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\ImportFichierDSN;
@@ -124,6 +133,7 @@ use QdequippeTech\Silae\Api\Endpoint\LectureGrilleHoraireFicheSalarie;
 use QdequippeTech\Silae\Api\Endpoint\LectureHandicap;
 use QdequippeTech\Silae\Api\Endpoint\LectureInformationBancaireSociete;
 use QdequippeTech\Silae\Api\Endpoint\LectureInformationsPaie;
+use QdequippeTech\Silae\Api\Endpoint\LectureInformationsSalarie;
 use QdequippeTech\Silae\Api\Endpoint\LecturePersonnesLiees;
 use QdequippeTech\Silae\Api\Endpoint\LectureQuestionnaireContratComplementaireSalarie;
 use QdequippeTech\Silae\Api\Endpoint\LectureReponsesQuestionnaireConventionnelSalarie;
@@ -133,6 +143,7 @@ use QdequippeTech\Silae\Api\Endpoint\LectureSalarieProtege;
 use QdequippeTech\Silae\Api\Endpoint\LectureTaxeApprentissageEtablissement;
 use QdequippeTech\Silae\Api\Endpoint\LectureTaxeApprentissageSociete;
 use QdequippeTech\Silae\Api\Endpoint\LectureTaxeTransport;
+use QdequippeTech\Silae\Api\Endpoint\LectureTeletravailFicheSalarie;
 use QdequippeTech\Silae\Api\Endpoint\ListeAgences;
 use QdequippeTech\Silae\Api\Endpoint\ListeComptesApi;
 use QdequippeTech\Silae\Api\Endpoint\ListeDossiers;
@@ -179,6 +190,7 @@ use QdequippeTech\Silae\Api\Endpoint\ModificationSalarieProtege;
 use QdequippeTech\Silae\Api\Endpoint\ModificationTaxeApprentissageEtablissement;
 use QdequippeTech\Silae\Api\Endpoint\ModificationTaxeApprentissageSociete;
 use QdequippeTech\Silae\Api\Endpoint\ModificationTaxeTransport;
+use QdequippeTech\Silae\Api\Endpoint\ModificationTeletravailFicheSalarie;
 use QdequippeTech\Silae\Api\Endpoint\RechercheCCN;
 use QdequippeTech\Silae\Api\Endpoint\RechercheCCNParCode;
 use QdequippeTech\Silae\Api\Endpoint\RechercheDeclarationEvenementielle;
@@ -252,9 +264,12 @@ use QdequippeTech\Silae\Api\Endpoint\SpectacleSalarieReinitialiserAffectations;
 use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieBulletinsOriginauxAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieDocumentsSignesAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieEffectifsAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieEntreesSortiesAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieRevenusAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieUtilisateursV2Asynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutAnalyseProductionPaieUtilisateursV3Asynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutCreationSalarieEmploisAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEcrituresComptables4Asynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEcrituresComptablesAsynchrone;
@@ -269,6 +284,7 @@ use QdequippeTech\Silae\Api\Endpoint\StatutEditionRecapDePaieAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionRecapDePaieDetailleParSalarieAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionSoldeDeReposAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionTableauDesChargesAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutGenererDSNEvenementielleFCTUAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutImportDossierDemoAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutRecupererDeclarationsAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutRecupererDuplicatasBulletinsAsynchrone;
@@ -332,6 +348,9 @@ use QdequippeTech\Silae\Api\Exception\AjouteCompteRenduEdiUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\AjoutSousCategorieAxeAnalytiqueBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AjoutSousCategorieAxeAnalytiqueInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AjoutSousCategorieAxeAnalytiqueUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseActiviteStatutAccesOptionsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseActiviteStatutAccesOptionsInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseActiviteStatutAccesOptionsUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseConfigurationAccesApiUnauthorizedException;
@@ -354,6 +373,12 @@ use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieBulletinsOriginauxUna
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDetailBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDetailInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDetailUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDocumentsSignesAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDocumentsSignesAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDocumentsSignesAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDocumentsSignesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDocumentsSignesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDocumentsSignesUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEffectifsAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEffectifsAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEffectifsAsynchroneUnauthorizedException;
@@ -367,6 +392,12 @@ use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesBadRequ
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEntreesSortiesUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieRevenusAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieRevenusAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieRevenusAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieRevenusBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieRevenusInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieRevenusUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursInternalServerErrorException;
@@ -377,6 +408,12 @@ use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV2Asynchr
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV2BadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV2InternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV2UnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV3AsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV3AsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV3AsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV3BadRequestException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV3InternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV3UnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\AppliquerModeleCollaborateurBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AppliquerModeleCollaborateurInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AppliquerModeleCollaborateurUnauthorizedException;
@@ -560,6 +597,9 @@ use QdequippeTech\Silae\Api\Exception\ExtraSalarieReinitialiserVacationsUnauthor
 use QdequippeTech\Silae\Api\Exception\GenerationFichierTRBadRequestException;
 use QdequippeTech\Silae\Api\Exception\GenerationFichierTRInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\GenerationFichierTRUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\GenererDSNEvenementielleFCTUAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\GenererDSNEvenementielleFCTUAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\GenererDSNEvenementielleFCTUAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\GererCycleDePaieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\GererCycleDePaieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\GererCycleDePaieUnauthorizedException;
@@ -569,6 +609,9 @@ use QdequippeTech\Silae\Api\Exception\GererEtatDossierPaieUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\GererEtatRobotDePaieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\GererEtatRobotDePaieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\GererEtatRobotDePaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\HistoriqueDesConnexionsBadRequestException;
+use QdequippeTech\Silae\Api\Exception\HistoriqueDesConnexionsInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\HistoriqueDesConnexionsUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\HistoriqueDesModificationsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\HistoriqueDesModificationsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\HistoriqueDesModificationsUnauthorizedException;
@@ -629,6 +672,9 @@ use QdequippeTech\Silae\Api\Exception\LectureInformationBancaireSocieteUnauthori
 use QdequippeTech\Silae\Api\Exception\LectureInformationsPaieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureInformationsPaieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureInformationsPaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\LectureInformationsSalarieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureInformationsSalarieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureInformationsSalarieUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\LecturePersonnesLieesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LecturePersonnesLieesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LecturePersonnesLieesUnauthorizedException;
@@ -656,6 +702,9 @@ use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageSocieteUnauthorize
 use QdequippeTech\Silae\Api\Exception\LectureTaxeTransportBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureTaxeTransportInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureTaxeTransportUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\LectureTeletravailFicheSalarieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureTeletravailFicheSalarieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureTeletravailFicheSalarieUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\ListeAgencesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeAgencesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeAgencesUnauthorizedException;
@@ -794,6 +843,9 @@ use QdequippeTech\Silae\Api\Exception\ModificationTaxeApprentissageSocieteUnauth
 use QdequippeTech\Silae\Api\Exception\ModificationTaxeTransportBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ModificationTaxeTransportInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ModificationTaxeTransportUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\ModificationTeletravailFicheSalarieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\ModificationTeletravailFicheSalarieInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\ModificationTeletravailFicheSalarieUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\RechercheCCNBadRequestException;
 use QdequippeTech\Silae\Api\Exception\RechercheCCNInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\RechercheCCNParCodeBadRequestException;
@@ -1013,15 +1065,24 @@ use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieBulletinsCoffre
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieDocumentsSignesAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieDocumentsSignesAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieDocumentsSignesAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEffectifsAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEffectifsAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEffectifsAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieRevenusAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieRevenusAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieRevenusAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieUtilisateursV2AsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieUtilisateursV2AsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieUtilisateursV2AsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieUtilisateursV3AsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieUtilisateursV3AsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieUtilisateursV3AsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\StatutCreationSalarieEmploisAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutCreationSalarieEmploisAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutCreationSalarieEmploisAsynchroneUnauthorizedException;
@@ -1064,6 +1125,9 @@ use QdequippeTech\Silae\Api\Exception\StatutEditionSoldeDeReposAsynchroneUnautho
 use QdequippeTech\Silae\Api\Exception\StatutEditionTableauDesChargesAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionTableauDesChargesAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionTableauDesChargesAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutGenererDSNEvenementielleFCTUAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutGenererDSNEvenementielleFCTUAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutGenererDSNEvenementielleFCTUAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\StatutImportDossierDemoAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutImportDossierDemoAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutImportDossierDemoAsynchroneUnauthorizedException;
@@ -1120,20 +1184,28 @@ use QdequippeTech\Silae\Api\Model\AjouteCompteRenduEdi94Request;
 use QdequippeTech\Silae\Api\Model\AjouteCompteRenduEdi94Response;
 use QdequippeTech\Silae\Api\Model\AjouteCompteRenduEdiRequest;
 use QdequippeTech\Silae\Api\Model\AjoutSousCategorieAxeAnalytiqueRequest;
+use QdequippeTech\Silae\Api\Model\AnalyseActiviteStatutAccesOptionsRequest;
+use QdequippeTech\Silae\Api\Model\AnalyseActiviteStatutAccesOptionsResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseConfigurationAccesApiResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieBulletinsCoffresFortsResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieBulletinsOriginauxResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDetailRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDetailResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDocumentsSignesResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEffectifsRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEffectifsResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEntreesSortiesRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEntreesSortiesResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieResponse;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRevenusRequest;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRevenusResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursV2Response;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursV3Request;
+use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursV3Response;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieV2Request;
 use QdequippeTech\Silae\Api\Model\AppliquerModeleCollaborateurRequest;
 use QdequippeTech\Silae\Api\Model\BureautiquePaieNombreDocumentsCreesRequest;
@@ -1212,10 +1284,13 @@ use QdequippeTech\Silae\Api\Model\ExtraSalarieReinitialiserVacationsResponse;
 use QdequippeTech\Silae\Api\Model\ExtraSalarieVacations;
 use QdequippeTech\Silae\Api\Model\FNAL;
 use QdequippeTech\Silae\Api\Model\GenerationFichierTRRequest;
+use QdequippeTech\Silae\Api\Model\GenererDSNEvenementielleFCTURequest;
 use QdequippeTech\Silae\Api\Model\GenererFichierTRResponse;
 use QdequippeTech\Silae\Api\Model\GererCycleDePaieRequest;
 use QdequippeTech\Silae\Api\Model\GererEtatDossierPaieRequest;
 use QdequippeTech\Silae\Api\Model\GererEtatRobotDePaieRequest;
+use QdequippeTech\Silae\Api\Model\HistoriqueDesConnexionsRequest;
+use QdequippeTech\Silae\Api\Model\HistoriqueDesConnexionsResponse;
 use QdequippeTech\Silae\Api\Model\HistoriqueDesModificationsRequest;
 use QdequippeTech\Silae\Api\Model\HistoriqueDesModificationsResponse;
 use QdequippeTech\Silae\Api\Model\ImportDossierDemoRequest;
@@ -1241,6 +1316,7 @@ use QdequippeTech\Silae\Api\Model\LectureHandicapResponse;
 use QdequippeTech\Silae\Api\Model\LectureInformationBancaireSocieteResponse;
 use QdequippeTech\Silae\Api\Model\LectureInformationsPaieRequest;
 use QdequippeTech\Silae\Api\Model\LectureInformationsPaieResponse;
+use QdequippeTech\Silae\Api\Model\LectureInformationsSalarieResponse;
 use QdequippeTech\Silae\Api\Model\LecturePersonnesLieesResponse;
 use QdequippeTech\Silae\Api\Model\LectureQuestionnaireContratComplementaireRequest;
 use QdequippeTech\Silae\Api\Model\LectureQuestionnaireContratComplementaireResponse;
@@ -1255,6 +1331,8 @@ use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteRequest;
 use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteResponse;
 use QdequippeTech\Silae\Api\Model\LectureTaxeTransportRequest;
 use QdequippeTech\Silae\Api\Model\LectureTaxeTransportResponse;
+use QdequippeTech\Silae\Api\Model\LectureTeletravailFicheSalarieRequest;
+use QdequippeTech\Silae\Api\Model\LectureTeletravailFicheSalarieResponse;
 use QdequippeTech\Silae\Api\Model\ListeAgencesResponse;
 use QdequippeTech\Silae\Api\Model\ListeComptesApiResponse;
 use QdequippeTech\Silae\Api\Model\ListeDossiersAgenceRequest;
@@ -1313,6 +1391,7 @@ use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageEtablissementResp
 use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteRequest;
 use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteResponse;
 use QdequippeTech\Silae\Api\Model\ModificationTaxeTransportRequest;
+use QdequippeTech\Silae\Api\Model\ModificationTeletravailFicheSalarieRequest;
 use QdequippeTech\Silae\Api\Model\QuestionnaireContratComplementaire;
 use QdequippeTech\Silae\Api\Model\RechercheCCNParCodeRequest;
 use QdequippeTech\Silae\Api\Model\RechercheCCNRequest;
@@ -1333,6 +1412,7 @@ use QdequippeTech\Silae\Api\Model\RecupererImageResponse;
 use QdequippeTech\Silae\Api\Model\RetourImportDSN;
 use QdequippeTech\Silae\Api\Model\SalarieAbsencesRequest;
 use QdequippeTech\Silae\Api\Model\SalarieAbsencesResponse;
+use QdequippeTech\Silae\Api\Model\SalarieAbsencesV2Response;
 use QdequippeTech\Silae\Api\Model\SalarieActiviteJournaliereRequest;
 use QdequippeTech\Silae\Api\Model\SalarieActiviteJournaliereResponse;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterAbsenceRequest;
@@ -1368,6 +1448,7 @@ use QdequippeTech\Silae\Api\Model\SalarieModifierAbsenceRequest;
 use QdequippeTech\Silae\Api\Model\SalarieModifierAbsenceV2Request;
 use QdequippeTech\Silae\Api\Model\SalarieRecupererDUEResponse;
 use QdequippeTech\Silae\Api\Model\SalarieRecupererPeriodeDernierBulletinCalculeResponse;
+use QdequippeTech\Silae\Api\Model\SalarieRecupererRecuDPAERequest;
 use QdequippeTech\Silae\Api\Model\SalarieRecupererRecuDPAEResponse;
 use QdequippeTech\Silae\Api\Model\SalarieReinitialiserSaisiesRequest;
 use QdequippeTech\Silae\Api\Model\SalarieReinitialiserSaisiesResponse;
@@ -1399,14 +1480,18 @@ use QdequippeTech\Silae\Api\Model\SpectacleSalarieReinitialiserAffectationsRespo
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieDocumentsSignesAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieEffectifsAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieRevenusAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieUtilisateursV3AsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutAsynchroneDocumentResponse;
 use QdequippeTech\Silae\Api\Model\StatutAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutCreationSalarieEmploisAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutEcrituresComptables4AsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutEcrituresComptablesAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutGenererDSNEvenementielleFCTUResponse;
 use QdequippeTech\Silae\Api\Model\StatutRecupererFichiersEcrituresComptablesAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutRecupererImageAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutSalariesBulletinsResponse;
@@ -1436,7 +1521,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieSupprimerAbsenceBadRequestException
      * @throws SalarieSupprimerAbsenceUnauthorizedException
@@ -1458,7 +1543,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieAjouterAbsenceBadRequestException
      * @throws SalarieAjouterAbsenceUnauthorizedException
@@ -1480,7 +1565,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieAjouterAbsenceV2BadRequestException
      * @throws SalarieAjouterAbsenceV2UnauthorizedException
@@ -1502,7 +1587,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieModifierAbsenceBadRequestException
      * @throws SalarieModifierAbsenceUnauthorizedException
@@ -1524,7 +1609,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieModifierAbsenceV2BadRequestException
      * @throws SalarieModifierAbsenceV2UnauthorizedException
@@ -1546,7 +1631,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieAbsencesResponse|ResponseInterface
+     * @return ($fetch is object ? SalarieAbsencesResponse : ResponseInterface)
      *
      * @throws SalarieAbsencesBadRequestException
      * @throws SalarieAbsencesUnauthorizedException
@@ -1568,7 +1653,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieAbsencesResponse|ResponseInterface
+     * @return ($fetch is object ? SalarieAbsencesV2Response : ResponseInterface)
      *
      * @throws SalarieAbsencesV2BadRequestException
      * @throws SalarieAbsencesV2UnauthorizedException
@@ -1590,7 +1675,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieAjouterHeuresBadRequestException
      * @throws SalarieAjouterHeuresUnauthorizedException
@@ -1612,7 +1697,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieAjouterHeuresSurEmploiBadRequestException
      * @throws SalarieAjouterHeuresSurEmploiUnauthorizedException
@@ -1634,7 +1719,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieAjouterActiviteJournaliereBadRequestException
      * @throws SalarieAjouterActiviteJournaliereUnauthorizedException
@@ -1656,7 +1741,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieActiviteJournaliereResponse|ResponseInterface
+     * @return ($fetch is object ? SalarieActiviteJournaliereResponse : ResponseInterface)
      *
      * @throws SalarieActiviteJournaliereBadRequestException
      * @throws SalarieActiviteJournaliereUnauthorizedException
@@ -1678,7 +1763,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieAjouterActiviteJournaliereSurEmploiBadRequestException
      * @throws SalarieAjouterActiviteJournaliereSurEmploiUnauthorizedException
@@ -1700,7 +1785,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieAjouterHeuresNativesBadRequestException
      * @throws SalarieAjouterHeuresNativesUnauthorizedException
@@ -1722,7 +1807,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieAjouterHeuresNativesSurEmploiBadRequestException
      * @throws SalarieAjouterHeuresNativesSurEmploiUnauthorizedException
@@ -1744,7 +1829,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieReinitialiserSaisiesResponse|ResponseInterface
+     * @return ($fetch is object ? SalarieReinitialiserSaisiesResponse : ResponseInterface)
      *
      * @throws SalarieReinitialiserSaisiesBadRequestException
      * @throws SalarieReinitialiserSaisiesUnauthorizedException
@@ -1766,7 +1851,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeAgencesResponse|ResponseInterface
+     * @return ($fetch is object ? ListeAgencesResponse : ResponseInterface)
      *
      * @throws ListeAgencesBadRequestException
      * @throws ListeAgencesUnauthorizedException
@@ -1788,7 +1873,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeDossiersAgenceResponse|ResponseInterface
+     * @return ($fetch is object ? ListeDossiersAgenceResponse : ResponseInterface)
      *
      * @throws ListeDossiersAgenceBadRequestException
      * @throws ListeDossiersAgenceUnauthorizedException
@@ -1810,7 +1895,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AgenceDetail|ResponseInterface
+     * @return ($fetch is object ? AgenceDetail : ResponseInterface)
      *
      * @throws LectureFicheAgenceBadRequestException
      * @throws LectureFicheAgenceUnauthorizedException
@@ -1832,7 +1917,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws AffectationDossierPaieBadRequestException
      * @throws AffectationDossierPaieUnauthorizedException
@@ -1854,7 +1939,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AffectationDossierPaieLectureResponse|ResponseInterface
+     * @return ($fetch is object ? AffectationDossierPaieLectureResponse : ResponseInterface)
      *
      * @throws AffectationDossierPaieLectureBadRequestException
      * @throws AffectationDossierPaieLectureUnauthorizedException
@@ -1876,7 +1961,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return UtilisateurCollaborateur|ResponseInterface
+     * @return ($fetch is object ? UtilisateurCollaborateur : ResponseInterface)
      *
      * @throws AdministrationCollaborateurLectureBadRequestException
      * @throws AdministrationCollaborateurLectureUnauthorizedException
@@ -1898,7 +1983,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return UtilisateurCollaborateur|ResponseInterface
+     * @return ($fetch is object ? UtilisateurCollaborateur : ResponseInterface)
      *
      * @throws AdministrationCollaborateurLectureParIdentifiantBadRequestException
      * @throws AdministrationCollaborateurLectureParIdentifiantUnauthorizedException
@@ -1920,7 +2005,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws AdministrationCollaborateurEnregistrementBadRequestException
      * @throws AdministrationCollaborateurEnregistrementUnauthorizedException
@@ -1942,7 +2027,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationDroitsFonctionnelsProductionPaieBadRequestException
      * @throws ModificationDroitsFonctionnelsProductionPaieUnauthorizedException
@@ -1964,7 +2049,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return CompteCollaborateur|ResponseInterface
+     * @return ($fetch is object ? CompteCollaborateur : ResponseInterface)
      *
      * @throws LectureCompteCollaborateurBadRequestException
      * @throws LectureCompteCollaborateurUnauthorizedException
@@ -1986,7 +2071,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureCompteCollaborateurModelesResponse|ResponseInterface
+     * @return ($fetch is object ? LectureCompteCollaborateurModelesResponse : ResponseInterface)
      *
      * @throws LectureCompteCollaborateurModelesBadRequestException
      * @throws LectureCompteCollaborateurModelesUnauthorizedException
@@ -2008,7 +2093,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return CompteCollaborateur|ResponseInterface
+     * @return ($fetch is object ? CompteCollaborateur : ResponseInterface)
      *
      * @throws CreationCompteCollaborateurBadRequestException
      * @throws CreationCompteCollaborateurUnauthorizedException
@@ -2030,7 +2115,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return CompteCollaborateur|ResponseInterface
+     * @return ($fetch is object ? CompteCollaborateur : ResponseInterface)
      *
      * @throws CreationCompteCollaborateurDepuisModeleBadRequestException
      * @throws CreationCompteCollaborateurDepuisModeleUnauthorizedException
@@ -2052,7 +2137,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return CompteCollaborateur|ResponseInterface
+     * @return ($fetch is object ? CompteCollaborateur : ResponseInterface)
      *
      * @throws AppliquerModeleCollaborateurBadRequestException
      * @throws AppliquerModeleCollaborateurUnauthorizedException
@@ -2074,7 +2159,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws AffecterCleDossierBadRequestException
      * @throws AffecterCleDossierUnauthorizedException
@@ -2096,7 +2181,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws GererEtatDossierPaieBadRequestException
      * @throws GererEtatDossierPaieUnauthorizedException
@@ -2118,7 +2203,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws GererEtatRobotDePaieBadRequestException
      * @throws GererEtatRobotDePaieUnauthorizedException
@@ -2140,7 +2225,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws GererCycleDePaieBadRequestException
      * @throws GererCycleDePaieUnauthorizedException
@@ -2162,7 +2247,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeDossiersDemoSilaeResponse|ResponseInterface
+     * @return ($fetch is object ? ListeDossiersDemoSilaeResponse : ResponseInterface)
      *
      * @throws ListeDossiersDemoSilaeBadRequestException
      * @throws ListeDossiersDemoSilaeUnauthorizedException
@@ -2184,7 +2269,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws ImportDossierDemoAsynchroneBadRequestException
      * @throws ImportDossierDemoAsynchroneUnauthorizedException
@@ -2211,7 +2296,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutImportDossierDemoAsynchroneBadRequestException
      * @throws StatutImportDossierDemoAsynchroneUnauthorizedException
@@ -2233,7 +2318,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AnalyseConfigurationAccesApiResponse|ResponseInterface
+     * @return ($fetch is object ? AnalyseConfigurationAccesApiResponse : ResponseInterface)
      *
      * @throws AnalyseConfigurationAccesApiBadRequestException
      * @throws AnalyseConfigurationAccesApiUnauthorizedException
@@ -2255,7 +2340,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\CreationConfigurationAccesApi|ResponseInterface
+     * @return ($fetch is object ? Model\CreationConfigurationAccesApi : ResponseInterface)
      *
      * @throws CreationConfigurationAccesApiBadRequestException
      * @throws CreationConfigurationAccesApiUnauthorizedException
@@ -2277,7 +2362,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeComptesApiResponse|ResponseInterface
+     * @return ($fetch is object ? ListeComptesApiResponse : ResponseInterface)
      *
      * @throws ListeComptesApiBadRequestException
      * @throws ListeComptesApiUnauthorizedException
@@ -2304,7 +2389,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Domain[]|ResponseInterface
+     * @return ($fetch is object ? Domain[] : ResponseInterface)
      *
      * @throws DomainesBadRequestException
      * @throws DomainesUnauthorizedException
@@ -2326,7 +2411,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Entity[]|ResponseInterface
+     * @return ($fetch is object ? Entity[] : ResponseInterface)
      *
      * @throws EntitesBadRequestException
      * @throws EntitesUnauthorizedException
@@ -2353,7 +2438,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Agency[]|ResponseInterface
+     * @return ($fetch is object ? Agency[] : ResponseInterface)
      *
      * @throws AgenciesBadRequestException
      * @throws AgenciesUnauthorizedException
@@ -2375,7 +2460,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AnalyseProductionPaieResponse|ResponseInterface
+     * @return ($fetch is object ? AnalyseProductionPaieResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieBadRequestException
      * @throws AnalyseProductionPaieUnauthorizedException
@@ -2397,7 +2482,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieAsynchroneBadRequestException
      * @throws AnalyseProductionPaieAsynchroneUnauthorizedException
@@ -2424,7 +2509,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAnalyseProductionPaieAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAnalyseProductionPaieAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieAsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieAsynchroneUnauthorizedException
@@ -2446,7 +2531,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AnalyseProductionPaieBulletinsOriginauxResponse|ResponseInterface
+     * @return ($fetch is object ? AnalyseProductionPaieBulletinsOriginauxResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieBulletinsOriginauxBadRequestException
      * @throws AnalyseProductionPaieBulletinsOriginauxUnauthorizedException
@@ -2468,7 +2553,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieBulletinsOriginauxAsynchroneBadRequestException
      * @throws AnalyseProductionPaieBulletinsOriginauxAsynchroneUnauthorizedException
@@ -2495,7 +2580,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneUnauthorizedException
@@ -2517,7 +2602,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AnalyseProductionPaieBulletinsCoffresFortsResponse|ResponseInterface
+     * @return ($fetch is object ? AnalyseProductionPaieBulletinsCoffresFortsResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieBulletinsCoffresFortsBadRequestException
      * @throws AnalyseProductionPaieBulletinsCoffresFortsUnauthorizedException
@@ -2539,7 +2624,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieBulletinsCoffresFortsAsynchroneBadRequestException
      * @throws AnalyseProductionPaieBulletinsCoffresFortsAsynchroneUnauthorizedException
@@ -2566,7 +2651,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneUnauthorizedException
@@ -2588,7 +2673,149 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AnalyseProductionPaieDetailResponse|ResponseInterface
+     * @return ($fetch is object ? AnalyseProductionPaieDocumentsSignesResponse : ResponseInterface)
+     *
+     * @throws AnalyseProductionPaieDocumentsSignesBadRequestException
+     * @throws AnalyseProductionPaieDocumentsSignesUnauthorizedException
+     * @throws AnalyseProductionPaieDocumentsSignesInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseProductionPaieDocumentsSignes(AnalyseProductionPaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseProductionPaieDocumentsSignes($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     *
+     * @throws AnalyseProductionPaieDocumentsSignesAsynchroneBadRequestException
+     * @throws AnalyseProductionPaieDocumentsSignesAsynchroneUnauthorizedException
+     * @throws AnalyseProductionPaieDocumentsSignesAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseProductionPaieDocumentsSignesAsynchrone(AnalyseProductionPaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseProductionPaieDocumentsSignesAsynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? StatutAnalyseProductionPaieDocumentsSignesAsynchroneResponse : ResponseInterface)
+     *
+     * @throws StatutAnalyseProductionPaieDocumentsSignesAsynchroneBadRequestException
+     * @throws StatutAnalyseProductionPaieDocumentsSignesAsynchroneUnauthorizedException
+     * @throws StatutAnalyseProductionPaieDocumentsSignesAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function statutAnalyseProductionPaieDocumentsSignesAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutAnalyseProductionPaieDocumentsSignesAsynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? AnalyseProductionPaieRevenusResponse : ResponseInterface)
+     *
+     * @throws AnalyseProductionPaieRevenusBadRequestException
+     * @throws AnalyseProductionPaieRevenusUnauthorizedException
+     * @throws AnalyseProductionPaieRevenusInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseProductionPaieRevenus(AnalyseProductionPaieRevenusRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseProductionPaieRevenus($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     *
+     * @throws AnalyseProductionPaieRevenusAsynchroneBadRequestException
+     * @throws AnalyseProductionPaieRevenusAsynchroneUnauthorizedException
+     * @throws AnalyseProductionPaieRevenusAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseProductionPaieRevenusAsynchrone(AnalyseProductionPaieRevenusRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseProductionPaieRevenusAsynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? StatutAnalyseProductionPaieRevenusAsynchroneResponse : ResponseInterface)
+     *
+     * @throws StatutAnalyseProductionPaieRevenusAsynchroneBadRequestException
+     * @throws StatutAnalyseProductionPaieRevenusAsynchroneUnauthorizedException
+     * @throws StatutAnalyseProductionPaieRevenusAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function statutAnalyseProductionPaieRevenusAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutAnalyseProductionPaieRevenusAsynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? AnalyseProductionPaieDetailResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieDetailBadRequestException
      * @throws AnalyseProductionPaieDetailUnauthorizedException
@@ -2610,7 +2837,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AnalyseProductionPaieUtilisateursResponse|ResponseInterface
+     * @return ($fetch is object ? AnalyseProductionPaieUtilisateursResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieUtilisateursBadRequestException
      * @throws AnalyseProductionPaieUtilisateursUnauthorizedException
@@ -2632,7 +2859,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AnalyseProductionPaieUtilisateursV2Response|ResponseInterface
+     * @return ($fetch is object ? AnalyseProductionPaieUtilisateursV2Response : ResponseInterface)
      *
      * @throws AnalyseProductionPaieUtilisateursV2BadRequestException
      * @throws AnalyseProductionPaieUtilisateursV2UnauthorizedException
@@ -2654,7 +2881,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieUtilisateursV2AsynchroneBadRequestException
      * @throws AnalyseProductionPaieUtilisateursV2AsynchroneUnauthorizedException
@@ -2681,7 +2908,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieUtilisateursV2AsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieUtilisateursV2AsynchroneUnauthorizedException
@@ -2703,7 +2930,78 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AnalyseProductionPaieEffectifsResponse|ResponseInterface
+     * @return ($fetch is object ? AnalyseProductionPaieUtilisateursV3Response : ResponseInterface)
+     *
+     * @throws AnalyseProductionPaieUtilisateursV3BadRequestException
+     * @throws AnalyseProductionPaieUtilisateursV3UnauthorizedException
+     * @throws AnalyseProductionPaieUtilisateursV3InternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseProductionPaieUtilisateursV3(AnalyseProductionPaieUtilisateursV3Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseProductionPaieUtilisateursV3($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     *
+     * @throws AnalyseProductionPaieUtilisateursV3AsynchroneBadRequestException
+     * @throws AnalyseProductionPaieUtilisateursV3AsynchroneUnauthorizedException
+     * @throws AnalyseProductionPaieUtilisateursV3AsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseProductionPaieUtilisateursV3Asynchrone(AnalyseProductionPaieUtilisateursV3Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseProductionPaieUtilisateursV3Asynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? StatutAnalyseProductionPaieUtilisateursV3AsynchroneResponse : ResponseInterface)
+     *
+     * @throws StatutAnalyseProductionPaieUtilisateursV3AsynchroneBadRequestException
+     * @throws StatutAnalyseProductionPaieUtilisateursV3AsynchroneUnauthorizedException
+     * @throws StatutAnalyseProductionPaieUtilisateursV3AsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function statutAnalyseProductionPaieUtilisateursV3Asynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutAnalyseProductionPaieUtilisateursV3Asynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? AnalyseProductionPaieEffectifsResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieEffectifsBadRequestException
      * @throws AnalyseProductionPaieEffectifsUnauthorizedException
@@ -2725,7 +3023,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieEffectifsAsynchroneBadRequestException
      * @throws AnalyseProductionPaieEffectifsAsynchroneUnauthorizedException
@@ -2752,7 +3050,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAnalyseProductionPaieEffectifsAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAnalyseProductionPaieEffectifsAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieEffectifsAsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieEffectifsAsynchroneUnauthorizedException
@@ -2774,7 +3072,29 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AnalyseProductionPaieEntreesSortiesResponse|ResponseInterface
+     * @return ($fetch is object ? AnalyseActiviteStatutAccesOptionsResponse : ResponseInterface)
+     *
+     * @throws AnalyseActiviteStatutAccesOptionsBadRequestException
+     * @throws AnalyseActiviteStatutAccesOptionsUnauthorizedException
+     * @throws AnalyseActiviteStatutAccesOptionsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function analyseActiviteStatutAccesOptions(AnalyseActiviteStatutAccesOptionsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new AnalyseActiviteStatutAccesOptions($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? AnalyseProductionPaieEntreesSortiesResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieEntreesSortiesBadRequestException
      * @throws AnalyseProductionPaieEntreesSortiesUnauthorizedException
@@ -2796,7 +3116,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException
      * @throws AnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException
@@ -2823,7 +3143,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException
@@ -2845,7 +3165,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return BureautiquePaieNombreDocumentsCreesResponse|ResponseInterface
+     * @return ($fetch is object ? BureautiquePaieNombreDocumentsCreesResponse : ResponseInterface)
      *
      * @throws BureautiquePaieNombreDocumentsCreesBadRequestException
      * @throws BureautiquePaieNombreDocumentsCreesUnauthorizedException
@@ -2872,7 +3192,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeModulesActifsResponse|ResponseInterface
+     * @return ($fetch is object ? ListeModulesActifsResponse : ResponseInterface)
      *
      * @throws ListeModulesActifsBadRequestException
      * @throws ListeModulesActifsUnauthorizedException
@@ -2899,7 +3219,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeModulesMySilaeResponse|ResponseInterface
+     * @return ($fetch is object ? ListeModulesMySilaeResponse : ResponseInterface)
      *
      * @throws ListeModulesMySilaeBadRequestException
      * @throws ListeModulesMySilaeUnauthorizedException
@@ -2921,7 +3241,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureAxesAnalytiquesResponse|ResponseInterface
+     * @return ($fetch is object ? LectureAxesAnalytiquesResponse : ResponseInterface)
      *
      * @throws LectureAxesAnalytiquesBadRequestException
      * @throws LectureAxesAnalytiquesUnauthorizedException
@@ -2943,7 +3263,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws AjoutSousCategorieAxeAnalytiqueBadRequestException
      * @throws AjoutSousCategorieAxeAnalytiqueUnauthorizedException
@@ -2965,7 +3285,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureAxesAnalytiquesSalariesResponse|ResponseInterface
+     * @return ($fetch is object ? LectureAxesAnalytiquesSalariesResponse : ResponseInterface)
      *
      * @throws LectureAxesAnalytiquesSalariesBadRequestException
      * @throws LectureAxesAnalytiquesSalariesUnauthorizedException
@@ -2987,7 +3307,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EmploiClassificationMetier|ResponseInterface
+     * @return ($fetch is object ? EmploiClassificationMetier : ResponseInterface)
      *
      * @throws SalarieEmploiClassificationMetierBadRequestException
      * @throws SalarieEmploiClassificationMetierUnauthorizedException
@@ -3009,7 +3329,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ClassificationMetierCompleteResponse|ResponseInterface
+     * @return ($fetch is object ? ClassificationMetierCompleteResponse : ResponseInterface)
      *
      * @throws ClassificationMetierCompleteBadRequestException
      * @throws ClassificationMetierCompleteUnauthorizedException
@@ -3031,7 +3351,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws AjouteCompteRenduEdiBadRequestException
      * @throws AjouteCompteRenduEdiUnauthorizedException
@@ -3053,7 +3373,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AjouteCompteRenduEdi94Response|ResponseInterface
+     * @return ($fetch is object ? AjouteCompteRenduEdi94Response : ResponseInterface)
      *
      * @throws AjouteCompteRenduEdi94BadRequestException
      * @throws AjouteCompteRenduEdi94UnauthorizedException
@@ -3075,7 +3395,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws CreationEmetteurDSNBadRequestException
      * @throws CreationEmetteurDSNUnauthorizedException
@@ -3097,7 +3417,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureContactEmetteurDSNResponse|ResponseInterface
+     * @return ($fetch is object ? LectureContactEmetteurDSNResponse : ResponseInterface)
      *
      * @throws LectureContactEmetteurDSNBadRequestException
      * @throws LectureContactEmetteurDSNUnauthorizedException
@@ -3119,7 +3439,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ImportXmlParametrageOrganismeDSNResponse|ResponseInterface
+     * @return ($fetch is object ? ImportXmlParametrageOrganismeDSNResponse : ResponseInterface)
      *
      * @throws ImportXmlParametrageOrganismeDSNBadRequestException
      * @throws ImportXmlParametrageOrganismeDSNUnauthorizedException
@@ -3141,7 +3461,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws InitialisationAncienNumeroContratDSNBadRequestException
      * @throws InitialisationAncienNumeroContratDSNUnauthorizedException
@@ -3163,7 +3483,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ActivationDSNBadRequestException
      * @throws ActivationDSNUnauthorizedException
@@ -3185,7 +3505,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ValideCleDossierBadRequestException
      * @throws ValideCleDossierUnauthorizedException
@@ -3207,7 +3527,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws CreationUtilisateurClientPaieBadRequestException
      * @throws CreationUtilisateurClientPaieUnauthorizedException
@@ -3229,7 +3549,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeUtilisateursDossierPaieResponse|ResponseInterface
+     * @return ($fetch is object ? ListeUtilisateursDossierPaieResponse : ResponseInterface)
      *
      * @throws ListeUtilisateursDossierPaieBadRequestException
      * @throws ListeUtilisateursDossierPaieUnauthorizedException
@@ -3251,7 +3571,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeUtilisateursDossierPaieV2Response|ResponseInterface
+     * @return ($fetch is object ? ListeUtilisateursDossierPaieV2Response : ResponseInterface)
      *
      * @throws ListeUtilisateursDossierPaieV2BadRequestException
      * @throws ListeUtilisateursDossierPaieV2UnauthorizedException
@@ -3273,7 +3593,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AcquisitionQuestionnaireContratComplementaireResponse|ResponseInterface
+     * @return ($fetch is object ? AcquisitionQuestionnaireContratComplementaireResponse : ResponseInterface)
      *
      * @throws AcquisitionQuestionnaireContratComplementaireBadRequestException
      * @throws AcquisitionQuestionnaireContratComplementaireUnauthorizedException
@@ -3295,7 +3615,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return QuestionnaireContratComplementaire|ResponseInterface
+     * @return ($fetch is object ? QuestionnaireContratComplementaire : ResponseInterface)
      *
      * @throws CreationQuestionnaireContratComplementaireBadRequestException
      * @throws CreationQuestionnaireContratComplementaireUnauthorizedException
@@ -3317,7 +3637,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ControlerBulletinsPeriodeResponse|ResponseInterface
+     * @return ($fetch is object ? ControlerBulletinsPeriodeResponse : ResponseInterface)
      *
      * @throws ControlerBulletinsPeriodeBadRequestException
      * @throws ControlerBulletinsPeriodeUnauthorizedException
@@ -3339,7 +3659,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return CreationDossierPaieResponse|ResponseInterface
+     * @return ($fetch is object ? CreationDossierPaieResponse : ResponseInterface)
      *
      * @throws CreationDossierPaieBadRequestException
      * @throws CreationDossierPaieUnauthorizedException
@@ -3361,7 +3681,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RetourImportDSN|ResponseInterface
+     * @return ($fetch is object ? RetourImportDSN : ResponseInterface)
      *
      * @throws ImportFichierDSNBadRequestException
      * @throws ImportFichierDSNUnauthorizedException
@@ -3383,7 +3703,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RetourImportDSN|ResponseInterface
+     * @return ($fetch is object ? RetourImportDSN : ResponseInterface)
      *
      * @throws CreationDossierParImportFichierDSNBadRequestException
      * @throws CreationDossierParImportFichierDSNUnauthorizedException
@@ -3405,7 +3725,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieInitialiserCumulsBadRequestException
      * @throws SalarieInitialiserCumulsUnauthorizedException
@@ -3427,7 +3747,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RecupererDeclarationsResponse|ResponseInterface
+     * @return ($fetch is object ? RecupererDeclarationsResponse : ResponseInterface)
      *
      * @throws RecupererDeclarationsBadRequestException
      * @throws RecupererDeclarationsUnauthorizedException
@@ -3449,7 +3769,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws RecupererDeclarationsAsynchroneBadRequestException
      * @throws RecupererDeclarationsAsynchroneUnauthorizedException
@@ -3476,7 +3796,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutRecupererDeclarationsAsynchroneBadRequestException
      * @throws StatutRecupererDeclarationsAsynchroneUnauthorizedException
@@ -3498,7 +3818,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\EcrituresComptables|ResponseInterface
+     * @return ($fetch is object ? Model\EcrituresComptables : ResponseInterface)
      *
      * @throws EcrituresComptablesBadRequestException
      * @throws EcrituresComptablesUnauthorizedException
@@ -3520,7 +3840,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\EcrituresComptables|ResponseInterface
+     * @return ($fetch is object ? Model\EcrituresComptables : ResponseInterface)
      *
      * @throws EcrituresComptables2BadRequestException
      * @throws EcrituresComptables2UnauthorizedException
@@ -3542,7 +3862,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\EcrituresComptables|ResponseInterface
+     * @return ($fetch is object ? Model\EcrituresComptables : ResponseInterface)
      *
      * @throws EcrituresComptables3BadRequestException
      * @throws EcrituresComptables3UnauthorizedException
@@ -3564,7 +3884,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EcrituresComptablesAvecRuptures|ResponseInterface
+     * @return ($fetch is object ? EcrituresComptablesAvecRuptures : ResponseInterface)
      *
      * @throws EcrituresComptables4BadRequestException
      * @throws EcrituresComptables4UnauthorizedException
@@ -3586,7 +3906,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EcrituresComptablesAvecRuptures|ResponseInterface
+     * @return ($fetch is object ? EcrituresComptablesAvecRuptures : ResponseInterface)
      *
      * @throws EcrituresComptablesPaiementSalairesBadRequestException
      * @throws EcrituresComptablesPaiementSalairesUnauthorizedException
@@ -3608,7 +3928,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EcrituresComptablesAvecRuptures|ResponseInterface
+     * @return ($fetch is object ? EcrituresComptablesAvecRuptures : ResponseInterface)
      *
      * @throws EcrituresComptablesPaiementAcomptesBadRequestException
      * @throws EcrituresComptablesPaiementAcomptesUnauthorizedException
@@ -3630,7 +3950,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EcrituresComptablesAsynchroneBadRequestException
      * @throws EcrituresComptablesAsynchroneUnauthorizedException
@@ -3657,7 +3977,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutEcrituresComptablesAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? StatutEcrituresComptablesAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutEcrituresComptablesAsynchroneBadRequestException
      * @throws StatutEcrituresComptablesAsynchroneUnauthorizedException
@@ -3679,7 +3999,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EcrituresComptables4AsynchroneBadRequestException
      * @throws EcrituresComptables4AsynchroneUnauthorizedException
@@ -3706,7 +4026,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutEcrituresComptables4AsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? StatutEcrituresComptables4AsynchroneResponse : ResponseInterface)
      *
      * @throws StatutEcrituresComptables4AsynchroneBadRequestException
      * @throws StatutEcrituresComptables4AsynchroneUnauthorizedException
@@ -3728,7 +4048,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RecupererFichiersEcrituresComptablesResponse|ResponseInterface
+     * @return ($fetch is object ? RecupererFichiersEcrituresComptablesResponse : ResponseInterface)
      *
      * @throws RecupererFichiersEcrituresComptablesBadRequestException
      * @throws RecupererFichiersEcrituresComptablesUnauthorizedException
@@ -3750,7 +4070,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws RecupererFichiersEcrituresComptablesAsynchroneBadRequestException
      * @throws RecupererFichiersEcrituresComptablesAsynchroneUnauthorizedException
@@ -3777,7 +4097,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutRecupererFichiersEcrituresComptablesAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? StatutRecupererFichiersEcrituresComptablesAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutRecupererFichiersEcrituresComptablesAsynchroneBadRequestException
      * @throws StatutRecupererFichiersEcrituresComptablesAsynchroneUnauthorizedException
@@ -3799,7 +4119,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EcrituresComptablesPaiementSalairesLotsVirementResponse|ResponseInterface
+     * @return ($fetch is object ? EcrituresComptablesPaiementSalairesLotsVirementResponse : ResponseInterface)
      *
      * @throws EcrituresComptablesPaiementSalairesLotsVirementBadRequestException
      * @throws EcrituresComptablesPaiementSalairesLotsVirementUnauthorizedException
@@ -3821,7 +4141,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\SoldeRepos|ResponseInterface
+     * @return ($fetch is object ? Model\SoldeRepos : ResponseInterface)
      *
      * @throws SoldeReposBadRequestException
      * @throws SoldeReposUnauthorizedException
@@ -3843,7 +4163,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws SoldeReposAsynchroneBadRequestException
      * @throws SoldeReposAsynchroneUnauthorizedException
@@ -3870,7 +4190,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutSoldeReposResponse|ResponseInterface
+     * @return ($fetch is object ? StatutSoldeReposResponse : ResponseInterface)
      *
      * @throws StatutSoldeReposAsynchroneBadRequestException
      * @throws StatutSoldeReposAsynchroneUnauthorizedException
@@ -3892,7 +4212,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EditionJournalDePaieResponse|ResponseInterface
+     * @return ($fetch is object ? EditionJournalDePaieResponse : ResponseInterface)
      *
      * @throws EditionJournalDePaieBadRequestException
      * @throws EditionJournalDePaieUnauthorizedException
@@ -3914,7 +4234,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionJournalDePaieAsynchroneBadRequestException
      * @throws EditionJournalDePaieAsynchroneUnauthorizedException
@@ -3941,7 +4261,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionJournalDePaieAsynchroneBadRequestException
      * @throws StatutEditionJournalDePaieAsynchroneUnauthorizedException
@@ -3963,7 +4283,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EditionTableauDesChargesResponse|ResponseInterface
+     * @return ($fetch is object ? EditionTableauDesChargesResponse : ResponseInterface)
      *
      * @throws EditionTableauDesChargesBadRequestException
      * @throws EditionTableauDesChargesUnauthorizedException
@@ -3985,7 +4305,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionTableauDesChargesAsynchroneBadRequestException
      * @throws EditionTableauDesChargesAsynchroneUnauthorizedException
@@ -4012,7 +4332,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionTableauDesChargesAsynchroneBadRequestException
      * @throws StatutEditionTableauDesChargesAsynchroneUnauthorizedException
@@ -4034,7 +4354,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EditionEtatDesPaiementsResponse|ResponseInterface
+     * @return ($fetch is object ? EditionEtatDesPaiementsResponse : ResponseInterface)
      *
      * @throws EditionEtatDesPaiementsBadRequestException
      * @throws EditionEtatDesPaiementsUnauthorizedException
@@ -4056,7 +4376,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionEtatDesPaiementsAsynchroneBadRequestException
      * @throws EditionEtatDesPaiementsAsynchroneUnauthorizedException
@@ -4083,7 +4403,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionEtatDesPaiementsAsynchroneBadRequestException
      * @throws StatutEditionEtatDesPaiementsAsynchroneUnauthorizedException
@@ -4105,7 +4425,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EditionRecapDePaieResponse|ResponseInterface
+     * @return ($fetch is object ? EditionRecapDePaieResponse : ResponseInterface)
      *
      * @throws EditionRecapDePaieBadRequestException
      * @throws EditionRecapDePaieUnauthorizedException
@@ -4127,7 +4447,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionRecapDePaieAsynchroneBadRequestException
      * @throws EditionRecapDePaieAsynchroneUnauthorizedException
@@ -4154,7 +4474,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionRecapDePaieAsynchroneBadRequestException
      * @throws StatutEditionRecapDePaieAsynchroneUnauthorizedException
@@ -4176,7 +4496,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EditionRecapDePaieDetailleParSalarieResponse|ResponseInterface
+     * @return ($fetch is object ? EditionRecapDePaieDetailleParSalarieResponse : ResponseInterface)
      *
      * @throws EditionRecapDePaieDetailleParSalarieBadRequestException
      * @throws EditionRecapDePaieDetailleParSalarieUnauthorizedException
@@ -4198,7 +4518,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionRecapDePaieDetailleParSalarieAsynchroneBadRequestException
      * @throws EditionRecapDePaieDetailleParSalarieAsynchroneUnauthorizedException
@@ -4225,7 +4545,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionRecapDePaieDetailleParSalarieAsynchroneBadRequestException
      * @throws StatutEditionRecapDePaieDetailleParSalarieAsynchroneUnauthorizedException
@@ -4247,7 +4567,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EditionSoldeDeReposResponse|ResponseInterface
+     * @return ($fetch is object ? EditionSoldeDeReposResponse : ResponseInterface)
      *
      * @throws EditionSoldeDeReposBadRequestException
      * @throws EditionSoldeDeReposUnauthorizedException
@@ -4269,7 +4589,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionSoldeDeReposAsynchroneBadRequestException
      * @throws EditionSoldeDeReposAsynchroneUnauthorizedException
@@ -4296,7 +4616,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionSoldeDeReposAsynchroneBadRequestException
      * @throws StatutEditionSoldeDeReposAsynchroneUnauthorizedException
@@ -4318,7 +4638,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EditionControleCICEResponse|ResponseInterface
+     * @return ($fetch is object ? EditionControleCICEResponse : ResponseInterface)
      *
      * @throws EditionControleCICEBadRequestException
      * @throws EditionControleCICEUnauthorizedException
@@ -4340,7 +4660,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionControleCICEAsynchroneBadRequestException
      * @throws EditionControleCICEAsynchroneUnauthorizedException
@@ -4367,7 +4687,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionControleCICEAsynchroneBadRequestException
      * @throws StatutEditionControleCICEAsynchroneUnauthorizedException
@@ -4389,7 +4709,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EditionDetailDesCotisationsResponse|ResponseInterface
+     * @return ($fetch is object ? EditionDetailDesCotisationsResponse : ResponseInterface)
      *
      * @throws EditionDetailDesCotisationsBadRequestException
      * @throws EditionDetailDesCotisationsUnauthorizedException
@@ -4411,7 +4731,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionDetailDesCotisationsAsynchroneBadRequestException
      * @throws EditionDetailDesCotisationsAsynchroneUnauthorizedException
@@ -4438,7 +4758,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionDetailDesCotisationsAsynchroneBadRequestException
      * @throws StatutEditionDetailDesCotisationsAsynchroneUnauthorizedException
@@ -4460,7 +4780,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EditionCoutsSalariauxResponse|ResponseInterface
+     * @return ($fetch is object ? EditionCoutsSalariauxResponse : ResponseInterface)
      *
      * @throws EditionCoutsSalariauxBadRequestException
      * @throws EditionCoutsSalariauxUnauthorizedException
@@ -4482,7 +4802,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionCoutsSalariauxAsynchroneBadRequestException
      * @throws EditionCoutsSalariauxAsynchroneUnauthorizedException
@@ -4509,7 +4829,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionCoutsSalariauxAsynchroneBadRequestException
      * @throws StatutEditionCoutsSalariauxAsynchroneUnauthorizedException
@@ -4531,7 +4851,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return GenererFichierTRResponse|ResponseInterface
+     * @return ($fetch is object ? GenererFichierTRResponse : ResponseInterface)
      *
      * @throws GenerationFichierTRBadRequestException
      * @throws GenerationFichierTRUnauthorizedException
@@ -4553,7 +4873,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EditionHistoriqueResponse|ResponseInterface
+     * @return ($fetch is object ? EditionHistoriqueResponse : ResponseInterface)
      *
      * @throws EditionHistoriqueBadRequestException
      * @throws EditionHistoriqueUnauthorizedException
@@ -4575,7 +4895,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EditionHistoriqueResponse|ResponseInterface
+     * @return ($fetch is object ? EditionHistoriqueResponse : ResponseInterface)
      *
      * @throws EditionHistoriqueChiffreBadRequestException
      * @throws EditionHistoriqueChiffreUnauthorizedException
@@ -4597,7 +4917,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionHistoriqueAsynchroneBadRequestException
      * @throws EditionHistoriqueAsynchroneUnauthorizedException
@@ -4624,7 +4944,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionHistoriqueAsynchroneBadRequestException
      * @throws StatutEditionHistoriqueAsynchroneUnauthorizedException
@@ -4646,7 +4966,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionHistoriqueChiffreAsynchroneBadRequestException
      * @throws EditionHistoriqueChiffreAsynchroneUnauthorizedException
@@ -4673,7 +4993,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionHistoriqueChiffreAsynchroneBadRequestException
      * @throws StatutEditionHistoriqueChiffreAsynchroneUnauthorizedException
@@ -4695,7 +5015,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieAjouterPrimeBadRequestException
      * @throws SalarieAjouterPrimeUnauthorizedException
@@ -4717,7 +5037,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieAjouterPrimeSurEmploiBadRequestException
      * @throws SalarieAjouterPrimeSurEmploiUnauthorizedException
@@ -4739,7 +5059,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieAjouterElementVariableBadRequestException
      * @throws SalarieAjouterElementVariableUnauthorizedException
@@ -4761,7 +5081,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieAjouterElementVariableSurEmploiBadRequestException
      * @throws SalarieAjouterElementVariableSurEmploiUnauthorizedException
@@ -4783,7 +5103,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieAjouterAcompteBadRequestException
      * @throws SalarieAjouterAcompteUnauthorizedException
@@ -4805,7 +5125,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalariesConfirmerSaisiesResponse|ResponseInterface
+     * @return ($fetch is object ? SalariesConfirmerSaisiesResponse : ResponseInterface)
      *
      * @throws SalariesConfirmerSaisiesBadRequestException
      * @throws SalariesConfirmerSaisiesUnauthorizedException
@@ -4827,7 +5147,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws SalariesConfirmerSaisiesAsynchroneBadRequestException
      * @throws SalariesConfirmerSaisiesAsynchroneUnauthorizedException
@@ -4854,7 +5174,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutSalariesConfirmerSaisiesResponse|ResponseInterface
+     * @return ($fetch is object ? StatutSalariesConfirmerSaisiesResponse : ResponseInterface)
      *
      * @throws StatutSalariesConfirmerSaisiesAsynchroneBadRequestException
      * @throws StatutSalariesConfirmerSaisiesAsynchroneUnauthorizedException
@@ -4876,7 +5196,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EtatDeclarationsResponse|ResponseInterface
+     * @return ($fetch is object ? EtatDeclarationsResponse : ResponseInterface)
      *
      * @throws EtatDeclarationsBadRequestException
      * @throws EtatDeclarationsUnauthorizedException
@@ -4898,7 +5218,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeEtablissementsDossierPaieResponse|ResponseInterface
+     * @return ($fetch is object ? ListeEtablissementsDossierPaieResponse : ResponseInterface)
      *
      * @throws ListeEtablissementsDossierPaieBadRequestException
      * @throws ListeEtablissementsDossierPaieUnauthorizedException
@@ -4920,7 +5240,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EtablissementsAExclureCVAEResponse|ResponseInterface
+     * @return ($fetch is object ? EtablissementsAExclureCVAEResponse : ResponseInterface)
      *
      * @throws EtablissementsAExclureCVAEBadRequestException
      * @throws EtablissementsAExclureCVAEUnauthorizedException
@@ -4942,7 +5262,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws MiseAJourFicheSocieteBadRequestException
      * @throws MiseAJourFicheSocieteUnauthorizedException
@@ -4964,7 +5284,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws MiseAJourFicheEtablissementBadRequestException
      * @throws MiseAJourFicheEtablissementUnauthorizedException
@@ -4986,7 +5306,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationEffectifSocieteBadRequestException
      * @throws ModificationEffectifSocieteUnauthorizedException
@@ -5008,7 +5328,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationCCNSocieteBadRequestException
      * @throws ModificationCCNSocieteUnauthorizedException
@@ -5030,7 +5350,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationEffortConstructionBadRequestException
      * @throws ModificationEffortConstructionUnauthorizedException
@@ -5052,7 +5372,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationFNALBadRequestException
      * @throws ModificationFNALUnauthorizedException
@@ -5074,7 +5394,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationInformationBancaireSocieteBadRequestException
      * @throws ModificationInformationBancaireSocieteUnauthorizedException
@@ -5096,7 +5416,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationTaxeTransportBadRequestException
      * @throws ModificationTaxeTransportUnauthorizedException
@@ -5118,7 +5438,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ModificationTaxeApprentissageEtablissementResponse|ResponseInterface
+     * @return ($fetch is object ? ModificationTaxeApprentissageEtablissementResponse : ResponseInterface)
      *
      * @throws ModificationTaxeApprentissageEtablissementBadRequestException
      * @throws ModificationTaxeApprentissageEtablissementUnauthorizedException
@@ -5140,7 +5460,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ModificationTaxeApprentissageSocieteResponse|ResponseInterface
+     * @return ($fetch is object ? ModificationTaxeApprentissageSocieteResponse : ResponseInterface)
      *
      * @throws ModificationTaxeApprentissageSocieteBadRequestException
      * @throws ModificationTaxeApprentissageSocieteUnauthorizedException
@@ -5162,7 +5482,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationCCNEtablissementBadRequestException
      * @throws ModificationCCNEtablissementUnauthorizedException
@@ -5184,7 +5504,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationEffectifEtablissementBadRequestException
      * @throws ModificationEffectifEtablissementUnauthorizedException
@@ -5206,7 +5526,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationQuestionnaireCCNEtablissementBadRequestException
      * @throws ModificationQuestionnaireCCNEtablissementUnauthorizedException
@@ -5228,7 +5548,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationGrilleHoraireEtablissementBadRequestException
      * @throws ModificationGrilleHoraireEtablissementUnauthorizedException
@@ -5250,7 +5570,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureEffectifSocieteResponse|ResponseInterface
+     * @return ($fetch is object ? LectureEffectifSocieteResponse : ResponseInterface)
      *
      * @throws LectureEffectifSocieteBadRequestException
      * @throws LectureEffectifSocieteUnauthorizedException
@@ -5272,7 +5592,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureCCNSocieteResponse|ResponseInterface
+     * @return ($fetch is object ? LectureCCNSocieteResponse : ResponseInterface)
      *
      * @throws LectureCCNSocieteBadRequestException
      * @throws LectureCCNSocieteUnauthorizedException
@@ -5294,7 +5614,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EffortConstruction|ResponseInterface
+     * @return ($fetch is object ? EffortConstruction : ResponseInterface)
      *
      * @throws LectureEffortConstructionBadRequestException
      * @throws LectureEffortConstructionUnauthorizedException
@@ -5316,7 +5636,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return FNAL|ResponseInterface
+     * @return ($fetch is object ? FNAL : ResponseInterface)
      *
      * @throws LectureFNALBadRequestException
      * @throws LectureFNALUnauthorizedException
@@ -5338,7 +5658,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureInformationBancaireSocieteResponse|ResponseInterface
+     * @return ($fetch is object ? LectureInformationBancaireSocieteResponse : ResponseInterface)
      *
      * @throws LectureInformationBancaireSocieteBadRequestException
      * @throws LectureInformationBancaireSocieteUnauthorizedException
@@ -5360,7 +5680,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureTaxeTransportResponse|ResponseInterface
+     * @return ($fetch is object ? LectureTaxeTransportResponse : ResponseInterface)
      *
      * @throws LectureTaxeTransportBadRequestException
      * @throws LectureTaxeTransportUnauthorizedException
@@ -5382,7 +5702,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureTaxeApprentissageSocieteResponse|ResponseInterface
+     * @return ($fetch is object ? LectureTaxeApprentissageSocieteResponse : ResponseInterface)
      *
      * @throws LectureTaxeApprentissageSocieteBadRequestException
      * @throws LectureTaxeApprentissageSocieteUnauthorizedException
@@ -5404,7 +5724,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureTaxeApprentissageEtablissementResponse|ResponseInterface
+     * @return ($fetch is object ? LectureTaxeApprentissageEtablissementResponse : ResponseInterface)
      *
      * @throws LectureTaxeApprentissageEtablissementBadRequestException
      * @throws LectureTaxeApprentissageEtablissementUnauthorizedException
@@ -5426,7 +5746,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureEffectifEtablissementResponse|ResponseInterface
+     * @return ($fetch is object ? LectureEffectifEtablissementResponse : ResponseInterface)
      *
      * @throws LectureEffectifEtablissementBadRequestException
      * @throws LectureEffectifEtablissementUnauthorizedException
@@ -5448,7 +5768,56 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieRecupererDUEResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     *
+     * @throws GenererDSNEvenementielleFCTUAsynchroneBadRequestException
+     * @throws GenererDSNEvenementielleFCTUAsynchroneUnauthorizedException
+     * @throws GenererDSNEvenementielleFCTUAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function genererDSNEvenementielleFCTUAsynchrone(GenererDSNEvenementielleFCTURequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new GenererDSNEvenementielleFCTUAsynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? StatutGenererDSNEvenementielleFCTUResponse : ResponseInterface)
+     *
+     * @throws StatutGenererDSNEvenementielleFCTUAsynchroneBadRequestException
+     * @throws StatutGenererDSNEvenementielleFCTUAsynchroneUnauthorizedException
+     * @throws StatutGenererDSNEvenementielleFCTUAsynchroneInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function statutGenererDSNEvenementielleFCTUAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutGenererDSNEvenementielleFCTUAsynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? SalarieRecupererDUEResponse : ResponseInterface)
      *
      * @throws SalarieRecupererDUEBadRequestException
      * @throws SalarieRecupererDUEUnauthorizedException
@@ -5470,14 +5839,14 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieRecupererRecuDPAEResponse|ResponseInterface
+     * @return ($fetch is object ? SalarieRecupererRecuDPAEResponse : ResponseInterface)
      *
      * @throws SalarieRecupererRecuDPAEBadRequestException
      * @throws SalarieRecupererRecuDPAEUnauthorizedException
      * @throws SalarieRecupererRecuDPAEInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function salarieRecupererRecuDPAE(DossierMatriculeSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function salarieRecupererRecuDPAE(SalarieRecupererRecuDPAERequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new SalarieRecupererRecuDPAE($request, $headerParameters), $fetch);
     }
@@ -5492,7 +5861,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieDUEBadRequestException
      * @throws SalarieDUEUnauthorizedException
@@ -5514,7 +5883,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws SalarieDUEAsynchroneBadRequestException
      * @throws SalarieDUEAsynchroneUnauthorizedException
@@ -5541,7 +5910,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutSalariesDUEAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? StatutSalariesDUEAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutSalarieDUEAsynchroneBadRequestException
      * @throws StatutSalarieDUEAsynchroneUnauthorizedException
@@ -5563,7 +5932,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalariesDUEResponse|ResponseInterface
+     * @return ($fetch is object ? SalariesDUEResponse : ResponseInterface)
      *
      * @throws SalariesDUEBadRequestException
      * @throws SalariesDUEUnauthorizedException
@@ -5585,7 +5954,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RechercheCCNResponse|ResponseInterface
+     * @return ($fetch is object ? RechercheCCNResponse : ResponseInterface)
      *
      * @throws RechercheCCNBadRequestException
      * @throws RechercheCCNUnauthorizedException
@@ -5607,7 +5976,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return CCN|ResponseInterface|null
+     * @return ($fetch is object ? (CCN|null) : ResponseInterface)
      *
      * @throws RechercheCCNParCodeBadRequestException
      * @throws RechercheCCNParCodeUnauthorizedException
@@ -5629,7 +5998,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieBulletinEnteteResult|ResponseInterface
+     * @return ($fetch is object ? SalarieBulletinEnteteResult : ResponseInterface)
      *
      * @throws SalarieBulletinEnteteBadRequestException
      * @throws SalarieBulletinEnteteUnauthorizedException
@@ -5651,7 +6020,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieBulletinsIndicesResponse|ResponseInterface
+     * @return ($fetch is object ? SalarieBulletinsIndicesResponse : ResponseInterface)
      *
      * @throws SalarieBulletinsIndicesBadRequestException
      * @throws SalarieBulletinsIndicesUnauthorizedException
@@ -5673,7 +6042,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieBulletinLignesResult|ResponseInterface
+     * @return ($fetch is object ? SalarieBulletinLignesResult : ResponseInterface)
      *
      * @throws SalarieBulletinLignesBadRequestException
      * @throws SalarieBulletinLignesUnauthorizedException
@@ -5695,7 +6064,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieBulletinLignesResult|ResponseInterface
+     * @return ($fetch is object ? SalarieBulletinLignesResult : ResponseInterface)
      *
      * @throws SalarieBulletinLignesSelonFiltresBadRequestException
      * @throws SalarieBulletinLignesSelonFiltresUnauthorizedException
@@ -5717,7 +6086,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieBulletinDetailsResult|ResponseInterface
+     * @return ($fetch is object ? SalarieBulletinDetailsResult : ResponseInterface)
      *
      * @throws SalarieBulletinDetailsBadRequestException
      * @throws SalarieBulletinDetailsUnauthorizedException
@@ -5739,7 +6108,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieBulletinStatutEtatAvancementResponse|ResponseInterface
+     * @return ($fetch is object ? SalarieBulletinStatutEtatAvancementResponse : ResponseInterface)
      *
      * @throws SalarieBulletinStatutEtatAvancementBadRequestException
      * @throws SalarieBulletinStatutEtatAvancementUnauthorizedException
@@ -5761,7 +6130,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieBulletinCumulsResult|ResponseInterface
+     * @return ($fetch is object ? SalarieBulletinCumulsResult : ResponseInterface)
      *
      * @throws SalarieBulletinCumulsBadRequestException
      * @throws SalarieBulletinCumulsUnauthorizedException
@@ -5783,7 +6152,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalariesStockVarResponse|ResponseInterface
+     * @return ($fetch is object ? SalariesStockVarResponse : ResponseInterface)
      *
      * @throws SalariesStockVarBadRequestException
      * @throws SalariesStockVarUnauthorizedException
@@ -5805,7 +6174,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeDSNMensuellesResponse|ResponseInterface
+     * @return ($fetch is object ? ListeDSNMensuellesResponse : ResponseInterface)
      *
      * @throws ListeDSNMensuellesBadRequestException
      * @throws ListeDSNMensuellesUnauthorizedException
@@ -5827,7 +6196,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AcquisitionContenuPartielDSNResponse|ResponseInterface
+     * @return ($fetch is object ? AcquisitionContenuPartielDSNResponse : ResponseInterface)
      *
      * @throws AcquisitionContenuPartielDSNBadRequestException
      * @throws AcquisitionContenuPartielDSNUnauthorizedException
@@ -5849,7 +6218,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RechercheDeclarationEvenementielleResponse|ResponseInterface
+     * @return ($fetch is object ? RechercheDeclarationEvenementielleResponse : ResponseInterface)
      *
      * @throws RechercheDeclarationEvenementielleBadRequestException
      * @throws RechercheDeclarationEvenementielleUnauthorizedException
@@ -5871,7 +6240,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeDSNEvenementiellesResponse|ResponseInterface
+     * @return ($fetch is object ? ListeDSNEvenementiellesResponse : ResponseInterface)
      *
      * @throws ListeDSNEvenementiellesBadRequestException
      * @throws ListeDSNEvenementiellesUnauthorizedException
@@ -5893,7 +6262,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieRecupererPeriodeDernierBulletinCalculeResponse|ResponseInterface
+     * @return ($fetch is object ? SalarieRecupererPeriodeDernierBulletinCalculeResponse : ResponseInterface)
      *
      * @throws SalarieRecupererPeriodeDernierBulletinCalculeBadRequestException
      * @throws SalarieRecupererPeriodeDernierBulletinCalculeUnauthorizedException
@@ -5915,7 +6284,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureInformationsPaieResponse|ResponseInterface
+     * @return ($fetch is object ? LectureInformationsPaieResponse : ResponseInterface)
      *
      * @throws LectureInformationsPaieBadRequestException
      * @throws LectureInformationsPaieUnauthorizedException
@@ -5937,7 +6306,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return HistoriqueDesModificationsResponse|ResponseInterface
+     * @return ($fetch is object ? HistoriqueDesModificationsResponse : ResponseInterface)
      *
      * @throws HistoriqueDesModificationsBadRequestException
      * @throws HistoriqueDesModificationsUnauthorizedException
@@ -5959,7 +6328,29 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalariesBulletinsResponse|ResponseInterface
+     * @return ($fetch is object ? HistoriqueDesConnexionsResponse : ResponseInterface)
+     *
+     * @throws HistoriqueDesConnexionsBadRequestException
+     * @throws HistoriqueDesConnexionsUnauthorizedException
+     * @throws HistoriqueDesConnexionsInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function historiqueDesConnexions(HistoriqueDesConnexionsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new HistoriqueDesConnexions($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? SalariesBulletinsResponse : ResponseInterface)
      *
      * @throws SalariesBulletinsBadRequestException
      * @throws SalariesBulletinsUnauthorizedException
@@ -5981,7 +6372,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws SalariesBulletinsAsynchroneBadRequestException
      * @throws SalariesBulletinsAsynchroneUnauthorizedException
@@ -6008,7 +6399,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutSalariesBulletinsResponse|ResponseInterface
+     * @return ($fetch is object ? StatutSalariesBulletinsResponse : ResponseInterface)
      *
      * @throws StatutSalariesBulletinsAsynchroneBadRequestException
      * @throws StatutSalariesBulletinsAsynchroneUnauthorizedException
@@ -6030,7 +6421,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeSalariesResponse|ResponseInterface
+     * @return ($fetch is object ? ListeSalariesResponse : ResponseInterface)
      *
      * @throws ListeSalariesBadRequestException
      * @throws ListeSalariesUnauthorizedException
@@ -6052,7 +6443,29 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeSalariesExternesResponse|ResponseInterface
+     * @return ($fetch is object ? LectureInformationsSalarieResponse : ResponseInterface)
+     *
+     * @throws LectureInformationsSalarieBadRequestException
+     * @throws LectureInformationsSalarieUnauthorizedException
+     * @throws LectureInformationsSalarieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function lectureInformationsSalarie(DossierMatriculeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new LectureInformationsSalarie($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? ListeSalariesExternesResponse : ResponseInterface)
      *
      * @throws ListeSalariesExternesBadRequestException
      * @throws ListeSalariesExternesUnauthorizedException
@@ -6074,7 +6487,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieSalaireDeBaseResult|ResponseInterface
+     * @return ($fetch is object ? SalarieSalaireDeBaseResult : ResponseInterface)
      *
      * @throws SalarieSalaireDeBaseBadRequestException
      * @throws SalarieSalaireDeBaseUnauthorizedException
@@ -6096,7 +6509,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SalarieSyntheseCarriereResponse|ResponseInterface
+     * @return ($fetch is object ? SalarieSyntheseCarriereResponse : ResponseInterface)
      *
      * @throws SalarieSyntheseCarriereBadRequestException
      * @throws SalarieSyntheseCarriereUnauthorizedException
@@ -6118,7 +6531,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws SalarieSyntheseCarriereAsynchroneBadRequestException
      * @throws SalarieSyntheseCarriereAsynchroneUnauthorizedException
@@ -6145,7 +6558,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutSalarieSyntheseCarriereResponse|ResponseInterface
+     * @return ($fetch is object ? StatutSalarieSyntheseCarriereResponse : ResponseInterface)
      *
      * @throws StatutSalarieSyntheseCarriereAsynchroneBadRequestException
      * @throws StatutSalarieSyntheseCarriereAsynchroneUnauthorizedException
@@ -6167,7 +6580,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LecturePersonnesLieesResponse|ResponseInterface
+     * @return ($fetch is object ? LecturePersonnesLieesResponse : ResponseInterface)
      *
      * @throws LecturePersonnesLieesBadRequestException
      * @throws LecturePersonnesLieesUnauthorizedException
@@ -6189,7 +6602,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureHandicapResponse|ResponseInterface
+     * @return ($fetch is object ? LectureHandicapResponse : ResponseInterface)
      *
      * @throws LectureHandicapBadRequestException
      * @throws LectureHandicapUnauthorizedException
@@ -6211,7 +6624,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureSalarieProtegeResponse|ResponseInterface
+     * @return ($fetch is object ? LectureSalarieProtegeResponse : ResponseInterface)
      *
      * @throws LectureSalarieProtegeBadRequestException
      * @throws LectureSalarieProtegeUnauthorizedException
@@ -6233,7 +6646,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureSaisieArretResponse|ResponseInterface
+     * @return ($fetch is object ? LectureSaisieArretResponse : ResponseInterface)
      *
      * @throws LectureSaisieArretBadRequestException
      * @throws LectureSaisieArretUnauthorizedException
@@ -6255,7 +6668,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureReponsesQuestionnaireFicheSalarieResponse|ResponseInterface
+     * @return ($fetch is object ? LectureReponsesQuestionnaireFicheSalarieResponse : ResponseInterface)
      *
      * @throws LectureReponsesQuestionnaireFicheSalarieBadRequestException
      * @throws LectureReponsesQuestionnaireFicheSalarieUnauthorizedException
@@ -6277,7 +6690,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeNumerosDossiersResponse|ResponseInterface
+     * @return ($fetch is object ? ListeNumerosDossiersResponse : ResponseInterface)
      *
      * @throws ListeNumerosDossiersBadRequestException
      * @throws ListeNumerosDossiersUnauthorizedException
@@ -6299,7 +6712,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeDossiersResponse|ResponseInterface
+     * @return ($fetch is object ? ListeDossiersResponse : ResponseInterface)
      *
      * @throws ListeDossiersBadRequestException
      * @throws ListeDossiersUnauthorizedException
@@ -6321,7 +6734,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeInformationsDossiersPaieResponse|ResponseInterface
+     * @return ($fetch is object ? ListeInformationsDossiersPaieResponse : ResponseInterface)
      *
      * @throws ListeInformationsDossiersPaieBadRequestException
      * @throws ListeInformationsDossiersPaieUnauthorizedException
@@ -6343,7 +6756,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return DossierRecupererPeriodeEnCoursResponse|ResponseInterface
+     * @return ($fetch is object ? DossierRecupererPeriodeEnCoursResponse : ResponseInterface)
      *
      * @throws DossierRecupererPeriodeEnCoursBadRequestException
      * @throws DossierRecupererPeriodeEnCoursUnauthorizedException
@@ -6365,7 +6778,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return MatriculeSalarieResponse|ResponseInterface
+     * @return ($fetch is object ? MatriculeSalarieResponse : ResponseInterface)
      *
      * @throws MatriculeSalarieBadRequestException
      * @throws MatriculeSalarieUnauthorizedException
@@ -6387,7 +6800,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeMatriculesDupliquesResponse|ResponseInterface
+     * @return ($fetch is object ? ListeMatriculesDupliquesResponse : ResponseInterface)
      *
      * @throws ListeMatriculesDupliquesBadRequestException
      * @throws ListeMatriculesDupliquesUnauthorizedException
@@ -6409,7 +6822,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeMatriculesDupliquesDansDomaineResponse|ResponseInterface
+     * @return ($fetch is object ? ListeMatriculesDupliquesDansDomaineResponse : ResponseInterface)
      *
      * @throws ListeMatriculesDupliquesDansDomaineBadRequestException
      * @throws ListeMatriculesDupliquesDansDomaineUnauthorizedException
@@ -6431,7 +6844,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ExistenceMatriculeResponse|ResponseInterface
+     * @return ($fetch is object ? ExistenceMatriculeResponse : ResponseInterface)
      *
      * @throws ExistenceMatriculeBadRequestException
      * @throws ExistenceMatriculeUnauthorizedException
@@ -6453,7 +6866,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ExtraListeManifestationsResponse|ResponseInterface
+     * @return ($fetch is object ? ExtraListeManifestationsResponse : ResponseInterface)
      *
      * @throws ExtraListeManifestationsBadRequestException
      * @throws ExtraListeManifestationsUnauthorizedException
@@ -6475,7 +6888,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ExtraCreationManifestationBadRequestException
      * @throws ExtraCreationManifestationUnauthorizedException
@@ -6497,7 +6910,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ExtraSalarieVacations|ResponseInterface
+     * @return ($fetch is object ? ExtraSalarieVacations : ResponseInterface)
      *
      * @throws ExtraSalarieAcquisitionVacationsBadRequestException
      * @throws ExtraSalarieAcquisitionVacationsUnauthorizedException
@@ -6519,7 +6932,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ExtraSalarieAjouterVacationsBadRequestException
      * @throws ExtraSalarieAjouterVacationsUnauthorizedException
@@ -6541,7 +6954,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ExtraSalarieReinitialiserVacationsResponse|ResponseInterface
+     * @return ($fetch is object ? ExtraSalarieReinitialiserVacationsResponse : ResponseInterface)
      *
      * @throws ExtraSalarieReinitialiserVacationsBadRequestException
      * @throws ExtraSalarieReinitialiserVacationsUnauthorizedException
@@ -6563,7 +6976,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ExtraSalarieCalculerBulletinBadRequestException
      * @throws ExtraSalarieCalculerBulletinUnauthorizedException
@@ -6585,7 +6998,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SpectacleListeResponse|ResponseInterface
+     * @return ($fetch is object ? SpectacleListeResponse : ResponseInterface)
      *
      * @throws SpectacleListeBadRequestException
      * @throws SpectacleListeUnauthorizedException
@@ -6607,7 +7020,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SpectacleCreationBadRequestException
      * @throws SpectacleCreationUnauthorizedException
@@ -6629,7 +7042,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SpectacleSalarieAffectations|ResponseInterface
+     * @return ($fetch is object ? SpectacleSalarieAffectations : ResponseInterface)
      *
      * @throws SpectacleSalarieAcquisitionAffectationsBadRequestException
      * @throws SpectacleSalarieAcquisitionAffectationsUnauthorizedException
@@ -6651,7 +7064,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SpectacleSalarieAjouterAffectationsBadRequestException
      * @throws SpectacleSalarieAjouterAffectationsUnauthorizedException
@@ -6673,7 +7086,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SpectacleSalarieReinitialiserAffectationsResponse|ResponseInterface
+     * @return ($fetch is object ? SpectacleSalarieReinitialiserAffectationsResponse : ResponseInterface)
      *
      * @throws SpectacleSalarieReinitialiserAffectationsBadRequestException
      * @throws SpectacleSalarieReinitialiserAffectationsUnauthorizedException
@@ -6695,7 +7108,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SpectacleSalarieCalculerBulletinBadRequestException
      * @throws SpectacleSalarieCalculerBulletinUnauthorizedException
@@ -6717,7 +7130,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws SpectacleSalarieCalculerBulletinAsynchroneBadRequestException
      * @throws SpectacleSalarieCalculerBulletinAsynchroneUnauthorizedException
@@ -6744,7 +7157,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutSpectacleSalarieCalculerBulletinAsynchroneBadRequestException
      * @throws StatutSpectacleSalarieCalculerBulletinAsynchroneUnauthorizedException
@@ -6766,7 +7179,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws CreationOrganismeBadRequestException
      * @throws CreationOrganismeUnauthorizedException
@@ -6788,7 +7201,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeOrganismesResponse|ResponseInterface
+     * @return ($fetch is object ? ListeOrganismesResponse : ResponseInterface)
      *
      * @throws ListeOrganismesBadRequestException
      * @throws ListeOrganismesUnauthorizedException
@@ -6810,7 +7223,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RecupererFichiersVirementResponse|ResponseInterface
+     * @return ($fetch is object ? RecupererFichiersVirementResponse : ResponseInterface)
      *
      * @throws RecupererFichiersVirementBadRequestException
      * @throws RecupererFichiersVirementUnauthorizedException
@@ -6832,7 +7245,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RecupererFichiersVirementResponse|ResponseInterface
+     * @return ($fetch is object ? RecupererFichiersVirementResponse : ResponseInterface)
      *
      * @throws RecupererFichiersVirementChiffresBadRequestException
      * @throws RecupererFichiersVirementChiffresUnauthorizedException
@@ -6854,7 +7267,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RecupererFichiersVirementResponse|ResponseInterface
+     * @return ($fetch is object ? RecupererFichiersVirementResponse : ResponseInterface)
      *
      * @throws RecupererFichiersVirementHorsBulletinBadRequestException
      * @throws RecupererFichiersVirementHorsBulletinUnauthorizedException
@@ -6876,7 +7289,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RecupererFichiersVirementResponse|ResponseInterface
+     * @return ($fetch is object ? RecupererFichiersVirementResponse : ResponseInterface)
      *
      * @throws RecupererFichiersVirementHorsBulletinChiffresBadRequestException
      * @throws RecupererFichiersVirementHorsBulletinChiffresUnauthorizedException
@@ -6898,7 +7311,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AcquisitionQuestionnaireCCNResponse|ResponseInterface
+     * @return ($fetch is object ? AcquisitionQuestionnaireCCNResponse : ResponseInterface)
      *
      * @throws AcquisitionQuestionnaireEtablissementCCNBadRequestException
      * @throws AcquisitionQuestionnaireEtablissementCCNUnauthorizedException
@@ -6920,7 +7333,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AcquisitionQuestionnaireCCNResponse|ResponseInterface
+     * @return ($fetch is object ? AcquisitionQuestionnaireCCNResponse : ResponseInterface)
      *
      * @throws AcquisitionQuestionnaireEtablissementCCNAvecTexteBadRequestException
      * @throws AcquisitionQuestionnaireEtablissementCCNAvecTexteUnauthorizedException
@@ -6942,7 +7355,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AcquisitionQuestionnaireCCNResponse|ResponseInterface
+     * @return ($fetch is object ? AcquisitionQuestionnaireCCNResponse : ResponseInterface)
      *
      * @throws AcquisitionQuestionnaireSalarieCCNBadRequestException
      * @throws AcquisitionQuestionnaireSalarieCCNUnauthorizedException
@@ -6964,7 +7377,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return AcquisitionQuestionnaireCCNResponse|ResponseInterface
+     * @return ($fetch is object ? AcquisitionQuestionnaireCCNResponse : ResponseInterface)
      *
      * @throws AcquisitionQuestionnaireSalarieCCNAvecTexteBadRequestException
      * @throws AcquisitionQuestionnaireSalarieCCNAvecTexteUnauthorizedException
@@ -6986,7 +7399,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureReponsesQuestionnaireConventionnelSalarieResponse|ResponseInterface
+     * @return ($fetch is object ? LectureReponsesQuestionnaireConventionnelSalarieResponse : ResponseInterface)
      *
      * @throws LectureReponsesQuestionnaireConventionnelSalarieBadRequestException
      * @throws LectureReponsesQuestionnaireConventionnelSalarieUnauthorizedException
@@ -7008,7 +7421,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SimpleMessageResponse|ResponseInterface
+     * @return ($fetch is object ? SimpleMessageResponse : ResponseInterface)
      *
      * @throws EcritureReponsesQuestionnaireConventionnelSalarieBadRequestException
      * @throws EcritureReponsesQuestionnaireConventionnelSalarieUnauthorizedException
@@ -7030,7 +7443,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RecupererImageResponse|ResponseInterface
+     * @return ($fetch is object ? RecupererImageResponse : ResponseInterface)
      *
      * @throws RecupererImageBadRequestException
      * @throws RecupererImageUnauthorizedException
@@ -7052,7 +7465,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws RecupererImageAsynchroneBadRequestException
      * @throws RecupererImageAsynchroneUnauthorizedException
@@ -7079,7 +7492,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutRecupererImageAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? StatutRecupererImageAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutRecupererImageAsynchroneBadRequestException
      * @throws StatutRecupererImageAsynchroneUnauthorizedException
@@ -7101,7 +7514,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RecupererDuplicatasBulletinsResponse|ResponseInterface
+     * @return ($fetch is object ? RecupererDuplicatasBulletinsResponse : ResponseInterface)
      *
      * @throws RecupererDuplicatasBulletinsBadRequestException
      * @throws RecupererDuplicatasBulletinsUnauthorizedException
@@ -7123,7 +7536,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws RecupererDuplicatasBulletinsAsynchroneBadRequestException
      * @throws RecupererDuplicatasBulletinsAsynchroneUnauthorizedException
@@ -7150,7 +7563,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutAsynchroneDocumentResponse|ResponseInterface
+     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutRecupererDuplicatasBulletinsAsynchroneBadRequestException
      * @throws StatutRecupererDuplicatasBulletinsAsynchroneUnauthorizedException
@@ -7172,7 +7585,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return CreationSalarieEmploisResponse|ResponseInterface
+     * @return ($fetch is object ? CreationSalarieEmploisResponse : ResponseInterface)
      *
      * @throws CreationSalarieEmploisBadRequestException
      * @throws CreationSalarieEmploisUnauthorizedException
@@ -7194,7 +7607,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return TraitementAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws CreationSalarieEmploisAsynchroneBadRequestException
      * @throws CreationSalarieEmploisAsynchroneUnauthorizedException
@@ -7221,7 +7634,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return StatutCreationSalarieEmploisAsynchroneResponse|ResponseInterface
+     * @return ($fetch is object ? StatutCreationSalarieEmploisAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutCreationSalarieEmploisAsynchroneBadRequestException
      * @throws StatutCreationSalarieEmploisAsynchroneUnauthorizedException
@@ -7243,7 +7656,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeSalarieEmploisResponse|ResponseInterface
+     * @return ($fetch is object ? ListeSalarieEmploisResponse : ResponseInterface)
      *
      * @throws ListeSalarieEmploisBadRequestException
      * @throws ListeSalarieEmploisUnauthorizedException
@@ -7265,7 +7678,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieReinitialiserIdentifiantsEmploisBadRequestException
      * @throws SalarieReinitialiserIdentifiantsEmploisUnauthorizedException
@@ -7287,7 +7700,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeSalarieEmploisExternesResponse|ResponseInterface
+     * @return ($fetch is object ? ListeSalarieEmploisExternesResponse : ResponseInterface)
      *
      * @throws ListeSalarieEmploisExternesBadRequestException
      * @throws ListeSalarieEmploisExternesUnauthorizedException
@@ -7309,7 +7722,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws SalarieReinitialiserIdentifiantsEmploisExternesBadRequestException
      * @throws SalarieReinitialiserIdentifiantsEmploisExternesUnauthorizedException
@@ -7331,7 +7744,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ModificationChamp|ResponseInterface
+     * @return ($fetch is object ? ModificationChamp : ResponseInterface)
      *
      * @throws ModificationChampSalarieBadRequestException
      * @throws ModificationChampSalarieUnauthorizedException
@@ -7353,7 +7766,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationAxesAnalytiquesSalarieBadRequestException
      * @throws ModificationAxesAnalytiquesSalarieUnauthorizedException
@@ -7375,7 +7788,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationPersonnesLieesBadRequestException
      * @throws ModificationPersonnesLieesUnauthorizedException
@@ -7397,7 +7810,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationHandicapBadRequestException
      * @throws ModificationHandicapUnauthorizedException
@@ -7419,7 +7832,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationSalarieProtegeBadRequestException
      * @throws ModificationSalarieProtegeUnauthorizedException
@@ -7441,7 +7854,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationSaisieArretBadRequestException
      * @throws ModificationSaisieArretUnauthorizedException
@@ -7463,7 +7876,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureQuestionnaireContratComplementaireResponse|ResponseInterface
+     * @return ($fetch is object ? LectureQuestionnaireContratComplementaireResponse : ResponseInterface)
      *
      * @throws LectureQuestionnaireContratComplementaireSalarieBadRequestException
      * @throws LectureQuestionnaireContratComplementaireSalarieUnauthorizedException
@@ -7485,7 +7898,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationQuestionnaireContratComplementaireSalarieBadRequestException
      * @throws ModificationQuestionnaireContratComplementaireSalarieUnauthorizedException
@@ -7507,7 +7920,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is object ? null : ResponseInterface)
      *
      * @throws ModificationGrilleHoraireSalarieBadRequestException
      * @throws ModificationGrilleHoraireSalarieUnauthorizedException
@@ -7529,7 +7942,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return LectureGrilleHoraireFicheSalarieResponse|ResponseInterface
+     * @return ($fetch is object ? LectureGrilleHoraireFicheSalarieResponse : ResponseInterface)
      *
      * @throws LectureGrilleHoraireFicheSalarieBadRequestException
      * @throws LectureGrilleHoraireFicheSalarieUnauthorizedException
@@ -7551,7 +7964,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SimpleMessageResponse|ResponseInterface
+     * @return ($fetch is object ? SimpleMessageResponse : ResponseInterface)
      *
      * @throws EcritureReponsesQuestionnaireFicheSalarieBadRequestException
      * @throws EcritureReponsesQuestionnaireFicheSalarieUnauthorizedException
@@ -7573,7 +7986,51 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SiteGenereMotDePasseAlternatifResponse|ResponseInterface
+     * @return ($fetch is object ? LectureTeletravailFicheSalarieResponse : ResponseInterface)
+     *
+     * @throws LectureTeletravailFicheSalarieBadRequestException
+     * @throws LectureTeletravailFicheSalarieUnauthorizedException
+     * @throws LectureTeletravailFicheSalarieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function lectureTeletravailFicheSalarie(LectureTeletravailFicheSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new LectureTeletravailFicheSalarie($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? SimpleMessageResponse : ResponseInterface)
+     *
+     * @throws ModificationTeletravailFicheSalarieBadRequestException
+     * @throws ModificationTeletravailFicheSalarieUnauthorizedException
+     * @throws ModificationTeletravailFicheSalarieInternalServerErrorException
+     * @throws UnexpectedStatusCodeException
+     */
+    public function modificationTeletravailFicheSalarie(ModificationTeletravailFicheSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new ModificationTeletravailFicheSalarie($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is object ? SiteGenereMotDePasseAlternatifResponse : ResponseInterface)
      *
      * @throws SiteGenereMotDePasseAlternatifBadRequestException
      * @throws SiteGenereMotDePasseAlternatifUnauthorizedException
@@ -7595,7 +8052,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeVariablesASaisirResponse|ResponseInterface
+     * @return ($fetch is object ? ListeVariablesASaisirResponse : ResponseInterface)
      *
      * @throws ListeVariablesASaisirBadRequestException
      * @throws ListeVariablesASaisirUnauthorizedException

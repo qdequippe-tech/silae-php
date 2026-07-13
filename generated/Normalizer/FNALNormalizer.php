@@ -32,7 +32,12 @@ class FNALNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new FNAL();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class FNALNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new FNAL();
         if (\array_key_exists('pourcentageAnneeN', $data) && \is_int($data['pourcentageAnneeN'])) {
             $data['pourcentageAnneeN'] = (float) $data['pourcentageAnneeN'];
         }
@@ -67,10 +71,6 @@ class FNALNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
 
         if (\array_key_exists('assujettissement', $data) && \is_int($data['assujettissement'])) {
             $data['assujettissement'] = (bool) $data['assujettissement'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('assujettissement', $data) && null !== $data['assujettissement']) {

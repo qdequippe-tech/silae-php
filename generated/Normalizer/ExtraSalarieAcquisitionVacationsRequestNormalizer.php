@@ -4,7 +4,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ExtraSalarieAcquisitionVacationsRequest;
-use QdequippeTech\Silae\Api\Model\RequeteExtraSalarieVacations;
+use QdequippeTech\Silae\Api\Model\RequeteExtraSalarieVacationsV2;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -33,17 +33,17 @@ class ExtraSalarieAcquisitionVacationsRequestNormalizer implements DenormalizerI
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new ExtraSalarieAcquisitionVacationsRequest();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-
-        $object = new ExtraSalarieAcquisitionVacationsRequest();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('categorie', $data) && null !== $data['categorie']) {
@@ -53,7 +53,7 @@ class ExtraSalarieAcquisitionVacationsRequestNormalizer implements DenormalizerI
         }
 
         if (\array_key_exists('requeteExtraSalarieVacations', $data) && null !== $data['requeteExtraSalarieVacations']) {
-            $object->setRequeteExtraSalarieVacations($this->denormalizer->denormalize($data['requeteExtraSalarieVacations'], RequeteExtraSalarieVacations::class, 'json', $context));
+            $object->setRequeteExtraSalarieVacations($this->denormalizer->denormalize($data['requeteExtraSalarieVacations'], RequeteExtraSalarieVacationsV2::class, 'json', $context));
         } elseif (\array_key_exists('requeteExtraSalarieVacations', $data) && null === $data['requeteExtraSalarieVacations']) {
             $object->setRequeteExtraSalarieVacations(null);
         }

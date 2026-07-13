@@ -32,7 +32,12 @@ class SalarieElementCarriereNormalizer implements DenormalizerInterface, Normali
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalarieElementCarriere();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class SalarieElementCarriereNormalizer implements DenormalizerInterface, Normali
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalarieElementCarriere();
         if (\array_key_exists('heuresContractuelles', $data) && \is_int($data['heuresContractuelles'])) {
             $data['heuresContractuelles'] = (float) $data['heuresContractuelles'];
         }
@@ -59,10 +63,6 @@ class SalarieElementCarriereNormalizer implements DenormalizerInterface, Normali
 
         if (\array_key_exists('estCadre', $data) && \is_int($data['estCadre'])) {
             $data['estCadre'] = (bool) $data['estCadre'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('dateDebut', $data) && null !== $data['dateDebut']) {

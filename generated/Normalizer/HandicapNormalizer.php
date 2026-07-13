@@ -32,7 +32,12 @@ class HandicapNormalizer implements DenormalizerInterface, NormalizerInterface, 
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new Handicap();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class HandicapNormalizer implements DenormalizerInterface, NormalizerInterface, 
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new Handicap();
         if (\array_key_exists('cdapH_TauxIncapacite', $data) && \is_int($data['cdapH_TauxIncapacite'])) {
             $data['cdapH_TauxIncapacite'] = (float) $data['cdapH_TauxIncapacite'];
         }
@@ -59,10 +63,6 @@ class HandicapNormalizer implements DenormalizerInterface, NormalizerInterface, 
 
         if (\array_key_exists('cdapH_CarteInvalidite', $data) && \is_int($data['cdapH_CarteInvalidite'])) {
             $data['cdapH_CarteInvalidite'] = (bool) $data['cdapH_CarteInvalidite'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('cdapH_RQTH', $data) && null !== $data['cdapH_RQTH']) {

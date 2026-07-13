@@ -489,7 +489,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SalarieAbsencesResponse"
+                            "$ref": "#/definitions/SalarieAbsencesV2Response"
                         }
                     },
                     "400": {
@@ -3690,6 +3690,454 @@
                 }
             }
         },
+        "/v1/AnalyseProduction/AnalyseProductionPaieDocumentsSignes": {
+            "post": {
+                "tags": [
+                    "AnalyseProduction"
+                ],
+                "summary": "AnalyseProductionPaieDocumentsSignes",
+                "operationId": "AnalyseProductionPaieDocumentsSignes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AnalyseProductionPaieRequest"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AnalyseProductionPaieDocumentsSignesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/AnalyseProduction/AnalyseProductionPaieDocumentsSignesAsynchrone": {
+            "post": {
+                "tags": [
+                    "AnalyseProduction"
+                ],
+                "summary": "AnalyseProductionPaieDocumentsSignesAsynchrone",
+                "operationId": "AnalyseProductionPaieDocumentsSignesAsynchrone",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AnalyseProductionPaieRequest"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/TraitementAsynchroneResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/AnalyseProduction/StatutAnalyseProductionPaieDocumentsSignesAsynchrone": {
+            "get": {
+                "tags": [
+                    "AnalyseProduction"
+                ],
+                "summary": "StatutAnalyseProductionPaieDocumentsSignesAsynchrone",
+                "operationId": "StatutAnalyseProductionPaieDocumentsSignesAsynchrone",
+                "consumes": [],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "guidTache",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/StatutAnalyseProductionPaieDocumentsSignesAsynchroneResponse"
+                        }
+                    },
+                    "202": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/StatutAnalyseProductionPaieDocumentsSignesAsynchroneResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/AnalyseProduction/AnalyseProductionPaieRevenus": {
+            "post": {
+                "tags": [
+                    "AnalyseProduction"
+                ],
+                "summary": "AnalyseProductionPaieRevenus",
+                "operationId": "AnalyseProductionPaieRevenus",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AnalyseProductionPaieRevenusRequest"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AnalyseProductionPaieRevenusResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/AnalyseProduction/AnalyseProductionPaieRevenusAsynchrone": {
+            "post": {
+                "tags": [
+                    "AnalyseProduction"
+                ],
+                "summary": "AnalyseProductionPaieRevenusAsynchrone",
+                "operationId": "AnalyseProductionPaieRevenusAsynchrone",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AnalyseProductionPaieRevenusRequest"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/TraitementAsynchroneResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/AnalyseProduction/StatutAnalyseProductionPaieRevenusAsynchrone": {
+            "get": {
+                "tags": [
+                    "AnalyseProduction"
+                ],
+                "summary": "StatutAnalyseProductionPaieRevenusAsynchrone",
+                "operationId": "StatutAnalyseProductionPaieRevenusAsynchrone",
+                "consumes": [],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "guidTache",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/StatutAnalyseProductionPaieRevenusAsynchroneResponse"
+                        }
+                    },
+                    "202": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/StatutAnalyseProductionPaieRevenusAsynchroneResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/AnalyseProduction/AnalyseProductionPaieDetail": {
             "post": {
                 "tags": [
@@ -4062,6 +4510,230 @@
                 }
             }
         },
+        "/v1/AnalyseProduction/AnalyseProductionPaieUtilisateursV3": {
+            "post": {
+                "tags": [
+                    "AnalyseProduction"
+                ],
+                "summary": "AnalyseProductionPaieUtilisateursV3",
+                "operationId": "AnalyseProductionPaieUtilisateursV3",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AnalyseProductionPaieUtilisateursV3Request"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AnalyseProductionPaieUtilisateursV3Response"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/AnalyseProduction/AnalyseProductionPaieUtilisateursV3Asynchrone": {
+            "post": {
+                "tags": [
+                    "AnalyseProduction"
+                ],
+                "summary": "AnalyseProductionPaieUtilisateursV3Asynchrone",
+                "operationId": "AnalyseProductionPaieUtilisateursV3Asynchrone",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AnalyseProductionPaieUtilisateursV3Request"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/TraitementAsynchroneResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/AnalyseProduction/StatutAnalyseProductionPaieUtilisateursV3Asynchrone": {
+            "get": {
+                "tags": [
+                    "AnalyseProduction"
+                ],
+                "summary": "StatutAnalyseProductionPaieUtilisateursV3Asynchrone",
+                "operationId": "StatutAnalyseProductionPaieUtilisateursV3Asynchrone",
+                "consumes": [],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "guidTache",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/StatutAnalyseProductionPaieUtilisateursV3AsynchroneResponse"
+                        }
+                    },
+                    "202": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/StatutAnalyseProductionPaieUtilisateursV3AsynchroneResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/AnalyseProduction/AnalyseProductionPaieEffectifs": {
             "post": {
                 "tags": [
@@ -4263,6 +4935,80 @@
                         "description": "Accepted",
                         "schema": {
                             "$ref": "#/definitions/StatutAnalyseProductionPaieEffectifsAsynchroneResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/AnalyseProduction/AnalyseActiviteStatutAccesOptions": {
+            "post": {
+                "tags": [
+                    "AnalyseProduction"
+                ],
+                "summary": "AnalyseActiviteStatutAccesOptions",
+                "operationId": "AnalyseActiviteStatutAccesOptions",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AnalyseActiviteStatutAccesOptionsRequest"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AnalyseActiviteStatutAccesOptionsResponse"
                         }
                     },
                     "400": {
@@ -12897,6 +13643,156 @@
                 }
             }
         },
+        "/v1/GenerationDeclaration/GenererDSNEvenementielleFCTUAsynchrone": {
+            "post": {
+                "tags": [
+                    "GenerationDeclaration"
+                ],
+                "summary": "GenererDSNEvenementielleFCTUAsynchrone",
+                "operationId": "GenererDSNEvenementielleFCTUAsynchrone",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GenererDSNEvenementielleFCTURequest"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/TraitementAsynchroneResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/GenerationDeclaration/StatutGenererDSNEvenementielleFCTUAsynchrone": {
+            "get": {
+                "tags": [
+                    "GenerationDeclaration"
+                ],
+                "summary": "StatutGenererDSNEvenementielleFCTUAsynchrone",
+                "operationId": "StatutGenererDSNEvenementielleFCTUAsynchrone",
+                "consumes": [],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "guidTache",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/StatutGenererDSNEvenementielleFCTUResponse"
+                        }
+                    },
+                    "202": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/StatutGenererDSNEvenementielleFCTUResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/GenerationEnvoiDUE/SalarieRecupererDUE": {
             "post": {
                 "tags": [
@@ -12990,7 +13886,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/DossierMatriculeSalarieRequest"
+                            "$ref": "#/definitions/SalarieRecupererRecuDPAERequest"
                         }
                     },
                     {
@@ -14601,6 +15497,80 @@
                 }
             }
         },
+        "/v1/InfosDossiers/HistoriqueDesConnexions": {
+            "post": {
+                "tags": [
+                    "InfosDossiers"
+                ],
+                "summary": "HistoriqueDesConnexions",
+                "operationId": "HistoriqueDesConnexions",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/HistoriqueDesConnexionsRequest"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/HistoriqueDesConnexionsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/InfosSalaries/SalariesBulletins": {
             "post": {
                 "tags": [
@@ -14876,6 +15846,80 @@
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/ListeSalariesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/InfosSalaries/LectureInformationsSalarie": {
+            "post": {
+                "tags": [
+                    "InfosSalaries"
+                ],
+                "summary": "LectureInformationsSalarie",
+                "operationId": "LectureInformationsSalarie",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DossierMatriculeRequest"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/LectureInformationsSalarieResponse"
                         }
                     },
                     "400": {
@@ -19867,6 +20911,154 @@
                 }
             }
         },
+        "/v1/SalarieEmplois/LectureTeletravailFicheSalarie": {
+            "post": {
+                "tags": [
+                    "SalarieEmplois"
+                ],
+                "summary": "LectureTeletravailFicheSalarie",
+                "operationId": "LectureTeletravailFicheSalarie",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LectureTeletravailFicheSalarieRequest"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/LectureTeletravailFicheSalarieResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/SalarieEmplois/ModificationTeletravailFicheSalarie": {
+            "post": {
+                "tags": [
+                    "SalarieEmplois"
+                ],
+                "summary": "ModificationTeletravailFicheSalarie",
+                "operationId": "ModificationTeletravailFicheSalarie",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ModificationTeletravailFicheSalarieRequest"
+                        }
+                    },
+                    {
+                        "name": "Ocp-Apim-Subscription-Key",
+                        "in": "header",
+                        "description": "Cl\u00e9 d'abonnement api management",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{subscriptionKey}}"
+                    },
+                    {
+                        "name": "dossiers",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "default": "{{dossiers}}"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "Authorization de type Bearer.",
+                        "x-example": "Bearer {{access_token}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SimpleMessageResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError",
+                        "schema": {
+                            "$ref": "#/definitions/ApiErrors"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/SSO/SiteGenereMotDePasseAlternatif": {
             "post": {
                 "tags": [
@@ -20078,13 +21270,20 @@
             "type": "object",
             "properties": {
                 "code": {
-                    "description": "Le code de l'erreur. Cela permet de regourper les erreurs dans des familles.",
+                    "description": "Le code de l'erreur. Cela permet de regrouper les erreurs dans des familles.",
                     "type": "string",
                     "readOnly": true
                 },
                 "message": {
-                    "description": "Cette propri\u00e9t\u00e9 contient des d\u00e9tails concernant l'errreur.",
+                    "description": "Cette propri\u00e9t\u00e9 contient des d\u00e9tails concernant l'erreur.",
                     "type": "string"
+                },
+                "metadata": {
+                    "description": "Cette propri\u00e9t\u00e9 contient des donn\u00e9es suppl\u00e9mentaires concernant l'erreur.",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
                 }
             }
         },
@@ -20282,6 +21481,10 @@
                 },
                 "commentaire": {
                     "type": "string"
+                },
+                "absencesDemiJournee": {
+                    "format": "int32",
+                    "type": "integer"
                 }
             }
         },
@@ -20456,6 +21659,17 @@
                 },
                 "absenceRectificative": {
                     "type": "boolean"
+                }
+            }
+        },
+        "SalarieAbsencesV2Response": {
+            "type": "object",
+            "properties": {
+                "salarieAbsences": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/SalarieAbsence_V3"
+                    }
                 }
             }
         },
@@ -20887,6 +22101,12 @@
                 },
                 "miseADisposition": {
                     "type": "boolean"
+                },
+                "referenceFacturation": {
+                    "type": "string"
+                },
+                "numeroInterne": {
+                    "type": "string"
                 }
             }
         },
@@ -21239,99 +22459,76 @@
             "type": "object",
             "properties": {
                 "identifiant": {
-                    "description": "Identifiant/Login",
                     "type": "string"
                 },
                 "codeCollaborateur": {
-                    "description": "Code Collaborateur",
                     "type": "string"
                 },
                 "accesDroitsFonctionnels": {
-                    "description": "Acc\u00e8s aux droits fonctionnels             SILAE_SYS.DROIT.DRT_SysDroitsSurCollaborateurs",
                     "type": "string"
                 },
                 "accesDroitsFonctionnelsMode": {
-                    "description": "Mode d'acc\u00e8s aux droits fonctionnels             SILAE_SYS.DROIT.DRT_SysDroitsSurCollaborateursMode",
                     "type": "string"
                 },
                 "civilite": {
                     "format": "int32",
-                    "description": "Civilit\u00e9",
                     "type": "integer"
                 },
                 "nomNaissance": {
-                    "description": "Nom de naissance",
                     "type": "string"
                 },
                 "nomMarital": {
-                    "description": "Nom marital",
                     "type": "string"
                 },
                 "nomUsuel": {
-                    "description": "Nom usuel",
                     "type": "string"
                 },
                 "prenom": {
-                    "description": "Pr\u00e9nom",
                     "type": "string"
                 },
                 "droitsLimitesEnPaie": {
-                    "description": "Droits limit\u00e9s en paie             SILAE_SYS.UTILISATEUR.UTI_DroitsLimitesSurPaie",
                     "type": "boolean"
                 },
                 "email": {
-                    "description": "Email",
                     "type": "string"
                 },
                 "telephonePortable": {
-                    "description": "T\u00e9l\u00e9phone portable",
                     "type": "string"
                 },
                 "telephoneBureau": {
-                    "description": "T\u00e9l\u00e9phone bureau",
                     "type": "string"
                 },
                 "telephoneDomicile": {
-                    "description": "T\u00e9l\u00e9phone domicile",
                     "type": "string"
                 },
                 "dateDebutValidite": {
                     "format": "date",
-                    "description": "Date d\u00e9but validit\u00e9",
                     "type": "string"
                 },
                 "dateFinValidite": {
                     "format": "date",
-                    "description": "Date fin validit\u00e9",
                     "type": "string"
                 },
                 "roles": {
-                    "$ref": "#/definitions/CompteCollaborateurRoles",
-                    "description": "R\u00f4les de l'utilisateur             SILAE_SYS.UTILISATEUR.UTI_Roles"
+                    "$ref": "#/definitions/CompteCollaborateurRoles"
                 },
                 "requeteAccesDossiers": {
-                    "description": "Requ\u00eate pour la limitation des acc\u00e8s aux dossiers             SILAE_SYS.DROIT.DRT_SysDroitsDossiers",
                     "type": "string"
                 },
                 "niveauConfidentialite": {
                     "format": "int32",
-                    "description": "Niveau de confidentialit\u00e9 du collaborateur sur l'intervalle [0..9]             SILAE_SYS.UTILISATEUR.UTI_NivConfSal",
                     "type": "integer"
                 },
                 "droits": {
-                    "$ref": "#/definitions/CompteCollaborateurDroits",
-                    "description": "Droits de l'utilisateur"
+                    "$ref": "#/definitions/CompteCollaborateurDroits"
                 },
                 "codeAgence": {
-                    "description": "Code de l'agence du collaborateur             SILAE_DOM.COLLABORATEUR.COL_CodeAgence",
                     "type": "string"
                 },
                 "horairesAcces": {
-                    "$ref": "#/definitions/CompteCollaborateurHorairesAcces",
-                    "description": "Horaires d'acc\u00e8s \u00e0 l'application             SILAE_DOM.COLLABORATEUR.COL_HoraireAcces[LUN,MAR,MER,JEU,VEN,SAM,DIM]             SILAE_DOM.COLLABORATEUR.COL_HoraireAccesGestionFerie"
+                    "$ref": "#/definitions/CompteCollaborateurHorairesAcces"
                 },
                 "affectations": {
-                    "description": "Activation des affectations du collaborateur             SILAE_DOM.COLLABORATEUR.COL_RG[1..9]",
                     "type": "array",
                     "items": {
                         "format": "int32",
@@ -21339,7 +22536,6 @@
                     }
                 },
                 "domaineInterventionEmetteurDads": {
-                    "description": "Domaine d'intervention \u00e9mission DADS             SILAE_DOM.COLLABORATEUR.COL_DomaineInterventionEmetteurDADS",
                     "type": "string"
                 }
             }
@@ -21377,43 +22573,33 @@
             "type": "object",
             "properties": {
                 "administration": {
-                    "description": "Droits \u00e0 l'onglet administration             SILAE_SYS.DROIT.DRT_SysDroitAdministration",
                     "type": "boolean"
                 },
                 "administrationCollaborateur": {
-                    "description": "Droits \u00e0 l'onglet Admin. Collaborateurs             SILAE_SYS.DROIT.DRT_SysDroitAdminCollaborateur",
                     "type": "boolean"
                 },
                 "analyseActivitePaie": {
-                    "description": "Droits \u00e0 l'onglet Analyse de l\u2019activit\u00e9 sur la paie             SILAE_SYS.DROIT.DRT_SysDroitAnalyseActivitePAI",
                     "type": "boolean"
                 },
                 "droitsUtilisateur": {
-                    "$ref": "#/definitions/CompteCollaborateurDroitsUtilisateur",
-                    "description": "Droits d'acc\u00e8s aux fonctionnalit\u00e9s"
+                    "$ref": "#/definitions/CompteCollaborateurDroitsUtilisateur"
                 },
                 "gestionInterne": {
-                    "description": "Droits \u00e0 l'onglet Gestion interne             SILAE_SYS.DROIT.DRT_SysDroitGi",
                     "type": "boolean"
                 },
                 "gestionInterneSimplifiee": {
-                    "description": "Droits \u00e0 l'onglet Gestion interne simplifi\u00e9             SILAE_SYS.DROIT.DRT_SysDroitGiSimplifiee",
                     "type": "boolean"
                 },
                 "outils": {
-                    "description": "Droits \u00e0 l'onglet Outils             SILAE_SYS.DROIT.DRT_SysDroitOutils",
                     "type": "boolean"
                 },
                 "parametragePaie": {
-                    "description": "Droits \u00e0 l'onglet Param\u00e9trage de paie commun \u00e0 tous les dossiers             SILAE_SYS.DROIT.DRT_SysDroitParamPaie",
                     "type": "boolean"
                 },
                 "production": {
-                    "description": "Droits \u00e0 l'onglet Production             SILAE_SYS.DROIT.DRT_SysDroitProd",
                     "type": "boolean"
                 },
                 "robotPaie": {
-                    "description": "Droits \u00e0 l'onglet Robot de paie             SILAE_SYS.DROIT.DRT_SysDroitPaiRobot",
                     "type": "boolean"
                 },
                 "pilotageProjet": {
@@ -21683,6 +22869,36 @@
                 },
                 "dossierPaieSuiviModifications": {
                     "type": "string"
+                },
+                "pilotageProjetGestionModeles": {
+                    "type": "string"
+                },
+                "relationClientTachesPlanifiees": {
+                    "type": "string"
+                },
+                "relationClientSyntheseCycleDePaie": {
+                    "type": "string"
+                },
+                "relationClientParametrageCycleDePaie": {
+                    "type": "string"
+                },
+                "outilsPaieExportDeDossier": {
+                    "type": "string"
+                },
+                "outilsPaieImportDeDossier": {
+                    "type": "string"
+                },
+                "outilsPaieImportDeDossierDemo": {
+                    "type": "string"
+                },
+                "dossierPaieAccesDsn": {
+                    "type": "string"
+                },
+                "gestionInterneConsoleDeGestionDesContacts": {
+                    "type": "string"
+                },
+                "gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil": {
+                    "type": "string"
                 }
             }
         },
@@ -21743,62 +22959,48 @@
             "type": "object",
             "properties": {
                 "nomModele": {
-                    "description": "Nom du mod\u00e8le \u00e0 utiliser",
                     "type": "string"
                 },
                 "identifiant": {
-                    "description": "Identifiant/Login",
                     "type": "string"
                 },
                 "codeCollaborateur": {
-                    "description": "Code Collaborateur",
                     "type": "string"
                 },
                 "civilite": {
                     "format": "int32",
-                    "description": "Civilit\u00e9",
                     "type": "integer"
                 },
                 "nomNaissance": {
-                    "description": "Nom de naissance",
                     "type": "string"
                 },
                 "nomMarital": {
-                    "description": "Nom marital",
                     "type": "string"
                 },
                 "nomUsuel": {
-                    "description": "Nom usuel",
                     "type": "string"
                 },
                 "prenom": {
-                    "description": "Pr\u00e9nom",
                     "type": "string"
                 },
                 "email": {
-                    "description": "Email",
                     "type": "string"
                 },
                 "telephonePortable": {
-                    "description": "T\u00e9l\u00e9phone portable",
                     "type": "string"
                 },
                 "telephoneBureau": {
-                    "description": "T\u00e9l\u00e9phone bureau",
                     "type": "string"
                 },
                 "telephoneDomicile": {
-                    "description": "T\u00e9l\u00e9phone domicile",
                     "type": "string"
                 },
                 "dateDebutValidite": {
                     "format": "date",
-                    "description": "Date d\u00e9but validit\u00e9",
                     "type": "string"
                 },
                 "dateFinValidite": {
                     "format": "date",
-                    "description": "Date fin validit\u00e9",
                     "type": "string"
                 }
             }
@@ -22619,17 +23821,295 @@
                 }
             }
         },
+        "AnalyseProductionPaieRequest": {
+            "type": "object",
+            "properties": {
+                "requeteAnalyseProduction": {
+                    "$ref": "#/definitions/RequeteAnalyseProduction"
+                }
+            }
+        },
+        "RequeteAnalyseProduction": {
+            "type": "object",
+            "properties": {
+                "periodeDebut": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "periodeFin": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                },
+                "codeAgence": {
+                    "type": "string"
+                }
+            }
+        },
+        "AnalyseProductionPaieDocumentsSignesResponse": {
+            "type": "object",
+            "properties": {
+                "statistiques": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatistiquesDocumentsSignes"
+                    }
+                }
+            }
+        },
+        "StatistiquesDocumentsSignes": {
+            "type": "object",
+            "properties": {
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                },
+                "codeAgence": {
+                    "type": "string"
+                },
+                "statistiquesProduction": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatistiquesProductionDocumentsSignes"
+                    }
+                }
+            }
+        },
+        "StatistiquesProductionDocumentsSignes": {
+            "type": "object",
+            "properties": {
+                "periode": {
+                    "format": "date",
+                    "type": "string"
+                },
+                "docSignes": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "docSortie": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "docSignesSantePrevoyance": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "signaturesFactures": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "signatairesFactures": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "signatairesFacturesDocSortie": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "signatairesFacturesDocSantePrevoyance": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "zoneSignature": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "zoneSignatureDocSortie": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "zoneSignatureDocSantePrevoyance": {
+                    "format": "int32",
+                    "type": "integer"
+                }
+            }
+        },
+        "StatutAnalyseProductionPaieDocumentsSignesAsynchroneResponse": {
+            "type": "object",
+            "properties": {
+                "statistiques": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatistiquesDocumentsSignes"
+                    }
+                },
+                "statut": {
+                    "type": "string"
+                },
+                "messageErreur": {
+                    "type": "string"
+                },
+                "progression": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "dureeExecution": {
+                    "type": "string"
+                }
+            }
+        },
+        "AnalyseProductionPaieRevenusRequest": {
+            "type": "object",
+            "properties": {
+                "requeteAnalyseProductionRevenus": {
+                    "$ref": "#/definitions/RequeteAnalyseProductionRevenus"
+                }
+            }
+        },
+        "RequeteAnalyseProductionRevenus": {
+            "type": "object",
+            "properties": {
+                "millesime": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                },
+                "codeAgence": {
+                    "type": "string"
+                },
+                "typeAnalyse": {
+                    "format": "int32",
+                    "type": "integer"
+                }
+            }
+        },
+        "AnalyseProductionPaieRevenusResponse": {
+            "type": "object",
+            "properties": {
+                "statistiques": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatistiquesRevenus"
+                    }
+                }
+            }
+        },
+        "StatistiquesRevenus": {
+            "type": "object",
+            "properties": {
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                },
+                "codeAgence": {
+                    "type": "string"
+                },
+                "statistiquesProductionMatricule": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatistiquesRevenusSalarie"
+                    }
+                }
+            }
+        },
+        "StatistiquesRevenusSalarie": {
+            "type": "object",
+            "properties": {
+                "matricule": {
+                    "type": "string",
+                    "example": "{{matricule}}"
+                },
+                "nomUsuel": {
+                    "type": "string"
+                },
+                "prenom": {
+                    "type": "string"
+                },
+                "netImposableN": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "totalDeclareN": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "pasN": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "pasDeclareN": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "brutALN": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "brutALDeclareN": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "netImposableN1": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "totalDeclareN1": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "pasN1": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "pasDeclareN1": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "brutALN1": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "brutALDeclareN1": {
+                    "format": "double",
+                    "type": "number"
+                }
+            }
+        },
+        "StatutAnalyseProductionPaieRevenusAsynchroneResponse": {
+            "type": "object",
+            "properties": {
+                "statistiques": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatistiquesRevenus"
+                    }
+                },
+                "statut": {
+                    "type": "string"
+                },
+                "messageErreur": {
+                    "type": "string"
+                },
+                "progression": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "dureeExecution": {
+                    "type": "string"
+                }
+            }
+        },
         "AnalyseProductionPaieDetailRequest": {
             "type": "object",
             "properties": {
                 "requeteAnalyseProductionDetail": {
-                    "$ref": "#/definitions/RequeteAnalyseProductionDetail"
+                    "$ref": "#/definitions/RequeteAnalyseProductionDetailV2"
                 }
             }
         },
-        "RequeteAnalyseProductionDetail": {
+        "RequeteAnalyseProductionDetailV2": {
             "type": "object",
             "properties": {
+                "typePeriode": {
+                    "format": "int32",
+                    "type": "integer"
+                },
                 "numeroDossier": {
                     "type": "string",
                     "example": "{{numeroDossier}}"
@@ -22675,26 +24155,6 @@
             "properties": {
                 "requeteAnalyseProduction": {
                     "$ref": "#/definitions/RequeteAnalyseProduction"
-                }
-            }
-        },
-        "RequeteAnalyseProduction": {
-            "type": "object",
-            "properties": {
-                "periodeDebut": {
-                    "format": "date-time",
-                    "type": "string"
-                },
-                "periodeFin": {
-                    "format": "date-time",
-                    "type": "string"
-                },
-                "numeroDossier": {
-                    "type": "string",
-                    "example": "{{numeroDossier}}"
-                },
-                "codeAgence": {
-                    "type": "string"
                 }
             }
         },
@@ -22820,6 +24280,131 @@
                 }
             }
         },
+        "AnalyseProductionPaieUtilisateursV3Request": {
+            "type": "object",
+            "properties": {
+                "requeteAnalyseProduction": {
+                    "$ref": "#/definitions/RequeteAnalyseProductionV2"
+                }
+            }
+        },
+        "AnalyseProductionPaieUtilisateursV3Response": {
+            "type": "object",
+            "properties": {
+                "statistiquesUtilisateurs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatistiquesUtilisateursV3"
+                    }
+                }
+            }
+        },
+        "StatistiquesUtilisateursV3": {
+            "type": "object",
+            "properties": {
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                },
+                "codeAgence": {
+                    "type": "string"
+                },
+                "statistiquesProductionUtilisateurs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatistiquesProductionUtilisateurV3"
+                    }
+                }
+            }
+        },
+        "StatistiquesProductionUtilisateurV3": {
+            "type": "object",
+            "properties": {
+                "identifiantUtilisateur": {
+                    "type": "string"
+                },
+                "periodePaie": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "dateEdition": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "nbBulletins": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "nbEntrees": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "nbEntreesCDI": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "nbEntreesCDD": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "nbEntreesAutres": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "nbSorties": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "nbSortiesCDI": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "nbSortiesCDD": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "nbSortiesDemission": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "nbSortiesRuptureConventionnelle": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "nbSortiesLicenciement": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "nbSortiesAutres": {
+                    "format": "int32",
+                    "type": "integer"
+                }
+            }
+        },
+        "StatutAnalyseProductionPaieUtilisateursV3AsynchroneResponse": {
+            "type": "object",
+            "properties": {
+                "statistiqueUtilisateurs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatistiquesUtilisateursV3"
+                    }
+                },
+                "statut": {
+                    "type": "string"
+                },
+                "messageErreur": {
+                    "type": "string"
+                },
+                "progression": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "dureeExecution": {
+                    "type": "string"
+                }
+            }
+        },
         "AnalyseProductionPaieEffectifsRequest": {
             "type": "object",
             "properties": {
@@ -22900,6 +24485,77 @@
                 },
                 "dureeExecution": {
                     "type": "string"
+                }
+            }
+        },
+        "AnalyseActiviteStatutAccesOptionsRequest": {
+            "type": "object",
+            "properties": {
+                "codeAgence": {
+                    "type": "string"
+                }
+            }
+        },
+        "AnalyseActiviteStatutAccesOptionsResponse": {
+            "type": "object",
+            "properties": {
+                "statutAccesOptions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AnalyseActiviteStatutAccesOptions"
+                    }
+                }
+            }
+        },
+        "AnalyseActiviteStatutAccesOptions": {
+            "type": "object",
+            "properties": {
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                },
+                "mySilaeActif": {
+                    "type": "boolean"
+                },
+                "loginsActifs": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "absencesMobiliteActif": {
+                    "type": "boolean"
+                },
+                "gestionTempsActif": {
+                    "type": "boolean"
+                },
+                "saisieVariableActif": {
+                    "type": "boolean"
+                },
+                "accesBulletinActif": {
+                    "type": "boolean"
+                },
+                "accesVirementActif": {
+                    "type": "boolean"
+                },
+                "signatureElectroniqueActif": {
+                    "type": "boolean"
+                },
+                "entretiensActif": {
+                    "type": "boolean"
+                },
+                "acomptesActif": {
+                    "type": "boolean"
+                },
+                "gestionSalariesActif": {
+                    "type": "boolean"
+                },
+                "visitesMedicalesActif": {
+                    "type": "boolean"
+                },
+                "mySilaeSanteActif": {
+                    "type": "boolean"
+                },
+                "mySilaeExpenseActif": {
+                    "type": "boolean"
                 }
             }
         },
@@ -23493,7 +25149,6 @@
                 },
                 "affectation": {
                     "format": "int32",
-                    "description": "Renseign\u00e9e, on cherche le Mail (INT_Mail) du collaborateur affect\u00e9 au dossier.",
                     "type": "integer"
                 },
                 "mail": {
@@ -23723,6 +25378,13 @@
                 },
                 "fonction": {
                     "type": "string"
+                },
+                "typeContact": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "referenceFacturation": {
+                    "type": "string"
                 }
             }
         },
@@ -23767,6 +25429,13 @@
                     "type": "string"
                 },
                 "eMail": {
+                    "type": "string"
+                },
+                "typeContact": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "referenceFacturation": {
                     "type": "string"
                 }
             }
@@ -23865,6 +25534,14 @@
                     "format": "date-time",
                     "type": "string"
                 },
+                "matriculeSalarie": {
+                    "type": "string",
+                    "example": "{{matriculeSalarie}}"
+                },
+                "identifiantEmploi": {
+                    "format": "int32",
+                    "type": "integer"
+                },
                 "numeroDossier": {
                     "type": "string",
                     "example": "{{numeroDossier}}"
@@ -23927,6 +25604,21 @@
                     "type": "string"
                 },
                 "groupe": {
+                    "type": "string"
+                },
+                "numeroInterne": {
+                    "type": "string"
+                },
+                "miseADisposition": {
+                    "type": "boolean"
+                },
+                "bMiseADisposition": {
+                    "type": "boolean"
+                },
+                "dossierInterne": {
+                    "type": "boolean"
+                },
+                "referenceFacturation": {
                     "type": "string"
                 },
                 "etablissements": {
@@ -25464,6 +27156,9 @@
                 },
                 "valeurChaineElementVariable": {
                     "type": "string"
+                },
+                "controleExistenceElementVariable": {
+                    "type": "boolean"
                 }
             }
         },
@@ -26130,6 +27825,19 @@
                 },
                 "clI_TaxeCotPPrev": {
                     "type": "boolean"
+                },
+                "bINT_CapitalSocial": {
+                    "type": "boolean"
+                },
+                "inT_CapitalSocial": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "bINT_GreffeImmatriculationRCS": {
+                    "type": "boolean"
+                },
+                "inT_GreffeImmatriculationRCS": {
+                    "type": "string"
                 }
             }
         },
@@ -27831,6 +29539,74 @@
                 }
             }
         },
+        "GenererDSNEvenementielleFCTURequest": {
+            "required": [
+                "numeroDossier"
+            ],
+            "type": "object",
+            "properties": {
+                "periode": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "envoiEdi": {
+                    "type": "boolean"
+                },
+                "matricule": {
+                    "type": "string",
+                    "example": "{{matricule}}"
+                },
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                }
+            }
+        },
+        "StatutGenererDSNEvenementielleFCTUResponse": {
+            "type": "object",
+            "properties": {
+                "fichiers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FichierResult"
+                    }
+                },
+                "erreurs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "message": {
+                    "type": "string"
+                },
+                "statut": {
+                    "type": "string"
+                },
+                "messageErreur": {
+                    "type": "string"
+                },
+                "progression": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "dureeExecution": {
+                    "type": "string"
+                }
+            }
+        },
+        "FichierResult": {
+            "type": "object",
+            "properties": {
+                "fichier": {
+                    "type": "string"
+                },
+                "contenu": {
+                    "format": "byte",
+                    "type": "string"
+                }
+            }
+        },
         "DossierMatriculeSalarieRequest": {
             "required": [
                 "matriculeSalarie",
@@ -27854,6 +29630,26 @@
                 "document": {
                     "format": "byte",
                     "type": "string"
+                }
+            }
+        },
+        "SalarieRecupererRecuDPAERequest": {
+            "required": [
+                "matriculeSalarie",
+                "numeroDossier"
+            ],
+            "type": "object",
+            "properties": {
+                "emploiArchive": {
+                    "type": "boolean"
+                },
+                "matriculeSalarie": {
+                    "type": "string",
+                    "example": "{{matriculeSalarie}}"
+                },
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
                 }
             }
         },
@@ -29147,6 +30943,61 @@
                 }
             }
         },
+        "HistoriqueDesConnexionsRequest": {
+            "type": "object",
+            "properties": {
+                "dateDebut": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "dateFin": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "filtre": {
+                    "type": "string"
+                }
+            }
+        },
+        "HistoriqueDesConnexionsResponse": {
+            "type": "object",
+            "properties": {
+                "connexions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/HistoriqueConnexion"
+                    }
+                },
+                "warning": {
+                    "type": "string"
+                }
+            }
+        },
+        "HistoriqueConnexion": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "deconnexion": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "identifiantUtilisateur": {
+                    "type": "string"
+                },
+                "modifAPI": {
+                    "type": "boolean"
+                },
+                "identifiantMachine": {
+                    "type": "string"
+                },
+                "retourConnexion": {
+                    "type": "string"
+                }
+            }
+        },
         "SalariesBulletinsRequest": {
             "required": [
                 "numeroDossier"
@@ -29306,6 +31157,258 @@
                     "type": "string"
                 },
                 "nomAffiche": {
+                    "type": "string"
+                }
+            }
+        },
+        "DossierMatriculeRequest": {
+            "required": [
+                "numeroDossier"
+            ],
+            "type": "object",
+            "properties": {
+                "matricule": {
+                    "type": "string",
+                    "example": "{{matricule}}"
+                },
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                }
+            }
+        },
+        "LectureInformationsSalarieResponse": {
+            "type": "object",
+            "properties": {
+                "salarie": {
+                    "$ref": "#/definitions/LectureInformationsSalarie"
+                }
+            }
+        },
+        "LectureInformationsSalarie": {
+            "type": "object",
+            "properties": {
+                "matriculeSalarie": {
+                    "type": "string",
+                    "example": "{{matriculeSalarie}}"
+                },
+                "matriculeInterne": {
+                    "type": "string"
+                },
+                "civilite": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "sexe": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "nomNaissance": {
+                    "type": "string"
+                },
+                "nomMarital": {
+                    "type": "string"
+                },
+                "nomUsuel": {
+                    "type": "string"
+                },
+                "prenom": {
+                    "type": "string"
+                },
+                "numeroSecuriteSociale": {
+                    "type": "string"
+                },
+                "situationFamiliale": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "dateNaissance": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "anneeNaissance": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "departementNaissance": {
+                    "type": "string"
+                },
+                "communeNaissance": {
+                    "type": "string"
+                },
+                "paysNaissanceISO": {
+                    "type": "string"
+                },
+                "paysNaissance": {
+                    "type": "string"
+                },
+                "paysNationaliteISO": {
+                    "type": "string"
+                },
+                "paysNationalite": {
+                    "type": "string"
+                },
+                "numVoie": {
+                    "type": "string"
+                },
+                "btqc": {
+                    "type": "string"
+                },
+                "nomVoie": {
+                    "type": "string"
+                },
+                "complementAdresse": {
+                    "type": "string"
+                },
+                "codePostal": {
+                    "type": "string"
+                },
+                "nomVille": {
+                    "type": "string"
+                },
+                "frontalier": {
+                    "type": "boolean"
+                },
+                "communeINSEE": {
+                    "type": "string"
+                },
+                "commune": {
+                    "type": "string"
+                },
+                "paysISO": {
+                    "type": "string"
+                },
+                "nomPays": {
+                    "type": "string"
+                },
+                "telDomicile": {
+                    "type": "string"
+                },
+                "telPortable": {
+                    "type": "string"
+                },
+                "telBureau": {
+                    "type": "string"
+                },
+                "telPortablePro": {
+                    "type": "string"
+                },
+                "melPerso": {
+                    "type": "string"
+                },
+                "mel": {
+                    "type": "string"
+                },
+                "personneAContacterUrgenceNom": {
+                    "type": "string"
+                },
+                "personneAContacterUrgencePrenom": {
+                    "type": "string"
+                },
+                "personneAContacterUrgenceTel": {
+                    "type": "string"
+                },
+                "personneAContacterUrgenceMel": {
+                    "type": "string"
+                },
+                "enT_Code": {
+                    "type": "string"
+                },
+                "enV_Code": {
+                    "type": "string"
+                },
+                "edP_Code": {
+                    "type": "string"
+                },
+                "etudesInfosComplementaires": {
+                    "type": "string"
+                },
+                "formationPlusEleve": {
+                    "type": "string"
+                },
+                "diplomePrepare": {
+                    "type": "string"
+                },
+                "situationAvantEmbauche": {
+                    "type": "string"
+                },
+                "dureePeriodeEssai1": {
+                    "type": "string"
+                },
+                "dureePeriodeEssai2": {
+                    "type": "string"
+                },
+                "pointure": {
+                    "type": "string"
+                },
+                "tailleHaut": {
+                    "type": "string"
+                },
+                "taillePantalon": {
+                    "type": "string"
+                },
+                "tourDeTete": {
+                    "type": "string"
+                },
+                "tourDeCou": {
+                    "type": "string"
+                },
+                "titreSejourType": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "titreSejourNumOrdre": {
+                    "type": "string"
+                },
+                "titreSejourDebut": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "titreSejourFin": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "surveillanceMedRenforcee": {
+                    "type": "boolean"
+                },
+                "emplois": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/LectureInformationsSalarieEmploi"
+                    }
+                },
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                }
+            }
+        },
+        "LectureInformationsSalarieEmploi": {
+            "type": "object",
+            "properties": {
+                "identifiantEmploi": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "dateDebut": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "dateDebutContrat": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "dateFin": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "intituleEmploi": {
+                    "type": "string"
+                },
+                "emploiArchive": {
+                    "type": "boolean"
+                },
+                "nomInterneEtablissement": {
                     "type": "string"
                 }
             }
@@ -29500,22 +31603,6 @@
                 },
                 "dureeExecution": {
                     "type": "string"
-                }
-            }
-        },
-        "DossierMatriculeRequest": {
-            "required": [
-                "numeroDossier"
-            ],
-            "type": "object",
-            "properties": {
-                "matricule": {
-                    "type": "string",
-                    "example": "{{matricule}}"
-                },
-                "numeroDossier": {
-                    "type": "string",
-                    "example": "{{numeroDossier}}"
                 }
             }
         },
@@ -29869,6 +31956,15 @@
                 },
                 "numeroInterne": {
                     "type": "string"
+                },
+                "dossierInterne": {
+                    "type": "boolean"
+                },
+                "miseADisposition": {
+                    "type": "boolean"
+                },
+                "referenceFacturation": {
+                    "type": "string"
                 }
             }
         },
@@ -30124,7 +32220,7 @@
                     "type": "string"
                 },
                 "requeteExtraSalarieVacations": {
-                    "$ref": "#/definitions/RequeteExtraSalarieVacations"
+                    "$ref": "#/definitions/RequeteExtraSalarieVacationsV2"
                 },
                 "numeroDossier": {
                     "type": "string",
@@ -30132,9 +32228,13 @@
                 }
             }
         },
-        "RequeteExtraSalarieVacations": {
+        "RequeteExtraSalarieVacationsV2": {
             "type": "object",
             "properties": {
+                "vacationBulletin": {
+                    "format": "int32",
+                    "type": "integer"
+                },
                 "matriculeSalarie": {
                     "type": "string",
                     "example": "{{matriculeSalarie}}"
@@ -30297,6 +32397,29 @@
                 }
             }
         },
+        "RequeteExtraSalarieVacations": {
+            "type": "object",
+            "properties": {
+                "matriculeSalarie": {
+                    "type": "string",
+                    "example": "{{matriculeSalarie}}"
+                },
+                "identifiantEmploi": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "verifierDisponibiliteEmploi": {
+                    "type": "boolean"
+                },
+                "periode": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "nomInterneEtablissement": {
+                    "type": "string"
+                }
+            }
+        },
         "ExtraSalarieReinitialiserVacationsResponse": {
             "type": "object",
             "properties": {
@@ -30416,7 +32539,7 @@
             "type": "object",
             "properties": {
                 "requeteSpectacleSalarieAffectations": {
-                    "$ref": "#/definitions/RequeteSpectacleSalarieAffectations"
+                    "$ref": "#/definitions/RequeteSpectacleSalarieAffectationsV2"
                 },
                 "numeroDossier": {
                     "type": "string",
@@ -30424,9 +32547,13 @@
                 }
             }
         },
-        "RequeteSpectacleSalarieAffectations": {
+        "RequeteSpectacleSalarieAffectationsV2": {
             "type": "object",
             "properties": {
+                "affectationBulletin": {
+                    "format": "int32",
+                    "type": "integer"
+                },
                 "matriculeSalarie": {
                     "type": "string",
                     "example": "{{matriculeSalarie}}"
@@ -30688,6 +32815,29 @@
                 "numeroDossier": {
                     "type": "string",
                     "example": "{{numeroDossier}}"
+                }
+            }
+        },
+        "RequeteSpectacleSalarieAffectations": {
+            "type": "object",
+            "properties": {
+                "matriculeSalarie": {
+                    "type": "string",
+                    "example": "{{matriculeSalarie}}"
+                },
+                "identifiantEmploi": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "verifierDisponibiliteEmploi": {
+                    "type": "boolean"
+                },
+                "periode": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "nomInterneEtablissement": {
+                    "type": "string"
                 }
             }
         },
@@ -31712,6 +33862,12 @@
                 },
                 "bSexe": {
                     "type": "boolean"
+                },
+                "beneficiaireFinal": {
+                    "type": "string"
+                },
+                "bBeneficiaireFinal": {
+                    "type": "boolean"
                 }
             }
         },
@@ -32136,6 +34292,12 @@
                     "type": "number"
                 },
                 "bAvnLMontantSal": {
+                    "type": "boolean"
+                },
+                "motifCDDExclusions": {
+                    "type": "boolean"
+                },
+                "bMotifCDDExclusions": {
                     "type": "boolean"
                 }
             }
@@ -32988,6 +35150,101 @@
                     "items": {
                         "$ref": "#/definitions/QReponseSimple"
                     }
+                },
+                "matriculeSalarie": {
+                    "type": "string",
+                    "example": "{{matriculeSalarie}}"
+                },
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                }
+            }
+        },
+        "LectureTeletravailFicheSalarieRequest": {
+            "required": [
+                "matriculeSalarie",
+                "numeroDossier"
+            ],
+            "type": "object",
+            "properties": {
+                "identifiantEmploi": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "matriculeSalarie": {
+                    "type": "string",
+                    "example": "{{matriculeSalarie}}"
+                },
+                "numeroDossier": {
+                    "type": "string",
+                    "example": "{{numeroDossier}}"
+                }
+            }
+        },
+        "LectureTeletravailFicheSalarieResponse": {
+            "type": "object",
+            "properties": {
+                "teletravail": {
+                    "$ref": "#/definitions/TeletravailFicheSalarie"
+                }
+            }
+        },
+        "TeletravailFicheSalarie": {
+            "type": "object",
+            "properties": {
+                "teletravailChoixParametrage": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "modeSaisieTeletravail": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "limite": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "periode": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "lundi": {
+                    "type": "boolean"
+                },
+                "mardi": {
+                    "type": "boolean"
+                },
+                "mercredi": {
+                    "type": "boolean"
+                },
+                "jeudi": {
+                    "type": "boolean"
+                },
+                "vendredi": {
+                    "type": "boolean"
+                },
+                "samedi": {
+                    "type": "boolean"
+                },
+                "dimanche": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "ModificationTeletravailFicheSalarieRequest": {
+            "required": [
+                "matriculeSalarie",
+                "numeroDossier"
+            ],
+            "type": "object",
+            "properties": {
+                "identifiantEmploi": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "teletravail": {
+                    "$ref": "#/definitions/TeletravailFicheSalarie"
                 },
                 "matriculeSalarie": {
                     "type": "string",

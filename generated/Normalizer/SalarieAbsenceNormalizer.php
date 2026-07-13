@@ -32,7 +32,12 @@ class SalarieAbsenceNormalizer implements DenormalizerInterface, NormalizerInter
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalarieAbsence();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class SalarieAbsenceNormalizer implements DenormalizerInterface, NormalizerInter
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalarieAbsence();
         if (\array_key_exists('dureeEnHeuresSiJourUnique', $data) && \is_int($data['dureeEnHeuresSiJourUnique'])) {
             $data['dureeEnHeuresSiJourUnique'] = (float) $data['dureeEnHeuresSiJourUnique'];
         }
@@ -91,10 +95,6 @@ class SalarieAbsenceNormalizer implements DenormalizerInterface, NormalizerInter
 
         if (\array_key_exists('absenceRectificative', $data) && \is_int($data['absenceRectificative'])) {
             $data['absenceRectificative'] = (bool) $data['absenceRectificative'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('dateDebutAbsence', $data) && null !== $data['dateDebutAbsence']) {

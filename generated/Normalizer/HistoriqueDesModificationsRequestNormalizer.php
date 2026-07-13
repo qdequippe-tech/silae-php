@@ -32,7 +32,12 @@ class HistoriqueDesModificationsRequestNormalizer implements DenormalizerInterfa
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new HistoriqueDesModificationsRequest();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,13 +45,8 @@ class HistoriqueDesModificationsRequestNormalizer implements DenormalizerInterfa
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new HistoriqueDesModificationsRequest();
         if (\array_key_exists('modifAPI', $data) && \is_int($data['modifAPI'])) {
             $data['modifAPI'] = (bool) $data['modifAPI'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {

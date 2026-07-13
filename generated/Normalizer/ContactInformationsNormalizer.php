@@ -32,17 +32,17 @@ class ContactInformationsNormalizer implements DenormalizerInterface, Normalizer
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new ContactInformations();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-
-        $object = new ContactInformations();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('identifiant', $data) && null !== $data['identifiant']) {
@@ -81,6 +81,18 @@ class ContactInformationsNormalizer implements DenormalizerInterface, Normalizer
             $object->setEMail(null);
         }
 
+        if (\array_key_exists('typeContact', $data) && null !== $data['typeContact']) {
+            $object->setTypeContact($data['typeContact']);
+        } elseif (\array_key_exists('typeContact', $data) && null === $data['typeContact']) {
+            $object->setTypeContact(null);
+        }
+
+        if (\array_key_exists('referenceFacturation', $data) && null !== $data['referenceFacturation']) {
+            $object->setReferenceFacturation($data['referenceFacturation']);
+        } elseif (\array_key_exists('referenceFacturation', $data) && null === $data['referenceFacturation']) {
+            $object->setReferenceFacturation(null);
+        }
+
         return $object;
     }
 
@@ -109,6 +121,14 @@ class ContactInformationsNormalizer implements DenormalizerInterface, Normalizer
 
         if ($data->isInitialized('eMail') && null !== $data->getEMail()) {
             $dataArray['eMail'] = $data->getEMail();
+        }
+
+        if ($data->isInitialized('typeContact') && null !== $data->getTypeContact()) {
+            $dataArray['typeContact'] = $data->getTypeContact();
+        }
+
+        if ($data->isInitialized('referenceFacturation') && null !== $data->getReferenceFacturation()) {
+            $dataArray['referenceFacturation'] = $data->getReferenceFacturation();
         }
 
         return $dataArray;

@@ -35,7 +35,12 @@ class CompteCollaborateurNormalizer implements DenormalizerInterface, Normalizer
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new CompteCollaborateur();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -43,13 +48,8 @@ class CompteCollaborateurNormalizer implements DenormalizerInterface, Normalizer
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new CompteCollaborateur();
         if (\array_key_exists('droitsLimitesEnPaie', $data) && \is_int($data['droitsLimitesEnPaie'])) {
             $data['droitsLimitesEnPaie'] = (bool) $data['droitsLimitesEnPaie'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('identifiant', $data) && null !== $data['identifiant']) {

@@ -32,7 +32,12 @@ class SalariesConfirmerSaisiesNormalizer implements DenormalizerInterface, Norma
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalariesConfirmerSaisies();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,17 +45,12 @@ class SalariesConfirmerSaisiesNormalizer implements DenormalizerInterface, Norma
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalariesConfirmerSaisies();
         if (\array_key_exists('confirmerHeures', $data) && \is_int($data['confirmerHeures'])) {
             $data['confirmerHeures'] = (bool) $data['confirmerHeures'];
         }
 
         if (\array_key_exists('confirmerPrimes', $data) && \is_int($data['confirmerPrimes'])) {
             $data['confirmerPrimes'] = (bool) $data['confirmerPrimes'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('periodeConfirmation', $data) && null !== $data['periodeConfirmation']) {

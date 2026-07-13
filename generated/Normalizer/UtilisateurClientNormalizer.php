@@ -32,7 +32,12 @@ class UtilisateurClientNormalizer implements DenormalizerInterface, NormalizerIn
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new UtilisateurClient();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class UtilisateurClientNormalizer implements DenormalizerInterface, NormalizerIn
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new UtilisateurClient();
         if (\array_key_exists('accesComplet', $data) && \is_int($data['accesComplet'])) {
             $data['accesComplet'] = (bool) $data['accesComplet'];
         }
@@ -59,10 +63,6 @@ class UtilisateurClientNormalizer implements DenormalizerInterface, NormalizerIn
 
         if (\array_key_exists('accesComplet_AccesRelationClient', $data) && \is_int($data['accesComplet_AccesRelationClient'])) {
             $data['accesComplet_AccesRelationClient'] = (bool) $data['accesComplet_AccesRelationClient'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('nom', $data) && null !== $data['nom']) {
@@ -143,6 +143,18 @@ class UtilisateurClientNormalizer implements DenormalizerInterface, NormalizerIn
             $object->setFonction(null);
         }
 
+        if (\array_key_exists('typeContact', $data) && null !== $data['typeContact']) {
+            $object->setTypeContact($data['typeContact']);
+        } elseif (\array_key_exists('typeContact', $data) && null === $data['typeContact']) {
+            $object->setTypeContact(null);
+        }
+
+        if (\array_key_exists('referenceFacturation', $data) && null !== $data['referenceFacturation']) {
+            $object->setReferenceFacturation($data['referenceFacturation']);
+        } elseif (\array_key_exists('referenceFacturation', $data) && null === $data['referenceFacturation']) {
+            $object->setReferenceFacturation(null);
+        }
+
         return $object;
     }
 
@@ -199,6 +211,14 @@ class UtilisateurClientNormalizer implements DenormalizerInterface, NormalizerIn
 
         if ($data->isInitialized('fonction') && null !== $data->getFonction()) {
             $dataArray['fonction'] = $data->getFonction();
+        }
+
+        if ($data->isInitialized('typeContact') && null !== $data->getTypeContact()) {
+            $dataArray['typeContact'] = $data->getTypeContact();
+        }
+
+        if ($data->isInitialized('referenceFacturation') && null !== $data->getReferenceFacturation()) {
+            $dataArray['referenceFacturation'] = $data->getReferenceFacturation();
         }
 
         return $dataArray;

@@ -15,7 +15,7 @@ class SpectacleSalarieAcquisitionAffectationsRequest
     }
 
     /**
-     * @var RequeteSpectacleSalarieAffectations|null
+     * @var RequeteSpectacleSalarieAffectationsV2|null
      */
     protected $requeteSpectacleSalarieAffectations;
 
@@ -24,12 +24,12 @@ class SpectacleSalarieAcquisitionAffectationsRequest
      */
     protected $numeroDossier;
 
-    public function getRequeteSpectacleSalarieAffectations(): ?RequeteSpectacleSalarieAffectations
+    public function getRequeteSpectacleSalarieAffectations(): ?RequeteSpectacleSalarieAffectationsV2
     {
         return $this->requeteSpectacleSalarieAffectations;
     }
 
-    public function setRequeteSpectacleSalarieAffectations(?RequeteSpectacleSalarieAffectations $requeteSpectacleSalarieAffectations): self
+    public function setRequeteSpectacleSalarieAffectations(?RequeteSpectacleSalarieAffectationsV2 $requeteSpectacleSalarieAffectations): self
     {
         $this->initialized['requeteSpectacleSalarieAffectations'] = true;
         $this->requeteSpectacleSalarieAffectations = $requeteSpectacleSalarieAffectations;

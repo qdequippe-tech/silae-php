@@ -704,6 +704,16 @@ class SalarieEmplois
      */
     protected $bSexe;
 
+    /**
+     * @var string|null
+     */
+    protected $beneficiaireFinal;
+
+    /**
+     * @var bool|null
+     */
+    protected $bBeneficiaireFinal;
+
     public function getMatriculeSalarie(): ?string
     {
         return $this->matriculeSalarie;
@@ -2500,6 +2510,32 @@ class SalarieEmplois
     {
         $this->initialized['bSexe'] = true;
         $this->bSexe = $bSexe;
+
+        return $this;
+    }
+
+    public function getBeneficiaireFinal(): ?string
+    {
+        return $this->beneficiaireFinal;
+    }
+
+    public function setBeneficiaireFinal(?string $beneficiaireFinal): self
+    {
+        $this->initialized['beneficiaireFinal'] = true;
+        $this->beneficiaireFinal = $beneficiaireFinal;
+
+        return $this;
+    }
+
+    public function getBBeneficiaireFinal(): ?bool
+    {
+        return $this->bBeneficiaireFinal;
+    }
+
+    public function setBBeneficiaireFinal(?bool $bBeneficiaireFinal): self
+    {
+        $this->initialized['bBeneficiaireFinal'] = true;
+        $this->bBeneficiaireFinal = $bBeneficiaireFinal;
 
         return $this;
     }

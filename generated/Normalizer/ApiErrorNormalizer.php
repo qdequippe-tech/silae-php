@@ -32,17 +32,17 @@ class ApiErrorNormalizer implements DenormalizerInterface, NormalizerInterface, 
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new ApiError();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-
-        $object = new ApiError();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('code', $data) && null !== $data['code']) {
@@ -57,6 +57,17 @@ class ApiErrorNormalizer implements DenormalizerInterface, NormalizerInterface, 
             $object->setMessage(null);
         }
 
+        if (\array_key_exists('metadata', $data) && null !== $data['metadata']) {
+            $values = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
+            foreach ($data['metadata'] as $key => $value) {
+                $values[$key] = $value;
+            }
+
+            $object->setMetadata($values);
+        } elseif (\array_key_exists('metadata', $data) && null === $data['metadata']) {
+            $object->setMetadata(null);
+        }
+
         return $object;
     }
 
@@ -65,6 +76,15 @@ class ApiErrorNormalizer implements DenormalizerInterface, NormalizerInterface, 
         $dataArray = [];
         if ($data->isInitialized('message') && null !== $data->getMessage()) {
             $dataArray['message'] = $data->getMessage();
+        }
+
+        if ($data->isInitialized('metadata') && null !== $data->getMetadata()) {
+            $values = [];
+            foreach ($data->getMetadata() as $key => $value) {
+                $values[$key] = $value;
+            }
+
+            $dataArray['metadata'] = $values;
         }
 
         return $dataArray;

@@ -8,7 +8,7 @@ use QdequippeTech\Silae\Api\Exception\SalarieRecupererRecuDPAEInternalServerErro
 use QdequippeTech\Silae\Api\Exception\SalarieRecupererRecuDPAEUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
-use QdequippeTech\Silae\Api\Model\DossierMatriculeSalarieRequest;
+use QdequippeTech\Silae\Api\Model\SalarieRecupererRecuDPAERequest;
 use QdequippeTech\Silae\Api\Model\SalarieRecupererRecuDPAEResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
 use QdequippeTech\Silae\Api\Runtime\Client\Endpoint;
@@ -28,7 +28,7 @@ class SalarieRecupererRecuDPAE extends BaseEndpoint implements Endpoint
      * @var string $Authorization Authorization de type Bearer.
      *             }
      */
-    public function __construct(DossierMatriculeSalarieRequest $request, array $headerParameters = [])
+    public function __construct(SalarieRecupererRecuDPAERequest $request, array $headerParameters = [])
     {
         $this->body = $request;
         $this->headerParameters = $headerParameters;

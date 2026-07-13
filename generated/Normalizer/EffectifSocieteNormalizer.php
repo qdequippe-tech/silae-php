@@ -32,7 +32,12 @@ class EffectifSocieteNormalizer implements DenormalizerInterface, NormalizerInte
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EffectifSociete();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class EffectifSocieteNormalizer implements DenormalizerInterface, NormalizerInte
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new EffectifSociete();
         if (\array_key_exists('effectif1_GlobalURSSAF', $data) && \is_int($data['effectif1_GlobalURSSAF'])) {
             $data['effectif1_GlobalURSSAF'] = (float) $data['effectif1_GlobalURSSAF'];
         }
@@ -51,10 +55,6 @@ class EffectifSocieteNormalizer implements DenormalizerInterface, NormalizerInte
 
         if (\array_key_exists('effectif_DADSU', $data) && \is_int($data['effectif_DADSU'])) {
             $data['effectif_DADSU'] = (float) $data['effectif_DADSU'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('annee', $data) && null !== $data['annee']) {

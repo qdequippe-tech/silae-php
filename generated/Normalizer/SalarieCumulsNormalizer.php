@@ -32,7 +32,12 @@ class SalarieCumulsNormalizer implements DenormalizerInterface, NormalizerInterf
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SalarieCumuls();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
 
@@ -40,7 +45,6 @@ class SalarieCumulsNormalizer implements DenormalizerInterface, NormalizerInterf
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
 
-        $object = new SalarieCumuls();
         if (\array_key_exists('cp_AcquisParReportN1', $data) && \is_int($data['cp_AcquisParReportN1'])) {
             $data['cp_AcquisParReportN1'] = (float) $data['cp_AcquisParReportN1'];
         }
@@ -139,10 +143,6 @@ class SalarieCumulsNormalizer implements DenormalizerInterface, NormalizerInterf
 
         if (\array_key_exists('rco_ModifierCumuls', $data) && \is_int($data['rco_ModifierCumuls'])) {
             $data['rco_ModifierCumuls'] = (bool) $data['rco_ModifierCumuls'];
-        }
-
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
 
         if (\array_key_exists('cp_ModifierCumuls', $data) && null !== $data['cp_ModifierCumuls']) {
