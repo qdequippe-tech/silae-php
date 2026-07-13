@@ -71,7 +71,7 @@ This library uses [Jane](https://github.com/janephp/janephp) to automatically ge
 
 The OpenAPI specification files are located in the `openapi/` directory. To regenerate the client after updating the specification:
 
-1. Update the OpenAPI specification file if needed
+1. Update the OpenAPI specification file if needed (check the latest release here https://silae-api.document360.io/docs/release-note-1)
 2. Patch the specification:
 ```bash
 make patch-spec
