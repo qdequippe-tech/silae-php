@@ -12,6 +12,9 @@ return (new PhpCsFixer\Config())
         '@PhpCsFixer' => true,
         '@Symfony' => true,
         '@Symfony:risky' => true,
+        'declare_strict_types' => [
+            'strategy' => 'enforce',
+        ]
     ])
     ->setFinder($finder)
     ;

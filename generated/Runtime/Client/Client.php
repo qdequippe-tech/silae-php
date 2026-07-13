@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QdequippeTech\Silae\Api\Runtime\Client;
 
 use Jane\Component\OpenApiRuntime\Client\Plugin\AuthenticationRegistry;

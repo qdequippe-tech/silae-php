@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QdequippeTech\Silae\Api\Model;
 
 class CreationSalarieEmploisRequest
