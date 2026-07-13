@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QdequippeTech\Silae\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;

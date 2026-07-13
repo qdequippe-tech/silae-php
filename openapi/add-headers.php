@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $content = file_get_contents(__DIR__.'/Silae_Paie_Rest_API_Partenaires_latest.json');
 $openAPISpec = json_decode($content, true);
 

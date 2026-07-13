@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QdequippeTech\Silae\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
@@ -1546,6 +1548,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
 
         Reference::class => ReferenceNormalizer::class,
     ];
+
     protected $normalizersCache = [];
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
