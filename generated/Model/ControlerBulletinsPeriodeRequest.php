@@ -36,6 +36,16 @@ class ControlerBulletinsPeriodeRequest
      */
     protected $numeroDossier;
 
+    /**
+     * @var string|null
+     */
+    protected $matriculeSalarie;
+
+    /**
+     * @var int|null
+     */
+    protected $identifiantEmploi;
+
     public function getPeriode(): ?\DateTime
     {
         return $this->periode;
@@ -84,6 +94,32 @@ class ControlerBulletinsPeriodeRequest
     {
         $this->initialized['numeroDossier'] = true;
         $this->numeroDossier = $numeroDossier;
+
+        return $this;
+    }
+
+    public function getMatriculeSalarie(): ?string
+    {
+        return $this->matriculeSalarie;
+    }
+
+    public function setMatriculeSalarie(?string $matriculeSalarie): self
+    {
+        $this->initialized['matriculeSalarie'] = true;
+        $this->matriculeSalarie = $matriculeSalarie;
+
+        return $this;
+    }
+
+    public function getIdentifiantEmploi(): ?int
+    {
+        return $this->identifiantEmploi;
+    }
+
+    public function setIdentifiantEmploi(?int $identifiantEmploi): self
+    {
+        $this->initialized['identifiantEmploi'] = true;
+        $this->identifiantEmploi = $identifiantEmploi;
 
         return $this;
     }
