@@ -1,24 +1,27 @@
 tools/php-cs-fixer/vendor/composer/installed.php: tools/php-cs-fixer/composer.lock
 	composer install --working-dir=./tools/php-cs-fixer
 
+tools/rector/vendor/composer/installed.php: tools/rector/composer.lock
+	composer install --working-dir=./tools/rector
+
 vendor/composer/installed.php: composer.lock
 	composer install
 
 vendor: vendor/composer/installed.php
 
-tools-vendor: tools/php-cs-fixer/vendor/composer/installed.php
+tools-vendor: tools/php-cs-fixer/vendor/composer/installed.php tools/rector/vendor/composer/installed.php
 
 cs_check: tools-vendor ## Check code style
-	./tools/php-cs-fixer/vendor/bin/php-cs-fixer check
+	./tools/bin/php-cs-fixer check
 
 cs: tools-vendor ## Fix code style
-	./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix -q
+	./tools/bin/php-cs-fixer fix -q
 
-rectify: vendor ## Run Rector
-	./vendor/bin/rector --no-diffs
+rectify: tools-vendor ## Run Rector
+	./tools/bin/rector --no-diffs
 
-rector: vendor ## Run Rector (dry run)
-	./vendor/bin/rector --dry-run
+rector: tools-vendor ## Run Rector (dry run)
+	./tools/bin/rector --dry-run
 
 jane: vendor openapi/silae-paie-rest-api.json ## Generate the SDK
 	./vendor/bin/jane-openapi generate --config-file=.jane-openapi.php
