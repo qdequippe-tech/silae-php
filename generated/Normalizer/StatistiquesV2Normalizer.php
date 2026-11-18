@@ -8,6 +8,7 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\StatistiquesDADS;
 use QdequippeTech\Silae\Api\Model\StatistiquesProductionV2;
 use QdequippeTech\Silae\Api\Model\StatistiquesV2;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -100,7 +101,7 @@ class StatistiquesV2Normalizer implements DenormalizerInterface, NormalizerInter
         if ($data->isInitialized('statistiquesProduction') && null !== $data->getStatistiquesProduction()) {
             $values = [];
             foreach ($data->getStatistiquesProduction() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['statistiquesProduction'] = $values;
@@ -109,7 +110,7 @@ class StatistiquesV2Normalizer implements DenormalizerInterface, NormalizerInter
         if ($data->isInitialized('statistiquesDADS') && null !== $data->getStatistiquesDADS()) {
             $values_1 = [];
             foreach ($data->getStatistiquesDADS() as $value_1) {
-                $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
+                $values_1[] = null === $value_1 ? null : new JsonObject($this->normalizer->normalize($value_1, 'json', $context));
             }
 
             $dataArray['statistiquesDADS'] = $values_1;

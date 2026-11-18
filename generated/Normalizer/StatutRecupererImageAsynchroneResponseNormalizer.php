@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ImageAnnexe;
 use QdequippeTech\Silae\Api\Model\StatutRecupererImageAsynchroneResponse;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -112,7 +113,7 @@ class StatutRecupererImageAsynchroneResponseNormalizer implements DenormalizerIn
         if ($data->isInitialized('imagesAnnexes') && null !== $data->getImagesAnnexes()) {
             $values = [];
             foreach ($data->getImagesAnnexes() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['imagesAnnexes'] = $values;

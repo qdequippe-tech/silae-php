@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SaisieArret;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -68,7 +69,12 @@ class SaisieArretNormalizer implements DenormalizerInterface, NormalizerInterfac
         }
 
         if (\array_key_exists('dateDemande', $data) && null !== $data['dateDemande']) {
-            $object->setDateDemande(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDemande']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDemande']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateDemande'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateDemande($date);
         } elseif (\array_key_exists('dateDemande', $data) && null === $data['dateDemande']) {
             $object->setDateDemande(null);
         }
@@ -80,7 +86,12 @@ class SaisieArretNormalizer implements DenormalizerInterface, NormalizerInterfac
         }
 
         if (\array_key_exists('dateDebutPrelevement', $data) && null !== $data['dateDebutPrelevement']) {
-            $object->setDateDebutPrelevement(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebutPrelevement']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebutPrelevement']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['dateDebutPrelevement'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateDebutPrelevement($date_1);
         } elseif (\array_key_exists('dateDebutPrelevement', $data) && null === $data['dateDebutPrelevement']) {
             $object->setDateDebutPrelevement(null);
         }

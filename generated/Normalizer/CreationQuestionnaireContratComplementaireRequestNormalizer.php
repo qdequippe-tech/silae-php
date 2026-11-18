@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\CreationQuestionnaireContratComplementaireRequest;
 use QdequippeTech\Silae\Api\Model\QuestionnaireContratComplementaire;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -67,7 +68,7 @@ class CreationQuestionnaireContratComplementaireRequestNormalizer implements Den
     {
         $dataArray = [];
         if ($data->isInitialized('questionnaireContratComplementaire') && null !== $data->getQuestionnaireContratComplementaire()) {
-            $dataArray['questionnaireContratComplementaire'] = $this->normalizer->normalize($data->getQuestionnaireContratComplementaire(), 'json', $context);
+            $dataArray['questionnaireContratComplementaire'] = null === $data->getQuestionnaireContratComplementaire() ? null : new JsonObject($this->normalizer->normalize($data->getQuestionnaireContratComplementaire(), 'json', $context));
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

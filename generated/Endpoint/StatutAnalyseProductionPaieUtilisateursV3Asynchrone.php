@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieUtilisateursV3AsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieUtilisateursV3AsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieUtilisateursV3AsynchroneUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieUtilisateursV3AsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -90,7 +90,7 @@ class StatutAnalyseProductionPaieUtilisateursV3Asynchrone extends BaseEndpoint i
      * @throws StatutAnalyseProductionPaieUtilisateursV3AsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieUtilisateursV3AsynchroneUnauthorizedException
      * @throws StatutAnalyseProductionPaieUtilisateursV3AsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -116,7 +116,7 @@ class StatutAnalyseProductionPaieUtilisateursV3Asynchrone extends BaseEndpoint i
             throw new StatutAnalyseProductionPaieUtilisateursV3AsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

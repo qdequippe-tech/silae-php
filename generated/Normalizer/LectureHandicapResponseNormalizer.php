@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\Handicap;
 use QdequippeTech\Silae\Api\Model\LectureHandicapResponse;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -82,7 +83,7 @@ class LectureHandicapResponseNormalizer implements DenormalizerInterface, Normal
         if ($data->isInitialized('handicap') && null !== $data->getHandicap()) {
             $values = [];
             foreach ($data->getHandicap() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['handicap'] = $values;

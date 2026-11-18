@@ -42,7 +42,7 @@ abstract class Client
     {
         [$bodyHeaders, $body] = $endpoint->getBody($this->serializer, $this->streamFactory);
         $queryString = $endpoint->getQueryString();
-        $uriGlue = str_contains($endpoint->getUri(), '?') ? '&' : '?';
+        $uriGlue = !str_contains($endpoint->getUri(), '?') ? '?' : '&';
         $uri = '' !== $queryString ? $endpoint->getUri().$uriGlue.$queryString : $endpoint->getUri();
         $request = $this->requestFactory->createRequest($endpoint->getMethod(), $uri);
         if ($body) {
@@ -50,7 +50,7 @@ abstract class Client
                 $request = $request->withBody($body);
             } elseif (\is_resource($body)) {
                 $request = $request->withBody($this->streamFactory->createStreamFromResource($body));
-            } elseif (\strlen((string) $body) <= 4000 && @file_exists($body)) {
+            } elseif (\strlen($body) <= 4000 && @file_exists($body)) {
                 // more than 4096 chars will trigger an error
                 $request = $request->withBody($this->streamFactory->createStreamFromFile($body));
             } else {
@@ -59,11 +59,15 @@ abstract class Client
         }
 
         foreach ($endpoint->getHeaders($bodyHeaders) as $name => $value) {
-            $request = $request->withHeader($name, \is_bool($value) ? ($value ? 'true' : 'false') : ($value));
+            $request = $request->withHeader($name, !\is_bool($value) ? $value : ($value ? 'true' : 'false'));
         }
 
-        if ([] !== $endpoint->getAuthenticationScopes()) {
-            $scopes = $endpoint->getAuthenticationScopes();
+        if (\count($endpoint->getAuthenticationScopes()) > 0) {
+            $scopes = [];
+            foreach ($endpoint->getAuthenticationScopes() as $scope) {
+                $scopes[] = $scope;
+            }
+
             $request = $request->withHeader(AuthenticationRegistry::SCOPES_HEADER, $scopes);
         }
 

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SalarieCumuls;
 use QdequippeTech\Silae\Api\Model\SalarieInitialiserCumulsRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -73,7 +74,7 @@ class SalarieInitialiserCumulsRequestNormalizer implements DenormalizerInterface
     {
         $dataArray = [];
         if ($data->isInitialized('salarieCumuls') && null !== $data->getSalarieCumuls()) {
-            $dataArray['salarieCumuls'] = $this->normalizer->normalize($data->getSalarieCumuls(), 'json', $context);
+            $dataArray['salarieCumuls'] = null === $data->getSalarieCumuls() ? null : new JsonObject($this->normalizer->normalize($data->getSalarieCumuls(), 'json', $context));
         }
 
         $dataArray['matriculeSalarie'] = $data->getMatriculeSalarie();

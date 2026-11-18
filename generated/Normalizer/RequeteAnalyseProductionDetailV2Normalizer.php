@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\RequeteAnalyseProductionDetailV2;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -60,13 +61,23 @@ class RequeteAnalyseProductionDetailV2Normalizer implements DenormalizerInterfac
         }
 
         if (\array_key_exists('periodeDebut', $data) && null !== $data['periodeDebut']) {
-            $object->setPeriodeDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeDebut']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeDebut']);
+            if (false === $date) {
+                throw new InvalidDateException($data['periodeDebut'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setPeriodeDebut($date);
         } elseif (\array_key_exists('periodeDebut', $data) && null === $data['periodeDebut']) {
             $object->setPeriodeDebut(null);
         }
 
         if (\array_key_exists('periodeFin', $data) && null !== $data['periodeFin']) {
-            $object->setPeriodeFin(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeFin']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeFin']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['periodeFin'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setPeriodeFin($date_1);
         } elseif (\array_key_exists('periodeFin', $data) && null === $data['periodeFin']) {
             $object->setPeriodeFin(null);
         }

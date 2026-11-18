@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\EffectifSociete;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -60,7 +61,12 @@ class EffectifSocieteNormalizer implements DenormalizerInterface, NormalizerInte
         }
 
         if (\array_key_exists('annee', $data) && null !== $data['annee']) {
-            $object->setAnnee(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['annee']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['annee']);
+            if (false === $date) {
+                throw new InvalidDateException($data['annee'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setAnnee($date);
         } elseif (\array_key_exists('annee', $data) && null === $data['annee']) {
             $object->setAnnee(null);
         }

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ExtraCreationManifestationRequest;
 use QdequippeTech\Silae\Api\Model\ExtraManifestation;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -77,7 +78,7 @@ class ExtraCreationManifestationRequestNormalizer implements DenormalizerInterfa
         }
 
         if ($data->isInitialized('structManifestation') && null !== $data->getStructManifestation()) {
-            $dataArray['structManifestation'] = $this->normalizer->normalize($data->getStructManifestation(), 'json', $context);
+            $dataArray['structManifestation'] = null === $data->getStructManifestation() ? null : new JsonObject($this->normalizer->normalize($data->getStructManifestation(), 'json', $context));
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

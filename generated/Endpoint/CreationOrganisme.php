@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\CreationOrganismeBadRequestException;
 use QdequippeTech\Silae\Api\Exception\CreationOrganismeInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\CreationOrganismeUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\CreationOrganismeRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +47,7 @@ class CreationOrganisme extends BaseEndpoint implements Endpoint
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -72,7 +72,7 @@ class CreationOrganisme extends BaseEndpoint implements Endpoint
      * @throws CreationOrganismeBadRequestException
      * @throws CreationOrganismeUnauthorizedException
      * @throws CreationOrganismeInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -94,7 +94,7 @@ class CreationOrganisme extends BaseEndpoint implements Endpoint
             throw new CreationOrganismeInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

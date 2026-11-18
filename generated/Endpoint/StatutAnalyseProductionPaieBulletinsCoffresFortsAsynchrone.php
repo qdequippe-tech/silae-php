@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -90,7 +90,7 @@ class StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchrone extends BaseEnd
      * @throws StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneUnauthorizedException
      * @throws StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -116,7 +116,7 @@ class StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchrone extends BaseEnd
             throw new StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

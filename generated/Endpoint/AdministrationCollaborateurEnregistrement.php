@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurEnregistrementBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurEnregistrementInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurEnregistrementUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Model\AdministrationCollaborateurEnregistrementRequest;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +47,7 @@ class AdministrationCollaborateurEnregistrement extends BaseEndpoint implements 
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -72,7 +72,7 @@ class AdministrationCollaborateurEnregistrement extends BaseEndpoint implements 
      * @throws AdministrationCollaborateurEnregistrementBadRequestException
      * @throws AdministrationCollaborateurEnregistrementUnauthorizedException
      * @throws AdministrationCollaborateurEnregistrementInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -94,7 +94,7 @@ class AdministrationCollaborateurEnregistrement extends BaseEndpoint implements 
             throw new AdministrationCollaborateurEnregistrementInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

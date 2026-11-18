@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\DonneesAxeAnalytiqueSalarie;
 use QdequippeTech\Silae\Api\Model\SousCategoriesEnPC;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -60,6 +61,12 @@ class DonneesAxeAnalytiqueSalarieNormalizer implements DenormalizerInterface, No
             $object->setSousCategorieParDefaut(null);
         }
 
+        if (\array_key_exists('libelleSousCategorie', $data) && null !== $data['libelleSousCategorie']) {
+            $object->setLibelleSousCategorie($data['libelleSousCategorie']);
+        } elseif (\array_key_exists('libelleSousCategorie', $data) && null === $data['libelleSousCategorie']) {
+            $object->setLibelleSousCategorie(null);
+        }
+
         if (\array_key_exists('sousCategoriesEnPC', $data) && null !== $data['sousCategoriesEnPC']) {
             $values = [];
             foreach ($data['sousCategoriesEnPC'] as $value) {
@@ -85,10 +92,14 @@ class DonneesAxeAnalytiqueSalarieNormalizer implements DenormalizerInterface, No
             $dataArray['sousCategorieParDefaut'] = $data->getSousCategorieParDefaut();
         }
 
+        if ($data->isInitialized('libelleSousCategorie') && null !== $data->getLibelleSousCategorie()) {
+            $dataArray['libelleSousCategorie'] = $data->getLibelleSousCategorie();
+        }
+
         if ($data->isInitialized('sousCategoriesEnPC') && null !== $data->getSousCategoriesEnPC()) {
             $values = [];
             foreach ($data->getSousCategoriesEnPC() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['sousCategoriesEnPC'] = $values;

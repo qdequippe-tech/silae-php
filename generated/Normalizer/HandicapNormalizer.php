@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\Handicap;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -86,19 +87,34 @@ class HandicapNormalizer implements DenormalizerInterface, NormalizerInterface, 
         }
 
         if (\array_key_exists('cdapH_DateDebut', $data) && null !== $data['cdapH_DateDebut']) {
-            $object->setCdapHDateDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['cdapH_DateDebut']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['cdapH_DateDebut']);
+            if (false === $date) {
+                throw new InvalidDateException($data['cdapH_DateDebut'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setCdapHDateDebut($date);
         } elseif (\array_key_exists('cdapH_DateDebut', $data) && null === $data['cdapH_DateDebut']) {
             $object->setCdapHDateDebut(null);
         }
 
         if (\array_key_exists('cdapH_DateFin', $data) && null !== $data['cdapH_DateFin']) {
-            $object->setCdapHDateFin(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['cdapH_DateFin']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['cdapH_DateFin']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['cdapH_DateFin'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setCdapHDateFin($date_1);
         } elseif (\array_key_exists('cdapH_DateFin', $data) && null === $data['cdapH_DateFin']) {
             $object->setCdapHDateFin(null);
         }
 
         if (\array_key_exists('cdapH_DtDepotRenouvellement', $data) && null !== $data['cdapH_DtDepotRenouvellement']) {
-            $object->setCdapHDtDepotRenouvellement(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['cdapH_DtDepotRenouvellement']));
+            $date_2 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['cdapH_DtDepotRenouvellement']);
+            if (false === $date_2) {
+                throw new InvalidDateException($data['cdapH_DtDepotRenouvellement'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setCdapHDtDepotRenouvellement($date_2);
         } elseif (\array_key_exists('cdapH_DtDepotRenouvellement', $data) && null === $data['cdapH_DtDepotRenouvellement']) {
             $object->setCdapHDtDepotRenouvellement(null);
         }
@@ -116,7 +132,12 @@ class HandicapNormalizer implements DenormalizerInterface, NormalizerInterface, 
         }
 
         if (\array_key_exists('accident_DateDebut', $data) && null !== $data['accident_DateDebut']) {
-            $object->setAccidentDateDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['accident_DateDebut']));
+            $date_3 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['accident_DateDebut']);
+            if (false === $date_3) {
+                throw new InvalidDateException($data['accident_DateDebut'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setAccidentDateDebut($date_3);
         } elseif (\array_key_exists('accident_DateDebut', $data) && null === $data['accident_DateDebut']) {
             $object->setAccidentDateDebut(null);
         }
@@ -140,7 +161,12 @@ class HandicapNormalizer implements DenormalizerInterface, NormalizerInterface, 
         }
 
         if (\array_key_exists('autre_DateDebut', $data) && null !== $data['autre_DateDebut']) {
-            $object->setAutreDateDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['autre_DateDebut']));
+            $date_4 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['autre_DateDebut']);
+            if (false === $date_4) {
+                throw new InvalidDateException($data['autre_DateDebut'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setAutreDateDebut($date_4);
         } elseif (\array_key_exists('autre_DateDebut', $data) && null === $data['autre_DateDebut']) {
             $object->setAutreDateDebut(null);
         }

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\LectureInformationsPaieRequest;
 use QdequippeTech\Silae\Api\Model\RequeteLectureInfos;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -59,7 +60,7 @@ class LectureInformationsPaieRequestNormalizer implements DenormalizerInterface,
 
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        return ['requeteLectureInfos' => $this->normalizer->normalize($data->getRequeteLectureInfos(), 'json', $context)];
+        return ['requeteLectureInfos' => null === $data->getRequeteLectureInfos() ? null : new JsonObject($this->normalizer->normalize($data->getRequeteLectureInfos(), 'json', $context))];
     }
 
     public function getSupportedTypes(?string $format = null): array

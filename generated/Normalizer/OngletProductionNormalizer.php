@@ -141,6 +141,17 @@ class OngletProductionNormalizer implements DenormalizerInterface, NormalizerInt
             $object->setRequeteFiltre(null);
         }
 
+        if (\array_key_exists('optionFonctionnalite', $data) && null !== $data['optionFonctionnalite']) {
+            $values = [];
+            foreach ($data['optionFonctionnalite'] as $value) {
+                $values[] = $value;
+            }
+
+            $object->setOptionFonctionnalite($values);
+        } elseif (\array_key_exists('optionFonctionnalite', $data) && null === $data['optionFonctionnalite']) {
+            $object->setOptionFonctionnalite(null);
+        }
+
         return $object;
     }
 
@@ -189,6 +200,15 @@ class OngletProductionNormalizer implements DenormalizerInterface, NormalizerInt
 
         if ($data->isInitialized('requeteFiltre') && null !== $data->getRequeteFiltre()) {
             $dataArray['requeteFiltre'] = $data->getRequeteFiltre();
+        }
+
+        if ($data->isInitialized('optionFonctionnalite') && null !== $data->getOptionFonctionnalite()) {
+            $values = [];
+            foreach ($data->getOptionFonctionnalite() as $value) {
+                $values[] = $value;
+            }
+
+            $dataArray['optionFonctionnalite'] = $values;
         }
 
         return $dataArray;

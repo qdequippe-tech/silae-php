@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\LectureCompteCollaborateurModelesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureCompteCollaborateurModelesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureCompteCollaborateurModelesUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\LectureCompteCollaborateurModelesResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -73,7 +73,7 @@ class LectureCompteCollaborateurModeles extends BaseEndpoint implements Endpoint
      * @throws LectureCompteCollaborateurModelesBadRequestException
      * @throws LectureCompteCollaborateurModelesUnauthorizedException
      * @throws LectureCompteCollaborateurModelesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -95,7 +95,7 @@ class LectureCompteCollaborateurModeles extends BaseEndpoint implements Endpoint
             throw new LectureCompteCollaborateurModelesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

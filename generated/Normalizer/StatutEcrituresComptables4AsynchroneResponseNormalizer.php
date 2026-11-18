@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\EcrituresComptablesAvecRuptures;
 use QdequippeTech\Silae\Api\Model\StatutEcrituresComptables4AsynchroneResponse;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -89,7 +90,7 @@ class StatutEcrituresComptables4AsynchroneResponseNormalizer implements Denormal
     {
         $dataArray = [];
         if ($data->isInitialized('ecrituresComptables') && null !== $data->getEcrituresComptables()) {
-            $dataArray['ecrituresComptables'] = $this->normalizer->normalize($data->getEcrituresComptables(), 'json', $context);
+            $dataArray['ecrituresComptables'] = null === $data->getEcrituresComptables() ? null : new JsonObject($this->normalizer->normalize($data->getEcrituresComptables(), 'json', $context));
         }
 
         if ($data->isInitialized('statut') && null !== $data->getStatut()) {

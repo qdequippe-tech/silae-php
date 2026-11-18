@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteRequest;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -56,7 +57,12 @@ class ModificationTaxeApprentissageSocieteRequestNormalizer implements Denormali
         }
 
         if (\array_key_exists('anneeMillesime', $data) && null !== $data['anneeMillesime']) {
-            $object->setAnneeMillesime(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['anneeMillesime']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['anneeMillesime']);
+            if (false === $date) {
+                throw new InvalidDateException($data['anneeMillesime'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setAnneeMillesime($date);
         } elseif (\array_key_exists('anneeMillesime', $data) && null === $data['anneeMillesime']) {
             $object->setAnneeMillesime(null);
         }

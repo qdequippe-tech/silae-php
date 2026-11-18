@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\LectureInformationsSalarie;
 use QdequippeTech\Silae\Api\Model\LectureInformationsSalarieResponse;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -61,7 +62,7 @@ class LectureInformationsSalarieResponseNormalizer implements DenormalizerInterf
     {
         $dataArray = [];
         if ($data->isInitialized('salarie') && null !== $data->getSalarie()) {
-            $dataArray['salarie'] = $this->normalizer->normalize($data->getSalarie(), 'json', $context);
+            $dataArray['salarie'] = null === $data->getSalarie() ? null : new JsonObject($this->normalizer->normalize($data->getSalarie(), 'json', $context));
         }
 
         return $dataArray;

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\StatistiquesProductionBulletin;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -48,7 +49,12 @@ class StatistiquesProductionBulletinNormalizer implements DenormalizerInterface,
         }
 
         if (\array_key_exists('periodePaie', $data) && null !== $data['periodePaie']) {
-            $object->setPeriodePaie(\DateTime::createFromFormat('Y-m-d', $data['periodePaie'])->setTime(0, 0, 0));
+            $date = \DateTime::createFromFormat('Y-m-d', $data['periodePaie']);
+            if (false === $date) {
+                throw new InvalidDateException($data['periodePaie'], 'Y-m-d');
+            }
+
+            $object->setPeriodePaie($date->setTime(0, 0, 0));
         } elseif (\array_key_exists('periodePaie', $data) && null === $data['periodePaie']) {
             $object->setPeriodePaie(null);
         }

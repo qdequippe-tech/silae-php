@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\EtablissementInfoSup;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -1042,7 +1043,12 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
         }
 
         if (\array_key_exists('etA_ExoJEIDateDebut', $data) && null !== $data['etA_ExoJEIDateDebut']) {
-            $object->setEtAExoJEIDateDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_ExoJEIDateDebut']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_ExoJEIDateDebut']);
+            if (false === $date) {
+                throw new InvalidDateException($data['etA_ExoJEIDateDebut'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setEtAExoJEIDateDebut($date);
         } elseif (\array_key_exists('etA_ExoJEIDateDebut', $data) && null === $data['etA_ExoJEIDateDebut']) {
             $object->setEtAExoJEIDateDebut(null);
         }
@@ -1390,7 +1396,12 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
         }
 
         if (\array_key_exists('etA_PeriodeRegulTauxAT_1', $data) && null !== $data['etA_PeriodeRegulTauxAT_1']) {
-            $object->setEtAPeriodeRegulTauxAT1(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_PeriodeRegulTauxAT_1']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_PeriodeRegulTauxAT_1']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['etA_PeriodeRegulTauxAT_1'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setEtAPeriodeRegulTauxAT1($date_1);
         } elseif (\array_key_exists('etA_PeriodeRegulTauxAT_1', $data) && null === $data['etA_PeriodeRegulTauxAT_1']) {
             $object->setEtAPeriodeRegulTauxAT1(null);
         }
@@ -1402,7 +1413,12 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
         }
 
         if (\array_key_exists('etA_PeriodeRegulTauxAT_2', $data) && null !== $data['etA_PeriodeRegulTauxAT_2']) {
-            $object->setEtAPeriodeRegulTauxAT2(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_PeriodeRegulTauxAT_2']));
+            $date_2 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_PeriodeRegulTauxAT_2']);
+            if (false === $date_2) {
+                throw new InvalidDateException($data['etA_PeriodeRegulTauxAT_2'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setEtAPeriodeRegulTauxAT2($date_2);
         } elseif (\array_key_exists('etA_PeriodeRegulTauxAT_2', $data) && null === $data['etA_PeriodeRegulTauxAT_2']) {
             $object->setEtAPeriodeRegulTauxAT2(null);
         }
@@ -1414,7 +1430,12 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
         }
 
         if (\array_key_exists('etA_PeriodeRegulTauxAT_3', $data) && null !== $data['etA_PeriodeRegulTauxAT_3']) {
-            $object->setEtAPeriodeRegulTauxAT3(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_PeriodeRegulTauxAT_3']));
+            $date_3 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_PeriodeRegulTauxAT_3']);
+            if (false === $date_3) {
+                throw new InvalidDateException($data['etA_PeriodeRegulTauxAT_3'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setEtAPeriodeRegulTauxAT3($date_3);
         } elseif (\array_key_exists('etA_PeriodeRegulTauxAT_3', $data) && null === $data['etA_PeriodeRegulTauxAT_3']) {
             $object->setEtAPeriodeRegulTauxAT3(null);
         }
@@ -1426,7 +1447,12 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
         }
 
         if (\array_key_exists('etA_PeriodeRegulTauxAT_4', $data) && null !== $data['etA_PeriodeRegulTauxAT_4']) {
-            $object->setEtAPeriodeRegulTauxAT4(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_PeriodeRegulTauxAT_4']));
+            $date_4 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_PeriodeRegulTauxAT_4']);
+            if (false === $date_4) {
+                throw new InvalidDateException($data['etA_PeriodeRegulTauxAT_4'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setEtAPeriodeRegulTauxAT4($date_4);
         } elseif (\array_key_exists('etA_PeriodeRegulTauxAT_4', $data) && null === $data['etA_PeriodeRegulTauxAT_4']) {
             $object->setEtAPeriodeRegulTauxAT4(null);
         }
@@ -1438,7 +1464,12 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
         }
 
         if (\array_key_exists('etA_PeriodeRegulTauxAT_5', $data) && null !== $data['etA_PeriodeRegulTauxAT_5']) {
-            $object->setEtAPeriodeRegulTauxAT5(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_PeriodeRegulTauxAT_5']));
+            $date_5 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_PeriodeRegulTauxAT_5']);
+            if (false === $date_5) {
+                throw new InvalidDateException($data['etA_PeriodeRegulTauxAT_5'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setEtAPeriodeRegulTauxAT5($date_5);
         } elseif (\array_key_exists('etA_PeriodeRegulTauxAT_5', $data) && null === $data['etA_PeriodeRegulTauxAT_5']) {
             $object->setEtAPeriodeRegulTauxAT5(null);
         }
@@ -1450,7 +1481,12 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
         }
 
         if (\array_key_exists('etA_PeriodeRegulTauxAT_6', $data) && null !== $data['etA_PeriodeRegulTauxAT_6']) {
-            $object->setEtAPeriodeRegulTauxAT6(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_PeriodeRegulTauxAT_6']));
+            $date_6 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_PeriodeRegulTauxAT_6']);
+            if (false === $date_6) {
+                throw new InvalidDateException($data['etA_PeriodeRegulTauxAT_6'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setEtAPeriodeRegulTauxAT6($date_6);
         } elseif (\array_key_exists('etA_PeriodeRegulTauxAT_6', $data) && null === $data['etA_PeriodeRegulTauxAT_6']) {
             $object->setEtAPeriodeRegulTauxAT6(null);
         }
@@ -1462,7 +1498,12 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
         }
 
         if (\array_key_exists('etA_PeriodeRegulTauxAT_7', $data) && null !== $data['etA_PeriodeRegulTauxAT_7']) {
-            $object->setEtAPeriodeRegulTauxAT7(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_PeriodeRegulTauxAT_7']));
+            $date_7 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['etA_PeriodeRegulTauxAT_7']);
+            if (false === $date_7) {
+                throw new InvalidDateException($data['etA_PeriodeRegulTauxAT_7'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setEtAPeriodeRegulTauxAT7($date_7);
         } elseif (\array_key_exists('etA_PeriodeRegulTauxAT_7', $data) && null === $data['etA_PeriodeRegulTauxAT_7']) {
             $object->setEtAPeriodeRegulTauxAT7(null);
         }
@@ -2242,7 +2283,12 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
         }
 
         if (\array_key_exists('inT_DateDeces', $data) && null !== $data['inT_DateDeces']) {
-            $object->setInTDateDeces(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['inT_DateDeces']));
+            $date_8 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['inT_DateDeces']);
+            if (false === $date_8) {
+                throw new InvalidDateException($data['inT_DateDeces'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setInTDateDeces($date_8);
         } elseif (\array_key_exists('inT_DateDeces', $data) && null === $data['inT_DateDeces']) {
             $object->setInTDateDeces(null);
         }
@@ -2254,7 +2300,12 @@ class EtablissementInfoSupNormalizer implements DenormalizerInterface, Normalize
         }
 
         if (\array_key_exists('inT_DateNaissance', $data) && null !== $data['inT_DateNaissance']) {
-            $object->setInTDateNaissance(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['inT_DateNaissance']));
+            $date_9 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['inT_DateNaissance']);
+            if (false === $date_9) {
+                throw new InvalidDateException($data['inT_DateNaissance'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setInTDateNaissance($date_9);
         } elseif (\array_key_exists('inT_DateNaissance', $data) && null === $data['inT_DateNaissance']) {
             $object->setInTDateNaissance(null);
         }

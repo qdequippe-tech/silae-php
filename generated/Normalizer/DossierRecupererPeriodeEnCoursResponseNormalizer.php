@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\DossierRecupererPeriodeEnCoursResponse;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -48,7 +49,12 @@ class DossierRecupererPeriodeEnCoursResponseNormalizer implements DenormalizerIn
         }
 
         if (\array_key_exists('periodeEnCours', $data) && null !== $data['periodeEnCours']) {
-            $object->setPeriodeEnCours(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeEnCours']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeEnCours']);
+            if (false === $date) {
+                throw new InvalidDateException($data['periodeEnCours'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setPeriodeEnCours($date);
         } elseif (\array_key_exists('periodeEnCours', $data) && null === $data['periodeEnCours']) {
             $object->setPeriodeEnCours(null);
         }

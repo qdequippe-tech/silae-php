@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AnalyseActiviteStatutAccesOptionsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseActiviteStatutAccesOptionsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseActiviteStatutAccesOptionsUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Model\AnalyseActiviteStatutAccesOptionsRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseActiviteStatutAccesOptionsResponse;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
@@ -48,7 +48,7 @@ class AnalyseActiviteStatutAccesOptions extends BaseEndpoint implements Endpoint
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class AnalyseActiviteStatutAccesOptions extends BaseEndpoint implements Endpoint
      * @throws AnalyseActiviteStatutAccesOptionsBadRequestException
      * @throws AnalyseActiviteStatutAccesOptionsUnauthorizedException
      * @throws AnalyseActiviteStatutAccesOptionsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class AnalyseActiviteStatutAccesOptions extends BaseEndpoint implements Endpoint
             throw new AnalyseActiviteStatutAccesOptionsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

@@ -93,8 +93,14 @@ use QdequippeTech\Silae\Api\Endpoint\EditionJournalDePaie;
 use QdequippeTech\Silae\Api\Endpoint\EditionJournalDePaieAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\EditionRecapDePaie;
 use QdequippeTech\Silae\Api\Endpoint\EditionRecapDePaieAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\EditionRecapDePaieDetailleAvecAnalytique;
+use QdequippeTech\Silae\Api\Endpoint\EditionRecapDePaieDetailleAvecAnalytiqueAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\EditionRecapDePaieDetailleParPeriode;
+use QdequippeTech\Silae\Api\Endpoint\EditionRecapDePaieDetailleParPeriodeAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\EditionRecapDePaieDetailleParSalarie;
 use QdequippeTech\Silae\Api\Endpoint\EditionRecapDePaieDetailleParSalarieAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\EditionsGroupees;
+use QdequippeTech\Silae\Api\Endpoint\EditionsGroupeesAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\EditionSoldeDeRepos;
 use QdequippeTech\Silae\Api\Endpoint\EditionSoldeDeReposAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\EditionTableauDesCharges;
@@ -142,6 +148,7 @@ use QdequippeTech\Silae\Api\Endpoint\LectureReponsesQuestionnaireConventionnelSa
 use QdequippeTech\Silae\Api\Endpoint\LectureReponsesQuestionnaireFicheSalarie;
 use QdequippeTech\Silae\Api\Endpoint\LectureSaisieArret;
 use QdequippeTech\Silae\Api\Endpoint\LectureSalarieProtege;
+use QdequippeTech\Silae\Api\Endpoint\LectureTauxATEtablissement;
 use QdequippeTech\Silae\Api\Endpoint\LectureTaxeApprentissageEtablissement;
 use QdequippeTech\Silae\Api\Endpoint\LectureTaxeApprentissageSociete;
 use QdequippeTech\Silae\Api\Endpoint\LectureTaxeTransport;
@@ -283,7 +290,10 @@ use QdequippeTech\Silae\Api\Endpoint\StatutEditionHistoriqueAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionHistoriqueChiffreAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionJournalDePaieAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionRecapDePaieAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutEditionRecapDePaieDetailleAvecAnalytiqueAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutEditionRecapDePaieDetailleParPeriodeAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionRecapDePaieDetailleParSalarieAsynchrone;
+use QdequippeTech\Silae\Api\Endpoint\StatutEditionsGroupeesAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionSoldeDeReposAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutEditionTableauDesChargesAsynchrone;
 use QdequippeTech\Silae\Api\Endpoint\StatutGenererDSNEvenementielleFCTUAsynchrone;
@@ -419,6 +429,7 @@ use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV3Unautho
 use QdequippeTech\Silae\Api\Exception\AppliquerModeleCollaborateurBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AppliquerModeleCollaborateurInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AppliquerModeleCollaborateurUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\BureautiquePaieNombreDocumentsCreesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\BureautiquePaieNombreDocumentsCreesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\BureautiquePaieNombreDocumentsCreesUnauthorizedException;
@@ -546,6 +557,18 @@ use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieAsynchroneBadRequestExce
 use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleAvecAnalytiqueAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleAvecAnalytiqueAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleAvecAnalytiqueAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleAvecAnalytiqueBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleAvecAnalytiqueInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleAvecAnalytiqueUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParPeriodeAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParPeriodeAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParPeriodeAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParPeriodeBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParPeriodeInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParPeriodeUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParSalarieAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParSalarieAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParSalarieAsynchroneUnauthorizedException;
@@ -554,6 +577,12 @@ use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParSalarieIntern
 use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieDetailleParSalarieUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EditionRecapDePaieUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\EditionsGroupeesAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionsGroupeesAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EditionsGroupeesAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\EditionsGroupeesBadRequestException;
+use QdequippeTech\Silae\Api\Exception\EditionsGroupeesInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\EditionsGroupeesUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\EditionSoldeDeReposAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EditionSoldeDeReposAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EditionSoldeDeReposAsynchroneUnauthorizedException;
@@ -695,6 +724,9 @@ use QdequippeTech\Silae\Api\Exception\LectureSaisieArretUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\LectureSalarieProtegeBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureSalarieProtegeInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureSalarieProtegeUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\LectureTauxATEtablissementBadRequestException;
+use QdequippeTech\Silae\Api\Exception\LectureTauxATEtablissementInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\LectureTauxATEtablissementUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageEtablissementBadRequestException;
 use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageEtablissementInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\LectureTaxeApprentissageEtablissementUnauthorizedException;
@@ -1118,9 +1150,18 @@ use QdequippeTech\Silae\Api\Exception\StatutEditionJournalDePaieAsynchroneUnauth
 use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieDetailleAvecAnalytiqueAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieDetailleAvecAnalytiqueAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieDetailleAvecAnalytiqueAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieDetailleParPeriodeAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieDetailleParPeriodeAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieDetailleParPeriodeAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieDetailleParSalarieAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieDetailleParSalarieAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionRecapDePaieDetailleParSalarieAsynchroneUnauthorizedException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionsGroupeesAsynchroneBadRequestException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionsGroupeesAsynchroneInternalServerErrorException;
+use QdequippeTech\Silae\Api\Exception\StatutEditionsGroupeesAsynchroneUnauthorizedException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionSoldeDeReposAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionSoldeDeReposAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionSoldeDeReposAsynchroneUnauthorizedException;
@@ -1163,7 +1204,6 @@ use QdequippeTech\Silae\Api\Exception\StatutSoldeReposAsynchroneUnauthorizedExce
 use QdequippeTech\Silae\Api\Exception\StatutSpectacleSalarieCalculerBulletinAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutSpectacleSalarieCalculerBulletinAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutSpectacleSalarieCalculerBulletinAsynchroneUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Exception\ValideCleDossierBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ValideCleDossierInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ValideCleDossierUnauthorizedException;
@@ -1258,10 +1298,16 @@ use QdequippeTech\Silae\Api\Model\EditionHistoriqueRequest;
 use QdequippeTech\Silae\Api\Model\EditionHistoriqueResponse;
 use QdequippeTech\Silae\Api\Model\EditionJournalDePaieRequest;
 use QdequippeTech\Silae\Api\Model\EditionJournalDePaieResponse;
+use QdequippeTech\Silae\Api\Model\EditionRecapDePaieDetailleAvecAnalytiqueRequest;
+use QdequippeTech\Silae\Api\Model\EditionRecapDePaieDetailleAvecAnalytiqueResponse;
+use QdequippeTech\Silae\Api\Model\EditionRecapDePaieDetailleParPeriodeRequest;
+use QdequippeTech\Silae\Api\Model\EditionRecapDePaieDetailleParPeriodeResponse;
 use QdequippeTech\Silae\Api\Model\EditionRecapDePaieDetailleParSalarieRequest;
 use QdequippeTech\Silae\Api\Model\EditionRecapDePaieDetailleParSalarieResponse;
 use QdequippeTech\Silae\Api\Model\EditionRecapDePaieRequest;
 use QdequippeTech\Silae\Api\Model\EditionRecapDePaieResponse;
+use QdequippeTech\Silae\Api\Model\EditionsGroupeesRequest;
+use QdequippeTech\Silae\Api\Model\EditionsGroupeesResponse;
 use QdequippeTech\Silae\Api\Model\EditionSoldeDeReposRequest;
 use QdequippeTech\Silae\Api\Model\EditionSoldeDeReposResponse;
 use QdequippeTech\Silae\Api\Model\EditionTableauDesChargesRequest;
@@ -1327,6 +1373,8 @@ use QdequippeTech\Silae\Api\Model\LectureReponsesQuestionnaireConventionnelSalar
 use QdequippeTech\Silae\Api\Model\LectureReponsesQuestionnaireFicheSalarieResponse;
 use QdequippeTech\Silae\Api\Model\LectureSaisieArretResponse;
 use QdequippeTech\Silae\Api\Model\LectureSalarieProtegeResponse;
+use QdequippeTech\Silae\Api\Model\LectureTauxATEtablissementRequest;
+use QdequippeTech\Silae\Api\Model\LectureTauxATEtablissementResponse;
 use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageEtablissementRequest;
 use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageEtablissementResponse;
 use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageSocieteRequest;
@@ -1493,6 +1541,7 @@ use QdequippeTech\Silae\Api\Model\StatutAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutCreationSalarieEmploisAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutEcrituresComptables4AsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutEcrituresComptablesAsynchroneResponse;
+use QdequippeTech\Silae\Api\Model\StatutEditionsGroupeesResponse;
 use QdequippeTech\Silae\Api\Model\StatutGenererDSNEvenementielleFCTUResponse;
 use QdequippeTech\Silae\Api\Model\StatutRecupererFichiersEcrituresComptablesAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\StatutRecupererImageAsynchroneResponse;
@@ -1505,6 +1554,7 @@ use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
 use QdequippeTech\Silae\Api\Model\UtilisateurCollaborateur;
 use QdequippeTech\Silae\Api\Model\ValideCleDossierRequest;
 use QdequippeTech\Silae\Api\Normalizer\JaneObjectNormalizer;
+use QdequippeTech\Silae\Api\Runtime\Client\FormEncoder;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -1523,12 +1573,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieSupprimerAbsenceBadRequestException
      * @throws SalarieSupprimerAbsenceUnauthorizedException
      * @throws SalarieSupprimerAbsenceInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieSupprimerAbsence(SalarieSupprimerAbsenceRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1545,12 +1595,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieAjouterAbsenceBadRequestException
      * @throws SalarieAjouterAbsenceUnauthorizedException
      * @throws SalarieAjouterAbsenceInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAjouterAbsence(SalarieAjouterAbsenceRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1567,12 +1617,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieAjouterAbsenceV2BadRequestException
      * @throws SalarieAjouterAbsenceV2UnauthorizedException
      * @throws SalarieAjouterAbsenceV2InternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAjouterAbsenceV2(SalarieAjouterAbsenceV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1589,12 +1639,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieModifierAbsenceBadRequestException
      * @throws SalarieModifierAbsenceUnauthorizedException
      * @throws SalarieModifierAbsenceInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieModifierAbsence(SalarieModifierAbsenceRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1611,12 +1661,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieModifierAbsenceV2BadRequestException
      * @throws SalarieModifierAbsenceV2UnauthorizedException
      * @throws SalarieModifierAbsenceV2InternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieModifierAbsenceV2(SalarieModifierAbsenceV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1633,12 +1683,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieAbsencesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieAbsencesResponse : ResponseInterface)
      *
      * @throws SalarieAbsencesBadRequestException
      * @throws SalarieAbsencesUnauthorizedException
      * @throws SalarieAbsencesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAbsences(SalarieAbsencesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1655,12 +1705,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieAbsencesV2Response : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieAbsencesV2Response : ResponseInterface)
      *
      * @throws SalarieAbsencesV2BadRequestException
      * @throws SalarieAbsencesV2UnauthorizedException
      * @throws SalarieAbsencesV2InternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAbsencesV2(SalarieAbsencesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1677,12 +1727,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieAjouterHeuresBadRequestException
      * @throws SalarieAjouterHeuresUnauthorizedException
      * @throws SalarieAjouterHeuresInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAjouterHeures(SalarieAjouterHeuresRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1699,12 +1749,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieAjouterHeuresSurEmploiBadRequestException
      * @throws SalarieAjouterHeuresSurEmploiUnauthorizedException
      * @throws SalarieAjouterHeuresSurEmploiInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAjouterHeuresSurEmploi(SalarieAjouterHeuresSurEmploiRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1721,12 +1771,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieAjouterActiviteJournaliereBadRequestException
      * @throws SalarieAjouterActiviteJournaliereUnauthorizedException
      * @throws SalarieAjouterActiviteJournaliereInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAjouterActiviteJournaliere(SalarieAjouterActiviteJournaliereRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1743,12 +1793,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieActiviteJournaliereResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieActiviteJournaliereResponse : ResponseInterface)
      *
      * @throws SalarieActiviteJournaliereBadRequestException
      * @throws SalarieActiviteJournaliereUnauthorizedException
      * @throws SalarieActiviteJournaliereInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieActiviteJournaliere(SalarieActiviteJournaliereRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1765,12 +1815,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieAjouterActiviteJournaliereSurEmploiBadRequestException
      * @throws SalarieAjouterActiviteJournaliereSurEmploiUnauthorizedException
      * @throws SalarieAjouterActiviteJournaliereSurEmploiInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAjouterActiviteJournaliereSurEmploi(SalarieAjouterActiviteJournaliereSurEmploiRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1787,12 +1837,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieAjouterHeuresNativesBadRequestException
      * @throws SalarieAjouterHeuresNativesUnauthorizedException
      * @throws SalarieAjouterHeuresNativesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAjouterHeuresNatives(SalarieAjouterHeuresNativesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1809,12 +1859,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieAjouterHeuresNativesSurEmploiBadRequestException
      * @throws SalarieAjouterHeuresNativesSurEmploiUnauthorizedException
      * @throws SalarieAjouterHeuresNativesSurEmploiInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAjouterHeuresNativesSurEmploi(SalarieAjouterHeuresNativesSurEmploiRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1831,12 +1881,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieReinitialiserSaisiesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieReinitialiserSaisiesResponse : ResponseInterface)
      *
      * @throws SalarieReinitialiserSaisiesBadRequestException
      * @throws SalarieReinitialiserSaisiesUnauthorizedException
      * @throws SalarieReinitialiserSaisiesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieReinitialiserSaisies(SalarieReinitialiserSaisiesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1853,12 +1903,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeAgencesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeAgencesResponse : ResponseInterface)
      *
      * @throws ListeAgencesBadRequestException
      * @throws ListeAgencesUnauthorizedException
      * @throws ListeAgencesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeAgences(array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1875,12 +1925,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeDossiersAgenceResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeDossiersAgenceResponse : ResponseInterface)
      *
      * @throws ListeDossiersAgenceBadRequestException
      * @throws ListeDossiersAgenceUnauthorizedException
      * @throws ListeDossiersAgenceInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeDossiersAgence(ListeDossiersAgenceRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1897,12 +1947,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AgenceDetail : ResponseInterface)
+     * @return ($fetch is 'object' ? AgenceDetail : ResponseInterface)
      *
      * @throws LectureFicheAgenceBadRequestException
      * @throws LectureFicheAgenceUnauthorizedException
      * @throws LectureFicheAgenceInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureFicheAgence(LectureFicheAgenceRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1919,12 +1969,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws AffectationDossierPaieBadRequestException
      * @throws AffectationDossierPaieUnauthorizedException
      * @throws AffectationDossierPaieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function affectationDossierPaie(AffectationDossierPaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1941,12 +1991,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AffectationDossierPaieLectureResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AffectationDossierPaieLectureResponse : ResponseInterface)
      *
      * @throws AffectationDossierPaieLectureBadRequestException
      * @throws AffectationDossierPaieLectureUnauthorizedException
      * @throws AffectationDossierPaieLectureInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function affectationDossierPaieLecture(DossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1963,12 +2013,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? UtilisateurCollaborateur : ResponseInterface)
+     * @return ($fetch is 'object' ? UtilisateurCollaborateur : ResponseInterface)
      *
      * @throws AdministrationCollaborateurLectureBadRequestException
      * @throws AdministrationCollaborateurLectureUnauthorizedException
      * @throws AdministrationCollaborateurLectureInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function administrationCollaborateurLecture(AdministrationCollaborateurLectureRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -1985,12 +2035,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? UtilisateurCollaborateur : ResponseInterface)
+     * @return ($fetch is 'object' ? UtilisateurCollaborateur : ResponseInterface)
      *
      * @throws AdministrationCollaborateurLectureParIdentifiantBadRequestException
      * @throws AdministrationCollaborateurLectureParIdentifiantUnauthorizedException
      * @throws AdministrationCollaborateurLectureParIdentifiantInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function administrationCollaborateurLectureParIdentifiant(AdministrationCollaborateurLectureParIdentifiantRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2007,12 +2057,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws AdministrationCollaborateurEnregistrementBadRequestException
      * @throws AdministrationCollaborateurEnregistrementUnauthorizedException
      * @throws AdministrationCollaborateurEnregistrementInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function administrationCollaborateurEnregistrement(AdministrationCollaborateurEnregistrementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2029,12 +2079,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationDroitsFonctionnelsProductionPaieBadRequestException
      * @throws ModificationDroitsFonctionnelsProductionPaieUnauthorizedException
      * @throws ModificationDroitsFonctionnelsProductionPaieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationDroitsFonctionnelsProductionPaie(ModificationDroitsFonctionnelsProductionPaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2051,12 +2101,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? CompteCollaborateur : ResponseInterface)
+     * @return ($fetch is 'object' ? CompteCollaborateur : ResponseInterface)
      *
      * @throws LectureCompteCollaborateurBadRequestException
      * @throws LectureCompteCollaborateurUnauthorizedException
      * @throws LectureCompteCollaborateurInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureCompteCollaborateur(LectureCompteCollaborateurRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2073,12 +2123,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureCompteCollaborateurModelesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureCompteCollaborateurModelesResponse : ResponseInterface)
      *
      * @throws LectureCompteCollaborateurModelesBadRequestException
      * @throws LectureCompteCollaborateurModelesUnauthorizedException
      * @throws LectureCompteCollaborateurModelesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureCompteCollaborateurModeles(array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2095,12 +2145,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? CompteCollaborateur : ResponseInterface)
+     * @return ($fetch is 'object' ? CompteCollaborateur : ResponseInterface)
      *
      * @throws CreationCompteCollaborateurBadRequestException
      * @throws CreationCompteCollaborateurUnauthorizedException
      * @throws CreationCompteCollaborateurInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function creationCompteCollaborateur(CreationCompteCollaborateurRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2117,12 +2167,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? CompteCollaborateur : ResponseInterface)
+     * @return ($fetch is 'object' ? CompteCollaborateur : ResponseInterface)
      *
      * @throws CreationCompteCollaborateurDepuisModeleBadRequestException
      * @throws CreationCompteCollaborateurDepuisModeleUnauthorizedException
      * @throws CreationCompteCollaborateurDepuisModeleInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function creationCompteCollaborateurDepuisModele(CreationCompteCollaborateurDepuisModeleRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2139,12 +2189,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? CompteCollaborateur : ResponseInterface)
+     * @return ($fetch is 'object' ? CompteCollaborateur : ResponseInterface)
      *
      * @throws AppliquerModeleCollaborateurBadRequestException
      * @throws AppliquerModeleCollaborateurUnauthorizedException
      * @throws AppliquerModeleCollaborateurInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function appliquerModeleCollaborateur(AppliquerModeleCollaborateurRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2161,12 +2211,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws AffecterCleDossierBadRequestException
      * @throws AffecterCleDossierUnauthorizedException
      * @throws AffecterCleDossierInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function affecterCleDossier(AffecterCleDossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2183,12 +2233,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws GererEtatDossierPaieBadRequestException
      * @throws GererEtatDossierPaieUnauthorizedException
      * @throws GererEtatDossierPaieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function gererEtatDossierPaie(GererEtatDossierPaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2205,12 +2255,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws GererEtatRobotDePaieBadRequestException
      * @throws GererEtatRobotDePaieUnauthorizedException
      * @throws GererEtatRobotDePaieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function gererEtatRobotDePaie(GererEtatRobotDePaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2227,12 +2277,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws GererCycleDePaieBadRequestException
      * @throws GererCycleDePaieUnauthorizedException
      * @throws GererCycleDePaieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function gererCycleDePaie(GererCycleDePaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2249,12 +2299,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeDossiersDemoSilaeResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeDossiersDemoSilaeResponse : ResponseInterface)
      *
      * @throws ListeDossiersDemoSilaeBadRequestException
      * @throws ListeDossiersDemoSilaeUnauthorizedException
      * @throws ListeDossiersDemoSilaeInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeDossiersDemoSilae(array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2271,12 +2321,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws ImportDossierDemoAsynchroneBadRequestException
      * @throws ImportDossierDemoAsynchroneUnauthorizedException
      * @throws ImportDossierDemoAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function importDossierDemoAsynchrone(ImportDossierDemoRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2298,12 +2348,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutImportDossierDemoAsynchroneBadRequestException
      * @throws StatutImportDossierDemoAsynchroneUnauthorizedException
      * @throws StatutImportDossierDemoAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutImportDossierDemoAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2320,12 +2370,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AnalyseConfigurationAccesApiResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AnalyseConfigurationAccesApiResponse : ResponseInterface)
      *
      * @throws AnalyseConfigurationAccesApiBadRequestException
      * @throws AnalyseConfigurationAccesApiUnauthorizedException
      * @throws AnalyseConfigurationAccesApiInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseConfigurationAccesApi(AnalyseConfigurationAccesApiRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2342,12 +2392,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? Model\CreationConfigurationAccesApi : ResponseInterface)
+     * @return ($fetch is 'object' ? Model\CreationConfigurationAccesApi : ResponseInterface)
      *
      * @throws CreationConfigurationAccesApiBadRequestException
      * @throws CreationConfigurationAccesApiUnauthorizedException
      * @throws CreationConfigurationAccesApiInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function creationConfigurationAccesApi(CreationConfigurationAccesApiRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2364,12 +2414,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeComptesApiResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeComptesApiResponse : ResponseInterface)
      *
      * @throws ListeComptesApiBadRequestException
      * @throws ListeComptesApiUnauthorizedException
      * @throws ListeComptesApiInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeComptesApi(array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2391,12 +2441,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? Domain[] : ResponseInterface)
+     * @return ($fetch is 'object' ? Domain[] : ResponseInterface)
      *
      * @throws DomainesBadRequestException
      * @throws DomainesUnauthorizedException
      * @throws DomainesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function domaines(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2413,12 +2463,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? Entity[] : ResponseInterface)
+     * @return ($fetch is 'object' ? Entity[] : ResponseInterface)
      *
      * @throws EntitesBadRequestException
      * @throws EntitesUnauthorizedException
      * @throws EntitesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function entites(array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2440,12 +2490,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? Agency[] : ResponseInterface)
+     * @return ($fetch is 'object' ? Agency[] : ResponseInterface)
      *
      * @throws AgenciesBadRequestException
      * @throws AgenciesUnauthorizedException
      * @throws AgenciesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function agencies(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2462,12 +2512,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AnalyseProductionPaieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AnalyseProductionPaieResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieBadRequestException
      * @throws AnalyseProductionPaieUnauthorizedException
      * @throws AnalyseProductionPaieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaie(AnalyseProductionPaieV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2484,12 +2534,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieAsynchroneBadRequestException
      * @throws AnalyseProductionPaieAsynchroneUnauthorizedException
      * @throws AnalyseProductionPaieAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieAsynchrone(AnalyseProductionPaieV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2511,12 +2561,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAnalyseProductionPaieAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAnalyseProductionPaieAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieAsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieAsynchroneUnauthorizedException
      * @throws StatutAnalyseProductionPaieAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutAnalyseProductionPaieAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2533,12 +2583,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AnalyseProductionPaieBulletinsOriginauxResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AnalyseProductionPaieBulletinsOriginauxResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieBulletinsOriginauxBadRequestException
      * @throws AnalyseProductionPaieBulletinsOriginauxUnauthorizedException
      * @throws AnalyseProductionPaieBulletinsOriginauxInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieBulletinsOriginaux(AnalyseProductionPaieV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2555,12 +2605,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieBulletinsOriginauxAsynchroneBadRequestException
      * @throws AnalyseProductionPaieBulletinsOriginauxAsynchroneUnauthorizedException
      * @throws AnalyseProductionPaieBulletinsOriginauxAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieBulletinsOriginauxAsynchrone(AnalyseProductionPaieV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2582,12 +2632,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneUnauthorizedException
      * @throws StatutAnalyseProductionPaieBulletinsOriginauxAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutAnalyseProductionPaieBulletinsOriginauxAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2604,12 +2654,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AnalyseProductionPaieBulletinsCoffresFortsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AnalyseProductionPaieBulletinsCoffresFortsResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieBulletinsCoffresFortsBadRequestException
      * @throws AnalyseProductionPaieBulletinsCoffresFortsUnauthorizedException
      * @throws AnalyseProductionPaieBulletinsCoffresFortsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieBulletinsCoffresForts(AnalyseProductionPaieV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2626,12 +2676,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieBulletinsCoffresFortsAsynchroneBadRequestException
      * @throws AnalyseProductionPaieBulletinsCoffresFortsAsynchroneUnauthorizedException
      * @throws AnalyseProductionPaieBulletinsCoffresFortsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieBulletinsCoffresFortsAsynchrone(AnalyseProductionPaieV2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2653,12 +2703,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneUnauthorizedException
      * @throws StatutAnalyseProductionPaieBulletinsCoffresFortsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutAnalyseProductionPaieBulletinsCoffresFortsAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2675,12 +2725,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AnalyseProductionPaieDocumentsSignesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AnalyseProductionPaieDocumentsSignesResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieDocumentsSignesBadRequestException
      * @throws AnalyseProductionPaieDocumentsSignesUnauthorizedException
      * @throws AnalyseProductionPaieDocumentsSignesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieDocumentsSignes(AnalyseProductionPaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2697,12 +2747,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieDocumentsSignesAsynchroneBadRequestException
      * @throws AnalyseProductionPaieDocumentsSignesAsynchroneUnauthorizedException
      * @throws AnalyseProductionPaieDocumentsSignesAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieDocumentsSignesAsynchrone(AnalyseProductionPaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2724,12 +2774,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAnalyseProductionPaieDocumentsSignesAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAnalyseProductionPaieDocumentsSignesAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieDocumentsSignesAsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieDocumentsSignesAsynchroneUnauthorizedException
      * @throws StatutAnalyseProductionPaieDocumentsSignesAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutAnalyseProductionPaieDocumentsSignesAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2746,12 +2796,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AnalyseProductionPaieRevenusResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AnalyseProductionPaieRevenusResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieRevenusBadRequestException
      * @throws AnalyseProductionPaieRevenusUnauthorizedException
      * @throws AnalyseProductionPaieRevenusInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieRevenus(AnalyseProductionPaieRevenusRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2768,12 +2818,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieRevenusAsynchroneBadRequestException
      * @throws AnalyseProductionPaieRevenusAsynchroneUnauthorizedException
      * @throws AnalyseProductionPaieRevenusAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieRevenusAsynchrone(AnalyseProductionPaieRevenusRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2795,12 +2845,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAnalyseProductionPaieRevenusAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAnalyseProductionPaieRevenusAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieRevenusAsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieRevenusAsynchroneUnauthorizedException
      * @throws StatutAnalyseProductionPaieRevenusAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutAnalyseProductionPaieRevenusAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2817,12 +2867,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AnalyseProductionPaieDetailResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AnalyseProductionPaieDetailResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieDetailBadRequestException
      * @throws AnalyseProductionPaieDetailUnauthorizedException
      * @throws AnalyseProductionPaieDetailInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieDetail(AnalyseProductionPaieDetailRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2839,12 +2889,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AnalyseProductionPaieUtilisateursResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AnalyseProductionPaieUtilisateursResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieUtilisateursBadRequestException
      * @throws AnalyseProductionPaieUtilisateursUnauthorizedException
      * @throws AnalyseProductionPaieUtilisateursInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieUtilisateurs(AnalyseProductionPaieUtilisateursRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2861,12 +2911,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AnalyseProductionPaieUtilisateursV2Response : ResponseInterface)
+     * @return ($fetch is 'object' ? AnalyseProductionPaieUtilisateursV2Response : ResponseInterface)
      *
      * @throws AnalyseProductionPaieUtilisateursV2BadRequestException
      * @throws AnalyseProductionPaieUtilisateursV2UnauthorizedException
      * @throws AnalyseProductionPaieUtilisateursV2InternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieUtilisateursV2(AnalyseProductionPaieUtilisateursRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2883,12 +2933,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieUtilisateursV2AsynchroneBadRequestException
      * @throws AnalyseProductionPaieUtilisateursV2AsynchroneUnauthorizedException
      * @throws AnalyseProductionPaieUtilisateursV2AsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieUtilisateursV2Asynchrone(AnalyseProductionPaieUtilisateursRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2910,12 +2960,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAnalyseProductionPaieUtilisateursV2AsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieUtilisateursV2AsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieUtilisateursV2AsynchroneUnauthorizedException
      * @throws StatutAnalyseProductionPaieUtilisateursV2AsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutAnalyseProductionPaieUtilisateursV2Asynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2932,12 +2982,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AnalyseProductionPaieUtilisateursV3Response : ResponseInterface)
+     * @return ($fetch is 'object' ? AnalyseProductionPaieUtilisateursV3Response : ResponseInterface)
      *
      * @throws AnalyseProductionPaieUtilisateursV3BadRequestException
      * @throws AnalyseProductionPaieUtilisateursV3UnauthorizedException
      * @throws AnalyseProductionPaieUtilisateursV3InternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieUtilisateursV3(AnalyseProductionPaieUtilisateursV3Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2954,12 +3004,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieUtilisateursV3AsynchroneBadRequestException
      * @throws AnalyseProductionPaieUtilisateursV3AsynchroneUnauthorizedException
      * @throws AnalyseProductionPaieUtilisateursV3AsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieUtilisateursV3Asynchrone(AnalyseProductionPaieUtilisateursV3Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -2981,12 +3031,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAnalyseProductionPaieUtilisateursV3AsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAnalyseProductionPaieUtilisateursV3AsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieUtilisateursV3AsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieUtilisateursV3AsynchroneUnauthorizedException
      * @throws StatutAnalyseProductionPaieUtilisateursV3AsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutAnalyseProductionPaieUtilisateursV3Asynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3003,12 +3053,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AnalyseProductionPaieEffectifsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AnalyseProductionPaieEffectifsResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieEffectifsBadRequestException
      * @throws AnalyseProductionPaieEffectifsUnauthorizedException
      * @throws AnalyseProductionPaieEffectifsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieEffectifs(AnalyseProductionPaieEffectifsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3025,12 +3075,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieEffectifsAsynchroneBadRequestException
      * @throws AnalyseProductionPaieEffectifsAsynchroneUnauthorizedException
      * @throws AnalyseProductionPaieEffectifsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieEffectifsAsynchrone(AnalyseProductionPaieEffectifsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3052,12 +3102,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAnalyseProductionPaieEffectifsAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAnalyseProductionPaieEffectifsAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieEffectifsAsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieEffectifsAsynchroneUnauthorizedException
      * @throws StatutAnalyseProductionPaieEffectifsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutAnalyseProductionPaieEffectifsAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3074,12 +3124,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AnalyseActiviteStatutAccesOptionsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AnalyseActiviteStatutAccesOptionsResponse : ResponseInterface)
      *
      * @throws AnalyseActiviteStatutAccesOptionsBadRequestException
      * @throws AnalyseActiviteStatutAccesOptionsUnauthorizedException
      * @throws AnalyseActiviteStatutAccesOptionsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseActiviteStatutAccesOptions(AnalyseActiviteStatutAccesOptionsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3096,12 +3146,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AnalyseProductionPaieEntreesSortiesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AnalyseProductionPaieEntreesSortiesResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieEntreesSortiesBadRequestException
      * @throws AnalyseProductionPaieEntreesSortiesUnauthorizedException
      * @throws AnalyseProductionPaieEntreesSortiesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieEntreesSorties(AnalyseProductionPaieEntreesSortiesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3118,12 +3168,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws AnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException
      * @throws AnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException
      * @throws AnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function analyseProductionPaieEntreesSortiesAsynchrone(AnalyseProductionPaieEntreesSortiesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3145,12 +3195,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAnalyseProductionPaieEntreesSortiesAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutAnalyseProductionPaieEntreesSortiesAsynchroneBadRequestException
      * @throws StatutAnalyseProductionPaieEntreesSortiesAsynchroneUnauthorizedException
      * @throws StatutAnalyseProductionPaieEntreesSortiesAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutAnalyseProductionPaieEntreesSortiesAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3167,12 +3217,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? BureautiquePaieNombreDocumentsCreesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? BureautiquePaieNombreDocumentsCreesResponse : ResponseInterface)
      *
      * @throws BureautiquePaieNombreDocumentsCreesBadRequestException
      * @throws BureautiquePaieNombreDocumentsCreesUnauthorizedException
      * @throws BureautiquePaieNombreDocumentsCreesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function bureautiquePaieNombreDocumentsCrees(BureautiquePaieNombreDocumentsCreesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3194,12 +3244,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeModulesActifsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeModulesActifsResponse : ResponseInterface)
      *
      * @throws ListeModulesActifsBadRequestException
      * @throws ListeModulesActifsUnauthorizedException
      * @throws ListeModulesActifsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeModulesActifs(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3221,12 +3271,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeModulesMySilaeResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeModulesMySilaeResponse : ResponseInterface)
      *
      * @throws ListeModulesMySilaeBadRequestException
      * @throws ListeModulesMySilaeUnauthorizedException
      * @throws ListeModulesMySilaeInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeModulesMySilae(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3243,12 +3293,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureAxesAnalytiquesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureAxesAnalytiquesResponse : ResponseInterface)
      *
      * @throws LectureAxesAnalytiquesBadRequestException
      * @throws LectureAxesAnalytiquesUnauthorizedException
      * @throws LectureAxesAnalytiquesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureAxesAnalytiques(DossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3265,12 +3315,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws AjoutSousCategorieAxeAnalytiqueBadRequestException
      * @throws AjoutSousCategorieAxeAnalytiqueUnauthorizedException
      * @throws AjoutSousCategorieAxeAnalytiqueInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function ajoutSousCategorieAxeAnalytique(AjoutSousCategorieAxeAnalytiqueRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3287,12 +3337,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureAxesAnalytiquesSalariesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureAxesAnalytiquesSalariesResponse : ResponseInterface)
      *
      * @throws LectureAxesAnalytiquesSalariesBadRequestException
      * @throws LectureAxesAnalytiquesSalariesUnauthorizedException
      * @throws LectureAxesAnalytiquesSalariesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureAxesAnalytiquesSalaries(LectureAxesAnalytiquesSalariesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3309,12 +3359,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EmploiClassificationMetier : ResponseInterface)
+     * @return ($fetch is 'object' ? EmploiClassificationMetier : ResponseInterface)
      *
      * @throws SalarieEmploiClassificationMetierBadRequestException
      * @throws SalarieEmploiClassificationMetierUnauthorizedException
      * @throws SalarieEmploiClassificationMetierInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieEmploiClassificationMetier(SalarieEmploiClassificationMetierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3331,12 +3381,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ClassificationMetierCompleteResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ClassificationMetierCompleteResponse : ResponseInterface)
      *
      * @throws ClassificationMetierCompleteBadRequestException
      * @throws ClassificationMetierCompleteUnauthorizedException
      * @throws ClassificationMetierCompleteInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function classificationMetierComplete(ClassificationMetierCompleteRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3353,12 +3403,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws AjouteCompteRenduEdiBadRequestException
      * @throws AjouteCompteRenduEdiUnauthorizedException
      * @throws AjouteCompteRenduEdiInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function ajouteCompteRenduEdi(AjouteCompteRenduEdiRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3375,12 +3425,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AjouteCompteRenduEdi94Response : ResponseInterface)
+     * @return ($fetch is 'object' ? AjouteCompteRenduEdi94Response : ResponseInterface)
      *
      * @throws AjouteCompteRenduEdi94BadRequestException
      * @throws AjouteCompteRenduEdi94UnauthorizedException
      * @throws AjouteCompteRenduEdi94InternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function ajouteCompteRenduEdi94(AjouteCompteRenduEdi94Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3397,12 +3447,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws CreationEmetteurDSNBadRequestException
      * @throws CreationEmetteurDSNUnauthorizedException
      * @throws CreationEmetteurDSNInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function creationEmetteurDSN(CreationEmetteurDSNRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3419,12 +3469,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureContactEmetteurDSNResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureContactEmetteurDSNResponse : ResponseInterface)
      *
      * @throws LectureContactEmetteurDSNBadRequestException
      * @throws LectureContactEmetteurDSNUnauthorizedException
      * @throws LectureContactEmetteurDSNInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureContactEmetteurDSN(LectureContactEmetteurDSNRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3441,12 +3491,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ImportXmlParametrageOrganismeDSNResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ImportXmlParametrageOrganismeDSNResponse : ResponseInterface)
      *
      * @throws ImportXmlParametrageOrganismeDSNBadRequestException
      * @throws ImportXmlParametrageOrganismeDSNUnauthorizedException
      * @throws ImportXmlParametrageOrganismeDSNInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function importXmlParametrageOrganismeDSN(ImportXmlParametrageOrganismeDSNRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3463,12 +3513,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws InitialisationAncienNumeroContratDSNBadRequestException
      * @throws InitialisationAncienNumeroContratDSNUnauthorizedException
      * @throws InitialisationAncienNumeroContratDSNInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function initialisationAncienNumeroContratDSN(InitialisationAncienNumeroContratDSNRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3485,12 +3535,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ActivationDSNBadRequestException
      * @throws ActivationDSNUnauthorizedException
      * @throws ActivationDSNInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function activationDSN(ActivationDSNRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3507,12 +3557,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ValideCleDossierBadRequestException
      * @throws ValideCleDossierUnauthorizedException
      * @throws ValideCleDossierInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function valideCleDossier(ValideCleDossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3529,12 +3579,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws CreationUtilisateurClientPaieBadRequestException
      * @throws CreationUtilisateurClientPaieUnauthorizedException
      * @throws CreationUtilisateurClientPaieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function creationUtilisateurClientPaie(CreationUtilisateurClientPaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3551,12 +3601,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeUtilisateursDossierPaieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeUtilisateursDossierPaieResponse : ResponseInterface)
      *
      * @throws ListeUtilisateursDossierPaieBadRequestException
      * @throws ListeUtilisateursDossierPaieUnauthorizedException
      * @throws ListeUtilisateursDossierPaieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeUtilisateursDossierPaie(DossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3573,12 +3623,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeUtilisateursDossierPaieV2Response : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeUtilisateursDossierPaieV2Response : ResponseInterface)
      *
      * @throws ListeUtilisateursDossierPaieV2BadRequestException
      * @throws ListeUtilisateursDossierPaieV2UnauthorizedException
      * @throws ListeUtilisateursDossierPaieV2InternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeUtilisateursDossierPaieV2(DossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3595,12 +3645,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AcquisitionQuestionnaireContratComplementaireResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AcquisitionQuestionnaireContratComplementaireResponse : ResponseInterface)
      *
      * @throws AcquisitionQuestionnaireContratComplementaireBadRequestException
      * @throws AcquisitionQuestionnaireContratComplementaireUnauthorizedException
      * @throws AcquisitionQuestionnaireContratComplementaireInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function acquisitionQuestionnaireContratComplementaire(AcquisitionQuestionnaireContratComplementaireRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3617,12 +3667,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? QuestionnaireContratComplementaire : ResponseInterface)
+     * @return ($fetch is 'object' ? QuestionnaireContratComplementaire : ResponseInterface)
      *
      * @throws CreationQuestionnaireContratComplementaireBadRequestException
      * @throws CreationQuestionnaireContratComplementaireUnauthorizedException
      * @throws CreationQuestionnaireContratComplementaireInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function creationQuestionnaireContratComplementaire(CreationQuestionnaireContratComplementaireRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3639,12 +3689,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ControlerBulletinsPeriodeResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ControlerBulletinsPeriodeResponse : ResponseInterface)
      *
      * @throws ControlerBulletinsPeriodeBadRequestException
      * @throws ControlerBulletinsPeriodeUnauthorizedException
      * @throws ControlerBulletinsPeriodeInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function controlerBulletinsPeriode(ControlerBulletinsPeriodeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3661,12 +3711,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? CreationDossierPaieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? CreationDossierPaieResponse : ResponseInterface)
      *
      * @throws CreationDossierPaieBadRequestException
      * @throws CreationDossierPaieUnauthorizedException
      * @throws CreationDossierPaieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function creationDossierPaie(CreationDossierPaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3683,12 +3733,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? RetourImportDSN : ResponseInterface)
+     * @return ($fetch is 'object' ? RetourImportDSN : ResponseInterface)
      *
      * @throws ImportFichierDSNBadRequestException
      * @throws ImportFichierDSNUnauthorizedException
      * @throws ImportFichierDSNInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function importFichierDSN(ImportFichierDSNRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3705,12 +3755,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? RetourImportDSN : ResponseInterface)
+     * @return ($fetch is 'object' ? RetourImportDSN : ResponseInterface)
      *
      * @throws CreationDossierParImportFichierDSNBadRequestException
      * @throws CreationDossierParImportFichierDSNUnauthorizedException
      * @throws CreationDossierParImportFichierDSNInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function creationDossierParImportFichierDSN(CreationDossierParImportFichierDSNRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3727,12 +3777,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieInitialiserCumulsBadRequestException
      * @throws SalarieInitialiserCumulsUnauthorizedException
      * @throws SalarieInitialiserCumulsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieInitialiserCumuls(SalarieInitialiserCumulsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3749,12 +3799,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? RecupererDeclarationsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? RecupererDeclarationsResponse : ResponseInterface)
      *
      * @throws RecupererDeclarationsBadRequestException
      * @throws RecupererDeclarationsUnauthorizedException
      * @throws RecupererDeclarationsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function recupererDeclarations(DossierPeriodeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3771,12 +3821,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws RecupererDeclarationsAsynchroneBadRequestException
      * @throws RecupererDeclarationsAsynchroneUnauthorizedException
      * @throws RecupererDeclarationsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function recupererDeclarationsAsynchrone(DossierPeriodeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3798,12 +3848,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutRecupererDeclarationsAsynchroneBadRequestException
      * @throws StatutRecupererDeclarationsAsynchroneUnauthorizedException
      * @throws StatutRecupererDeclarationsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutRecupererDeclarationsAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3820,12 +3870,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? Model\EcrituresComptables : ResponseInterface)
+     * @return ($fetch is 'object' ? Model\EcrituresComptables : ResponseInterface)
      *
      * @throws EcrituresComptablesBadRequestException
      * @throws EcrituresComptablesUnauthorizedException
      * @throws EcrituresComptablesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function ecrituresComptables(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3842,12 +3892,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? Model\EcrituresComptables : ResponseInterface)
+     * @return ($fetch is 'object' ? Model\EcrituresComptables : ResponseInterface)
      *
      * @throws EcrituresComptables2BadRequestException
      * @throws EcrituresComptables2UnauthorizedException
      * @throws EcrituresComptables2InternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function ecrituresComptables2(EcrituresComptables2Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3864,12 +3914,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? Model\EcrituresComptables : ResponseInterface)
+     * @return ($fetch is 'object' ? Model\EcrituresComptables : ResponseInterface)
      *
      * @throws EcrituresComptables3BadRequestException
      * @throws EcrituresComptables3UnauthorizedException
      * @throws EcrituresComptables3InternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function ecrituresComptables3(EcrituresComptables3Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3886,12 +3936,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EcrituresComptablesAvecRuptures : ResponseInterface)
+     * @return ($fetch is 'object' ? EcrituresComptablesAvecRuptures : ResponseInterface)
      *
      * @throws EcrituresComptables4BadRequestException
      * @throws EcrituresComptables4UnauthorizedException
      * @throws EcrituresComptables4InternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function ecrituresComptables4(EcrituresComptables4Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3908,12 +3958,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EcrituresComptablesAvecRuptures : ResponseInterface)
+     * @return ($fetch is 'object' ? EcrituresComptablesAvecRuptures : ResponseInterface)
      *
      * @throws EcrituresComptablesPaiementSalairesBadRequestException
      * @throws EcrituresComptablesPaiementSalairesUnauthorizedException
      * @throws EcrituresComptablesPaiementSalairesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function ecrituresComptablesPaiementSalaires(EcrituresComptablesPaiementSalairesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3930,12 +3980,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EcrituresComptablesAvecRuptures : ResponseInterface)
+     * @return ($fetch is 'object' ? EcrituresComptablesAvecRuptures : ResponseInterface)
      *
      * @throws EcrituresComptablesPaiementAcomptesBadRequestException
      * @throws EcrituresComptablesPaiementAcomptesUnauthorizedException
      * @throws EcrituresComptablesPaiementAcomptesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function ecrituresComptablesPaiementAcomptes(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3952,12 +4002,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EcrituresComptablesAsynchroneBadRequestException
      * @throws EcrituresComptablesAsynchroneUnauthorizedException
      * @throws EcrituresComptablesAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function ecrituresComptablesAsynchrone(EcrituresComptables3Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -3979,12 +4029,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutEcrituresComptablesAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutEcrituresComptablesAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutEcrituresComptablesAsynchroneBadRequestException
      * @throws StatutEcrituresComptablesAsynchroneUnauthorizedException
      * @throws StatutEcrituresComptablesAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutEcrituresComptablesAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4001,12 +4051,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EcrituresComptables4AsynchroneBadRequestException
      * @throws EcrituresComptables4AsynchroneUnauthorizedException
      * @throws EcrituresComptables4AsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function ecrituresComptables4Asynchrone(EcrituresComptables4Request $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4028,12 +4078,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutEcrituresComptables4AsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutEcrituresComptables4AsynchroneResponse : ResponseInterface)
      *
      * @throws StatutEcrituresComptables4AsynchroneBadRequestException
      * @throws StatutEcrituresComptables4AsynchroneUnauthorizedException
      * @throws StatutEcrituresComptables4AsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutEcrituresComptables4Asynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4050,12 +4100,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? RecupererFichiersEcrituresComptablesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? RecupererFichiersEcrituresComptablesResponse : ResponseInterface)
      *
      * @throws RecupererFichiersEcrituresComptablesBadRequestException
      * @throws RecupererFichiersEcrituresComptablesUnauthorizedException
      * @throws RecupererFichiersEcrituresComptablesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function recupererFichiersEcrituresComptables(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4072,12 +4122,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws RecupererFichiersEcrituresComptablesAsynchroneBadRequestException
      * @throws RecupererFichiersEcrituresComptablesAsynchroneUnauthorizedException
      * @throws RecupererFichiersEcrituresComptablesAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function recupererFichiersEcrituresComptablesAsynchrone(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4099,12 +4149,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutRecupererFichiersEcrituresComptablesAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutRecupererFichiersEcrituresComptablesAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutRecupererFichiersEcrituresComptablesAsynchroneBadRequestException
      * @throws StatutRecupererFichiersEcrituresComptablesAsynchroneUnauthorizedException
      * @throws StatutRecupererFichiersEcrituresComptablesAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutRecupererFichiersEcrituresComptablesAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4121,12 +4171,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EcrituresComptablesPaiementSalairesLotsVirementResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? EcrituresComptablesPaiementSalairesLotsVirementResponse : ResponseInterface)
      *
      * @throws EcrituresComptablesPaiementSalairesLotsVirementBadRequestException
      * @throws EcrituresComptablesPaiementSalairesLotsVirementUnauthorizedException
      * @throws EcrituresComptablesPaiementSalairesLotsVirementInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function ecrituresComptablesPaiementSalairesLotsVirement(DossierPeriodePaiementSalairesLotsVirementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4143,12 +4193,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? Model\SoldeRepos : ResponseInterface)
+     * @return ($fetch is 'object' ? Model\SoldeRepos : ResponseInterface)
      *
      * @throws SoldeReposBadRequestException
      * @throws SoldeReposUnauthorizedException
      * @throws SoldeReposInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function soldeRepos(SoldeReposRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4165,12 +4215,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws SoldeReposAsynchroneBadRequestException
      * @throws SoldeReposAsynchroneUnauthorizedException
      * @throws SoldeReposAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function soldeReposAsynchrone(SoldeReposRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4192,12 +4242,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutSoldeReposResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutSoldeReposResponse : ResponseInterface)
      *
      * @throws StatutSoldeReposAsynchroneBadRequestException
      * @throws StatutSoldeReposAsynchroneUnauthorizedException
      * @throws StatutSoldeReposAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutSoldeReposAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4214,12 +4264,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EditionJournalDePaieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? EditionJournalDePaieResponse : ResponseInterface)
      *
      * @throws EditionJournalDePaieBadRequestException
      * @throws EditionJournalDePaieUnauthorizedException
      * @throws EditionJournalDePaieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionJournalDePaie(EditionJournalDePaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4236,12 +4286,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionJournalDePaieAsynchroneBadRequestException
      * @throws EditionJournalDePaieAsynchroneUnauthorizedException
      * @throws EditionJournalDePaieAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionJournalDePaieAsynchrone(EditionJournalDePaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4263,12 +4313,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionJournalDePaieAsynchroneBadRequestException
      * @throws StatutEditionJournalDePaieAsynchroneUnauthorizedException
      * @throws StatutEditionJournalDePaieAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutEditionJournalDePaieAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4285,12 +4335,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EditionTableauDesChargesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? EditionTableauDesChargesResponse : ResponseInterface)
      *
      * @throws EditionTableauDesChargesBadRequestException
      * @throws EditionTableauDesChargesUnauthorizedException
      * @throws EditionTableauDesChargesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionTableauDesCharges(EditionTableauDesChargesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4307,12 +4357,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionTableauDesChargesAsynchroneBadRequestException
      * @throws EditionTableauDesChargesAsynchroneUnauthorizedException
      * @throws EditionTableauDesChargesAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionTableauDesChargesAsynchrone(EditionTableauDesChargesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4334,12 +4384,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionTableauDesChargesAsynchroneBadRequestException
      * @throws StatutEditionTableauDesChargesAsynchroneUnauthorizedException
      * @throws StatutEditionTableauDesChargesAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutEditionTableauDesChargesAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4356,12 +4406,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EditionEtatDesPaiementsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? EditionEtatDesPaiementsResponse : ResponseInterface)
      *
      * @throws EditionEtatDesPaiementsBadRequestException
      * @throws EditionEtatDesPaiementsUnauthorizedException
      * @throws EditionEtatDesPaiementsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionEtatDesPaiements(EditionEtatDesPaiementsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4378,12 +4428,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionEtatDesPaiementsAsynchroneBadRequestException
      * @throws EditionEtatDesPaiementsAsynchroneUnauthorizedException
      * @throws EditionEtatDesPaiementsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionEtatDesPaiementsAsynchrone(EditionEtatDesPaiementsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4405,12 +4455,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionEtatDesPaiementsAsynchroneBadRequestException
      * @throws StatutEditionEtatDesPaiementsAsynchroneUnauthorizedException
      * @throws StatutEditionEtatDesPaiementsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutEditionEtatDesPaiementsAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4427,12 +4477,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EditionRecapDePaieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? EditionRecapDePaieResponse : ResponseInterface)
      *
      * @throws EditionRecapDePaieBadRequestException
      * @throws EditionRecapDePaieUnauthorizedException
      * @throws EditionRecapDePaieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionRecapDePaie(EditionRecapDePaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4449,12 +4499,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionRecapDePaieAsynchroneBadRequestException
      * @throws EditionRecapDePaieAsynchroneUnauthorizedException
      * @throws EditionRecapDePaieAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionRecapDePaieAsynchrone(EditionRecapDePaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4476,12 +4526,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionRecapDePaieAsynchroneBadRequestException
      * @throws StatutEditionRecapDePaieAsynchroneUnauthorizedException
      * @throws StatutEditionRecapDePaieAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutEditionRecapDePaieAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4498,12 +4548,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EditionRecapDePaieDetailleParSalarieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? EditionRecapDePaieDetailleParSalarieResponse : ResponseInterface)
      *
      * @throws EditionRecapDePaieDetailleParSalarieBadRequestException
      * @throws EditionRecapDePaieDetailleParSalarieUnauthorizedException
      * @throws EditionRecapDePaieDetailleParSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionRecapDePaieDetailleParSalarie(EditionRecapDePaieDetailleParSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4520,12 +4570,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionRecapDePaieDetailleParSalarieAsynchroneBadRequestException
      * @throws EditionRecapDePaieDetailleParSalarieAsynchroneUnauthorizedException
      * @throws EditionRecapDePaieDetailleParSalarieAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionRecapDePaieDetailleParSalarieAsynchrone(EditionRecapDePaieDetailleParSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4547,12 +4597,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionRecapDePaieDetailleParSalarieAsynchroneBadRequestException
      * @throws StatutEditionRecapDePaieDetailleParSalarieAsynchroneUnauthorizedException
      * @throws StatutEditionRecapDePaieDetailleParSalarieAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutEditionRecapDePaieDetailleParSalarieAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4569,12 +4619,154 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EditionSoldeDeReposResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? EditionRecapDePaieDetailleAvecAnalytiqueResponse : ResponseInterface)
+     *
+     * @throws EditionRecapDePaieDetailleAvecAnalytiqueBadRequestException
+     * @throws EditionRecapDePaieDetailleAvecAnalytiqueUnauthorizedException
+     * @throws EditionRecapDePaieDetailleAvecAnalytiqueInternalServerErrorException
+     * @throws BadResponseException
+     */
+    public function editionRecapDePaieDetailleAvecAnalytique(EditionRecapDePaieDetailleAvecAnalytiqueRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EditionRecapDePaieDetailleAvecAnalytique($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
+     *
+     * @throws EditionRecapDePaieDetailleAvecAnalytiqueAsynchroneBadRequestException
+     * @throws EditionRecapDePaieDetailleAvecAnalytiqueAsynchroneUnauthorizedException
+     * @throws EditionRecapDePaieDetailleAvecAnalytiqueAsynchroneInternalServerErrorException
+     * @throws BadResponseException
+     */
+    public function editionRecapDePaieDetailleAvecAnalytiqueAsynchrone(EditionRecapDePaieDetailleAvecAnalytiqueRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EditionRecapDePaieDetailleAvecAnalytiqueAsynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     *
+     * @throws StatutEditionRecapDePaieDetailleAvecAnalytiqueAsynchroneBadRequestException
+     * @throws StatutEditionRecapDePaieDetailleAvecAnalytiqueAsynchroneUnauthorizedException
+     * @throws StatutEditionRecapDePaieDetailleAvecAnalytiqueAsynchroneInternalServerErrorException
+     * @throws BadResponseException
+     */
+    public function statutEditionRecapDePaieDetailleAvecAnalytiqueAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutEditionRecapDePaieDetailleAvecAnalytiqueAsynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is 'object' ? EditionRecapDePaieDetailleParPeriodeResponse : ResponseInterface)
+     *
+     * @throws EditionRecapDePaieDetailleParPeriodeBadRequestException
+     * @throws EditionRecapDePaieDetailleParPeriodeUnauthorizedException
+     * @throws EditionRecapDePaieDetailleParPeriodeInternalServerErrorException
+     * @throws BadResponseException
+     */
+    public function editionRecapDePaieDetailleParPeriode(EditionRecapDePaieDetailleParPeriodeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EditionRecapDePaieDetailleParPeriode($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
+     *
+     * @throws EditionRecapDePaieDetailleParPeriodeAsynchroneBadRequestException
+     * @throws EditionRecapDePaieDetailleParPeriodeAsynchroneUnauthorizedException
+     * @throws EditionRecapDePaieDetailleParPeriodeAsynchroneInternalServerErrorException
+     * @throws BadResponseException
+     */
+    public function editionRecapDePaieDetailleParPeriodeAsynchrone(EditionRecapDePaieDetailleParPeriodeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EditionRecapDePaieDetailleParPeriodeAsynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     *
+     * @throws StatutEditionRecapDePaieDetailleParPeriodeAsynchroneBadRequestException
+     * @throws StatutEditionRecapDePaieDetailleParPeriodeAsynchroneUnauthorizedException
+     * @throws StatutEditionRecapDePaieDetailleParPeriodeAsynchroneInternalServerErrorException
+     * @throws BadResponseException
+     */
+    public function statutEditionRecapDePaieDetailleParPeriodeAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutEditionRecapDePaieDetailleParPeriodeAsynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is 'object' ? EditionSoldeDeReposResponse : ResponseInterface)
      *
      * @throws EditionSoldeDeReposBadRequestException
      * @throws EditionSoldeDeReposUnauthorizedException
      * @throws EditionSoldeDeReposInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionSoldeDeRepos(EditionSoldeDeReposRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4591,12 +4783,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionSoldeDeReposAsynchroneBadRequestException
      * @throws EditionSoldeDeReposAsynchroneUnauthorizedException
      * @throws EditionSoldeDeReposAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionSoldeDeReposAsynchrone(EditionSoldeDeReposRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4618,12 +4810,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionSoldeDeReposAsynchroneBadRequestException
      * @throws StatutEditionSoldeDeReposAsynchroneUnauthorizedException
      * @throws StatutEditionSoldeDeReposAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutEditionSoldeDeReposAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4640,12 +4832,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EditionControleCICEResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? EditionControleCICEResponse : ResponseInterface)
      *
      * @throws EditionControleCICEBadRequestException
      * @throws EditionControleCICEUnauthorizedException
      * @throws EditionControleCICEInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionControleCICE(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4662,12 +4854,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionControleCICEAsynchroneBadRequestException
      * @throws EditionControleCICEAsynchroneUnauthorizedException
      * @throws EditionControleCICEAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionControleCICEAsynchrone(DossierPeriodeRangeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4689,12 +4881,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionControleCICEAsynchroneBadRequestException
      * @throws StatutEditionControleCICEAsynchroneUnauthorizedException
      * @throws StatutEditionControleCICEAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutEditionControleCICEAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4711,12 +4903,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EditionDetailDesCotisationsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? EditionDetailDesCotisationsResponse : ResponseInterface)
      *
      * @throws EditionDetailDesCotisationsBadRequestException
      * @throws EditionDetailDesCotisationsUnauthorizedException
      * @throws EditionDetailDesCotisationsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionDetailDesCotisations(EditionDetailDesCotisationsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4733,12 +4925,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionDetailDesCotisationsAsynchroneBadRequestException
      * @throws EditionDetailDesCotisationsAsynchroneUnauthorizedException
      * @throws EditionDetailDesCotisationsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionDetailDesCotisationsAsynchrone(EditionDetailDesCotisationsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4760,12 +4952,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionDetailDesCotisationsAsynchroneBadRequestException
      * @throws StatutEditionDetailDesCotisationsAsynchroneUnauthorizedException
      * @throws StatutEditionDetailDesCotisationsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutEditionDetailDesCotisationsAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4782,12 +4974,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EditionCoutsSalariauxResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? EditionCoutsSalariauxResponse : ResponseInterface)
      *
      * @throws EditionCoutsSalariauxBadRequestException
      * @throws EditionCoutsSalariauxUnauthorizedException
      * @throws EditionCoutsSalariauxInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionCoutsSalariaux(EditionCoutsSalariauxRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4804,12 +4996,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionCoutsSalariauxAsynchroneBadRequestException
      * @throws EditionCoutsSalariauxAsynchroneUnauthorizedException
      * @throws EditionCoutsSalariauxAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionCoutsSalariauxAsynchrone(EditionCoutsSalariauxRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4831,12 +5023,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionCoutsSalariauxAsynchroneBadRequestException
      * @throws StatutEditionCoutsSalariauxAsynchroneUnauthorizedException
      * @throws StatutEditionCoutsSalariauxAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutEditionCoutsSalariauxAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4853,12 +5045,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? GenererFichierTRResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? GenererFichierTRResponse : ResponseInterface)
      *
      * @throws GenerationFichierTRBadRequestException
      * @throws GenerationFichierTRUnauthorizedException
      * @throws GenerationFichierTRInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function generationFichierTR(GenerationFichierTRRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4875,12 +5067,83 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EditionHistoriqueResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? EditionsGroupeesResponse : ResponseInterface)
+     *
+     * @throws EditionsGroupeesBadRequestException
+     * @throws EditionsGroupeesUnauthorizedException
+     * @throws EditionsGroupeesInternalServerErrorException
+     * @throws BadResponseException
+     */
+    public function editionsGroupees(EditionsGroupeesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EditionsGroupees($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
+     *
+     * @throws EditionsGroupeesAsynchroneBadRequestException
+     * @throws EditionsGroupeesAsynchroneUnauthorizedException
+     * @throws EditionsGroupeesAsynchroneInternalServerErrorException
+     * @throws BadResponseException
+     */
+    public function editionsGroupeesAsynchrone(EditionsGroupeesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new EditionsGroupeesAsynchrone($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $queryParameters {
+     *
+     * @var string $guidTache
+     *             }
+     *
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is 'object' ? StatutEditionsGroupeesResponse : ResponseInterface)
+     *
+     * @throws StatutEditionsGroupeesAsynchroneBadRequestException
+     * @throws StatutEditionsGroupeesAsynchroneUnauthorizedException
+     * @throws StatutEditionsGroupeesAsynchroneInternalServerErrorException
+     * @throws BadResponseException
+     */
+    public function statutEditionsGroupeesAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new StatutEditionsGroupeesAsynchrone($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is 'object' ? EditionHistoriqueResponse : ResponseInterface)
      *
      * @throws EditionHistoriqueBadRequestException
      * @throws EditionHistoriqueUnauthorizedException
      * @throws EditionHistoriqueInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionHistorique(EditionHistoriqueRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4897,12 +5160,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EditionHistoriqueResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? EditionHistoriqueResponse : ResponseInterface)
      *
      * @throws EditionHistoriqueChiffreBadRequestException
      * @throws EditionHistoriqueChiffreUnauthorizedException
      * @throws EditionHistoriqueChiffreInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionHistoriqueChiffre(EditionHistoriqueChiffreRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4919,12 +5182,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionHistoriqueAsynchroneBadRequestException
      * @throws EditionHistoriqueAsynchroneUnauthorizedException
      * @throws EditionHistoriqueAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionHistoriqueAsynchrone(EditionHistoriqueRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4946,12 +5209,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionHistoriqueAsynchroneBadRequestException
      * @throws StatutEditionHistoriqueAsynchroneUnauthorizedException
      * @throws StatutEditionHistoriqueAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutEditionHistoriqueAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4968,12 +5231,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws EditionHistoriqueChiffreAsynchroneBadRequestException
      * @throws EditionHistoriqueChiffreAsynchroneUnauthorizedException
      * @throws EditionHistoriqueChiffreAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function editionHistoriqueChiffreAsynchrone(EditionHistoriqueChiffreRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -4995,12 +5258,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutEditionHistoriqueChiffreAsynchroneBadRequestException
      * @throws StatutEditionHistoriqueChiffreAsynchroneUnauthorizedException
      * @throws StatutEditionHistoriqueChiffreAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutEditionHistoriqueChiffreAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5017,12 +5280,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieAjouterPrimeBadRequestException
      * @throws SalarieAjouterPrimeUnauthorizedException
      * @throws SalarieAjouterPrimeInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAjouterPrime(SalarieAjouterPrimeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5039,12 +5302,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieAjouterPrimeSurEmploiBadRequestException
      * @throws SalarieAjouterPrimeSurEmploiUnauthorizedException
      * @throws SalarieAjouterPrimeSurEmploiInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAjouterPrimeSurEmploi(SalarieAjouterPrimeSurEmploiRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5061,12 +5324,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieAjouterElementVariableBadRequestException
      * @throws SalarieAjouterElementVariableUnauthorizedException
      * @throws SalarieAjouterElementVariableInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAjouterElementVariable(SalarieAjouterElementVariableRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5083,12 +5346,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieAjouterElementVariableSurEmploiBadRequestException
      * @throws SalarieAjouterElementVariableSurEmploiUnauthorizedException
      * @throws SalarieAjouterElementVariableSurEmploiInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAjouterElementVariableSurEmploi(SalarieAjouterElementVariableSurEmploiRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5105,12 +5368,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieAjouterAcompteBadRequestException
      * @throws SalarieAjouterAcompteUnauthorizedException
      * @throws SalarieAjouterAcompteInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieAjouterAcompte(SalarieAjouterAcompteRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5127,12 +5390,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalariesConfirmerSaisiesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SalariesConfirmerSaisiesResponse : ResponseInterface)
      *
      * @throws SalariesConfirmerSaisiesBadRequestException
      * @throws SalariesConfirmerSaisiesUnauthorizedException
      * @throws SalariesConfirmerSaisiesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salariesConfirmerSaisies(SalariesConfirmerSaisiesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5149,12 +5412,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws SalariesConfirmerSaisiesAsynchroneBadRequestException
      * @throws SalariesConfirmerSaisiesAsynchroneUnauthorizedException
      * @throws SalariesConfirmerSaisiesAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salariesConfirmerSaisiesAsynchrone(SalariesConfirmerSaisiesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5176,12 +5439,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutSalariesConfirmerSaisiesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutSalariesConfirmerSaisiesResponse : ResponseInterface)
      *
      * @throws StatutSalariesConfirmerSaisiesAsynchroneBadRequestException
      * @throws StatutSalariesConfirmerSaisiesAsynchroneUnauthorizedException
      * @throws StatutSalariesConfirmerSaisiesAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutSalariesConfirmerSaisiesAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5198,12 +5461,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EtatDeclarationsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? EtatDeclarationsResponse : ResponseInterface)
      *
      * @throws EtatDeclarationsBadRequestException
      * @throws EtatDeclarationsUnauthorizedException
      * @throws EtatDeclarationsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function etatDeclarations(EtatDeclarationsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5220,12 +5483,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeEtablissementsDossierPaieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeEtablissementsDossierPaieResponse : ResponseInterface)
      *
      * @throws ListeEtablissementsDossierPaieBadRequestException
      * @throws ListeEtablissementsDossierPaieUnauthorizedException
      * @throws ListeEtablissementsDossierPaieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeEtablissementsDossierPaie(DossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5242,12 +5505,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EtablissementsAExclureCVAEResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? EtablissementsAExclureCVAEResponse : ResponseInterface)
      *
      * @throws EtablissementsAExclureCVAEBadRequestException
      * @throws EtablissementsAExclureCVAEUnauthorizedException
      * @throws EtablissementsAExclureCVAEInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function etablissementsAExclureCVAE(EtablissementsAExclureCVAERequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5264,12 +5527,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws MiseAJourFicheSocieteBadRequestException
      * @throws MiseAJourFicheSocieteUnauthorizedException
      * @throws MiseAJourFicheSocieteInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function miseAJourFicheSociete(MiseAJourFicheSocieteRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5286,12 +5549,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws MiseAJourFicheEtablissementBadRequestException
      * @throws MiseAJourFicheEtablissementUnauthorizedException
      * @throws MiseAJourFicheEtablissementInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function miseAJourFicheEtablissement(MiseAJourFicheEtablissementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5308,12 +5571,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationEffectifSocieteBadRequestException
      * @throws ModificationEffectifSocieteUnauthorizedException
      * @throws ModificationEffectifSocieteInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationEffectifSociete(ModificationEffectifSocieteRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5330,12 +5593,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationCCNSocieteBadRequestException
      * @throws ModificationCCNSocieteUnauthorizedException
      * @throws ModificationCCNSocieteInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationCCNSociete(ModificationCCNSocieteRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5352,12 +5615,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationEffortConstructionBadRequestException
      * @throws ModificationEffortConstructionUnauthorizedException
      * @throws ModificationEffortConstructionInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationEffortConstruction(ModificationEffortConstructionRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5374,12 +5637,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationFNALBadRequestException
      * @throws ModificationFNALUnauthorizedException
      * @throws ModificationFNALInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationFNAL(ModificationFNALRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5396,12 +5659,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationInformationBancaireSocieteBadRequestException
      * @throws ModificationInformationBancaireSocieteUnauthorizedException
      * @throws ModificationInformationBancaireSocieteInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationInformationBancaireSociete(ModificationInformationBancaireSocieteRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5418,12 +5681,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationTaxeTransportBadRequestException
      * @throws ModificationTaxeTransportUnauthorizedException
      * @throws ModificationTaxeTransportInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationTaxeTransport(ModificationTaxeTransportRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5440,12 +5703,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ModificationTaxeApprentissageEtablissementResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ModificationTaxeApprentissageEtablissementResponse : ResponseInterface)
      *
      * @throws ModificationTaxeApprentissageEtablissementBadRequestException
      * @throws ModificationTaxeApprentissageEtablissementUnauthorizedException
      * @throws ModificationTaxeApprentissageEtablissementInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationTaxeApprentissageEtablissement(ModificationTaxeApprentissageEtablissementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5462,12 +5725,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ModificationTaxeApprentissageSocieteResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ModificationTaxeApprentissageSocieteResponse : ResponseInterface)
      *
      * @throws ModificationTaxeApprentissageSocieteBadRequestException
      * @throws ModificationTaxeApprentissageSocieteUnauthorizedException
      * @throws ModificationTaxeApprentissageSocieteInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationTaxeApprentissageSociete(ModificationTaxeApprentissageSocieteRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5484,12 +5747,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationCCNEtablissementBadRequestException
      * @throws ModificationCCNEtablissementUnauthorizedException
      * @throws ModificationCCNEtablissementInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationCCNEtablissement(ModificationCCNEtablissementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5506,12 +5769,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationEffectifEtablissementBadRequestException
      * @throws ModificationEffectifEtablissementUnauthorizedException
      * @throws ModificationEffectifEtablissementInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationEffectifEtablissement(ModificationEffectifEtablissementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5528,12 +5791,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationQuestionnaireCCNEtablissementBadRequestException
      * @throws ModificationQuestionnaireCCNEtablissementUnauthorizedException
      * @throws ModificationQuestionnaireCCNEtablissementInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationQuestionnaireCCNEtablissement(ModificationQuestionnaireCCNEtablissementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5550,12 +5813,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationGrilleHoraireEtablissementBadRequestException
      * @throws ModificationGrilleHoraireEtablissementUnauthorizedException
      * @throws ModificationGrilleHoraireEtablissementInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationGrilleHoraireEtablissement(ModificationGrilleHoraireEtablissementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5572,12 +5835,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureEffectifSocieteResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureEffectifSocieteResponse : ResponseInterface)
      *
      * @throws LectureEffectifSocieteBadRequestException
      * @throws LectureEffectifSocieteUnauthorizedException
      * @throws LectureEffectifSocieteInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureEffectifSociete(DossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5594,12 +5857,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureCCNSocieteResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureCCNSocieteResponse : ResponseInterface)
      *
      * @throws LectureCCNSocieteBadRequestException
      * @throws LectureCCNSocieteUnauthorizedException
      * @throws LectureCCNSocieteInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureCCNSociete(DossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5616,12 +5879,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? EffortConstruction : ResponseInterface)
+     * @return ($fetch is 'object' ? EffortConstruction : ResponseInterface)
      *
      * @throws LectureEffortConstructionBadRequestException
      * @throws LectureEffortConstructionUnauthorizedException
      * @throws LectureEffortConstructionInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureEffortConstruction(DossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5638,12 +5901,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? FNAL : ResponseInterface)
+     * @return ($fetch is 'object' ? FNAL : ResponseInterface)
      *
      * @throws LectureFNALBadRequestException
      * @throws LectureFNALUnauthorizedException
      * @throws LectureFNALInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureFNAL(DossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5660,12 +5923,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureInformationBancaireSocieteResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureInformationBancaireSocieteResponse : ResponseInterface)
      *
      * @throws LectureInformationBancaireSocieteBadRequestException
      * @throws LectureInformationBancaireSocieteUnauthorizedException
      * @throws LectureInformationBancaireSocieteInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureInformationBancaireSociete(DossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5682,12 +5945,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureTaxeTransportResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureTaxeTransportResponse : ResponseInterface)
      *
      * @throws LectureTaxeTransportBadRequestException
      * @throws LectureTaxeTransportUnauthorizedException
      * @throws LectureTaxeTransportInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureTaxeTransport(LectureTaxeTransportRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5704,12 +5967,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureTaxeApprentissageSocieteResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureTaxeApprentissageSocieteResponse : ResponseInterface)
      *
      * @throws LectureTaxeApprentissageSocieteBadRequestException
      * @throws LectureTaxeApprentissageSocieteUnauthorizedException
      * @throws LectureTaxeApprentissageSocieteInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureTaxeApprentissageSociete(LectureTaxeApprentissageSocieteRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5726,12 +5989,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureTaxeApprentissageEtablissementResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureTaxeApprentissageEtablissementResponse : ResponseInterface)
      *
      * @throws LectureTaxeApprentissageEtablissementBadRequestException
      * @throws LectureTaxeApprentissageEtablissementUnauthorizedException
      * @throws LectureTaxeApprentissageEtablissementInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureTaxeApprentissageEtablissement(LectureTaxeApprentissageEtablissementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5748,12 +6011,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureEffectifEtablissementResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureEffectifEtablissementResponse : ResponseInterface)
      *
      * @throws LectureEffectifEtablissementBadRequestException
      * @throws LectureEffectifEtablissementUnauthorizedException
      * @throws LectureEffectifEtablissementInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureEffectifEtablissement(LectureEffectifEtablissementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5770,12 +6033,34 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureTauxATEtablissementResponse : ResponseInterface)
+     *
+     * @throws LectureTauxATEtablissementBadRequestException
+     * @throws LectureTauxATEtablissementUnauthorizedException
+     * @throws LectureTauxATEtablissementInternalServerErrorException
+     * @throws BadResponseException
+     */
+    public function lectureTauxATEtablissement(LectureTauxATEtablissementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new LectureTauxATEtablissement($request, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     * @var string $Ocp-Apim-Subscription-Key Clé d'abonnement api management
+     * @var string $dossiers
+     * @var string $Authorization Authorization de type Bearer.
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws GenererDSNEvenementielleFCTUAsynchroneBadRequestException
      * @throws GenererDSNEvenementielleFCTUAsynchroneUnauthorizedException
      * @throws GenererDSNEvenementielleFCTUAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function genererDSNEvenementielleFCTUAsynchrone(GenererDSNEvenementielleFCTURequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5797,12 +6082,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutGenererDSNEvenementielleFCTUResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutGenererDSNEvenementielleFCTUResponse : ResponseInterface)
      *
      * @throws StatutGenererDSNEvenementielleFCTUAsynchroneBadRequestException
      * @throws StatutGenererDSNEvenementielleFCTUAsynchroneUnauthorizedException
      * @throws StatutGenererDSNEvenementielleFCTUAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutGenererDSNEvenementielleFCTUAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5819,12 +6104,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieRecupererDUEResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieRecupererDUEResponse : ResponseInterface)
      *
      * @throws SalarieRecupererDUEBadRequestException
      * @throws SalarieRecupererDUEUnauthorizedException
      * @throws SalarieRecupererDUEInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieRecupererDUE(DossierMatriculeSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5841,12 +6126,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieRecupererRecuDPAEResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieRecupererRecuDPAEResponse : ResponseInterface)
      *
      * @throws SalarieRecupererRecuDPAEBadRequestException
      * @throws SalarieRecupererRecuDPAEUnauthorizedException
      * @throws SalarieRecupererRecuDPAEInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieRecupererRecuDPAE(SalarieRecupererRecuDPAERequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5863,12 +6148,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieDUEBadRequestException
      * @throws SalarieDUEUnauthorizedException
      * @throws SalarieDUEInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieDUE(SalarieDUERequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5885,12 +6170,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws SalarieDUEAsynchroneBadRequestException
      * @throws SalarieDUEAsynchroneUnauthorizedException
      * @throws SalarieDUEAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieDUEAsynchrone(SalarieDUERequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5912,12 +6197,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutSalariesDUEAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutSalariesDUEAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutSalarieDUEAsynchroneBadRequestException
      * @throws StatutSalarieDUEAsynchroneUnauthorizedException
      * @throws StatutSalarieDUEAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutSalarieDUEAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5934,12 +6219,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalariesDUEResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SalariesDUEResponse : ResponseInterface)
      *
      * @throws SalariesDUEBadRequestException
      * @throws SalariesDUEUnauthorizedException
      * @throws SalariesDUEInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salariesDUE(SalariesDUERequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5956,12 +6241,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? RechercheCCNResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? RechercheCCNResponse : ResponseInterface)
      *
      * @throws RechercheCCNBadRequestException
      * @throws RechercheCCNUnauthorizedException
      * @throws RechercheCCNInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function rechercheCCN(RechercheCCNRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -5978,12 +6263,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? (CCN|null) : ResponseInterface)
+     * @return ($fetch is 'object' ? CCN|null : ResponseInterface)
      *
      * @throws RechercheCCNParCodeBadRequestException
      * @throws RechercheCCNParCodeUnauthorizedException
      * @throws RechercheCCNParCodeInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function rechercheCCNParCode(RechercheCCNParCodeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6000,12 +6285,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieBulletinEnteteResult : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieBulletinEnteteResult : ResponseInterface)
      *
      * @throws SalarieBulletinEnteteBadRequestException
      * @throws SalarieBulletinEnteteUnauthorizedException
      * @throws SalarieBulletinEnteteInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieBulletinEntete(SalarieBulletinEnteteRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6022,12 +6307,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieBulletinsIndicesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieBulletinsIndicesResponse : ResponseInterface)
      *
      * @throws SalarieBulletinsIndicesBadRequestException
      * @throws SalarieBulletinsIndicesUnauthorizedException
      * @throws SalarieBulletinsIndicesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieBulletinsIndices(SalarieBulletinsIndicesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6044,12 +6329,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieBulletinLignesResult : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieBulletinLignesResult : ResponseInterface)
      *
      * @throws SalarieBulletinLignesBadRequestException
      * @throws SalarieBulletinLignesUnauthorizedException
      * @throws SalarieBulletinLignesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieBulletinLignes(SalarieBulletinLignesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6066,12 +6351,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieBulletinLignesResult : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieBulletinLignesResult : ResponseInterface)
      *
      * @throws SalarieBulletinLignesSelonFiltresBadRequestException
      * @throws SalarieBulletinLignesSelonFiltresUnauthorizedException
      * @throws SalarieBulletinLignesSelonFiltresInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieBulletinLignesSelonFiltres(SalarieBulletinLignesSelonFiltresRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6088,12 +6373,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieBulletinDetailsResult : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieBulletinDetailsResult : ResponseInterface)
      *
      * @throws SalarieBulletinDetailsBadRequestException
      * @throws SalarieBulletinDetailsUnauthorizedException
      * @throws SalarieBulletinDetailsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieBulletinDetails(SalarieBulletinDetailsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6110,12 +6395,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieBulletinStatutEtatAvancementResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieBulletinStatutEtatAvancementResponse : ResponseInterface)
      *
      * @throws SalarieBulletinStatutEtatAvancementBadRequestException
      * @throws SalarieBulletinStatutEtatAvancementUnauthorizedException
      * @throws SalarieBulletinStatutEtatAvancementInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieBulletinStatutEtatAvancement(SalarieBulletinStatutEtatAvancementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6132,12 +6417,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieBulletinCumulsResult : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieBulletinCumulsResult : ResponseInterface)
      *
      * @throws SalarieBulletinCumulsBadRequestException
      * @throws SalarieBulletinCumulsUnauthorizedException
      * @throws SalarieBulletinCumulsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieBulletinCumuls(SalarieBulletinCumulsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6154,12 +6439,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalariesStockVarResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SalariesStockVarResponse : ResponseInterface)
      *
      * @throws SalariesStockVarBadRequestException
      * @throws SalariesStockVarUnauthorizedException
      * @throws SalariesStockVarInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salariesStockVar(SalariesStockVarRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6176,12 +6461,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeDSNMensuellesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeDSNMensuellesResponse : ResponseInterface)
      *
      * @throws ListeDSNMensuellesBadRequestException
      * @throws ListeDSNMensuellesUnauthorizedException
      * @throws ListeDSNMensuellesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeDSNMensuelles(DossierPeriodeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6198,12 +6483,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AcquisitionContenuPartielDSNResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AcquisitionContenuPartielDSNResponse : ResponseInterface)
      *
      * @throws AcquisitionContenuPartielDSNBadRequestException
      * @throws AcquisitionContenuPartielDSNUnauthorizedException
      * @throws AcquisitionContenuPartielDSNInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function acquisitionContenuPartielDSN(AcquisitionContenuPartielDSNRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6220,12 +6505,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? RechercheDeclarationEvenementielleResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? RechercheDeclarationEvenementielleResponse : ResponseInterface)
      *
      * @throws RechercheDeclarationEvenementielleBadRequestException
      * @throws RechercheDeclarationEvenementielleUnauthorizedException
      * @throws RechercheDeclarationEvenementielleInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function rechercheDeclarationEvenementielle(RechercheDeclarationEvenementielleRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6242,12 +6527,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeDSNEvenementiellesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeDSNEvenementiellesResponse : ResponseInterface)
      *
      * @throws ListeDSNEvenementiellesBadRequestException
      * @throws ListeDSNEvenementiellesUnauthorizedException
      * @throws ListeDSNEvenementiellesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeDSNEvenementielles(ListeDSNEvenementiellesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6264,12 +6549,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieRecupererPeriodeDernierBulletinCalculeResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieRecupererPeriodeDernierBulletinCalculeResponse : ResponseInterface)
      *
      * @throws SalarieRecupererPeriodeDernierBulletinCalculeBadRequestException
      * @throws SalarieRecupererPeriodeDernierBulletinCalculeUnauthorizedException
      * @throws SalarieRecupererPeriodeDernierBulletinCalculeInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieRecupererPeriodeDernierBulletinCalcule(DossierMatriculeSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6286,12 +6571,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureInformationsPaieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureInformationsPaieResponse : ResponseInterface)
      *
      * @throws LectureInformationsPaieBadRequestException
      * @throws LectureInformationsPaieUnauthorizedException
      * @throws LectureInformationsPaieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureInformationsPaie(LectureInformationsPaieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6308,12 +6593,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? HistoriqueDesModificationsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? HistoriqueDesModificationsResponse : ResponseInterface)
      *
      * @throws HistoriqueDesModificationsBadRequestException
      * @throws HistoriqueDesModificationsUnauthorizedException
      * @throws HistoriqueDesModificationsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function historiqueDesModifications(HistoriqueDesModificationsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6330,12 +6615,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? HistoriqueDesConnexionsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? HistoriqueDesConnexionsResponse : ResponseInterface)
      *
      * @throws HistoriqueDesConnexionsBadRequestException
      * @throws HistoriqueDesConnexionsUnauthorizedException
      * @throws HistoriqueDesConnexionsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function historiqueDesConnexions(HistoriqueDesConnexionsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6352,12 +6637,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalariesBulletinsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SalariesBulletinsResponse : ResponseInterface)
      *
      * @throws SalariesBulletinsBadRequestException
      * @throws SalariesBulletinsUnauthorizedException
      * @throws SalariesBulletinsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salariesBulletins(SalariesBulletinsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6374,12 +6659,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws SalariesBulletinsAsynchroneBadRequestException
      * @throws SalariesBulletinsAsynchroneUnauthorizedException
      * @throws SalariesBulletinsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salariesBulletinsAsynchrone(SalariesBulletinsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6401,12 +6686,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutSalariesBulletinsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutSalariesBulletinsResponse : ResponseInterface)
      *
      * @throws StatutSalariesBulletinsAsynchroneBadRequestException
      * @throws StatutSalariesBulletinsAsynchroneUnauthorizedException
      * @throws StatutSalariesBulletinsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutSalariesBulletinsAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6423,12 +6708,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeSalariesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeSalariesResponse : ResponseInterface)
      *
      * @throws ListeSalariesBadRequestException
      * @throws ListeSalariesUnauthorizedException
      * @throws ListeSalariesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeSalaries(ListeSalariesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6445,12 +6730,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureInformationsSalarieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureInformationsSalarieResponse : ResponseInterface)
      *
      * @throws LectureInformationsSalarieBadRequestException
      * @throws LectureInformationsSalarieUnauthorizedException
      * @throws LectureInformationsSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureInformationsSalarie(DossierMatriculeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6467,12 +6752,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeSalariesExternesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeSalariesExternesResponse : ResponseInterface)
      *
      * @throws ListeSalariesExternesBadRequestException
      * @throws ListeSalariesExternesUnauthorizedException
      * @throws ListeSalariesExternesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeSalariesExternes(ListeSalariesExternesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6489,12 +6774,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieSalaireDeBaseResult : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieSalaireDeBaseResult : ResponseInterface)
      *
      * @throws SalarieSalaireDeBaseBadRequestException
      * @throws SalarieSalaireDeBaseUnauthorizedException
      * @throws SalarieSalaireDeBaseInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieSalaireDeBase(SalarieSalaireDeBaseRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6511,12 +6796,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SalarieSyntheseCarriereResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SalarieSyntheseCarriereResponse : ResponseInterface)
      *
      * @throws SalarieSyntheseCarriereBadRequestException
      * @throws SalarieSyntheseCarriereUnauthorizedException
      * @throws SalarieSyntheseCarriereInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieSyntheseCarriere(DossierMatriculeSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6533,12 +6818,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws SalarieSyntheseCarriereAsynchroneBadRequestException
      * @throws SalarieSyntheseCarriereAsynchroneUnauthorizedException
      * @throws SalarieSyntheseCarriereAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieSyntheseCarriereAsynchrone(DossierMatriculeSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6560,12 +6845,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutSalarieSyntheseCarriereResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutSalarieSyntheseCarriereResponse : ResponseInterface)
      *
      * @throws StatutSalarieSyntheseCarriereAsynchroneBadRequestException
      * @throws StatutSalarieSyntheseCarriereAsynchroneUnauthorizedException
      * @throws StatutSalarieSyntheseCarriereAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutSalarieSyntheseCarriereAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6582,12 +6867,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LecturePersonnesLieesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LecturePersonnesLieesResponse : ResponseInterface)
      *
      * @throws LecturePersonnesLieesBadRequestException
      * @throws LecturePersonnesLieesUnauthorizedException
      * @throws LecturePersonnesLieesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lecturePersonnesLiees(DossierMatriculeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6604,12 +6889,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureHandicapResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureHandicapResponse : ResponseInterface)
      *
      * @throws LectureHandicapBadRequestException
      * @throws LectureHandicapUnauthorizedException
      * @throws LectureHandicapInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureHandicap(DossierMatriculeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6626,12 +6911,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureSalarieProtegeResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureSalarieProtegeResponse : ResponseInterface)
      *
      * @throws LectureSalarieProtegeBadRequestException
      * @throws LectureSalarieProtegeUnauthorizedException
      * @throws LectureSalarieProtegeInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureSalarieProtege(DossierMatriculeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6648,12 +6933,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureSaisieArretResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureSaisieArretResponse : ResponseInterface)
      *
      * @throws LectureSaisieArretBadRequestException
      * @throws LectureSaisieArretUnauthorizedException
      * @throws LectureSaisieArretInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureSaisieArret(DossierMatriculeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6670,12 +6955,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureReponsesQuestionnaireFicheSalarieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureReponsesQuestionnaireFicheSalarieResponse : ResponseInterface)
      *
      * @throws LectureReponsesQuestionnaireFicheSalarieBadRequestException
      * @throws LectureReponsesQuestionnaireFicheSalarieUnauthorizedException
      * @throws LectureReponsesQuestionnaireFicheSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureReponsesQuestionnaireFicheSalarie(DossierMatriculeSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6692,12 +6977,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeNumerosDossiersResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeNumerosDossiersResponse : ResponseInterface)
      *
      * @throws ListeNumerosDossiersBadRequestException
      * @throws ListeNumerosDossiersUnauthorizedException
      * @throws ListeNumerosDossiersInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeNumerosDossiers(array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6714,12 +6999,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeDossiersResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeDossiersResponse : ResponseInterface)
      *
      * @throws ListeDossiersBadRequestException
      * @throws ListeDossiersUnauthorizedException
      * @throws ListeDossiersInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeDossiers(ListeDossiersRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6736,12 +7021,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeInformationsDossiersPaieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeInformationsDossiersPaieResponse : ResponseInterface)
      *
      * @throws ListeInformationsDossiersPaieBadRequestException
      * @throws ListeInformationsDossiersPaieUnauthorizedException
      * @throws ListeInformationsDossiersPaieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeInformationsDossiersPaie(array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6758,12 +7043,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? DossierRecupererPeriodeEnCoursResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? DossierRecupererPeriodeEnCoursResponse : ResponseInterface)
      *
      * @throws DossierRecupererPeriodeEnCoursBadRequestException
      * @throws DossierRecupererPeriodeEnCoursUnauthorizedException
      * @throws DossierRecupererPeriodeEnCoursInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function dossierRecupererPeriodeEnCours(DossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6780,12 +7065,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? MatriculeSalarieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? MatriculeSalarieResponse : ResponseInterface)
      *
      * @throws MatriculeSalarieBadRequestException
      * @throws MatriculeSalarieUnauthorizedException
      * @throws MatriculeSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function matriculeSalarie(MatriculeSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6802,12 +7087,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeMatriculesDupliquesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeMatriculesDupliquesResponse : ResponseInterface)
      *
      * @throws ListeMatriculesDupliquesBadRequestException
      * @throws ListeMatriculesDupliquesUnauthorizedException
      * @throws ListeMatriculesDupliquesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeMatriculesDupliques(ListeMatriculesDupliquesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6824,12 +7109,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeMatriculesDupliquesDansDomaineResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeMatriculesDupliquesDansDomaineResponse : ResponseInterface)
      *
      * @throws ListeMatriculesDupliquesDansDomaineBadRequestException
      * @throws ListeMatriculesDupliquesDansDomaineUnauthorizedException
      * @throws ListeMatriculesDupliquesDansDomaineInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeMatriculesDupliquesDansDomaine(array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6846,12 +7131,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ExistenceMatriculeResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ExistenceMatriculeResponse : ResponseInterface)
      *
      * @throws ExistenceMatriculeBadRequestException
      * @throws ExistenceMatriculeUnauthorizedException
      * @throws ExistenceMatriculeInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function existenceMatricule(ExistenceMatriculeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6868,12 +7153,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ExtraListeManifestationsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ExtraListeManifestationsResponse : ResponseInterface)
      *
      * @throws ExtraListeManifestationsBadRequestException
      * @throws ExtraListeManifestationsUnauthorizedException
      * @throws ExtraListeManifestationsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function extraListeManifestations(ExtraListeManifestationsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6890,12 +7175,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ExtraCreationManifestationBadRequestException
      * @throws ExtraCreationManifestationUnauthorizedException
      * @throws ExtraCreationManifestationInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function extraCreationManifestation(ExtraCreationManifestationRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6912,12 +7197,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ExtraSalarieVacations : ResponseInterface)
+     * @return ($fetch is 'object' ? ExtraSalarieVacations : ResponseInterface)
      *
      * @throws ExtraSalarieAcquisitionVacationsBadRequestException
      * @throws ExtraSalarieAcquisitionVacationsUnauthorizedException
      * @throws ExtraSalarieAcquisitionVacationsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function extraSalarieAcquisitionVacations(ExtraSalarieAcquisitionVacationsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6934,12 +7219,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ExtraSalarieAjouterVacationsBadRequestException
      * @throws ExtraSalarieAjouterVacationsUnauthorizedException
      * @throws ExtraSalarieAjouterVacationsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function extraSalarieAjouterVacations(ExtraSalarieAjouterVacationsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6956,12 +7241,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ExtraSalarieReinitialiserVacationsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ExtraSalarieReinitialiserVacationsResponse : ResponseInterface)
      *
      * @throws ExtraSalarieReinitialiserVacationsBadRequestException
      * @throws ExtraSalarieReinitialiserVacationsUnauthorizedException
      * @throws ExtraSalarieReinitialiserVacationsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function extraSalarieReinitialiserVacations(ExtraSalarieReinitialiserVacationsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -6978,12 +7263,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ExtraSalarieCalculerBulletinBadRequestException
      * @throws ExtraSalarieCalculerBulletinUnauthorizedException
      * @throws ExtraSalarieCalculerBulletinInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function extraSalarieCalculerBulletin(ExtraSalarieCalculerBulletinRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7000,12 +7285,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SpectacleListeResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SpectacleListeResponse : ResponseInterface)
      *
      * @throws SpectacleListeBadRequestException
      * @throws SpectacleListeUnauthorizedException
      * @throws SpectacleListeInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function spectacleListe(SpectacleListeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7022,12 +7307,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SpectacleCreationBadRequestException
      * @throws SpectacleCreationUnauthorizedException
      * @throws SpectacleCreationInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function spectacleCreation(SpectacleCreationRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7044,12 +7329,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SpectacleSalarieAffectations : ResponseInterface)
+     * @return ($fetch is 'object' ? SpectacleSalarieAffectations : ResponseInterface)
      *
      * @throws SpectacleSalarieAcquisitionAffectationsBadRequestException
      * @throws SpectacleSalarieAcquisitionAffectationsUnauthorizedException
      * @throws SpectacleSalarieAcquisitionAffectationsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function spectacleSalarieAcquisitionAffectations(SpectacleSalarieAcquisitionAffectationsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7066,12 +7351,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SpectacleSalarieAjouterAffectationsBadRequestException
      * @throws SpectacleSalarieAjouterAffectationsUnauthorizedException
      * @throws SpectacleSalarieAjouterAffectationsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function spectacleSalarieAjouterAffectations(SpectacleSalarieAjouterAffectationsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7088,12 +7373,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SpectacleSalarieReinitialiserAffectationsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SpectacleSalarieReinitialiserAffectationsResponse : ResponseInterface)
      *
      * @throws SpectacleSalarieReinitialiserAffectationsBadRequestException
      * @throws SpectacleSalarieReinitialiserAffectationsUnauthorizedException
      * @throws SpectacleSalarieReinitialiserAffectationsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function spectacleSalarieReinitialiserAffectations(SpectacleSalarieReinitialiserAffectationsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7110,12 +7395,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SpectacleSalarieCalculerBulletinBadRequestException
      * @throws SpectacleSalarieCalculerBulletinUnauthorizedException
      * @throws SpectacleSalarieCalculerBulletinInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function spectacleSalarieCalculerBulletin(SpectacleSalarieCalculerBulletinRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7132,12 +7417,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws SpectacleSalarieCalculerBulletinAsynchroneBadRequestException
      * @throws SpectacleSalarieCalculerBulletinAsynchroneUnauthorizedException
      * @throws SpectacleSalarieCalculerBulletinAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function spectacleSalarieCalculerBulletinAsynchrone(SpectacleSalarieCalculerBulletinRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7159,12 +7444,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutSpectacleSalarieCalculerBulletinAsynchroneBadRequestException
      * @throws StatutSpectacleSalarieCalculerBulletinAsynchroneUnauthorizedException
      * @throws StatutSpectacleSalarieCalculerBulletinAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutSpectacleSalarieCalculerBulletinAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7181,12 +7466,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws CreationOrganismeBadRequestException
      * @throws CreationOrganismeUnauthorizedException
      * @throws CreationOrganismeInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function creationOrganisme(CreationOrganismeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7203,12 +7488,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeOrganismesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeOrganismesResponse : ResponseInterface)
      *
      * @throws ListeOrganismesBadRequestException
      * @throws ListeOrganismesUnauthorizedException
      * @throws ListeOrganismesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeOrganismes(ListeOrganismesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7225,12 +7510,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? RecupererFichiersVirementResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? RecupererFichiersVirementResponse : ResponseInterface)
      *
      * @throws RecupererFichiersVirementBadRequestException
      * @throws RecupererFichiersVirementUnauthorizedException
      * @throws RecupererFichiersVirementInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function recupererFichiersVirement(RecupererFichiersVirementRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7247,12 +7532,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? RecupererFichiersVirementResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? RecupererFichiersVirementResponse : ResponseInterface)
      *
      * @throws RecupererFichiersVirementChiffresBadRequestException
      * @throws RecupererFichiersVirementChiffresUnauthorizedException
      * @throws RecupererFichiersVirementChiffresInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function recupererFichiersVirementChiffres(RecupererFichiersVirementChiffresRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7269,12 +7554,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? RecupererFichiersVirementResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? RecupererFichiersVirementResponse : ResponseInterface)
      *
      * @throws RecupererFichiersVirementHorsBulletinBadRequestException
      * @throws RecupererFichiersVirementHorsBulletinUnauthorizedException
      * @throws RecupererFichiersVirementHorsBulletinInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function recupererFichiersVirementHorsBulletin(RecupererFichiersVirementHorsBulletinRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7291,12 +7576,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? RecupererFichiersVirementResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? RecupererFichiersVirementResponse : ResponseInterface)
      *
      * @throws RecupererFichiersVirementHorsBulletinChiffresBadRequestException
      * @throws RecupererFichiersVirementHorsBulletinChiffresUnauthorizedException
      * @throws RecupererFichiersVirementHorsBulletinChiffresInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function recupererFichiersVirementHorsBulletinChiffres(RecupererFichiersVirementHorsBulletinChiffresRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7313,12 +7598,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AcquisitionQuestionnaireCCNResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AcquisitionQuestionnaireCCNResponse : ResponseInterface)
      *
      * @throws AcquisitionQuestionnaireEtablissementCCNBadRequestException
      * @throws AcquisitionQuestionnaireEtablissementCCNUnauthorizedException
      * @throws AcquisitionQuestionnaireEtablissementCCNInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function acquisitionQuestionnaireEtablissementCCN(AcquisitionQuestionnaireCCNRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7335,12 +7620,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AcquisitionQuestionnaireCCNResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AcquisitionQuestionnaireCCNResponse : ResponseInterface)
      *
      * @throws AcquisitionQuestionnaireEtablissementCCNAvecTexteBadRequestException
      * @throws AcquisitionQuestionnaireEtablissementCCNAvecTexteUnauthorizedException
      * @throws AcquisitionQuestionnaireEtablissementCCNAvecTexteInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function acquisitionQuestionnaireEtablissementCCNAvecTexte(AcquisitionQuestionnaireCCNRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7357,12 +7642,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AcquisitionQuestionnaireCCNResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AcquisitionQuestionnaireCCNResponse : ResponseInterface)
      *
      * @throws AcquisitionQuestionnaireSalarieCCNBadRequestException
      * @throws AcquisitionQuestionnaireSalarieCCNUnauthorizedException
      * @throws AcquisitionQuestionnaireSalarieCCNInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function acquisitionQuestionnaireSalarieCCN(AcquisitionQuestionnaireCCNRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7379,12 +7664,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? AcquisitionQuestionnaireCCNResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? AcquisitionQuestionnaireCCNResponse : ResponseInterface)
      *
      * @throws AcquisitionQuestionnaireSalarieCCNAvecTexteBadRequestException
      * @throws AcquisitionQuestionnaireSalarieCCNAvecTexteUnauthorizedException
      * @throws AcquisitionQuestionnaireSalarieCCNAvecTexteInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function acquisitionQuestionnaireSalarieCCNAvecTexte(AcquisitionQuestionnaireCCNRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7401,12 +7686,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureReponsesQuestionnaireConventionnelSalarieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureReponsesQuestionnaireConventionnelSalarieResponse : ResponseInterface)
      *
      * @throws LectureReponsesQuestionnaireConventionnelSalarieBadRequestException
      * @throws LectureReponsesQuestionnaireConventionnelSalarieUnauthorizedException
      * @throws LectureReponsesQuestionnaireConventionnelSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureReponsesQuestionnaireConventionnelSalarie(LectureReponsesQuestionnaireConventionnelSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7423,12 +7708,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SimpleMessageResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SimpleMessageResponse : ResponseInterface)
      *
      * @throws EcritureReponsesQuestionnaireConventionnelSalarieBadRequestException
      * @throws EcritureReponsesQuestionnaireConventionnelSalarieUnauthorizedException
      * @throws EcritureReponsesQuestionnaireConventionnelSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function ecritureReponsesQuestionnaireConventionnelSalarie(EcritureReponsesQuestionnaireConventionnelSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7445,12 +7730,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? RecupererImageResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? RecupererImageResponse : ResponseInterface)
      *
      * @throws RecupererImageBadRequestException
      * @throws RecupererImageUnauthorizedException
      * @throws RecupererImageInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function recupererImage(RecupererImageRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7467,12 +7752,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws RecupererImageAsynchroneBadRequestException
      * @throws RecupererImageAsynchroneUnauthorizedException
      * @throws RecupererImageAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function recupererImageAsynchrone(RecupererImageRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7494,12 +7779,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutRecupererImageAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutRecupererImageAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutRecupererImageAsynchroneBadRequestException
      * @throws StatutRecupererImageAsynchroneUnauthorizedException
      * @throws StatutRecupererImageAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutRecupererImageAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7516,12 +7801,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? RecupererDuplicatasBulletinsResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? RecupererDuplicatasBulletinsResponse : ResponseInterface)
      *
      * @throws RecupererDuplicatasBulletinsBadRequestException
      * @throws RecupererDuplicatasBulletinsUnauthorizedException
      * @throws RecupererDuplicatasBulletinsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function recupererDuplicatasBulletins(RecupererDuplicatasBulletinsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7538,12 +7823,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws RecupererDuplicatasBulletinsAsynchroneBadRequestException
      * @throws RecupererDuplicatasBulletinsAsynchroneUnauthorizedException
      * @throws RecupererDuplicatasBulletinsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function recupererDuplicatasBulletinsAsynchrone(RecupererDuplicatasBulletinsRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7565,12 +7850,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutAsynchroneDocumentResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutAsynchroneDocumentResponse : ResponseInterface)
      *
      * @throws StatutRecupererDuplicatasBulletinsAsynchroneBadRequestException
      * @throws StatutRecupererDuplicatasBulletinsAsynchroneUnauthorizedException
      * @throws StatutRecupererDuplicatasBulletinsAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutRecupererDuplicatasBulletinsAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7587,12 +7872,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? CreationSalarieEmploisResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? CreationSalarieEmploisResponse : ResponseInterface)
      *
      * @throws CreationSalarieEmploisBadRequestException
      * @throws CreationSalarieEmploisUnauthorizedException
      * @throws CreationSalarieEmploisInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function creationSalarieEmplois(CreationSalarieEmploisRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7609,12 +7894,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? TraitementAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? TraitementAsynchroneResponse : ResponseInterface)
      *
      * @throws CreationSalarieEmploisAsynchroneBadRequestException
      * @throws CreationSalarieEmploisAsynchroneUnauthorizedException
      * @throws CreationSalarieEmploisAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function creationSalarieEmploisAsynchrone(CreationSalarieEmploisRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7636,12 +7921,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? StatutCreationSalarieEmploisAsynchroneResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? StatutCreationSalarieEmploisAsynchroneResponse : ResponseInterface)
      *
      * @throws StatutCreationSalarieEmploisAsynchroneBadRequestException
      * @throws StatutCreationSalarieEmploisAsynchroneUnauthorizedException
      * @throws StatutCreationSalarieEmploisAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function statutCreationSalarieEmploisAsynchrone(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7658,12 +7943,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeSalarieEmploisResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeSalarieEmploisResponse : ResponseInterface)
      *
      * @throws ListeSalarieEmploisBadRequestException
      * @throws ListeSalarieEmploisUnauthorizedException
      * @throws ListeSalarieEmploisInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeSalarieEmplois(ListeSalarieEmploisRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7680,12 +7965,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieReinitialiserIdentifiantsEmploisBadRequestException
      * @throws SalarieReinitialiserIdentifiantsEmploisUnauthorizedException
      * @throws SalarieReinitialiserIdentifiantsEmploisInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieReinitialiserIdentifiantsEmplois(DossierMatriculeSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7702,12 +7987,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeSalarieEmploisExternesResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeSalarieEmploisExternesResponse : ResponseInterface)
      *
      * @throws ListeSalarieEmploisExternesBadRequestException
      * @throws ListeSalarieEmploisExternesUnauthorizedException
      * @throws ListeSalarieEmploisExternesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeSalarieEmploisExternes(DossierMatriculeSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7724,12 +8009,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws SalarieReinitialiserIdentifiantsEmploisExternesBadRequestException
      * @throws SalarieReinitialiserIdentifiantsEmploisExternesUnauthorizedException
      * @throws SalarieReinitialiserIdentifiantsEmploisExternesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function salarieReinitialiserIdentifiantsEmploisExternes(DossierMatriculeSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7746,12 +8031,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ModificationChamp : ResponseInterface)
+     * @return ($fetch is 'object' ? ModificationChamp : ResponseInterface)
      *
      * @throws ModificationChampSalarieBadRequestException
      * @throws ModificationChampSalarieUnauthorizedException
      * @throws ModificationChampSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationChampSalarie(ModificationChampSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7768,12 +8053,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationAxesAnalytiquesSalarieBadRequestException
      * @throws ModificationAxesAnalytiquesSalarieUnauthorizedException
      * @throws ModificationAxesAnalytiquesSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationAxesAnalytiquesSalarie(ModificationAxesAnalytiquesSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7790,12 +8075,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationPersonnesLieesBadRequestException
      * @throws ModificationPersonnesLieesUnauthorizedException
      * @throws ModificationPersonnesLieesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationPersonnesLiees(ModificationPersonnesLieesRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7812,12 +8097,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationHandicapBadRequestException
      * @throws ModificationHandicapUnauthorizedException
      * @throws ModificationHandicapInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationHandicap(ModificationHandicapRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7834,12 +8119,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationSalarieProtegeBadRequestException
      * @throws ModificationSalarieProtegeUnauthorizedException
      * @throws ModificationSalarieProtegeInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationSalarieProtege(ModificationSalarieProtegeRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7856,12 +8141,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationSaisieArretBadRequestException
      * @throws ModificationSaisieArretUnauthorizedException
      * @throws ModificationSaisieArretInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationSaisieArret(ModificationSaisieArretRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7878,12 +8163,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureQuestionnaireContratComplementaireResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureQuestionnaireContratComplementaireResponse : ResponseInterface)
      *
      * @throws LectureQuestionnaireContratComplementaireSalarieBadRequestException
      * @throws LectureQuestionnaireContratComplementaireSalarieUnauthorizedException
      * @throws LectureQuestionnaireContratComplementaireSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureQuestionnaireContratComplementaireSalarie(LectureQuestionnaireContratComplementaireRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7900,12 +8185,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationQuestionnaireContratComplementaireSalarieBadRequestException
      * @throws ModificationQuestionnaireContratComplementaireSalarieUnauthorizedException
      * @throws ModificationQuestionnaireContratComplementaireSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationQuestionnaireContratComplementaireSalarie(ModificationQuestionnaireContratComplementaireRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7922,12 +8207,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? null : ResponseInterface)
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws ModificationGrilleHoraireSalarieBadRequestException
      * @throws ModificationGrilleHoraireSalarieUnauthorizedException
      * @throws ModificationGrilleHoraireSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationGrilleHoraireSalarie(ModificationGrilleHoraireSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7944,12 +8229,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureGrilleHoraireFicheSalarieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureGrilleHoraireFicheSalarieResponse : ResponseInterface)
      *
      * @throws LectureGrilleHoraireFicheSalarieBadRequestException
      * @throws LectureGrilleHoraireFicheSalarieUnauthorizedException
      * @throws LectureGrilleHoraireFicheSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureGrilleHoraireFicheSalarie(LectureGrilleHoraireFicheSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7966,12 +8251,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SimpleMessageResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SimpleMessageResponse : ResponseInterface)
      *
      * @throws EcritureReponsesQuestionnaireFicheSalarieBadRequestException
      * @throws EcritureReponsesQuestionnaireFicheSalarieUnauthorizedException
      * @throws EcritureReponsesQuestionnaireFicheSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function ecritureReponsesQuestionnaireFicheSalarie(EcritureReponsesQuestionnaireFicheSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -7988,12 +8273,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? LectureTeletravailFicheSalarieResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? LectureTeletravailFicheSalarieResponse : ResponseInterface)
      *
      * @throws LectureTeletravailFicheSalarieBadRequestException
      * @throws LectureTeletravailFicheSalarieUnauthorizedException
      * @throws LectureTeletravailFicheSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function lectureTeletravailFicheSalarie(LectureTeletravailFicheSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -8010,12 +8295,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SimpleMessageResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SimpleMessageResponse : ResponseInterface)
      *
      * @throws ModificationTeletravailFicheSalarieBadRequestException
      * @throws ModificationTeletravailFicheSalarieUnauthorizedException
      * @throws ModificationTeletravailFicheSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function modificationTeletravailFicheSalarie(ModificationTeletravailFicheSalarieRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -8032,12 +8317,12 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? SiteGenereMotDePasseAlternatifResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? SiteGenereMotDePasseAlternatifResponse : ResponseInterface)
      *
      * @throws SiteGenereMotDePasseAlternatifBadRequestException
      * @throws SiteGenereMotDePasseAlternatifUnauthorizedException
      * @throws SiteGenereMotDePasseAlternatifInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function siteGenereMotDePasseAlternatif(SiteGenereMotDePasseAlternatifRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -8054,41 +8339,42 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is object ? ListeVariablesASaisirResponse : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeVariablesASaisirResponse : ResponseInterface)
      *
      * @throws ListeVariablesASaisirBadRequestException
      * @throws ListeVariablesASaisirUnauthorizedException
      * @throws ListeVariablesASaisirInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     public function listeVariablesASaisir(DossierRequest $request, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new ListeVariablesASaisir($request, $headerParameters), $fetch);
     }
 
-    public static function create($httpClient = null, array $additionalPlugins = [], array $additionalNormalizers = []): static
+    public static function create($httpClient = null, array $additionalPlugins = [], array $additionalNormalizers = [], bool $applyServerPlugins = true): static
     {
-        if (null === $httpClient) {
-            $httpClient = Psr18ClientDiscovery::find();
-            $plugins = [];
+        $plugins = [];
+        $httpClient ??= Psr18ClientDiscovery::find();
+
+        if ($applyServerPlugins) {
             $uri = Psr17FactoryDiscovery::findUriFactory()->createUri('https://payroll-api.silae.fr/payroll');
             $plugins[] = new AddHostPlugin($uri);
             $plugins[] = new AddPathPlugin($uri);
-            if ([] !== $additionalPlugins) {
-                $plugins = array_merge($plugins, $additionalPlugins);
-            }
-
-            $httpClient = new PluginClient($httpClient, $plugins);
         }
 
+        if (\count($additionalPlugins) > 0) {
+            $plugins = array_merge($plugins, $additionalPlugins);
+        }
+
+        $httpClient = new PluginClient($httpClient, $plugins);
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
         $streamFactory = Psr17FactoryDiscovery::findStreamFactory();
         $normalizers = [new ArrayDenormalizer(), new JaneObjectNormalizer()];
-        if ([] !== $additionalNormalizers) {
+        if (\count($additionalNormalizers) > 0) {
             $normalizers = array_merge($normalizers, $additionalNormalizers);
         }
 
-        $serializer = new Serializer($normalizers, [new JsonEncoder(new JsonEncode(), new JsonDecode(['json_decode_associative' => true]))]);
+        $serializer = new Serializer($normalizers, [new JsonEncoder(new JsonEncode(), new JsonDecode(['json_decode_associative' => true])), new FormEncoder()]);
 
         return new static($httpClient, $requestFactory, $serializer, $streamFactory);
     }

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ActivationDSN;
 use QdequippeTech\Silae\Api\Model\ActivationDSNRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -61,7 +62,7 @@ class ActivationDSNRequestNormalizer implements DenormalizerInterface, Normalize
     {
         $dataArray = [];
         if ($data->isInitialized('activationDSN') && null !== $data->getActivationDSN()) {
-            $dataArray['activationDSN'] = $this->normalizer->normalize($data->getActivationDSN(), 'json', $context);
+            $dataArray['activationDSN'] = null === $data->getActivationDSN() ? null : new JsonObject($this->normalizer->normalize($data->getActivationDSN(), 'json', $context));
         }
 
         return $dataArray;

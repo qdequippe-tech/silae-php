@@ -1,0 +1,162 @@
+<?php
+
+declare(strict_types=1);
+
+namespace QdequippeTech\Silae\Api\Model;
+
+class EditionRecapDePaieDetailleAvecAnalytiqueRequest
+{
+    /**
+     * @var array
+     */
+    protected $initialized = [];
+
+    public function isInitialized($property): bool
+    {
+        return \array_key_exists($property, $this->initialized);
+    }
+
+    /**
+     * @var string|null
+     */
+    protected $nomInterneEtablissement;
+
+    /**
+     * @var string|null
+     */
+    protected $axeAnalytique;
+
+    /**
+     * @var string|null
+     */
+    protected $optionsHeures;
+
+    /**
+     * @var string|null
+     */
+    protected $affichage;
+
+    /**
+     * @var string|null
+     */
+    protected $format;
+
+    /**
+     * @var \DateTime|null
+     */
+    protected $periodeDebut;
+
+    /**
+     * @var \DateTime|null
+     */
+    protected $periodeFin;
+
+    /**
+     * @var string|null
+     */
+    protected $numeroDossier;
+
+    public function getNomInterneEtablissement(): ?string
+    {
+        return $this->nomInterneEtablissement;
+    }
+
+    public function setNomInterneEtablissement(?string $nomInterneEtablissement): self
+    {
+        $this->initialized['nomInterneEtablissement'] = true;
+        $this->nomInterneEtablissement = $nomInterneEtablissement;
+
+        return $this;
+    }
+
+    public function getAxeAnalytique(): ?string
+    {
+        return $this->axeAnalytique;
+    }
+
+    public function setAxeAnalytique(?string $axeAnalytique): self
+    {
+        $this->initialized['axeAnalytique'] = true;
+        $this->axeAnalytique = $axeAnalytique;
+
+        return $this;
+    }
+
+    public function getOptionsHeures(): ?string
+    {
+        return $this->optionsHeures;
+    }
+
+    public function setOptionsHeures(?string $optionsHeures): self
+    {
+        $this->initialized['optionsHeures'] = true;
+        $this->optionsHeures = $optionsHeures;
+
+        return $this;
+    }
+
+    public function getAffichage(): ?string
+    {
+        return $this->affichage;
+    }
+
+    public function setAffichage(?string $affichage): self
+    {
+        $this->initialized['affichage'] = true;
+        $this->affichage = $affichage;
+
+        return $this;
+    }
+
+    public function getFormat(): ?string
+    {
+        return $this->format;
+    }
+
+    public function setFormat(?string $format): self
+    {
+        $this->initialized['format'] = true;
+        $this->format = $format;
+
+        return $this;
+    }
+
+    public function getPeriodeDebut(): ?\DateTime
+    {
+        return $this->periodeDebut;
+    }
+
+    public function setPeriodeDebut(?\DateTime $periodeDebut): self
+    {
+        $this->initialized['periodeDebut'] = true;
+        $this->periodeDebut = $periodeDebut;
+
+        return $this;
+    }
+
+    public function getPeriodeFin(): ?\DateTime
+    {
+        return $this->periodeFin;
+    }
+
+    public function setPeriodeFin(?\DateTime $periodeFin): self
+    {
+        $this->initialized['periodeFin'] = true;
+        $this->periodeFin = $periodeFin;
+
+        return $this;
+    }
+
+    public function getNumeroDossier(): ?string
+    {
+        return $this->numeroDossier;
+    }
+
+    public function setNumeroDossier(?string $numeroDossier): self
+    {
+        $this->initialized['numeroDossier'] = true;
+        $this->numeroDossier = $numeroDossier;
+
+        return $this;
+    }
+}

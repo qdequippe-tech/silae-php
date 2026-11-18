@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceV2BadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceV2InternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieModifierAbsenceV2UnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalarieModifierAbsenceV2Request;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +47,7 @@ class SalarieModifierAbsenceV2 extends BaseEndpoint implements Endpoint
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -72,7 +72,7 @@ class SalarieModifierAbsenceV2 extends BaseEndpoint implements Endpoint
      * @throws SalarieModifierAbsenceV2BadRequestException
      * @throws SalarieModifierAbsenceV2UnauthorizedException
      * @throws SalarieModifierAbsenceV2InternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
@@ -94,7 +94,7 @@ class SalarieModifierAbsenceV2 extends BaseEndpoint implements Endpoint
             throw new SalarieModifierAbsenceV2InternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

@@ -136,6 +136,11 @@ class CompteCollaborateur
      */
     protected $domaineInterventionEmetteurDads;
 
+    /**
+     * @var CompteCollaborateurPreferences|null
+     */
+    protected $preferences;
+
     public function getIdentifiant(): ?string
     {
         return $this->identifiant;
@@ -450,6 +455,19 @@ class CompteCollaborateur
     {
         $this->initialized['domaineInterventionEmetteurDads'] = true;
         $this->domaineInterventionEmetteurDads = $domaineInterventionEmetteurDads;
+
+        return $this;
+    }
+
+    public function getPreferences(): ?CompteCollaborateurPreferences
+    {
+        return $this->preferences;
+    }
+
+    public function setPreferences(?CompteCollaborateurPreferences $preferences): self
+    {
+        $this->initialized['preferences'] = true;
+        $this->preferences = $preferences;
 
         return $this;
     }

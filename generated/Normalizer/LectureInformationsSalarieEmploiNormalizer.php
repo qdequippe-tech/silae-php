@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\LectureInformationsSalarieEmploi;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -58,19 +59,34 @@ class LectureInformationsSalarieEmploiNormalizer implements DenormalizerInterfac
         }
 
         if (\array_key_exists('dateDebut', $data) && null !== $data['dateDebut']) {
-            $object->setDateDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebut']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebut']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateDebut'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateDebut($date);
         } elseif (\array_key_exists('dateDebut', $data) && null === $data['dateDebut']) {
             $object->setDateDebut(null);
         }
 
         if (\array_key_exists('dateDebutContrat', $data) && null !== $data['dateDebutContrat']) {
-            $object->setDateDebutContrat(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebutContrat']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebutContrat']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['dateDebutContrat'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateDebutContrat($date_1);
         } elseif (\array_key_exists('dateDebutContrat', $data) && null === $data['dateDebutContrat']) {
             $object->setDateDebutContrat(null);
         }
 
         if (\array_key_exists('dateFin', $data) && null !== $data['dateFin']) {
-            $object->setDateFin(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFin']));
+            $date_2 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFin']);
+            if (false === $date_2) {
+                throw new InvalidDateException($data['dateFin'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateFin($date_2);
         } elseif (\array_key_exists('dateFin', $data) && null === $data['dateFin']) {
             $object->setDateFin(null);
         }

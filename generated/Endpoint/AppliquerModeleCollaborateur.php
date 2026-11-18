@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AppliquerModeleCollaborateurBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AppliquerModeleCollaborateurInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AppliquerModeleCollaborateurUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\AppliquerModeleCollaborateurRequest;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateur;
@@ -48,7 +48,7 @@ class AppliquerModeleCollaborateur extends BaseEndpoint implements Endpoint
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class AppliquerModeleCollaborateur extends BaseEndpoint implements Endpoint
      * @throws AppliquerModeleCollaborateurBadRequestException
      * @throws AppliquerModeleCollaborateurUnauthorizedException
      * @throws AppliquerModeleCollaborateurInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class AppliquerModeleCollaborateur extends BaseEndpoint implements Endpoint
             throw new AppliquerModeleCollaborateurInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

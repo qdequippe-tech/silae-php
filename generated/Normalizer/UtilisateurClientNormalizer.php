@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\UtilisateurClient;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -92,13 +93,23 @@ class UtilisateurClientNormalizer implements DenormalizerInterface, NormalizerIn
         }
 
         if (\array_key_exists('debutValidite', $data) && null !== $data['debutValidite']) {
-            $object->setDebutValidite(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['debutValidite']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['debutValidite']);
+            if (false === $date) {
+                throw new InvalidDateException($data['debutValidite'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDebutValidite($date);
         } elseif (\array_key_exists('debutValidite', $data) && null === $data['debutValidite']) {
             $object->setDebutValidite(null);
         }
 
         if (\array_key_exists('finValidite', $data) && null !== $data['finValidite']) {
-            $object->setFinValidite(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['finValidite']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['finValidite']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['finValidite'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setFinValidite($date_1);
         } elseif (\array_key_exists('finValidite', $data) && null === $data['finValidite']) {
             $object->setFinValidite(null);
         }

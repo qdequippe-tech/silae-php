@@ -7,7 +7,9 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\EtatDeclaration;
 use QdequippeTech\Silae\Api\Model\EtatDeclarationRetour;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -63,7 +65,12 @@ class EtatDeclarationNormalizer implements DenormalizerInterface, NormalizerInte
         }
 
         if (\array_key_exists('date', $data) && null !== $data['date']) {
-            $object->setDate(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['date']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['date']);
+            if (false === $date) {
+                throw new InvalidDateException($data['date'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDate($date);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
         }
@@ -146,7 +153,7 @@ class EtatDeclarationNormalizer implements DenormalizerInterface, NormalizerInte
         if ($data->isInitialized('retour') && null !== $data->getRetour()) {
             $values = [];
             foreach ($data->getRetour() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['retour'] = $values;

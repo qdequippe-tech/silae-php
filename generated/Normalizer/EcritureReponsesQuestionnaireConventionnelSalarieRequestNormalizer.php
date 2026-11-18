@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\EcritureReponsesQuestionnaireConventionnelSalarieRequest;
 use QdequippeTech\Silae\Api\Model\QCCNReponsesSimple;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -90,7 +91,7 @@ class EcritureReponsesQuestionnaireConventionnelSalarieRequestNormalizer impleme
         if ($data->isInitialized('qccn') && null !== $data->getQccn()) {
             $values = [];
             foreach ($data->getQccn() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['qccn'] = $values;

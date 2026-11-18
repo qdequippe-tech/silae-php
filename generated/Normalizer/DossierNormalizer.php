@@ -7,7 +7,9 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\Dossier;
 use QdequippeTech\Silae\Api\Model\Etablissement;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -73,7 +75,12 @@ class DossierNormalizer implements DenormalizerInterface, NormalizerInterface, D
         }
 
         if (\array_key_exists('dateDebutMontage', $data) && null !== $data['dateDebutMontage']) {
-            $object->setDateDebutMontage(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebutMontage']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebutMontage']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateDebutMontage'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateDebutMontage($date);
         } elseif (\array_key_exists('dateDebutMontage', $data) && null === $data['dateDebutMontage']) {
             $object->setDateDebutMontage(null);
         }
@@ -240,7 +247,7 @@ class DossierNormalizer implements DenormalizerInterface, NormalizerInterface, D
         if ($data->isInitialized('etablissements') && null !== $data->getEtablissements()) {
             $values = [];
             foreach ($data->getEtablissements() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['etablissements'] = $values;

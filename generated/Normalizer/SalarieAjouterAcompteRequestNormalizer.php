@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SalarieAcompte;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterAcompteRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -73,7 +74,7 @@ class SalarieAjouterAcompteRequestNormalizer implements DenormalizerInterface, N
     {
         $dataArray = [];
         if ($data->isInitialized('acompte') && null !== $data->getAcompte()) {
-            $dataArray['acompte'] = $this->normalizer->normalize($data->getAcompte(), 'json', $context);
+            $dataArray['acompte'] = null === $data->getAcompte() ? null : new JsonObject($this->normalizer->normalize($data->getAcompte(), 'json', $context));
         }
 
         $dataArray['matriculeSalarie'] = $data->getMatriculeSalarie();

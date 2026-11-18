@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\LecturePersonnesLieesResponse;
 use QdequippeTech\Silae\Api\Model\PersonneLiee;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -72,13 +73,13 @@ class LecturePersonnesLieesResponseNormalizer implements DenormalizerInterface, 
     {
         $dataArray = [];
         if ($data->isInitialized('conjoint') && null !== $data->getConjoint()) {
-            $dataArray['conjoint'] = $this->normalizer->normalize($data->getConjoint(), 'json', $context);
+            $dataArray['conjoint'] = null === $data->getConjoint() ? null : new JsonObject($this->normalizer->normalize($data->getConjoint(), 'json', $context));
         }
 
         if ($data->isInitialized('personnesLiees') && null !== $data->getPersonnesLiees()) {
             $values = [];
             foreach ($data->getPersonnesLiees() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['personnesLiees'] = $values;

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\EditionHistoriqueBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EditionHistoriqueInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EditionHistoriqueUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\EditionHistoriqueRequest;
 use QdequippeTech\Silae\Api\Model\EditionHistoriqueResponse;
@@ -48,7 +48,7 @@ class EditionHistorique extends BaseEndpoint implements Endpoint
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class EditionHistorique extends BaseEndpoint implements Endpoint
      * @throws EditionHistoriqueBadRequestException
      * @throws EditionHistoriqueUnauthorizedException
      * @throws EditionHistoriqueInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class EditionHistorique extends BaseEndpoint implements Endpoint
             throw new EditionHistoriqueInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

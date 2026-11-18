@@ -6,6 +6,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ApiError;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -60,7 +61,7 @@ class ApiErrorNormalizer implements DenormalizerInterface, NormalizerInterface, 
         }
 
         if (\array_key_exists('metadata', $data) && null !== $data['metadata']) {
-            $values = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
+            $values = new JsonObject();
             foreach ($data['metadata'] as $key => $value) {
                 $values[$key] = $value;
             }
@@ -81,7 +82,7 @@ class ApiErrorNormalizer implements DenormalizerInterface, NormalizerInterface, 
         }
 
         if ($data->isInitialized('metadata') && null !== $data->getMetadata()) {
-            $values = [];
+            $values = new JsonObject();
             foreach ($data->getMetadata() as $key => $value) {
                 $values[$key] = $value;
             }

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesDansDomaineBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesDansDomaineInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeMatriculesDupliquesDansDomaineUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ListeMatriculesDupliquesDansDomaineResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -73,7 +73,7 @@ class ListeMatriculesDupliquesDansDomaine extends BaseEndpoint implements Endpoi
      * @throws ListeMatriculesDupliquesDansDomaineBadRequestException
      * @throws ListeMatriculesDupliquesDansDomaineUnauthorizedException
      * @throws ListeMatriculesDupliquesDansDomaineInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -95,7 +95,7 @@ class ListeMatriculesDupliquesDansDomaine extends BaseEndpoint implements Endpoi
             throw new ListeMatriculesDupliquesDansDomaineInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

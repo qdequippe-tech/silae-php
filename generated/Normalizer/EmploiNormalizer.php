@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\Emploi;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -406,19 +407,34 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
         }
 
         if (\array_key_exists('dateDebut', $data) && null !== $data['dateDebut']) {
-            $object->setDateDebut(\DateTime::createFromFormat('Y-m-d', $data['dateDebut'])->setTime(0, 0, 0));
+            $date = \DateTime::createFromFormat('Y-m-d', $data['dateDebut']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateDebut'], 'Y-m-d');
+            }
+
+            $object->setDateDebut($date->setTime(0, 0, 0));
         } elseif (\array_key_exists('dateDebut', $data) && null === $data['dateDebut']) {
             $object->setDateDebut(null);
         }
 
         if (\array_key_exists('dateDebutContrat', $data) && null !== $data['dateDebutContrat']) {
-            $object->setDateDebutContrat(\DateTime::createFromFormat('Y-m-d', $data['dateDebutContrat'])->setTime(0, 0, 0));
+            $date_1 = \DateTime::createFromFormat('Y-m-d', $data['dateDebutContrat']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['dateDebutContrat'], 'Y-m-d');
+            }
+
+            $object->setDateDebutContrat($date_1->setTime(0, 0, 0));
         } elseif (\array_key_exists('dateDebutContrat', $data) && null === $data['dateDebutContrat']) {
             $object->setDateDebutContrat(null);
         }
 
         if (\array_key_exists('dateFin', $data) && null !== $data['dateFin']) {
-            $object->setDateFin(\DateTime::createFromFormat('Y-m-d', $data['dateFin'])->setTime(0, 0, 0));
+            $date_2 = \DateTime::createFromFormat('Y-m-d', $data['dateFin']);
+            if (false === $date_2) {
+                throw new InvalidDateException($data['dateFin'], 'Y-m-d');
+            }
+
+            $object->setDateFin($date_2->setTime(0, 0, 0));
         } elseif (\array_key_exists('dateFin', $data) && null === $data['dateFin']) {
             $object->setDateFin(null);
         }
@@ -912,7 +928,12 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
         }
 
         if (\array_key_exists('exonerationDebut', $data) && null !== $data['exonerationDebut']) {
-            $object->setExonerationDebut(\DateTime::createFromFormat('Y-m-d', $data['exonerationDebut'])->setTime(0, 0, 0));
+            $date_3 = \DateTime::createFromFormat('Y-m-d', $data['exonerationDebut']);
+            if (false === $date_3) {
+                throw new InvalidDateException($data['exonerationDebut'], 'Y-m-d');
+            }
+
+            $object->setExonerationDebut($date_3->setTime(0, 0, 0));
         } elseif (\array_key_exists('exonerationDebut', $data) && null === $data['exonerationDebut']) {
             $object->setExonerationDebut(null);
         }
@@ -924,7 +945,12 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
         }
 
         if (\array_key_exists('exonerationFin', $data) && null !== $data['exonerationFin']) {
-            $object->setExonerationFin(\DateTime::createFromFormat('Y-m-d', $data['exonerationFin'])->setTime(0, 0, 0));
+            $date_4 = \DateTime::createFromFormat('Y-m-d', $data['exonerationFin']);
+            if (false === $date_4) {
+                throw new InvalidDateException($data['exonerationFin'], 'Y-m-d');
+            }
+
+            $object->setExonerationFin($date_4->setTime(0, 0, 0));
         } elseif (\array_key_exists('exonerationFin', $data) && null === $data['exonerationFin']) {
             $object->setExonerationFin(null);
         }
@@ -1068,7 +1094,12 @@ class EmploiNormalizer implements DenormalizerInterface, NormalizerInterface, De
         }
 
         if (\array_key_exists('contratPartDtSignature', $data) && null !== $data['contratPartDtSignature']) {
-            $object->setContratPartDtSignature(\DateTime::createFromFormat('Y-m-d', $data['contratPartDtSignature'])->setTime(0, 0, 0));
+            $date_5 = \DateTime::createFromFormat('Y-m-d', $data['contratPartDtSignature']);
+            if (false === $date_5) {
+                throw new InvalidDateException($data['contratPartDtSignature'], 'Y-m-d');
+            }
+
+            $object->setContratPartDtSignature($date_5->setTime(0, 0, 0));
         } elseif (\array_key_exists('contratPartDtSignature', $data) && null === $data['contratPartDtSignature']) {
             $object->setContratPartDtSignature(null);
         }

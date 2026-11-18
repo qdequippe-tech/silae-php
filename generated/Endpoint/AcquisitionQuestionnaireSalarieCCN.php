@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireSalarieCCNBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireSalarieCCNInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AcquisitionQuestionnaireSalarieCCNUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNRequest;
 use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireCCNResponse;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
@@ -48,7 +48,7 @@ class AcquisitionQuestionnaireSalarieCCN extends BaseEndpoint implements Endpoin
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class AcquisitionQuestionnaireSalarieCCN extends BaseEndpoint implements Endpoin
      * @throws AcquisitionQuestionnaireSalarieCCNBadRequestException
      * @throws AcquisitionQuestionnaireSalarieCCNUnauthorizedException
      * @throws AcquisitionQuestionnaireSalarieCCNInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class AcquisitionQuestionnaireSalarieCCN extends BaseEndpoint implements Endpoin
             throw new AcquisitionQuestionnaireSalarieCCNInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

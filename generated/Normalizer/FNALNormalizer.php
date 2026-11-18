@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\FNAL;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -82,7 +83,12 @@ class FNALNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         }
 
         if (\array_key_exists('anneeN', $data) && null !== $data['anneeN']) {
-            $object->setAnneeN(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['anneeN']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['anneeN']);
+            if (false === $date) {
+                throw new InvalidDateException($data['anneeN'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setAnneeN($date);
         } elseif (\array_key_exists('anneeN', $data) && null === $data['anneeN']) {
             $object->setAnneeN(null);
         }

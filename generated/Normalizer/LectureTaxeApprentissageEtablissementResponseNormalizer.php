@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\LectureTaxeApprentissageEtablissementResponse;
 use QdequippeTech\Silae\Api\Model\TaxeApprentissage;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -78,7 +79,7 @@ class LectureTaxeApprentissageEtablissementResponseNormalizer implements Denorma
         if ($data->isInitialized('taxeApprentissage') && null !== $data->getTaxeApprentissage()) {
             $values = [];
             foreach ($data->getTaxeApprentissage() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['taxeApprentissage'] = $values;

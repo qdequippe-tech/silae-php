@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\Spectacle;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -108,13 +109,23 @@ class SpectacleNormalizer implements DenormalizerInterface, NormalizerInterface,
         }
 
         if (\array_key_exists('dateDebut', $data) && null !== $data['dateDebut']) {
-            $object->setDateDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebut']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebut']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateDebut'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateDebut($date);
         } elseif (\array_key_exists('dateDebut', $data) && null === $data['dateDebut']) {
             $object->setDateDebut(null);
         }
 
         if (\array_key_exists('dateFin', $data) && null !== $data['dateFin']) {
-            $object->setDateFin(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFin']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFin']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['dateFin'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateFin($date_1);
         } elseif (\array_key_exists('dateFin', $data) && null === $data['dateFin']) {
             $object->setDateFin(null);
         }

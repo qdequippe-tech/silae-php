@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\StatutSpectacleSalarieCalculerBulletinAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutSpectacleSalarieCalculerBulletinAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutSpectacleSalarieCalculerBulletinAsynchroneUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\StatutAsynchroneResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -90,7 +90,7 @@ class StatutSpectacleSalarieCalculerBulletinAsynchrone extends BaseEndpoint impl
      * @throws StatutSpectacleSalarieCalculerBulletinAsynchroneBadRequestException
      * @throws StatutSpectacleSalarieCalculerBulletinAsynchroneUnauthorizedException
      * @throws StatutSpectacleSalarieCalculerBulletinAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -116,7 +116,7 @@ class StatutSpectacleSalarieCalculerBulletinAsynchrone extends BaseEndpoint impl
             throw new StatutSpectacleSalarieCalculerBulletinAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

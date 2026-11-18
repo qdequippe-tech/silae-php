@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterElementVariableRequest;
 use QdequippeTech\Silae\Api\Model\SalarieElementVariable;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -73,7 +74,7 @@ class SalarieAjouterElementVariableRequestNormalizer implements DenormalizerInte
     {
         $dataArray = [];
         if ($data->isInitialized('elementVariable') && null !== $data->getElementVariable()) {
-            $dataArray['elementVariable'] = $this->normalizer->normalize($data->getElementVariable(), 'json', $context);
+            $dataArray['elementVariable'] = null === $data->getElementVariable() ? null : new JsonObject($this->normalizer->normalize($data->getElementVariable(), 'json', $context));
         }
 
         $dataArray['matriculeSalarie'] = $data->getMatriculeSalarie();

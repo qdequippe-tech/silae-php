@@ -8,6 +8,7 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\RequeteSalarieBulletinLignes;
 use QdequippeTech\Silae\Api\Model\RequeteSalarieBulletinLignesFiltres;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinLignesSelonFiltresRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -74,11 +75,11 @@ class SalarieBulletinLignesSelonFiltresRequestNormalizer implements Denormalizer
     {
         $dataArray = [];
         if ($data->isInitialized('requeteSalarieBulletinLignes') && null !== $data->getRequeteSalarieBulletinLignes()) {
-            $dataArray['requeteSalarieBulletinLignes'] = $this->normalizer->normalize($data->getRequeteSalarieBulletinLignes(), 'json', $context);
+            $dataArray['requeteSalarieBulletinLignes'] = null === $data->getRequeteSalarieBulletinLignes() ? null : new JsonObject($this->normalizer->normalize($data->getRequeteSalarieBulletinLignes(), 'json', $context));
         }
 
         if ($data->isInitialized('requeteSalarieBulletinLignesFiltres') && null !== $data->getRequeteSalarieBulletinLignesFiltres()) {
-            $dataArray['requeteSalarieBulletinLignesFiltres'] = $this->normalizer->normalize($data->getRequeteSalarieBulletinLignesFiltres(), 'json', $context);
+            $dataArray['requeteSalarieBulletinLignesFiltres'] = null === $data->getRequeteSalarieBulletinLignesFiltres() ? null : new JsonObject($this->normalizer->normalize($data->getRequeteSalarieBulletinLignesFiltres(), 'json', $context));
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

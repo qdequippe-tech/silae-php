@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\PersonneLieeV2;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -94,7 +95,12 @@ class PersonneLieeV2Normalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('dateNaissance', $data) && null !== $data['dateNaissance']) {
-            $object->setDateNaissance(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateNaissance']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateNaissance']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateNaissance'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateNaissance($date);
         } elseif (\array_key_exists('dateNaissance', $data) && null === $data['dateNaissance']) {
             $object->setDateNaissance(null);
         }
@@ -118,7 +124,12 @@ class PersonneLieeV2Normalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('dateDeces', $data) && null !== $data['dateDeces']) {
-            $object->setDateDeces(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDeces']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDeces']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['dateDeces'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateDeces($date_1);
         } elseif (\array_key_exists('dateDeces', $data) && null === $data['dateDeces']) {
             $object->setDateDeces(null);
         }
@@ -136,7 +147,12 @@ class PersonneLieeV2Normalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('dateDebutRattachement', $data) && null !== $data['dateDebutRattachement']) {
-            $object->setDateDebutRattachement(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebutRattachement']));
+            $date_2 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebutRattachement']);
+            if (false === $date_2) {
+                throw new InvalidDateException($data['dateDebutRattachement'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateDebutRattachement($date_2);
         } elseif (\array_key_exists('dateDebutRattachement', $data) && null === $data['dateDebutRattachement']) {
             $object->setDateDebutRattachement(null);
         }
@@ -148,7 +164,12 @@ class PersonneLieeV2Normalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('dateFinRattachement', $data) && null !== $data['dateFinRattachement']) {
-            $object->setDateFinRattachement(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFinRattachement']));
+            $date_3 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFinRattachement']);
+            if (false === $date_3) {
+                throw new InvalidDateException($data['dateFinRattachement'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateFinRattachement($date_3);
         } elseif (\array_key_exists('dateFinRattachement', $data) && null === $data['dateFinRattachement']) {
             $object->setDateFinRattachement(null);
         }

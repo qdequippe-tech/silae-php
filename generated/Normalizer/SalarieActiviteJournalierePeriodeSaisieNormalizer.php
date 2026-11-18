@@ -7,7 +7,9 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SalarieActiviteJournalierePeriodeSaisie;
 use QdequippeTech\Silae\Api\Model\SalarieActiviteJournaliereSaisie;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -53,7 +55,12 @@ class SalarieActiviteJournalierePeriodeSaisieNormalizer implements DenormalizerI
         }
 
         if (\array_key_exists('periodeActivite', $data) && null !== $data['periodeActivite']) {
-            $object->setPeriodeActivite(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeActivite']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeActivite']);
+            if (false === $date) {
+                throw new InvalidDateException($data['periodeActivite'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setPeriodeActivite($date);
         } elseif (\array_key_exists('periodeActivite', $data) && null === $data['periodeActivite']) {
             $object->setPeriodeActivite(null);
         }
@@ -92,7 +99,7 @@ class SalarieActiviteJournalierePeriodeSaisieNormalizer implements DenormalizerI
         if ($data->isInitialized('calendrier') && null !== $data->getCalendrier()) {
             $values = [];
             foreach ($data->getCalendrier() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['calendrier'] = $values;

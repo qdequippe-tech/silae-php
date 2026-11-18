@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SalarieAbsenceV3;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -115,14 +116,32 @@ class SalarieAbsenceV3Normalizer implements DenormalizerInterface, NormalizerInt
             $data['absenceDebutantPartiellementTravaille'] = (bool) $data['absenceDebutantPartiellementTravaille'];
         }
 
+        if (\array_key_exists('sansControleFraction', $data) && \is_int($data['sansControleFraction'])) {
+            $data['sansControleFraction'] = (bool) $data['sansControleFraction'];
+        }
+
+        if (\array_key_exists('reconversionPro', $data) && \is_int($data['reconversionPro'])) {
+            $data['reconversionPro'] = (bool) $data['reconversionPro'];
+        }
+
         if (\array_key_exists('dateDebutAbsence', $data) && null !== $data['dateDebutAbsence']) {
-            $object->setDateDebutAbsence(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebutAbsence']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebutAbsence']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateDebutAbsence'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateDebutAbsence($date);
         } elseif (\array_key_exists('dateDebutAbsence', $data) && null === $data['dateDebutAbsence']) {
             $object->setDateDebutAbsence(null);
         }
 
         if (\array_key_exists('dateFinAbsence', $data) && null !== $data['dateFinAbsence']) {
-            $object->setDateFinAbsence(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFinAbsence']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFinAbsence']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['dateFinAbsence'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateFinAbsence($date_1);
         } elseif (\array_key_exists('dateFinAbsence', $data) && null === $data['dateFinAbsence']) {
             $object->setDateFinAbsence(null);
         }
@@ -253,6 +272,24 @@ class SalarieAbsenceV3Normalizer implements DenormalizerInterface, NormalizerInt
             $object->setAbsencesDemiJournee(null);
         }
 
+        if (\array_key_exists('fraction', $data) && null !== $data['fraction']) {
+            $object->setFraction($data['fraction']);
+        } elseif (\array_key_exists('fraction', $data) && null === $data['fraction']) {
+            $object->setFraction(null);
+        }
+
+        if (\array_key_exists('sansControleFraction', $data) && null !== $data['sansControleFraction']) {
+            $object->setSansControleFraction($data['sansControleFraction']);
+        } elseif (\array_key_exists('sansControleFraction', $data) && null === $data['sansControleFraction']) {
+            $object->setSansControleFraction(null);
+        }
+
+        if (\array_key_exists('reconversionPro', $data) && null !== $data['reconversionPro']) {
+            $object->setReconversionPro($data['reconversionPro']);
+        } elseif (\array_key_exists('reconversionPro', $data) && null === $data['reconversionPro']) {
+            $object->setReconversionPro(null);
+        }
+
         return $object;
     }
 
@@ -349,6 +386,18 @@ class SalarieAbsenceV3Normalizer implements DenormalizerInterface, NormalizerInt
 
         if ($data->isInitialized('absencesDemiJournee') && null !== $data->getAbsencesDemiJournee()) {
             $dataArray['absencesDemiJournee'] = $data->getAbsencesDemiJournee();
+        }
+
+        if ($data->isInitialized('fraction') && null !== $data->getFraction()) {
+            $dataArray['fraction'] = $data->getFraction();
+        }
+
+        if ($data->isInitialized('sansControleFraction') && null !== $data->getSansControleFraction()) {
+            $dataArray['sansControleFraction'] = $data->getSansControleFraction();
+        }
+
+        if ($data->isInitialized('reconversionPro') && null !== $data->getReconversionPro()) {
+            $dataArray['reconversionPro'] = $data->getReconversionPro();
         }
 
         return $dataArray;

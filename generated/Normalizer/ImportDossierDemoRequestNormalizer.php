@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\AffectationsDossier;
 use QdequippeTech\Silae\Api\Model\ImportDossierDemoRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -95,7 +96,7 @@ class ImportDossierDemoRequestNormalizer implements DenormalizerInterface, Norma
         }
 
         if ($data->isInitialized('affectations') && null !== $data->getAffectations()) {
-            $dataArray['affectations'] = $this->normalizer->normalize($data->getAffectations(), 'json', $context);
+            $dataArray['affectations'] = null === $data->getAffectations() ? null : new JsonObject($this->normalizer->normalize($data->getAffectations(), 'json', $context));
         }
 
         return $dataArray;

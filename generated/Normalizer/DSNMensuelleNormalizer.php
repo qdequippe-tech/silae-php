@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\DSNMensuelle;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -84,7 +85,12 @@ class DSNMensuelleNormalizer implements DenormalizerInterface, NormalizerInterfa
         }
 
         if (\array_key_exists('dateEnvoiDSN', $data) && null !== $data['dateEnvoiDSN']) {
-            $object->setDateEnvoiDSN(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateEnvoiDSN']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateEnvoiDSN']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateEnvoiDSN'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateEnvoiDSN($date);
         } elseif (\array_key_exists('dateEnvoiDSN', $data) && null === $data['dateEnvoiDSN']) {
             $object->setDateEnvoiDSN(null);
         }

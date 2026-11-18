@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptablesPaiementAcomptesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptablesPaiementAcomptesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\EcrituresComptablesPaiementAcomptesUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierPeriodeRangeRequest;
 use QdequippeTech\Silae\Api\Model\EcrituresComptablesAvecRuptures;
@@ -48,7 +48,7 @@ class EcrituresComptablesPaiementAcomptes extends BaseEndpoint implements Endpoi
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class EcrituresComptablesPaiementAcomptes extends BaseEndpoint implements Endpoi
      * @throws EcrituresComptablesPaiementAcomptesBadRequestException
      * @throws EcrituresComptablesPaiementAcomptesUnauthorizedException
      * @throws EcrituresComptablesPaiementAcomptesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class EcrituresComptablesPaiementAcomptes extends BaseEndpoint implements Endpoi
             throw new EcrituresComptablesPaiementAcomptesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

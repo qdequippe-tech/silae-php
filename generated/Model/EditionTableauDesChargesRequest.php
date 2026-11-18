@@ -17,9 +17,29 @@ class EditionTableauDesChargesRequest
     }
 
     /**
+     * @var bool|null
+     */
+    protected $detailSalaries;
+
+    /**
      * @var string|null
      */
     protected $format;
+
+    /**
+     * @var string|null
+     */
+    protected $axeAnalytique;
+
+    /**
+     * @var bool|null
+     */
+    protected $grouperParOrganismes;
+
+    /**
+     * @var bool|null
+     */
+    protected $grouperEnIgnorantLesCodesDucs;
 
     /**
      * @var \DateTime|null
@@ -36,6 +56,19 @@ class EditionTableauDesChargesRequest
      */
     protected $numeroDossier;
 
+    public function getDetailSalaries(): ?bool
+    {
+        return $this->detailSalaries;
+    }
+
+    public function setDetailSalaries(?bool $detailSalaries): self
+    {
+        $this->initialized['detailSalaries'] = true;
+        $this->detailSalaries = $detailSalaries;
+
+        return $this;
+    }
+
     public function getFormat(): ?string
     {
         return $this->format;
@@ -45,6 +78,45 @@ class EditionTableauDesChargesRequest
     {
         $this->initialized['format'] = true;
         $this->format = $format;
+
+        return $this;
+    }
+
+    public function getAxeAnalytique(): ?string
+    {
+        return $this->axeAnalytique;
+    }
+
+    public function setAxeAnalytique(?string $axeAnalytique): self
+    {
+        $this->initialized['axeAnalytique'] = true;
+        $this->axeAnalytique = $axeAnalytique;
+
+        return $this;
+    }
+
+    public function getGrouperParOrganismes(): ?bool
+    {
+        return $this->grouperParOrganismes;
+    }
+
+    public function setGrouperParOrganismes(?bool $grouperParOrganismes): self
+    {
+        $this->initialized['grouperParOrganismes'] = true;
+        $this->grouperParOrganismes = $grouperParOrganismes;
+
+        return $this;
+    }
+
+    public function getGrouperEnIgnorantLesCodesDucs(): ?bool
+    {
+        return $this->grouperEnIgnorantLesCodesDucs;
+    }
+
+    public function setGrouperEnIgnorantLesCodesDucs(?bool $grouperEnIgnorantLesCodesDucs): self
+    {
+        $this->initialized['grouperEnIgnorantLesCodesDucs'] = true;
+        $this->grouperEnIgnorantLesCodesDucs = $grouperEnIgnorantLesCodesDucs;
 
         return $this;
     }

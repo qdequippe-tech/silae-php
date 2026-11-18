@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\FNAL;
 use QdequippeTech\Silae\Api\Model\ModificationFNALRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -67,7 +68,7 @@ class ModificationFNALRequestNormalizer implements DenormalizerInterface, Normal
     {
         $dataArray = [];
         if ($data->isInitialized('fnal') && null !== $data->getFnal()) {
-            $dataArray['fnal'] = $this->normalizer->normalize($data->getFnal(), 'json', $context);
+            $dataArray['fnal'] = null === $data->getFnal() ? null : new JsonObject($this->normalizer->normalize($data->getFnal(), 'json', $context));
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

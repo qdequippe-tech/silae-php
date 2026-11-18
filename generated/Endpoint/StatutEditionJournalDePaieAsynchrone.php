@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionJournalDePaieAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionJournalDePaieAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\StatutEditionJournalDePaieAsynchroneUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\StatutAsynchroneDocumentResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -90,7 +90,7 @@ class StatutEditionJournalDePaieAsynchrone extends BaseEndpoint implements Endpo
      * @throws StatutEditionJournalDePaieAsynchroneBadRequestException
      * @throws StatutEditionJournalDePaieAsynchroneUnauthorizedException
      * @throws StatutEditionJournalDePaieAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -116,7 +116,7 @@ class StatutEditionJournalDePaieAsynchrone extends BaseEndpoint implements Endpo
             throw new StatutEditionJournalDePaieAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ModificationTaxeTransportRequest;
 use QdequippeTech\Silae\Api\Model\TaxeTransport;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -84,7 +85,7 @@ class ModificationTaxeTransportRequestNormalizer implements DenormalizerInterfac
         if ($data->isInitialized('taxeTransport') && null !== $data->getTaxeTransport()) {
             $values = [];
             foreach ($data->getTaxeTransport() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['taxeTransport'] = $values;

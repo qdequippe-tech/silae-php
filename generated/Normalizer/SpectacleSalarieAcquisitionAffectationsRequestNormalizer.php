@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\RequeteSpectacleSalarieAffectationsV2;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieAcquisitionAffectationsRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -67,7 +68,7 @@ class SpectacleSalarieAcquisitionAffectationsRequestNormalizer implements Denorm
     {
         $dataArray = [];
         if ($data->isInitialized('requeteSpectacleSalarieAffectations') && null !== $data->getRequeteSpectacleSalarieAffectations()) {
-            $dataArray['requeteSpectacleSalarieAffectations'] = $this->normalizer->normalize($data->getRequeteSpectacleSalarieAffectations(), 'json', $context);
+            $dataArray['requeteSpectacleSalarieAffectations'] = null === $data->getRequeteSpectacleSalarieAffectations() ? null : new JsonObject($this->normalizer->normalize($data->getRequeteSpectacleSalarieAffectations(), 'json', $context));
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

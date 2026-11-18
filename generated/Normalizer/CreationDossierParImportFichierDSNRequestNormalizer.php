@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\CreationDossierParImportFichierDSNRequest;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -58,13 +59,23 @@ class CreationDossierParImportFichierDSNRequestNormalizer implements Denormalize
         }
 
         if (\array_key_exists('periodeMin', $data) && null !== $data['periodeMin']) {
-            $object->setPeriodeMin(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeMin']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeMin']);
+            if (false === $date) {
+                throw new InvalidDateException($data['periodeMin'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setPeriodeMin($date);
         } elseif (\array_key_exists('periodeMin', $data) && null === $data['periodeMin']) {
             $object->setPeriodeMin(null);
         }
 
         if (\array_key_exists('periodeMax', $data) && null !== $data['periodeMax']) {
-            $object->setPeriodeMax(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeMax']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeMax']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['periodeMax'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setPeriodeMax($date_1);
         } elseif (\array_key_exists('periodeMax', $data) && null === $data['periodeMax']) {
             $object->setPeriodeMax(null);
         }

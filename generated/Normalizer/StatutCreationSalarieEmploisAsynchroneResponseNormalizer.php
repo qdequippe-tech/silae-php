@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\CreationSalarieEmploiResult;
 use QdequippeTech\Silae\Api\Model\StatutCreationSalarieEmploisAsynchroneResponse;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -114,7 +115,7 @@ class StatutCreationSalarieEmploisAsynchroneResponseNormalizer implements Denorm
         if ($data->isInitialized('resultatsCreationsEmplois') && null !== $data->getResultatsCreationsEmplois()) {
             $values = [];
             foreach ($data->getResultatsCreationsEmplois() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['resultatsCreationsEmplois'] = $values;

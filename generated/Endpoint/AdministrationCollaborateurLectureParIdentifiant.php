@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureParIdentifiantBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureParIdentifiantInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureParIdentifiantUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Model\AdministrationCollaborateurLectureParIdentifiantRequest;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\UtilisateurCollaborateur;
@@ -48,7 +48,7 @@ class AdministrationCollaborateurLectureParIdentifiant extends BaseEndpoint impl
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class AdministrationCollaborateurLectureParIdentifiant extends BaseEndpoint impl
      * @throws AdministrationCollaborateurLectureParIdentifiantBadRequestException
      * @throws AdministrationCollaborateurLectureParIdentifiantUnauthorizedException
      * @throws AdministrationCollaborateurLectureParIdentifiantInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class AdministrationCollaborateurLectureParIdentifiant extends BaseEndpoint impl
             throw new AdministrationCollaborateurLectureParIdentifiantInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

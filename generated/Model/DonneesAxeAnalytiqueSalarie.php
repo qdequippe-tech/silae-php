@@ -27,6 +27,11 @@ class DonneesAxeAnalytiqueSalarie
     protected $sousCategorieParDefaut;
 
     /**
+     * @var string|null
+     */
+    protected $libelleSousCategorie;
+
+    /**
      * @var list<SousCategoriesEnPC>|null
      */
     protected $sousCategoriesEnPC;
@@ -53,6 +58,19 @@ class DonneesAxeAnalytiqueSalarie
     {
         $this->initialized['sousCategorieParDefaut'] = true;
         $this->sousCategorieParDefaut = $sousCategorieParDefaut;
+
+        return $this;
+    }
+
+    public function getLibelleSousCategorie(): ?string
+    {
+        return $this->libelleSousCategorie;
+    }
+
+    public function setLibelleSousCategorie(?string $libelleSousCategorie): self
+    {
+        $this->initialized['libelleSousCategorie'] = true;
+        $this->libelleSousCategorie = $libelleSousCategorie;
 
         return $this;
     }

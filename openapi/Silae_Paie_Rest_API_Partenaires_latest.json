@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "v1",
-    "title": "Silae Paie Rest Api"
+    "version": "v1externe",
+    "title": "Silae Paie Rest Api Partenaire"
   },
   "host": "payroll-api.silae.fr",
   "basePath": "/payroll",
@@ -7763,6 +7763,364 @@
         }
       }
     },
+    "/v1/EditionEtatsPaie/EditionRecapDePaieDetailleAvecAnalytique": {
+      "post": {
+        "tags": [
+          "EditionEtatsPaie"
+        ],
+        "summary": "EditionRecapDePaieDetailleAvecAnalytique",
+        "operationId": "EditionRecapDePaieDetailleAvecAnalytique",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EditionRecapDePaieDetailleAvecAnalytiqueRequest"
+            }
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "description": "Clé d'abonnement api management",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/EditionRecapDePaieDetailleAvecAnalytiqueResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/EditionEtatsPaie/EditionRecapDePaieDetailleAvecAnalytiqueAsynchrone": {
+      "post": {
+        "tags": [
+          "EditionEtatsPaie"
+        ],
+        "summary": "EditionRecapDePaieDetailleAvecAnalytiqueAsynchrone",
+        "operationId": "EditionRecapDePaieDetailleAvecAnalytiqueAsynchrone",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EditionRecapDePaieDetailleAvecAnalytiqueRequest"
+            }
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "description": "Clé d'abonnement api management",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/TraitementAsynchroneResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/EditionEtatsPaie/StatutEditionRecapDePaieDetailleAvecAnalytiqueAsynchrone": {
+      "get": {
+        "tags": [
+          "EditionEtatsPaie"
+        ],
+        "summary": "StatutEditionRecapDePaieDetailleAvecAnalytiqueAsynchrone",
+        "operationId": "StatutEditionRecapDePaieDetailleAvecAnalytiqueAsynchrone",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "guidTache",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "description": "Clé d'abonnement api management",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StatutAsynchroneDocumentResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/StatutAsynchroneDocumentResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/EditionEtatsPaie/EditionRecapDePaieDetailleParPeriode": {
+      "post": {
+        "tags": [
+          "EditionEtatsPaie"
+        ],
+        "summary": "EditionRecapDePaieDetailleParPeriode",
+        "operationId": "EditionRecapDePaieDetailleParPeriode",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EditionRecapDePaieDetailleParPeriodeRequest"
+            }
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "description": "Clé d'abonnement api management",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/EditionRecapDePaieDetailleParPeriodeResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/EditionEtatsPaie/EditionRecapDePaieDetailleParPeriodeAsynchrone": {
+      "post": {
+        "tags": [
+          "EditionEtatsPaie"
+        ],
+        "summary": "EditionRecapDePaieDetailleParPeriodeAsynchrone",
+        "operationId": "EditionRecapDePaieDetailleParPeriodeAsynchrone",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EditionRecapDePaieDetailleParPeriodeRequest"
+            }
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "description": "Clé d'abonnement api management",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/TraitementAsynchroneResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/EditionEtatsPaie/StatutEditionRecapDePaieDetailleParPeriodeAsynchrone": {
+      "get": {
+        "tags": [
+          "EditionEtatsPaie"
+        ],
+        "summary": "StatutEditionRecapDePaieDetailleParPeriodeAsynchrone",
+        "operationId": "StatutEditionRecapDePaieDetailleParPeriodeAsynchrone",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "guidTache",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "description": "Clé d'abonnement api management",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StatutAsynchroneDocumentResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/StatutAsynchroneDocumentResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
     "/v1/EditionEtatsPaie/EditionSoldeDeRepos": {
       "post": {
         "tags": [
@@ -8515,6 +8873,185 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/GenererFichierTRResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/EditionEtatsPaie/EditionsGroupees": {
+      "post": {
+        "tags": [
+          "EditionEtatsPaie"
+        ],
+        "summary": "EditionsGroupees",
+        "operationId": "EditionsGroupees",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EditionsGroupeesRequest"
+            }
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "description": "Clé d'abonnement api management",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/EditionsGroupeesResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/EditionEtatsPaie/EditionsGroupeesAsynchrone": {
+      "post": {
+        "tags": [
+          "EditionEtatsPaie"
+        ],
+        "summary": "EditionsGroupeesAsynchrone",
+        "operationId": "EditionsGroupeesAsynchrone",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EditionsGroupeesRequest"
+            }
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "description": "Clé d'abonnement api management",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/TraitementAsynchroneResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/EditionEtatsPaie/StatutEditionsGroupeesAsynchrone": {
+      "get": {
+        "tags": [
+          "EditionEtatsPaie"
+        ],
+        "summary": "StatutEditionsGroupeesAsynchrone",
+        "operationId": "StatutEditionsGroupeesAsynchrone",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "guidTache",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "description": "Clé d'abonnement api management",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StatutEditionsGroupeesResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/StatutEditionsGroupeesResponse"
             }
           },
           "400": {
@@ -10830,6 +11367,65 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/LectureEffectifEtablissementResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          },
+          "500": {
+            "description": "InternalServerError",
+            "schema": {
+              "$ref": "#/definitions/ApiErrors"
+            }
+          }
+        }
+      }
+    },
+    "/v1/FicheSociete/LectureTauxATEtablissement": {
+      "post": {
+        "tags": [
+          "FicheSociete"
+        ],
+        "summary": "LectureTauxATEtablissement",
+        "operationId": "LectureTauxATEtablissement",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LectureTauxATEtablissementRequest"
+            }
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "description": "Clé d'abonnement api management",
+            "required": true,
+            "type": "string",
+            "default": "{{subscriptionKey}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LectureTauxATEtablissementResponse"
             }
           },
           "400": {
@@ -17150,6 +17746,16 @@
         "absencesDemiJournee": {
           "format": "int32",
           "type": "integer"
+        },
+        "fraction": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sansControleFraction": {
+          "type": "boolean"
+        },
+        "reconversionPro": {
+          "type": "boolean"
         }
       }
     },
@@ -18106,6 +18712,19 @@
         },
         "requeteFiltre": {
           "type": "string"
+        },
+        "optionFonctionnalite": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "AccordsEntreprises",
+              "AvenantsCCN",
+              "EditionsHistoriques",
+              "Images",
+              "ModelesBureautiques"
+            ],
+            "type": "string"
+          }
         }
       }
     },
@@ -18202,6 +18821,9 @@
         },
         "domaineInterventionEmetteurDads": {
           "type": "string"
+        },
+        "preferences": {
+          "$ref": "#/definitions/CompteCollaborateurPreferences"
         }
       }
     },
@@ -18286,6 +18908,20 @@
         },
         "accesJoursFeries": {
           "type": "string"
+        }
+      }
+    },
+    "CompteCollaborateurPreferences": {
+      "type": "object",
+      "properties": {
+        "splashscreensAlerte": {
+          "type": "boolean"
+        },
+        "splashscreensProduit": {
+          "type": "boolean"
+        },
+        "splashscreensMarketing": {
+          "type": "boolean"
         }
       }
     },
@@ -18505,13 +19141,16 @@
         "dossierPaieDsnRegularisationManuelle": {
           "type": "string"
         },
+        "dossierPaieAccesDsn": {
+          "type": "string"
+        },
+        "dossierPaieDsnEnEcriture": {
+          "type": "string"
+        },
         "gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier": {
           "type": "string"
         },
         "gestionInterneParametragesClientsSuppressionDeDossiers": {
-          "type": "string"
-        },
-        "outilsPaieExportV2ExportNonChiffre": {
           "type": "string"
         },
         "administrationConnexion": {
@@ -18556,13 +19195,16 @@
         "outilsPaieImportDeDossierDemo": {
           "type": "string"
         },
-        "dossierPaieAccesDsn": {
-          "type": "string"
-        },
         "gestionInterneConsoleDeGestionDesContacts": {
           "type": "string"
         },
         "gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil": {
+          "type": "string"
+        },
+        "mySilaeAccesContrats": {
+          "type": "string"
+        },
+        "outilParametrageControles": {
           "type": "string"
         }
       }
@@ -20500,6 +21142,9 @@
         },
         "nouveauNomSousCategorie": {
           "type": "string"
+        },
+        "libelleSousCategorie": {
+          "type": "string"
         }
       }
     },
@@ -20513,6 +21158,9 @@
           "type": "string"
         },
         "nomSousCategorie": {
+          "type": "string"
+        },
+        "libelleSousCategorie": {
           "type": "string"
         },
         "numeroDossier": {
@@ -20577,6 +21225,9 @@
           "type": "string"
         },
         "sousCategorieParDefaut": {
+          "type": "string"
+        },
+        "libelleSousCategorie": {
           "type": "string"
         },
         "sousCategoriesEnPC": {
@@ -22325,6 +22976,9 @@
       ],
       "type": "object",
       "properties": {
+        "detailSalaries": {
+          "type": "boolean"
+        },
         "format": {
           "enum": [
             "Pdf",
@@ -22332,6 +22986,15 @@
             "ExcelXLSX"
           ],
           "type": "string"
+        },
+        "axeAnalytique": {
+          "type": "string"
+        },
+        "grouperParOrganismes": {
+          "type": "boolean"
+        },
+        "grouperEnIgnorantLesCodesDucs": {
+          "type": "boolean"
         },
         "periodeDebut": {
           "format": "date-time",
@@ -22470,6 +23133,110 @@
         }
       }
     },
+    "EditionRecapDePaieDetailleAvecAnalytiqueRequest": {
+      "required": [
+        "numeroDossier"
+      ],
+      "type": "object",
+      "properties": {
+        "nomInterneEtablissement": {
+          "type": "string"
+        },
+        "axeAnalytique": {
+          "type": "string"
+        },
+        "optionsHeures": {
+          "enum": [
+            "SansDetail",
+            "DetailsHeures"
+          ],
+          "type": "string"
+        },
+        "affichage": {
+          "enum": [
+            "SansDetail",
+            "DetailsCotisations"
+          ],
+          "type": "string"
+        },
+        "format": {
+          "enum": [
+            "Pdf",
+            "Excel",
+            "ExcelXLSX"
+          ],
+          "type": "string"
+        },
+        "periodeDebut": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "periodeFin": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "numeroDossier": {
+          "type": "string",
+          "example": "{{numeroDossier}}"
+        }
+      }
+    },
+    "EditionRecapDePaieDetailleAvecAnalytiqueResponse": {
+      "type": "object",
+      "properties": {
+        "document": {
+          "format": "byte",
+          "type": "string"
+        }
+      }
+    },
+    "EditionRecapDePaieDetailleParPeriodeRequest": {
+      "required": [
+        "numeroDossier"
+      ],
+      "type": "object",
+      "properties": {
+        "nomInterneEtablissement": {
+          "type": "string"
+        },
+        "affichage": {
+          "enum": [
+            "DetailsCotisations",
+            "SansDetail"
+          ],
+          "type": "string"
+        },
+        "format": {
+          "enum": [
+            "Pdf",
+            "Excel",
+            "ExcelXLSX"
+          ],
+          "type": "string"
+        },
+        "periodeDebut": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "periodeFin": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "numeroDossier": {
+          "type": "string",
+          "example": "{{numeroDossier}}"
+        }
+      }
+    },
+    "EditionRecapDePaieDetailleParPeriodeResponse": {
+      "type": "object",
+      "properties": {
+        "document": {
+          "format": "byte",
+          "type": "string"
+        }
+      }
+    },
     "EditionSoldeDeReposRequest": {
       "required": [
         "numeroDossier"
@@ -22546,6 +23313,26 @@
             "ExcelXLSX"
           ],
           "type": "string"
+        },
+        "axeAnalytique": {
+          "type": "string"
+        },
+        "grouperParOrganismes": {
+          "type": "boolean"
+        },
+        "grouperEnIgnorantLesCodesDucs": {
+          "type": "boolean"
+        },
+        "grouperPar": {
+          "enum": [
+            "SansGroupement",
+            "Mensuel",
+            "Trimestriel"
+          ],
+          "type": "string"
+        },
+        "detailParNatureDeCotisation": {
+          "type": "boolean"
         },
         "periodeDebut": {
           "format": "date-time",
@@ -22634,6 +23421,102 @@
         },
         "document": {
           "format": "byte",
+          "type": "string"
+        }
+      }
+    },
+    "EditionsGroupeesRequest": {
+      "required": [
+        "codeEditionsGroupees",
+        "numeroDossier"
+      ],
+      "type": "object",
+      "properties": {
+        "periodeDebut": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "periodeFin": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "codeEditionsGroupees": {
+          "type": "string"
+        },
+        "motDePasse": {
+          "type": "string"
+        },
+        "format": {
+          "enum": [
+            "Pdf",
+            "Excel",
+            "ExcelXLSX"
+          ],
+          "type": "string"
+        },
+        "numeroDossier": {
+          "type": "string",
+          "example": "{{numeroDossier}}"
+        }
+      }
+    },
+    "EditionsGroupeesResponse": {
+      "type": "object",
+      "properties": {
+        "numeroDossier": {
+          "type": "string",
+          "example": "{{numeroDossier}}"
+        },
+        "codeEditionsGroupees": {
+          "type": "string"
+        },
+        "documents": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/EditionGroupeeDocument"
+          }
+        }
+      }
+    },
+    "EditionGroupeeDocument": {
+      "type": "object",
+      "properties": {
+        "document": {
+          "format": "byte",
+          "type": "string"
+        },
+        "messageErreur": {
+          "type": "string"
+        }
+      }
+    },
+    "StatutEditionsGroupeesResponse": {
+      "type": "object",
+      "properties": {
+        "numeroDossier": {
+          "type": "string",
+          "example": "{{numeroDossier}}"
+        },
+        "codeEditionsGroupees": {
+          "type": "string"
+        },
+        "documents": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/EditionGroupeeDocument"
+          }
+        },
+        "statut": {
+          "type": "string"
+        },
+        "messageErreur": {
+          "type": "string"
+        },
+        "progression": {
+          "format": "double",
+          "type": "number"
+        },
+        "dureeExecution": {
           "type": "string"
         }
       }
@@ -25201,6 +26084,59 @@
           "items": {
             "$ref": "#/definitions/EffectifEtablissement"
           }
+        }
+      }
+    },
+    "LectureTauxATEtablissementRequest": {
+      "required": [
+        "numeroDossier"
+      ],
+      "type": "object",
+      "properties": {
+        "nomInterneEtablissement": {
+          "type": "string"
+        },
+        "numeroDossier": {
+          "type": "string",
+          "example": "{{numeroDossier}}"
+        }
+      }
+    },
+    "LectureTauxATEtablissementResponse": {
+      "type": "object",
+      "properties": {
+        "tauxAccidentTravail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TauxAT"
+          }
+        },
+        "nomInterneEtablissement": {
+          "type": "string"
+        },
+        "numeroDossier": {
+          "type": "string",
+          "example": "{{numeroDossier}}"
+        }
+      }
+    },
+    "TauxAT": {
+      "type": "object",
+      "properties": {
+        "dateEffet": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "taux": {
+          "format": "double",
+          "type": "number"
+        },
+        "numeroADS": {
+          "type": "string"
+        },
+        "dateModification": {
+          "format": "date-time",
+          "type": "string"
         }
       }
     },

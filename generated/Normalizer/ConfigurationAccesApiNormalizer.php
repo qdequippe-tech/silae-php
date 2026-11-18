@@ -7,7 +7,9 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ConfigurationAccesApi;
 use QdequippeTech\Silae\Api\Model\ConfigurationAccesApiDossier;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -79,13 +81,23 @@ class ConfigurationAccesApiNormalizer implements DenormalizerInterface, Normaliz
         }
 
         if (\array_key_exists('dateCreation', $data) && null !== $data['dateCreation']) {
-            $object->setDateCreation(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateCreation']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateCreation']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateCreation'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateCreation($date);
         } elseif (\array_key_exists('dateCreation', $data) && null === $data['dateCreation']) {
             $object->setDateCreation(null);
         }
 
         if (\array_key_exists('dateModification', $data) && null !== $data['dateModification']) {
-            $object->setDateModification(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateModification']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateModification']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['dateModification'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateModification($date_1);
         } elseif (\array_key_exists('dateModification', $data) && null === $data['dateModification']) {
             $object->setDateModification(null);
         }
@@ -138,7 +150,7 @@ class ConfigurationAccesApiNormalizer implements DenormalizerInterface, Normaliz
         if ($data->isInitialized('dossiers') && null !== $data->getDossiers()) {
             $values = [];
             foreach ($data->getDossiers() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['dossiers'] = $values;

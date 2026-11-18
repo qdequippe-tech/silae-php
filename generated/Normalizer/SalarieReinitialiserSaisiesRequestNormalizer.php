@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SalarieReinitialisationSaisies;
 use QdequippeTech\Silae\Api\Model\SalarieReinitialiserSaisiesRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -83,7 +84,7 @@ class SalarieReinitialiserSaisiesRequestNormalizer implements DenormalizerInterf
         }
 
         if ($data->isInitialized('reinitialisationSaisies') && null !== $data->getReinitialisationSaisies()) {
-            $dataArray['reinitialisationSaisies'] = $this->normalizer->normalize($data->getReinitialisationSaisies(), 'json', $context);
+            $dataArray['reinitialisationSaisies'] = null === $data->getReinitialisationSaisies() ? null : new JsonObject($this->normalizer->normalize($data->getReinitialisationSaisies(), 'json', $context));
         }
 
         $dataArray['matriculeSalarie'] = $data->getMatriculeSalarie();

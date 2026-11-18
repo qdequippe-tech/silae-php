@@ -7,7 +7,9 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\LectureInformationsSalarie;
 use QdequippeTech\Silae\Api\Model\LectureInformationsSalarieEmploi;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -117,7 +119,12 @@ class LectureInformationsSalarieNormalizer implements DenormalizerInterface, Nor
         }
 
         if (\array_key_exists('dateNaissance', $data) && null !== $data['dateNaissance']) {
-            $object->setDateNaissance(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateNaissance']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateNaissance']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateNaissance'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateNaissance($date);
         } elseif (\array_key_exists('dateNaissance', $data) && null === $data['dateNaissance']) {
             $object->setDateNaissance(null);
         }
@@ -387,13 +394,23 @@ class LectureInformationsSalarieNormalizer implements DenormalizerInterface, Nor
         }
 
         if (\array_key_exists('titreSejourDebut', $data) && null !== $data['titreSejourDebut']) {
-            $object->setTitreSejourDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['titreSejourDebut']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['titreSejourDebut']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['titreSejourDebut'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setTitreSejourDebut($date_1);
         } elseif (\array_key_exists('titreSejourDebut', $data) && null === $data['titreSejourDebut']) {
             $object->setTitreSejourDebut(null);
         }
 
         if (\array_key_exists('titreSejourFin', $data) && null !== $data['titreSejourFin']) {
-            $object->setTitreSejourFin(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['titreSejourFin']));
+            $date_2 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['titreSejourFin']);
+            if (false === $date_2) {
+                throw new InvalidDateException($data['titreSejourFin'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setTitreSejourFin($date_2);
         } elseif (\array_key_exists('titreSejourFin', $data) && null === $data['titreSejourFin']) {
             $object->setTitreSejourFin(null);
         }
@@ -662,7 +679,7 @@ class LectureInformationsSalarieNormalizer implements DenormalizerInterface, Nor
         if ($data->isInitialized('emplois') && null !== $data->getEmplois()) {
             $values = [];
             foreach ($data->getEmplois() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['emplois'] = $values;

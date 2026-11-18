@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDocumentsSignesBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDocumentsSignesInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieDocumentsSignesUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieDocumentsSignesResponse;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRequest;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
@@ -48,7 +48,7 @@ class AnalyseProductionPaieDocumentsSignes extends BaseEndpoint implements Endpo
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class AnalyseProductionPaieDocumentsSignes extends BaseEndpoint implements Endpo
      * @throws AnalyseProductionPaieDocumentsSignesBadRequestException
      * @throws AnalyseProductionPaieDocumentsSignesUnauthorizedException
      * @throws AnalyseProductionPaieDocumentsSignesInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class AnalyseProductionPaieDocumentsSignes extends BaseEndpoint implements Endpo
             throw new AnalyseProductionPaieDocumentsSignesInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SoldeRepos;
 use QdequippeTech\Silae\Api\Model\StatutSoldeReposResponse;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -89,7 +90,7 @@ class StatutSoldeReposResponseNormalizer implements DenormalizerInterface, Norma
     {
         $dataArray = [];
         if ($data->isInitialized('soldeRepos') && null !== $data->getSoldeRepos()) {
-            $dataArray['soldeRepos'] = $this->normalizer->normalize($data->getSoldeRepos(), 'json', $context);
+            $dataArray['soldeRepos'] = null === $data->getSoldeRepos() ? null : new JsonObject($this->normalizer->normalize($data->getSoldeRepos(), 'json', $context));
         }
 
         if ($data->isInitialized('statut') && null !== $data->getStatut()) {

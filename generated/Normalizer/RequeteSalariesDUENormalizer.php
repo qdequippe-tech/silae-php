@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\RequeteSalariesDUE;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -59,7 +60,12 @@ class RequeteSalariesDUENormalizer implements DenormalizerInterface, NormalizerI
         }
 
         if (\array_key_exists('dateMinEmploi', $data) && null !== $data['dateMinEmploi']) {
-            $object->setDateMinEmploi(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateMinEmploi']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateMinEmploi']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateMinEmploi'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateMinEmploi($date);
         } elseif (\array_key_exists('dateMinEmploi', $data) && null === $data['dateMinEmploi']) {
             $object->setDateMinEmploi(null);
         }

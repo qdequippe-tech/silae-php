@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateurDroits;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateurDroitsUtilisateur;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -183,7 +184,7 @@ class CompteCollaborateurDroitsNormalizer implements DenormalizerInterface, Norm
         }
 
         if ($data->isInitialized('droitsUtilisateur') && null !== $data->getDroitsUtilisateur()) {
-            $dataArray['droitsUtilisateur'] = $this->normalizer->normalize($data->getDroitsUtilisateur(), 'json', $context);
+            $dataArray['droitsUtilisateur'] = null === $data->getDroitsUtilisateur() ? null : new JsonObject($this->normalizer->normalize($data->getDroitsUtilisateur(), 'json', $context));
         }
 
         if ($data->isInitialized('gestionInterne') && null !== $data->getGestionInterne()) {
