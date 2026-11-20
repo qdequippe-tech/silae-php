@@ -19,6 +19,7 @@ jobs:
             - name: "Install PHP with extensions"
               uses: shivammathur/setup-php@v2
               with:
+                  php-version: '8.5'
                   coverage: "none"
                   extensions: intl
                   tools: composer
@@ -35,4 +36,4 @@ jobs:
                   restore-keys: phpcsfixer-
 
             - name: "PHP-CS-Fixer"
-              run: ./tools/php-cs-fixer/vendor/bin/php-cs-fixer check
+              run: ./tools/bin/php-cs-fixer check

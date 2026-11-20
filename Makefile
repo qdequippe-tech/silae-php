@@ -4,7 +4,7 @@ tools/php-cs-fixer/vendor/composer/installed.php: tools/php-cs-fixer/composer.lo
 tools/rector/vendor/composer/installed.php: tools/rector/composer.lock
 	composer install --working-dir=./tools/rector
 
-vendor/composer/installed.php: composer.lock
+vendor/composer/installed.php:
 	composer install
 
 vendor: vendor/composer/installed.php
