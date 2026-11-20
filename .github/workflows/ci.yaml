@@ -35,4 +35,4 @@ jobs:
                   restore-keys: phpcsfixer-
 
             - name: "PHP-CS-Fixer"
-              run: ./tools/php-cs-fixer/vendor/bin/php-cs-fixer check
+              run: ./tools/bin/php-cs-fixer check
