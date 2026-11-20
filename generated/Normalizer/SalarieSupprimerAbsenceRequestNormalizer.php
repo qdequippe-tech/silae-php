@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SalarieSupprimerAbsenceRequest;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -48,13 +49,23 @@ class SalarieSupprimerAbsenceRequestNormalizer implements DenormalizerInterface,
         }
 
         if (\array_key_exists('dateDebutAbsence', $data) && null !== $data['dateDebutAbsence']) {
-            $object->setDateDebutAbsence(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebutAbsence']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebutAbsence']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateDebutAbsence'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateDebutAbsence($date);
         } elseif (\array_key_exists('dateDebutAbsence', $data) && null === $data['dateDebutAbsence']) {
             $object->setDateDebutAbsence(null);
         }
 
         if (\array_key_exists('dateFinAbsence', $data) && null !== $data['dateFinAbsence']) {
-            $object->setDateFinAbsence(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFinAbsence']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFinAbsence']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['dateFinAbsence'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateFinAbsence($date_1);
         } elseif (\array_key_exists('dateFinAbsence', $data) && null === $data['dateFinAbsence']) {
             $object->setDateFinAbsence(null);
         }

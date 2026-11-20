@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV3AsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV3AsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV3AsynchroneUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursV3Request;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
@@ -48,7 +48,7 @@ class AnalyseProductionPaieUtilisateursV3Asynchrone extends BaseEndpoint impleme
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class AnalyseProductionPaieUtilisateursV3Asynchrone extends BaseEndpoint impleme
      * @throws AnalyseProductionPaieUtilisateursV3AsynchroneBadRequestException
      * @throws AnalyseProductionPaieUtilisateursV3AsynchroneUnauthorizedException
      * @throws AnalyseProductionPaieUtilisateursV3AsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class AnalyseProductionPaieUtilisateursV3Asynchrone extends BaseEndpoint impleme
             throw new AnalyseProductionPaieUtilisateursV3AsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\CreationUtilisateurClientPaieRequest;
 use QdequippeTech\Silae\Api\Model\UtilisateurClient;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -67,7 +68,7 @@ class CreationUtilisateurClientPaieRequestNormalizer implements DenormalizerInte
     {
         $dataArray = [];
         if ($data->isInitialized('utilisateurClient') && null !== $data->getUtilisateurClient()) {
-            $dataArray['utilisateurClient'] = $this->normalizer->normalize($data->getUtilisateurClient(), 'json', $context);
+            $dataArray['utilisateurClient'] = null === $data->getUtilisateurClient() ? null : new JsonObject($this->normalizer->normalize($data->getUtilisateurClient(), 'json', $context));
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

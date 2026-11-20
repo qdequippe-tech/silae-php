@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\AcquisitionQuestionnaireContratComplementaireResponse;
 use QdequippeTech\Silae\Api\Model\QuestionnaireContratComplementaire;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -68,7 +69,7 @@ class AcquisitionQuestionnaireContratComplementaireResponseNormalizer implements
         if ($data->isInitialized('qContratComplementaire') && null !== $data->getQContratComplementaire()) {
             $values = [];
             foreach ($data->getQContratComplementaire() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['qContratComplementaire'] = $values;

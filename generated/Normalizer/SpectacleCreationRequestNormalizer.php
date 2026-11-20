@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\Spectacle;
 use QdequippeTech\Silae\Api\Model\SpectacleCreationRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -67,7 +68,7 @@ class SpectacleCreationRequestNormalizer implements DenormalizerInterface, Norma
     {
         $dataArray = [];
         if ($data->isInitialized('structSpectacle') && null !== $data->getStructSpectacle()) {
-            $dataArray['structSpectacle'] = $this->normalizer->normalize($data->getStructSpectacle(), 'json', $context);
+            $dataArray['structSpectacle'] = null === $data->getStructSpectacle() ? null : new JsonObject($this->normalizer->normalize($data->getStructSpectacle(), 'json', $context));
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

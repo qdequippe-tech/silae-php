@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SalarieReinitialisationSaisies;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -60,7 +61,12 @@ class SalarieReinitialisationSaisiesNormalizer implements DenormalizerInterface,
         }
 
         if (\array_key_exists('periodeReinitialisation', $data) && null !== $data['periodeReinitialisation']) {
-            $object->setPeriodeReinitialisation(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeReinitialisation']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeReinitialisation']);
+            if (false === $date) {
+                throw new InvalidDateException($data['periodeReinitialisation'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setPeriodeReinitialisation($date);
         } elseif (\array_key_exists('periodeReinitialisation', $data) && null === $data['periodeReinitialisation']) {
             $object->setPeriodeReinitialisation(null);
         }

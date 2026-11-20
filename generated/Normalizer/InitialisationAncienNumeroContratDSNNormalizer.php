@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\InitialisationAncienNumeroContratDSN;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -78,7 +79,12 @@ class InitialisationAncienNumeroContratDSNNormalizer implements DenormalizerInte
         }
 
         if (\array_key_exists('periodeDeclaration', $data) && null !== $data['periodeDeclaration']) {
-            $object->setPeriodeDeclaration(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeDeclaration']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeDeclaration']);
+            if (false === $date) {
+                throw new InvalidDateException($data['periodeDeclaration'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setPeriodeDeclaration($date);
         } elseif (\array_key_exists('periodeDeclaration', $data) && null === $data['periodeDeclaration']) {
             $object->setPeriodeDeclaration(null);
         }

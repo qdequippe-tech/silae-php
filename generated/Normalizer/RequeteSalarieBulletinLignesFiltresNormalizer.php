@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\RequeteSalarieBulletinLignesFiltres;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -98,13 +99,23 @@ class RequeteSalarieBulletinLignesFiltresNormalizer implements DenormalizerInter
         }
 
         if (\array_key_exists('marqueDtDeb', $data) && null !== $data['marqueDtDeb']) {
-            $object->setMarqueDtDeb(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['marqueDtDeb']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['marqueDtDeb']);
+            if (false === $date) {
+                throw new InvalidDateException($data['marqueDtDeb'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setMarqueDtDeb($date);
         } elseif (\array_key_exists('marqueDtDeb', $data) && null === $data['marqueDtDeb']) {
             $object->setMarqueDtDeb(null);
         }
 
         if (\array_key_exists('marqueDtFin', $data) && null !== $data['marqueDtFin']) {
-            $object->setMarqueDtFin(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['marqueDtFin']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['marqueDtFin']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['marqueDtFin'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setMarqueDtFin($date_1);
         } elseif (\array_key_exists('marqueDtFin', $data) && null === $data['marqueDtFin']) {
             $object->setMarqueDtFin(null);
         }

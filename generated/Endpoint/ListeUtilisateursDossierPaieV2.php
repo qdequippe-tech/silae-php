@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieV2BadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieV2InternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeUtilisateursDossierPaieV2UnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\DossierRequest;
 use QdequippeTech\Silae\Api\Model\ListeUtilisateursDossierPaieV2Response;
@@ -48,7 +48,7 @@ class ListeUtilisateursDossierPaieV2 extends BaseEndpoint implements Endpoint
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class ListeUtilisateursDossierPaieV2 extends BaseEndpoint implements Endpoint
      * @throws ListeUtilisateursDossierPaieV2BadRequestException
      * @throws ListeUtilisateursDossierPaieV2UnauthorizedException
      * @throws ListeUtilisateursDossierPaieV2InternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class ListeUtilisateursDossierPaieV2 extends BaseEndpoint implements Endpoint
             throw new ListeUtilisateursDossierPaieV2InternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

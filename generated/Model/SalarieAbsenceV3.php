@@ -131,6 +131,21 @@ class SalarieAbsenceV3
      */
     protected $absencesDemiJournee;
 
+    /**
+     * @var int|null
+     */
+    protected $fraction;
+
+    /**
+     * @var bool|null
+     */
+    protected $sansControleFraction;
+
+    /**
+     * @var bool|null
+     */
+    protected $reconversionPro;
+
     public function getDateDebutAbsence(): ?\DateTime
     {
         return $this->dateDebutAbsence;
@@ -426,6 +441,45 @@ class SalarieAbsenceV3
     {
         $this->initialized['absencesDemiJournee'] = true;
         $this->absencesDemiJournee = $absencesDemiJournee;
+
+        return $this;
+    }
+
+    public function getFraction(): ?int
+    {
+        return $this->fraction;
+    }
+
+    public function setFraction(?int $fraction): self
+    {
+        $this->initialized['fraction'] = true;
+        $this->fraction = $fraction;
+
+        return $this;
+    }
+
+    public function getSansControleFraction(): ?bool
+    {
+        return $this->sansControleFraction;
+    }
+
+    public function setSansControleFraction(?bool $sansControleFraction): self
+    {
+        $this->initialized['sansControleFraction'] = true;
+        $this->sansControleFraction = $sansControleFraction;
+
+        return $this;
+    }
+
+    public function getReconversionPro(): ?bool
+    {
+        return $this->reconversionPro;
+    }
+
+    public function setReconversionPro(?bool $reconversionPro): self
+    {
+        $this->initialized['reconversionPro'] = true;
+        $this->reconversionPro = $reconversionPro;
 
         return $this;
     }

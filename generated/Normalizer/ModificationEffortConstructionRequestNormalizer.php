@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\EffortConstruction;
 use QdequippeTech\Silae\Api\Model\ModificationEffortConstructionRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -67,7 +68,7 @@ class ModificationEffortConstructionRequestNormalizer implements DenormalizerInt
     {
         $dataArray = [];
         if ($data->isInitialized('effortConstruction') && null !== $data->getEffortConstruction()) {
-            $dataArray['effortConstruction'] = $this->normalizer->normalize($data->getEffortConstruction(), 'json', $context);
+            $dataArray['effortConstruction'] = null === $data->getEffortConstruction() ? null : new JsonObject($this->normalizer->normalize($data->getEffortConstruction(), 'json', $context));
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

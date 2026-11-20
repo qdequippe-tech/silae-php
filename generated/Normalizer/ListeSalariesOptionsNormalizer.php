@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ListeSalariesOptions;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -48,13 +49,23 @@ class ListeSalariesOptionsNormalizer implements DenormalizerInterface, Normalize
         }
 
         if (\array_key_exists('optionActifSurPeriode', $data) && null !== $data['optionActifSurPeriode']) {
-            $object->setOptionActifSurPeriode(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['optionActifSurPeriode']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['optionActifSurPeriode']);
+            if (false === $date) {
+                throw new InvalidDateException($data['optionActifSurPeriode'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setOptionActifSurPeriode($date);
         } elseif (\array_key_exists('optionActifSurPeriode', $data) && null === $data['optionActifSurPeriode']) {
             $object->setOptionActifSurPeriode(null);
         }
 
         if (\array_key_exists('optionActifALaDate', $data) && null !== $data['optionActifALaDate']) {
-            $object->setOptionActifALaDate(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['optionActifALaDate']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['optionActifALaDate']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['optionActifALaDate'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setOptionActifALaDate($date_1);
         } elseif (\array_key_exists('optionActifALaDate', $data) && null === $data['optionActifALaDate']) {
             $object->setOptionActifALaDate(null);
         }

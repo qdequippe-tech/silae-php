@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SalarieActiviteJournaliere;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -80,7 +81,12 @@ class SalarieActiviteJournaliereNormalizer implements DenormalizerInterface, Nor
         }
 
         if (\array_key_exists('jour', $data) && null !== $data['jour']) {
-            $object->setJour(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['jour']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['jour']);
+            if (false === $date) {
+                throw new InvalidDateException($data['jour'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setJour($date);
         } elseif (\array_key_exists('jour', $data) && null === $data['jour']) {
             $object->setJour(null);
         }

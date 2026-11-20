@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ModificationChampValeursTypees;
 use QdequippeTech\Silae\Api\Model\ModificationQuestionnaireCCNEtablissementRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -94,7 +95,7 @@ class ModificationQuestionnaireCCNEtablissementRequestNormalizer implements Deno
         if ($data->isInitialized('listeChamps') && null !== $data->getListeChamps()) {
             $values = [];
             foreach ($data->getListeChamps() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['listeChamps'] = $values;

@@ -8,8 +8,11 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateur;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateurDroits;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateurHorairesAcces;
+use QdequippeTech\Silae\Api\Model\CompteCollaborateurPreferences;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateurRoles;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -139,13 +142,23 @@ class CompteCollaborateurNormalizer implements DenormalizerInterface, Normalizer
         }
 
         if (\array_key_exists('dateDebutValidite', $data) && null !== $data['dateDebutValidite']) {
-            $object->setDateDebutValidite(\DateTime::createFromFormat('Y-m-d', $data['dateDebutValidite'])->setTime(0, 0, 0));
+            $date = \DateTime::createFromFormat('Y-m-d', $data['dateDebutValidite']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateDebutValidite'], 'Y-m-d');
+            }
+
+            $object->setDateDebutValidite($date->setTime(0, 0, 0));
         } elseif (\array_key_exists('dateDebutValidite', $data) && null === $data['dateDebutValidite']) {
             $object->setDateDebutValidite(null);
         }
 
         if (\array_key_exists('dateFinValidite', $data) && null !== $data['dateFinValidite']) {
-            $object->setDateFinValidite(\DateTime::createFromFormat('Y-m-d', $data['dateFinValidite'])->setTime(0, 0, 0));
+            $date_1 = \DateTime::createFromFormat('Y-m-d', $data['dateFinValidite']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['dateFinValidite'], 'Y-m-d');
+            }
+
+            $object->setDateFinValidite($date_1->setTime(0, 0, 0));
         } elseif (\array_key_exists('dateFinValidite', $data) && null === $data['dateFinValidite']) {
             $object->setDateFinValidite(null);
         }
@@ -201,6 +214,12 @@ class CompteCollaborateurNormalizer implements DenormalizerInterface, Normalizer
             $object->setDomaineInterventionEmetteurDads($data['domaineInterventionEmetteurDads']);
         } elseif (\array_key_exists('domaineInterventionEmetteurDads', $data) && null === $data['domaineInterventionEmetteurDads']) {
             $object->setDomaineInterventionEmetteurDads(null);
+        }
+
+        if (\array_key_exists('preferences', $data) && null !== $data['preferences']) {
+            $object->setPreferences($this->denormalizer->denormalize($data['preferences'], CompteCollaborateurPreferences::class, 'json', $context));
+        } elseif (\array_key_exists('preferences', $data) && null === $data['preferences']) {
+            $object->setPreferences(null);
         }
 
         return $object;
@@ -274,7 +293,7 @@ class CompteCollaborateurNormalizer implements DenormalizerInterface, Normalizer
         }
 
         if ($data->isInitialized('roles') && null !== $data->getRoles()) {
-            $dataArray['roles'] = $this->normalizer->normalize($data->getRoles(), 'json', $context);
+            $dataArray['roles'] = null === $data->getRoles() ? null : new JsonObject($this->normalizer->normalize($data->getRoles(), 'json', $context));
         }
 
         if ($data->isInitialized('requeteAccesDossiers') && null !== $data->getRequeteAccesDossiers()) {
@@ -286,7 +305,7 @@ class CompteCollaborateurNormalizer implements DenormalizerInterface, Normalizer
         }
 
         if ($data->isInitialized('droits') && null !== $data->getDroits()) {
-            $dataArray['droits'] = $this->normalizer->normalize($data->getDroits(), 'json', $context);
+            $dataArray['droits'] = null === $data->getDroits() ? null : new JsonObject($this->normalizer->normalize($data->getDroits(), 'json', $context));
         }
 
         if ($data->isInitialized('codeAgence') && null !== $data->getCodeAgence()) {
@@ -294,7 +313,7 @@ class CompteCollaborateurNormalizer implements DenormalizerInterface, Normalizer
         }
 
         if ($data->isInitialized('horairesAcces') && null !== $data->getHorairesAcces()) {
-            $dataArray['horairesAcces'] = $this->normalizer->normalize($data->getHorairesAcces(), 'json', $context);
+            $dataArray['horairesAcces'] = null === $data->getHorairesAcces() ? null : new JsonObject($this->normalizer->normalize($data->getHorairesAcces(), 'json', $context));
         }
 
         if ($data->isInitialized('affectations') && null !== $data->getAffectations()) {
@@ -308,6 +327,10 @@ class CompteCollaborateurNormalizer implements DenormalizerInterface, Normalizer
 
         if ($data->isInitialized('domaineInterventionEmetteurDads') && null !== $data->getDomaineInterventionEmetteurDads()) {
             $dataArray['domaineInterventionEmetteurDads'] = $data->getDomaineInterventionEmetteurDads();
+        }
+
+        if ($data->isInitialized('preferences') && null !== $data->getPreferences()) {
+            $dataArray['preferences'] = null === $data->getPreferences() ? null : new JsonObject($this->normalizer->normalize($data->getPreferences(), 'json', $context));
         }
 
         return $dataArray;

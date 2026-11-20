@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\CreationConfigurationAccesApi;
 use QdequippeTech\Silae\Api\Model\CreationConfigurationAccesApiRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -61,7 +62,7 @@ class CreationConfigurationAccesApiRequestNormalizer implements DenormalizerInte
     {
         $dataArray = [];
         if ($data->isInitialized('configuration') && null !== $data->getConfiguration()) {
-            $dataArray['configuration'] = $this->normalizer->normalize($data->getConfiguration(), 'json', $context);
+            $dataArray['configuration'] = null === $data->getConfiguration() ? null : new JsonObject($this->normalizer->normalize($data->getConfiguration(), 'json', $context));
         }
 
         return $dataArray;

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\BureautiquePaieNombreDocumentsCreesResponse;
 use QdequippeTech\Silae\Api\Model\StatistiquesBureautique;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -68,7 +69,7 @@ class BureautiquePaieNombreDocumentsCreesResponseNormalizer implements Denormali
         if ($data->isInitialized('statistiquesBureautique') && null !== $data->getStatistiquesBureautique()) {
             $values = [];
             foreach ($data->getStatistiquesBureautique() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['statistiquesBureautique'] = $values;

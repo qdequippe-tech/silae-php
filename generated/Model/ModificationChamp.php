@@ -44,7 +44,7 @@ class ModificationChamp
         return $this->valeur;
     }
 
-    public function setValeur(mixed $valeur): self
+    public function setValeur($valeur): self
     {
         $this->initialized['valeur'] = true;
         $this->valeur = $valeur;

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\CritereRechercheCCN;
 use QdequippeTech\Silae\Api\Model\RechercheCCNRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -61,7 +62,7 @@ class RechercheCCNRequestNormalizer implements DenormalizerInterface, Normalizer
     {
         $dataArray = [];
         if ($data->isInitialized('critere') && null !== $data->getCritere()) {
-            $dataArray['critere'] = $this->normalizer->normalize($data->getCritere(), 'json', $context);
+            $dataArray['critere'] = null === $data->getCritere() ? null : new JsonObject($this->normalizer->normalize($data->getCritere(), 'json', $context));
         }
 
         return $dataArray;

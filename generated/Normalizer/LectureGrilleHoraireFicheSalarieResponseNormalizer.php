@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\LectureGrilleHoraireFicheSalarieResponse;
 use QdequippeTech\Silae\Api\Model\LectureHoraireSalarie;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -61,7 +62,7 @@ class LectureGrilleHoraireFicheSalarieResponseNormalizer implements Denormalizer
     {
         $dataArray = [];
         if ($data->isInitialized('horaires') && null !== $data->getHoraires()) {
-            $dataArray['horaires'] = $this->normalizer->normalize($data->getHoraires(), 'json', $context);
+            $dataArray['horaires'] = null === $data->getHoraires() ? null : new JsonObject($this->normalizer->normalize($data->getHoraires(), 'json', $context));
         }
 
         return $dataArray;

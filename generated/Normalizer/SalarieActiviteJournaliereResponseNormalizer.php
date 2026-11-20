@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SalarieActiviteJournalierePeriodeSaisie;
 use QdequippeTech\Silae\Api\Model\SalarieActiviteJournaliereResponse;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -61,7 +62,7 @@ class SalarieActiviteJournaliereResponseNormalizer implements DenormalizerInterf
     {
         $dataArray = [];
         if ($data->isInitialized('activiteJournalierePeriode') && null !== $data->getActiviteJournalierePeriode()) {
-            $dataArray['activiteJournalierePeriode'] = $this->normalizer->normalize($data->getActiviteJournalierePeriode(), 'json', $context);
+            $dataArray['activiteJournalierePeriode'] = null === $data->getActiviteJournalierePeriode() ? null : new JsonObject($this->normalizer->normalize($data->getActiviteJournalierePeriode(), 'json', $context));
         }
 
         return $dataArray;

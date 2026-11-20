@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ModificationDroitsFonctionnelsProductionPaieRequest;
 use QdequippeTech\Silae\Api\Model\OngletProduction;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -71,7 +72,7 @@ class ModificationDroitsFonctionnelsProductionPaieRequestNormalizer implements D
         }
 
         if ($data->isInitialized('ongletProductionPaie') && null !== $data->getOngletProductionPaie()) {
-            $dataArray['ongletProductionPaie'] = $this->normalizer->normalize($data->getOngletProductionPaie(), 'json', $context);
+            $dataArray['ongletProductionPaie'] = null === $data->getOngletProductionPaie() ? null : new JsonObject($this->normalizer->normalize($data->getOngletProductionPaie(), 'json', $context));
         }
 
         return $dataArray;

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ModificationSaisieArretRequest;
 use QdequippeTech\Silae\Api\Model\SaisieArret;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -80,7 +81,7 @@ class ModificationSaisieArretRequestNormalizer implements DenormalizerInterface,
         if ($data->isInitialized('saisieArrets') && null !== $data->getSaisieArrets()) {
             $values = [];
             foreach ($data->getSaisieArrets() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['saisieArrets'] = $values;

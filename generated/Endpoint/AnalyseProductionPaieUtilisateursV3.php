@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV3BadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV3InternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieUtilisateursV3UnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursV3Request;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieUtilisateursV3Response;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
@@ -48,7 +48,7 @@ class AnalyseProductionPaieUtilisateursV3 extends BaseEndpoint implements Endpoi
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class AnalyseProductionPaieUtilisateursV3 extends BaseEndpoint implements Endpoi
      * @throws AnalyseProductionPaieUtilisateursV3BadRequestException
      * @throws AnalyseProductionPaieUtilisateursV3UnauthorizedException
      * @throws AnalyseProductionPaieUtilisateursV3InternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class AnalyseProductionPaieUtilisateursV3 extends BaseEndpoint implements Endpoi
             throw new AnalyseProductionPaieUtilisateursV3InternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

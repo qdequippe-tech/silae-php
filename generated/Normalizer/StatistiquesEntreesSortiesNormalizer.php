@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\StatistiquesEntreesSorties;
 use QdequippeTech\Silae\Api\Model\StatistiquesEntreesSortiesDetails;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -88,7 +89,7 @@ class StatistiquesEntreesSortiesNormalizer implements DenormalizerInterface, Nor
         if ($data->isInitialized('statistiquesEntreesSortiesDetails') && null !== $data->getStatistiquesEntreesSortiesDetails()) {
             $values = [];
             foreach ($data->getStatistiquesEntreesSortiesDetails() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['statistiquesEntreesSortiesDetails'] = $values;

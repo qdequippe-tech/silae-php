@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SalariesConfirmerSaisies;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -56,7 +57,12 @@ class SalariesConfirmerSaisiesNormalizer implements DenormalizerInterface, Norma
         }
 
         if (\array_key_exists('periodeConfirmation', $data) && null !== $data['periodeConfirmation']) {
-            $object->setPeriodeConfirmation(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeConfirmation']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeConfirmation']);
+            if (false === $date) {
+                throw new InvalidDateException($data['periodeConfirmation'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setPeriodeConfirmation($date);
         } elseif (\array_key_exists('periodeConfirmation', $data) && null === $data['periodeConfirmation']) {
             $object->setPeriodeConfirmation(null);
         }

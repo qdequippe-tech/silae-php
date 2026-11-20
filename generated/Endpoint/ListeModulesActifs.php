@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\ListeModulesActifsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ListeModulesActifsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ListeModulesActifsUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ListeModulesActifsResponse;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -90,7 +90,7 @@ class ListeModulesActifs extends BaseEndpoint implements Endpoint
      * @throws ListeModulesActifsBadRequestException
      * @throws ListeModulesActifsUnauthorizedException
      * @throws ListeModulesActifsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -112,7 +112,7 @@ class ListeModulesActifs extends BaseEndpoint implements Endpoint
             throw new ListeModulesActifsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

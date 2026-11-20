@@ -26,6 +26,11 @@ class SousCategorie
      */
     protected $nouveauNomSousCategorie;
 
+    /**
+     * @var string|null
+     */
+    protected $libelleSousCategorie;
+
     public function getNomSousCategorie(): ?string
     {
         return $this->nomSousCategorie;
@@ -48,6 +53,19 @@ class SousCategorie
     {
         $this->initialized['nouveauNomSousCategorie'] = true;
         $this->nouveauNomSousCategorie = $nouveauNomSousCategorie;
+
+        return $this;
+    }
+
+    public function getLibelleSousCategorie(): ?string
+    {
+        return $this->libelleSousCategorie;
+    }
+
+    public function setLibelleSousCategorie(?string $libelleSousCategorie): self
+    {
+        $this->initialized['libelleSousCategorie'] = true;
+        $this->libelleSousCategorie = $libelleSousCategorie;
 
         return $this;
     }

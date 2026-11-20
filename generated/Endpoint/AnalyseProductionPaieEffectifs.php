@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEffectifsBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEffectifsInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AnalyseProductionPaieEffectifsUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEffectifsRequest;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieEffectifsResponse;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
@@ -48,7 +48,7 @@ class AnalyseProductionPaieEffectifs extends BaseEndpoint implements Endpoint
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class AnalyseProductionPaieEffectifs extends BaseEndpoint implements Endpoint
      * @throws AnalyseProductionPaieEffectifsBadRequestException
      * @throws AnalyseProductionPaieEffectifsUnauthorizedException
      * @throws AnalyseProductionPaieEffectifsInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class AnalyseProductionPaieEffectifs extends BaseEndpoint implements Endpoint
             throw new AnalyseProductionPaieEffectifsInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

@@ -29,6 +29,11 @@ class AjoutSousCategorieAxeAnalytiqueRequest
     /**
      * @var string|null
      */
+    protected $libelleSousCategorie;
+
+    /**
+     * @var string|null
+     */
     protected $numeroDossier;
 
     public function getNomAxe(): ?string
@@ -53,6 +58,19 @@ class AjoutSousCategorieAxeAnalytiqueRequest
     {
         $this->initialized['nomSousCategorie'] = true;
         $this->nomSousCategorie = $nomSousCategorie;
+
+        return $this;
+    }
+
+    public function getLibelleSousCategorie(): ?string
+    {
+        return $this->libelleSousCategorie;
+    }
+
+    public function setLibelleSousCategorie(?string $libelleSousCategorie): self
+    {
+        $this->initialized['libelleSousCategorie'] = true;
+        $this->libelleSousCategorie = $libelleSousCategorie;
 
         return $this;
     }

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\HistoriqueConnexion;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -52,13 +53,23 @@ class HistoriqueConnexionNormalizer implements DenormalizerInterface, Normalizer
         }
 
         if (\array_key_exists('date', $data) && null !== $data['date']) {
-            $object->setDate(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['date']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['date']);
+            if (false === $date) {
+                throw new InvalidDateException($data['date'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDate($date);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
         }
 
         if (\array_key_exists('deconnexion', $data) && null !== $data['deconnexion']) {
-            $object->setDeconnexion(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['deconnexion']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['deconnexion']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['deconnexion'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDeconnexion($date_1);
         } elseif (\array_key_exists('deconnexion', $data) && null === $data['deconnexion']) {
             $object->setDeconnexion(null);
         }

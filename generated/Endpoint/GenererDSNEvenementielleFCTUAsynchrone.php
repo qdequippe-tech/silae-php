@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\GenererDSNEvenementielleFCTUAsynchroneBadRequestException;
 use QdequippeTech\Silae\Api\Exception\GenererDSNEvenementielleFCTUAsynchroneInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\GenererDSNEvenementielleFCTUAsynchroneUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\GenererDSNEvenementielleFCTURequest;
 use QdequippeTech\Silae\Api\Model\TraitementAsynchroneResponse;
@@ -48,7 +48,7 @@ class GenererDSNEvenementielleFCTUAsynchrone extends BaseEndpoint implements End
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class GenererDSNEvenementielleFCTUAsynchrone extends BaseEndpoint implements End
      * @throws GenererDSNEvenementielleFCTUAsynchroneBadRequestException
      * @throws GenererDSNEvenementielleFCTUAsynchroneUnauthorizedException
      * @throws GenererDSNEvenementielleFCTUAsynchroneInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class GenererDSNEvenementielleFCTUAsynchrone extends BaseEndpoint implements End
             throw new GenererDSNEvenementielleFCTUAsynchroneInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

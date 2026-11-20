@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ModificationChampByte;
 use QdequippeTech\Silae\Api\Model\ModificationQuestionnaireContratComplementaireRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -90,7 +91,7 @@ class ModificationQuestionnaireContratComplementaireRequestNormalizer implements
         if ($data->isInitialized('reponseQCComp') && null !== $data->getReponseQCComp()) {
             $values = [];
             foreach ($data->getReponseQCComp() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['reponseQCComp'] = $values;

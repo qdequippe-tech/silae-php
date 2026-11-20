@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSN;
 use QdequippeTech\Silae\Api\Model\LectureContactEmetteurDSNResponse;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -61,7 +62,7 @@ class LectureContactEmetteurDSNResponseNormalizer implements DenormalizerInterfa
     {
         $dataArray = [];
         if ($data->isInitialized('emetteurDSN') && null !== $data->getEmetteurDSN()) {
-            $dataArray['emetteurDSN'] = $this->normalizer->normalize($data->getEmetteurDSN(), 'json', $context);
+            $dataArray['emetteurDSN'] = null === $data->getEmetteurDSN() ? null : new JsonObject($this->normalizer->normalize($data->getEmetteurDSN(), 'json', $context));
         }
 
         return $dataArray;

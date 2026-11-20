@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\SalarieAbsencesV2BadRequestException;
 use QdequippeTech\Silae\Api\Exception\SalarieAbsencesV2InternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\SalarieAbsencesV2UnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\SalarieAbsencesRequest;
 use QdequippeTech\Silae\Api\Model\SalarieAbsencesV2Response;
@@ -48,7 +48,7 @@ class SalarieAbsencesV2 extends BaseEndpoint implements Endpoint
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class SalarieAbsencesV2 extends BaseEndpoint implements Endpoint
      * @throws SalarieAbsencesV2BadRequestException
      * @throws SalarieAbsencesV2UnauthorizedException
      * @throws SalarieAbsencesV2InternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class SalarieAbsencesV2 extends BaseEndpoint implements Endpoint
             throw new SalarieAbsencesV2InternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

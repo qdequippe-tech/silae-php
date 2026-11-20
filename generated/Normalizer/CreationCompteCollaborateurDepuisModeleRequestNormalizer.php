@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\CompteCollaborateurDepuisModele;
 use QdequippeTech\Silae\Api\Model\CreationCompteCollaborateurDepuisModeleRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -61,7 +62,7 @@ class CreationCompteCollaborateurDepuisModeleRequestNormalizer implements Denorm
     {
         $dataArray = [];
         if ($data->isInitialized('utilisateurCollaborateur') && null !== $data->getUtilisateurCollaborateur()) {
-            $dataArray['utilisateurCollaborateur'] = $this->normalizer->normalize($data->getUtilisateurCollaborateur(), 'json', $context);
+            $dataArray['utilisateurCollaborateur'] = null === $data->getUtilisateurCollaborateur() ? null : new JsonObject($this->normalizer->normalize($data->getUtilisateurCollaborateur(), 'json', $context));
         }
 
         return $dataArray;

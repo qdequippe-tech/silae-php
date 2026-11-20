@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SpectacleSalarieAffectation;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -156,13 +157,23 @@ class SpectacleSalarieAffectationNormalizer implements DenormalizerInterface, No
         }
 
         if (\array_key_exists('dateDebut', $data) && null !== $data['dateDebut']) {
-            $object->setDateDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebut']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebut']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateDebut'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateDebut($date);
         } elseif (\array_key_exists('dateDebut', $data) && null === $data['dateDebut']) {
             $object->setDateDebut(null);
         }
 
         if (\array_key_exists('dateFin', $data) && null !== $data['dateFin']) {
-            $object->setDateFin(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFin']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFin']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['dateFin'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateFin($date_1);
         } elseif (\array_key_exists('dateFin', $data) && null === $data['dateFin']) {
             $object->setDateFin(null);
         }
@@ -192,13 +203,23 @@ class SpectacleSalarieAffectationNormalizer implements DenormalizerInterface, No
         }
 
         if (\array_key_exists('dateDebut_AEMInitiale', $data) && null !== $data['dateDebut_AEMInitiale']) {
-            $object->setDateDebutAEMInitiale(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebut_AEMInitiale']));
+            $date_2 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDebut_AEMInitiale']);
+            if (false === $date_2) {
+                throw new InvalidDateException($data['dateDebut_AEMInitiale'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateDebutAEMInitiale($date_2);
         } elseif (\array_key_exists('dateDebut_AEMInitiale', $data) && null === $data['dateDebut_AEMInitiale']) {
             $object->setDateDebutAEMInitiale(null);
         }
 
         if (\array_key_exists('dateFin_AEMInitiale', $data) && null !== $data['dateFin_AEMInitiale']) {
-            $object->setDateFinAEMInitiale(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFin_AEMInitiale']));
+            $date_3 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFin_AEMInitiale']);
+            if (false === $date_3) {
+                throw new InvalidDateException($data['dateFin_AEMInitiale'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateFinAEMInitiale($date_3);
         } elseif (\array_key_exists('dateFin_AEMInitiale', $data) && null === $data['dateFin_AEMInitiale']) {
             $object->setDateFinAEMInitiale(null);
         }

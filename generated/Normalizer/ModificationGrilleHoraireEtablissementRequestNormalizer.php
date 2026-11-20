@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ModificationGrilleHoraireEtablissementRequest;
 use QdequippeTech\Silae\Api\Model\ModificationHoraireEtablissement;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -77,7 +78,7 @@ class ModificationGrilleHoraireEtablissementRequestNormalizer implements Denorma
         }
 
         if ($data->isInitialized('horaire') && null !== $data->getHoraire()) {
-            $dataArray['horaire'] = $this->normalizer->normalize($data->getHoraire(), 'json', $context);
+            $dataArray['horaire'] = null === $data->getHoraire() ? null : new JsonObject($this->normalizer->normalize($data->getHoraire(), 'json', $context));
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

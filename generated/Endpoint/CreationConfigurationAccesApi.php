@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\CreationConfigurationAccesApiBadRequestException;
 use QdequippeTech\Silae\Api\Exception\CreationConfigurationAccesApiInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\CreationConfigurationAccesApiUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\CreationConfigurationAccesApiRequest;
 use QdequippeTech\Silae\Api\Runtime\Client\BaseEndpoint;
@@ -47,7 +47,7 @@ class CreationConfigurationAccesApi extends BaseEndpoint implements Endpoint
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -74,7 +74,7 @@ class CreationConfigurationAccesApi extends BaseEndpoint implements Endpoint
      * @throws CreationConfigurationAccesApiBadRequestException
      * @throws CreationConfigurationAccesApiUnauthorizedException
      * @throws CreationConfigurationAccesApiInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -96,7 +96,7 @@ class CreationConfigurationAccesApi extends BaseEndpoint implements Endpoint
             throw new CreationConfigurationAccesApiInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

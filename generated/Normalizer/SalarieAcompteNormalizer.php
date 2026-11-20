@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SalarieAcompte;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -56,7 +57,12 @@ class SalarieAcompteNormalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('dateAcompte', $data) && null !== $data['dateAcompte']) {
-            $object->setDateAcompte(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateAcompte']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateAcompte']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateAcompte'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateAcompte($date);
         } elseif (\array_key_exists('dateAcompte', $data) && null === $data['dateAcompte']) {
             $object->setDateAcompte(null);
         }

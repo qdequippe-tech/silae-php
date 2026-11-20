@@ -71,6 +71,11 @@ class OngletProduction
      */
     protected $requeteFiltre;
 
+    /**
+     * @var list<string>|null
+     */
+    protected $optionFonctionnalite;
+
     public function getNomOnglet(): ?string
     {
         return $this->nomOnglet;
@@ -210,6 +215,25 @@ class OngletProduction
     {
         $this->initialized['requeteFiltre'] = true;
         $this->requeteFiltre = $requeteFiltre;
+
+        return $this;
+    }
+
+    /**
+     * @return list<string>|null
+     */
+    public function getOptionFonctionnalite(): ?array
+    {
+        return $this->optionFonctionnalite;
+    }
+
+    /**
+     * @param list<string>|null $optionFonctionnalite
+     */
+    public function setOptionFonctionnalite(?array $optionFonctionnalite): self
+    {
+        $this->initialized['optionFonctionnalite'] = true;
+        $this->optionFonctionnalite = $optionFonctionnalite;
 
         return $this;
     }

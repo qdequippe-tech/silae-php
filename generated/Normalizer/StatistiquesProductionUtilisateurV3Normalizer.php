@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\StatistiquesProductionUtilisateurV3;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -54,13 +55,23 @@ class StatistiquesProductionUtilisateurV3Normalizer implements DenormalizerInter
         }
 
         if (\array_key_exists('periodePaie', $data) && null !== $data['periodePaie']) {
-            $object->setPeriodePaie(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodePaie']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodePaie']);
+            if (false === $date) {
+                throw new InvalidDateException($data['periodePaie'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setPeriodePaie($date);
         } elseif (\array_key_exists('periodePaie', $data) && null === $data['periodePaie']) {
             $object->setPeriodePaie(null);
         }
 
         if (\array_key_exists('dateEdition', $data) && null !== $data['dateEdition']) {
-            $object->setDateEdition(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateEdition']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateEdition']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['dateEdition'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateEdition($date_1);
         } elseif (\array_key_exists('dateEdition', $data) && null === $data['dateEdition']) {
             $object->setDateEdition(null);
         }

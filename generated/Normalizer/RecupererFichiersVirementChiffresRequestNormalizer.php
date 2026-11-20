@@ -7,7 +7,9 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ProprietesChiffrement;
 use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementChiffresRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -55,7 +57,12 @@ class RecupererFichiersVirementChiffresRequestNormalizer implements Denormalizer
         }
 
         if (\array_key_exists('dateValeur', $data) && null !== $data['dateValeur']) {
-            $object->setDateValeur(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateValeur']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateValeur']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateValeur'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateValeur($date);
         } elseif (\array_key_exists('dateValeur', $data) && null === $data['dateValeur']) {
             $object->setDateValeur(null);
         }
@@ -78,7 +85,12 @@ class RecupererFichiersVirementChiffresRequestNormalizer implements Denormalizer
         }
 
         if (\array_key_exists('periode', $data) && null !== $data['periode']) {
-            $object->setPeriode(\DateTime::createFromFormat('Y-m-d', $data['periode'])->setTime(0, 0, 0));
+            $date_1 = \DateTime::createFromFormat('Y-m-d', $data['periode']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['periode'], 'Y-m-d');
+            }
+
+            $object->setPeriode($date_1->setTime(0, 0, 0));
         } elseif (\array_key_exists('periode', $data) && null === $data['periode']) {
             $object->setPeriode(null);
         }
@@ -96,7 +108,7 @@ class RecupererFichiersVirementChiffresRequestNormalizer implements Denormalizer
     {
         $dataArray = [];
         if ($data->isInitialized('proprietesChiffrement') && null !== $data->getProprietesChiffrement()) {
-            $dataArray['proprietesChiffrement'] = $this->normalizer->normalize($data->getProprietesChiffrement(), 'json', $context);
+            $dataArray['proprietesChiffrement'] = null === $data->getProprietesChiffrement() ? null : new JsonObject($this->normalizer->normalize($data->getProprietesChiffrement(), 'json', $context));
         }
 
         if ($data->isInitialized('dateValeur') && null !== $data->getDateValeur()) {

@@ -7,7 +7,9 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\LibelleValeur;
 use QdequippeTech\Silae\Api\Model\QReponse;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -104,7 +106,12 @@ class QReponseNormalizer implements DenormalizerInterface, NormalizerInterface, 
         }
 
         if (\array_key_exists('valeurDATETIME', $data) && null !== $data['valeurDATETIME']) {
-            $object->setValeurDATETIME(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['valeurDATETIME']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['valeurDATETIME']);
+            if (false === $date) {
+                throw new InvalidDateException($data['valeurDATETIME'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setValeurDATETIME($date);
         } elseif (\array_key_exists('valeurDATETIME', $data) && null === $data['valeurDATETIME']) {
             $object->setValeurDATETIME(null);
         }
@@ -128,7 +135,7 @@ class QReponseNormalizer implements DenormalizerInterface, NormalizerInterface, 
         if ($data->isInitialized('listeChoix') && null !== $data->getListeChoix()) {
             $values = [];
             foreach ($data->getListeChoix() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['listeChoix'] = $values;

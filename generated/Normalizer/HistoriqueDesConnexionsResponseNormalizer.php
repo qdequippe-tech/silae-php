@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\HistoriqueConnexion;
 use QdequippeTech\Silae\Api\Model\HistoriqueDesConnexionsResponse;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -74,7 +75,7 @@ class HistoriqueDesConnexionsResponseNormalizer implements DenormalizerInterface
         if ($data->isInitialized('connexions') && null !== $data->getConnexions()) {
             $values = [];
             foreach ($data->getConnexions() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['connexions'] = $values;

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\CollaborateurModele;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -64,7 +65,12 @@ class CollaborateurModeleNormalizer implements DenormalizerInterface, Normalizer
         }
 
         if (\array_key_exists('dateCreation', $data) && null !== $data['dateCreation']) {
-            $object->setDateCreation(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateCreation']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateCreation']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateCreation'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateCreation($date);
         } elseif (\array_key_exists('dateCreation', $data) && null === $data['dateCreation']) {
             $object->setDateCreation(null);
         }

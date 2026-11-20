@@ -374,17 +374,22 @@ class CompteCollaborateurDroitsUtilisateur
     /**
      * @var string|null
      */
+    protected $dossierPaieAccesDsn;
+
+    /**
+     * @var string|null
+     */
+    protected $dossierPaieDsnEnEcriture;
+
+    /**
+     * @var string|null
+     */
     protected $gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier;
 
     /**
      * @var string|null
      */
     protected $gestionInterneParametragesClientsSuppressionDeDossiers;
-
-    /**
-     * @var string|null
-     */
-    protected $outilsPaieExportV2ExportNonChiffre;
 
     /**
      * @var string|null
@@ -459,17 +464,22 @@ class CompteCollaborateurDroitsUtilisateur
     /**
      * @var string|null
      */
-    protected $dossierPaieAccesDsn;
-
-    /**
-     * @var string|null
-     */
     protected $gestionInterneConsoleDeGestionDesContacts;
 
     /**
      * @var string|null
      */
     protected $gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil;
+
+    /**
+     * @var string|null
+     */
+    protected $mySilaeAccesContrats;
+
+    /**
+     * @var string|null
+     */
+    protected $outilParametrageControles;
 
     public function getPaieRelationClientGestionPortailCP(): ?string
     {
@@ -1394,6 +1404,32 @@ class CompteCollaborateurDroitsUtilisateur
         return $this;
     }
 
+    public function getDossierPaieAccesDsn(): ?string
+    {
+        return $this->dossierPaieAccesDsn;
+    }
+
+    public function setDossierPaieAccesDsn(?string $dossierPaieAccesDsn): self
+    {
+        $this->initialized['dossierPaieAccesDsn'] = true;
+        $this->dossierPaieAccesDsn = $dossierPaieAccesDsn;
+
+        return $this;
+    }
+
+    public function getDossierPaieDsnEnEcriture(): ?string
+    {
+        return $this->dossierPaieDsnEnEcriture;
+    }
+
+    public function setDossierPaieDsnEnEcriture(?string $dossierPaieDsnEnEcriture): self
+    {
+        $this->initialized['dossierPaieDsnEnEcriture'] = true;
+        $this->dossierPaieDsnEnEcriture = $dossierPaieDsnEnEcriture;
+
+        return $this;
+    }
+
     public function getGestionInterneParametragesClientsConfigurationAPIAccesAPIDossier(): ?string
     {
         return $this->gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier;
@@ -1416,19 +1452,6 @@ class CompteCollaborateurDroitsUtilisateur
     {
         $this->initialized['gestionInterneParametragesClientsSuppressionDeDossiers'] = true;
         $this->gestionInterneParametragesClientsSuppressionDeDossiers = $gestionInterneParametragesClientsSuppressionDeDossiers;
-
-        return $this;
-    }
-
-    public function getOutilsPaieExportV2ExportNonChiffre(): ?string
-    {
-        return $this->outilsPaieExportV2ExportNonChiffre;
-    }
-
-    public function setOutilsPaieExportV2ExportNonChiffre(?string $outilsPaieExportV2ExportNonChiffre): self
-    {
-        $this->initialized['outilsPaieExportV2ExportNonChiffre'] = true;
-        $this->outilsPaieExportV2ExportNonChiffre = $outilsPaieExportV2ExportNonChiffre;
 
         return $this;
     }
@@ -1615,19 +1638,6 @@ class CompteCollaborateurDroitsUtilisateur
         return $this;
     }
 
-    public function getDossierPaieAccesDsn(): ?string
-    {
-        return $this->dossierPaieAccesDsn;
-    }
-
-    public function setDossierPaieAccesDsn(?string $dossierPaieAccesDsn): self
-    {
-        $this->initialized['dossierPaieAccesDsn'] = true;
-        $this->dossierPaieAccesDsn = $dossierPaieAccesDsn;
-
-        return $this;
-    }
-
     public function getGestionInterneConsoleDeGestionDesContacts(): ?string
     {
         return $this->gestionInterneConsoleDeGestionDesContacts;
@@ -1650,6 +1660,32 @@ class CompteCollaborateurDroitsUtilisateur
     {
         $this->initialized['gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil'] = true;
         $this->gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil = $gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil;
+
+        return $this;
+    }
+
+    public function getMySilaeAccesContrats(): ?string
+    {
+        return $this->mySilaeAccesContrats;
+    }
+
+    public function setMySilaeAccesContrats(?string $mySilaeAccesContrats): self
+    {
+        $this->initialized['mySilaeAccesContrats'] = true;
+        $this->mySilaeAccesContrats = $mySilaeAccesContrats;
+
+        return $this;
+    }
+
+    public function getOutilParametrageControles(): ?string
+    {
+        return $this->outilParametrageControles;
+    }
+
+    public function setOutilParametrageControles(?string $outilParametrageControles): self
+    {
+        $this->initialized['outilParametrageControles'] = true;
+        $this->outilParametrageControles = $outilParametrageControles;
 
         return $this;
     }

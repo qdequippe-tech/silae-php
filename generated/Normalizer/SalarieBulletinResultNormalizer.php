@@ -8,6 +8,7 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\LigneBulletin;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinEnteteSimpleResult;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinResult;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -83,13 +84,13 @@ class SalarieBulletinResultNormalizer implements DenormalizerInterface, Normaliz
         }
 
         if ($data->isInitialized('entete') && null !== $data->getEntete()) {
-            $dataArray['entete'] = $this->normalizer->normalize($data->getEntete(), 'json', $context);
+            $dataArray['entete'] = null === $data->getEntete() ? null : new JsonObject($this->normalizer->normalize($data->getEntete(), 'json', $context));
         }
 
         if ($data->isInitialized('lignesBulletin') && null !== $data->getLignesBulletin()) {
             $values = [];
             foreach ($data->getLignesBulletin() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['lignesBulletin'] = $values;

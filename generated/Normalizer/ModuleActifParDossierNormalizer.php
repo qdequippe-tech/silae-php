@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ModuleActifParDossier;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -60,7 +61,12 @@ class ModuleActifParDossierNormalizer implements DenormalizerInterface, Normaliz
         }
 
         if (\array_key_exists('dateDerniereModification', $data) && null !== $data['dateDerniereModification']) {
-            $object->setDateDerniereModification(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDerniereModification']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateDerniereModification']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateDerniereModification'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateDerniereModification($date);
         } elseif (\array_key_exists('dateDerniereModification', $data) && null === $data['dateDerniereModification']) {
             $object->setDateDerniereModification(null);
         }

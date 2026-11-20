@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureBadRequestException;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\AdministrationCollaborateurLectureUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Model\AdministrationCollaborateurLectureRequest;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\UtilisateurCollaborateur;
@@ -48,7 +48,7 @@ class AdministrationCollaborateurLecture extends BaseEndpoint implements Endpoin
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class AdministrationCollaborateurLecture extends BaseEndpoint implements Endpoin
      * @throws AdministrationCollaborateurLectureBadRequestException
      * @throws AdministrationCollaborateurLectureUnauthorizedException
      * @throws AdministrationCollaborateurLectureInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class AdministrationCollaborateurLecture extends BaseEndpoint implements Endpoin
             throw new AdministrationCollaborateurLectureInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

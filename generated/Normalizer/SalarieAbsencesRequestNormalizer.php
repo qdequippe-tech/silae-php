@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\RequeteSalarieAbsences;
 use QdequippeTech\Silae\Api\Model\SalarieAbsencesRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -67,7 +68,7 @@ class SalarieAbsencesRequestNormalizer implements DenormalizerInterface, Normali
     {
         $dataArray = [];
         if ($data->isInitialized('requeteSalarieAbsences') && null !== $data->getRequeteSalarieAbsences()) {
-            $dataArray['requeteSalarieAbsences'] = $this->normalizer->normalize($data->getRequeteSalarieAbsences(), 'json', $context);
+            $dataArray['requeteSalarieAbsences'] = null === $data->getRequeteSalarieAbsences() ? null : new JsonObject($this->normalizer->normalize($data->getRequeteSalarieAbsences(), 'json', $context));
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

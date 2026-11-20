@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ActivationDSN;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -54,19 +55,34 @@ class ActivationDSNNormalizer implements DenormalizerInterface, NormalizerInterf
         }
 
         if (\array_key_exists('periodeDemarrageDsnMensuelle', $data) && null !== $data['periodeDemarrageDsnMensuelle']) {
-            $object->setPeriodeDemarrageDsnMensuelle(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeDemarrageDsnMensuelle']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeDemarrageDsnMensuelle']);
+            if (false === $date) {
+                throw new InvalidDateException($data['periodeDemarrageDsnMensuelle'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setPeriodeDemarrageDsnMensuelle($date);
         } elseif (\array_key_exists('periodeDemarrageDsnMensuelle', $data) && null === $data['periodeDemarrageDsnMensuelle']) {
             $object->setPeriodeDemarrageDsnMensuelle(null);
         }
 
         if (\array_key_exists('periodeDemarrageDsnArretDeTravail', $data) && null !== $data['periodeDemarrageDsnArretDeTravail']) {
-            $object->setPeriodeDemarrageDsnArretDeTravail(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeDemarrageDsnArretDeTravail']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeDemarrageDsnArretDeTravail']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['periodeDemarrageDsnArretDeTravail'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setPeriodeDemarrageDsnArretDeTravail($date_1);
         } elseif (\array_key_exists('periodeDemarrageDsnArretDeTravail', $data) && null === $data['periodeDemarrageDsnArretDeTravail']) {
             $object->setPeriodeDemarrageDsnArretDeTravail(null);
         }
 
         if (\array_key_exists('periodeDemarrageDsnFinDeContrat', $data) && null !== $data['periodeDemarrageDsnFinDeContrat']) {
-            $object->setPeriodeDemarrageDsnFinDeContrat(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeDemarrageDsnFinDeContrat']));
+            $date_2 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['periodeDemarrageDsnFinDeContrat']);
+            if (false === $date_2) {
+                throw new InvalidDateException($data['periodeDemarrageDsnFinDeContrat'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setPeriodeDemarrageDsnFinDeContrat($date_2);
         } elseif (\array_key_exists('periodeDemarrageDsnFinDeContrat', $data) && null === $data['periodeDemarrageDsnFinDeContrat']) {
             $object->setPeriodeDemarrageDsnFinDeContrat(null);
         }

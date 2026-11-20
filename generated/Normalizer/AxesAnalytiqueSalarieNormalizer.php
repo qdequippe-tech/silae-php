@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\AxesAnalytiqueSalarie;
 use QdequippeTech\Silae\Api\Model\DonneesAxeAnalytiqueSalarie;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -88,7 +89,7 @@ class AxesAnalytiqueSalarieNormalizer implements DenormalizerInterface, Normaliz
         if ($data->isInitialized('affectationAnalytique') && null !== $data->getAffectationAnalytique()) {
             $values = [];
             foreach ($data->getAffectationAnalytique() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['affectationAnalytique'] = $values;

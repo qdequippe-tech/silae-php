@@ -59,6 +59,12 @@ class AjoutSousCategorieAxeAnalytiqueRequestNormalizer implements DenormalizerIn
             $object->setNomSousCategorie(null);
         }
 
+        if (\array_key_exists('libelleSousCategorie', $data) && null !== $data['libelleSousCategorie']) {
+            $object->setLibelleSousCategorie($data['libelleSousCategorie']);
+        } elseif (\array_key_exists('libelleSousCategorie', $data) && null === $data['libelleSousCategorie']) {
+            $object->setLibelleSousCategorie(null);
+        }
+
         if (\array_key_exists('numeroDossier', $data) && null !== $data['numeroDossier']) {
             $object->setNumeroDossier($data['numeroDossier']);
         } elseif (\array_key_exists('numeroDossier', $data) && null === $data['numeroDossier']) {
@@ -77,6 +83,10 @@ class AjoutSousCategorieAxeAnalytiqueRequestNormalizer implements DenormalizerIn
 
         if ($data->isInitialized('nomSousCategorie') && null !== $data->getNomSousCategorie()) {
             $dataArray['nomSousCategorie'] = $data->getNomSousCategorie();
+        }
+
+        if ($data->isInitialized('libelleSousCategorie') && null !== $data->getLibelleSousCategorie()) {
+            $dataArray['libelleSousCategorie'] = $data->getLibelleSousCategorie();
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ModificationTaxeApprentissageSocieteResponse;
 use QdequippeTech\Silae\Api\Model\TaxeApprentissage;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -61,7 +62,7 @@ class ModificationTaxeApprentissageSocieteResponseNormalizer implements Denormal
     {
         $dataArray = [];
         if ($data->isInitialized('taxeApprentissage') && null !== $data->getTaxeApprentissage()) {
-            $dataArray['taxeApprentissage'] = $this->normalizer->normalize($data->getTaxeApprentissage(), 'json', $context);
+            $dataArray['taxeApprentissage'] = null === $data->getTaxeApprentissage() ? null : new JsonObject($this->normalizer->normalize($data->getTaxeApprentissage(), 'json', $context));
         }
 
         return $dataArray;

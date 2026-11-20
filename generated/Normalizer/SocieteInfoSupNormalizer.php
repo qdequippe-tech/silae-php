@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SocieteInfoSup;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -486,7 +487,12 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('clI_DFPTepaDebut', $data) && null !== $data['clI_DFPTepaDebut']) {
-            $object->setClIDFPTepaDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_DFPTepaDebut']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_DFPTepaDebut']);
+            if (false === $date) {
+                throw new InvalidDateException($data['clI_DFPTepaDebut'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setClIDFPTepaDebut($date);
         } elseif (\array_key_exists('clI_DFPTepaDebut', $data) && null === $data['clI_DFPTepaDebut']) {
             $object->setClIDFPTepaDebut(null);
         }
@@ -498,7 +504,12 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('clI_DtDebChangePaieDecalee', $data) && null !== $data['clI_DtDebChangePaieDecalee']) {
-            $object->setClIDtDebChangePaieDecalee(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_DtDebChangePaieDecalee']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_DtDebChangePaieDecalee']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['clI_DtDebChangePaieDecalee'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setClIDtDebChangePaieDecalee($date_1);
         } elseif (\array_key_exists('clI_DtDebChangePaieDecalee', $data) && null === $data['clI_DtDebChangePaieDecalee']) {
             $object->setClIDtDebChangePaieDecalee(null);
         }
@@ -510,7 +521,12 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('clI_DtDebExerciceComptable', $data) && null !== $data['clI_DtDebExerciceComptable']) {
-            $object->setClIDtDebExerciceComptable(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_DtDebExerciceComptable']));
+            $date_2 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_DtDebExerciceComptable']);
+            if (false === $date_2) {
+                throw new InvalidDateException($data['clI_DtDebExerciceComptable'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setClIDtDebExerciceComptable($date_2);
         } elseif (\array_key_exists('clI_DtDebExerciceComptable', $data) && null === $data['clI_DtDebExerciceComptable']) {
             $object->setClIDtDebExerciceComptable(null);
         }
@@ -522,7 +538,12 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('clI_DtFinExerciceComptable', $data) && null !== $data['clI_DtFinExerciceComptable']) {
-            $object->setClIDtFinExerciceComptable(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_DtFinExerciceComptable']));
+            $date_3 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_DtFinExerciceComptable']);
+            if (false === $date_3) {
+                throw new InvalidDateException($data['clI_DtFinExerciceComptable'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setClIDtFinExerciceComptable($date_3);
         } elseif (\array_key_exists('clI_DtFinExerciceComptable', $data) && null === $data['clI_DtFinExerciceComptable']) {
             $object->setClIDtFinExerciceComptable(null);
         }
@@ -618,7 +639,12 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('clI_FormaProfTrancheAnnee', $data) && null !== $data['clI_FormaProfTrancheAnnee']) {
-            $object->setClIFormaProfTrancheAnnee(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_FormaProfTrancheAnnee']));
+            $date_4 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_FormaProfTrancheAnnee']);
+            if (false === $date_4) {
+                throw new InvalidDateException($data['clI_FormaProfTrancheAnnee'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setClIFormaProfTrancheAnnee($date_4);
         } elseif (\array_key_exists('clI_FormaProfTrancheAnnee', $data) && null === $data['clI_FormaProfTrancheAnnee']) {
             $object->setClIFormaProfTrancheAnnee(null);
         }
@@ -630,7 +656,12 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('clI_FormaProfTrancheAnnee2', $data) && null !== $data['clI_FormaProfTrancheAnnee2']) {
-            $object->setClIFormaProfTrancheAnnee2(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_FormaProfTrancheAnnee2']));
+            $date_5 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_FormaProfTrancheAnnee2']);
+            if (false === $date_5) {
+                throw new InvalidDateException($data['clI_FormaProfTrancheAnnee2'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setClIFormaProfTrancheAnnee2($date_5);
         } elseif (\array_key_exists('clI_FormaProfTrancheAnnee2', $data) && null === $data['clI_FormaProfTrancheAnnee2']) {
             $object->setClIFormaProfTrancheAnnee2(null);
         }
@@ -642,7 +673,12 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('clI_FormaProfTrancheAnnee3', $data) && null !== $data['clI_FormaProfTrancheAnnee3']) {
-            $object->setClIFormaProfTrancheAnnee3(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_FormaProfTrancheAnnee3']));
+            $date_6 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_FormaProfTrancheAnnee3']);
+            if (false === $date_6) {
+                throw new InvalidDateException($data['clI_FormaProfTrancheAnnee3'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setClIFormaProfTrancheAnnee3($date_6);
         } elseif (\array_key_exists('clI_FormaProfTrancheAnnee3', $data) && null === $data['clI_FormaProfTrancheAnnee3']) {
             $object->setClIFormaProfTrancheAnnee3(null);
         }
@@ -654,7 +690,12 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('clI_FormaProfTrancheAnnee4', $data) && null !== $data['clI_FormaProfTrancheAnnee4']) {
-            $object->setClIFormaProfTrancheAnnee4(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_FormaProfTrancheAnnee4']));
+            $date_7 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_FormaProfTrancheAnnee4']);
+            if (false === $date_7) {
+                throw new InvalidDateException($data['clI_FormaProfTrancheAnnee4'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setClIFormaProfTrancheAnnee4($date_7);
         } elseif (\array_key_exists('clI_FormaProfTrancheAnnee4', $data) && null === $data['clI_FormaProfTrancheAnnee4']) {
             $object->setClIFormaProfTrancheAnnee4(null);
         }
@@ -858,7 +899,12 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('clI_MontagePaiePeriodeDebut', $data) && null !== $data['clI_MontagePaiePeriodeDebut']) {
-            $object->setClIMontagePaiePeriodeDebut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_MontagePaiePeriodeDebut']));
+            $date_8 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_MontagePaiePeriodeDebut']);
+            if (false === $date_8) {
+                throw new InvalidDateException($data['clI_MontagePaiePeriodeDebut'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setClIMontagePaiePeriodeDebut($date_8);
         } elseif (\array_key_exists('clI_MontagePaiePeriodeDebut', $data) && null === $data['clI_MontagePaiePeriodeDebut']) {
             $object->setClIMontagePaiePeriodeDebut(null);
         }
@@ -942,7 +988,12 @@ class SocieteInfoSupNormalizer implements DenormalizerInterface, NormalizerInter
         }
 
         if (\array_key_exists('clI_ReductionFillon19Debut', $data) && null !== $data['clI_ReductionFillon19Debut']) {
-            $object->setClIReductionFillon19Debut(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_ReductionFillon19Debut']));
+            $date_9 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['clI_ReductionFillon19Debut']);
+            if (false === $date_9) {
+                throw new InvalidDateException($data['clI_ReductionFillon19Debut'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setClIReductionFillon19Debut($date_9);
         } elseif (\array_key_exists('clI_ReductionFillon19Debut', $data) && null === $data['clI_ReductionFillon19Debut']) {
             $object->setClIReductionFillon19Debut(null);
         }

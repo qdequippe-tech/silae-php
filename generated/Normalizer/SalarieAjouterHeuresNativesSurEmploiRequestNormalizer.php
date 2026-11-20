@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SalarieAjouterHeuresNativesSurEmploiRequest;
 use QdequippeTech\Silae\Api\Model\SalarieHeures;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -83,7 +84,7 @@ class SalarieAjouterHeuresNativesSurEmploiRequestNormalizer implements Denormali
         }
 
         if ($data->isInitialized('heures') && null !== $data->getHeures()) {
-            $dataArray['heures'] = $this->normalizer->normalize($data->getHeures(), 'json', $context);
+            $dataArray['heures'] = null === $data->getHeures() ? null : new JsonObject($this->normalizer->normalize($data->getHeures(), 'json', $context));
         }
 
         $dataArray['matriculeSalarie'] = $data->getMatriculeSalarie();

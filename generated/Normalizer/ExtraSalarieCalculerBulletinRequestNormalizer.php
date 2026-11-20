@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\ExtraSalarieCalculerBulletinRequest;
 use QdequippeTech\Silae\Api\Model\RequeteExtraSalarieVacations;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -77,7 +78,7 @@ class ExtraSalarieCalculerBulletinRequestNormalizer implements DenormalizerInter
         }
 
         if ($data->isInitialized('requeteExtraSalarieVacations') && null !== $data->getRequeteExtraSalarieVacations()) {
-            $dataArray['requeteExtraSalarieVacations'] = $this->normalizer->normalize($data->getRequeteExtraSalarieVacations(), 'json', $context);
+            $dataArray['requeteExtraSalarieVacations'] = null === $data->getRequeteExtraSalarieVacations() ? null : new JsonObject($this->normalizer->normalize($data->getRequeteExtraSalarieVacations(), 'json', $context));
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

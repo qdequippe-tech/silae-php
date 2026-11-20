@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace QdequippeTech\Silae\Api\Endpoint;
 
 use Psr\Http\Message\ResponseInterface;
+use QdequippeTech\Silae\Api\Exception\BadResponseException;
 use QdequippeTech\Silae\Api\Exception\ModificationTeletravailFicheSalarieBadRequestException;
 use QdequippeTech\Silae\Api\Exception\ModificationTeletravailFicheSalarieInternalServerErrorException;
 use QdequippeTech\Silae\Api\Exception\ModificationTeletravailFicheSalarieUnauthorizedException;
-use QdequippeTech\Silae\Api\Exception\UnexpectedStatusCodeException;
 use QdequippeTech\Silae\Api\Model\ApiErrors;
 use QdequippeTech\Silae\Api\Model\ModificationTeletravailFicheSalarieRequest;
 use QdequippeTech\Silae\Api\Model\SimpleMessageResponse;
@@ -48,7 +48,7 @@ class ModificationTeletravailFicheSalarie extends BaseEndpoint implements Endpoi
 
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        return $this->getSerializedBody($serializer);
+        return $this->getSerializedObjectBody($serializer);
     }
 
     protected function getExtraHeaders(): array
@@ -75,7 +75,7 @@ class ModificationTeletravailFicheSalarie extends BaseEndpoint implements Endpoi
      * @throws ModificationTeletravailFicheSalarieBadRequestException
      * @throws ModificationTeletravailFicheSalarieUnauthorizedException
      * @throws ModificationTeletravailFicheSalarieInternalServerErrorException
-     * @throws UnexpectedStatusCodeException
+     * @throws BadResponseException
      */
     protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): mixed
     {
@@ -97,7 +97,7 @@ class ModificationTeletravailFicheSalarie extends BaseEndpoint implements Endpoi
             throw new ModificationTeletravailFicheSalarieInternalServerErrorException($serializer->deserialize($body, ApiErrors::class, 'json'), $response);
         }
 
-        throw new UnexpectedStatusCodeException($status, $body);
+        throw new BadResponseException($status, $body, $response);
     }
 
     public function getAuthenticationScopes(): array

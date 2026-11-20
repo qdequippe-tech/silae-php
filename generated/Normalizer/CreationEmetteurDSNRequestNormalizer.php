@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\CreationEmetteurDSNRequest;
 use QdequippeTech\Silae\Api\Model\EmetteurDSN;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -61,7 +62,7 @@ class CreationEmetteurDSNRequestNormalizer implements DenormalizerInterface, Nor
     {
         $dataArray = [];
         if ($data->isInitialized('emetteur') && null !== $data->getEmetteur()) {
-            $dataArray['emetteur'] = $this->normalizer->normalize($data->getEmetteur(), 'json', $context);
+            $dataArray['emetteur'] = null === $data->getEmetteur() ? null : new JsonObject($this->normalizer->normalize($data->getEmetteur(), 'json', $context));
         }
 
         return $dataArray;

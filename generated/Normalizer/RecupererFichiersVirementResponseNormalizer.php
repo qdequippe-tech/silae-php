@@ -8,6 +8,7 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\BilanMatricules;
 use QdequippeTech\Silae\Api\Model\RecupererFichiersVirementResponse;
 use QdequippeTech\Silae\Api\Model\RecupererFichierVirementResult;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -73,13 +74,13 @@ class RecupererFichiersVirementResponseNormalizer implements DenormalizerInterfa
     {
         $dataArray = [];
         if ($data->isInitialized('bilanMatricules') && null !== $data->getBilanMatricules()) {
-            $dataArray['bilanMatricules'] = $this->normalizer->normalize($data->getBilanMatricules(), 'json', $context);
+            $dataArray['bilanMatricules'] = null === $data->getBilanMatricules() ? null : new JsonObject($this->normalizer->normalize($data->getBilanMatricules(), 'json', $context));
         }
 
         if ($data->isInitialized('fichiersVirements') && null !== $data->getFichiersVirements()) {
             $values = [];
             foreach ($data->getFichiersVirements() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
 
             $dataArray['fichiersVirements'] = $values;

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\Entity;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -60,13 +61,23 @@ class EntityNormalizer implements DenormalizerInterface, NormalizerInterface, De
         }
 
         if (\array_key_exists('validityEndDate', $data) && null !== $data['validityEndDate']) {
-            $object->setValidityEndDate(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['validityEndDate']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['validityEndDate']);
+            if (false === $date) {
+                throw new InvalidDateException($data['validityEndDate'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setValidityEndDate($date);
         } elseif (\array_key_exists('validityEndDate', $data) && null === $data['validityEndDate']) {
             $object->setValidityEndDate(null);
         }
 
         if (\array_key_exists('validityStartDate', $data) && null !== $data['validityStartDate']) {
-            $object->setValidityStartDate(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['validityStartDate']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['validityStartDate']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['validityStartDate'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setValidityStartDate($date_1);
         } elseif (\array_key_exists('validityStartDate', $data) && null === $data['validityStartDate']) {
             $object->setValidityStartDate(null);
         }

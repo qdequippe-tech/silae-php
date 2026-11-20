@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\CreationOrganismeRequest;
 use QdequippeTech\Silae\Api\Model\Organisme;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -67,7 +68,7 @@ class CreationOrganismeRequestNormalizer implements DenormalizerInterface, Norma
     {
         $dataArray = [];
         if ($data->isInitialized('organisme') && null !== $data->getOrganisme()) {
-            $dataArray['organisme'] = $this->normalizer->normalize($data->getOrganisme(), 'json', $context);
+            $dataArray['organisme'] = null === $data->getOrganisme() ? null : new JsonObject($this->normalizer->normalize($data->getOrganisme(), 'json', $context));
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\RequeteSalarieBulletinLignes;
 use QdequippeTech\Silae\Api\Model\SalarieBulletinLignesRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -67,7 +68,7 @@ class SalarieBulletinLignesRequestNormalizer implements DenormalizerInterface, N
     {
         $dataArray = [];
         if ($data->isInitialized('requeteSalarieBulletinLignes') && null !== $data->getRequeteSalarieBulletinLignes()) {
-            $dataArray['requeteSalarieBulletinLignes'] = $this->normalizer->normalize($data->getRequeteSalarieBulletinLignes(), 'json', $context);
+            $dataArray['requeteSalarieBulletinLignes'] = null === $data->getRequeteSalarieBulletinLignes() ? null : new JsonObject($this->normalizer->normalize($data->getRequeteSalarieBulletinLignes(), 'json', $context));
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

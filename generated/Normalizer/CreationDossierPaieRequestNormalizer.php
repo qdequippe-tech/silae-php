@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\CreationDossierPaieRequest;
 use QdequippeTech\Silae\Api\Model\Dossier;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -61,7 +62,7 @@ class CreationDossierPaieRequestNormalizer implements DenormalizerInterface, Nor
     {
         $dataArray = [];
         if ($data->isInitialized('dossier') && null !== $data->getDossier()) {
-            $dataArray['dossier'] = $this->normalizer->normalize($data->getDossier(), 'json', $context);
+            $dataArray['dossier'] = null === $data->getDossier() ? null : new JsonObject($this->normalizer->normalize($data->getDossier(), 'json', $context));
         }
 
         return $dataArray;

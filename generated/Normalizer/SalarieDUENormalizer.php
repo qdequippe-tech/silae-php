@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\SalarieDUE;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
+use QdequippeTech\Silae\Api\Runtime\Normalizer\InvalidDateException;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -60,13 +61,23 @@ class SalarieDUENormalizer implements DenormalizerInterface, NormalizerInterface
         }
 
         if (\array_key_exists('dateEmbauche', $data) && null !== $data['dateEmbauche']) {
-            $object->setDateEmbauche(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateEmbauche']));
+            $date = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateEmbauche']);
+            if (false === $date) {
+                throw new InvalidDateException($data['dateEmbauche'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateEmbauche($date);
         } elseif (\array_key_exists('dateEmbauche', $data) && null === $data['dateEmbauche']) {
             $object->setDateEmbauche(null);
         }
 
         if (\array_key_exists('dateFinContrat', $data) && null !== $data['dateFinContrat']) {
-            $object->setDateFinContrat(\DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFinContrat']));
+            $date_1 = \DateTime::createFromFormat('Y-m-d\TH:i:s', $data['dateFinContrat']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['dateFinContrat'], 'Y-m-d\TH:i:s');
+            }
+
+            $object->setDateFinContrat($date_1);
         } elseif (\array_key_exists('dateFinContrat', $data) && null === $data['dateFinContrat']) {
             $object->setDateFinContrat(null);
         }

@@ -59,6 +59,12 @@ class SousCategorieNormalizer implements DenormalizerInterface, NormalizerInterf
             $object->setNouveauNomSousCategorie(null);
         }
 
+        if (\array_key_exists('libelleSousCategorie', $data) && null !== $data['libelleSousCategorie']) {
+            $object->setLibelleSousCategorie($data['libelleSousCategorie']);
+        } elseif (\array_key_exists('libelleSousCategorie', $data) && null === $data['libelleSousCategorie']) {
+            $object->setLibelleSousCategorie(null);
+        }
+
         return $object;
     }
 
@@ -71,6 +77,10 @@ class SousCategorieNormalizer implements DenormalizerInterface, NormalizerInterf
 
         if ($data->isInitialized('nouveauNomSousCategorie') && null !== $data->getNouveauNomSousCategorie()) {
             $dataArray['nouveauNomSousCategorie'] = $data->getNouveauNomSousCategorie();
+        }
+
+        if ($data->isInitialized('libelleSousCategorie') && null !== $data->getLibelleSousCategorie()) {
+            $dataArray['libelleSousCategorie'] = $data->getLibelleSousCategorie();
         }
 
         return $dataArray;

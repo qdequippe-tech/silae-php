@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\MiseAJourFicheSocieteRequest;
 use QdequippeTech\Silae\Api\Model\SocieteInfoSup;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -67,7 +68,7 @@ class MiseAJourFicheSocieteRequestNormalizer implements DenormalizerInterface, N
     {
         $dataArray = [];
         if ($data->isInitialized('societeInfoSup') && null !== $data->getSocieteInfoSup()) {
-            $dataArray['societeInfoSup'] = $this->normalizer->normalize($data->getSocieteInfoSup(), 'json', $context);
+            $dataArray['societeInfoSup'] = null === $data->getSocieteInfoSup() ? null : new JsonObject($this->normalizer->normalize($data->getSocieteInfoSup(), 'json', $context));
         }
 
         $dataArray['numeroDossier'] = $data->getNumeroDossier();

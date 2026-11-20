@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\AnalyseProductionPaieRequest;
 use QdequippeTech\Silae\Api\Model\RequeteAnalyseProduction;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -61,7 +62,7 @@ class AnalyseProductionPaieRequestNormalizer implements DenormalizerInterface, N
     {
         $dataArray = [];
         if ($data->isInitialized('requeteAnalyseProduction') && null !== $data->getRequeteAnalyseProduction()) {
-            $dataArray['requeteAnalyseProduction'] = $this->normalizer->normalize($data->getRequeteAnalyseProduction(), 'json', $context);
+            $dataArray['requeteAnalyseProduction'] = null === $data->getRequeteAnalyseProduction() ? null : new JsonObject($this->normalizer->normalize($data->getRequeteAnalyseProduction(), 'json', $context));
         }
 
         return $dataArray;

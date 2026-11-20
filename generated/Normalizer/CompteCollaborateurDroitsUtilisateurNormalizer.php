@@ -473,6 +473,18 @@ class CompteCollaborateurDroitsUtilisateurNormalizer implements DenormalizerInte
             $object->setDossierPaieDsnRegularisationManuelle(null);
         }
 
+        if (\array_key_exists('dossierPaieAccesDsn', $data) && null !== $data['dossierPaieAccesDsn']) {
+            $object->setDossierPaieAccesDsn($data['dossierPaieAccesDsn']);
+        } elseif (\array_key_exists('dossierPaieAccesDsn', $data) && null === $data['dossierPaieAccesDsn']) {
+            $object->setDossierPaieAccesDsn(null);
+        }
+
+        if (\array_key_exists('dossierPaieDsnEnEcriture', $data) && null !== $data['dossierPaieDsnEnEcriture']) {
+            $object->setDossierPaieDsnEnEcriture($data['dossierPaieDsnEnEcriture']);
+        } elseif (\array_key_exists('dossierPaieDsnEnEcriture', $data) && null === $data['dossierPaieDsnEnEcriture']) {
+            $object->setDossierPaieDsnEnEcriture(null);
+        }
+
         if (\array_key_exists('gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier', $data) && null !== $data['gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier']) {
             $object->setGestionInterneParametragesClientsConfigurationAPIAccesAPIDossier($data['gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier']);
         } elseif (\array_key_exists('gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier', $data) && null === $data['gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier']) {
@@ -483,12 +495,6 @@ class CompteCollaborateurDroitsUtilisateurNormalizer implements DenormalizerInte
             $object->setGestionInterneParametragesClientsSuppressionDeDossiers($data['gestionInterneParametragesClientsSuppressionDeDossiers']);
         } elseif (\array_key_exists('gestionInterneParametragesClientsSuppressionDeDossiers', $data) && null === $data['gestionInterneParametragesClientsSuppressionDeDossiers']) {
             $object->setGestionInterneParametragesClientsSuppressionDeDossiers(null);
-        }
-
-        if (\array_key_exists('outilsPaieExportV2ExportNonChiffre', $data) && null !== $data['outilsPaieExportV2ExportNonChiffre']) {
-            $object->setOutilsPaieExportV2ExportNonChiffre($data['outilsPaieExportV2ExportNonChiffre']);
-        } elseif (\array_key_exists('outilsPaieExportV2ExportNonChiffre', $data) && null === $data['outilsPaieExportV2ExportNonChiffre']) {
-            $object->setOutilsPaieExportV2ExportNonChiffre(null);
         }
 
         if (\array_key_exists('administrationConnexion', $data) && null !== $data['administrationConnexion']) {
@@ -575,12 +581,6 @@ class CompteCollaborateurDroitsUtilisateurNormalizer implements DenormalizerInte
             $object->setOutilsPaieImportDeDossierDemo(null);
         }
 
-        if (\array_key_exists('dossierPaieAccesDsn', $data) && null !== $data['dossierPaieAccesDsn']) {
-            $object->setDossierPaieAccesDsn($data['dossierPaieAccesDsn']);
-        } elseif (\array_key_exists('dossierPaieAccesDsn', $data) && null === $data['dossierPaieAccesDsn']) {
-            $object->setDossierPaieAccesDsn(null);
-        }
-
         if (\array_key_exists('gestionInterneConsoleDeGestionDesContacts', $data) && null !== $data['gestionInterneConsoleDeGestionDesContacts']) {
             $object->setGestionInterneConsoleDeGestionDesContacts($data['gestionInterneConsoleDeGestionDesContacts']);
         } elseif (\array_key_exists('gestionInterneConsoleDeGestionDesContacts', $data) && null === $data['gestionInterneConsoleDeGestionDesContacts']) {
@@ -591,6 +591,18 @@ class CompteCollaborateurDroitsUtilisateurNormalizer implements DenormalizerInte
             $object->setGestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil($data['gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil']);
         } elseif (\array_key_exists('gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil', $data) && null === $data['gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil']) {
             $object->setGestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil(null);
+        }
+
+        if (\array_key_exists('mySilaeAccesContrats', $data) && null !== $data['mySilaeAccesContrats']) {
+            $object->setMySilaeAccesContrats($data['mySilaeAccesContrats']);
+        } elseif (\array_key_exists('mySilaeAccesContrats', $data) && null === $data['mySilaeAccesContrats']) {
+            $object->setMySilaeAccesContrats(null);
+        }
+
+        if (\array_key_exists('outilParametrageControles', $data) && null !== $data['outilParametrageControles']) {
+            $object->setOutilParametrageControles($data['outilParametrageControles']);
+        } elseif (\array_key_exists('outilParametrageControles', $data) && null === $data['outilParametrageControles']) {
+            $object->setOutilParametrageControles(null);
         }
 
         return $object;
@@ -883,16 +895,20 @@ class CompteCollaborateurDroitsUtilisateurNormalizer implements DenormalizerInte
             $dataArray['dossierPaieDsnRegularisationManuelle'] = $data->getDossierPaieDsnRegularisationManuelle();
         }
 
+        if ($data->isInitialized('dossierPaieAccesDsn') && null !== $data->getDossierPaieAccesDsn()) {
+            $dataArray['dossierPaieAccesDsn'] = $data->getDossierPaieAccesDsn();
+        }
+
+        if ($data->isInitialized('dossierPaieDsnEnEcriture') && null !== $data->getDossierPaieDsnEnEcriture()) {
+            $dataArray['dossierPaieDsnEnEcriture'] = $data->getDossierPaieDsnEnEcriture();
+        }
+
         if ($data->isInitialized('gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier') && null !== $data->getGestionInterneParametragesClientsConfigurationAPIAccesAPIDossier()) {
             $dataArray['gestionInterneParametragesClientsConfigurationAPIAccesAPIDossier'] = $data->getGestionInterneParametragesClientsConfigurationAPIAccesAPIDossier();
         }
 
         if ($data->isInitialized('gestionInterneParametragesClientsSuppressionDeDossiers') && null !== $data->getGestionInterneParametragesClientsSuppressionDeDossiers()) {
             $dataArray['gestionInterneParametragesClientsSuppressionDeDossiers'] = $data->getGestionInterneParametragesClientsSuppressionDeDossiers();
-        }
-
-        if ($data->isInitialized('outilsPaieExportV2ExportNonChiffre') && null !== $data->getOutilsPaieExportV2ExportNonChiffre()) {
-            $dataArray['outilsPaieExportV2ExportNonChiffre'] = $data->getOutilsPaieExportV2ExportNonChiffre();
         }
 
         if ($data->isInitialized('administrationConnexion') && null !== $data->getAdministrationConnexion()) {
@@ -951,16 +967,20 @@ class CompteCollaborateurDroitsUtilisateurNormalizer implements DenormalizerInte
             $dataArray['outilsPaieImportDeDossierDemo'] = $data->getOutilsPaieImportDeDossierDemo();
         }
 
-        if ($data->isInitialized('dossierPaieAccesDsn') && null !== $data->getDossierPaieAccesDsn()) {
-            $dataArray['dossierPaieAccesDsn'] = $data->getDossierPaieAccesDsn();
-        }
-
         if ($data->isInitialized('gestionInterneConsoleDeGestionDesContacts') && null !== $data->getGestionInterneConsoleDeGestionDesContacts()) {
             $dataArray['gestionInterneConsoleDeGestionDesContacts'] = $data->getGestionInterneConsoleDeGestionDesContacts();
         }
 
         if ($data->isInitialized('gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil') && null !== $data->getGestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil()) {
             $dataArray['gestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil'] = $data->getGestionInterneConsoleDeGestionDesContactsBibliothequeDeProfil();
+        }
+
+        if ($data->isInitialized('mySilaeAccesContrats') && null !== $data->getMySilaeAccesContrats()) {
+            $dataArray['mySilaeAccesContrats'] = $data->getMySilaeAccesContrats();
+        }
+
+        if ($data->isInitialized('outilParametrageControles') && null !== $data->getOutilParametrageControles()) {
+            $dataArray['outilParametrageControles'] = $data->getOutilParametrageControles();
         }
 
         return $dataArray;

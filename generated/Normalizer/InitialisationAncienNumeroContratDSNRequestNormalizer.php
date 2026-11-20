@@ -7,6 +7,7 @@ namespace QdequippeTech\Silae\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use QdequippeTech\Silae\Api\Model\InitialisationAncienNumeroContratDSN;
 use QdequippeTech\Silae\Api\Model\InitialisationAncienNumeroContratDSNRequest;
+use QdequippeTech\Silae\Api\Runtime\JsonObject;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\CheckArray;
 use QdequippeTech\Silae\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -61,7 +62,7 @@ class InitialisationAncienNumeroContratDSNRequestNormalizer implements Denormali
     {
         $dataArray = [];
         if ($data->isInitialized('initAncienContratDSN') && null !== $data->getInitAncienContratDSN()) {
-            $dataArray['initAncienContratDSN'] = $this->normalizer->normalize($data->getInitAncienContratDSN(), 'json', $context);
+            $dataArray['initAncienContratDSN'] = null === $data->getInitAncienContratDSN() ? null : new JsonObject($this->normalizer->normalize($data->getInitAncienContratDSN(), 'json', $context));
         }
 
         return $dataArray;
